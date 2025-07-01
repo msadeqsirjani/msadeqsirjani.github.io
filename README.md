@@ -147,8 +147,8 @@ While this is a personal portfolio, suggestions and improvements are welcome:
 
 ## 📞 Contact
 
-- **Email**: [Your email]
-- **LinkedIn**: [Your LinkedIn]
+- **Email**: [m.sadeq.sirjani@gmail.com](m.sadeq.sirjani@gmail.com)
+- **LinkedIn**: [https://linkedin.com/msadeqsirjani](https://www.linkedin.com/in/msadeqsirjani)
 - **GitHub**: [@msadeqsirjani](https://github.com/msadeqsirjani)
 - **Website**: [msadeqsirjani.github.io](https://msadeqsirjani.github.io)
 
