@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <!-- Background with gradient -->
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0c2340;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1a365d;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="accentGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f15a22;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#ff6b35;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Main background circle -->
+  <circle cx="32" cy="32" r="30" fill="url(#bgGradient)" stroke="url(#accentGradient)" stroke-width="2"/>
+  
+  <!-- Graduation cap -->
+  <path d="M16 24 L32 16 L48 24 L32 32 Z" fill="url(#accentGradient)"/>
+  <rect x="28" y="32" width="8" height="3" fill="url(#accentGradient)"/>
+  
+  <!-- Tassel -->
+  <circle cx="32" cy="16" r="2" fill="url(#accentGradient)"/>
+  <path d="M32 16 L32 12" stroke="url(#accentGradient)" stroke-width="1" fill="none"/>
+  
+  <!-- Circuit board elements -->
+  <!-- Corner nodes -->
+  <circle cx="12" cy="40" r="3" fill="url(#accentGradient)"/>
+  <circle cx="52" cy="40" r="3" fill="url(#accentGradient)"/>
+  <circle cx="12" cy="52" r="3" fill="url(#accentGradient)"/>
+  <circle cx="52" cy="52" r="3" fill="url(#accentGradient)"/>
+  
+  <!-- Circuit connections -->
+  <path d="M15 40 L49 40" stroke="url(#accentGradient)" stroke-width="1.5" fill="none"/>
+  <path d="M15 52 L49 52" stroke="url(#accentGradient)" stroke-width="1.5" fill="none"/>
+  <path d="M12 43 L12 49" stroke="url(#accentGradient)" stroke-width="1.5" fill="none"/>
+  <path d="M52 43 L52 49" stroke="url(#accentGradient)" stroke-width="1.5" fill="none"/>
+  
+  <!-- Central processor chip -->
+  <rect x="24" y="44" width="16" height="8" fill="url(#accentGradient)" rx="1"/>
+  <rect x="26" y="46" width="12" height="4" fill="#0c2340"/>
+  
+  <!-- Processor details -->
+  <rect x="28" y="47" width="2" height="2" fill="url(#accentGradient)"/>
+  <rect x="32" y="47" width="2" height="2" fill="url(#accentGradient)"/>
+  <rect x="36" y="47" width="2" height="2" fill="url(#accentGradient)"/>
+  
+  <!-- Data flow lines -->
+  <path d="M20 46 L24 46" stroke="url(#accentGradient)" stroke-width="0.8" fill="none"/>
+  <path d="M40 46 L44 46" stroke="url(#accentGradient)" stroke-width="0.8" fill="none"/>
+  <path d="M20 50 L24 50" stroke="url(#accentGradient)" stroke-width="0.8" fill="none"/>
+  <path d="M40 50 L44 50" stroke="url(#accentGradient)" stroke-width="0.8" fill="none"/>
+  
+  <!-- Small data points -->
+  <circle cx="18" cy="46" r="1" fill="url(#accentGradient)"/>
+  <circle cx="46" cy="46" r="1" fill="url(#accentGradient)"/>
+  <circle cx="18" cy="50" r="1" fill="url(#accentGradient)"/>
+  <circle cx="46" cy="50" r="1" fill="url(#accentGradient)"/>
+  
+  <!-- Academic elements -->
+  <!-- Book -->
+  <rect x="8" y="36" width="6" height="8" fill="url(#accentGradient)" rx="0.5"/>
+  <rect x="9" y="37" width="4" height="6" fill="#0c2340"/>
+  <path d="M9 40 L13 40" stroke="url(#accentGradient)" stroke-width="0.5" fill="none"/>
+  <path d="M9 42 L13 42" stroke="url(#accentGradient)" stroke-width="0.5" fill="none"/>
+  
+  <!-- Microscope/Research -->
+  <circle cx="56" cy="36" r="4" fill="none" stroke="url(#accentGradient)" stroke-width="1.5"/>
+  <rect x="54" y="40" width="4" height="4" fill="url(#accentGradient)"/>
+</svg> 

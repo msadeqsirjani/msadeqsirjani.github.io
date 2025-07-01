@@ -1,0 +1,33 @@
+{
+  "name": "msadeqsirjani-portfolio",
+  "version": "1.0.0",
+  "description": "Academic portfolio website for Mohammad Sadegh Sirjani",
+  "main": "index.html",
+  "scripts": {
+    "start": "python -m http.server 8000",
+    "dev": "python -m http.server 8000",
+    "serve": "python -m http.server 8000"
+  },
+  "keywords": [
+    "portfolio",
+    "academic",
+    "computer-science",
+    "phd",
+    "research",
+    "publications",
+    "teaching"
+  ],
+  "author": "Mohammad Sadegh Sirjani",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/msadeqsirjani/msadeqsirjani.github.io.git"
+  },
+  "homepage": "https://msadeqsirjani.github.io",
+  "bugs": {
+    "url": "https://github.com/msadeqsirjani/msadeqsirjani.github.io/issues"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  }
+} 
