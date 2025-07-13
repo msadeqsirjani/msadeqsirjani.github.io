@@ -57,17 +57,16 @@
                 <li class="nav-item">
                     <a href="#publications" class="nav-link">Publications</a>
                 </li>
-                <li class="nav-item">
-                    <a href="#teaching" class="nav-link">Teaching</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#news" class="nav-link">News</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#awards" class="nav-link">Awards</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#contact" class="nav-link">Contact</a>
+                <li class="nav-item nav-dropdown" id="nav-more-dropdown">
+                    <button class="nav-dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+                        More <span style="font-size:0.8em;">&#9662;</span>
+                    </button>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="#teaching" class="nav-link">Teaching</a></li>
+                        <li><a href="#news" class="nav-link">News</a></li>
+                        <li><a href="#awards" class="nav-link">Awards</a></li>
+                        <li><a href="#contact" class="nav-link">Contact</a></li>
+                    </ul>
                 </li>
             </ul>
             <div class="nav-toggle" id="nav-toggle">
@@ -274,14 +273,24 @@
                         <div class="publication-item">
                             <h4><a href="#" target="_blank">Q-Learning-Based Task Scheduling Scheme to Enhance Energy Consumption and QoS in IoT Environments</a></h4>
                             <p class="journal">Sustainable Computing: Informatics and Systems Journal</p>
-                            <p class="doi">DOI: <a href="#" target="_blank">10.1016/j.suscom.2025.xxxxxxx</a></p>
-                            <p class="status under-revision">Under Revision</p>
+                            <div class="publication-meta-row">
+                                <p class="status under-revision">UNDER REVISION</p>
+                                <div class="publication-actions">
+                                    <a href="#" class="publication-btn" download title="Download PDF"><i class="fas fa-file-pdf"></i></a>
+                                    <a href="#" class="publication-btn" target="_blank" rel="noopener" title="View Paper"><i class="fas fa-external-link-alt"></i></a>
+                                </div>
+                            </div>
                         </div>
                         <div class="publication-item">
                             <h4><a href="#" target="_blank">Optimizing Controller Placement in SDNs Using Enhanced Cellular Learning Automata and Metaheuristic Algorithm</a></h4>
                             <p class="journal">Cluster Computing: The Journal of Networks, Software Tools and Applications</p>
-                            <p class="doi">DOI: <a href="#" target="_blank">10.1109/JCST.2025.xxxxxxx</a></p>
-                            <p class="status accepted">Accepted</p>
+                            <div class="publication-meta-row">
+                                <p class="status accepted">ACCEPTED</p>
+                                <div class="publication-actions">
+                                    <a href="#" class="publication-btn" download title="Download PDF"><i class="fas fa-file-pdf"></i></a>
+                                    <a href="#" class="publication-btn" target="_blank" rel="noopener" title="View Paper"><i class="fas fa-external-link-alt"></i></a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -291,27 +300,46 @@
                     <div class="publication-list">
                         <div class="publication-item">
                             <h4><a href="#" target="_blank">Optimizing Task Scheduling in Fog Computing with Deadline Awareness</a></h4>
-                            <p class="conference"></p>
-                            <p class="doi">DOI: <a href="#" target="_blank">10.1109/xxxx.2025.xxxxxxx</a></p>
-                            <p class="status in-progress">In Progress</p>
+                            <div class="publication-meta-row">
+                                <p class="status in-progress">IN PROGRESS</p>
+                                <div class="publication-actions">
+                                    <a href="#" class="publication-btn" download title="Download PDF"><i class="fas fa-file-pdf"></i></a>
+                                    <a href="https://doi.org/10.1109/xxxx.2025.xxxxxxx" class="publication-btn" target="_blank" rel="noopener" title="View Paper"><i class="fas fa-external-link-alt"></i></a>
+                                </div>
+                            </div>
                         </div>
                         <div class="publication-item">
                             <h4><a href="https://doi.org/10.1109/QICAR61538.2024.10496623" target="_blank">Data mining and cloud computing for customer pattern analysis</a></h4>
                             <p class="conference">10th International Conference on Artificial Intelligence and Robotics 2024</p>
-                            <p class="doi">DOI: <a href="https://doi.org/10.1109/QICAR61538.2024.10496623" target="_blank">10.1109/QICAR61538.2024.10496623</a></p>
-                            <p class="status published">Published</p>
+                            <div class="publication-meta-row">
+                                <p class="status published">PUBLISHED</p>
+                                <div class="publication-actions">
+                                    <a href="#" class="publication-btn" download title="Download PDF"><i class="fas fa-file-pdf"></i></a>
+                                    <a href="https://doi.org/10.1109/QICAR61538.2024.10496623" class="publication-btn" target="_blank" rel="noopener" title="View Paper"><i class="fas fa-external-link-alt"></i></a>
+                                </div>
+                            </div>
                         </div>
                         <div class="publication-item">
                             <h4><a href="https://doi.org/10.1109/IKT62039.2023.10433027" target="_blank">SecVanet: provably secure authentication protocol for sending emergency events in VANET</a></h4>
-                            <p class="conference">14th International Conference on Information and Knowledge Technology 2023</p>
-                            <p class="doi">DOI: <a href="https://doi.org/10.1109/IKT62039.2023.10433027" target="_blank">10.1109/IKT62039.2023.10433027</a></p>
-                            <p class="status published">Published</p>
+                            <p class="conference">10th International Conference on Information and Knowledge Technology 2023</p>
+                            <div class="publication-meta-row">
+                                <p class="status published">PUBLISHED</p>
+                                <div class="publication-actions">
+                                    <a href="#" class="publication-btn" download title="Download PDF"><i class="fas fa-file-pdf"></i></a>
+                                    <a href="https://doi.org/10.1109/IKT62039.2023.10433027" class="publication-btn" target="_blank" rel="noopener" title="View Paper"><i class="fas fa-external-link-alt"></i></a>
+                                </div>
+                            </div>
                         </div>
                         <div class="publication-item">
                             <h4><a href="https://doi.org/10.1109/IKT62039.2023.10433047" target="_blank">A Comparative Evaluation of Machine Learning Algorithms for IDS in IoT network</a></h4>
                             <p class="conference">14th International Conference on Information and Knowledge Technology 2023</p>
-                            <p class="doi">DOI: <a href="https://doi.org/10.1109/IKT62039.2023.10433047" target="_blank">10.1109/IKT62039.2023.10433047</a></p>
-                            <p class="status published">Published</p>
+                            <div class="publication-meta-row">
+                                <p class="status published">PUBLISHED</p>
+                                <div class="publication-actions">
+                                    <a href="#" class="publication-btn" download title="Download PDF"><i class="fas fa-file-pdf"></i></a>
+                                    <a href="https://doi.org/10.1109/IKT62039.2023.10433047" class="publication-btn" target="_blank" rel="noopener" title="View Paper"><i class="fas fa-external-link-alt"></i></a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -482,28 +510,28 @@
                         <i class="fas fa-map-marker-alt"></i>
                         <div>
                             <h4>Location</h4>
-                            <p>1 UTSA Circle, San Antonio, TX 78249</p>
+                            <p><a href="https://maps.google.com/?q=1+UTSA+Circle,+San+Antonio,+TX+78249" target="_blank" rel="noopener">1 UTSA Circle, San Antonio, TX 78249</a></p>
                         </div>
                     </div>
                     <div class="contact-item">
                         <i class="fas fa-envelope"></i>
                         <div>
                             <h4>Email</h4>
-                            <p>mohammadsadegh.sirjani@utsa.edu</p>
+                            <p><a href="mailto:mohammadsadegh.sirjani@utsa.edu">mohammadsadegh.sirjani@utsa.edu</a></p>
                         </div>
                     </div>
                     <div class="contact-item">
                         <i class="fas fa-phone"></i>
                         <div>
                             <h4>Phone</h4>
-                            <p>+1 (210) 591-3424</p>
+                            <p><a href="tel:+12105913424">+1 (210) 591-3424</a></p>
                         </div>
                     </div>
                     <div class="contact-item">
                         <i class="fas fa-university"></i>
                         <div>
                             <h4>Institution</h4>
-                            <p>University of Texas at San Antonio</p>
+                            <p><a href="https://utsa.edu" target="_blank" rel="noopener">University of Texas at San Antonio</a></p>
                         </div>
                     </div>
                 </div>
@@ -566,6 +594,6 @@
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="../scripts/script.js"></script>
 </body>
-</html> 
+</html>

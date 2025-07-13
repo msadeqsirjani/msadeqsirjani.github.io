@@ -6,6 +6,12 @@ const navLinks = document.querySelectorAll('.nav-link');
 const themeToggle = document.getElementById('theme-toggle');
 const contactForm = document.getElementById('contact-form');
 
+// Debug: Check if navbar is found
+console.log('Navbar element:', navbar);
+if (!navbar) {
+    console.error('Navbar element not found!');
+}
+
 // Theme Management
 let currentTheme = localStorage.getItem('theme') || 'light';
 document.documentElement.setAttribute('data-theme', currentTheme);
@@ -50,13 +56,49 @@ function smoothScrollTo(targetId) {
     }
 }
 
-// Navbar Background on Scroll
+// Smart Navbar Scroll Behavior
+let lastScrollTop = 0;
+let scrollThreshold = 100;
+let navbarHidden = false;
+
 function handleNavbarScroll() {
-    if (window.scrollY > 50) {
-        navbar.classList.add('scrolled');
+    const currentScrollTop = window.scrollY;
+    const scrollDelta = currentScrollTop - lastScrollTop;
+    
+    // Debug logging
+    console.log('Scroll:', currentScrollTop, 'Delta:', scrollDelta, 'Hidden:', navbarHidden);
+    
+    // Add scrolled class for background effect
+    if (currentScrollTop > 50) {
+        navbar.classList.add('navbar-scrolled');
+        console.log('Added navbar-scrolled class');
     } else {
-        navbar.classList.remove('scrolled');
+        navbar.classList.remove('navbar-scrolled');
+        console.log('Removed navbar-scrolled class');
     }
+    
+    // Smart hide/show logic
+    if (currentScrollTop > scrollThreshold) {
+        // Scrolling down - hide navbar
+        if (scrollDelta > 5 && !navbarHidden) {
+            navbar.classList.add('navbar-hidden');
+            navbarHidden = true;
+            console.log('Hiding navbar');
+        }
+        // Scrolling up - show navbar
+        else if (scrollDelta < -5 && navbarHidden) {
+            navbar.classList.remove('navbar-hidden');
+            navbarHidden = false;
+            console.log('Showing navbar');
+        }
+    } else {
+        // Near top - always show navbar
+        navbar.classList.remove('navbar-hidden');
+        navbarHidden = false;
+        console.log('Near top - showing navbar');
+    }
+    
+    lastScrollTop = currentScrollTop;
 }
 
 // Intersection Observer for Animations
@@ -341,6 +383,41 @@ function setupNewsShowMore() {
     }
 }
 
+// Navbar More Dropdown functionality
+const moreDropdown = document.getElementById('nav-more-dropdown');
+if (moreDropdown) {
+    const toggleBtn = moreDropdown.querySelector('.nav-dropdown-toggle');
+    const dropdownMenu = moreDropdown.querySelector('.nav-dropdown-menu');
+    toggleBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        moreDropdown.classList.toggle('open');
+        toggleBtn.setAttribute('aria-expanded', moreDropdown.classList.contains('open'));
+    });
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function(e) {
+        if (!moreDropdown.contains(e.target)) {
+            moreDropdown.classList.remove('open');
+            toggleBtn.setAttribute('aria-expanded', 'false');
+        }
+    });
+    // Optional: close on Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            moreDropdown.classList.remove('open');
+            toggleBtn.setAttribute('aria-expanded', 'false');
+        }
+    });
+    // Close dropdown on scroll
+    let lastScrollY = window.scrollY;
+    window.addEventListener('scroll', function() {
+        if (moreDropdown.classList.contains('open')) {
+            moreDropdown.classList.remove('open');
+            toggleBtn.setAttribute('aria-expanded', 'false');
+        }
+        lastScrollY = window.scrollY;
+    });
+}
+
 // Initialize all functionality
 function init() {
     // Event Listeners
@@ -360,8 +437,8 @@ function init() {
         contactForm.addEventListener('submit', handleContactForm);
     }
     
-    // Scroll Events
-    window.addEventListener('scroll', handleNavbarScroll);
+    // Scroll Events with throttling for better performance
+    window.addEventListener('scroll', throttle(handleNavbarScroll, 16)); // ~60fps
     
     // Initialize features
     setupIntersectionObserver();
@@ -380,15 +457,44 @@ function init() {
 // Wait for DOM to be fully loaded
 document.addEventListener('DOMContentLoaded', init);
 
+// Test function for navbar (can be called from console)
+window.testNavbar = function() {
+    console.log('Testing navbar functionality...');
+    console.log('Current scroll position:', window.scrollY);
+    console.log('Navbar classes:', navbar.className);
+    console.log('Navbar hidden state:', navbarHidden);
+    
+    // Test hiding
+    navbar.classList.add('navbar-hidden');
+    console.log('Added navbar-hidden class');
+    
+    // Test showing after 2 seconds
+    setTimeout(() => {
+        navbar.classList.remove('navbar-hidden');
+        console.log('Removed navbar-hidden class');
+    }, 2000);
+};
+
 // Add CSS for additional features
 const additionalStyles = `
-    .navbar.scrolled {
-        background: rgba(255, 255, 255, 0.98) !important;
-        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+    /* Enhanced navbar mirror effect */
+    .navbar {
+        will-change: transform;
     }
     
-    [data-theme="dark"] .navbar.scrolled {
+    .navbar.navbar-hidden {
+        transform: translateY(-100%);
+    }
+    
+    .navbar.navbar-scrolled {
+        background: rgba(255, 255, 255, 0.98) !important;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(15px);
+    }
+    
+    [data-theme="dark"] .navbar.navbar-scrolled {
         background: rgba(26, 26, 26, 0.98) !important;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
     }
     
     .publication-search:focus {
@@ -447,7 +553,21 @@ const styleSheet = document.createElement('style');
 styleSheet.textContent = additionalStyles;
 document.head.appendChild(styleSheet);
 
-// Performance optimization: Debounce scroll events
+// Performance optimization: Throttle function for smooth scroll handling
+function throttle(func, limit) {
+    let inThrottle;
+    return function() {
+        const args = arguments;
+        const context = this;
+        if (!inThrottle) {
+            func.apply(context, args);
+            inThrottle = true;
+            setTimeout(() => inThrottle = false, limit);
+        }
+    };
+}
+
+// Debounce function for other events
 function debounce(func, wait) {
     let timeout;
     return function executedFunction(...args) {
@@ -459,9 +579,6 @@ function debounce(func, wait) {
         timeout = setTimeout(later, wait);
     };
 }
-
-// Apply debouncing to scroll events
-window.addEventListener('scroll', debounce(handleNavbarScroll, 10));
 
 // Add smooth reveal animation for sections
 function revealOnScroll() {
