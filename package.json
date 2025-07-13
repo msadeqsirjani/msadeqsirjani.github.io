@@ -2,11 +2,14 @@
   "name": "msadeqsirjani-portfolio",
   "version": "1.0.0",
   "description": "Academic portfolio website for Mohammad Sadegh Sirjani",
-  "main": "index.html",
+  "main": "src/pages/index.html",
   "scripts": {
     "start": "python -m http.server 8000",
     "dev": "python -m http.server 8000",
-    "serve": "python -m http.server 8000"
+    "serve": "python -m http.server 8000",
+    "build": "node scripts/build.js",
+    "clean": "rm -rf dist/*",
+    "deploy": "npm run build && git add . && git commit -m 'Build and deploy' && git push"
   },
   "keywords": [
     "portfolio",
