@@ -1172,12 +1172,16 @@ body {
 }
 @media (max-width: 600px) {
     .publication-meta-row {
-        flex-direction: column;
-        align-items: flex-start;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
         gap: 10px;
+        margin-top: 18px;
+        flex-wrap: wrap;
     }
     .publication-meta-row .publication-actions {
-        gap: 10px;
+        margin: 0;
+        gap: 14px;
     }
 }
 

@@ -6,12 +6,6 @@ const navLinks = document.querySelectorAll('.nav-link');
 const themeToggle = document.getElementById('theme-toggle');
 const contactForm = document.getElementById('contact-form');
 
-// Debug: Check if navbar is found
-console.log('Navbar element:', navbar);
-if (!navbar) {
-    console.error('Navbar element not found!');
-}
-
 // Theme Management
 let currentTheme = localStorage.getItem('theme') || 'light';
 document.documentElement.setAttribute('data-theme', currentTheme);
@@ -65,16 +59,11 @@ function handleNavbarScroll() {
     const currentScrollTop = window.scrollY;
     const scrollDelta = currentScrollTop - lastScrollTop;
     
-    // Debug logging
-    console.log('Scroll:', currentScrollTop, 'Delta:', scrollDelta, 'Hidden:', navbarHidden);
-    
     // Add scrolled class for background effect
     if (currentScrollTop > 50) {
         navbar.classList.add('navbar-scrolled');
-        console.log('Added navbar-scrolled class');
     } else {
         navbar.classList.remove('navbar-scrolled');
-        console.log('Removed navbar-scrolled class');
     }
     
     // Smart hide/show logic
@@ -83,19 +72,16 @@ function handleNavbarScroll() {
         if (scrollDelta > 5 && !navbarHidden) {
             navbar.classList.add('navbar-hidden');
             navbarHidden = true;
-            console.log('Hiding navbar');
         }
         // Scrolling up - show navbar
         else if (scrollDelta < -5 && navbarHidden) {
             navbar.classList.remove('navbar-hidden');
             navbarHidden = false;
-            console.log('Showing navbar');
         }
     } else {
         // Near top - always show navbar
         navbar.classList.remove('navbar-hidden');
         navbarHidden = false;
-        console.log('Near top - showing navbar');
     }
     
     lastScrollTop = currentScrollTop;
@@ -458,20 +444,13 @@ function init() {
 document.addEventListener('DOMContentLoaded', init);
 
 // Test function for navbar (can be called from console)
-window.testNavbar = function() {
-    console.log('Testing navbar functionality...');
-    console.log('Current scroll position:', window.scrollY);
-    console.log('Navbar classes:', navbar.className);
-    console.log('Navbar hidden state:', navbarHidden);
-    
+window.testNavbar = function() {    
     // Test hiding
     navbar.classList.add('navbar-hidden');
-    console.log('Added navbar-hidden class');
     
     // Test showing after 2 seconds
     setTimeout(() => {
         navbar.classList.remove('navbar-hidden');
-        console.log('Removed navbar-hidden class');
     }, 2000);
 };
 
