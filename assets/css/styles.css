@@ -1090,6 +1090,11 @@ body {
     color: #856404;
 }
 
+.status.submitted {
+    background: #cce5ff;
+    color: #004085;
+}
+
 .status.accepted {
     background: #d4edda;
     color: #155724;
@@ -1107,7 +1112,7 @@ body {
 
 .status.in-progress {
     background: #fff3cd;
-    color: #856404;
+    color: #048526;
 }
 
 /* Publication Actions: Row Layout and Minimal Orange Icon Buttons */
