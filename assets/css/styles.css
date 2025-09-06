@@ -1490,6 +1490,76 @@ ul, ol {
     }
 }
 
+/* iPhone 14 Pro Max and similar large mobile devices */
+@media (max-width: 430px) {
+    .hero-content {
+        padding: 0 1rem;
+        text-align: center;
+    }
+    
+    .hero-title {
+        font-size: 1.75rem;
+        text-align: center;
+        margin: 0 auto;
+    }
+    
+    .hero-subtitle, .hero-institution, .hero-tagline {
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .hero-buttons {
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .profile-image {
+        display: flex;
+        justify-content: center;
+        margin: 0 auto;
+    }
+    
+    /* Research interests centering */
+    .interests-container {
+        padding: 1rem;
+        justify-content: center;
+        margin: 0 auto;
+    }
+    
+    .interest-card {
+        text-align: center;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .section-title {
+        text-align: center;
+        margin: 0 auto 2rem auto;
+    }
+    
+    /* Social media icons centering */
+    .social-links {
+        justify-content: center;
+        margin: 0 auto;
+        width: 100%;
+    }
+    
+    .footer-social {
+        justify-content: center;
+        margin: 0 auto;
+        width: 100%;
+    }
+    
+    .footer-section {
+        text-align: center;
+        margin: 0 auto;
+    }
+}
+
 /* Smooth Scrolling */
 html {
     scroll-behavior: smooth;
