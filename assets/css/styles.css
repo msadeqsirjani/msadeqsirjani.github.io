@@ -681,6 +681,7 @@ ul, ol {
 
 .status.published,
 .status.review,
+.status.accepted,
 .status.submitted {
     background: #f1f5f9;
     color: #475569;
@@ -689,6 +690,7 @@ ul, ol {
 
 [data-theme="dark"] .status.published,
 [data-theme="dark"] .status.review,
+[data-theme="dark"] .status.accepted,
 [data-theme="dark"] .status.submitted {
     background: #374151;
     color: #d1d5db;
