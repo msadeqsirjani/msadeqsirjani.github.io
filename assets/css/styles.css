@@ -5,22 +5,62 @@
     box-sizing: border-box;
 }
 
+/* Performance Optimizations */
+html {
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* Optimize rendering performance */
+img, picture {
+    max-width: 100%;
+    height: auto;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+}
+
+/* GPU acceleration for smooth interactions */
+.navbar,
+.theme-toggle,
+.btn {
+    will-change: auto;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
+
+/* Optimize font rendering */
+body, h1, h2, h3, h4, h5, h6 {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+}
+
 :root {
-    --text-color: #333333;
-    --text-light: #666666;
+    /* WCAG AA compliant color scheme */
+    --text-color: #1a1a1a;        /* Darker for better contrast */
+    --text-light: #4a5568;        /* Improved contrast ratio */
     --white: #ffffff;
-    --gray-light: #f8f9fa;
-    --border-color: #e0e0e0;
-    --accent-color: #2563eb;
+    --gray-light: #f7fafc;
+    --border-color: #d1d5db;      /* More visible borders */
+    --accent-color: #1d4ed8;      /* Higher contrast blue */
+    --accent-hover: #1e40af;      /* Darker accent for hover */
+    --error-color: #dc2626;       /* WCAG compliant red */
+    --success-color: #059669;     /* WCAG compliant green */
+    --focus-color: #3b82f6;       /* High contrast focus */
 }
 
 [data-theme="dark"] {
-    --text-color: #e5e5e5;
-    --text-light: #d1d5db;
-    --white: #1a1a1a;
-    --gray-light: #2d2d2d;
-    --border-color: #404040;
-    --accent-color: #60a5fa;
+    /* WCAG AA compliant dark theme */
+    --text-color: #f9fafb;        /* High contrast white */
+    --text-light: #d1d5db;        /* Better contrast in dark mode */
+    --white: #111827;             /* True dark background */
+    --gray-light: #1f2937;        /* Darker gray for better contrast */
+    --border-color: #4b5563;      /* More visible dark borders */
+    --accent-color: #3b82f6;      /* Brighter blue for dark mode */
+    --accent-hover: #60a5fa;      /* Lighter hover for dark mode */
+    --error-color: #f87171;       /* Light red for dark mode */
+    --success-color: #34d399;     /* Light green for dark mode */
+    --focus-color: #60a5fa;       /* Bright focus for dark mode */
 }
 
 body {
@@ -28,6 +68,16 @@ body {
     line-height: 1.6;
     color: var(--text-color);
     background-color: var(--white);
+}
+
+/* Font Loading Optimization */
+@font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 300 700;
+    font-display: swap;
+    src: url('https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyeMZs.woff2') format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
 .container {
@@ -43,7 +93,8 @@ ul, ol {
     padding: 0;
 }
 
-/* Navigation */
+
+/* Main Navigation */
 .navbar {
     position: sticky;
     top: 0;
@@ -77,7 +128,6 @@ ul, ol {
     background-clip: text;
     letter-spacing: -0.05em;
     position: relative;
-    transition: all 0.3s ease;
     display: inline-block;
 }
 
@@ -89,17 +139,8 @@ ul, ol {
     width: 100%;
     height: 2px;
     background: linear-gradient(135deg, #333333, #1a1a1a);
-    transform: scaleX(0);
-    transition: transform 0.3s ease;
 }
 
-.logo-text:hover::before {
-    transform: scaleX(1);
-}
-
-.logo-text:hover {
-    transform: translateY(-1px);
-}
 
 /* Dark mode logo adjustments */
 [data-theme="dark"] .logo-text {
@@ -156,12 +197,8 @@ ul, ol {
     border-left: 3px solid transparent;
     border-right: 3px solid transparent;
     border-top: 3px solid currentColor;
-    transition: transform 0.2s ease;
 }
 
-.nav-dropdown.open .nav-dropdown-toggle::after {
-    transform: rotate(180deg);
-}
 
 .nav-dropdown-toggle:hover {
     color: var(--accent-color);
@@ -550,17 +587,12 @@ ul, ol {
     flex-shrink: 0;
     border: 1px solid var(--border-color);
     border-radius: 8px;
-    transition: all 0.3s ease;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
 
-.interest-card:hover {
-    border-color: var(--accent-color);
-    transform: translateY(-2px);
-}
 
 .interest-card i {
     font-size: 1.8rem;
@@ -1108,13 +1140,8 @@ ul, ol {
         height: auto;
         min-height: 100px;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        transition: all 0.3s ease;
-    }
+        }
 
-    .interest-card:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-    }
 
     .interest-card i {
         font-size: 1.5rem;
@@ -1562,7 +1589,164 @@ ul, ol {
     }
 }
 
-/* Smooth Scrolling */
+/* ACCESSIBILITY IMPROVEMENTS */
+
+/* Enhanced Focus Indicators */
+a:focus,
+button:focus,
+input:focus,
+textarea:focus,
+select:focus,
+.nav-link:focus,
+.btn:focus,
+.theme-toggle:focus,
+.social-link:focus {
+    outline: 3px solid var(--focus-color);
+    outline-offset: 2px;
+    border-radius: 4px;
+    box-shadow: 0 0 0 1px var(--white), 0 0 0 4px var(--focus-color);
+}
+
+/* High contrast focus for better visibility */
+@media (prefers-contrast: high) {
+    a:focus,
+    button:focus,
+    input:focus,
+    textarea:focus,
+    select:focus {
+        outline: 4px solid #000;
+        background-color: #ffff00;
+        color: #000;
+    }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    ::before,
+    ::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Skip link for keyboard navigation */
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 6px;
+    background: var(--accent-color);
+    color: white;
+    padding: 8px 12px;
+    text-decoration: none;
+    border-radius: 4px;
+    z-index: 1000;
+    font-weight: bold;
+    transform: translateY(-100%);
+    opacity: 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.skip-link:focus {
+    top: 6px;
+    transform: translateY(0);
+    opacity: 1;
+    outline: 3px solid white;
+    outline-offset: 2px;
+}
+
+/* Screen reader only text */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* Better button accessibility */
+button,
+.btn {
+    min-height: 44px;
+    min-width: 44px;
+    position: relative;
+}
+
+/* Ensure adequate spacing for touch targets */
+.nav-link,
+.social-link,
+.theme-toggle {
+    min-height: 44px;
+    min-width: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* High contrast theme adjustments */
+@media (prefers-contrast: high) {
+    :root {
+        --text-color: #000000;
+        --text-light: #000000;
+        --border-color: #000000;
+        --accent-color: #0000ff;
+    }
+
+    [data-theme="dark"] {
+        --text-color: #ffffff;
+        --text-light: #ffffff;
+        --border-color: #ffffff;
+        --accent-color: #00ffff;
+    }
+}
+
+/* Ensure color contrast compliance */
+.status {
+    background-color: var(--accent-color);
+    color: white;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-weight: bold;
+}
+
+/* Better error and success messaging */
+.error {
+    color: var(--error-color);
+    background-color: #fef2f2;
+    border: 1px solid var(--error-color);
+    padding: 8px;
+    border-radius: 4px;
+    font-weight: 500;
+}
+
+.success {
+    color: var(--success-color);
+    background-color: #ecfdf5;
+    border: 1px solid var(--success-color);
+    padding: 8px;
+    border-radius: 4px;
+    font-weight: 500;
+}
+
+/* Dark theme error/success adjustments */
+[data-theme="dark"] .error {
+    color: var(--error-color);
+    background-color: #1f1010;
+    border-color: var(--error-color);
+}
+
+[data-theme="dark"] .success {
+    color: var(--success-color);
+    background-color: #0d1f15;
+    border-color: var(--success-color);
+}
+
+/* No scroll behavior for accessibility */
 html {
     scroll-behavior: auto;
 }
