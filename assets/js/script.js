@@ -63,14 +63,14 @@ function closeMobileMenu() {
     navToggle.classList.remove('active');
 }
 
-// Smooth Scrolling for Navigation Links
-function smoothScrollTo(targetId) {
+// Instant scrolling for Navigation Links
+function scrollToTarget(targetId) {
     const target = document.querySelector(targetId);
     if (target) {
         const offsetTop = target.offsetTop - 80;
         window.scrollTo({
             top: offsetTop,
-            behavior: 'smooth'
+            behavior: 'auto'
         });
     }
 }
@@ -116,7 +116,6 @@ function setupDropdown() {
     const dropdown = document.querySelector('.nav-dropdown');
     if (dropdown) {
         const toggleBtn = dropdown.querySelector('.nav-dropdown-toggle');
-        const dropdownMenu = dropdown.querySelector('.nav-dropdown-menu');
         
         toggleBtn.addEventListener('click', function(e) {
             e.stopPropagation();
@@ -146,7 +145,7 @@ function init() {
         link.addEventListener('click', (e) => {
             e.preventDefault();
             const targetId = link.getAttribute('href');
-            smoothScrollTo(targetId);
+            scrollToTarget(targetId);
             closeMobileMenu();
         });
     });
