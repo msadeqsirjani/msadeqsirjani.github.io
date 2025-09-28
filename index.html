@@ -24,6 +24,28 @@
     
     <!-- Sitemap -->
     <link rel="sitemap" type="application/xml" href="/sitemap.xml">
+    <!-- Performance Resource Hints -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="dns-prefetch" href="https://formspree.io">
+
+    <!-- Preload Critical Resources -->
+    <link rel="preload" href="assets/css/styles.css" as="style">
+    <link rel="preload" href="assets/img/profile.webp" as="image" type="image/webp">
+    <link rel="preload" href="assets/img/profile.jpg" as="image" type="image/jpeg">
+
+    <!-- Critical CSS for Above-the-Fold Content -->
+    <style>
+        :root{--text-color:#333;--white:#fff;--gray-light:#f8f9fa;--border-color:#e0e0e0;--accent-color:#2563eb}
+        [data-theme="dark"]{--text-color:#e5e5e5;--white:#1a1a1a;--gray-light:#2d2d2d;--border-color:#404040;--accent-color:#60a5fa}
+        *{margin:0;padding:0;box-sizing:border-box}
+        body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;line-height:1.6;color:var(--text-color);background-color:var(--white)}
+        .container{max-width:1200px;margin:0 auto;padding:0 20px}
+        .navbar{position:sticky;top:0;background:var(--white);border-bottom:1px solid var(--border-color);z-index:100;padding:1rem 0}
+        .nav-container{display:flex;justify-content:space-between;align-items:center;max-width:1200px;margin:0 auto;padding:0 20px}
+    </style>
+
     <link rel="stylesheet" href="assets/css/styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -60,6 +82,23 @@
     <!-- LinkedIn -->
     <meta property="og:image:secure_url" content="https://msadeqsirjani.com/assets/img/profile.jpg">
     <meta name="linkedin:owner" content="msadeqsirjani">
+
+    <!-- Additional Social Media Tags -->
+    <meta name="twitter:domain" content="msadeqsirjani.com">
+    <meta name="twitter:label1" content="Research Focus">
+    <meta name="twitter:data1" content="IoT, Tiny AI, Edge Computing">
+    <meta name="twitter:label2" content="Institution">
+    <meta name="twitter:data2" content="UT San Antonio">
+
+    <!-- Pinterest -->
+    <meta name="pinterest-rich-pin" content="true">
+
+    <!-- Google+ (legacy but still useful) -->
+    <meta itemprop="image" content="https://msadeqsirjani.com/assets/img/profile.jpg">
+
+    <!-- WhatsApp -->
+    <meta property="og:image:width" content="300">
+    <meta property="og:image:height" content="300">
     
     <!-- Academic and Research Specific Meta Tags -->
     <meta name="citation_author" content="Mohammad Sadegh Sirjani">
@@ -82,6 +121,23 @@
     <meta name="target" content="all">
     <meta name="HandheldFriendly" content="True">
     <meta name="MobileOptimized" content="320">
+
+    <!-- Additional SEO Meta Tags -->
+    <meta name="topic" content="Computer Science Research, IoT, Tiny AI, Edge Computing">
+    <meta name="summary" content="Ph.D. student researching IoT, Tiny AI, and Edge Computing at UT San Antonio">
+    <meta name="classification" content="Academic Portfolio">
+    <meta name="designer" content="Mohammad Sadegh Sirjani">
+    <meta name="copyright" content="2025 Mohammad Sadegh Sirjani">
+    <meta name="reply-to" content="mohammadsadegh.sirjani@utsa.edu">
+    <meta name="owner" content="Mohammad Sadegh Sirjani">
+    <meta name="url" content="https://msadeqsirjani.com">
+    <meta name="identifier-URL" content="https://msadeqsirjani.com">
+    <meta name="category" content="Academic, Research, Computer Science, PhD Student">
+    <meta name="coverage" content="Worldwide">
+    <meta name="distribution" content="Global">
+    <meta name="rating" content="General">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     
     <!-- Structured Data JSON-LD -->
     <script type="application/ld+json">
@@ -167,63 +223,123 @@
         }
       ],
       "inLanguage": ["en", "fa"]
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is Mohammad Sadegh Sirjani's research focus?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Mohammad Sadegh Sirjani focuses on IoT (Internet of Things), Tiny AI, Edge AI, and Embedded Systems research as a Ph.D. student in Computer Science at UT San Antonio."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Where does Mohammad Sadegh Sirjani study?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "He is currently pursuing his Ph.D. in Computer Science at the University of Texas at San Antonio (UTSA), starting January 2025."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What are Mohammad Sadegh Sirjani's recent publications?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "His recent work includes publications on Q-Learning-Based Task Scheduling in IoT Environments and Controller Placement in Software-Defined Networks using Reinforcement Learning and Metaheuristics."
+          }
+        }
+      ]
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://msadeqsirjani.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Mohammad Sadegh Sirjani",
+          "item": "https://msadeqsirjani.com/#home"
+        }
+      ]
     }
     </script>
 </head>
 <body>
+    <!-- Skip to main content link for keyboard navigation -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
     <!-- Navigation -->
-    <nav class="navbar">
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
         <div class="nav-container">
             <div class="nav-logo">
-                <a href="#home" class="logo-text">SS</a>
+                <a href="#home" class="logo-text" aria-label="Mohammad Sadegh Sirjani - Home page">SS</a>
             </div>
-            <ul class="nav-menu" id="nav-menu">
-                <li><a href="#home" class="nav-link">Home</a></li>
-                <li><a href="#biography" class="nav-link">About</a></li>
-                <li><a href="#education" class="nav-link">Education</a></li>
-                <li><a href="#research" class="nav-link">Research</a></li>
-                <li><a href="#publications" class="nav-link">Publications</a></li>
-                <li class="nav-dropdown">
-                    <button class="nav-dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+            <ul class="nav-menu" id="nav-menu" role="menubar" aria-label="Main menu">
+                <li role="none"><a href="#home" class="nav-link" role="menuitem">Home</a></li>
+                <li role="none"><a href="#biography" class="nav-link" role="menuitem">About</a></li>
+                <li role="none"><a href="#education" class="nav-link" role="menuitem">Education</a></li>
+                <li role="none"><a href="#research" class="nav-link" role="menuitem">Research</a></li>
+                <li role="none"><a href="#publications" class="nav-link" role="menuitem">Publications</a></li>
+                <li class="nav-dropdown" role="none">
+                    <button class="nav-dropdown-toggle" aria-haspopup="true" aria-expanded="false" aria-controls="dropdown-menu" aria-label="More sections menu">
                         More
+                        <span class="sr-only">(Press Enter to expand)</span>
                     </button>
-                    <ul class="nav-dropdown-menu">
-                        <li><a href="#teaching" class="nav-link">Teaching</a></li>
-                        <li><a href="#news" class="nav-link">News</a></li>
-                        <li><a href="#awards" class="nav-link">Awards</a></li>
-                        <li><a href="#contact" class="nav-link">Contact</a></li>
+                    <ul class="nav-dropdown-menu" id="dropdown-menu" role="menu" aria-label="Additional sections">
+                        <li role="none"><a href="#teaching" class="nav-link" role="menuitem">Teaching</a></li>
+                        <li role="none"><a href="#news" class="nav-link" role="menuitem">News</a></li>
+                        <li role="none"><a href="#awards" class="nav-link" role="menuitem">Awards</a></li>
+                        <li role="none"><a href="#contact" class="nav-link" role="menuitem">Contact</a></li>
                     </ul>
                 </li>
-                <li class="nav-mobile-item"><a href="#teaching" class="nav-link">Teaching</a></li>
-                <li class="nav-mobile-item"><a href="#news" class="nav-link">News</a></li>
-                <li class="nav-mobile-item"><a href="#awards" class="nav-link">Awards</a></li>
-                <li class="nav-mobile-item"><a href="#contact" class="nav-link">Contact</a></li>
+                <li class="nav-mobile-item" role="none"><a href="#teaching" class="nav-link" role="menuitem">Teaching</a></li>
+                <li class="nav-mobile-item" role="none"><a href="#news" class="nav-link" role="menuitem">News</a></li>
+                <li class="nav-mobile-item" role="none"><a href="#awards" class="nav-link" role="menuitem">Awards</a></li>
+                <li class="nav-mobile-item" role="none"><a href="#contact" class="nav-link" role="menuitem">Contact</a></li>
             </ul>
-            <div class="nav-toggle" id="nav-toggle">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
+            <div class="nav-controls">
+                <button class="theme-toggle" id="theme-toggle" aria-label="Toggle between light, dark, and system theme" aria-expanded="false">
+                    <i class="fas fa-moon" aria-hidden="true"></i>
+                    <span class="sr-only">Current theme: Light</span>
+                </button>
+                <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-menu">
+                    <span class="bar" aria-hidden="true"></span>
+                    <span class="bar" aria-hidden="true"></span>
+                    <span class="bar" aria-hidden="true"></span>
+                    <span class="sr-only">Menu</span>
+                </button>
             </div>
-            <button class="theme-toggle" id="theme-toggle">
-                <i class="fas fa-moon"></i>
-            </button>
         </div>
     </nav>
 
-    <!-- Home Section -->
-    <main>
-        <section id="home" class="hero" itemscope itemtype="https://schema.org/Person">
+
+    <!-- Main Content -->
+    <main id="main-content" role="main" aria-label="Main content">
+        <section id="home" class="hero" itemscope itemtype="https://schema.org/Person" aria-labelledby="hero-title">
             <div class="container">
                 <div class="hero-content">
                     <div class="hero-left">
                         <div class="profile-image">
-                            <img src="assets/img/profile.jpg" alt="Mohammad Sadegh Sirjani (محمد صادق سیرجانی) - Ph.D. Student in Computer Science at UT San Antonio" itemprop="image" loading="eager">
+                            <picture>
+                                <source srcset="assets/img/profile.webp" type="image/webp">
+                                <source srcset="assets/img/profile.jpg" type="image/jpeg">
+                                <img src="assets/img/profile.jpg" alt="Mohammad Sadegh Sirjani (محمد صادق سیرجانی) - Ph.D. Student in Computer Science at UT San Antonio" itemprop="image" loading="eager" width="200" height="200">
+                            </picture>
                         </div>
                     </div>
                     <div class="hero-right">
-                        <h1 class="hero-title" itemprop="name">
+                        <h1 class="hero-title" id="hero-title" itemprop="name">
                             <span lang="en">Mohammad Sadegh Sirjani</span>
-                            <span style="display: none;" lang="fa">محمد صادق سیرجانی</span>
+                            <span style="display: none;" lang="fa" aria-label="Mohammad Sadegh Sirjani in Persian">محمد صادق سیرجانی</span>
                         </h1>
                         <h2 class="hero-subtitle" itemprop="jobTitle">Ph.D. Student in Computer Science</h2>
                         <p class="hero-institution" itemprop="worksFor" itemscope itemtype="https://schema.org/EducationalOrganization">
@@ -240,24 +356,30 @@
                             </a>
                         </div>
                     
-                        <div class="social-links">
-                            <a href="mailto:mohammadsadegh.sirjani@utsa.edu" class="social-link" title="Email">
-                                <i class="fas fa-envelope"></i>
+                        <div class="social-links" role="group" aria-label="Social media and academic profiles">
+                            <a href="mailto:mohammadsadegh.sirjani@utsa.edu" class="social-link" aria-label="Send email to Mohammad Sadegh Sirjani">
+                                <i class="fas fa-envelope" aria-hidden="true"></i>
+                                <span class="sr-only">Email</span>
                             </a>
-                            <a href="https://scholar.google.com/citations?user=EI5DizMAAAAJ&hl=en" class="social-link" title="Google Scholar">
-                                <i class="fas fa-graduation-cap"></i>
+                            <a href="https://scholar.google.com/citations?user=EI5DizMAAAAJ&hl=en" class="social-link" aria-label="View Google Scholar profile" target="_blank" rel="noopener">
+                                <i class="fas fa-graduation-cap" aria-hidden="true"></i>
+                                <span class="sr-only">Google Scholar</span>
                             </a>
-                            <a href="https://www.linkedin.com/in/msadeqsirjani" class="social-link" title="LinkedIn">
-                                <i class="fab fa-linkedin"></i>
+                            <a href="https://www.linkedin.com/in/msadeqsirjani" class="social-link" aria-label="View LinkedIn profile" target="_blank" rel="noopener">
+                                <i class="fab fa-linkedin" aria-hidden="true"></i>
+                                <span class="sr-only">LinkedIn</span>
                             </a>
-                            <a href="https://github.com/msadeqsirjani" class="social-link" title="GitHub">
-                                <i class="fab fa-github"></i>
+                            <a href="https://github.com/msadeqsirjani" class="social-link" aria-label="View GitHub profile" target="_blank" rel="noopener">
+                                <i class="fab fa-github" aria-hidden="true"></i>
+                                <span class="sr-only">GitHub</span>
                             </a>
-                            <a href="https://orcid.org/0009-0000-5146-0216" class="social-link" title="ORCID">
-                                <i class="fas fa-id-card"></i>
+                            <a href="https://orcid.org/0009-0000-5146-0216" class="social-link" aria-label="View ORCID profile" target="_blank" rel="noopener">
+                                <i class="fas fa-id-card" aria-hidden="true"></i>
+                                <span class="sr-only">ORCID</span>
                             </a>
-                            <a href="https://twitter.com/msadeqsirjani" class="social-link" title="Twitter">
-                                <i class="fab fa-twitter"></i>
+                            <a href="https://twitter.com/msadeqsirjani" class="social-link" aria-label="View Twitter profile" target="_blank" rel="noopener">
+                                <i class="fab fa-twitter" aria-hidden="true"></i>
+                                <span class="sr-only">Twitter</span>
                             </a>
                         </div>
                     </div>
