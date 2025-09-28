@@ -28,7 +28,35 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://www.googletagmanager.com">
     <link rel="dns-prefetch" href="https://formspree.io">
+
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-P3MSKYZ3TB"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+
+        // Privacy-compliant analytics setup
+        gtag('consent', 'default', {
+            'analytics_storage': 'denied',
+            'ad_storage': 'denied',
+            'wait_for_update': 500
+        });
+
+        gtag('js', new Date());
+        gtag('config', 'G-P3MSKYZ3TB', {
+            'anonymize_ip': true,
+            'cookie_flags': 'secure;samesite=lax',
+            'cookie_expires': 63072000, // 2 years
+            'send_page_view': true
+        });
+
+        // Auto-consent for analytics (you can make this conditional based on user preference)
+        gtag('consent', 'update', {
+            'analytics_storage': 'granted'
+        });
+    </script>
 
     <!-- Preload Critical Resources -->
     <link rel="preload" href="assets/css/styles.css" as="style">
