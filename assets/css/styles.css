@@ -247,6 +247,9 @@ ul, ol {
     display: none;
     flex-direction: column;
     cursor: pointer;
+    justify-content: center;
+    align-items: center;
+    padding: 8px;
 }
 
 .bar {
@@ -364,6 +367,44 @@ ul, ol {
 .social-link:hover {
     border-color: var(--accent-color);
     color: var(--accent-color);
+}
+
+/* Tooltips for social links, buttons, and theme toggle */
+.social-link,
+.btn[data-tooltip],
+.theme-toggle[data-tooltip],
+.footer-social a[data-tooltip] {
+    position: relative;
+}
+
+.social-link::after,
+.btn[data-tooltip]::after,
+.theme-toggle[data-tooltip]::after,
+.footer-social a[data-tooltip]::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: -35px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--text-color);
+    color: var(--white);
+    padding: 6px 8px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+    pointer-events: none;
+    z-index: 10;
+}
+
+.social-link:hover::after,
+.btn[data-tooltip]:hover::after,
+.theme-toggle[data-tooltip]:hover::after,
+.footer-social a[data-tooltip]:hover::after {
+    opacity: 1;
+    visibility: visible;
 }
 
 /* Sections */
@@ -746,6 +787,33 @@ ul, ol {
     color: var(--accent-color);
 }
 
+/* Citation badge styling - exactly matching status badges */
+.citation-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.3rem 0.8rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    border: 1px solid;
+    border-radius: 6px;
+    letter-spacing: 0.3px;
+    background: #f1f5f9;
+    color: #475569;
+    border-color: #e2e8f0;
+}
+
+[data-theme="dark"] .citation-badge {
+    background: #374151;
+    color: #d1d5db;
+    border-color: #4b5563;
+}
+
+.citation-badge i {
+    font-size: 0.7rem;
+}
+
 /* Teaching Timeline Layout */
 .teaching-list {
     max-width: 800px;
@@ -1026,17 +1094,21 @@ ul, ol {
 
 .footer-social {
     display: flex;
-    gap: 1rem;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    max-width: 300px;
 }
 
 .footer-social a {
-    width: 40px;
-    height: 40px;
+    width: 36px;
+    height: 36px;
     border: 1px solid var(--border-color);
+    border-radius: 4px;
     display: flex;
     align-items: center;
     justify-content: center;
     color: var(--text-color);
+    transition: all 0.3s ease;
 }
 
 .footer-social a:hover {
@@ -1087,12 +1159,18 @@ ul, ol {
         gap: 0.5rem;
     }
 
+    .nav-controls {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
     .nav-toggle {
-        margin-left: auto;
+        order: 1;
     }
 
     .theme-toggle {
-        margin-left: 0.5rem;
+        order: 2;
     }
 
     .hero-content {
@@ -1235,6 +1313,17 @@ ul, ol {
         background: #374151;
         color: #d1d5db;
         border-color: #4b5563;
+    }
+
+    /* Mobile citation badge styling - matching status badges exactly */
+    .citation-badge {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.8rem;
+        font-weight: 600;
+        border-radius: 6px;
+        white-space: nowrap;
+        width: fit-content;
+        display: inline-block;
     }
 
     .publication-btn {
@@ -1712,6 +1801,165 @@ button,
     padding: 2px 6px;
     border-radius: 3px;
     font-weight: bold;
+}
+
+/* Floating Quick Action Buttons */
+.quick-actions {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 1000;
+}
+
+.quick-action-toggle {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: var(--accent-color);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+}
+
+.quick-action-toggle:hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+}
+
+.quick-action-toggle.active {
+    transform: rotate(45deg);
+}
+
+.quick-action-toggle i {
+    font-size: 1.25rem;
+    transition: transform 0.3s ease;
+}
+
+.quick-action-menu {
+    position: absolute;
+    bottom: 70px;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.quick-action-menu.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.quick-action-btn {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: white;
+    color: var(--text-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--border-color);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+}
+
+.quick-action-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.15);
+    background: var(--accent-color);
+    color: white;
+    border-color: var(--accent-color);
+}
+
+.quick-action-btn i {
+    font-size: 1.1rem;
+}
+
+/* Dark mode styles for quick actions */
+[data-theme="dark"] .quick-action-btn {
+    background: var(--white);
+    border-color: var(--border-color);
+}
+
+[data-theme="dark"] .quick-action-btn:hover {
+    background: var(--accent-color);
+    color: white;
+}
+
+/* Tooltips for quick action buttons */
+.quick-action-toggle[data-tooltip],
+.quick-action-btn[data-tooltip] {
+    position: relative;
+}
+
+.quick-action-toggle[data-tooltip]::after,
+.quick-action-btn[data-tooltip]::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    right: 70px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--text-color);
+    color: var(--white);
+    padding: 6px 8px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+    pointer-events: none;
+    z-index: 10;
+}
+
+.quick-action-toggle[data-tooltip]:hover::after,
+.quick-action-btn[data-tooltip]:hover::after {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Mobile responsiveness for quick actions */
+@media (max-width: 768px) {
+    .quick-actions {
+        bottom: 1.5rem;
+        right: 1.5rem;
+    }
+
+    .quick-action-toggle {
+        width: 55px;
+        height: 55px;
+    }
+
+    .quick-action-btn {
+        width: 45px;
+        height: 45px;
+    }
+
+    .quick-action-btn i,
+    .quick-action-toggle i {
+        font-size: 1rem;
+    }
+
+    /* Position tooltips above on mobile */
+    .quick-action-toggle[data-tooltip]::after,
+    .quick-action-btn[data-tooltip]::after {
+        right: auto;
+        left: 50%;
+        top: -40px;
+        transform: translateX(-50%);
+    }
 }
 
 /* Better error and success messaging */

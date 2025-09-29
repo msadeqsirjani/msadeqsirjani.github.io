@@ -5,6 +5,8 @@ const navMenu = document.getElementById('nav-menu');
 const navLinks = document.querySelectorAll('.nav-link');
 const themeToggle = document.getElementById('theme-toggle');
 const contactForm = document.getElementById('contact-form');
+const quickActionToggle = document.getElementById('quickActionToggle');
+const quickActionMenu = document.getElementById('quickActionMenu');
 
 // Theme Management
 let currentTheme = localStorage.getItem('theme') || 'system';
@@ -37,10 +39,13 @@ function updateThemeIcon() {
     const icon = themeToggle.querySelector('i');
     if (currentTheme === 'system') {
         icon.className = 'fas fa-desktop';
+        themeToggle.setAttribute('data-tooltip', 'System theme');
     } else if (currentTheme === 'dark') {
         icon.className = 'fas fa-sun';
+        themeToggle.setAttribute('data-tooltip', 'Dark theme');
     } else {
         icon.className = 'fas fa-moon';
+        themeToggle.setAttribute('data-tooltip', 'Light theme');
     }
 }
 
@@ -146,18 +151,29 @@ function setupDropdown() {
     const dropdown = document.querySelector('.nav-dropdown');
     if (dropdown) {
         const toggleBtn = dropdown.querySelector('.nav-dropdown-toggle');
-        
+
         toggleBtn.addEventListener('click', function(e) {
             e.stopPropagation();
             dropdown.classList.toggle('open');
         });
-        
+
         document.addEventListener('click', function(e) {
             if (!dropdown.contains(e.target)) {
                 dropdown.classList.remove('open');
             }
         });
     }
+}
+
+// Quick Actions functionality
+function toggleQuickActions() {
+    quickActionToggle.classList.toggle('active');
+    quickActionMenu.classList.toggle('active');
+}
+
+function closeQuickActions() {
+    quickActionToggle.classList.remove('active');
+    quickActionMenu.classList.remove('active');
 }
 
 // Initialize all functionality
@@ -262,6 +278,50 @@ function init() {
 
     // Initialize dropdown
     setupDropdown();
+
+    // Quick Actions event listeners
+    if (quickActionToggle) {
+        quickActionToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            toggleQuickActions();
+
+            // Track quick actions usage
+            trackEvent('quick_actions_toggle', {
+                'event_category': 'user_interface',
+                'event_label': 'floating_buttons'
+            });
+        });
+    }
+
+    // Close quick actions when clicking outside
+    document.addEventListener('click', (e) => {
+        if (quickActionToggle && quickActionMenu &&
+            !quickActionToggle.contains(e.target) &&
+            !quickActionMenu.contains(e.target)) {
+            closeQuickActions();
+        }
+    });
+
+    // Track quick action button clicks
+    const quickActionBtns = document.querySelectorAll('.quick-action-btn');
+    quickActionBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const href = btn.getAttribute('href');
+            let action = 'unknown';
+
+            if (href && href.includes('mailto')) action = 'email';
+            else if (href && href.includes('cv')) action = 'cv_download';
+            else if (href && href.includes('calendly')) action = 'meeting_schedule';
+
+            trackEvent('quick_action_click', {
+                'event_category': 'engagement',
+                'event_label': action
+            });
+
+            // Close menu after action
+            setTimeout(() => closeQuickActions(), 300);
+        });
+    });
 
     // Track page engagement time
     let startTime = Date.now();
