@@ -244,6 +244,11 @@ ul, ol {
 }
 
 .nav-toggle {
+    background: none;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    padding: 0.5rem;
+    cursor: pointer;
     display: none;
     flex-direction: column;
     cursor: pointer;
