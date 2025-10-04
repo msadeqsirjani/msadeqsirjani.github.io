@@ -189,9 +189,21 @@ function copyBibtex(pubId) {
                     }
                 }).showToast();
 
+                const publicationItem = btn.closest('.publication-item');
+                const publicationTitle = publicationItem?.querySelector('.publication-title')?.textContent || 'unknown';
+
                 trackEvent('copy_bibtex', {
                     'event_category': 'engagement',
-                    'event_label': pubId
+                    'event_label': pubId,
+                    'publication_title': publicationTitle.substring(0, 100),
+                    'copy_method': 'button_click'
+                });
+
+                // Track BibTeX export
+                trackEvent('bibtex_export', {
+                    'event_category': 'research_tools',
+                    'event_label': publicationTitle.substring(0, 100),
+                    'publication_id': pubId
                 });
             }).catch(err => {
                 console.error('Failed to copy:', err);
@@ -225,9 +237,21 @@ function fallbackCopyBibtex(text, pubId) {
             }
         }).showToast();
 
+        const publicationItem = document.querySelector(`[data-pub-id="${pubId}"]`)?.closest('.publication-item');
+        const publicationTitle = publicationItem?.querySelector('.publication-title')?.textContent || 'unknown';
+
         trackEvent('copy_bibtex', {
             'event_category': 'engagement',
-            'event_label': pubId
+            'event_label': pubId,
+            'publication_title': publicationTitle.substring(0, 100),
+            'copy_method': 'function_call'
+        });
+
+        // Track BibTeX export
+        trackEvent('bibtex_export', {
+            'event_category': 'research_tools',
+            'event_label': publicationTitle.substring(0, 100),
+            'publication_id': pubId
         });
     } catch (err) {
         console.error('Fallback copy failed:', err);
@@ -498,54 +522,136 @@ function init() {
         contactForm.addEventListener('submit', handleContactForm);
     }
 
-    // Track CV downloads
-    const cvButton = document.querySelector('a[href*="cv"]');
-    if (cvButton) {
-        cvButton.addEventListener('click', () => {
+    // Track CV downloads with enhanced metadata
+    const cvLinks = document.querySelectorAll('a[href*="cv"]');
+    cvLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            const linkText = link.textContent.trim();
+            const linkLocation = link.closest('section')?.id || 'unknown_section';
+            const isQuickAction = link.closest('.quick-action-menu') !== null;
+
             trackEvent('cv_download', {
                 'event_category': 'engagement',
-                'event_label': 'cv_pdf_download'
+                'event_label': 'cv_pdf_download',
+                'download_source': linkLocation,
+                'is_quick_action': isQuickAction,
+                'button_text': linkText,
+                'timestamp': new Date().toISOString()
             });
-        });
-    }
 
-    // Track social media clicks
-    const socialLinks = document.querySelectorAll('.social-link');
-    socialLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            const href = link.getAttribute('href');
-            let platform = 'unknown';
-
-            if (href.includes('linkedin')) platform = 'linkedin';
-            else if (href.includes('github')) platform = 'github';
-            else if (href.includes('scholar.google')) platform = 'google_scholar';
-            else if (href.includes('orcid')) platform = 'orcid';
-            else if (href.includes('twitter')) platform = 'twitter';
-            else if (href.includes('mailto')) platform = 'email';
-
-            trackEvent('social_media_click', {
-                'event_category': 'engagement',
-                'event_label': platform
+            // Track file download event
+            trackEvent('file_download', {
+                'event_category': 'downloads',
+                'event_label': 'CV',
+                'file_type': 'PDF',
+                'file_name': 'msadeqsirjani-cv.pdf'
             });
         });
     });
 
-    // Track publication link clicks
+    // Track social media clicks with enhanced metadata
+    const socialLinks = document.querySelectorAll('.social-link');
+    socialLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            const href = link.getAttribute('href');
+            const linkLocation = link.closest('section')?.id || 'hero';
+            let platform = 'unknown';
+            let category = 'social_media';
+
+            if (href.includes('linkedin')) {
+                platform = 'linkedin';
+                category = 'professional_network';
+            } else if (href.includes('github')) {
+                platform = 'github';
+                category = 'code_repository';
+            } else if (href.includes('scholar.google')) {
+                platform = 'google_scholar';
+                category = 'academic_profile';
+            } else if (href.includes('orcid')) {
+                platform = 'orcid';
+                category = 'academic_profile';
+            } else if (href.includes('researchgate')) {
+                platform = 'researchgate';
+                category = 'academic_profile';
+            } else if (href.includes('twitter')) {
+                platform = 'twitter';
+                category = 'social_media';
+            } else if (href.includes('mailto')) {
+                platform = 'email';
+                category = 'contact';
+            }
+
+            trackEvent('social_media_click', {
+                'event_category': 'engagement',
+                'event_label': platform,
+                'platform_category': category,
+                'link_location': linkLocation,
+                'destination_url': href
+            });
+
+            // Track academic profile visits separately
+            if (category === 'academic_profile') {
+                trackEvent('academic_profile_visit', {
+                    'event_category': 'academic_engagement',
+                    'event_label': platform,
+                    'profile_type': platform
+                });
+            }
+        });
+    });
+
+    // Track publication link clicks with detailed metadata
     const publicationLinks = document.querySelectorAll('.publication-btn, .publication-item a');
     publicationLinks.forEach(link => {
         link.addEventListener('click', () => {
             const href = link.getAttribute('href');
-            let linkType = 'unknown';
+            const publicationItem = link.closest('.publication-item');
+            const publicationTitle = publicationItem?.querySelector('.publication-title')?.textContent?.trim() || 'unknown';
+            const publicationVenue = publicationItem?.querySelector('.publication-venue')?.textContent?.trim() || 'unknown';
+            const publicationCategory = publicationItem?.closest('.publication-category')?.querySelector('h3')?.textContent?.trim() || 'unknown';
 
-            if (href && href.includes('doi.org')) linkType = 'doi_link';
-            else if (href && href.includes('ieee')) linkType = 'ieee_link';
-            else if (href && href.includes('springer')) linkType = 'springer_link';
-            else if (href && href.includes('acm')) linkType = 'acm_link';
-            else if (href && href.includes('.pdf')) linkType = 'pdf_download';
+            let linkType = 'external_link';
+            let publisher = 'unknown';
+
+            if (href && href.includes('doi.org')) {
+                linkType = 'doi_link';
+                publisher = 'DOI';
+            } else if (href && href.includes('ieee')) {
+                linkType = 'ieee_link';
+                publisher = 'IEEE';
+            } else if (href && href.includes('springer')) {
+                linkType = 'springer_link';
+                publisher = 'Springer';
+            } else if (href && href.includes('acm')) {
+                linkType = 'acm_link';
+                publisher = 'ACM';
+            } else if (href && href.includes('arxiv')) {
+                linkType = 'arxiv_link';
+                publisher = 'arXiv';
+            } else if (href && href.includes('.pdf')) {
+                linkType = 'pdf_download';
+                publisher = 'Direct PDF';
+            } else if (href && href.includes('scholar.google')) {
+                linkType = 'google_scholar';
+                publisher = 'Google Scholar';
+            }
 
             trackEvent('publication_click', {
                 'event_category': 'research_engagement',
-                'event_label': linkType
+                'event_label': linkType,
+                'publication_title': publicationTitle.substring(0, 100),
+                'publication_venue': publicationVenue.substring(0, 50),
+                'publication_type': publicationCategory,
+                'publisher': publisher,
+                'link_url': href
+            });
+
+            // Track specific publication view
+            trackEvent('publication_view', {
+                'event_category': 'publications',
+                'event_label': publicationTitle.substring(0, 100),
+                'venue': publicationVenue.substring(0, 50),
+                'type': publicationCategory
             });
         });
     });
