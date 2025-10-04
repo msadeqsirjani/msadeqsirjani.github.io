@@ -748,13 +748,17 @@ ul, ol {
 }
 
 .status {
-    padding: 0.3rem 0.8rem;
-    font-size: 0.75rem;
+    padding: 0.4rem 0.6rem;
+    font-size: 0.65rem;
     font-weight: 500;
     text-transform: uppercase;
     border: 1px solid;
-    border-radius: 6px;
-    letter-spacing: 0.3px;
+    border-radius: 4px;
+    letter-spacing: 0.02em;
+    display: inline-flex;
+    align-items: center;
+    min-height: 34px;
+    white-space: nowrap;
 }
 
 .status.published,
@@ -777,19 +781,35 @@ ul, ol {
 
 
 .publication-btn {
-    padding: 0.5rem;
+    padding: 0.4rem;
     background: none;
     border: 1px solid var(--border-color);
+    border-radius: 4px;
     color: var(--text-color);
     cursor: pointer;
     text-decoration: none;
     display: inline-flex;
     align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+    min-width: 34px;
+    min-height: 34px;
 }
 
 .publication-btn:hover {
     border-color: var(--accent-color);
     color: var(--accent-color);
+}
+
+.publication-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.publication-btn:disabled:hover {
+    border-color: var(--border-color);
+    color: var(--text-color);
 }
 
 /* Citation badge styling - exactly matching status badges */

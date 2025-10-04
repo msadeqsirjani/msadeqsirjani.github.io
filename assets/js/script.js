@@ -160,6 +160,31 @@ const handleScroll = throttle(() => {
     toggleScrollToTop();
 }, 16);
 
+// BibTeX data storage
+let bibtexData = {};
+
+// Load BibTeX data
+async function loadBibtexData() {
+    try {
+        const response = await fetch('assets/data/bibtex.json');
+        bibtexData = await response.json();
+    } catch (error) {
+        console.error('Failed to load BibTeX data:', error);
+    }
+}
+
+// Copy BibTeX to clipboard
+function copyBibtex(pubId, element) {
+    const bibtex = bibtexData[pubId]?.bibtex;
+    if (bibtex) {
+        copyToClipboard(bibtex, element);
+        trackEvent('copy_bibtex', {
+            'event_category': 'engagement',
+            'event_label': pubId
+        });
+    }
+}
+
 // Copy to clipboard functionality
 function copyToClipboard(text, element) {
     if (navigator.clipboard && navigator.clipboard.writeText) {
@@ -353,6 +378,9 @@ function initLazyLoading() {
 
 // Initialize all functionality
 function init() {
+    // Load BibTeX data
+    loadBibtexData();
+
     // Scroll event listeners
     window.addEventListener('scroll', handleScroll, { passive: true });
 
