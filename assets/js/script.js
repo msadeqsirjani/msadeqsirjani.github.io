@@ -130,9 +130,12 @@ function toggleScrollToTop() {
     if (!scrollToTopBtn) return;
 
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    const documentHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const scrollPercent = (scrollTop / documentHeight) * 100;
 
-    if (scrollTop > 300) {
+    if (scrollPercent >= 80) {
         scrollToTopBtn.classList.add('visible');
+        scrollToTopBtn.classList.remove('hidden');
     } else {
         scrollToTopBtn.classList.remove('visible');
     }
@@ -289,8 +292,21 @@ function toggleQuickActions() {
     // Hide tooltip when menu is open
     if (quickActionToggle.classList.contains('active')) {
         quickActionToggle.removeAttribute('data-tooltip');
+        // Hide scroll-to-top button when menu is open
+        if (scrollToTopBtn) {
+            scrollToTopBtn.classList.add('hidden');
+        }
     } else {
         quickActionToggle.setAttribute('data-tooltip', 'Quick Actions');
+        // Show scroll-to-top button when menu closes (if should be visible)
+        if (scrollToTopBtn) {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const documentHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / documentHeight) * 100;
+            if (scrollPercent >= 80) {
+                scrollToTopBtn.classList.remove('hidden');
+            }
+        }
     }
 }
 
@@ -298,6 +314,15 @@ function closeQuickActions() {
     quickActionToggle.classList.remove('active');
     quickActionMenu.classList.remove('active');
     quickActionToggle.setAttribute('data-tooltip', 'Quick Actions');
+    // Show scroll-to-top button when menu closes (if should be visible)
+    if (scrollToTopBtn) {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        const documentHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const scrollPercent = (scrollTop / documentHeight) * 100;
+        if (scrollPercent >= 80) {
+            scrollToTopBtn.classList.remove('hidden');
+        }
+    }
 }
 
 // Lazy loading images with Intersection Observer

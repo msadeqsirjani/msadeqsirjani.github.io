@@ -1152,9 +1152,13 @@ ul, ol {
 
 /* Mobile and small tablets */
 @media (max-width: 768px) {
-    /* Mobile logo sizing */
+    /* Mobile logo sizing - match nav controls height */
     .logo-text {
-        font-size: 1.4rem;
+        font-size: 1.8rem;
+        line-height: 48px;
+        height: 48px;
+        display: flex;
+        align-items: center;
     }
 
     .nav-menu {
@@ -1728,9 +1732,11 @@ ul, ol {
         height: 180px;
     }
 
-    /* Smaller logo for very small screens */
+    /* Logo sizing for smaller screens */
     .logo-text {
-        font-size: 1.25rem;
+        font-size: 1.8rem;
+        line-height: 44px;
+        height: 44px;
     }
 
     /* Better mobile button sizing */
@@ -1864,9 +1870,11 @@ ul, ol {
         margin: 0 auto;
     }
 
-    /* Compact navbar for smallest screens */
+    /* Logo sizing for smallest screens */
     .logo-text {
-        font-size: 1.125rem;
+        font-size: 1.8rem;
+        line-height: 44px;
+        height: 44px;
     }
 
     .nav-container {
@@ -2087,9 +2095,9 @@ button,
 .scroll-to-top {
     position: fixed;
     bottom: 2rem;
-    left: 2rem;
-    width: 50px;
-    height: 50px;
+    right: 2rem;
+    width: 60px;
+    height: 60px;
     border-radius: 50%;
     background: var(--accent-color);
     color: white;
@@ -2112,6 +2120,12 @@ button,
     transform: translateY(0);
 }
 
+.scroll-to-top.hidden {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+}
+
 .scroll-to-top:hover {
     background: var(--accent-hover);
     transform: translateY(-3px);
@@ -2123,15 +2137,22 @@ button,
 }
 
 .scroll-to-top i {
-    font-size: 1.1rem;
+    font-size: 1.25rem;
 }
 
 /* Floating Quick Action Buttons */
 .quick-actions {
     position: fixed;
-    bottom: 2rem;
+    bottom: 7.25rem;
     right: 2rem;
     z-index: 1000;
+    transition: bottom 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Move quick actions down when scroll-to-top is hidden */
+.scroll-to-top:not(.visible) ~ .quick-actions,
+.scroll-to-top.hidden ~ .quick-actions {
+    bottom: 2rem;
 }
 
 .quick-action-toggle {
@@ -2256,26 +2277,25 @@ button,
 /* Mobile responsiveness for quick actions */
 @media (max-width: 768px) {
     .scroll-to-top {
-        width: 45px;
-        height: 45px;
+        width: 55px;
+        height: 55px;
         bottom: 1.5rem;
-        left: 1.5rem;
+        right: 1.5rem;
     }
 
     .scroll-to-top i {
-        font-size: 1rem;
-    }
-
-    .scroll-to-top[data-tooltip]::after {
-        right: auto;
-        left: 50%;
-        top: -40px;
-        transform: translateX(-50%);
+        font-size: 1.1rem;
     }
 
     .quick-actions {
-        bottom: 1.5rem;
+        bottom: 6.5rem;
         right: 1.5rem;
+    }
+
+    /* Move quick actions down when scroll-to-top is hidden on mobile */
+    .scroll-to-top:not(.visible) ~ .quick-actions,
+    .scroll-to-top.hidden ~ .quick-actions {
+        bottom: 1.5rem;
     }
 
     .quick-action-toggle {
