@@ -324,21 +324,6 @@ function fallbackCopyToClipboard(text, successMessage, label) {
     document.body.removeChild(textArea);
 }
 
-// Helper function for copying email
-function copyEmail() {
-    const email = 'mohammadsadegh.sirjani@utsa.edu';
-    copyToClipboard(email, 'Email copied to clipboard!', 'email');
-}
-
-function showCopyFeedback(element) {
-    const originalTooltip = element.getAttribute('data-tooltip');
-    element.setAttribute('data-tooltip', 'Copied!');
-
-    setTimeout(() => {
-        element.setAttribute('data-tooltip', originalTooltip);
-    }, 2000);
-}
-
 // Contact Form Handling with Analytics
 function handleContactForm(event) {
     event.preventDefault();
