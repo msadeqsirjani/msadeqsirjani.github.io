@@ -2402,7 +2402,14 @@ button,
     border-color: var(--success-color);
 }
 
-/* No scroll behavior for accessibility */
+/* Smooth scroll behavior */
 html {
-    scroll-behavior: auto;
+    scroll-behavior: smooth;
+}
+
+/* Respect user preference for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
 }

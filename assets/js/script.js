@@ -95,14 +95,14 @@ function closeMobileMenu() {
     navToggle.classList.remove('active');
 }
 
-// Instant scrolling for Navigation Links
+// Smooth scrolling for Navigation Links
 function scrollToTarget(targetId) {
     const target = document.querySelector(targetId);
     if (target) {
         const offsetTop = target.offsetTop - 80;
         window.scrollTo({
             top: offsetTop,
-            behavior: 'auto'
+            behavior: 'smooth'
         });
     }
 }
