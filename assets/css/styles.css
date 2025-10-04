@@ -812,6 +812,11 @@ ul, ol {
     color: var(--text-color);
 }
 
+.status.review ~ .publication-btn,
+.status.submitted ~ .publication-btn {
+    display: none;
+}
+
 /* Citation badge styling - exactly matching status badges */
 .citation-badge {
     display: inline-flex;
