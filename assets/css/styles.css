@@ -1129,16 +1129,46 @@ ul, ol {
 }
 
 /* Responsive Design */
+
+/* Tablet devices */
+@media (max-width: 1024px) and (min-width: 769px) {
+    .container {
+        padding: 0 2rem;
+    }
+
+    .hero-content {
+        gap: 2rem;
+    }
+
+    .profile-image img {
+        width: 250px;
+        height: 250px;
+    }
+
+    .section-title {
+        font-size: 1.875rem;
+    }
+}
+
+/* Mobile and small tablets */
 @media (max-width: 768px) {
+    /* Mobile logo sizing */
+    .logo-text {
+        font-size: 1.4rem;
+    }
+
     .nav-menu {
         position: fixed;
-        top: 80px;
+        top: 73px;
         left: -100%;
         flex-direction: column;
         background: var(--white);
         width: 100%;
-        padding: 2rem;
+        padding: 1.5rem;
         border-top: 1px solid var(--border-color);
+        gap: 1rem;
+        max-height: calc(100vh - 73px);
+        overflow-y: auto;
     }
 
     .nav-menu.active {
@@ -1160,7 +1190,7 @@ ul, ol {
 
     /* Better mobile navbar layout */
     .nav-container {
-        padding: 0 15px;
+        padding: 0 1rem;
         gap: 0.5rem;
     }
 
@@ -1178,9 +1208,40 @@ ul, ol {
         order: 2;
     }
 
+    /* Mobile nav links - larger touch targets */
+    .nav-link {
+        padding: 0.875rem 1rem;
+        width: 100%;
+        display: block;
+        text-align: left;
+        min-height: 48px;
+        display: flex;
+        align-items: center;
+    }
+
+    /* Enhanced touch targets for mobile */
+    .theme-toggle,
+    .nav-toggle {
+        min-width: 48px;
+        min-height: 48px;
+        padding: 0.625rem;
+    }
+
+    .social-link {
+        min-width: 44px;
+        min-height: 44px;
+    }
+
+    /* Hero section mobile optimization */
+    .hero {
+        padding: 2.5rem 0;
+    }
+
     .hero-content {
         grid-template-columns: 1fr;
         text-align: center;
+        gap: 2rem;
+        padding: 0;
     }
 
     .hero-right {
@@ -1188,43 +1249,86 @@ ul, ol {
     }
 
     .hero-title {
-        font-size: 2rem;
+        font-size: 1.875rem;
+        line-height: 1.2;
+        margin-bottom: 0.75rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1.125rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .hero-institution,
+    .hero-tagline {
+        font-size: 0.95rem;
+        line-height: 1.5;
     }
 
     .hero-buttons {
         flex-direction: column;
         align-items: center;
+        gap: 0.75rem;
+        margin-bottom: 1.5rem;
     }
 
     .btn {
         width: 100%;
         max-width: 300px;
         justify-content: center;
+        padding: 0.875rem 1.5rem;
+    }
+
+    .profile-image img {
+        width: 200px;
+        height: 200px;
+    }
+
+    .social-links {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    /* Section spacing for mobile */
+    .section {
+        padding: 2.5rem 0;
+    }
+
+    .section-title {
+        font-size: 1.75rem;
+        margin-bottom: 2rem;
+        text-align: left;
     }
 
     .contact-container {
         grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .contact-form {
+        padding: 1.5rem;
     }
 
     /* Mobile research interests redesign */
     .interests-container {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
-        gap: 1rem;
+        gap: 0.875rem;
         overflow-x: visible;
         justify-items: stretch;
+        padding: 0.5rem 0;
     }
 
     .interest-card {
         background: var(--gray-light);
         border: 1px solid var(--border-color);
         border-radius: 8px;
-        padding: 1.25rem;
+        padding: 1rem;
         height: auto;
         min-height: 100px;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-
+        width: 100%;
+    }
 
     .interest-card i {
         font-size: 1.5rem;
@@ -1233,7 +1337,8 @@ ul, ol {
 
     .interest-card span {
         font-size: 0.85rem;
-        line-height: 1.2;
+        line-height: 1.3;
+        display: block;
     }
 
     /* Mobile publications redesign */
@@ -1591,65 +1696,124 @@ ul, ol {
 }
 
 @media (max-width: 480px) {
+    /* Smaller mobile spacing */
     .container {
-        padding: 0 15px;
+        padding: 0 1rem;
     }
 
     .section {
-        padding: 3rem 0;
+        padding: 2rem 0;
+    }
+
+    .hero {
+        padding: 2rem 0;
     }
 
     .hero-title {
-        font-size: 1.75rem;
+        font-size: 1.625rem;
+        line-height: 1.25;
+    }
+
+    .hero-subtitle {
+        font-size: 1rem;
     }
 
     .section-title {
         font-size: 1.5rem;
+        margin-bottom: 1.5rem;
     }
 
     .profile-image img {
-        width: 250px;
-        height: 250px;
+        width: 180px;
+        height: 180px;
+    }
+
+    /* Smaller logo for very small screens */
+    .logo-text {
+        font-size: 1.25rem;
+    }
+
+    /* Better mobile button sizing */
+    .btn {
+        padding: 0.75rem 1.25rem;
+        font-size: 0.95rem;
+    }
+
+    /* Compact social links */
+    .social-link {
+        width: 36px;
+        height: 36px;
+    }
+
+    /* Footer optimization */
+    .footer {
+        padding: 2rem 0 1rem;
+    }
+
+    .footer-content {
+        gap: 1.5rem;
     }
 }
 
 /* iPhone 14 Pro Max and similar large mobile devices */
 @media (max-width: 430px) {
+    /* Ensure consistent padding */
+    .container {
+        padding: 0 0.875rem;
+    }
+
     .hero-content {
-        padding: 0 1rem;
+        padding: 0;
         text-align: center;
+        gap: 1.5rem;
     }
-    
+
     .hero-title {
-        font-size: 1.75rem;
+        font-size: 1.5rem;
+        line-height: 1.3;
         text-align: center;
-        margin: 0 auto;
+        margin: 0 auto 0.5rem;
     }
-    
+
+    .hero-subtitle {
+        font-size: 1rem;
+    }
+
     .hero-subtitle, .hero-institution, .hero-tagline {
         text-align: center;
         margin-left: auto;
         margin-right: auto;
     }
-    
+
     .hero-buttons {
         justify-content: center;
         align-items: center;
+        gap: 0.625rem;
     }
-    
+
+    .btn {
+        max-width: 280px;
+    }
+
     .profile-image {
         display: flex;
         justify-content: center;
         margin: 0 auto;
     }
-    
-    /* Research interests centering */
+
+    .profile-image img {
+        width: 160px;
+        height: 160px;
+    }
+
+    /* Research interests optimization */
     .interests-container {
-        padding: 1rem;
+        padding: 0.5rem 0;
         justify-content: center;
         margin: 0 auto;
+        gap: 0.75rem;
     }
-    
+
     .interest-card {
         text-align: center;
         margin: 0 auto;
@@ -1657,29 +1821,128 @@ ul, ol {
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        padding: 0.875rem;
+        min-height: 90px;
     }
-    
+
+    .interest-card i {
+        font-size: 1.375rem;
+    }
+
+    .interest-card span {
+        font-size: 0.8rem;
+    }
+
     .section-title {
         text-align: center;
-        margin: 0 auto 2rem auto;
+        margin: 0 auto 1.5rem;
+        font-size: 1.375rem;
     }
-    
+
     /* Social media icons centering */
     .social-links {
         justify-content: center;
         margin: 0 auto;
         width: 100%;
+        gap: 0.75rem;
     }
-    
+
+    .social-link {
+        width: 38px;
+        height: 38px;
+    }
+
     .footer-social {
         justify-content: center;
         margin: 0 auto;
         width: 100%;
+        max-width: 100%;
     }
-    
+
     .footer-section {
         text-align: center;
         margin: 0 auto;
+    }
+
+    /* Compact navbar for smallest screens */
+    .logo-text {
+        font-size: 1.125rem;
+    }
+
+    .nav-container {
+        padding: 0 0.875rem;
+    }
+
+    /* Timeline items more compact */
+    .education-item,
+    .research-item,
+    .teaching-item,
+    .news-item,
+    .award-item {
+        padding: 1.25rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .publication-item {
+        padding: 1.25rem;
+        margin-bottom: 1.25rem;
+    }
+}
+
+/* Landscape mobile orientation optimization */
+@media (max-width: 896px) and (orientation: landscape) {
+    .hero {
+        padding: 1.5rem 0;
+    }
+
+    .hero-content {
+        grid-template-columns: 200px 1fr;
+        gap: 2rem;
+        text-align: left;
+    }
+
+    .hero-right {
+        text-align: left;
+    }
+
+    .profile-image img {
+        width: 150px;
+        height: 150px;
+    }
+
+    .hero-title {
+        font-size: 1.5rem;
+        text-align: left;
+    }
+
+    .hero-subtitle,
+    .hero-institution,
+    .hero-tagline {
+        text-align: left;
+    }
+
+    .hero-buttons {
+        flex-direction: row;
+        justify-content: flex-start;
+        gap: 0.75rem;
+    }
+
+    .btn {
+        max-width: 200px;
+        padding: 0.625rem 1rem;
+        font-size: 0.875rem;
+    }
+
+    .social-links {
+        justify-content: flex-start;
+    }
+
+    .section {
+        padding: 2rem 0;
+    }
+
+    .nav-menu {
+        max-height: calc(100vh - 65px);
     }
 }
 
