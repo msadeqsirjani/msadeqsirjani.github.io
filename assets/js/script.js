@@ -269,25 +269,36 @@ function fallbackCopyBibtex(text, pubId) {
     document.body.removeChild(textArea);
 }
 
-// Copy to clipboard functionality
-function copyToClipboard(text, element) {
+// Copy to clipboard functionality with toast
+function copyToClipboard(text, successMessage = 'Copied to clipboard!', label = 'contact_info') {
     if (navigator.clipboard && navigator.clipboard.writeText) {
         navigator.clipboard.writeText(text).then(() => {
-            showCopyFeedback(element);
+            Toastify({
+                text: successMessage,
+                duration: 3000,
+                close: true,
+                gravity: "bottom",
+                position: "right",
+                style: {
+                    background: "var(--accent-color)",
+                }
+            }).showToast();
+
             trackEvent('copy_to_clipboard', {
                 'event_category': 'engagement',
-                'event_label': 'contact_info'
+                'event_label': label,
+                'copied_text': text.substring(0, 50)
             });
         }).catch(err => {
             console.error('Failed to copy:', err);
-            fallbackCopyToClipboard(text, element);
+            fallbackCopyToClipboard(text, successMessage, label);
         });
     } else {
-        fallbackCopyToClipboard(text, element);
+        fallbackCopyToClipboard(text, successMessage, label);
     }
 }
 
-function fallbackCopyToClipboard(text, element) {
+function fallbackCopyToClipboard(text, successMessage, label) {
     const textArea = document.createElement('textarea');
     textArea.value = text;
     textArea.style.position = 'fixed';
@@ -298,12 +309,44 @@ function fallbackCopyToClipboard(text, element) {
 
     try {
         document.execCommand('copy');
-        showCopyFeedback(element);
+        Toastify({
+            text: successMessage,
+            duration: 3000,
+            close: true,
+            gravity: "bottom",
+            position: "right",
+            style: {
+                background: "var(--accent-color)",
+            }
+        }).showToast();
+
+        trackEvent('copy_to_clipboard', {
+            'event_category': 'engagement',
+            'event_label': label,
+            'copied_text': text.substring(0, 50),
+            'method': 'fallback'
+        });
     } catch (err) {
         console.error('Fallback copy failed:', err);
+        Toastify({
+            text: "Failed to copy. Please try again.",
+            duration: 3000,
+            close: true,
+            gravity: "bottom",
+            position: "right",
+            style: {
+                background: "#ef4444",
+            }
+        }).showToast();
     }
 
     document.body.removeChild(textArea);
+}
+
+// Helper function for copying email
+function copyEmail() {
+    const email = 'mohammadsadegh.sirjani@utsa.edu';
+    copyToClipboard(email, 'Email copied to clipboard!', 'email');
 }
 
 function showCopyFeedback(element) {
