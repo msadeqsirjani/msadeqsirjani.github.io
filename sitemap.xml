@@ -1,87 +1,95 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
-    
-    <!-- Main Page -->
+
+    <!-- Homepage -->
     <url>
         <loc>https://msadeqsirjani.com/</loc>
-        <lastmod>2025-09-03</lastmod>
+        <lastmod>2025-01-15</lastmod>
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
-        <xhtml:link rel="alternate" hreflang="en" href="https://msadeqsirjani.com/"/>
-        <xhtml:link rel="alternate" hreflang="fa" href="https://msadeqsirjani.com/fa/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://msadeqsirjani.com/" />
+        <xhtml:link rel="alternate" hreflang="fa" href="https://msadeqsirjani.com/fa/" />
     </url>
-    
+
     <!-- Biography Section -->
     <url>
         <loc>https://msadeqsirjani.com/#biography</loc>
-        <lastmod>2025-09-03</lastmod>
+        <lastmod>2025-01-15</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.9</priority>
     </url>
-    
+
     <!-- Education Section -->
     <url>
         <loc>https://msadeqsirjani.com/#education</loc>
-        <lastmod>2025-09-03</lastmod>
+        <lastmod>2025-01-15</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
-    
+
     <!-- Research Section -->
     <url>
         <loc>https://msadeqsirjani.com/#research</loc>
-        <lastmod>2025-09-03</lastmod>
-        <changefreq>weekly</changefreq>
+        <lastmod>2025-01-15</lastmod>
+        <changefreq>monthly</changefreq>
         <priority>0.9</priority>
     </url>
-    
-    <!-- Publications Section -->
+
+    <!-- Interests Section -->
     <url>
-        <loc>https://msadeqsirjani.com/#publications</loc>
-        <lastmod>2025-09-03</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.9</priority>
-    </url>
-    
-    <!-- Teaching Section -->
-    <url>
-        <loc>https://msadeqsirjani.com/#teaching</loc>
-        <lastmod>2025-09-03</lastmod>
+        <loc>https://msadeqsirjani.com/#interests</loc>
+        <lastmod>2025-01-15</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
-    
+
+    <!-- Publications Section -->
+    <url>
+        <loc>https://msadeqsirjani.com/#publications</loc>
+        <lastmod>2025-01-15</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+
+    <!-- Teaching Section -->
+    <url>
+        <loc>https://msadeqsirjani.com/#teaching</loc>
+        <lastmod>2025-01-15</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
     <!-- News Section -->
     <url>
         <loc>https://msadeqsirjani.com/#news</loc>
-        <lastmod>2025-09-03</lastmod>
+        <lastmod>2025-01-15</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
-    
+
     <!-- Awards Section -->
     <url>
         <loc>https://msadeqsirjani.com/#awards</loc>
-        <lastmod>2025-09-03</lastmod>
+        <lastmod>2025-01-15</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
-    
+
     <!-- Contact Section -->
     <url>
         <loc>https://msadeqsirjani.com/#contact</loc>
-        <lastmod>2025-09-03</lastmod>
-        <changefreq>yearly</changefreq>
-        <priority>0.6</priority>
-    </url>
-    
-    <!-- CV PDF -->
-    <url>
-        <loc>https://msadeqsirjani.com/assets/docs/cv/msadeqsirjani-cv.pdf</loc>
-        <lastmod>2025-09-03</lastmod>
+        <lastmod>2025-01-15</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
-    
+
+    <!-- CV/Resume -->
+    <url>
+        <loc>https://msadeqsirjani.com/assets/docs/cv/msadeqsirjani-cv.pdf</loc>
+        <lastmod>2025-01-15</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
 </urlset>

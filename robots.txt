@@ -1,14 +1,20 @@
+# robots.txt for https://msadeqsirjani.com
+
+# Allow all search engines
 User-agent: *
 Allow: /
 
-# Sitemap
+# Sitemap location
 Sitemap: https://msadeqsirjani.com/sitemap.xml
 
-# Crawl-delay for respectful crawling
+# Crawl delay (optional, adjust if needed)
 Crawl-delay: 1
 
-# Allow all search engines to crawl the site
+# Specific bot rules
 User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Image
 Allow: /
 
 User-agent: Bingbot
@@ -17,15 +23,27 @@ Allow: /
 User-agent: Slurp
 Allow: /
 
-User-agent: DuckDuckBot
+# Academic and Research Bots
+User-agent: Scholbot
 Allow: /
 
-User-agent: Baiduspider
+User-agent: Citeseerxbot
 Allow: /
 
-User-agent: YandexBot
-Allow: /
+# Block bad bots
+User-agent: AhrefsBot
+Disallow: /
 
-# Block specific paths if needed (currently allowing all)
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+# Disallow access to specific directories (if any)
+# User-agent: *
 # Disallow: /private/
-# Disallow: /temp/
+# Disallow: /admin/
