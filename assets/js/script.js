@@ -169,11 +169,19 @@ function setupDropdown() {
 function toggleQuickActions() {
     quickActionToggle.classList.toggle('active');
     quickActionMenu.classList.toggle('active');
+
+    // Hide tooltip when menu is open
+    if (quickActionToggle.classList.contains('active')) {
+        quickActionToggle.removeAttribute('data-tooltip');
+    } else {
+        quickActionToggle.setAttribute('data-tooltip', 'Quick Actions');
+    }
 }
 
 function closeQuickActions() {
     quickActionToggle.classList.remove('active');
     quickActionMenu.classList.remove('active');
+    quickActionToggle.setAttribute('data-tooltip', 'Quick Actions');
 }
 
 // Initialize all functionality
