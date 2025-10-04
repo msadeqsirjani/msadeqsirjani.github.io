@@ -174,15 +174,75 @@ async function loadBibtexData() {
 }
 
 // Copy BibTeX to clipboard
-function copyBibtex(pubId, element) {
+function copyBibtex(pubId) {
     const bibtex = bibtexData[pubId]?.bibtex;
     if (bibtex) {
-        copyToClipboard(bibtex, element);
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(bibtex).then(() => {
+                Toastify({
+                    text: "BibTeX citation copied to clipboard!",
+                    duration: 3000,
+                    gravity: "bottom",
+                    position: "left",
+                    style: {
+                        background: "var(--accent-color)",
+                    }
+                }).showToast();
+
+                trackEvent('copy_bibtex', {
+                    'event_category': 'engagement',
+                    'event_label': pubId
+                });
+            }).catch(err => {
+                console.error('Failed to copy:', err);
+                fallbackCopyBibtex(bibtex, pubId);
+            });
+        } else {
+            fallbackCopyBibtex(bibtex, pubId);
+        }
+    }
+}
+
+// Fallback copy for BibTeX
+function fallbackCopyBibtex(text, pubId) {
+    const textArea = document.createElement('textarea');
+    textArea.value = text;
+    textArea.style.position = 'fixed';
+    textArea.style.left = '-999999px';
+    document.body.appendChild(textArea);
+    textArea.focus();
+    textArea.select();
+
+    try {
+        document.execCommand('copy');
+        Toastify({
+            text: "BibTeX citation copied to clipboard!",
+            duration: 3000,
+            gravity: "bottom",
+            position: "left",
+            style: {
+                background: "var(--accent-color)",
+            }
+        }).showToast();
+
         trackEvent('copy_bibtex', {
             'event_category': 'engagement',
             'event_label': pubId
         });
+    } catch (err) {
+        console.error('Fallback copy failed:', err);
+        Toastify({
+            text: "Failed to copy citation. Please try again.",
+            duration: 3000,
+            gravity: "bottom",
+            position: "left",
+            style: {
+                background: "var(--error-color)",
+            }
+        }).showToast();
     }
+
+    document.body.removeChild(textArea);
 }
 
 // Copy to clipboard functionality
