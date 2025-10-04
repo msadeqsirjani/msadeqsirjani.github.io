@@ -7,6 +7,33 @@ const themeToggle = document.getElementById('theme-toggle');
 const contactForm = document.getElementById('contact-form');
 const quickActionToggle = document.getElementById('quickActionToggle');
 const quickActionMenu = document.getElementById('quickActionMenu');
+const scrollToTopBtn = document.getElementById('scrollToTop');
+const readingProgress = document.getElementById('readingProgress');
+
+// Utility: Debounce function for performance
+function debounce(func, wait = 10) {
+    let timeout;
+    return function executedFunction(...args) {
+        const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+    };
+}
+
+// Utility: Throttle function for scroll events
+function throttle(func, limit = 16) {
+    let inThrottle;
+    return function(...args) {
+        if (!inThrottle) {
+            func.apply(this, args);
+            inThrottle = true;
+            setTimeout(() => inThrottle = false, limit);
+        }
+    };
+}
 
 // Theme Management
 let currentTheme = localStorage.getItem('theme') || 'system';
@@ -85,6 +112,95 @@ function trackEvent(eventName, parameters = {}) {
     if (typeof gtag !== 'undefined') {
         gtag('event', eventName, parameters);
     }
+}
+
+// Scroll Progress and Scroll-to-Top functionality
+function updateScrollProgress() {
+    if (!readingProgress) return;
+
+    const windowHeight = window.innerHeight;
+    const documentHeight = document.documentElement.scrollHeight - windowHeight;
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    const scrollPercent = (scrollTop / documentHeight) * 100;
+
+    readingProgress.style.width = `${Math.min(scrollPercent, 100)}%`;
+}
+
+function toggleScrollToTop() {
+    if (!scrollToTopBtn) return;
+
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+    if (scrollTop > 300) {
+        scrollToTopBtn.classList.add('visible');
+    } else {
+        scrollToTopBtn.classList.remove('visible');
+    }
+}
+
+function scrollToTop() {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+
+    // Track scroll to top usage
+    trackEvent('scroll_to_top', {
+        'event_category': 'navigation',
+        'event_label': 'scroll_to_top_button'
+    });
+}
+
+// Optimized scroll handler with throttle
+const handleScroll = throttle(() => {
+    updateScrollProgress();
+    toggleScrollToTop();
+}, 16);
+
+// Copy to clipboard functionality
+function copyToClipboard(text, element) {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(() => {
+            showCopyFeedback(element);
+            trackEvent('copy_to_clipboard', {
+                'event_category': 'engagement',
+                'event_label': 'contact_info'
+            });
+        }).catch(err => {
+            console.error('Failed to copy:', err);
+            fallbackCopyToClipboard(text, element);
+        });
+    } else {
+        fallbackCopyToClipboard(text, element);
+    }
+}
+
+function fallbackCopyToClipboard(text, element) {
+    const textArea = document.createElement('textarea');
+    textArea.value = text;
+    textArea.style.position = 'fixed';
+    textArea.style.left = '-999999px';
+    document.body.appendChild(textArea);
+    textArea.focus();
+    textArea.select();
+
+    try {
+        document.execCommand('copy');
+        showCopyFeedback(element);
+    } catch (err) {
+        console.error('Fallback copy failed:', err);
+    }
+
+    document.body.removeChild(textArea);
+}
+
+function showCopyFeedback(element) {
+    const originalTooltip = element.getAttribute('data-tooltip');
+    element.setAttribute('data-tooltip', 'Copied!');
+
+    setTimeout(() => {
+        element.setAttribute('data-tooltip', originalTooltip);
+    }, 2000);
 }
 
 // Contact Form Handling with Analytics
@@ -184,8 +300,45 @@ function closeQuickActions() {
     quickActionToggle.setAttribute('data-tooltip', 'Quick Actions');
 }
 
+// Lazy loading images with Intersection Observer
+function initLazyLoading() {
+    const lazyImages = document.querySelectorAll('img[loading="lazy"]');
+
+    if ('IntersectionObserver' in window) {
+        const imageObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    if (img.dataset.src) {
+                        img.src = img.dataset.src;
+                        img.removeAttribute('data-src');
+                    }
+                    img.classList.add('loaded');
+                    observer.unobserve(img);
+                }
+            });
+        }, {
+            rootMargin: '50px 0px',
+            threshold: 0.01
+        });
+
+        lazyImages.forEach(img => imageObserver.observe(img));
+    }
+}
+
 // Initialize all functionality
 function init() {
+    // Scroll event listeners
+    window.addEventListener('scroll', handleScroll, { passive: true });
+
+    // Scroll to top button
+    if (scrollToTopBtn) {
+        scrollToTopBtn.addEventListener('click', scrollToTop);
+    }
+
+    // Initialize lazy loading
+    initLazyLoading();
+
     // Event Listeners
     if (themeToggle) {
         themeToggle.addEventListener('click', () => {

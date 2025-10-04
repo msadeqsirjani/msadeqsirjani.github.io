@@ -2071,6 +2071,61 @@ button,
     font-weight: bold;
 }
 
+/* Reading Progress Bar */
+.reading-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent-color), var(--accent-hover));
+    z-index: 9999;
+    transition: width 0.1s ease-out;
+}
+
+/* Scroll to Top Button */
+.scroll-to-top {
+    position: fixed;
+    bottom: 2rem;
+    left: 2rem;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: var(--accent-color);
+    color: white;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 999;
+}
+
+.scroll-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.scroll-to-top:hover {
+    background: var(--accent-hover);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+}
+
+.scroll-to-top:active {
+    transform: translateY(-1px);
+}
+
+.scroll-to-top i {
+    font-size: 1.1rem;
+}
+
 /* Floating Quick Action Buttons */
 .quick-actions {
     position: fixed;
@@ -2200,6 +2255,24 @@ button,
 
 /* Mobile responsiveness for quick actions */
 @media (max-width: 768px) {
+    .scroll-to-top {
+        width: 45px;
+        height: 45px;
+        bottom: 1.5rem;
+        left: 1.5rem;
+    }
+
+    .scroll-to-top i {
+        font-size: 1rem;
+    }
+
+    .scroll-to-top[data-tooltip]::after {
+        right: auto;
+        left: 50%;
+        top: -40px;
+        transform: translateX(-50%);
+    }
+
     .quick-actions {
         bottom: 1.5rem;
         right: 1.5rem;
@@ -2227,6 +2300,10 @@ button,
         left: 50%;
         top: -40px;
         transform: translateX(-50%);
+    }
+
+    .reading-progress {
+        height: 2px;
     }
 }
 
