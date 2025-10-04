@@ -2413,3 +2413,454 @@ html {
         scroll-behavior: auto;
     }
 }
+
+/* Print-Friendly Stylesheet - Academic CV Style */
+@media print {
+    /* Page setup matching standard CV format */
+    @page {
+        margin: 1.5cm 1.5cm 1.5cm 1.5cm; /* Reduced margins for more content */
+        size: letter portrait;
+    }
+
+    /* Base styles */
+    * {
+        box-shadow: none !important;
+        text-shadow: none !important;
+    }
+
+    body {
+        font-family: 'Times New Roman', Times, serif !important;
+        font-size: 10pt;
+        line-height: 1.3;
+        color: #000;
+        background: #fff;
+    }
+
+    * {
+        font-family: 'Times New Roman', Times, serif !important;
+    }
+
+    /* Hide web-only elements */
+    .navbar,
+    .nav-toggle,
+    .theme-toggle,
+    .quick-actions,
+    .scroll-to-top,
+    .reading-progress,
+    .hero-buttons,
+    .contact-form,
+    .footer,
+    .profile-image,
+    #news,
+    #contact,
+    #biography,
+    #research-interests {
+        display: none !important;
+    }
+
+    /* Show publication buttons for print */
+    .publication-btn,
+    .copy-btn,
+    button {
+        display: none !important;
+    }
+
+    /* Container and layout */
+    .container {
+        max-width: 100%;
+        padding: 0;
+        margin: 0;
+    }
+
+    .section {
+        padding: 0.15cm 0 0.2cm 0;
+        border-bottom: none;
+    }
+
+    /* Header - Name and Contact in two-column layout */
+    .hero {
+        padding: 0;
+        margin-bottom: 0.3cm;
+        border-bottom: 1pt solid #00427e;
+        padding-bottom: 0.15cm;
+    }
+
+    .hero-content {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        align-items: start;
+    }
+
+    .hero-right {
+        order: 1;
+    }
+
+    .hero-title {
+        font-size: 16pt;
+        font-weight: bold;
+        color: #000 !important;
+        margin-bottom: 0.05cm;
+        text-align: left;
+    }
+
+    .hero-subtitle {
+        display: none;
+    }
+
+    .hero-institution {
+        font-size: 10pt;
+        color: #000 !important;
+        margin-bottom: 0;
+        text-align: left;
+        font-weight: normal;
+    }
+
+    .hero-tagline {
+        display: none;
+    }
+
+    .hero-left {
+        display: none;
+    }
+
+    /* Add email below university name */
+    .hero-institution::after {
+        content: "mohammadsadegh.sirjani@utsa.edu";
+        display: block;
+        font-size: 9pt;
+        color: #000;
+        margin-top: 0.05cm;
+    }
+
+    /* Hide social links */
+    .social-links {
+        display: none !important;
+    }
+
+    /* Section titles - Blue headers like CV */
+    .section-title {
+        font-size: 12pt;
+        font-weight: bold;
+        color: #00427e !important;
+        margin-bottom: 0.15cm;
+        margin-top: 0.25cm;
+        border-bottom: none;
+        padding-bottom: 0;
+    }
+
+    /* Hide Biography and Research Interests section titles */
+    #biography .section-title,
+    #research-interests .section-title {
+        display: none !important;
+    }
+
+    /* Education - Two column layout */
+    .education-item,
+    .research-item {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 0.8cm;
+        margin-bottom: 0.2cm;
+        page-break-inside: avoid;
+        background: none !important;
+        border: none !important;
+        padding: 0 !important;
+    }
+
+    .education-content,
+    .research-content {
+        order: 1;
+    }
+
+    .education-dates,
+    .research-dates {
+        order: 2;
+        text-align: right;
+        font-size: 10pt;
+        color: #000 !important;
+        background: none !important;
+        border: none !important;
+        padding: 0 !important;
+        border-radius: 0 !important;
+        box-shadow: none !important;
+    }
+
+    .education-dates *,
+    .research-dates * {
+        background: none !important;
+        border: none !important;
+        padding: 0 !important;
+    }
+
+    .education-degree,
+    .research-position {
+        font-size: 10pt;
+        font-weight: normal;
+        color: #000 !important;
+        margin-bottom: 0.05cm;
+    }
+
+    .education-university,
+    .research-university,
+    .research-lab {
+        font-size: 10pt;
+        font-style: normal;
+        color: #00427e !important;
+        text-decoration: underline;
+        margin-bottom: 0.05cm;
+    }
+
+    .education-gpa,
+    .research-advisor {
+        font-size: 9pt;
+        color: #000 !important;
+    }
+
+    .research-description {
+        font-size: 9pt;
+        margin-top: 0.05cm;
+        line-height: 1.2;
+    }
+
+    .research-description ul,
+    .research-description li {
+        margin-left: 0.5cm;
+        text-align: left;
+    }
+
+    /* Research Interests - Three-column bullet list */
+    .interests-container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.15cm 0.5cm;
+        margin-bottom: 0.3cm;
+    }
+
+    .interest-card {
+        display: list-item;
+        list-style-type: disc;
+        list-style-position: outside;
+        margin-left: 0.5cm;
+        border: none;
+        padding: 0;
+        background: none !important;
+        text-align: left;
+        page-break-inside: avoid;
+    }
+
+    .interest-card i {
+        display: none;
+    }
+
+    .interest-card span {
+        font-size: 11pt;
+        color: #000 !important;
+    }
+
+    /* Teaching - Simple list */
+    .teaching-item {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        margin-bottom: 0.1cm;
+        page-break-inside: avoid;
+        background: none !important;
+        border: none !important;
+        padding: 0 !important;
+    }
+
+    .teaching-content {
+        order: 1;
+    }
+
+    .teaching-dates {
+        order: 2;
+        text-align: right;
+        font-size: 10pt;
+        color: #000 !important;
+        background: none !important;
+        border: none !important;
+        padding: 0 !important;
+        border-radius: 0 !important;
+        box-shadow: none !important;
+    }
+
+    .teaching-dates *,
+    .teaching-dates span {
+        background: none !important;
+        border: none !important;
+        padding: 0 !important;
+    }
+
+    .teaching-course {
+        font-size: 10pt;
+        font-weight: normal;
+        color: #000 !important;
+    }
+
+    .teaching-university {
+        display: none;
+    }
+
+    /* Publications - Numbered list */
+    .publication-category h3 {
+        font-size: 10pt;
+        font-weight: bold;
+        color: #000 !important;
+        font-style: italic;
+        margin-bottom: 0.1cm;
+        margin-top: 0.15cm;
+    }
+
+    .publication-item {
+        margin-bottom: 0.15cm;
+        padding: 0;
+        page-break-inside: avoid;
+        background: none !important;
+        border: none !important;
+        counter-increment: publication;
+        line-height: 1.25;
+    }
+
+    .publication-item::before {
+        content: counter(publication) ". ";
+        font-weight: normal;
+    }
+
+    .publication-category {
+        counter-reset: publication;
+        border-bottom: none;
+        margin-bottom: 0.2cm;
+    }
+
+    .publication-title {
+        font-size: 9pt;
+        font-weight: normal;
+        color: #000 !important;
+        margin-bottom: 0;
+        display: inline;
+    }
+
+    .publication-venue {
+        display: inline;
+        font-size: 9pt;
+        font-style: italic;
+    }
+
+    .publication-info-row,
+    .publication-actions-row,
+    .publication-meta-row {
+        display: inline;
+    }
+
+    .publication-authors {
+        font-size: 9pt;
+        color: #000 !important;
+    }
+
+    .publication-year {
+        font-size: 9pt;
+        color: #000 !important;
+    }
+
+    .status,
+    .citation-badge,
+    .badge,
+    .publication-badge,
+    [class*="badge"] {
+        display: none !important;
+    }
+
+    /* Awards - Bullet list */
+    .award-item {
+        display: list-item;
+        list-style-type: disc;
+        margin-left: 0.5cm;
+        margin-bottom: 0.1cm;
+        background: none !important;
+        border: none !important;
+        padding: 0 !important;
+    }
+
+    .award-dates {
+        display: none;
+    }
+
+    .award-description {
+        font-size: 9pt;
+        color: #000 !important;
+    }
+
+    /* News items */
+    .news-item {
+        display: list-item;
+        list-style-type: disc;
+        margin-left: 0.5cm;
+        margin-bottom: 0.2cm;
+        background: none !important;
+        border: none !important;
+        padding: 0 !important;
+    }
+
+    /* Contact section */
+    .contact-container {
+        display: block;
+    }
+
+    .contact-info {
+        display: block;
+    }
+
+    .contact-item {
+        display: inline;
+        margin-right: 1cm;
+    }
+
+    .contact-item i {
+        display: none;
+    }
+
+    .contact-item h4,
+    .contact-item p {
+        display: inline;
+        font-size: 10pt;
+    }
+
+    /* Links - Blue and underlined like CV */
+    a {
+        color: #00427e !important;
+        text-decoration: underline;
+    }
+
+    a[href^="mailto"],
+    a[href^="tel"] {
+        color: #000 !important;
+        text-decoration: none;
+    }
+
+    /* Biography */
+    .bio-text p {
+        font-size: 9pt;
+        text-align: justify;
+        margin-bottom: 0.15cm;
+        line-height: 1.3;
+    }
+
+    /* Page break control */
+    h1, h2, h3, .section-title {
+        page-break-after: avoid;
+        page-break-inside: avoid;
+    }
+
+    .education-item,
+    .research-item,
+    .publication-item,
+    .award-item {
+        page-break-inside: avoid;
+    }
+
+    /* Typography */
+    p, li {
+        orphans: 3;
+        widows: 3;
+    }
+}
