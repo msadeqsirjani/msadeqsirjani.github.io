@@ -2276,6 +2276,24 @@ button,
 
 /* Mobile responsiveness for quick actions */
 @media (max-width: 768px) {
+    /* Hide all tooltips on mobile */
+    .social-link::after,
+    .btn[data-tooltip]::after,
+    .theme-toggle[data-tooltip]::after,
+    .footer-social a[data-tooltip]::after,
+    .scroll-to-top[data-tooltip]::after,
+    .quick-action-btn[data-tooltip]::after,
+    .quick-action-toggle[data-tooltip]::after,
+    .social-link::before,
+    .btn[data-tooltip]::before,
+    .theme-toggle[data-tooltip]::before,
+    .footer-social a[data-tooltip]::before,
+    .scroll-to-top[data-tooltip]::before,
+    .quick-action-btn[data-tooltip]::before,
+    .quick-action-toggle[data-tooltip]::before {
+        display: none !important;
+    }
+
     .scroll-to-top {
         width: 55px;
         height: 55px;
