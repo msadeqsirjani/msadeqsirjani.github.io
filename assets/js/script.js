@@ -180,30 +180,20 @@ function copyBibtex(pubId) {
         if (navigator.clipboard && navigator.clipboard.writeText) {
             navigator.clipboard.writeText(bibtex).then(() => {
                 Toastify({
-                    text: "BibTeX citation copied to clipboard!",
+                    text: "BibTeX citation copied!",
                     duration: 3000,
-                    gravity: "bottom",
+                    close: true,
+                    gravity: "top",
                     position: "left",
                     style: {
                         background: "var(--accent-color)",
                     }
                 }).showToast();
 
-                const publicationItem = btn.closest('.publication-item');
-                const publicationTitle = publicationItem?.querySelector('.publication-title')?.textContent || 'unknown';
-
                 trackEvent('copy_bibtex', {
                     'event_category': 'engagement',
                     'event_label': pubId,
-                    'publication_title': publicationTitle.substring(0, 100),
-                    'copy_method': 'button_click'
-                });
-
-                // Track BibTeX export
-                trackEvent('bibtex_export', {
-                    'event_category': 'research_tools',
-                    'event_label': publicationTitle.substring(0, 100),
-                    'publication_id': pubId
+                    'copy_method': 'clipboard_api'
                 });
             }).catch(err => {
                 console.error('Failed to copy:', err);
@@ -228,40 +218,31 @@ function fallbackCopyBibtex(text, pubId) {
     try {
         document.execCommand('copy');
         Toastify({
-            text: "BibTeX citation copied to clipboard!",
+            text: "BibTeX citation copied!",
             duration: 3000,
-            gravity: "bottom",
+            close: true,
+            gravity: "top",
             position: "left",
             style: {
                 background: "var(--accent-color)",
             }
         }).showToast();
 
-        const publicationItem = document.querySelector(`[data-pub-id="${pubId}"]`)?.closest('.publication-item');
-        const publicationTitle = publicationItem?.querySelector('.publication-title')?.textContent || 'unknown';
-
         trackEvent('copy_bibtex', {
             'event_category': 'engagement',
             'event_label': pubId,
-            'publication_title': publicationTitle.substring(0, 100),
-            'copy_method': 'function_call'
-        });
-
-        // Track BibTeX export
-        trackEvent('bibtex_export', {
-            'event_category': 'research_tools',
-            'event_label': publicationTitle.substring(0, 100),
-            'publication_id': pubId
+            'copy_method': 'fallback'
         });
     } catch (err) {
         console.error('Fallback copy failed:', err);
         Toastify({
             text: "Failed to copy citation. Please try again.",
             duration: 3000,
-            gravity: "bottom",
+            close: true,
+            gravity: "top",
             position: "left",
             style: {
-                background: "var(--error-color)",
+                background: "#ef4444",
             }
         }).showToast();
     }
@@ -277,8 +258,8 @@ function copyToClipboard(text, successMessage = 'Copied to clipboard!', label = 
                 text: successMessage,
                 duration: 3000,
                 close: true,
-                gravity: "bottom",
-                position: "right",
+                gravity: "top",
+                position: "left",
                 style: {
                     background: "var(--accent-color)",
                 }
@@ -313,8 +294,8 @@ function fallbackCopyToClipboard(text, successMessage, label) {
             text: successMessage,
             duration: 3000,
             close: true,
-            gravity: "bottom",
-            position: "right",
+            gravity: "top",
+            position: "left",
             style: {
                 background: "var(--accent-color)",
             }
@@ -332,8 +313,8 @@ function fallbackCopyToClipboard(text, successMessage, label) {
             text: "Failed to copy. Please try again.",
             duration: 3000,
             close: true,
-            gravity: "bottom",
-            position: "right",
+            gravity: "top",
+            position: "left",
             style: {
                 background: "#ef4444",
             }
