@@ -29,7 +29,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
     <link rel="preconnect" href="https://www.googletagmanager.com">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
     <link rel="dns-prefetch" href="https://formspree.io">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
 
     <!-- Google Analytics 4 -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-P3MSKYZ3TB"></script>
@@ -60,8 +63,18 @@
 
     <!-- Preload Critical Resources -->
     <link rel="preload" href="assets/css/styles.css" as="style">
-    <link rel="preload" href="assets/img/profile.webp" as="image" type="image/webp">
-    <link rel="preload" href="assets/img/profile.jpg" as="image" type="image/jpeg">
+    <link rel="preload" href="assets/js/script.js" as="script">
+    <link rel="preload" href="assets/img/profile.webp" as="image" type="image/webp" fetchpriority="high">
+    <link rel="preload" href="assets/img/profile.jpg" as="image" type="image/jpeg" fetchpriority="high">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" as="style" crossorigin>
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style">
+
+    <!-- Prefetch resources for next navigation -->
+    <link rel="prefetch" href="assets/docs/cv/msadeqsirjani-cv.pdf" as="document">
+    <link rel="prefetch" href="assets/data/bibtex.json" as="fetch">
+
+    <!-- Module preload for modern browsers -->
+    <link rel="modulepreload" href="assets/js/script.js">
 
     <!-- Critical CSS for Above-the-Fold Content -->
     <style>
@@ -75,9 +88,14 @@
     </style>
 
     <link rel="stylesheet" href="assets/css/styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css" media="print" onload="this.media='all'">
+    <noscript>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    </noscript>
     <link rel="icon" type="image/png" href="assets/icons/iran.png">
     <link rel="manifest" href="config/manifest.json">
     <meta name="theme-color" content="#0c2340">
@@ -1115,7 +1133,21 @@
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
-    <script src="assets/js/script.js"></script>
+    <!-- Load scripts with optimal performance -->
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js" defer></script>
+    <script src="assets/js/script.js" defer></script>
+
+    <!-- Service Worker for offline support and caching -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js').then(registration => {
+                    console.log('ServiceWorker registered:', registration);
+                }).catch(err => {
+                    console.log('ServiceWorker registration failed:', err);
+                });
+            });
+        }
+    </script>
 </body>
 </html>
