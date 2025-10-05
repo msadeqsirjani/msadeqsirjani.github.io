@@ -1753,24 +1753,18 @@ kbd {
 
     .education-dates .duration {
         display: inline-block;
-        font-size: 0.8rem;
-        font-weight: 600;
-        padding: 0.4rem 0.8rem;
-        background: #f1f5f9;
-        color: #475569;
-        border: 1px solid #e2e8f0;
-        border-radius: 6px;
+        font-size: 0.85rem;
+        font-weight: 500;
+        padding: 0;
+        background: transparent;
+        color: var(--text-light);
+        border: none;
+        border-radius: 0;
         width: fit-content;
     }
 
     .education-content {
         order: 1;
-    }
-
-    [data-theme="dark"] .education-dates .duration {
-        background: #374151;
-        color: #d1d5db;
-        border-color: #4b5563;
     }
 
     .research-item {
@@ -1795,24 +1789,18 @@ kbd {
 
     .research-dates .timeline {
         display: inline-block;
-        font-size: 0.8rem;
-        font-weight: 600;
-        padding: 0.4rem 0.8rem;
-        background: #f1f5f9;
-        color: #475569;
-        border: 1px solid #e2e8f0;
-        border-radius: 6px;
+        font-size: 0.85rem;
+        font-weight: 500;
+        padding: 0;
+        background: transparent;
+        color: var(--text-light);
+        border: none;
+        border-radius: 0;
         width: fit-content;
     }
 
     .research-content {
         order: 1;
-    }
-
-    [data-theme="dark"] .research-dates .timeline {
-        background: #374151;
-        color: #d1d5db;
-        border-color: #4b5563;
     }
 
 
@@ -1843,24 +1831,18 @@ kbd {
 
     .teaching-dates .teaching-date {
         display: inline-block;
-        font-size: 0.8rem;
-        font-weight: 600;
-        padding: 0.4rem 0.8rem;
-        background: #f1f5f9;
-        color: #475569;
-        border: 1px solid #e2e8f0;
-        border-radius: 6px;
+        font-size: 0.85rem;
+        font-weight: 500;
+        padding: 0;
+        background: transparent;
+        color: var(--text-light);
+        border: none;
+        border-radius: 0;
         width: fit-content;
     }
 
     .teaching-content {
         order: 1;
-    }
-
-    [data-theme="dark"] .teaching-dates .teaching-date {
-        background: #374151;
-        color: #d1d5db;
-        border-color: #4b5563;
     }
 
     /* Mobile news section - clean design */
@@ -1890,24 +1872,18 @@ kbd {
 
     .news-dates .news-date {
         display: inline-block;
-        font-size: 0.8rem;
-        font-weight: 600;
-        padding: 0.4rem 0.8rem;
-        background: #f1f5f9;
-        color: #475569;
-        border: 1px solid #e2e8f0;
-        border-radius: 6px;
+        font-size: 0.85rem;
+        font-weight: 500;
+        padding: 0;
+        background: transparent;
+        color: var(--text-light);
+        border: none;
+        border-radius: 0;
         width: fit-content;
     }
 
     .news-content {
         order: 1;
-    }
-
-    [data-theme="dark"] .news-dates .news-date {
-        background: #374151;
-        color: #d1d5db;
-        border-color: #4b5563;
     }
 
     /* Mobile awards section - clean design */
@@ -1937,24 +1913,18 @@ kbd {
 
     .award-dates .award-date {
         display: inline-block;
-        font-size: 0.8rem;
-        font-weight: 600;
-        padding: 0.4rem 0.8rem;
-        background: #f1f5f9;
-        color: #475569;
-        border: 1px solid #e2e8f0;
-        border-radius: 6px;
+        font-size: 0.85rem;
+        font-weight: 500;
+        padding: 0;
+        background: transparent;
+        color: var(--text-light);
+        border: none;
+        border-radius: 0;
         width: fit-content;
     }
 
     .award-content {
         order: 1;
-    }
-
-    [data-theme="dark"] .award-dates .award-date {
-        background: #374151;
-        color: #d1d5db;
-        border-color: #4b5563;
     }
 
     .degree-info h3,
