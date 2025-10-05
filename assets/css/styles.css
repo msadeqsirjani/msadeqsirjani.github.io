@@ -945,11 +945,12 @@ kbd {
 }
 
 .publication-venue {
-    flex: 0 0 75%;
+    flex: 1;
+    min-width: 0;
 }
 
 .publication-actions-row {
-    flex: 0 0 25%;
+    flex-shrink: 0;
     display: flex;
     align-items: center;
     gap: 0.5rem;
@@ -1018,18 +1019,15 @@ kbd {
 }
 
 .publication-btn:disabled {
-    opacity: 0.4;
+    opacity: 0.3;
     cursor: not-allowed;
+    background: var(--gray-light);
 }
 
 .publication-btn:disabled:hover {
     border-color: var(--border-color);
     color: var(--text-color);
-}
-
-.status.review ~ .publication-btn,
-.status.submitted ~ .publication-btn {
-    display: none;
+    background: var(--gray-light);
 }
 
 /* Citation badge styling - exactly matching status badges */
