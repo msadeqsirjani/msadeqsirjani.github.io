@@ -2907,4 +2907,86 @@ html {
         orphans: 3;
         widows: 3;
     }
+
+    /* Timeline elements - hide for print */
+    .timeline-container::before,
+    .timeline-dot,
+    .timeline-connector {
+        display: none !important;
+    }
+
+    /* Optimize timeline layout for print */
+    .timeline-entry {
+        background: none !important;
+        border: none !important;
+        padding: 0 !important;
+        margin-bottom: 0.2cm;
+    }
+
+    /* Print-friendly colors - ensure black text */
+    h1, h2, h3, h4, h5, h6,
+    p, span, div, li {
+        color-adjust: exact;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+
+    /* Optimize images for print */
+    img {
+        max-width: 100%;
+        page-break-inside: avoid;
+    }
+
+    /* Ensure proper rendering of special characters */
+    * {
+        text-rendering: optimizeLegibility;
+    }
+
+    /* Footer with page numbers */
+    @page {
+        @bottom-right {
+            content: counter(page) " of " counter(pages);
+            font-size: 9pt;
+            color: #666;
+        }
+    }
+
+    /* Accessibility - ensure sufficient contrast */
+    .text-light,
+    .text-muted {
+        color: #000 !important;
+    }
+
+    /* Remove any remaining decorative elements */
+    .badge,
+    .tag,
+    .label,
+    .icon:not(.publication-item *) {
+        display: none !important;
+    }
+
+    /* Optimize spacing for dense CV layout */
+    .section:first-of-type {
+        padding-top: 0;
+    }
+
+    .section:last-of-type {
+        padding-bottom: 0;
+        border-bottom: none;
+    }
+
+    /* Ensure links are visible with URLs in print */
+    a[href^="http"]::after {
+        content: " (" attr(href) ")";
+        font-size: 8pt;
+        color: #666;
+        word-wrap: break-word;
+    }
+
+    /* Don't show URLs for internal links or email/tel */
+    a[href^="#"]::after,
+    a[href^="mailto"]::after,
+    a[href^="tel"]::after {
+        content: "";
+    }
 }
