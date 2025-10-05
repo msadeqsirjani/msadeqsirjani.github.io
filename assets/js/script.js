@@ -666,6 +666,95 @@ function initSectionProgress() {
     };
 }
 
+// Pull-to-Refresh for Mobile
+function initPullToRefresh() {
+    // Only enable on mobile devices
+    if (window.innerWidth > 768) return;
+
+    const pullToRefresh = document.getElementById('pullToRefresh');
+    if (!pullToRefresh) return;
+
+    let startY = 0;
+    let currentY = 0;
+    let pulling = false;
+    const threshold = 80; // Distance to pull before refresh triggers
+
+    document.addEventListener('touchstart', (e) => {
+        // Only trigger if at top of page
+        if (window.scrollY === 0) {
+            startY = e.touches[0].pageY;
+            pulling = true;
+        }
+    }, { passive: true });
+
+    document.addEventListener('touchmove', (e) => {
+        if (!pulling) return;
+
+        currentY = e.touches[0].pageY;
+        const distance = currentY - startY;
+
+        // Only pull down (positive distance) when at top
+        if (distance > 0 && window.scrollY === 0) {
+            e.preventDefault();
+
+            pullToRefresh.classList.add('pulling');
+
+            // Update circular progress
+            const progressCircle = pullToRefresh.querySelector('.pull-to-refresh-progress circle');
+            const progress = Math.min(distance / threshold, 1);
+            const circumference = 138.2;
+            const offset = circumference - (progress * circumference);
+            progressCircle.style.strokeDashoffset = offset;
+
+            // Change state when past threshold
+            if (distance > threshold) {
+                pullToRefresh.classList.add('ready');
+            } else {
+                pullToRefresh.classList.remove('ready');
+            }
+        }
+    }, { passive: false });
+
+    document.addEventListener('touchend', async () => {
+        if (!pulling) return;
+
+        const distance = currentY - startY;
+        pulling = false;
+
+        if (distance > threshold) {
+            // Trigger refresh
+            pullToRefresh.classList.add('refreshing');
+            pullToRefresh.classList.remove('pulling', 'ready');
+
+            // Perform refresh action
+            await performRefresh();
+
+            // Hide refresh indicator
+            setTimeout(() => {
+                pullToRefresh.classList.remove('refreshing');
+            }, 500);
+        } else {
+            // Cancel pull
+            pullToRefresh.classList.remove('pulling', 'ready');
+        }
+
+        startY = 0;
+        currentY = 0;
+    }, { passive: true });
+}
+
+// Perform refresh action
+async function performRefresh() {
+    // Reload the page content or fetch new data
+    // For now, just reload the page
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            window.location.reload();
+            resolve();
+        }, 1000);
+    });
+}
+
 // Initialize all functionality
 function init() {
     // Load BibTeX data
@@ -679,6 +768,9 @@ function init() {
 
     // Initialize section progress tracking
     initSectionProgress();
+
+    // Initialize pull-to-refresh for mobile
+    initPullToRefresh();
 
     // Scroll event listeners
     window.addEventListener('scroll', handleScroll, { passive: true });
