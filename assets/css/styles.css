@@ -985,18 +985,18 @@ kbd {
 .status.review,
 .status.accepted,
 .status.submitted {
-    background: #f1f5f9;
-    color: #475569;
-    border: 1px solid #e2e8f0;
+    background: rgba(29, 78, 216, 0.1);
+    color: var(--accent-color);
+    border: 1px solid rgba(29, 78, 216, 0.2);
 }
 
 [data-theme="dark"] .status.published,
 [data-theme="dark"] .status.review,
 [data-theme="dark"] .status.accepted,
 [data-theme="dark"] .status.submitted {
-    background: #374151;
-    color: #d1d5db;
-    border-color: #4b5563;
+    background: rgba(96, 165, 250, 0.15);
+    color: #60a5fa;
+    border-color: rgba(96, 165, 250, 0.3);
 }
 
 
@@ -1666,47 +1666,9 @@ kbd {
         border-top: 1px solid var(--border-color);
     }
 
+    /* Status badges in mobile - same as desktop */
     .status {
-        padding: 0.4rem 0.8rem;
-        font-size: 0.8rem;
-        font-weight: 600;
-        border-radius: 6px;
-        white-space: nowrap;
-    }
-
-    /* Make publication status badges match date badges in mobile */
-    .status.published,
-    .status.review,
-    .status.submitted {
-        background: #f1f5f9;
-        color: #475569;
-        border: 1px solid #e2e8f0;
-        font-size: 0.8rem;
-        font-weight: 600;
-        padding: 0.4rem 0.8rem;
-        border-radius: 6px;
-        width: fit-content;
-        display: inline-block;
-    }
-
-    /* Dark mode: Make publication status badges match date badges */
-    [data-theme="dark"] .status.published,
-    [data-theme="dark"] .status.review,
-    [data-theme="dark"] .status.submitted {
-        background: #374151;
-        color: #d1d5db;
-        border-color: #4b5563;
-    }
-
-    /* Mobile citation badge styling - matching status badges exactly */
-    .citation-badge {
-        padding: 0.4rem 0.8rem;
-        font-size: 0.8rem;
-        font-weight: 600;
-        border-radius: 6px;
-        white-space: nowrap;
-        width: fit-content;
-        display: inline-block;
+        font-size: 0.7rem;
     }
 
     .publication-btn {
