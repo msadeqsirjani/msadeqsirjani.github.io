@@ -2794,10 +2794,10 @@ html {
 
 /* Print-Friendly Stylesheet - Academic CV Style */
 @media print {
-    /* Page setup matching standard CV format */
+    /* Page setup matching LaTeX CV format */
     @page {
-        margin: 1.5cm 1.5cm 1.5cm 1.5cm; /* Reduced margins for more content */
-        size: letter portrait;
+        margin: 0.7in;
+        size: a4 portrait;
     }
 
     /* Base styles */
@@ -2808,7 +2808,7 @@ html {
 
     body {
         font-family: 'Times New Roman', Times, serif !important;
-        font-size: 10pt;
+        font-size: 12pt;
         line-height: 1.3;
         color: #000;
         background: #fff;
@@ -2816,6 +2816,18 @@ html {
 
     * {
         font-family: 'Times New Roman', Times, serif !important;
+    }
+
+    /* Hyperlinks - LaTeX style (blue, underlined) */
+    a,
+    a:link,
+    a:visited {
+        color: #0000FF !important;
+        text-decoration: underline;
+    }
+
+    a:hover {
+        color: #0000FF !important;
     }
 
     /* Hide web-only elements */
@@ -2861,30 +2873,29 @@ html {
         border-bottom: none;
     }
 
-    /* Header - Name and Contact in two-column layout */
+    /* Header - Centered layout like LaTeX */
     .hero {
         padding: 0;
-        margin-bottom: 0.3cm;
-        border-bottom: 1pt solid #00427e;
-        padding-bottom: 0.15cm;
+        margin-bottom: 0.15cm;
+        border-bottom: none;
+        text-align: center;
     }
 
     .hero-content {
-        display: grid;
-        grid-template-columns: 1fr auto;
-        align-items: start;
+        display: block;
+        text-align: center;
     }
 
     .hero-right {
-        order: 1;
+        text-align: center;
     }
 
     .hero-title {
-        font-size: 16pt;
+        font-size: 20pt;
         font-weight: bold;
         color: #000 !important;
-        margin-bottom: 0.05cm;
-        text-align: left;
+        margin-bottom: 0.1cm;
+        text-align: center;
     }
 
     .hero-subtitle {
@@ -2894,9 +2905,19 @@ html {
     .hero-institution {
         font-size: 10pt;
         color: #000 !important;
-        margin-bottom: 0;
-        text-align: left;
+        margin-bottom: 0.05cm;
+        text-align: center;
         font-weight: normal;
+    }
+
+    .hero-institution::after {
+        content: "\Amohammadsadegh.sirjani@utsa.edu\A https://msadeqsirjani.com";
+        display: block;
+        white-space: pre;
+        font-size: 10pt;
+        color: #000;
+        margin-top: 0.05cm;
+        line-height: 1.3;
     }
 
     .hero-tagline {
@@ -2907,29 +2928,20 @@ html {
         display: none;
     }
 
-    /* Add email below university name */
-    .hero-institution::after {
-        content: "mohammadsadegh.sirjani@utsa.edu";
-        display: block;
-        font-size: 9pt;
-        color: #000;
-        margin-top: 0.05cm;
-    }
-
     /* Hide social links */
     .social-links {
         display: none !important;
     }
 
-    /* Section titles - Blue headers like CV */
+    /* Section titles - Blue headers with underline like LaTeX */
     .section-title {
-        font-size: 12pt;
+        font-size: 14pt;
         font-weight: bold;
-        color: #00427e !important;
+        color: #0000FF !important;
         margin-bottom: 0.15cm;
-        margin-top: 0.25cm;
-        border-bottom: none;
-        padding-bottom: 0;
+        margin-top: 0.3cm;
+        border-bottom: 0.5pt solid #000;
+        padding-bottom: 0.05cm;
     }
 
     /* Hide Biography and Research Interests section titles */
@@ -2960,7 +2972,7 @@ html {
     .research-dates {
         order: 2;
         text-align: right;
-        font-size: 10pt;
+        font-size: 12pt;
         color: #000 !important;
         background: none !important;
         border: none !important;
@@ -2976,40 +2988,63 @@ html {
         padding: 0 !important;
     }
 
-    .education-degree,
-    .research-position {
-        font-size: 10pt;
-        font-weight: normal;
+    .education-degree {
+        font-size: 12pt;
+        font-weight: bold;
         color: #000 !important;
         margin-bottom: 0.05cm;
+        display: inline;
+    }
+
+    .research-position {
+        font-size: 12pt;
+        font-weight: bold;
+        color: #000 !important;
+        margin-bottom: 0;
+        margin-right: 0.3cm;
+        display: inline;
     }
 
     .education-university,
-    .research-university,
-    .research-lab {
-        font-size: 10pt;
+    .research-university {
+        font-size: 12pt;
         font-style: normal;
-        color: #00427e !important;
+        color: #0000FF !important;
         text-decoration: underline;
         margin-bottom: 0.05cm;
     }
 
+    .research-lab {
+        font-size: 12pt;
+        font-style: normal;
+        color: #000 !important;
+        margin-bottom: 0.05cm;
+        display: block;
+    }
+
     .education-gpa,
     .research-advisor {
-        font-size: 9pt;
+        font-size: 12pt;
         color: #000 !important;
     }
 
     .research-description {
-        font-size: 9pt;
-        margin-top: 0.05cm;
-        line-height: 1.2;
+        font-size: 12pt;
+        margin-top: 0.1cm;
+        line-height: 1.3;
     }
 
-    .research-description ul,
-    .research-description li {
+    .research-description ul {
+        margin: 0;
+        padding: 0;
         margin-left: 0.5cm;
-        text-align: left;
+        list-style-type: disc;
+    }
+
+    .research-description li {
+        margin-bottom: 0.05cm;
+        padding-left: 0;
+        line-height: 1.3;
     }
 
     /* Research Interests - Three-column bullet list */
@@ -3037,7 +3072,7 @@ html {
     }
 
     .interest-card span {
-        font-size: 11pt;
+        font-size: 12pt;
         color: #000 !important;
     }
 
@@ -3059,7 +3094,7 @@ html {
     .teaching-dates {
         order: 2;
         text-align: right;
-        font-size: 10pt;
+        font-size: 12pt;
         color: #000 !important;
         background: none !important;
         border: none !important;
@@ -3076,13 +3111,19 @@ html {
     }
 
     .teaching-course {
-        font-size: 10pt;
-        font-weight: normal;
+        font-size: 12pt;
+        font-weight: bold;
+        color: #000 !important;
+    }
+
+    .teaching-instructor {
+        font-size: 12pt;
         color: #000 !important;
     }
 
     .teaching-university {
-        display: none;
+        font-size: 12pt;
+        color: #000 !important;
     }
 
     /* Publications - Numbered list */
@@ -3095,14 +3136,19 @@ html {
         margin-top: 0.15cm;
     }
 
+    .publication-list {
+        counter-reset: publication;
+    }
+
     .publication-item {
-        margin-bottom: 0.15cm;
+        margin-bottom: 0.2cm;
         padding: 0;
         page-break-inside: avoid;
         background: none !important;
         border: none !important;
         counter-increment: publication;
-        line-height: 1.25;
+        line-height: 1.3;
+        font-size: 12pt;
     }
 
     .publication-item::before {
@@ -3117,17 +3163,33 @@ html {
     }
 
     .publication-title {
-        font-size: 9pt;
+        font-size: 12pt;
         font-weight: normal;
         color: #000 !important;
         margin-bottom: 0;
         display: inline;
     }
 
+    /* Make publication titles quoted */
+    .publication-title::before {
+        content: "\"";
+    }
+
+    .publication-title::after {
+        content: "\", ";
+    }
+
     .publication-venue {
         display: inline;
-        font-size: 9pt;
+        font-size: 12pt;
         font-style: italic;
+        color: #000 !important;
+    }
+
+    .publication-venue p {
+        display: inline;
+        font-size: 12pt;
+        color: #000 !important;
     }
 
     .publication-info-row,
@@ -3136,17 +3198,28 @@ html {
         display: inline;
     }
 
+    /* Show publication URLs */
+    .publication-btn[href]::after {
+        content: ", " attr(href);
+        color: #0000FF !important;
+        text-decoration: underline;
+        font-size: 12pt;
+    }
+
     .publication-authors {
-        font-size: 9pt;
+        font-size: 12pt;
         color: #000 !important;
     }
 
     .publication-year {
-        font-size: 9pt;
+        font-size: 12pt;
         color: #000 !important;
     }
 
-    .status,
+    .status {
+        display: none !important;
+    }
+
     .citation-badge,
     .badge,
     .publication-badge,
@@ -3170,7 +3243,7 @@ html {
     }
 
     .award-description {
-        font-size: 9pt;
+        font-size: 12pt;
         color: #000 !important;
     }
 
