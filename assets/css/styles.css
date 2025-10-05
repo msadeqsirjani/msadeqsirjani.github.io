@@ -843,7 +843,7 @@ kbd {
     border: none;
     border-radius: 6px;
     background: var(--accent-color);
-    color: var(--white);
+    color: #ffffff;
     font-size: 0.875rem;
     font-weight: 600;
     cursor: pointer;
