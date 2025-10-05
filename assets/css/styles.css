@@ -335,29 +335,33 @@ ul, ol {
 .btn {
     padding: 0.75rem 1.5rem;
     border: 1px solid var(--accent-color);
+    border-radius: 6px;
     text-decoration: none;
     font-weight: 500;
     cursor: pointer;
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
+    transition: all 0.3s ease;
 }
 
 .btn-primary {
     background: var(--accent-color);
     color: white;
+    border: none;
 }
 
 .btn-primary:hover {
-    opacity: 0.9;
+    background: var(--accent-hover);
 }
 
-.btn-secondary {
+.hero-buttons .btn-secondary {
     background: transparent;
     color: var(--accent-color);
+    border: 1px solid var(--accent-color);
 }
 
-.btn-secondary:hover {
+.hero-buttons .btn-secondary:hover {
     background: var(--accent-color);
     color: white;
 }
@@ -834,7 +838,7 @@ kbd {
     border-color: var(--accent-color);
 }
 
-.btn-secondary {
+#resetFilters.btn-secondary {
     padding: 0 1.25rem;
     border: none;
     border-radius: 6px;
@@ -852,17 +856,17 @@ kbd {
     flex-shrink: 0;
 }
 
-.btn-secondary:hover {
+#resetFilters.btn-secondary:hover {
     background: var(--accent-hover);
     transform: translateY(-1px);
     box-shadow: 0 4px 12px rgba(29, 78, 216, 0.2);
 }
 
-.btn-secondary:active {
+#resetFilters.btn-secondary:active {
     transform: translateY(0);
 }
 
-.btn-secondary:focus {
+#resetFilters.btn-secondary:focus {
     outline: none;
 }
 
