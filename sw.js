@@ -1,8 +1,12 @@
-// Service Worker for caching and offline support
-const CACHE_NAME = 'msadeqsirjani-v1.0.0';
-const RUNTIME_CACHE = 'runtime-cache';
+// Service Worker with aggressive caching strategies
+const CACHE_VERSION = 'v1.0.1';
+const CACHE_NAME = `msadeqsirjani-${CACHE_VERSION}`;
+const RUNTIME_CACHE = `runtime-${CACHE_VERSION}`;
+const IMAGE_CACHE = `images-${CACHE_VERSION}`;
+const FONT_CACHE = `fonts-${CACHE_VERSION}`;
+const MAX_CACHE_AGE = 30 * 24 * 60 * 60 * 1000; // 30 days in milliseconds
 
-// Assets to cache on install
+// Critical assets to cache immediately (Cache First)
 const STATIC_CACHE_URLS = [
     '/',
     '/index.html',
@@ -11,13 +15,12 @@ const STATIC_CACHE_URLS = [
     '/assets/img/profile.jpg',
     '/assets/img/profile.webp',
     '/assets/icons/iran.png',
-    '/assets/docs/cv/msadeqsirjani-cv.pdf',
     '/sitemap.xml',
     '/robots.txt',
     '/config/manifest.json'
 ];
 
-// External resources to cache (fonts, libraries)
+// External resources (Stale While Revalidate)
 const EXTERNAL_CACHE_URLS = [
     'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap',
     'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css',
@@ -25,44 +28,55 @@ const EXTERNAL_CACHE_URLS = [
     'https://cdn.jsdelivr.net/npm/toastify-js'
 ];
 
-// Install event - cache static assets
+// Install event - aggressive caching of static assets
 self.addEventListener('install', (event) => {
-    console.log('Service Worker installing...');
+    console.log('[SW] Installing Service Worker...');
     event.waitUntil(
-        caches.open(CACHE_NAME).then((cache) => {
-            console.log('Caching static assets');
-            return cache.addAll(STATIC_CACHE_URLS);
-        }).then(() => {
-            return caches.open(RUNTIME_CACHE);
-        }).then((cache) => {
-            console.log('Caching external resources');
-            return cache.addAll(EXTERNAL_CACHE_URLS.map(url => new Request(url, { mode: 'no-cors' })));
-        }).then(() => {
+        Promise.all([
+            // Cache static assets
+            caches.open(CACHE_NAME).then((cache) => {
+                console.log('[SW] Caching static assets');
+                return cache.addAll(STATIC_CACHE_URLS);
+            }),
+            // Cache external resources
+            caches.open(RUNTIME_CACHE).then((cache) => {
+                console.log('[SW] Caching external resources');
+                return Promise.allSettled(
+                    EXTERNAL_CACHE_URLS.map(url =>
+                        cache.add(new Request(url, { mode: 'no-cors' }))
+                            .catch(err => console.warn('[SW] Failed to cache:', url))
+                    )
+                );
+            })
+        ]).then(() => {
+            console.log('[SW] Installation complete');
             return self.skipWaiting();
         })
     );
 });
 
-// Activate event - clean up old caches
+// Activate event - clean up old caches aggressively
 self.addEventListener('activate', (event) => {
-    console.log('Service Worker activating...');
+    console.log('[SW] Activating Service Worker...');
     event.waitUntil(
         caches.keys().then((cacheNames) => {
             return Promise.all(
                 cacheNames.map((cacheName) => {
-                    if (cacheName !== CACHE_NAME && cacheName !== RUNTIME_CACHE) {
-                        console.log('Deleting old cache:', cacheName);
+                    // Delete any cache that doesn't match current version
+                    if (!cacheName.includes(CACHE_VERSION)) {
+                        console.log('[SW] Deleting old cache:', cacheName);
                         return caches.delete(cacheName);
                     }
                 })
             );
         }).then(() => {
+            console.log('[SW] Activation complete');
             return self.clients.claim();
         })
     );
 });
 
-// Fetch event - serve from cache, fallback to network
+// Fetch event - intelligent caching strategies
 self.addEventListener('fetch', (event) => {
     const { request } = event;
     const url = new URL(request.url);
@@ -72,62 +86,156 @@ self.addEventListener('fetch', (event) => {
         return;
     }
 
-    // Skip Chrome extensions and external requests we don't want to cache
+    // Skip analytics, extensions, and form submissions
     if (url.protocol === 'chrome-extension:' ||
         url.hostname === 'www.googletagmanager.com' ||
         url.hostname === 'www.google-analytics.com' ||
-        url.hostname === 'formspree.io') {
+        url.hostname === 'formspree.io' ||
+        url.pathname.includes('/gtag/')) {
         return;
     }
 
-    event.respondWith(
-        caches.match(request).then((cachedResponse) => {
-            if (cachedResponse) {
-                // Return cached response and update cache in background
-                event.waitUntil(updateCache(request));
-                return cachedResponse;
-            }
-
-            // Not in cache, fetch from network
-            return fetch(request).then((response) => {
-                // Don't cache non-successful responses
-                if (!response || response.status !== 200 || response.type === 'error') {
-                    return response;
-                }
-
-                // Clone the response
-                const responseToCache = response.clone();
-
-                // Cache the fetched response
-                caches.open(RUNTIME_CACHE).then((cache) => {
-                    cache.put(request, responseToCache);
-                });
-
-                return response;
-            }).catch(() => {
-                // Network failed, try to serve offline page if available
-                if (request.destination === 'document') {
-                    return caches.match('/index.html');
-                }
-            });
-        })
-    );
+    // Route to appropriate caching strategy
+    if (request.destination === 'image') {
+        event.respondWith(cacheFirstStrategy(request, IMAGE_CACHE));
+    } else if (request.destination === 'font' || url.pathname.includes('font')) {
+        event.respondWith(cacheFirstStrategy(request, FONT_CACHE));
+    } else if (url.hostname === self.location.hostname) {
+        // Local resources: Network First with cache fallback
+        event.respondWith(networkFirstStrategy(request, CACHE_NAME));
+    } else {
+        // External resources: Stale While Revalidate
+        event.respondWith(staleWhileRevalidateStrategy(request, RUNTIME_CACHE));
+    }
 });
 
-// Helper function to update cache in background
-async function updateCache(request) {
+// Cache First Strategy - for images and fonts (rarely change)
+async function cacheFirstStrategy(request, cacheName) {
     try {
+        const cachedResponse = await caches.match(request);
+        if (cachedResponse) {
+            // Check if cache is too old
+            const cacheTime = await getCacheTime(cacheName, request);
+            if (Date.now() - cacheTime < MAX_CACHE_AGE) {
+                return cachedResponse;
+            }
+        }
+
+        // Fetch from network
         const response = await fetch(request);
         if (response && response.status === 200) {
-            const cache = await caches.open(CACHE_NAME);
-            await cache.put(request, response);
+            const cache = await caches.open(cacheName);
+            await cache.put(request, response.clone());
+            await setCacheTime(cacheName, request);
         }
+        return response;
     } catch (error) {
-        // Network request failed, ignore
+        // Return cached version if network fails
+        const cachedResponse = await caches.match(request);
+        if (cachedResponse) {
+            return cachedResponse;
+        }
+        throw error;
     }
 }
 
-// Message event - handle cache updates from client
+// Network First Strategy - for HTML, CSS, JS (local assets)
+async function networkFirstStrategy(request, cacheName) {
+    try {
+        const response = await fetch(request);
+        if (response && response.status === 200) {
+            const cache = await caches.open(cacheName);
+            await cache.put(request, response.clone());
+        }
+        return response;
+    } catch (error) {
+        // Network failed, try cache
+        const cachedResponse = await caches.match(request);
+        if (cachedResponse) {
+            console.log('[SW] Serving from cache (offline):', request.url);
+            return cachedResponse;
+        }
+
+        // Return offline page for documents
+        if (request.destination === 'document') {
+            return caches.match('/index.html');
+        }
+
+        throw error;
+    }
+}
+
+// Stale While Revalidate - for external resources
+async function staleWhileRevalidateStrategy(request, cacheName) {
+    const cachedResponse = await caches.match(request);
+
+    const fetchPromise = fetch(request).then((response) => {
+        if (response && response.status === 200) {
+            const cache = caches.open(cacheName);
+            cache.then(c => c.put(request, response.clone()));
+        }
+        return response;
+    }).catch(() => cachedResponse);
+
+    return cachedResponse || fetchPromise;
+}
+
+// Helper: Get cache timestamp
+async function getCacheTime(cacheName, request) {
+    const cache = await caches.open(`${cacheName}-meta`);
+    const response = await cache.match(request.url);
+    if (response) {
+        const data = await response.json();
+        return data.timestamp;
+    }
+    return 0;
+}
+
+// Helper: Set cache timestamp
+async function setCacheTime(cacheName, request) {
+    const cache = await caches.open(`${cacheName}-meta`);
+    const data = { timestamp: Date.now() };
+    const response = new Response(JSON.stringify(data));
+    await cache.put(request.url, response);
+}
+
+// Background sync for offline actions
+self.addEventListener('sync', (event) => {
+    if (event.tag === 'sync-data') {
+        event.waitUntil(syncData());
+    }
+});
+
+async function syncData() {
+    console.log('[SW] Syncing data...');
+    // Add your sync logic here
+}
+
+// Push notifications support
+self.addEventListener('push', (event) => {
+    const data = event.data ? event.data.json() : {};
+    const options = {
+        body: data.body || 'New update available',
+        icon: '/assets/icons/iran.png',
+        badge: '/assets/icons/iran.png',
+        vibrate: [200, 100, 200],
+        data: data
+    };
+
+    event.waitUntil(
+        self.registration.showNotification(data.title || 'Notification', options)
+    );
+});
+
+// Handle notification clicks
+self.addEventListener('notificationclick', (event) => {
+    event.notification.close();
+    event.waitUntil(
+        clients.openWindow(event.notification.data.url || '/')
+    );
+});
+
+// Message handler for cache management
 self.addEventListener('message', (event) => {
     if (event.data && event.data.type === 'SKIP_WAITING') {
         self.skipWaiting();
@@ -139,7 +247,34 @@ self.addEventListener('message', (event) => {
                 return Promise.all(
                     cacheNames.map((cacheName) => caches.delete(cacheName))
                 );
+            }).then(() => {
+                console.log('[SW] All caches cleared');
             })
         );
     }
+
+    if (event.data && event.data.type === 'GET_VERSION') {
+        event.ports[0].postMessage({ version: CACHE_VERSION });
+    }
 });
+
+// Periodic background sync
+self.addEventListener('periodicsync', (event) => {
+    if (event.tag === 'update-cache') {
+        event.waitUntil(updateCriticalAssets());
+    }
+});
+
+async function updateCriticalAssets() {
+    console.log('[SW] Updating critical assets...');
+    const cache = await caches.open(CACHE_NAME);
+    await Promise.allSettled(
+        STATIC_CACHE_URLS.map(url =>
+            fetch(url).then(response => {
+                if (response && response.status === 200) {
+                    return cache.put(url, response);
+                }
+            }).catch(err => console.warn('[SW] Failed to update:', url))
+        )
+    );
+}
