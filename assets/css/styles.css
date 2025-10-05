@@ -380,6 +380,7 @@ ul, ol {
     justify-content: center;
     color: var(--text-color);
     text-decoration: none;
+    font-weight: 600;
 }
 
 .social-link:hover {
@@ -2269,6 +2270,21 @@ kbd {
     .publication-item {
         padding: 1.25rem;
         margin-bottom: 1.25rem;
+    }
+}
+
+/* iPhone SE and Galaxy S8+ specific optimizations (320px - 375px) */
+@media (max-width: 375px) {
+    .hero .social-link {
+        width: 40px;
+        height: 40px;
+        min-width: 40px;
+        min-height: 40px;
+        font-size: 1rem;
+    }
+
+    .hero .social-links {
+        gap: 0.4rem;
     }
 }
 
