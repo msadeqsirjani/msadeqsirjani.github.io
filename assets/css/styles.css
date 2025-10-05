@@ -244,7 +244,7 @@ ul, ol {
     display: flex;
     align-items: center;
     justify-content: center;
-    min-width: 40px;
+    width: 40px;
     height: 40px;
 }
 
@@ -256,14 +256,14 @@ ul, ol {
     background: none;
     border: 1px solid var(--border-color);
     border-radius: 4px;
-    padding: 0.5rem;
+    padding: 8px;
     cursor: pointer;
     display: none;
     flex-direction: column;
-    cursor: pointer;
     justify-content: center;
     align-items: center;
-    padding: 8px;
+    width: 40px;
+    height: 40px;
 }
 
 .bar {
@@ -699,7 +699,160 @@ ul, ol {
     text-align: center;
 }
 
+/* Keyboard shortcut styling */
+kbd {
+    display: inline-block;
+    padding: 0.25rem 0.5rem;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-color);
+    background: var(--white);
+    border: 2px solid var(--border-color);
+    border-radius: 4px;
+    box-shadow: 0 2px 0 var(--border-color);
+    margin: 0 0.25rem;
+}
+
 /* Publications */
+.publication-controls {
+    max-width: 800px;
+    margin: 0 auto 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.search-box {
+    position: relative;
+    display: flex;
+    align-items: center;
+    background: var(--gray-light);
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    transition: all 0.3s ease;
+}
+
+.search-box:focus-within {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px rgba(29, 78, 216, 0.1);
+}
+
+.search-box i {
+    color: var(--text-light);
+    margin-right: 0.75rem;
+    font-size: 1rem;
+}
+
+.search-box input {
+    flex: 1;
+    border: none;
+    background: transparent;
+    font-size: 1rem;
+    color: var(--text-color);
+    outline: none;
+    font-family: inherit;
+}
+
+.search-box input::placeholder {
+    color: var(--text-light);
+}
+
+.clear-search {
+    background: none;
+    border: none;
+    color: var(--text-light);
+    cursor: pointer;
+    padding: 0.25rem;
+    margin-left: 0.5rem;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.clear-search:hover {
+    background: var(--border-color);
+    color: var(--text-color);
+}
+
+.filter-controls {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+}
+
+.filter-controls select {
+    flex: 1;
+    min-width: 150px;
+    padding: 0.75rem 1rem;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    background: var(--gray-light);
+    color: var(--text-color);
+    font-size: 0.95rem;
+    font-family: inherit;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.filter-controls select:hover {
+    border-color: var(--accent-color);
+}
+
+.filter-controls select:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px rgba(29, 78, 216, 0.1);
+}
+
+.btn-secondary {
+    padding: 0.75rem 1.25rem;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    background: var(--white);
+    color: var(--text-color);
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    white-space: nowrap;
+}
+
+.btn-secondary:hover {
+    background: var(--gray-light);
+    border-color: var(--accent-color);
+    color: var(--accent-color);
+}
+
+.btn-secondary:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(29, 78, 216, 0.1);
+}
+
+.publication-results-info {
+    max-width: 800px;
+    margin: 0 auto 1rem;
+    padding: 0.75rem 1rem;
+    background: var(--gray-light);
+    border-radius: 8px;
+    text-align: center;
+    font-size: 0.9rem;
+    color: var(--text-light);
+    font-weight: 500;
+}
+
+.publication-item.hidden {
+    display: none;
+}
+
 .publications-container {
     max-width: 800px;
     margin: 0 auto;
@@ -2114,9 +2267,10 @@ button,
 /* Ensure adequate spacing for touch targets */
 .nav-link,
 .social-link,
-.theme-toggle {
-    min-height: 44px;
-    min-width: 44px;
+.theme-toggle,
+.nav-toggle {
+    min-height: 48px;
+    min-width: 48px;
     display: inline-flex;
     align-items: center;
     justify-content: center;

@@ -469,10 +469,375 @@ function initLazyLoading() {
     }
 }
 
+// Publication Search and Filter
+function initPublicationFilters() {
+    const searchInput = document.getElementById('publicationSearch');
+    const clearSearchBtn = document.getElementById('clearSearch');
+    const statusFilter = document.getElementById('statusFilter');
+    const yearFilter = document.getElementById('yearFilter');
+    const resetBtn = document.getElementById('resetFilters');
+    const publicationItems = document.querySelectorAll('.publication-item');
+    const countDisplay = document.getElementById('publicationCount');
+
+    if (!searchInput || !statusFilter || !yearFilter) return;
+
+    function filterPublications() {
+        const searchTerm = searchInput.value.toLowerCase().trim();
+        const selectedStatus = statusFilter.value;
+        const selectedYear = yearFilter.value;
+        let visibleCount = 0;
+
+        publicationItems.forEach(item => {
+            const title = item.querySelector('.publication-title')?.textContent.toLowerCase() || '';
+            const venue = item.querySelector('.venue')?.textContent.toLowerCase() || '';
+            const year = item.dataset.year || '';
+            const status = item.dataset.status || '';
+
+            const matchesSearch = !searchTerm || title.includes(searchTerm) || venue.includes(searchTerm);
+            const matchesStatus = selectedStatus === 'all' || status === selectedStatus;
+            const matchesYear = selectedYear === 'all' || year === selectedYear;
+
+            const isVisible = matchesSearch && matchesStatus && matchesYear;
+
+            if (isVisible) {
+                item.classList.remove('hidden');
+                item.style.display = '';
+                visibleCount++;
+            } else {
+                item.classList.add('hidden');
+                item.style.display = 'none';
+            }
+        });
+
+        // Update count display
+        const totalCount = publicationItems.length;
+        if (visibleCount === totalCount) {
+            countDisplay.textContent = `Showing all ${totalCount} publications`;
+        } else {
+            countDisplay.textContent = `Showing ${visibleCount} of ${totalCount} publications`;
+        }
+
+        // Show/hide clear button
+        if (clearSearchBtn) {
+            clearSearchBtn.style.display = searchTerm ? 'flex' : 'none';
+        }
+    }
+
+    function resetFilters() {
+        searchInput.value = '';
+        statusFilter.value = 'all';
+        yearFilter.value = 'all';
+        filterPublications();
+    }
+
+    // Event listeners
+    searchInput.addEventListener('input', debounce(filterPublications, 300));
+    statusFilter.addEventListener('change', filterPublications);
+    yearFilter.addEventListener('change', filterPublications);
+    resetBtn?.addEventListener('click', resetFilters);
+    clearSearchBtn?.addEventListener('click', () => {
+        searchInput.value = '';
+        filterPublications();
+        searchInput.focus();
+    });
+
+    // Initial count
+    filterPublications();
+}
+
+// Keyboard Navigation Shortcuts
+function initKeyboardShortcuts() {
+    const shortcuts = {
+        'h': () => scrollToTarget('#hero'),
+        'b': () => scrollToTarget('#biography'),
+        'e': () => scrollToTarget('#education'),
+        'r': () => scrollToTarget('#research'),
+        'p': () => scrollToTarget('#publications'),
+        't': () => scrollToTarget('#teaching'),
+        'a': () => scrollToTarget('#awards'),
+        'c': () => scrollToTarget('#contact'),
+        '/': () => {
+            const searchInput = document.getElementById('publicationSearch');
+            if (searchInput) {
+                searchInput.focus();
+                searchInput.select();
+            }
+        },
+        'Escape': () => {
+            const searchInput = document.getElementById('publicationSearch');
+            if (searchInput && document.activeElement === searchInput) {
+                searchInput.blur();
+            }
+            closeMobileMenu();
+        },
+        'ArrowUp': () => {
+            if (document.activeElement.tagName !== 'INPUT' && document.activeElement.tagName !== 'TEXTAREA') {
+                window.scrollBy({ top: -100, behavior: 'smooth' });
+            }
+        },
+        'ArrowDown': () => {
+            if (document.activeElement.tagName !== 'INPUT' && document.activeElement.tagName !== 'TEXTAREA') {
+                window.scrollBy({ top: 100, behavior: 'smooth' });
+            }
+        },
+        'Home': () => {
+            if (document.activeElement.tagName !== 'INPUT' && document.activeElement.tagName !== 'TEXTAREA') {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        },
+        'End': () => {
+            if (document.activeElement.tagName !== 'INPUT' && document.activeElement.tagName !== 'TEXTAREA') {
+                window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+            }
+        },
+        'd': () => toggleTheme(),
+        '?': () => showKeyboardHelp()
+    };
+
+    document.addEventListener('keydown', (e) => {
+        // Don't trigger shortcuts when typing in input fields (except Escape and /)
+        if ((document.activeElement.tagName === 'INPUT' || document.activeElement.tagName === 'TEXTAREA')
+            && e.key !== 'Escape' && e.key !== '/') {
+            return;
+        }
+
+        // Prevent default for specific keys
+        if (e.key === '/' || e.key === '?') {
+            e.preventDefault();
+        }
+
+        const handler = shortcuts[e.key];
+        if (handler) {
+            handler();
+        }
+    });
+}
+
+// Show keyboard shortcuts help overlay
+function showKeyboardHelp() {
+    const existingOverlay = document.getElementById('keyboardHelpOverlay');
+    if (existingOverlay) {
+        existingOverlay.remove();
+        return;
+    }
+
+    const overlay = document.createElement('div');
+    overlay.id = 'keyboardHelpOverlay';
+    overlay.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.8);
+        backdrop-filter: blur(4px);
+        z-index: 10000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem;
+        animation: fadeIn 0.2s ease;
+    `;
+
+    const helpBox = document.createElement('div');
+    helpBox.style.cssText = `
+        background: var(--white);
+        border-radius: 12px;
+        padding: 2rem;
+        max-width: 600px;
+        width: 100%;
+        max-height: 80vh;
+        overflow-y: auto;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        animation: slideUp 0.3s ease;
+    `;
+
+    helpBox.innerHTML = `
+        <h2 style="margin: 0 0 1.5rem 0; color: var(--text-color); font-size: 1.5rem;">Keyboard Shortcuts</h2>
+        <div style="display: grid; gap: 0.75rem; color: var(--text-color);">
+            <div style="display: flex; justify-content: space-between; padding: 0.5rem; background: var(--gray-light); border-radius: 6px;">
+                <span><kbd>H</kbd> Home</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; padding: 0.5rem; background: var(--gray-light); border-radius: 6px;">
+                <span><kbd>B</kbd> Biography</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; padding: 0.5rem; background: var(--gray-light); border-radius: 6px;">
+                <span><kbd>E</kbd> Education</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; padding: 0.5rem; background: var(--gray-light); border-radius: 6px;">
+                <span><kbd>R</kbd> Research</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; padding: 0.5rem; background: var(--gray-light); border-radius: 6px;">
+                <span><kbd>P</kbd> Publications</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; padding: 0.5rem; background: var(--gray-light); border-radius: 6px;">
+                <span><kbd>T</kbd> Teaching</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; padding: 0.5rem; background: var(--gray-light); border-radius: 6px;">
+                <span><kbd>A</kbd> Awards</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; padding: 0.5rem; background: var(--gray-light); border-radius: 6px;">
+                <span><kbd>C</kbd> Contact</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; padding: 0.5rem; background: var(--gray-light); border-radius: 6px;">
+                <span><kbd>/</kbd> Search publications</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; padding: 0.5rem; background: var(--gray-light); border-radius: 6px;">
+                <span><kbd>D</kbd> Toggle dark mode</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; padding: 0.5rem; background: var(--gray-light); border-radius: 6px;">
+                <span><kbd>↑/↓</kbd> Scroll up/down</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; padding: 0.5rem; background: var(--gray-light); border-radius: 6px;">
+                <span><kbd>Home/End</kbd> Top/Bottom</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; padding: 0.5rem; background: var(--gray-light); border-radius: 6px;">
+                <span><kbd>Esc</kbd> Close</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; padding: 0.5rem; background: var(--gray-light); border-radius: 6px;">
+                <span><kbd>?</kbd> Show this help</span>
+            </div>
+        </div>
+        <button id="closeHelp" style="
+            margin-top: 1.5rem;
+            width: 100%;
+            padding: 0.75rem;
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        ">Close (Esc)</button>
+    `;
+
+    overlay.appendChild(helpBox);
+    document.body.appendChild(overlay);
+
+    // Close handlers
+    const closeBtn = helpBox.querySelector('#closeHelp');
+    closeBtn.addEventListener('click', () => overlay.remove());
+    overlay.addEventListener('click', (e) => {
+        if (e.target === overlay) overlay.remove();
+    });
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' || e.key === '?') {
+            overlay.remove();
+        }
+    }, { once: true });
+
+    // Hover effect for close button
+    closeBtn.addEventListener('mouseenter', () => {
+        closeBtn.style.background = 'var(--accent-hover)';
+    });
+    closeBtn.addEventListener('mouseleave', () => {
+        closeBtn.style.background = 'var(--accent-color)';
+    });
+}
+
+// Section Reading Progress Tracking
+function initSectionProgress() {
+    const sections = document.querySelectorAll('.section');
+    const sectionProgress = new Map();
+
+    sections.forEach(section => {
+        sectionProgress.set(section.id, {
+            viewed: false,
+            scrolledPercentage: 0,
+            timeSpent: 0,
+            entryTime: null
+        });
+    });
+
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: Array.from({ length: 101 }, (_, i) => i / 100) // 0% to 100% in 1% increments
+    };
+
+    const sectionObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            const sectionId = entry.target.id;
+            if (!sectionId || !sectionProgress.has(sectionId)) return;
+
+            const progress = sectionProgress.get(sectionId);
+
+            if (entry.isIntersecting) {
+                // Section entered viewport
+                if (!progress.entryTime) {
+                    progress.entryTime = Date.now();
+                }
+                progress.viewed = true;
+
+                // Update scroll percentage based on intersection ratio
+                const newPercentage = Math.round(entry.intersectionRatio * 100);
+                if (newPercentage > progress.scrolledPercentage) {
+                    progress.scrolledPercentage = newPercentage;
+                }
+            } else {
+                // Section left viewport - calculate time spent
+                if (progress.entryTime) {
+                    const timeInSection = Date.now() - progress.entryTime;
+                    progress.timeSpent += timeInSection;
+                    progress.entryTime = null;
+                }
+            }
+
+            sectionProgress.set(sectionId, progress);
+        });
+    }, observerOptions);
+
+    sections.forEach(section => sectionObserver.observe(section));
+
+    // Store progress data periodically and on page unload
+    window.addEventListener('beforeunload', () => {
+        // Calculate final time for any active sections
+        sectionProgress.forEach((progress, sectionId) => {
+            if (progress.entryTime) {
+                progress.timeSpent += Date.now() - progress.entryTime;
+            }
+
+            // Track section engagement
+            if (progress.viewed) {
+                trackEvent('section_view', {
+                    'event_category': 'engagement',
+                    'section_id': sectionId,
+                    'scrolled_percentage': progress.scrolledPercentage,
+                    'time_spent_seconds': Math.round(progress.timeSpent / 1000)
+                });
+            }
+        });
+    });
+
+    // Make progress data accessible globally for debugging
+    window.getSectionProgress = () => {
+        const progressData = {};
+        sectionProgress.forEach((progress, sectionId) => {
+            progressData[sectionId] = {
+                ...progress,
+                timeSpentSeconds: Math.round(progress.timeSpent / 1000)
+            };
+        });
+        console.table(progressData);
+        return progressData;
+    };
+}
+
 // Initialize all functionality
 function init() {
     // Load BibTeX data
     loadBibtexData();
+
+    // Initialize publication filters
+    initPublicationFilters();
+
+    // Initialize keyboard shortcuts
+    initKeyboardShortcuts();
+
+    // Initialize section progress tracking
+    initSectionProgress();
 
     // Scroll event listeners
     window.addEventListener('scroll', handleScroll, { passive: true });

@@ -837,9 +837,42 @@
         <section id="publications" class="section" loading="lazy" data-aos="fade-in" data-aos-duration="1000" data-aos-delay="300">
             <div class="container">
                 <h2 class="section-title">Publications</h2>
+
+                <!-- Search and Filter Controls -->
+                <div class="publication-controls">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="publicationSearch" placeholder="Search by title, venue, or keywords..." aria-label="Search publications">
+                        <button id="clearSearch" class="clear-search" aria-label="Clear search" style="display: none;">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    <div class="filter-controls">
+                        <select id="statusFilter" aria-label="Filter by status">
+                            <option value="all">All Status</option>
+                            <option value="published">Published</option>
+                            <option value="accepted">Accepted</option>
+                            <option value="review">Under Review</option>
+                        </select>
+                        <select id="yearFilter" aria-label="Filter by year">
+                            <option value="all">All Years</option>
+                            <option value="2025">2025</option>
+                            <option value="2024">2024</option>
+                            <option value="2023">2023</option>
+                        </select>
+                        <button id="resetFilters" class="btn-secondary">
+                            <i class="fas fa-redo"></i> Reset
+                        </button>
+                    </div>
+                </div>
+
+                <div class="publication-results-info">
+                    <span id="publicationCount"></span>
+                </div>
+
                 <div class="publications-container">
                     <div class="publication-list">
-                        <div class="publication-item" data-aos="fade-in" data-aos-duration="900">
+                        <div class="publication-item" data-aos="fade-in" data-aos-duration="900" data-year="2025" data-status="review">
                             <p class="publication-title">Q-Learning-Based Task Scheduling Scheme to Enhance Energy Consumption and QoS in IoT Environments</p>
                             <div class="publication-info-row">
                                 <div class="publication-venue">
@@ -854,7 +887,7 @@
                             </div>
                         </div>
 
-                        <div class="publication-item" data-aos="fade-in" data-aos-duration="900">
+                        <div class="publication-item" data-aos="fade-in" data-aos-duration="900" data-year="2025" data-status="published">
                             <p class="publication-title">Controller placement in software-defined networks using reinforcement learning and metaheuristics</p>
                             <div class="publication-info-row">
                                 <div class="publication-venue">
@@ -869,7 +902,7 @@
                             </div>
                         </div>
 
-                        <div class="publication-item" data-aos="fade-in" data-aos-duration="900">
+                        <div class="publication-item" data-aos="fade-in" data-aos-duration="900" data-year="2024" data-status="accepted">
                             <p class="publication-title">Optimizing Task Scheduling in Fog Computing with Deadline Awareness</p>
                             <div class="publication-info-row">
                                 <div class="publication-venue">
