@@ -35,54 +35,32 @@ function throttle(func, limit = 16) {
     };
 }
 
-// Theme Management
-let currentTheme = localStorage.getItem('theme') || 'system';
+// Theme Management - Initialize based on system preference
+const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+let currentTheme = localStorage.getItem('theme') || (systemPrefersDark ? 'dark' : 'light');
 initializeTheme();
 
 function initializeTheme() {
-    if (currentTheme === 'system') {
-        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        document.documentElement.setAttribute('data-theme', systemPrefersDark ? 'dark' : 'light');
-    } else {
-        document.documentElement.setAttribute('data-theme', currentTheme);
-    }
+    document.documentElement.setAttribute('data-theme', currentTheme);
     updateThemeIcon();
 }
 
 function toggleTheme() {
-    if (currentTheme === 'system') {
-        currentTheme = 'light';
-    } else if (currentTheme === 'light') {
-        currentTheme = 'dark';
-    } else {
-        currentTheme = 'system';
-    }
-    
+    currentTheme = currentTheme === 'light' ? 'dark' : 'light';
     localStorage.setItem('theme', currentTheme);
     initializeTheme();
 }
 
 function updateThemeIcon() {
     const icon = themeToggle.querySelector('i');
-    if (currentTheme === 'system') {
-        icon.className = 'fas fa-desktop';
-        themeToggle.setAttribute('data-tooltip', 'System theme');
-    } else if (currentTheme === 'dark') {
+    if (currentTheme === 'dark') {
         icon.className = 'fas fa-sun';
-        themeToggle.setAttribute('data-tooltip', 'Dark theme');
+        themeToggle.setAttribute('data-tooltip', 'Light mode');
     } else {
         icon.className = 'fas fa-moon';
-        themeToggle.setAttribute('data-tooltip', 'Light theme');
+        themeToggle.setAttribute('data-tooltip', 'Dark mode');
     }
 }
-
-
-// Listen for system theme changes
-window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
-    if (currentTheme === 'system') {
-        initializeTheme();
-    }
-});
 
 // Mobile Navigation
 function toggleMobileMenu() {
