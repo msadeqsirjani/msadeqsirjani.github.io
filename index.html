@@ -595,7 +595,7 @@
 </head>
 <body>
     <!-- Skip to main content link for keyboard navigation -->
-    <!-- <a href="#main-content" class="skip-link">Skip to main content</a> -->
+    <!-- <a href="#main-content" class="skip-link">Skip to main content</a>w -->
     <!-- Navigation -->
     <nav class="navbar" role="navigation" aria-label="Main navigation">
         <div class="nav-container">
@@ -861,7 +861,7 @@
                 </div>
 
                 <div class="publications-container">
-                    <div class="publication-list">
+                    <div class="publication-list" id="publicationList">
                         <div class="publication-item" data-aos="fade-in" data-aos-duration="900" data-year="2025" data-status="review">
                             <p class="publication-title">Q-Learning-Based Task Scheduling Scheme to Enhance Energy Consumption and QoS in IoT Environments</p>
                             <div class="publication-info-row">
@@ -952,10 +952,18 @@
                             </div>
                         </div>
                     </div>
+
+                    <!-- Show More/Less Button -->
+                    <div class="show-more-container" style="text-align: center; margin-top: 2rem;">
+                        <button id="showMoreBtn" class="btn-secondary" style="display: none;">
+                            <span class="show-more-text">Show More</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                    </div>
                 </div>
             </div>
         </section>
-    
+
         <!-- Teaching Section -->
         <section id="teaching" class="section" loading="lazy">
             <div class="container">

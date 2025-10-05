@@ -447,6 +447,59 @@ function initLazyLoading() {
     }
 }
 
+// Publication Show More/Less
+function initShowMore() {
+    const publicationItems = document.querySelectorAll('.publication-item');
+    const showMoreBtn = document.getElementById('showMoreBtn');
+    const INITIAL_SHOW_COUNT = 3; // Show first 3 publications initially
+    const MIN_COUNT_FOR_BUTTON = 6; // Only show button if there are more than 6 publications
+
+    if (!showMoreBtn || publicationItems.length <= MIN_COUNT_FOR_BUTTON) return;
+
+    let isExpanded = false;
+
+    // Initially hide publications beyond the first 3
+    publicationItems.forEach((item, index) => {
+        if (index >= INITIAL_SHOW_COUNT) {
+            item.classList.add('collapsed');
+        }
+    });
+
+    // Show the button
+    showMoreBtn.style.display = 'inline-flex';
+
+    showMoreBtn.addEventListener('click', () => {
+        isExpanded = !isExpanded;
+
+        publicationItems.forEach((item, index) => {
+            if (index >= INITIAL_SHOW_COUNT && !item.classList.contains('hidden')) {
+                if (isExpanded) {
+                    item.classList.remove('collapsed');
+                } else {
+                    item.classList.add('collapsed');
+                }
+            }
+        });
+
+        // Update button text and icon
+        const textSpan = showMoreBtn.querySelector('.show-more-text');
+        textSpan.textContent = isExpanded ? 'Show Less' : 'Show More';
+        showMoreBtn.classList.toggle('expanded', isExpanded);
+
+        // Scroll to publications section if collapsing
+        if (!isExpanded) {
+            const publicationsSection = document.getElementById('publications');
+            if (publicationsSection) {
+                const offsetTop = publicationsSection.offsetTop - 100;
+                window.scrollTo({
+                    top: offsetTop,
+                    behavior: 'smooth'
+                });
+            }
+        }
+    });
+}
+
 // Publication Search and Filter
 function initPublicationFilters() {
     const searchInput = document.getElementById('publicationSearch');
@@ -455,6 +508,7 @@ function initPublicationFilters() {
     const yearFilter = document.getElementById('yearFilter');
     const resetBtn = document.getElementById('resetFilters');
     const publicationItems = document.querySelectorAll('.publication-item');
+    const showMoreBtn = document.getElementById('showMoreBtn');
 
     if (!searchInput || !statusFilter || !yearFilter) return;
 
@@ -462,6 +516,7 @@ function initPublicationFilters() {
         const searchTerm = searchInput.value.toLowerCase().trim();
         const selectedStatus = statusFilter.value;
         const selectedYear = yearFilter.value;
+        let visibleCount = 0;
 
         publicationItems.forEach(item => {
             const title = item.querySelector('.publication-title')?.textContent.toLowerCase() || '';
@@ -478,11 +533,21 @@ function initPublicationFilters() {
             if (isVisible) {
                 item.classList.remove('hidden');
                 item.style.display = '';
+                visibleCount++;
             } else {
                 item.classList.add('hidden');
                 item.style.display = 'none';
             }
         });
+
+        // Show/hide the "Show More" button based on visible items
+        if (showMoreBtn) {
+            if (visibleCount > 6) {
+                showMoreBtn.style.display = 'inline-flex';
+            } else {
+                showMoreBtn.style.display = 'none';
+            }
+        }
 
         // Show/hide clear button
         if (clearSearchBtn) {
@@ -605,6 +670,9 @@ function initSectionProgress() {
 function init() {
     // Load BibTeX data
     loadBibtexData();
+
+    // Initialize show more/less for publications
+    initShowMore();
 
     // Initialize publication filters
     initPublicationFilters();

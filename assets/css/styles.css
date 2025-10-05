@@ -874,6 +874,45 @@ kbd {
     display: none;
 }
 
+.publication-item.collapsed {
+    display: none;
+}
+
+.show-more-container {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+#showMoreBtn {
+    padding: 0.75rem 1.5rem;
+    background: var(--white);
+    color: var(--accent-color);
+    border: 1px solid var(--accent-color);
+    border-radius: 6px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+#showMoreBtn:hover {
+    background: var(--accent-color);
+    color: var(--white);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(29, 78, 216, 0.2);
+}
+
+#showMoreBtn i {
+    transition: transform 0.3s ease;
+}
+
+#showMoreBtn.expanded i {
+    transform: rotate(180deg);
+}
+
 .publications-container {
     max-width: 800px;
     width: 100%;
