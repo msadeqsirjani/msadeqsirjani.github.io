@@ -78,13 +78,37 @@
 
     <!-- Critical CSS for Above-the-Fold Content -->
     <style>
-        :root{--text-color:#333;--white:#fff;--gray-light:#f8f9fa;--border-color:#e0e0e0;--accent-color:#2563eb}
-        [data-theme="dark"]{--text-color:#e5e5e5;--white:#1a1a1a;--gray-light:#2d2d2d;--border-color:#404040;--accent-color:#60a5fa}
+        :root{--text-color:#1a1a1a;--text-light:#4a5568;--white:#fff;--gray-light:#f7fafc;--border-color:#d1d5db;--accent-color:#1d4ed8;--accent-hover:#1e40af}
+        [data-theme="dark"]{--text-color:#f9fafb;--text-light:#d1d5db;--white:#111827;--gray-light:#1f2937;--border-color:#4b5563;--accent-color:#3b82f6;--accent-hover:#60a5fa}
         *{margin:0;padding:0;box-sizing:border-box}
-        body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;line-height:1.6;color:var(--text-color);background-color:var(--white)}
+        html{-webkit-text-size-adjust:100%;-webkit-tap-highlight-color:transparent}
+        body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;line-height:1.6;color:var(--text-color);background-color:var(--white);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
         .container{max-width:1200px;margin:0 auto;padding:0 20px}
-        .navbar{position:sticky;top:0;background:var(--white);border-bottom:1px solid var(--border-color);z-index:100;padding:1rem 0}
-        .nav-container{display:flex;justify-content:space-between;align-items:center;max-width:1200px;margin:0 auto;padding:0 20px}
+        .navbar{position:sticky;top:0;background:var(--white);border-bottom:1px solid var(--border-color);z-index:100;padding:1rem 0;width:100%;backface-visibility:hidden}
+        .nav-container{display:flex;justify-content:space-between;align-items:center;max-width:1200px;margin:0 auto;padding:0 20px;gap:1rem;width:100%}
+        .logo-text{font-family:Georgia,'Times New Roman',serif;font-size:1.8rem;font-weight:700;color:var(--text-color);text-decoration:none;letter-spacing:-.05em}
+        .nav-menu{display:flex;gap:2rem;align-items:center;list-style:none}
+        .nav-link{color:var(--text-color);text-decoration:none;font-weight:500;padding:.5rem 1rem}
+        .nav-link:hover{color:var(--accent-color)}
+        .theme-toggle{background:0 0;border:1px solid var(--border-color);border-radius:4px;padding:.5rem;cursor:pointer;color:var(--text-color);display:flex;align-items:center;justify-content:center;min-width:40px;height:40px}
+        .hero{padding:4rem 0}
+        .hero-content{display:grid;grid-template-columns:1fr 2fr;gap:3rem;align-items:center;max-width:1000px;margin:0 auto}
+        .profile-image img{width:300px;height:300px;border-radius:50%;object-fit:cover;max-width:100%;image-rendering:-webkit-optimize-contrast}
+        .hero-title{font-size:2.5rem;font-weight:700;margin-bottom:.5rem;-webkit-font-smoothing:antialiased}
+        .hero-subtitle{font-size:1.3rem;color:var(--text-light);margin-bottom:.5rem}
+        .hero-institution{font-size:1.1rem;color:var(--text-light);margin-bottom:.5rem}
+        .hero-tagline{font-size:1rem;color:var(--text-light);margin-bottom:2rem}
+        .hero-buttons{display:flex;gap:1rem;margin-bottom:2rem}
+        .btn{padding:.75rem 1.5rem;border-radius:4px;text-decoration:none;font-weight:500;display:inline-flex;align-items:center;gap:.5rem;border:none;cursor:pointer;transition:all .2s}
+        .btn-primary{background:var(--accent-color);color:#fff}
+        .btn-primary:hover{background:var(--accent-hover)}
+        .btn-secondary{background:transparent;color:var(--accent-color);border:2px solid var(--accent-color)}
+        .btn-secondary:hover{background:var(--accent-color);color:#fff}
+        .social-links{display:flex;gap:1rem}
+        .social-link{color:var(--text-color);font-size:1.5rem;transition:color .2s}
+        .social-link:hover{color:var(--accent-color)}
+        .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border-width:0}
+        @media(max-width:768px){.hero-content{grid-template-columns:1fr;text-align:center}.profile-image img{width:200px;height:200px}.hero-buttons{justify-content:center}}
     </style>
 
     <link rel="stylesheet" href="assets/css/styles.css">
@@ -100,7 +124,7 @@
     <link rel="manifest" href="config/manifest.json">
     <meta name="theme-color" content="#0c2340">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="MS Scholar">
     
     <!-- Open Graph / Facebook -->
@@ -140,37 +164,13 @@
     <meta name="twitter:title" content="Mohammad Sadegh Sirjani - Ph.D. Student in Computer Science | IoT & Tiny AI Researcher">
     <meta name="twitter:description" content="Ph.D. at UT San Antonio researching IoT, Tiny AI & Edge AI. DAC 2025 Young Fellow. Published in Cluster Computing & arXiv. Teaching OS, Cloud Computing & Compiler Design.">
     <meta name="twitter:image" content="https://msadeqsirjani.com/assets/img/profile.jpg">
-    <meta name="twitter:image:src" content="https://msadeqsirjani.com/assets/img/profile.jpg">
     <meta name="twitter:image:alt" content="Mohammad Sadegh Sirjani - Computer Science Researcher specializing in IoT and Tiny AI">
-    <meta name="twitter:image:width" content="1200">
-    <meta name="twitter:image:height" content="630">
-    
-    <!-- LinkedIn -->
+
+    <!-- LinkedIn & Academic Profiles -->
     <meta name="linkedin:owner" content="msadeqsirjani">
     <meta property="og:see_also" content="https://www.linkedin.com/in/msadeqsirjani">
     <meta property="og:see_also" content="https://scholar.google.com/citations?user=EI5DizMAAAAJ">
     <meta property="og:see_also" content="https://orcid.org/0009-0000-5146-0216">
-
-    <!-- Additional Social Media Tags -->
-    <meta name="twitter:domain" content="msadeqsirjani.com">
-    <meta name="twitter:label1" content="Research Focus">
-    <meta name="twitter:data1" content="IoT, Tiny AI, Edge Computing">
-    <meta name="twitter:label2" content="Institution">
-    <meta name="twitter:data2" content="UT San Antonio">
-    <meta name="twitter:label3" content="Publications">
-    <meta name="twitter:data3" content="5+ Papers">
-    <meta name="twitter:label4" content="Status">
-    <meta name="twitter:data4" content="DAC 2025 Young Fellow">
-
-    <!-- Pinterest -->
-    <meta name="pinterest-rich-pin" content="true">
-
-    <!-- Google+ (legacy but still useful) -->
-    <meta itemprop="image" content="https://msadeqsirjani.com/assets/img/profile.jpg">
-
-    <!-- WhatsApp & Telegram -->
-    <meta property="og:video" content="">
-    <meta name="telegram:channel" content="@msadeqsirjani">
     
     <!-- Academic and Research Specific Meta Tags -->
     <meta name="citation_author" content="Mohammad Sadegh Sirjani">
@@ -194,33 +194,12 @@
     <!-- Geographic Tags -->
     <meta name="geo.region" content="US-TX">
     <meta name="geo.placename" content="San Antonio, Texas">
-    <meta name="geo.position" content="29.4241;-98.4936">
     <meta name="ICBM" content="29.4241, -98.4936">
-    
-    <!-- Additional SEO Meta Tags -->
-    <meta name="rating" content="General">
-    <meta name="distribution" content="Global">
-    <meta name="coverage" content="Worldwide">
-    <meta name="target" content="all">
-    <meta name="HandheldFriendly" content="True">
-    <meta name="MobileOptimized" content="320">
 
     <!-- Additional SEO Meta Tags -->
-    <meta name="topic" content="Computer Science Research, IoT, Tiny AI, Edge Computing">
-    <meta name="summary" content="Ph.D. student researching IoT, Tiny AI, and Edge Computing at UT San Antonio">
-    <meta name="classification" content="Academic Portfolio">
-    <meta name="designer" content="Mohammad Sadegh Sirjani">
-    <meta name="copyright" content="2025 Mohammad Sadegh Sirjani">
-    <meta name="reply-to" content="mohammadsadegh.sirjani@utsa.edu">
-    <meta name="owner" content="Mohammad Sadegh Sirjani">
-    <meta name="url" content="https://msadeqsirjani.com">
-    <meta name="identifier-URL" content="https://msadeqsirjani.com">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
     <meta name="category" content="Academic, Research, Computer Science, PhD Student">
-    <meta name="coverage" content="Worldwide">
-    <meta name="distribution" content="Global">
-    <meta name="rating" content="General">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     
     <!-- Structured Data JSON-LD -->
     <script type="application/ld+json">
@@ -619,7 +598,7 @@
         </section>
     
         <!-- Education Section -->
-        <section id="education" class="section">
+        <section id="education" class="section" loading="lazy">
             <div class="container">
                 <h2 class="section-title">Education</h2>
                 <div class="education-timeline">
@@ -649,7 +628,7 @@
         </section>
     
         <!-- Research Interests Section -->
-        <section id="research-interests" class="section">
+        <section id="research-interests" class="section" loading="lazy">
             <div class="container">
                 <h2 class="section-title">Research Interests</h2>
                 <div class="interests-container">
@@ -682,7 +661,7 @@
         </section>
     
         <!-- Research Section -->
-        <section id="research" class="section">
+        <section id="research" class="section" loading="lazy">
             <div class="container">
                 <h2 class="section-title">Research Experience</h2>
                 <div class="research-timeline">
@@ -726,7 +705,7 @@
         </section>
     
         <!-- Publications Section -->
-        <section id="publications" class="section" data-aos="fade-in" data-aos-duration="1000" data-aos-delay="300">
+        <section id="publications" class="section" loading="lazy" data-aos="fade-in" data-aos-duration="1000" data-aos-delay="300">
             <div class="container">
                 <h2 class="section-title">Publications</h2>
                 <div class="publications-container">
@@ -826,7 +805,7 @@
         </section>
     
         <!-- Teaching Section -->
-        <section id="teaching" class="section">
+        <section id="teaching" class="section" loading="lazy">
             <div class="container">
                 <h2 class="section-title">Teaching Experience</h2>
                 <div class="teaching-list">
@@ -905,7 +884,7 @@
         </section>
     
         <!-- News Section -->
-        <section id="news" class="section">
+        <section id="news" class="section" loading="lazy">
             <div class="container">
                 <h2 class="section-title">News</h2>
                 <div class="news-list">
@@ -962,7 +941,7 @@
         </section>
     
         <!-- Awards and Honors Section -->
-        <section id="awards" class="section">
+        <section id="awards" class="section" loading="lazy">
             <div class="container">
                 <h2 class="section-title">Awards and Honors</h2>
                 <div class="awards-list">
@@ -1017,7 +996,7 @@
         </section>
     
         <!-- Contact Section -->
-        <section id="contact" class="section">
+        <section id="contact" class="section" loading="lazy">
             <div class="container">
                 <h2 class="section-title">Contact</h2>
                 <div class="contact-container">
