@@ -375,17 +375,21 @@ ul, ol {
     width: 40px;
     height: 40px;
     border: 1px solid var(--border-color);
+    border-radius: 6px;
     display: flex;
     align-items: center;
     justify-content: center;
     color: var(--text-color);
     text-decoration: none;
     font-weight: 600;
+    transition: all 0.3s ease;
 }
 
 .social-link:hover {
+    background: var(--accent-color);
     border-color: var(--accent-color);
-    color: var(--accent-color);
+    color: white;
+    transform: translateY(-2px);
 }
 
 /* Tooltips for social links, buttons, and theme toggle */
@@ -1660,7 +1664,6 @@ kbd {
 
     .social-links {
         justify-content: center;
-        flex-wrap: wrap;
     }
 
     /* Section spacing for mobile */
