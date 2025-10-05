@@ -2832,7 +2832,13 @@ html {
     #news,
     #contact,
     #biography,
-    #research-interests {
+    #research-interests,
+    .publication-controls,
+    .search-box,
+    .filter-controls,
+    #resetFilters,
+    #clearSearch,
+    .show-more-container {
         display: none !important;
     }
 
