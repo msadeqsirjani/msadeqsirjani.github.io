@@ -1592,13 +1592,13 @@ kbd {
     }
 
     .interest-card {
-        background: var(--gray-light);
+        background: transparent;
         border: 1px solid var(--border-color);
-        border-radius: 8px;
+        border-radius: 6px;
         padding: 1rem;
         height: auto;
         min-height: 100px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        box-shadow: none;
         width: 100%;
     }
 
@@ -1613,18 +1613,19 @@ kbd {
         display: block;
     }
 
-    /* Mobile publications redesign */
+    /* Mobile publications - clean design matching desktop */
     .publication-item {
-        background: var(--gray-light);
-        border: 1px solid var(--border-color);
-        border-radius: 8px;
-        padding: 1.5rem;
-        margin-bottom: 1.5rem;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        background: transparent;
+        border: none;
+        border-bottom: 1px solid var(--border-color);
+        border-radius: 0;
+        padding: 1.5rem 0;
+        margin-bottom: 0;
+        box-shadow: none;
     }
 
     .publication-item:last-child {
-        border-bottom: 1px solid var(--border-color);
+        border-bottom: none;
         margin-bottom: 0;
     }
 
@@ -1730,11 +1731,12 @@ kbd {
         grid-template-columns: 1fr;
         gap: 0.5rem;
         margin-bottom: 2rem;
-        background: var(--gray-light);
-        border: 1px solid var(--border-color);
-        border-radius: 8px;
-        padding: 1.5rem;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        background: transparent;
+        border: none;
+        border-bottom: 1px solid var(--border-color);
+        border-radius: 0;
+        padding: 1.5rem 0;
+        box-shadow: none;
     }
 
     .education-item:last-child {
@@ -1775,11 +1777,12 @@ kbd {
         grid-template-columns: 1fr;
         gap: 0.5rem;
         margin-bottom: 2rem;
-        background: var(--gray-light);
-        border: 1px solid var(--border-color);
-        border-radius: 8px;
-        padding: 1.5rem;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        background: transparent;
+        border: none;
+        border-bottom: 1px solid var(--border-color);
+        border-radius: 0;
+        padding: 1.5rem 0;
+        box-shadow: none;
     }
 
     .research-dates {
@@ -1813,16 +1816,17 @@ kbd {
     }
 
 
-    /* Mobile teaching section redesign */
+    /* Mobile teaching section - clean design */
     .teaching-item {
         grid-template-columns: 1fr;
         gap: 0.5rem;
         margin-bottom: 2rem;
-        background: var(--gray-light);
-        border: 1px solid var(--border-color);
-        border-radius: 8px;
-        padding: 1.5rem;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        background: transparent;
+        border: none;
+        border-bottom: 1px solid var(--border-color);
+        border-radius: 0;
+        padding: 1.5rem 0;
+        box-shadow: none;
     }
 
     .teaching-item:last-child {
@@ -1859,16 +1863,17 @@ kbd {
         border-color: #4b5563;
     }
 
-    /* Mobile news section redesign */
+    /* Mobile news section - clean design */
     .news-item {
         grid-template-columns: 1fr;
         gap: 0.5rem;
         margin-bottom: 2rem;
-        background: var(--gray-light);
-        border: 1px solid var(--border-color);
-        border-radius: 8px;
-        padding: 1.5rem;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        background: transparent;
+        border: none;
+        border-bottom: 1px solid var(--border-color);
+        border-radius: 0;
+        padding: 1.5rem 0;
+        box-shadow: none;
     }
 
     .news-item:last-child {
@@ -1905,16 +1910,17 @@ kbd {
         border-color: #4b5563;
     }
 
-    /* Mobile awards section redesign */
+    /* Mobile awards section - clean design */
     .award-item {
         grid-template-columns: 1fr;
         gap: 0.5rem;
         margin-bottom: 2rem;
-        background: var(--gray-light);
-        border: 1px solid var(--border-color);
-        border-radius: 8px;
-        padding: 1.5rem;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        background: transparent;
+        border: none;
+        border-bottom: 1px solid var(--border-color);
+        border-radius: 0;
+        padding: 1.5rem 0;
+        box-shadow: none;
     }
 
     .award-item:last-child {
