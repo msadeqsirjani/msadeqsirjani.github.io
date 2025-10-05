@@ -717,10 +717,12 @@ kbd {
 /* Publications */
 .publication-controls {
     max-width: 800px;
+    width: 100%;
     margin: 0 auto 2rem;
     display: flex;
     flex-direction: column;
     gap: 1rem;
+    padding: 0;
 }
 
 .search-box {
@@ -731,12 +733,14 @@ kbd {
     border: 2px solid var(--border-color);
     border-radius: 8px;
     padding: 0.75rem 1rem;
-    transition: all 0.3s ease;
+    transition: border-color 0.3s ease;
+    min-height: 52px;
+    max-height: 52px;
+    height: 52px;
 }
 
 .search-box:focus-within {
     border-color: var(--accent-color);
-    box-shadow: 0 0 0 3px rgba(29, 78, 216, 0.1);
 }
 
 .search-box i {
@@ -749,17 +753,23 @@ kbd {
     flex: 1;
     border: none;
     background: transparent;
-    font-size: 1rem;
+    font-size: 16px;
     color: var(--text-color);
     outline: none !important;
     box-shadow: none !important;
     font-family: inherit;
+    -webkit-appearance: none;
+    appearance: none;
+    margin: 0;
+    padding: 0;
 }
 
 .search-box input:focus {
     outline: none !important;
     box-shadow: none !important;
     border: none !important;
+    font-size: 16px;
+    transform: none !important;
 }
 
 .search-box input::placeholder {
@@ -790,62 +800,75 @@ kbd {
 .filter-controls {
     display: flex;
     gap: 0.75rem;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
 }
 
 .filter-controls select {
     flex: 1;
     min-width: 150px;
-    padding: 0.75rem 1rem;
-    border: 2px solid var(--border-color);
-    border-radius: 8px;
-    background: var(--gray-light);
+    padding: 0 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    background: var(--white);
     color: var(--text-color);
-    font-size: 0.95rem;
+    font-size: 0.9rem;
+    font-weight: 500;
     font-family: inherit;
     cursor: pointer;
     transition: all 0.3s ease;
+    height: 52px;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%234a5568' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    padding-right: 2.5rem;
 }
 
 .filter-controls select:hover {
     border-color: var(--accent-color);
+    background-color: var(--gray-light);
 }
 
 .filter-controls select:focus {
     outline: none;
     border-color: var(--accent-color);
-    box-shadow: 0 0 0 3px rgba(29, 78, 216, 0.1);
 }
 
 .btn-secondary {
-    padding: 0.75rem 1.25rem;
-    border: 2px solid var(--border-color);
-    border-radius: 8px;
-    background: var(--white);
-    color: var(--text-color);
-    font-size: 0.95rem;
-    font-weight: 500;
+    padding: 0 1.25rem;
+    border: none;
+    border-radius: 6px;
+    background: var(--accent-color);
+    color: var(--white);
+    font-size: 0.9rem;
+    font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
     display: flex;
     align-items: center;
     gap: 0.5rem;
     white-space: nowrap;
+    height: 52px;
+    flex-shrink: 0;
 }
 
 .btn-secondary:hover {
-    background: var(--gray-light);
-    border-color: var(--accent-color);
-    color: var(--accent-color);
+    background: var(--accent-hover);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(29, 78, 216, 0.2);
+}
+
+.btn-secondary:active {
+    transform: translateY(0);
 }
 
 .btn-secondary:focus {
     outline: none;
-    box-shadow: 0 0 0 3px rgba(29, 78, 216, 0.1);
 }
 
 .publication-results-info {
     max-width: 800px;
+    width: 100%;
     margin: 0 auto 1rem;
     padding: 0.75rem 1rem;
     background: var(--gray-light);
@@ -854,6 +877,7 @@ kbd {
     font-size: 0.9rem;
     color: var(--text-light);
     font-weight: 500;
+    box-sizing: border-box;
 }
 
 .publication-item.hidden {
@@ -862,6 +886,7 @@ kbd {
 
 .publications-container {
     max-width: 800px;
+    width: 100%;
     margin: 0 auto;
 }
 
@@ -1388,6 +1413,32 @@ kbd {
         height: 48px;
         display: flex;
         align-items: center;
+    }
+
+    /* Publication filters - keep all in one line on mobile */
+    .filter-controls {
+        flex-wrap: nowrap;
+        gap: 0.5rem;
+    }
+
+    .filter-controls select {
+        min-width: 0;
+        flex: 1;
+        font-size: 0.85rem;
+        padding: 0 0.75rem;
+        padding-right: 2rem;
+        background-position: right 0.5rem center;
+    }
+
+    .btn-secondary {
+        padding: 0 0.75rem;
+        font-size: 0.85rem;
+        flex-shrink: 0;
+        min-width: auto;
+    }
+
+    .btn-secondary span {
+        display: none;
     }
 
     .nav-menu {
@@ -2274,11 +2325,17 @@ button,
 /* Ensure adequate spacing for touch targets */
 .nav-link,
 .social-link,
-.theme-toggle,
-.nav-toggle {
+.theme-toggle {
     min-height: 48px;
     min-width: 48px;
     display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-toggle {
+    min-height: 48px;
+    min-width: 48px;
     align-items: center;
     justify-content: center;
 }
