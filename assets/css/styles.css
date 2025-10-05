@@ -732,11 +732,11 @@ kbd {
     background: var(--gray-light);
     border: 2px solid var(--border-color);
     border-radius: 8px;
-    padding: 0.75rem 1rem;
+    padding: 0.625rem 1rem;
     transition: border-color 0.3s ease;
-    min-height: 52px;
-    max-height: 52px;
-    height: 52px;
+    min-height: 46px;
+    max-height: 46px;
+    height: 46px;
 }
 
 .search-box:focus-within {
@@ -811,12 +811,12 @@ kbd {
     border-radius: 6px;
     background: var(--white);
     color: var(--text-color);
-    font-size: 0.9rem;
+    font-size: 0.875rem;
     font-weight: 500;
     font-family: inherit;
     cursor: pointer;
     transition: all 0.3s ease;
-    height: 52px;
+    height: 46px;
     appearance: none;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%234a5568' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
@@ -840,7 +840,7 @@ kbd {
     border-radius: 6px;
     background: var(--accent-color);
     color: var(--white);
-    font-size: 0.9rem;
+    font-size: 0.875rem;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -848,7 +848,7 @@ kbd {
     align-items: center;
     gap: 0.5rem;
     white-space: nowrap;
-    height: 52px;
+    height: 46px;
     flex-shrink: 0;
 }
 
@@ -864,20 +864,6 @@ kbd {
 
 .btn-secondary:focus {
     outline: none;
-}
-
-.publication-results-info {
-    max-width: 800px;
-    width: 100%;
-    margin: 0 auto 1rem;
-    padding: 0.75rem 1rem;
-    background: var(--gray-light);
-    border-radius: 8px;
-    text-align: center;
-    font-size: 0.9rem;
-    color: var(--text-light);
-    font-weight: 500;
-    box-sizing: border-box;
 }
 
 .publication-item.hidden {

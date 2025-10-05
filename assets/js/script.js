@@ -477,7 +477,6 @@ function initPublicationFilters() {
     const yearFilter = document.getElementById('yearFilter');
     const resetBtn = document.getElementById('resetFilters');
     const publicationItems = document.querySelectorAll('.publication-item');
-    const countDisplay = document.getElementById('publicationCount');
 
     if (!searchInput || !statusFilter || !yearFilter) return;
 
@@ -485,7 +484,6 @@ function initPublicationFilters() {
         const searchTerm = searchInput.value.toLowerCase().trim();
         const selectedStatus = statusFilter.value;
         const selectedYear = yearFilter.value;
-        let visibleCount = 0;
 
         publicationItems.forEach(item => {
             const title = item.querySelector('.publication-title')?.textContent.toLowerCase() || '';
@@ -502,20 +500,11 @@ function initPublicationFilters() {
             if (isVisible) {
                 item.classList.remove('hidden');
                 item.style.display = '';
-                visibleCount++;
             } else {
                 item.classList.add('hidden');
                 item.style.display = 'none';
             }
         });
-
-        // Update count display
-        const totalCount = publicationItems.length;
-        if (visibleCount === totalCount) {
-            countDisplay.textContent = `Showing all ${totalCount} publications`;
-        } else {
-            countDisplay.textContent = `Showing ${visibleCount} of ${totalCount} publications`;
-        }
 
         // Show/hide clear button
         if (clearSearchBtn) {
@@ -541,7 +530,7 @@ function initPublicationFilters() {
         searchInput.focus();
     });
 
-    // Initial count
+    // Initial filter
     filterPublications();
 }
 
