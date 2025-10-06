@@ -4,6 +4,7 @@ import Hero from './components/Hero/Hero';
 import ReadingProgress from './components/ReadingProgress/ReadingProgress';
 import PullToRefresh from './components/PullToRefresh/PullToRefresh';
 import QuickActions from './components/QuickActions/QuickActions';
+import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary';
 
 // Lazy load components below the fold
 const Biography = lazy(() => import('./components/Biography/Biography'));
@@ -32,46 +33,72 @@ const SectionLoader = () => (
 
 function App() {
   return (
-    <>
+    <ErrorBoundary>
       <a href="#main-content" className="skip-to-content">Skip to main content</a>
       <PullToRefresh />
-      <Navbar />
+      <ErrorBoundary>
+        <Navbar />
+      </ErrorBoundary>
       <ReadingProgress />
       <main id="main-content" role="main" aria-label="Main content">
-        <Hero />
-        <Suspense fallback={<SectionLoader />}>
-          <Biography />
-        </Suspense>
-        <Suspense fallback={<SectionLoader />}>
-          <Education />
-        </Suspense>
-        <Suspense fallback={<SectionLoader />}>
-          <ResearchInterests />
-        </Suspense>
-        <Suspense fallback={<SectionLoader />}>
-          <ResearchExperience />
-        </Suspense>
-        <Suspense fallback={<SectionLoader />}>
-          <Publications />
-        </Suspense>
-        <Suspense fallback={<SectionLoader />}>
-          <Teaching />
-        </Suspense>
-        <Suspense fallback={<SectionLoader />}>
-          <News />
-        </Suspense>
-        <Suspense fallback={<SectionLoader />}>
-          <Awards />
-        </Suspense>
-        <Suspense fallback={<SectionLoader />}>
-          <Contact />
-        </Suspense>
+        <ErrorBoundary>
+          <Hero />
+        </ErrorBoundary>
+        <ErrorBoundary>
+          <Suspense fallback={<SectionLoader />}>
+            <Biography />
+          </Suspense>
+        </ErrorBoundary>
+        <ErrorBoundary>
+          <Suspense fallback={<SectionLoader />}>
+            <Education />
+          </Suspense>
+        </ErrorBoundary>
+        <ErrorBoundary>
+          <Suspense fallback={<SectionLoader />}>
+            <ResearchInterests />
+          </Suspense>
+        </ErrorBoundary>
+        <ErrorBoundary>
+          <Suspense fallback={<SectionLoader />}>
+            <ResearchExperience />
+          </Suspense>
+        </ErrorBoundary>
+        <ErrorBoundary>
+          <Suspense fallback={<SectionLoader />}>
+            <Publications />
+          </Suspense>
+        </ErrorBoundary>
+        <ErrorBoundary>
+          <Suspense fallback={<SectionLoader />}>
+            <Teaching />
+          </Suspense>
+        </ErrorBoundary>
+        <ErrorBoundary>
+          <Suspense fallback={<SectionLoader />}>
+            <News />
+          </Suspense>
+        </ErrorBoundary>
+        <ErrorBoundary>
+          <Suspense fallback={<SectionLoader />}>
+            <Awards />
+          </Suspense>
+        </ErrorBoundary>
+        <ErrorBoundary>
+          <Suspense fallback={<SectionLoader />}>
+            <Contact />
+          </Suspense>
+        </ErrorBoundary>
       </main>
-      <Suspense fallback={null}>
-        <Footer />
-      </Suspense>
-      <QuickActions />
-    </>
+      <ErrorBoundary>
+        <Suspense fallback={null}>
+          <Footer />
+        </Suspense>
+      </ErrorBoundary>
+      <ErrorBoundary>
+        <QuickActions />
+      </ErrorBoundary>
+    </ErrorBoundary>
   );
 }
 
