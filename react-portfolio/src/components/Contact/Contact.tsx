@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import Toastify from 'toastify-js';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -15,11 +16,62 @@ const Contact = () => {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Form submission is handled by Formspree
     const form = e.target as HTMLFormElement;
-    form.submit();
+
+    try {
+      const response = await fetch(form.action, {
+        method: form.method,
+        body: new FormData(form),
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
+
+      if (response.ok) {
+        Toastify({
+          text: "Message sent successfully!",
+          duration: 3000,
+          close: true,
+          gravity: "top",
+          position: "left",
+          style: {
+            background: "var(--accent-color)",
+          }
+        }).showToast();
+
+        // Reset form
+        setFormData({
+          name: '',
+          email: '',
+          subject: '',
+          message: ''
+        });
+      } else {
+        Toastify({
+          text: "Failed to send message. Please try again.",
+          duration: 3000,
+          close: true,
+          gravity: "top",
+          position: "left",
+          style: {
+            background: "#ef4444",
+          }
+        }).showToast();
+      }
+    } catch (error) {
+      Toastify({
+        text: "An error occurred. Please try again.",
+        duration: 3000,
+        close: true,
+        gravity: "top",
+        position: "left",
+        style: {
+          background: "#ef4444",
+        }
+      }).showToast();
+    }
   };
 
   return (
