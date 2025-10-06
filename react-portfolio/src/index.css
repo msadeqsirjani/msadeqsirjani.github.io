@@ -159,6 +159,15 @@ html {
     padding: 0.75rem 1rem;
     min-height: 48px;
   }
+
+  /* Center contact form button on mobile */
+  .contact-form .btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
 
 /* Custom Select Dropdown Styling */
