@@ -5,6 +5,7 @@ import ReadingProgress from './components/ReadingProgress/ReadingProgress';
 import PullToRefresh from './components/PullToRefresh/PullToRefresh';
 import QuickActions from './components/QuickActions/QuickActions';
 import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary';
+import AnimatedSection from './components/AnimatedSection/AnimatedSection';
 
 // Lazy load components below the fold
 const Biography = lazy(() => import('./components/Biography/Biography'));
@@ -45,49 +46,67 @@ function App() {
           <Hero />
         </ErrorBoundary>
         <ErrorBoundary>
-          <Suspense fallback={<SectionLoader />}>
-            <Biography />
-          </Suspense>
+          <AnimatedSection>
+            <Suspense fallback={<SectionLoader />}>
+              <Biography />
+            </Suspense>
+          </AnimatedSection>
         </ErrorBoundary>
         <ErrorBoundary>
-          <Suspense fallback={<SectionLoader />}>
-            <Education />
-          </Suspense>
+          <AnimatedSection delay={100}>
+            <Suspense fallback={<SectionLoader />}>
+              <Education />
+            </Suspense>
+          </AnimatedSection>
         </ErrorBoundary>
         <ErrorBoundary>
-          <Suspense fallback={<SectionLoader />}>
-            <ResearchInterests />
-          </Suspense>
+          <AnimatedSection delay={100}>
+            <Suspense fallback={<SectionLoader />}>
+              <ResearchInterests />
+            </Suspense>
+          </AnimatedSection>
         </ErrorBoundary>
         <ErrorBoundary>
-          <Suspense fallback={<SectionLoader />}>
-            <ResearchExperience />
-          </Suspense>
+          <AnimatedSection delay={100}>
+            <Suspense fallback={<SectionLoader />}>
+              <ResearchExperience />
+            </Suspense>
+          </AnimatedSection>
         </ErrorBoundary>
         <ErrorBoundary>
-          <Suspense fallback={<SectionLoader />}>
-            <Publications />
-          </Suspense>
+          <AnimatedSection delay={100}>
+            <Suspense fallback={<SectionLoader />}>
+              <Publications />
+            </Suspense>
+          </AnimatedSection>
         </ErrorBoundary>
         <ErrorBoundary>
-          <Suspense fallback={<SectionLoader />}>
-            <Teaching />
-          </Suspense>
+          <AnimatedSection delay={100}>
+            <Suspense fallback={<SectionLoader />}>
+              <Teaching />
+            </Suspense>
+          </AnimatedSection>
         </ErrorBoundary>
         <ErrorBoundary>
-          <Suspense fallback={<SectionLoader />}>
-            <News />
-          </Suspense>
+          <AnimatedSection delay={100}>
+            <Suspense fallback={<SectionLoader />}>
+              <News />
+            </Suspense>
+          </AnimatedSection>
         </ErrorBoundary>
         <ErrorBoundary>
-          <Suspense fallback={<SectionLoader />}>
-            <Awards />
-          </Suspense>
+          <AnimatedSection delay={100}>
+            <Suspense fallback={<SectionLoader />}>
+              <Awards />
+            </Suspense>
+          </AnimatedSection>
         </ErrorBoundary>
         <ErrorBoundary>
-          <Suspense fallback={<SectionLoader />}>
-            <Contact />
-          </Suspense>
+          <AnimatedSection delay={100}>
+            <Suspense fallback={<SectionLoader />}>
+              <Contact />
+            </Suspense>
+          </AnimatedSection>
         </ErrorBoundary>
       </main>
       <ErrorBoundary>
