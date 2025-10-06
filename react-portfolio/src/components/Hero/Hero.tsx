@@ -7,14 +7,23 @@ const Hero = () => {
           <div className="hero-left">
             <div className="profile-image">
               <picture>
-                <source srcSet="/assets/img/profile.webp" type="image/webp" />
-                <source srcSet="/assets/img/profile.jpg" type="image/jpeg" />
+                <source
+                  srcSet="/assets/img/profile.webp"
+                  type="image/webp"
+                  sizes="(max-width: 480px) 180px, (max-width: 768px) 200px, 280px"
+                />
+                <source
+                  srcSet="/assets/img/profile.jpg"
+                  type="image/jpeg"
+                  sizes="(max-width: 480px) 180px, (max-width: 768px) 200px, 280px"
+                />
                 <img
                   src="/assets/img/profile.jpg"
                   alt="Mohammad Sadegh Sirjani - Ph.D. Student in Computer Science"
                   loading="eager"
-                  width="200"
-                  height="200"
+                  width="280"
+                  height="280"
+                  decoding="async"
                 />
               </picture>
             </div>

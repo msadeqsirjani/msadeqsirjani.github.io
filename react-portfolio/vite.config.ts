@@ -5,4 +5,16 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   base: '/',
+  build: {
+    rollupOptions: {
+      output: {
+        // Manual chunking for better caching
+        manualChunks: {
+          'react-vendor': ['react', 'react-dom'],
+          'qrcode': ['qrcode'],
+          'toastify': ['toastify-js'],
+        },
+      },
+    },
+  },
 })
