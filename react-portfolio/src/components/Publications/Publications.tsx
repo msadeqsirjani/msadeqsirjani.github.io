@@ -12,6 +12,7 @@ const Publications = () => {
   const [yearDropdownOpen, setYearDropdownOpen] = useState(false);
   const [showAll, setShowAll] = useState(false);
   const [openCitationDropdown, setOpenCitationDropdown] = useState<number | null>(null);
+  const [hoveredPub, setHoveredPub] = useState<number | null>(null);
   const statusDropdownRef = useRef<HTMLDivElement>(null);
   const yearDropdownRef = useRef<HTMLDivElement>(null);
   const citationDropdownRefs = useRef<(HTMLDivElement | null)[]>([]);
@@ -285,8 +286,31 @@ const Publications = () => {
                 const actualIndex = index;
                 const isHidden = !showAll && index >= 5;
                 return (
-                <div key={actualIndex} className={`publication-item ${isHidden ? 'hidden-for-show-more' : ''}`} role="listitem">
+                <div
+                  key={actualIndex}
+                  className={`publication-item ${isHidden ? 'hidden-for-show-more' : ''}`}
+                  role="listitem"
+                  onMouseEnter={() => setHoveredPub(actualIndex)}
+                  onMouseLeave={() => setHoveredPub(null)}
+                >
                   <h3 className="publication-title">{pub.title}</h3>
+
+                  {/* PDF Preview Tooltip - Desktop only */}
+                  {hoveredPub === actualIndex && pub.pdfLink && (
+                    <div className="pdf-preview-tooltip">
+                      <div className="pdf-preview-content">
+                        <iframe
+                          src={`${pub.pdfLink}#view=FitH`}
+                          title={`Preview of ${pub.title}`}
+                          className="pdf-preview-iframe"
+                        />
+                        <div className="pdf-preview-footer">
+                          <span>Click PDF icon to download</span>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
                   <div className="publication-info-row">
                     <div className="publication-venue">
                       <p className="venue">{pub.venue}</p>
