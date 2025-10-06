@@ -6,6 +6,7 @@ import PullToRefresh from './components/PullToRefresh/PullToRefresh';
 import QuickActions from './components/QuickActions/QuickActions';
 import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary';
 import AnimatedSection from './components/AnimatedSection/AnimatedSection';
+import SkeletonLoader from './components/SkeletonLoader/SkeletonLoader';
 
 // Lazy load components below the fold
 const Biography = lazy(() => import('./components/Biography/Biography'));
@@ -19,16 +20,12 @@ const Awards = lazy(() => import('./components/Awards/Awards'));
 const Contact = lazy(() => import('./components/Contact/Contact'));
 const Footer = lazy(() => import('./components/Footer/Footer'));
 
-// Loading fallback component
+// Loading fallback component with skeleton
 const SectionLoader = () => (
-  <div style={{
-    minHeight: '200px',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    opacity: 0.6
-  }}>
-    <div className="loading-spinner"></div>
+  <div style={{ padding: '2rem 0' }}>
+    <div className="container">
+      <SkeletonLoader type="publication" count={3} />
+    </div>
   </div>
 );
 

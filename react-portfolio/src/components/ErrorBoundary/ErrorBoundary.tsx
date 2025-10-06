@@ -4,11 +4,13 @@ import type { ReactNode } from 'react';
 interface Props {
   children: ReactNode;
   fallback?: ReactNode;
+  onReset?: () => void;
 }
 
 interface State {
   hasError: boolean;
   error?: Error;
+  errorInfo?: string;
 }
 
 class ErrorBoundary extends Component<Props, State> {
@@ -23,7 +25,23 @@ class ErrorBoundary extends Component<Props, State> {
 
   override componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
     console.error('Error caught by boundary:', error, errorInfo);
+    this.setState({
+      errorInfo: errorInfo.componentStack || 'No additional info available'
+    });
   }
+
+  handleReset = () => {
+    this.setState({ hasError: false });
+    this.props.onReset?.();
+  };
+
+  handleReload = () => {
+    window.location.reload();
+  };
+
+  handleGoHome = () => {
+    window.location.href = '/';
+  };
 
   override render() {
     if (this.state.hasError) {
@@ -37,32 +55,108 @@ class ErrorBoundary extends Component<Props, State> {
           textAlign: 'center',
           backgroundColor: 'var(--bg-color)',
           color: 'var(--text-color)',
-          minHeight: '200px',
+          minHeight: '300px',
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
           justifyContent: 'center',
-          gap: '1rem'
+          gap: '1rem',
+          border: '2px dashed var(--border-color)',
+          borderRadius: '8px',
+          margin: '1rem'
         }}>
-          <h2 style={{ color: 'var(--accent-color)' }}>Oops! Something went wrong</h2>
-          <p style={{ color: 'var(--text-light)' }}>
-            We're sorry, but something unexpected happened. Please try refreshing the page.
+          <div style={{ fontSize: '3rem', marginBottom: '0.5rem' }}>⚠️</div>
+          <h2 style={{ color: 'var(--accent-color)', margin: 0 }}>Something went wrong</h2>
+          <p style={{ color: 'var(--text-light)', maxWidth: '500px', margin: '0.5rem 0' }}>
+            We encountered an error while loading this section. You can try one of the options below:
           </p>
-          <button
-            onClick={() => window.location.reload()}
-            style={{
-              padding: '0.75rem 1.5rem',
-              backgroundColor: 'var(--accent-color)',
-              color: 'white',
-              border: 'none',
+
+          {this.state.error && (
+            <details style={{
+              marginTop: '1rem',
+              padding: '1rem',
+              backgroundColor: 'var(--gray-light)',
               borderRadius: '6px',
-              cursor: 'pointer',
-              fontSize: '1rem',
-              fontWeight: '600'
-            }}
-          >
-            Refresh Page
-          </button>
+              textAlign: 'left',
+              maxWidth: '600px',
+              width: '100%'
+            }}>
+              <summary style={{ cursor: 'pointer', fontWeight: '600', marginBottom: '0.5rem' }}>
+                Error Details
+              </summary>
+              <code style={{
+                display: 'block',
+                fontSize: '0.85rem',
+                color: '#d32f2f',
+                whiteSpace: 'pre-wrap',
+                wordBreak: 'break-word'
+              }}>
+                {this.state.error.toString()}
+              </code>
+            </details>
+          )}
+
+          <div style={{
+            display: 'flex',
+            gap: '1rem',
+            flexWrap: 'wrap',
+            justifyContent: 'center',
+            marginTop: '1rem'
+          }}>
+            <button
+              onClick={this.handleReset}
+              style={{
+                padding: '0.75rem 1.5rem',
+                backgroundColor: 'var(--accent-color)',
+                color: 'white',
+                border: 'none',
+                borderRadius: '6px',
+                cursor: 'pointer',
+                fontSize: '1rem',
+                fontWeight: '600'
+              }}
+            >
+              <i className="fas fa-redo"></i> Try Again
+            </button>
+            <button
+              onClick={this.handleReload}
+              style={{
+                padding: '0.75rem 1.5rem',
+                backgroundColor: 'transparent',
+                color: 'var(--text-color)',
+                border: '2px solid var(--border-color)',
+                borderRadius: '6px',
+                cursor: 'pointer',
+                fontSize: '1rem',
+                fontWeight: '600'
+              }}
+            >
+              <i className="fas fa-sync"></i> Reload Page
+            </button>
+            <button
+              onClick={this.handleGoHome}
+              style={{
+                padding: '0.75rem 1.5rem',
+                backgroundColor: 'transparent',
+                color: 'var(--text-color)',
+                border: '2px solid var(--border-color)',
+                borderRadius: '6px',
+                cursor: 'pointer',
+                fontSize: '1rem',
+                fontWeight: '600'
+              }}
+            >
+              <i className="fas fa-home"></i> Go Home
+            </button>
+          </div>
+
+          <p style={{
+            fontSize: '0.875rem',
+            color: 'var(--text-light)',
+            marginTop: '1rem'
+          }}>
+            If this problem persists, please contact support.
+          </p>
         </div>
       );
     }

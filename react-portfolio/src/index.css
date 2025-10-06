@@ -117,6 +117,71 @@ html {
   }
 }
 
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
+  :root {
+    --text-color: #000000;
+    --text-light: #1a1a1a;
+    --bg-color: #ffffff;
+    --white: #ffffff;
+    --accent-color: #0000ff;
+    --border-color: #000000;
+    --gray-light: #f0f0f0;
+  }
+
+  body[data-theme="dark"] {
+    --text-color: #ffffff;
+    --text-light: #e0e0e0;
+    --bg-color: #000000;
+    --white: #000000;
+    --accent-color: #00ffff;
+    --border-color: #ffffff;
+    --gray-light: #1a1a1a;
+  }
+
+  /* Increase border thickness */
+  *,
+  *::before,
+  *::after {
+    border-width: 2px !important;
+  }
+
+  /* Stronger shadows for depth perception */
+  .publication-item,
+  .metric-card,
+  .btn,
+  .nav-menu {
+    box-shadow: 0 0 0 3px currentColor !important;
+  }
+
+  /* High contrast buttons */
+  .btn {
+    border: 3px solid currentColor !important;
+    font-weight: 700 !important;
+  }
+
+  /* Remove subtle backgrounds */
+  .select-selected:hover,
+  .social-link:hover {
+    background-color: var(--accent-color) !important;
+    color: var(--bg-color) !important;
+  }
+
+  /* Ensure text is always readable */
+  a,
+  button {
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  /* High contrast focus indicators */
+  *:focus,
+  *:focus-visible {
+    outline: 4px solid var(--accent-color) !important;
+    outline-offset: 4px !important;
+  }
+}
+
 /* Touch Target Optimization - Minimum 44x44px for accessibility */
 .theme-toggle,
 .nav-toggle {

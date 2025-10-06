@@ -1,0 +1,107 @@
+.skeleton-container {
+  padding: 1rem 0;
+}
+
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--gray-light) 0%,
+    #e0e0e0 50%,
+    var(--gray-light) 100%
+  );
+  background-size: 200% 100%;
+  animation: loading 1.5s ease-in-out infinite;
+  border-radius: 4px;
+}
+
+@keyframes loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+.skeleton-text {
+  height: 1rem;
+  width: 100%;
+  margin-bottom: 0.5rem;
+}
+
+.skeleton-title {
+  height: 1.5rem;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.skeleton-avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  margin-bottom: 1rem;
+}
+
+.skeleton-card {
+  padding: 1.5rem;
+  background: var(--white);
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  border: 1px solid var(--border-color);
+}
+
+.skeleton-publication {
+  padding: 1.5rem;
+  background: var(--white);
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  border: 1px solid var(--border-color);
+}
+
+.skeleton-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  align-items: center;
+}
+
+.skeleton-badge {
+  height: 36px;
+  width: 100px;
+  border-radius: 4px;
+}
+
+.skeleton-button {
+  height: 44px;
+  width: 44px;
+  border-radius: 6px;
+}
+
+/* Dark mode support */
+body[data-theme="dark"] .skeleton {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.05) 0%,
+    rgba(255, 255, 255, 0.1) 50%,
+    rgba(255, 255, 255, 0.05) 100%
+  );
+  background-size: 200% 100%;
+}
+
+body[data-theme="dark"] .skeleton-card,
+body[data-theme="dark"] .skeleton-publication {
+  background: rgba(255, 255, 255, 0.02);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Accessibility - reduce motion */
+@media (prefers-reduced-motion: reduce) {
+  .skeleton {
+    animation: none;
+    background: var(--gray-light);
+  }
+
+  body[data-theme="dark"] .skeleton {
+    background: rgba(255, 255, 255, 0.05);
+  }
+}
