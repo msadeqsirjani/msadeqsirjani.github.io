@@ -22,7 +22,7 @@ export const publications: Publication[] = [
     year: '2024',
     status: 'accepted',
     link: 'https://doi.org/10.48550/arXiv.2509.07378',
-    pdfLink: 'assets/docs/publications/2509.07378v1.pdf',
+    pdfLink: 'assets/docs/publications/2509.07378v2.pdf',
     bibtexId: 'arXiv2509.07378'
   },
   {
