@@ -297,14 +297,16 @@ html {
 }
 
 /* PDF Preview Tooltip - Desktop only */
-.publication-item {
+.pdf-btn-wrapper {
   position: relative;
+  display: inline-flex;
 }
 
 .pdf-preview-tooltip {
   position: absolute;
-  top: -20px;
-  right: -320px;
+  top: 50%;
+  left: calc(100% + 15px);
+  transform: translateY(-50%);
   z-index: 1000;
   opacity: 0;
   animation: fadeIn 0.3s ease-in-out forwards;

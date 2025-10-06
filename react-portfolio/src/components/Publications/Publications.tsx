@@ -290,26 +290,8 @@ const Publications = () => {
                   key={actualIndex}
                   className={`publication-item ${isHidden ? 'hidden-for-show-more' : ''}`}
                   role="listitem"
-                  onMouseEnter={() => setHoveredPub(actualIndex)}
-                  onMouseLeave={() => setHoveredPub(null)}
                 >
                   <h3 className="publication-title">{pub.title}</h3>
-
-                  {/* PDF Preview Tooltip - Desktop only */}
-                  {hoveredPub === actualIndex && pub.pdfLink && (
-                    <div className="pdf-preview-tooltip">
-                      <div className="pdf-preview-content">
-                        <iframe
-                          src={`${pub.pdfLink}#view=FitH`}
-                          title={`Preview of ${pub.title}`}
-                          className="pdf-preview-iframe"
-                        />
-                        <div className="pdf-preview-footer">
-                          <span>Click PDF icon to download</span>
-                        </div>
-                      </div>
-                    </div>
-                  )}
 
                   <div className="publication-info-row">
                     <div className="publication-venue">
@@ -327,9 +309,31 @@ const Publications = () => {
                         </button>
                       )}
                       {pub.pdfLink ? (
-                        <a href={pub.pdfLink} className="publication-btn" download data-tooltip="Download PDF">
-                          <i className="fas fa-file-pdf"></i>
-                        </a>
+                        <div
+                          className="pdf-btn-wrapper"
+                          onMouseEnter={() => setHoveredPub(actualIndex)}
+                          onMouseLeave={() => setHoveredPub(null)}
+                        >
+                          <a href={pub.pdfLink} className="publication-btn" download data-tooltip="Download PDF">
+                            <i className="fas fa-file-pdf"></i>
+                          </a>
+
+                          {/* PDF Preview Tooltip - Desktop only */}
+                          {hoveredPub === actualIndex && (
+                            <div className="pdf-preview-tooltip">
+                              <div className="pdf-preview-content">
+                                <iframe
+                                  src={`${pub.pdfLink}#view=FitH`}
+                                  title={`Preview of ${pub.title}`}
+                                  className="pdf-preview-iframe"
+                                />
+                                <div className="pdf-preview-footer">
+                                  <span>Click to download PDF</span>
+                                </div>
+                              </div>
+                            </div>
+                          )}
+                        </div>
                       ) : (
                         <button className="publication-btn" disabled data-tooltip="PDF not available">
                           <i className="fas fa-file-pdf"></i>
