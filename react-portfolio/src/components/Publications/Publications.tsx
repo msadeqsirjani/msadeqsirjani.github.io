@@ -216,10 +216,11 @@ const Publications = () => {
             {filteredPublications.length === 0 ? (
               <p className="no-results">No publications found matching your criteria.</p>
             ) : (
-              (showAll ? filteredPublications : filteredPublications.slice(0, 5)).map((pub) => {
-                const actualIndex = filteredPublications.indexOf(pub);
+              filteredPublications.map((pub, index) => {
+                const actualIndex = index;
+                const isHidden = !showAll && index >= 5;
                 return (
-                <div key={actualIndex} className="publication-item">
+                <div key={actualIndex} className={`publication-item ${isHidden ? 'hidden-for-show-more' : ''}`}>
                   <p className="publication-title">{pub.title}</p>
                   <div className="publication-info-row">
                     <div className="publication-venue">

@@ -312,6 +312,11 @@
   transform: translateX(-50%) translateY(0);
 }
 
+/* Hide publications beyond 5 in browser view */
+.publication-item.hidden-for-show-more {
+  display: none;
+}
+
 /* Print styles - show all publications and force light mode */
 @media print {
   /* Force light mode colors */
@@ -326,6 +331,11 @@
 
   /* Show all publications - override show more/less */
   .publication-item {
+    display: block !important;
+  }
+
+  /* Show hidden publications in print */
+  .publication-item.hidden-for-show-more {
     display: block !important;
   }
 
