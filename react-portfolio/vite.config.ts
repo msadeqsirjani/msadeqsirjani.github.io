@@ -34,7 +34,7 @@ export default defineConfig({
         greedy: [/^publication-/, /^citation-/, /^select-/, /^nav-/]
       },
       defaultExtractor: (content: string) => content.match(/[\w-/:]+(?<!:)/g) || [],
-    })
+    }) as any
   ],
   base: '/',
   build: {
