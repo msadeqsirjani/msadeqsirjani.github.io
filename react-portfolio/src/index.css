@@ -107,6 +107,60 @@ html {
   }
 }
 
+/* Touch Target Optimization - Minimum 44x44px for accessibility */
+.theme-toggle,
+.nav-toggle {
+  min-width: 44px;
+  min-height: 44px;
+}
+
+.social-link {
+  min-width: 44px;
+  min-height: 44px;
+}
+
+.nav-link {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.nav-dropdown-toggle {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.btn {
+  min-height: 44px;
+}
+
+/* Quick action buttons */
+.quick-actions button {
+  min-width: 44px;
+  min-height: 44px;
+}
+
+/* Publication buttons */
+.publication-btn,
+.citation-btn {
+  min-width: 44px;
+  min-height: 44px;
+}
+
+/* Mobile menu items */
+@media (max-width: 768px) {
+  .nav-link {
+    padding: 0.75rem 1rem;
+    min-height: 48px;
+  }
+
+  .nav-dropdown-toggle {
+    padding: 0.75rem 1rem;
+    min-height: 48px;
+  }
+}
+
 /* Custom Select Dropdown Styling */
 .custom-select {
   position: relative;
