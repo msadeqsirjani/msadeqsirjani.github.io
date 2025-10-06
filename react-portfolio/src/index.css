@@ -261,3 +261,53 @@
 .nav-dropdown-menu li:last-child .nav-link {
   border-radius: 0 0 6px 6px;
 }
+
+/* QR code tooltip */
+#qrcode-image[data-tooltip] {
+  position: relative;
+  cursor: pointer;
+}
+
+#qrcode-image[data-tooltip]::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%) translateY(-4px);
+  background: var(--text-color);
+  color: var(--white);
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+  z-index: 100;
+  pointer-events: none;
+}
+
+#qrcode-image[data-tooltip]::before {
+  content: '';
+  position: absolute;
+  top: calc(100% + 3px);
+  left: 50%;
+  transform: translateX(-50%);
+  border: 5px solid transparent;
+  border-bottom-color: var(--text-color);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  z-index: 100;
+  pointer-events: none;
+}
+
+#qrcode-image[data-tooltip]:hover::after,
+#qrcode-image[data-tooltip]:hover::before {
+  opacity: 1;
+  visibility: visible;
+}
+
+#qrcode-image[data-tooltip]:hover::after {
+  transform: translateX(-50%) translateY(0);
+}
