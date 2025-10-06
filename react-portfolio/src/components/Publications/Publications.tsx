@@ -41,12 +41,23 @@ const Publications = () => {
       }
     };
 
+    const handleKeyDown = (event: KeyboardEvent) => {
+      // Escape key closes dropdowns
+      if (event.key === 'Escape') {
+        setStatusDropdownOpen(false);
+        setYearDropdownOpen(false);
+        setOpenCitationDropdown(null);
+      }
+    };
+
     if (statusDropdownOpen || yearDropdownOpen || openCitationDropdown !== null) {
       document.addEventListener('click', handleClickOutside);
+      document.addEventListener('keydown', handleKeyDown);
     }
 
     return () => {
       document.removeEventListener('click', handleClickOutside);
+      document.removeEventListener('keydown', handleKeyDown);
     };
   }, [statusDropdownOpen, yearDropdownOpen, openCitationDropdown]);
 
@@ -151,77 +162,128 @@ const Publications = () => {
         <h2 className="section-title">Publications</h2>
 
         <div className="publication-controls">
-          <div className="search-box">
-            <i className="fas fa-search"></i>
+          <div className="search-box" role="search">
+            <i className="fas fa-search" aria-hidden="true"></i>
             <input
               type="text"
               id="publicationSearch"
               placeholder="Search by title, venue, or keywords..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
+              aria-label="Search publications"
+              aria-describedby="search-hint"
             />
+            <span id="search-hint" className="visually-hidden">
+              Type to filter publications by title, venue, or keywords
+            </span>
             {searchTerm && (
               <button
                 className="clear-search"
                 onClick={() => setSearchTerm('')}
                 aria-label="Clear search"
               >
-                <i className="fas fa-times"></i>
+                <i className="fas fa-times" aria-hidden="true"></i>
               </button>
             )}
           </div>
-          <div className="filter-controls">
+          <div className="filter-controls" role="group" aria-label="Publication filters">
             <div className="custom-select" ref={statusDropdownRef}>
-              <div
+              <button
                 className="select-selected"
                 onClick={() => setStatusDropdownOpen(!statusDropdownOpen)}
+                aria-haspopup="listbox"
+                aria-expanded={statusDropdownOpen}
+                aria-label="Filter by publication status"
               >
                 {statusFilter === 'all' ? 'All Status' :
                  statusFilter === 'published' ? 'Published' :
                  statusFilter === 'accepted' ? 'Accepted' : 'Under Revision'}
-              </div>
+              </button>
               {statusDropdownOpen && (
-                <div className="select-items">
-                  <div onClick={() => { setStatusFilter('all'); setStatusDropdownOpen(false); }}>All Status</div>
-                  <div onClick={() => { setStatusFilter('published'); setStatusDropdownOpen(false); }}>Published</div>
-                  <div onClick={() => { setStatusFilter('accepted'); setStatusDropdownOpen(false); }}>Accepted</div>
-                  <div onClick={() => { setStatusFilter('review'); setStatusDropdownOpen(false); }}>Under Revision</div>
+                <div className="select-items" role="listbox" aria-label="Publication status options">
+                  <div
+                    role="option"
+                    onClick={() => { setStatusFilter('all'); setStatusDropdownOpen(false); }}
+                    onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setStatusFilter('all'); setStatusDropdownOpen(false); }}}
+                    tabIndex={0}
+                  >All Status</div>
+                  <div
+                    role="option"
+                    onClick={() => { setStatusFilter('published'); setStatusDropdownOpen(false); }}
+                    onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setStatusFilter('published'); setStatusDropdownOpen(false); }}}
+                    tabIndex={0}
+                  >Published</div>
+                  <div
+                    role="option"
+                    onClick={() => { setStatusFilter('accepted'); setStatusDropdownOpen(false); }}
+                    onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setStatusFilter('accepted'); setStatusDropdownOpen(false); }}}
+                    tabIndex={0}
+                  >Accepted</div>
+                  <div
+                    role="option"
+                    onClick={() => { setStatusFilter('review'); setStatusDropdownOpen(false); }}
+                    onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setStatusFilter('review'); setStatusDropdownOpen(false); }}}
+                    tabIndex={0}
+                  >Under Revision</div>
                 </div>
               )}
             </div>
             <div className="custom-select" ref={yearDropdownRef}>
-              <div
+              <button
                 className="select-selected"
                 onClick={() => setYearDropdownOpen(!yearDropdownOpen)}
+                aria-haspopup="listbox"
+                aria-expanded={yearDropdownOpen}
+                aria-label="Filter by publication year"
               >
                 {yearFilter === 'all' ? 'All Years' : yearFilter}
-              </div>
+              </button>
               {yearDropdownOpen && (
-                <div className="select-items">
-                  <div onClick={() => { setYearFilter('all'); setYearDropdownOpen(false); }}>All Years</div>
-                  <div onClick={() => { setYearFilter('2025'); setYearDropdownOpen(false); }}>2025</div>
-                  <div onClick={() => { setYearFilter('2024'); setYearDropdownOpen(false); }}>2024</div>
-                  <div onClick={() => { setYearFilter('2023'); setYearDropdownOpen(false); }}>2023</div>
+                <div className="select-items" role="listbox" aria-label="Publication year options">
+                  <div
+                    role="option"
+                    onClick={() => { setYearFilter('all'); setYearDropdownOpen(false); }}
+                    onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setYearFilter('all'); setYearDropdownOpen(false); }}}
+                    tabIndex={0}
+                  >All Years</div>
+                  <div
+                    role="option"
+                    onClick={() => { setYearFilter('2025'); setYearDropdownOpen(false); }}
+                    onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setYearFilter('2025'); setYearDropdownOpen(false); }}}
+                    tabIndex={0}
+                  >2025</div>
+                  <div
+                    role="option"
+                    onClick={() => { setYearFilter('2024'); setYearDropdownOpen(false); }}
+                    onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setYearFilter('2024'); setYearDropdownOpen(false); }}}
+                    tabIndex={0}
+                  >2024</div>
+                  <div
+                    role="option"
+                    onClick={() => { setYearFilter('2023'); setYearDropdownOpen(false); }}
+                    onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setYearFilter('2023'); setYearDropdownOpen(false); }}}
+                    tabIndex={0}
+                  >2023</div>
                 </div>
               )}
             </div>
-            <button id="resetFilters" onClick={handleReset} className="btn-secondary">
-              <i className="fas fa-redo"></i> Reset
+            <button id="resetFilters" onClick={handleReset} className="btn-secondary" aria-label="Reset all filters">
+              <i className="fas fa-redo" aria-hidden="true"></i> Reset
             </button>
           </div>
         </div>
 
         <div className="publications-container">
-          <div className="publication-list">
+          <div className="publication-list" role="list" aria-label="Publications">
             {filteredPublications.length === 0 ? (
-              <p className="no-results">No publications found matching your criteria.</p>
+              <p className="no-results" role="status" aria-live="polite">No publications found matching your criteria.</p>
             ) : (
               filteredPublications.map((pub, index) => {
                 const actualIndex = index;
                 const isHidden = !showAll && index >= 5;
                 return (
-                <div key={actualIndex} className={`publication-item ${isHidden ? 'hidden-for-show-more' : ''}`}>
-                  <p className="publication-title">{pub.title}</p>
+                <div key={actualIndex} className={`publication-item ${isHidden ? 'hidden-for-show-more' : ''}`} role="listitem">
+                  <h3 className="publication-title">{pub.title}</h3>
                   <div className="publication-info-row">
                     <div className="publication-venue">
                       <p className="venue">{pub.venue}</p>
