@@ -90,7 +90,7 @@ const Footer = () => {
               <div className="qr-code-container">
                 <canvas id="qrcode" style={{ display: 'none' }}></canvas>
                 <img id="qrcode-image" alt="QR Code for https://msadeqsirjani.com" data-tooltip="Scan to visit on mobile" />
-                <p className="qr-hint">Scan for mobile access</p>
+                <p className="qr-hint">Scan Me</p>
               </div>
             </div>
           </div>
