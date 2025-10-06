@@ -41,6 +41,81 @@
     <!-- Preload critical assets -->
     <link rel="preload" href="/assets/img/profile.webp" as="image" type="image/webp">
     <link rel="preload" href="/assets/data/bibtex.json" as="fetch" crossorigin>
+
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Mohammad Sadegh Sirjani",
+      "givenName": "Mohammad Sadegh",
+      "familyName": "Sirjani",
+      "url": "https://msadeqsirjani.com",
+      "image": "https://msadeqsirjani.com/assets/img/profile.jpg",
+      "jobTitle": "Ph.D. Student in Computer Science",
+      "worksFor": {
+        "@type": "EducationalOrganization",
+        "name": "University of Texas at San Antonio",
+        "sameAs": "https://www.utsa.edu"
+      },
+      "alumniOf": [
+        {
+          "@type": "EducationalOrganization",
+          "name": "University of Texas at San Antonio",
+          "sameAs": "https://www.utsa.edu"
+        },
+        {
+          "@type": "EducationalOrganization",
+          "name": "Qazvin Islamic Azad University",
+          "sameAs": "https://qiau.ac.ir"
+        }
+      ],
+      "knowsAbout": [
+        "Tiny AI",
+        "Edge AI",
+        "Embedded Systems",
+        "Internet of Things",
+        "Machine Learning",
+        "TinyML",
+        "Federated Learning",
+        "On-Device AI"
+      ],
+      "description": "Ph.D. Student in Computer Science at UT San Antonio researching IoT, Tiny AI, Edge AI, and Embedded Systems",
+      "email": "mohammadsadegh.sirjani@utsa.edu",
+      "sameAs": [
+        "https://scholar.google.com/citations?user=EI5DizMAAAAJ&hl=en",
+        "https://www.linkedin.com/in/msadeqsirjani",
+        "https://github.com/msadeqsirjani",
+        "https://orcid.org/0009-0000-5146-0216",
+        "https://www.researchgate.net/profile/Mohammad-Sadegh-Sirjani"
+      ],
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "San Antonio",
+        "addressRegion": "TX",
+        "addressCountry": "US"
+      }
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Mohammad Sadegh Sirjani - Academic Portfolio",
+      "url": "https://msadeqsirjani.com",
+      "description": "Academic portfolio and research profile of Mohammad Sadegh Sirjani, Ph.D. Student in Computer Science",
+      "author": {
+        "@type": "Person",
+        "name": "Mohammad Sadegh Sirjani"
+      },
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://msadeqsirjani.com/#publications?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
   </head>
   <body>
     <div id="root"></div>
