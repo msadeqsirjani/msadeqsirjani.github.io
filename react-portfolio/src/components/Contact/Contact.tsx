@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import Toastify from 'toastify-js';
+import { trackContactSubmission } from '../../utils/analytics';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -30,6 +31,7 @@ const Contact = () => {
       });
 
       if (response.ok) {
+        trackContactSubmission();
         Toastify({
           text: "Message sent successfully!",
           duration: 3000,

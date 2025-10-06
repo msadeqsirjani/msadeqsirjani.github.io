@@ -1,6 +1,7 @@
 import { useState, useMemo, useEffect, useRef } from 'react';
 import { publications } from '../../data/content';
 import Toastify from 'toastify-js';
+import { trackCitationCopy } from '../../utils/analytics';
 
 const Publications = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -107,6 +108,7 @@ const Publications = () => {
     if (citation) {
       if (navigator.clipboard && navigator.clipboard.writeText) {
         navigator.clipboard.writeText(citation).then(() => {
+          trackCitationCopy(format, pub.title);
           Toastify({
             text: `${format.toUpperCase()} citation copied!`,
             duration: 3000,
@@ -119,16 +121,16 @@ const Publications = () => {
           }).showToast();
         }).catch(err => {
           console.error('Failed to copy:', err);
-          fallbackCopyCitation(citation, format);
+          fallbackCopyCitation(citation, format, pub.title);
         });
       } else {
-        fallbackCopyCitation(citation, format);
+        fallbackCopyCitation(citation, format, pub.title);
       }
     }
     setOpenCitationDropdown(null);
   };
 
-  const fallbackCopyCitation = (text: string, format: string) => {
+  const fallbackCopyCitation = (text: string, format: string, pubTitle: string) => {
     const textArea = document.createElement('textarea');
     textArea.value = text;
     textArea.style.position = 'fixed';
@@ -139,6 +141,7 @@ const Publications = () => {
 
     try {
       document.execCommand('copy');
+      trackCitationCopy(format, pubTitle);
       Toastify({
         text: `${format.toUpperCase()} citation copied!`,
         duration: 3000,

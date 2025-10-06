@@ -1,3 +1,4 @@
+import { trackCVDownload, trackExternalLink } from '../../utils/analytics';
 
 const Hero = () => {
   return (
@@ -35,7 +36,7 @@ const Hero = () => {
             <p className="hero-tagline">TinyAI & Embedded Systems Researcher</p>
 
             <div className="hero-buttons">
-              <a href="/assets/docs/cv/msadeqsirjani-cv.pdf" className="btn btn-primary" download>
+              <a href="/assets/docs/cv/msadeqsirjani-cv.pdf" className="btn btn-primary" download onClick={() => trackCVDownload()}>
                 <i className="fas fa-download"></i> Download CV
               </a>
               <a href="#contact" className="btn btn-secondary">
@@ -47,19 +48,19 @@ const Hero = () => {
               <a href="mailto:mohammadsadegh.sirjani@utsa.edu" className="social-link" aria-label="Email" data-tooltip="Email">
                 <i className="fas fa-envelope"></i>
               </a>
-              <a href="https://scholar.google.com/citations?user=EI5DizMAAAAJ&hl=en" className="social-link" aria-label="Google Scholar" target="_blank" rel="noopener" data-tooltip="Google Scholar">
+              <a href="https://scholar.google.com/citations?user=EI5DizMAAAAJ&hl=en" className="social-link" aria-label="Google Scholar" target="_blank" rel="noopener" data-tooltip="Google Scholar" onClick={() => trackExternalLink('https://scholar.google.com/citations?user=EI5DizMAAAAJ&hl=en', 'Google Scholar')}>
                 <i className="fas fa-graduation-cap"></i>
               </a>
-              <a href="https://www.linkedin.com/in/msadeqsirjani" className="social-link" aria-label="LinkedIn" target="_blank" rel="noopener" data-tooltip="LinkedIn">
+              <a href="https://www.linkedin.com/in/msadeqsirjani" className="social-link" aria-label="LinkedIn" target="_blank" rel="noopener" data-tooltip="LinkedIn" onClick={() => trackExternalLink('https://www.linkedin.com/in/msadeqsirjani', 'LinkedIn')}>
                 <i className="fab fa-linkedin"></i>
               </a>
-              <a href="https://github.com/msadeqsirjani" className="social-link" aria-label="GitHub" target="_blank" rel="noopener" data-tooltip="GitHub">
+              <a href="https://github.com/msadeqsirjani" className="social-link" aria-label="GitHub" target="_blank" rel="noopener" data-tooltip="GitHub" onClick={() => trackExternalLink('https://github.com/msadeqsirjani', 'GitHub')}>
                 <i className="fab fa-github"></i>
               </a>
-              <a href="https://orcid.org/0009-0000-5146-0216" className="social-link" aria-label="ORCID" target="_blank" rel="noopener" data-tooltip="ORCID">
+              <a href="https://orcid.org/0009-0000-5146-0216" className="social-link" aria-label="ORCID" target="_blank" rel="noopener" data-tooltip="ORCID" onClick={() => trackExternalLink('https://orcid.org/0009-0000-5146-0216', 'ORCID')}>
                 <i className="fab fa-orcid"></i>
               </a>
-              <a href="https://www.researchgate.net/profile/Mohammad-Sadegh-Sirjani" className="social-link" aria-label="ResearchGate" target="_blank" rel="noopener" data-tooltip="ResearchGate">
+              <a href="https://www.researchgate.net/profile/Mohammad-Sadegh-Sirjani" className="social-link" aria-label="ResearchGate" target="_blank" rel="noopener" data-tooltip="ResearchGate" onClick={() => trackExternalLink('https://www.researchgate.net/profile/Mohammad-Sadegh-Sirjani', 'ResearchGate')}>
                 <i className="fab fa-researchgate"></i>
               </a>
             </div>
