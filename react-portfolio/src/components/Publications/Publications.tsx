@@ -252,7 +252,6 @@ const Publications = () => {
                             className="publication-btn"
                             onClick={(e) => {
                               e.stopPropagation();
-                              console.log('Citation button clicked, actualIndex:', actualIndex, 'current state:', openCitationDropdown);
                               setOpenCitationDropdown(openCitationDropdown === actualIndex ? null : actualIndex);
                             }}
                             data-tooltip="Copy Citation"
