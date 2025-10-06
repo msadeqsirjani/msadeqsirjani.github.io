@@ -1031,5 +1031,512 @@ function init() {
     });
 }
 
+// ============================================
+// Enhanced Citation Copy System with BibTeX Data
+// ============================================
+
+class CitationManager {
+    constructor() {
+        this.bibtexData = {};
+        this.loadBibtexData();
+    }
+
+    async loadBibtexData() {
+        try {
+            const response = await fetch('assets/data/bibtex.json');
+            this.bibtexData = await response.json();
+            this.initializeCitationButtons();
+        } catch (error) {
+            console.error('Failed to load BibTeX data:', error);
+            this.initializeCitationButtons();
+        }
+    }
+
+    // Parse BibTeX entry to extract structured data
+    parseBibtex(bibtexString) {
+        const data = {
+            authors: [],
+            title: '',
+            year: '',
+            venue: '',
+            volume: '',
+            number: '',
+            pages: '',
+            doi: '',
+            url: '',
+            publisher: '',
+            journal: '',
+            booktitle: ''
+        };
+
+        if (!bibtexString) return data;
+
+        // Extract author
+        const authorMatch = bibtexString.match(/author\s*=\s*\{([^}]+)\}/i);
+        if (authorMatch) {
+            const authorStr = authorMatch[1];
+            // Split by 'and' to get individual authors
+            const authorList = authorStr.split(' and ').map(a => a.trim());
+            data.authors = authorList.map(author => {
+                // Handle "Last, First" or "First Last" format
+                if (author.includes(',')) {
+                    const parts = author.split(',').map(p => p.trim());
+                    return { last: parts[0], first: parts[1] || '' };
+                } else {
+                    const parts = author.split(' ');
+                    return {
+                        first: parts.slice(0, -1).join(' '),
+                        last: parts[parts.length - 1]
+                    };
+                }
+            });
+        }
+
+        // Extract title
+        const titleMatch = bibtexString.match(/title\s*=\s*\{([^}]+)\}/i);
+        if (titleMatch) data.title = titleMatch[1].trim();
+
+        // Extract year
+        const yearMatch = bibtexString.match(/year\s*=\s*\{([^}]+)\}/i);
+        if (yearMatch) data.year = yearMatch[1].trim();
+
+        // Extract journal
+        const journalMatch = bibtexString.match(/journal\s*=\s*\{([^}]+)\}/i);
+        if (journalMatch) data.journal = journalMatch[1].trim();
+
+        // Extract booktitle
+        const booktitleMatch = bibtexString.match(/booktitle\s*=\s*\{([^}]+)\}/i);
+        if (booktitleMatch) data.booktitle = booktitleMatch[1].trim();
+
+        // Extract volume
+        const volumeMatch = bibtexString.match(/volume\s*=\s*\{([^}]+)\}/i);
+        if (volumeMatch) data.volume = volumeMatch[1].trim();
+
+        // Extract number
+        const numberMatch = bibtexString.match(/number\s*=\s*\{([^}]+)\}/i);
+        if (numberMatch) data.number = numberMatch[1].trim();
+
+        // Extract pages
+        const pagesMatch = bibtexString.match(/pages\s*=\s*\{([^}]+)\}/i);
+        if (pagesMatch) data.pages = pagesMatch[1].trim();
+
+        // Extract DOI
+        const doiMatch = bibtexString.match(/doi\s*=\s*\{([^}]+)\}/i);
+        if (doiMatch) data.doi = doiMatch[1].trim();
+
+        // Extract URL
+        const urlMatch = bibtexString.match(/url\s*=\s*\{([^}]+)\}/i);
+        if (urlMatch) data.url = urlMatch[1].trim();
+
+        // Extract publisher
+        const publisherMatch = bibtexString.match(/publisher\s*=\s*\{([^}]+)\}/i);
+        if (publisherMatch) data.publisher = publisherMatch[1].trim();
+
+        data.venue = data.journal || data.booktitle || '';
+
+        return data;
+    }
+
+    // Format author name for APA
+    formatAuthorAPA(author) {
+        if (!author.last) return '';
+        const firstInitial = author.first ? author.first.charAt(0) + '.' : '';
+        return `${author.last}, ${firstInitial}`.trim();
+    }
+
+    // Format author name for MLA
+    formatAuthorMLA(author, isFirst = false) {
+        if (!author.last) return '';
+        if (isFirst) {
+            return `${author.last}, ${author.first}`.trim();
+        }
+        return `${author.first} ${author.last}`.trim();
+    }
+
+    // Format author name for Chicago
+    formatAuthorChicago(author, isFirst = false) {
+        if (!author.last) return '';
+        if (isFirst) {
+            return `${author.last}, ${author.first}`.trim();
+        }
+        return `${author.first} ${author.last}`.trim();
+    }
+
+    // Generate APA citation from BibTeX data
+    generateAPA(pubId) {
+        const bibtex = this.bibtexData[pubId]?.bibtex;
+        if (!bibtex) return '';
+
+        const data = this.parseBibtex(bibtex);
+        let citation = '';
+
+        // Authors
+        if (data.authors.length > 0) {
+            if (data.authors.length === 1) {
+                citation += this.formatAuthorAPA(data.authors[0]);
+            } else if (data.authors.length === 2) {
+                citation += `${this.formatAuthorAPA(data.authors[0])}, & ${this.formatAuthorAPA(data.authors[1])}`;
+            } else {
+                const authorList = data.authors.slice(0, -1).map(a => this.formatAuthorAPA(a)).join(', ');
+                citation += `${authorList}, & ${this.formatAuthorAPA(data.authors[data.authors.length - 1])}`;
+            }
+        }
+
+        // Year
+        if (data.year) {
+            citation += ` (${data.year}).`;
+        }
+
+        // Title
+        if (data.title) {
+            citation += ` ${data.title}.`;
+        }
+
+        // Venue (journal or conference)
+        if (data.venue) {
+            citation += ` ${data.venue}`;
+            if (data.volume) {
+                citation += `, ${data.volume}`;
+                if (data.number) {
+                    citation += `(${data.number})`;
+                }
+            }
+            if (data.pages) {
+                citation += `, ${data.pages}`;
+            }
+            citation += '.';
+        }
+
+        // DOI
+        if (data.doi) {
+            citation += ` https://doi.org/${data.doi}`;
+        }
+
+        return citation.trim();
+    }
+
+    // Generate MLA citation from BibTeX data
+    generateMLA(pubId) {
+        const bibtex = this.bibtexData[pubId]?.bibtex;
+        if (!bibtex) return '';
+
+        const data = this.parseBibtex(bibtex);
+        let citation = '';
+
+        // Authors
+        if (data.authors.length > 0) {
+            if (data.authors.length === 1) {
+                citation += this.formatAuthorMLA(data.authors[0], true);
+            } else if (data.authors.length === 2) {
+                citation += `${this.formatAuthorMLA(data.authors[0], true)}, and ${this.formatAuthorMLA(data.authors[1])}`;
+            } else {
+                citation += `${this.formatAuthorMLA(data.authors[0], true)}, et al`;
+            }
+            citation += '.';
+        }
+
+        // Title
+        if (data.title) {
+            citation += ` "${data.title}."`;
+        }
+
+        // Venue
+        if (data.venue) {
+            citation += ` ${data.venue}`;
+        }
+
+        // Volume and number
+        if (data.volume) {
+            citation += `, vol. ${data.volume}`;
+            if (data.number) {
+                citation += `, no. ${data.number}`;
+            }
+        }
+
+        // Year
+        if (data.year) {
+            citation += `, ${data.year}`;
+        }
+
+        // Pages
+        if (data.pages) {
+            citation += `, pp. ${data.pages}`;
+        }
+
+        citation += '.';
+
+        // DOI
+        if (data.doi) {
+            citation += ` https://doi.org/${data.doi}`;
+        }
+
+        return citation.trim();
+    }
+
+    // Generate Chicago citation from BibTeX data
+    generateChicago(pubId) {
+        const bibtex = this.bibtexData[pubId]?.bibtex;
+        if (!bibtex) return '';
+
+        const data = this.parseBibtex(bibtex);
+        let citation = '';
+
+        // Authors
+        if (data.authors.length > 0) {
+            if (data.authors.length === 1) {
+                citation += this.formatAuthorChicago(data.authors[0], true);
+            } else if (data.authors.length === 2) {
+                citation += `${this.formatAuthorChicago(data.authors[0], true)}, and ${this.formatAuthorChicago(data.authors[1])}`;
+            } else if (data.authors.length === 3) {
+                citation += `${this.formatAuthorChicago(data.authors[0], true)}, ${this.formatAuthorChicago(data.authors[1])}, and ${this.formatAuthorChicago(data.authors[2])}`;
+            } else {
+                const authorList = data.authors.slice(0, -1).map((a, i) => this.formatAuthorChicago(a, i === 0)).join(', ');
+                citation += `${authorList}, and ${this.formatAuthorChicago(data.authors[data.authors.length - 1])}`;
+            }
+            citation += '.';
+        }
+
+        // Title
+        if (data.title) {
+            citation += ` "${data.title}."`;
+        }
+
+        // Venue
+        if (data.venue) {
+            citation += ` ${data.venue}`;
+        }
+
+        // Volume and number
+        if (data.volume) {
+            citation += ` ${data.volume}`;
+            if (data.number) {
+                citation += `, no. ${data.number}`;
+            }
+        }
+
+        // Year
+        if (data.year) {
+            citation += ` (${data.year})`;
+        }
+
+        // Pages
+        if (data.pages) {
+            citation += `: ${data.pages}`;
+        }
+
+        citation += '.';
+
+        // DOI
+        if (data.doi) {
+            citation += ` https://doi.org/${data.doi}.`;
+        }
+
+        return citation.trim();
+    }
+
+    initializeCitationButtons() {
+        const publications = document.querySelectorAll('.publication-item');
+
+        publications.forEach(pub => {
+            // Get the publication ID from the BibTeX button
+            const bibtexBtn = pub.querySelector('button[onclick*="copyBibtex"]');
+            if (!bibtexBtn) return;
+
+            const onclickAttr = bibtexBtn.getAttribute('onclick');
+            const pubIdMatch = onclickAttr.match(/copyBibtex\(['"]([^'"]+)['"]\)/);
+            if (!pubIdMatch) return;
+
+            const pubId = pubIdMatch[1];
+
+            // Replace the BibTeX button with unified citation dropdown
+            const citationDropdown = this.createCitationDropdown(pubId);
+            if (bibtexBtn.parentElement) {
+                bibtexBtn.parentElement.replaceChild(citationDropdown, bibtexBtn);
+            }
+        });
+    }
+
+    createCitationDropdown(pubId) {
+        const container = document.createElement('div');
+        container.className = 'citation-dropdown';
+        container.style.position = 'relative';
+        container.style.display = 'inline-block';
+
+        const button = document.createElement('button');
+        button.className = 'publication-btn citation-format-btn';
+        button.setAttribute('data-tooltip', 'Copy citation');
+        button.setAttribute('aria-label', 'Copy citation in different formats');
+        button.innerHTML = '<i class="fas fa-quote-right" aria-hidden="true"></i>';
+
+        const menu = document.createElement('div');
+        menu.className = 'citation-format-menu';
+        menu.innerHTML = `
+            <button class="citation-option" data-format="bibtex">BibTeX</button>
+            <button class="citation-option" data-format="apa">APA</button>
+            <button class="citation-option" data-format="mla">MLA</button>
+            <button class="citation-option" data-format="chicago">Chicago</button>
+        `;
+
+        button.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+
+            // Close all other open menus
+            document.querySelectorAll('.citation-format-menu.show').forEach(m => {
+                if (m !== menu) m.classList.remove('show');
+            });
+
+            menu.classList.toggle('show');
+        });
+
+        // Handle format selection
+        menu.querySelectorAll('.citation-option').forEach(option => {
+            option.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                const format = option.getAttribute('data-format');
+                this.copyCitation(pubId, format);
+                menu.classList.remove('show');
+            });
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!container.contains(e.target)) {
+                menu.classList.remove('show');
+            }
+        });
+
+        container.appendChild(button);
+        container.appendChild(menu);
+        return container;
+    }
+
+    copyCitation(pubId, format) {
+        let citation = '';
+
+        switch(format) {
+            case 'bibtex':
+                citation = this.bibtexData[pubId]?.bibtex || '';
+                break;
+            case 'apa':
+                citation = this.generateAPA(pubId);
+                break;
+            case 'mla':
+                citation = this.generateMLA(pubId);
+                break;
+            case 'chicago':
+                citation = this.generateChicago(pubId);
+                break;
+        }
+
+        if (!citation) {
+            this.showToast('Citation not available', true);
+            return;
+        }
+
+        // Copy to clipboard
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(citation).then(() => {
+                this.showToast(`${format.toUpperCase()} citation copied!`);
+
+                // Track citation copy
+                if (typeof trackEvent !== 'undefined') {
+                    trackEvent('copy_citation', {
+                        'event_category': 'engagement',
+                        'event_label': format,
+                        'publication_id': pubId
+                    });
+                }
+            }).catch(() => {
+                this.showToast('Failed to copy citation', true);
+            });
+        } else {
+            // Fallback for older browsers
+            const textArea = document.createElement('textarea');
+            textArea.value = citation;
+            textArea.style.position = 'fixed';
+            textArea.style.opacity = '0';
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textArea);
+            this.showToast(`${format.toUpperCase()} citation copied!`);
+
+            // Track citation copy
+            if (typeof trackEvent !== 'undefined') {
+                trackEvent('copy_citation', {
+                    'event_category': 'engagement',
+                    'event_label': format,
+                    'publication_id': pubId,
+                    'method': 'fallback'
+                });
+            }
+        }
+    }
+
+    showToast(message, isError = false) {
+        if (typeof Toastify !== 'undefined') {
+            Toastify({
+                text: message,
+                duration: 3000,
+                gravity: "top",
+                position: "left",
+                style: {
+                    background: isError ? "#ef4444" : "var(--accent-color)",
+                }
+            }).showToast();
+        }
+    }
+}
+
+// Initialize citation manager
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+        window.citationManager = new CitationManager();
+    });
+} else {
+    window.citationManager = new CitationManager();
+}
+
+// ============================================
+// QR Code Generator for Mobile Access
+// ============================================
+
+class QRCodeGenerator {
+    constructor(url, containerId) {
+        this.url = url;
+        this.canvas = document.getElementById('qrcode');
+        this.image = document.getElementById('qrcode-image');
+        if (this.canvas) {
+            this.generateQRCode();
+        }
+    }
+
+    generateQRCode() {
+        // Simple QR code generation using Google Charts API
+        const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(this.url)}`;
+
+        // Set the QR code image
+        if (this.image) {
+            this.image.src = qrUrl;
+            this.image.style.maxWidth = '150px';
+            this.image.style.border = '2px solid var(--border-color)';
+            this.image.style.borderRadius = '8px';
+            this.image.style.padding = '8px';
+            this.image.style.background = 'white';
+        }
+    }
+}
+
+// Initialize QR code
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+        window.qrGenerator = new QRCodeGenerator('https://msadeqsirjani.com', 'qrcode');
+    });
+} else {
+    window.qrGenerator = new QRCodeGenerator('https://msadeqsirjani.com', 'qrcode');
+}
+
 // Wait for DOM to be fully loaded
 document.addEventListener('DOMContentLoaded', init);

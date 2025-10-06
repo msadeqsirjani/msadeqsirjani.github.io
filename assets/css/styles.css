@@ -57,17 +57,19 @@ body, h1, h2, h3, h4, h5, h6 {
 }
 
 [data-theme="dark"] {
-    /* WCAG AA compliant dark theme */
+    /* WCAG AA compliant dark theme - Enhanced contrast */
     --text-color: #f9fafb;        /* High contrast white */
-    --text-light: #d1d5db;        /* Better contrast in dark mode */
-    --white: #111827;             /* True dark background */
-    --gray-light: #1f2937;        /* Darker gray for better contrast */
-    --border-color: #4b5563;      /* More visible dark borders */
-    --accent-color: #3b82f6;      /* Brighter blue for dark mode */
-    --accent-hover: #60a5fa;      /* Lighter hover for dark mode */
-    --error-color: #f87171;       /* Light red for dark mode */
-    --success-color: #34d399;     /* Light green for dark mode */
-    --focus-color: #60a5fa;       /* Bright focus for dark mode */
+    --text-light: #e5e7eb;        /* Improved contrast from #d1d5db */
+    --white: #0f172a;             /* Darker background for better contrast */
+    --gray-light: #1e293b;        /* Darker gray for cards */
+    --border-color: #475569;      /* More visible borders */
+    --accent-color: #60a5fa;      /* Brighter blue for dark mode */
+    --accent-hover: #93c5fd;      /* Lighter hover for dark mode */
+    --error-color: #fca5a5;       /* Light red for dark mode */
+    --success-color: #6ee7b7;     /* Light green for dark mode */
+    --focus-color: #93c5fd;       /* Bright focus for dark mode */
+    --card-bg: #1e293b;           /* Card background */
+    --hover-bg: #334155;          /* Hover background */
 }
 
 body {
@@ -1069,6 +1071,77 @@ kbd {
     color: var(--accent-color);
 }
 
+/* Citation format dropdown */
+.citation-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.citation-format-btn {
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.citation-format-menu {
+    display: none;
+    position: absolute;
+    top: calc(100% + 0.5rem);
+    right: 0;
+    background: var(--white);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+    min-width: 140px;
+    z-index: 1000;
+    overflow: hidden;
+    animation: slideDown 0.2s ease;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.citation-format-menu.show {
+    display: block;
+}
+
+.citation-option {
+    display: block;
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background: none;
+    border: none;
+    color: var(--text-color);
+    text-align: left;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 0.875rem;
+    font-weight: 500;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.citation-option:last-child {
+    border-bottom: none;
+}
+
+.citation-option:hover {
+    background: var(--gray-light);
+    color: var(--accent-color);
+    padding-left: 1.25rem;
+}
+
+.citation-option:active {
+    background: var(--accent-color);
+    color: white;
+}
+
 .publication-btn:disabled {
     opacity: 0.3;
     cursor: not-allowed;
@@ -1393,12 +1466,44 @@ kbd {
 
 .footer-content {
     display: grid;
-    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
     gap: 3rem;
     margin-bottom: 2.5rem;
     max-width: 1200px;
     margin-left: auto;
     margin-right: auto;
+}
+
+/* QR Code Section */
+.qr-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.qr-code-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.qr-code-container img {
+    max-width: 150px;
+    height: auto;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    padding: 8px;
+    background: white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.qr-hint {
+    font-size: 0.75rem;
+    color: var(--text-light);
+    margin: 0;
+    text-align: center;
 }
 
 .footer-section h3 {
@@ -2798,6 +2903,21 @@ html {
     @page {
         margin: 0.7in;
         size: a4 portrait;
+
+        /* Page numbers in footer */
+        @bottom-right {
+            content: counter(page) " / " counter(pages);
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 10pt;
+            color: #666;
+        }
+
+        @bottom-center {
+            content: "Mohammad Sadegh Sirjani - Curriculum Vitae";
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 9pt;
+            color: #999;
+        }
     }
 
     /* Base styles */
