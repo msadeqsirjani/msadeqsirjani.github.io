@@ -1,0 +1,183 @@
+/* Import original styles */
+@import './original-styles.css';
+@import url('https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css');
+
+/* Custom Select Dropdown Styling */
+.custom-select {
+  position: relative;
+  flex: 1;
+  min-width: 180px;
+}
+
+.select-selected {
+  padding: 0 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  background: var(--white);
+  color: var(--text-color);
+  font-size: 0.875rem;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  height: 46px;
+  display: flex;
+  align-items: center;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%234a5568' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  padding-right: 2.5rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.select-selected:hover {
+  border-color: var(--accent-color);
+  background-color: var(--gray-light);
+}
+
+.select-items {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 99;
+  background: var(--white);
+  border: 1px solid var(--border-color);
+  border-top: none;
+  border-radius: 0 0 6px 6px;
+  margin-top: -1px;
+  max-height: 200px;
+  overflow-y: auto;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.select-items div {
+  padding: 0.75rem 1rem;
+  cursor: pointer;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-color);
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.select-items div:hover {
+  background-color: var(--gray-light);
+  color: var(--accent-color);
+}
+
+.select-items div:last-child {
+  border-radius: 0 0 6px 6px;
+}
+
+/* Publication status badge - match button height */
+.status {
+  min-height: 36px !important;
+  padding: 0.5rem 0.75rem !important;
+  font-size: 0.7rem !important;
+}
+
+/* Social links icons - bold and bigger */
+.social-link i,
+.footer-social a i {
+  font-size: 1.5rem !important;
+  font-weight: 900 !important;
+}
+
+/* ResearchGate icon - use normal weight for brands and make it bigger */
+.fa-researchgate {
+  font-family: "Font Awesome 6 Brands" !important;
+  font-weight: 400 !important;
+  font-size: 1.8rem !important;
+}
+
+@media (max-width: 768px) {
+  .custom-select {
+    min-width: 0;
+  }
+
+  .select-selected {
+    font-size: 0.85rem;
+    padding: 0 0.75rem;
+    padding-right: 2rem;
+    background-position: right 0.5rem center;
+  }
+
+  .select-items div {
+    padding: 0.625rem 0.75rem;
+    font-size: 0.85rem;
+  }
+
+  .status {
+    min-height: 44px !important;
+    padding: 0.75rem !important;
+    font-size: 0.75rem !important;
+  }
+
+  .social-link i,
+  .footer-social a i {
+    font-size: 1.6rem !important;
+  }
+
+  .fa-researchgate {
+    font-size: 2rem !important;
+  }
+}
+
+/* Citation format dropdown */
+.citation-dropdown {
+  position: relative;
+  display: inline-flex;
+}
+
+.citation-format-menu {
+  position: absolute;
+  top: calc(100% + 4px);
+  right: 0;
+  background: var(--white);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  min-width: 140px;
+  display: block !important;
+}
+
+.citation-format-menu div {
+  padding: 0.75rem 1rem;
+  cursor: pointer;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-color);
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.citation-format-menu div:hover {
+  background-color: var(--gray-light);
+  color: var(--accent-color);
+}
+
+.citation-format-menu div:first-child {
+  border-radius: 6px 6px 0 0;
+}
+
+.citation-format-menu div:last-child {
+  border-radius: 0 0 6px 6px;
+}
+
+/* Fix publication actions row overflow */
+.publication-actions-row {
+  position: relative;
+}
+
+.publication-item {
+  position: relative;
+  overflow: visible !important;
+}
+
+.publication-info-row {
+  overflow: visible !important;
+}

@@ -1,0 +1,296 @@
+import { useState, useMemo, useEffect, useRef } from 'react';
+import { publications } from '../../data/content';
+import Toastify from 'toastify-js';
+
+const Publications = () => {
+  const [searchTerm, setSearchTerm] = useState('');
+  const [statusFilter, setStatusFilter] = useState('all');
+  const [yearFilter, setYearFilter] = useState('all');
+  const [bibtexData, setBibtexData] = useState<Record<string, { bibtex: string }>>({});
+  const [statusDropdownOpen, setStatusDropdownOpen] = useState(false);
+  const [yearDropdownOpen, setYearDropdownOpen] = useState(false);
+  const [showAll, setShowAll] = useState(false);
+  const [openCitationDropdown, setOpenCitationDropdown] = useState<number | null>(null);
+  const statusDropdownRef = useRef<HTMLDivElement>(null);
+  const yearDropdownRef = useRef<HTMLDivElement>(null);
+  const citationDropdownRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  useEffect(() => {
+    // Load BibTeX data
+    fetch('/assets/data/bibtex.json')
+      .then(res => res.json())
+      .then(data => setBibtexData(data))
+      .catch(err => console.error('Failed to load BibTeX data:', err));
+  }, []);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (statusDropdownRef.current && !statusDropdownRef.current.contains(event.target as Node)) {
+        setStatusDropdownOpen(false);
+      }
+      if (yearDropdownRef.current && !yearDropdownRef.current.contains(event.target as Node)) {
+        setYearDropdownOpen(false);
+      }
+
+      // Check citation dropdowns
+      if (openCitationDropdown !== null) {
+        const citationRef = citationDropdownRefs.current[openCitationDropdown];
+        if (citationRef && !citationRef.contains(event.target as Node)) {
+          setOpenCitationDropdown(null);
+        }
+      }
+    };
+
+    if (statusDropdownOpen || yearDropdownOpen || openCitationDropdown !== null) {
+      document.addEventListener('click', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, [statusDropdownOpen, yearDropdownOpen, openCitationDropdown]);
+
+  const filteredPublications = useMemo(() => {
+    return publications.filter(pub => {
+      const matchesSearch = searchTerm === '' ||
+        pub.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        pub.venue.toLowerCase().includes(searchTerm.toLowerCase());
+
+      const matchesStatus = statusFilter === 'all' || pub.status === statusFilter;
+      const matchesYear = yearFilter === 'all' || pub.year === yearFilter;
+
+      return matchesSearch && matchesStatus && matchesYear;
+    });
+  }, [searchTerm, statusFilter, yearFilter]);
+
+  const handleReset = () => {
+    setSearchTerm('');
+    setStatusFilter('all');
+    setYearFilter('all');
+  };
+
+  const getStatusLabel = (status: string) => {
+    switch (status) {
+      case 'published': return 'PUBLISHED';
+      case 'accepted': return 'ACCEPTED';
+      case 'review': return 'UNDER REVISION';
+      default: return status.toUpperCase();
+    }
+  };
+
+  const copyCitation = (pubId: string, format: string, pub: any) => {
+    let citation = '';
+
+    if (format === 'bibtex') {
+      citation = bibtexData[pubId]?.bibtex || '';
+    } else if (format === 'apa') {
+      citation = `${pub.title}. (${pub.year}). ${pub.venue}.`;
+    } else if (format === 'mla') {
+      citation = `"${pub.title}." ${pub.venue}, ${pub.year}.`;
+    } else if (format === 'chicago') {
+      citation = `"${pub.title}." ${pub.venue} (${pub.year}).`;
+    } else if (format === 'ieee') {
+      citation = `"${pub.title}," ${pub.venue}, ${pub.year}.`;
+    }
+
+    if (citation) {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(citation).then(() => {
+          Toastify({
+            text: `${format.toUpperCase()} citation copied!`,
+            duration: 3000,
+            close: true,
+            gravity: "top",
+            position: "left",
+            style: {
+              background: "var(--accent-color)",
+            }
+          }).showToast();
+        }).catch(err => {
+          console.error('Failed to copy:', err);
+          fallbackCopyCitation(citation, format);
+        });
+      } else {
+        fallbackCopyCitation(citation, format);
+      }
+    }
+    setOpenCitationDropdown(null);
+  };
+
+  const fallbackCopyCitation = (text: string, format: string) => {
+    const textArea = document.createElement('textarea');
+    textArea.value = text;
+    textArea.style.position = 'fixed';
+    textArea.style.left = '-999999px';
+    document.body.appendChild(textArea);
+    textArea.focus();
+    textArea.select();
+
+    try {
+      document.execCommand('copy');
+      Toastify({
+        text: `${format.toUpperCase()} citation copied!`,
+        duration: 3000,
+        close: true,
+        gravity: "top",
+        position: "left",
+        style: {
+          background: "var(--accent-color)",
+        }
+      }).showToast();
+    } catch (err) {
+      console.error('Fallback copy failed:', err);
+    }
+
+    document.body.removeChild(textArea);
+  };
+
+  return (
+    <section id="publications" className="section">
+      <div className="container">
+        <h2 className="section-title">Publications</h2>
+
+        <div className="publication-controls">
+          <div className="search-box">
+            <i className="fas fa-search"></i>
+            <input
+              type="text"
+              id="publicationSearch"
+              placeholder="Search by title, venue, or keywords..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
+            {searchTerm && (
+              <button
+                className="clear-search"
+                onClick={() => setSearchTerm('')}
+                aria-label="Clear search"
+              >
+                <i className="fas fa-times"></i>
+              </button>
+            )}
+          </div>
+          <div className="filter-controls">
+            <div className="custom-select" ref={statusDropdownRef}>
+              <div
+                className="select-selected"
+                onClick={() => setStatusDropdownOpen(!statusDropdownOpen)}
+              >
+                {statusFilter === 'all' ? 'All Status' :
+                 statusFilter === 'published' ? 'Published' :
+                 statusFilter === 'accepted' ? 'Accepted' : 'Under Revision'}
+              </div>
+              {statusDropdownOpen && (
+                <div className="select-items">
+                  <div onClick={() => { setStatusFilter('all'); setStatusDropdownOpen(false); }}>All Status</div>
+                  <div onClick={() => { setStatusFilter('published'); setStatusDropdownOpen(false); }}>Published</div>
+                  <div onClick={() => { setStatusFilter('accepted'); setStatusDropdownOpen(false); }}>Accepted</div>
+                  <div onClick={() => { setStatusFilter('review'); setStatusDropdownOpen(false); }}>Under Revision</div>
+                </div>
+              )}
+            </div>
+            <div className="custom-select" ref={yearDropdownRef}>
+              <div
+                className="select-selected"
+                onClick={() => setYearDropdownOpen(!yearDropdownOpen)}
+              >
+                {yearFilter === 'all' ? 'All Years' : yearFilter}
+              </div>
+              {yearDropdownOpen && (
+                <div className="select-items">
+                  <div onClick={() => { setYearFilter('all'); setYearDropdownOpen(false); }}>All Years</div>
+                  <div onClick={() => { setYearFilter('2025'); setYearDropdownOpen(false); }}>2025</div>
+                  <div onClick={() => { setYearFilter('2024'); setYearDropdownOpen(false); }}>2024</div>
+                  <div onClick={() => { setYearFilter('2023'); setYearDropdownOpen(false); }}>2023</div>
+                </div>
+              )}
+            </div>
+            <button id="resetFilters" onClick={handleReset} className="btn-secondary">
+              <i className="fas fa-redo"></i> Reset
+            </button>
+          </div>
+        </div>
+
+        <div className="publications-container">
+          <div className="publication-list">
+            {filteredPublications.length === 0 ? (
+              <p className="no-results">No publications found matching your criteria.</p>
+            ) : (
+              (showAll ? filteredPublications : filteredPublications.slice(0, 5)).map((pub) => {
+                const actualIndex = filteredPublications.indexOf(pub);
+                return (
+                <div key={actualIndex} className="publication-item">
+                  <p className="publication-title">{pub.title}</p>
+                  <div className="publication-info-row">
+                    <div className="publication-venue">
+                      <p className="venue">{pub.venue}</p>
+                    </div>
+                    <div className="publication-actions-row">
+                      <p className={`status ${pub.status}`}>{getStatusLabel(pub.status)}</p>
+                      {pub.link ? (
+                        <a href={pub.link} className="publication-btn" target="_blank" rel="noopener" data-tooltip="View Paper">
+                          <i className="fas fa-external-link-alt"></i>
+                        </a>
+                      ) : (
+                        <button className="publication-btn" disabled data-tooltip="Not yet available">
+                          <i className="fas fa-external-link-alt"></i>
+                        </button>
+                      )}
+                      {pub.pdfLink ? (
+                        <a href={pub.pdfLink} className="publication-btn" download data-tooltip="Download PDF">
+                          <i className="fas fa-file-pdf"></i>
+                        </a>
+                      ) : (
+                        <button className="publication-btn" disabled data-tooltip="PDF not available">
+                          <i className="fas fa-file-pdf"></i>
+                        </button>
+                      )}
+                      {pub.bibtexId ? (
+                        <div className="citation-dropdown" ref={el => { citationDropdownRefs.current[actualIndex] = el; }}>
+                          <button
+                            className="publication-btn"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              console.log('Citation button clicked, actualIndex:', actualIndex, 'current state:', openCitationDropdown);
+                              setOpenCitationDropdown(openCitationDropdown === actualIndex ? null : actualIndex);
+                            }}
+                            data-tooltip="Copy Citation"
+                          >
+                            <i className="fas fa-quote-right"></i>
+                          </button>
+                          {openCitationDropdown === actualIndex && (
+                            <div className="citation-format-menu">
+                              <div onClick={() => copyCitation(pub.bibtexId!, 'bibtex', pub)}>BibTeX</div>
+                              <div onClick={() => copyCitation(pub.bibtexId!, 'apa', pub)}>APA</div>
+                              <div onClick={() => copyCitation(pub.bibtexId!, 'mla', pub)}>MLA</div>
+                              <div onClick={() => copyCitation(pub.bibtexId!, 'chicago', pub)}>Chicago</div>
+                              <div onClick={() => copyCitation(pub.bibtexId!, 'ieee', pub)}>IEEE</div>
+                            </div>
+                          )}
+                        </div>
+                      ) : (
+                        <button className="publication-btn" disabled data-tooltip="Citation not available">
+                          <i className="fas fa-quote-right"></i>
+                        </button>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              );
+              })
+            )}
+          </div>
+          {filteredPublications.length > 5 && (
+            <div className="show-more-container">
+              <button id="showMoreBtn" onClick={() => setShowAll(!showAll)} className={showAll ? 'expanded' : ''}>
+                {showAll ? 'Show Less' : 'Show More'} <i className={`fas fa-chevron-down`}></i>
+              </button>
+            </div>
+          )}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default Publications;
