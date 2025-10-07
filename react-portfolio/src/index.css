@@ -941,27 +941,41 @@ body[data-theme="dark"] .expand-arrow.disabled {
 @media (max-width: 768px) {
   .details-grid {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: stretch;
+    gap: 0.75rem;
   }
 
   .detail-left {
     width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.5rem;
+  }
+
+  .status-inline {
+    width: 100%;
+    justify-content: center;
+    min-height: 44px;
+  }
+
+  .citations-badge {
+    width: 100%;
+    justify-content: center;
+    min-height: 44px;
   }
 
   .detail-actions {
-    justify-content: flex-start;
     width: 100%;
+    justify-content: center;
+    gap: 0.75rem;
   }
 
   .publication-btn,
   .citation-btn {
     min-width: 44px;
     min-height: 44px;
-  }
-
-  .status-inline,
-  .citations-badge {
-    min-height: 44px;
+    flex: 1;
+    max-width: 80px;
   }
 }
 
