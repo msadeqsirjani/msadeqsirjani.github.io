@@ -908,6 +908,7 @@ body[data-theme="dark"] .status-inline.review {
   font-size: 0.9rem;
   line-height: 1.6;
   color: var(--text-light);
+  text-align: justify;
 }
 
 @media (max-width: 768px) {
