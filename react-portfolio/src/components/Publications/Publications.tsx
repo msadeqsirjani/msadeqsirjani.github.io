@@ -13,11 +13,13 @@ const Publications = () => {
   const [yearDropdownOpen, setYearDropdownOpen] = useState(false);
   const [showAll, setShowAll] = useState(false);
   const [openCitationDropdown, setOpenCitationDropdown] = useState<number | null>(null);
+  const [openShareDropdown, setOpenShareDropdown] = useState<number | null>(null);
   const [hoveredPub, setHoveredPub] = useState<number | null>(null);
   const [expandedPub, setExpandedPub] = useState<number | null>(null);
   const statusDropdownRef = useRef<HTMLDivElement>(null);
   const yearDropdownRef = useRef<HTMLDivElement>(null);
   const citationDropdownRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const shareDropdownRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
     // Load BibTeX data
@@ -43,6 +45,14 @@ const Publications = () => {
           setOpenCitationDropdown(null);
         }
       }
+
+      // Check share dropdowns
+      if (openShareDropdown !== null) {
+        const shareRef = shareDropdownRefs.current[openShareDropdown];
+        if (shareRef && !shareRef.contains(event.target as Node)) {
+          setOpenShareDropdown(null);
+        }
+      }
     };
 
     const handleKeyDown = (event: KeyboardEvent) => {
@@ -51,10 +61,11 @@ const Publications = () => {
         setStatusDropdownOpen(false);
         setYearDropdownOpen(false);
         setOpenCitationDropdown(null);
+        setOpenShareDropdown(null);
       }
     };
 
-    if (statusDropdownOpen || yearDropdownOpen || openCitationDropdown !== null) {
+    if (statusDropdownOpen || yearDropdownOpen || openCitationDropdown !== null || openShareDropdown !== null) {
       document.addEventListener('click', handleClickOutside);
       document.addEventListener('keydown', handleKeyDown);
     }
@@ -63,7 +74,7 @@ const Publications = () => {
       document.removeEventListener('click', handleClickOutside);
       document.removeEventListener('keydown', handleKeyDown);
     };
-  }, [statusDropdownOpen, yearDropdownOpen, openCitationDropdown]);
+  }, [statusDropdownOpen, yearDropdownOpen, openCitationDropdown, openShareDropdown]);
 
   const filteredPublications = useMemo(() => {
     return publications.filter(pub => {
@@ -160,6 +171,39 @@ const Publications = () => {
     }
 
     document.body.removeChild(textArea);
+  };
+
+  const sharePublication = (platform: string, pub: Publication) => {
+    const title = pub.title;
+    const venue = pub.venue;
+    const year = pub.year;
+    const abstract = pub.abstract || '';
+    const url = pub.link || window.location.href;
+
+    // Create share text with title, venue, year, and abstract
+    const shareText = `${title}\n\n${venue} (${year})\n\n${abstract.substring(0, 200)}${abstract.length > 200 ? '...' : ''}`;
+
+    let shareUrl = '';
+
+    switch(platform) {
+      case 'twitter':
+        shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(`${title}\n${venue} (${year})`)}&url=${encodeURIComponent(url)}`;
+        break;
+      case 'linkedin':
+        shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`;
+        break;
+      case 'facebook':
+        shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
+        break;
+      case 'email':
+        shareUrl = `mailto:?subject=${encodeURIComponent(title)}&body=${encodeURIComponent(shareText + '\n\nRead more: ' + url)}`;
+        break;
+    }
+
+    if (shareUrl) {
+      window.open(shareUrl, '_blank', 'width=600,height=400');
+      setOpenShareDropdown(null);
+    }
   };
 
   return (
@@ -392,6 +436,34 @@ const Publications = () => {
                               )}
                             </div>
                           )}
+                          <div className="citation-dropdown" ref={el => { shareDropdownRefs.current[actualIndex] = el; }}>
+                            <button
+                              className="publication-btn"
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                setOpenShareDropdown(openShareDropdown === actualIndex ? null : actualIndex);
+                              }}
+                              data-tooltip="Share"
+                            >
+                              <i className="fas fa-share-alt"></i>
+                            </button>
+                            {openShareDropdown === actualIndex && (
+                              <div className="citation-format-menu">
+                                <div onClick={() => sharePublication('twitter', pub)}>
+                                  <i className="fab fa-twitter" style={{ marginRight: '0.5rem' }}></i>Twitter
+                                </div>
+                                <div onClick={() => sharePublication('linkedin', pub)}>
+                                  <i className="fab fa-linkedin" style={{ marginRight: '0.5rem' }}></i>LinkedIn
+                                </div>
+                                <div onClick={() => sharePublication('facebook', pub)}>
+                                  <i className="fab fa-facebook" style={{ marginRight: '0.5rem' }}></i>Facebook
+                                </div>
+                                <div onClick={() => sharePublication('email', pub)}>
+                                  <i className="fas fa-envelope" style={{ marginRight: '0.5rem' }}></i>Email
+                                </div>
+                              </div>
+                            )}
+                          </div>
                         </div>
                       </div>
 
