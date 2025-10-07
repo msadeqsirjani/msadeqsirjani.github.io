@@ -753,3 +753,16 @@ textarea:focus-visible {
   font-weight: 600;
   margin: 0 0 0.5rem 0;
 }
+
+/* Venue inline with title */
+.venue-inline {
+  display: inline;
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: #999;
+  margin-left: 0.5rem;
+}
+
+body[data-theme="dark"] .venue-inline {
+  color: #888;
+}

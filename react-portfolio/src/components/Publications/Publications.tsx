@@ -292,12 +292,12 @@ const Publications = () => {
                   className={`publication-item ${isHidden ? 'hidden-for-show-more' : ''}`}
                   role="listitem"
                 >
-                  <h3 className="publication-title">{pub.title}</h3>
+                  <h3 className="publication-title">
+                    {pub.title}
+                    <span className="venue-inline">{pub.venue}</span>
+                  </h3>
 
                   <div className="publication-info-row">
-                    <div className="publication-venue">
-                      <p className="venue">{pub.venue}</p>
-                    </div>
                     <div className="publication-actions-row">
                       <p className={`status ${pub.status}`}>{getStatusLabel(pub.status)}</p>
                       {pub.link ? (
