@@ -62,7 +62,7 @@ const Contact = () => {
           }
         }).showToast();
       }
-    } catch (error) {
+    } catch {
       Toastify({
         text: "An error occurred. Please try again.",
         duration: 3000,

@@ -2,6 +2,7 @@ import { useState, useMemo, useEffect, useRef } from 'react';
 import { publications } from '../../data/content';
 import Toastify from 'toastify-js';
 import { trackCitationCopy } from '../../utils/analytics';
+import type { Publication } from '../../types';
 
 const Publications = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -91,7 +92,7 @@ const Publications = () => {
     }
   };
 
-  const copyCitation = (pubId: string, format: string, pub: any) => {
+  const copyCitation = (pubId: string, format: string, pub: Publication) => {
     let citation = '';
 
     if (format === 'bibtex') {

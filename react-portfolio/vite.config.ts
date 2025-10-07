@@ -1,4 +1,4 @@
-import { defineConfig } from 'vite'
+import { defineConfig, type PluginOption } from 'vite'
 import react from '@vitejs/plugin-react'
 import { visualizer } from 'rollup-plugin-visualizer'
 import PurgeCSS from 'vite-plugin-purgecss'
@@ -34,7 +34,7 @@ export default defineConfig({
         greedy: [/^publication-/, /^citation-/, /^select-/, /^nav-/]
       },
       defaultExtractor: (content: string) => content.match(/[\w-/:]+(?<!:)/g) || [],
-    }) as any
+    }) as PluginOption
   ],
   base: '/',
   build: {

@@ -1,10 +1,12 @@
 // Privacy-friendly analytics utility
 // Supports Google Analytics with privacy enhancements
 
+type GtagFunction = (...args: unknown[]) => void;
+
 declare global {
   interface Window {
-    gtag?: (...args: any[]) => void;
-    dataLayer?: any[];
+    gtag?: GtagFunction;
+    dataLayer?: unknown[];
   }
 }
 
@@ -21,7 +23,7 @@ export const initAnalytics = () => {
 
     // Initialize dataLayer
     window.dataLayer = window.dataLayer || [];
-    window.gtag = function gtag(...args: any[]) {
+    window.gtag = function gtag(...args: unknown[]) {
       window.dataLayer?.push(args);
     };
 
