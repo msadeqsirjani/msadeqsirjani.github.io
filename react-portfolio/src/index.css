@@ -810,11 +810,8 @@ body[data-theme="dark"] .expand-arrow.disabled {
 
 /* Publication details section */
 .publication-details {
-  background: var(--gray-light);
-  border-left: 3px solid var(--accent-color);
-  padding: 1rem;
+  padding: 1rem 0.5rem;
   margin: 0.75rem 0;
-  border-radius: 4px;
   animation: fadeIn 0.3s ease-in-out;
 }
 
@@ -845,42 +842,14 @@ body[data-theme="dark"] .expand-arrow.disabled {
 
 .status-inline {
   display: inline-block;
-  padding: 0.25rem 0.75rem;
-  border-radius: 12px;
+  padding: 0.2rem 0.6rem;
+  border-radius: 3px;
   font-size: 0.7rem;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-}
-
-.status-inline.published {
-  background: #e8f5e9;
-  color: #2e7d32;
-}
-
-.status-inline.accepted {
-  background: #fff3e0;
-  color: #e65100;
-}
-
-.status-inline.review {
-  background: #e3f2fd;
-  color: #1565c0;
-}
-
-body[data-theme="dark"] .status-inline.published {
-  background: rgba(46, 125, 50, 0.2);
-  color: #81c784;
-}
-
-body[data-theme="dark"] .status-inline.accepted {
-  background: rgba(230, 81, 0, 0.2);
-  color: #ffb74d;
-}
-
-body[data-theme="dark"] .status-inline.review {
-  background: rgba(21, 101, 192, 0.2);
-  color: #64b5f6;
+  background: var(--accent-color);
+  color: white;
 }
 
 .detail-actions {
