@@ -972,10 +972,10 @@ body[data-theme="dark"] .expand-arrow.disabled {
 
   .publication-btn,
   .citation-btn {
-    min-width: 44px;
-    min-height: 44px;
-    flex: 1;
-    max-width: 80px;
+    width: 56px;
+    min-width: 56px;
+    min-height: 56px;
+    flex: 0 0 56px;
   }
 }
 

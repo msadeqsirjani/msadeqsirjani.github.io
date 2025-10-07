@@ -22,7 +22,7 @@ export const publications: Publication[] = [
   {
     title: 'Optimizing Task Scheduling in Fog Computing with Deadline Awareness',
     venue: 'arXiv preprint',
-    year: '2024',
+    year: '2025',
     status: 'accepted',
     link: 'https://doi.org/10.48550/arXiv.2509.07378',
     pdfLink: 'assets/docs/publications/2509.07378v2.pdf',
