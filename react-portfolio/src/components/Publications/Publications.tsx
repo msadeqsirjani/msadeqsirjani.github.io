@@ -338,10 +338,12 @@ const Publications = () => {
                   role="listitem"
                 >
                   <div className="publication-header">
-                    <h3 className="publication-title">
-                      {pub.title}
-                      <span className="venue-inline">{pub.venue}</span>
-                    </h3>
+                    <div className="publication-header-content">
+                      <h3 className="publication-title">
+                        {pub.title}
+                        <span className="venue-inline">{pub.venue}, {pub.year}</span>
+                      </h3>
+                    </div>
                     {pub.status !== 'review' ? (
                       <span
                         className="expand-arrow"
@@ -369,14 +371,14 @@ const Publications = () => {
                   {expandedPub === actualIndex && pub.status !== 'review' && (
                     <div className="publication-details">
                       <div className="details-grid">
-                        <div className="detail-section">
-                          <p className="detail-item"><strong>Year:</strong> {pub.year}</p>
-                          <p className="detail-item"><strong>Status:</strong> <span className={`status-inline ${pub.status}`}>{getStatusLabel(pub.status)}</span></p>
+                        <div className="detail-left">
+                          <span className={`status-inline ${pub.status}`}>{getStatusLabel(pub.status)}</span>
                           {pub.citations !== undefined && (
-                            <p className="detail-item"><strong>Citations:</strong> {pub.citations}</p>
+                            <span className="citations-badge">
+                              <i className="fas fa-quote-left"></i> {pub.citations} {pub.citations === 1 ? 'Citation' : 'Citations'}
+                            </span>
                           )}
                         </div>
-
                         <div className="detail-actions">
                           {pub.link && (
                             <a href={pub.link} className="publication-btn" target="_blank" rel="noopener" data-tooltip="View Paper">
