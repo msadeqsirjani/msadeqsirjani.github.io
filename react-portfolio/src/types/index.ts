@@ -6,6 +6,9 @@ export interface Publication {
   link?: string;
   pdfLink?: string;
   bibtexId?: string;
+  abstract?: string;
+  downloads?: number;
+  citations?: number;
 }
 
 export interface EducationItem {

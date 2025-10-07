@@ -324,84 +324,85 @@ const Publications = () => {
 
                   {expandedPub === actualIndex && pub.status !== 'review' && (
                     <div className="publication-details">
-                      <p className="detail-item"><strong>Year:</strong> {pub.year}</p>
-                      <p className="detail-item"><strong>Status:</strong> {getStatusLabel(pub.status)}</p>
-                      {/* Future: Add abstract, authors, keywords here */}
+                      <div className="details-grid">
+                        <div className="detail-section">
+                          <p className="detail-item"><strong>Year:</strong> {pub.year}</p>
+                          <p className="detail-item"><strong>Status:</strong> <span className={`status-inline ${pub.status}`}>{getStatusLabel(pub.status)}</span></p>
+                          {pub.citations !== undefined && (
+                            <p className="detail-item"><strong>Citations:</strong> {pub.citations}</p>
+                          )}
+                          {pub.downloads !== undefined && (
+                            <p className="detail-item"><strong>Downloads:</strong> {pub.downloads}</p>
+                          )}
+                        </div>
+
+                        <div className="detail-actions">
+                          {pub.link && (
+                            <a href={pub.link} className="publication-btn" target="_blank" rel="noopener" data-tooltip="View Paper">
+                              <i className="fas fa-external-link-alt"></i>
+                            </a>
+                          )}
+                          {pub.pdfLink && (
+                            <div
+                              className="pdf-btn-wrapper"
+                              onMouseEnter={() => setHoveredPub(actualIndex)}
+                              onMouseLeave={() => setHoveredPub(null)}
+                            >
+                              <a href={pub.pdfLink} className="publication-btn" download data-tooltip="Download PDF">
+                                <i className="fas fa-file-pdf"></i>
+                              </a>
+
+                              {/* PDF Preview Tooltip - Desktop only */}
+                              {hoveredPub === actualIndex && (
+                                <div className="pdf-preview-tooltip">
+                                  <div className="pdf-preview-content">
+                                    <iframe
+                                      src={`${pub.pdfLink}#view=FitH`}
+                                      title={`Preview of ${pub.title}`}
+                                      className="pdf-preview-iframe"
+                                    />
+                                    <div className="pdf-preview-footer">
+                                      <span>Click to download PDF</span>
+                                    </div>
+                                  </div>
+                                </div>
+                              )}
+                            </div>
+                          )}
+                          {pub.bibtexId && (
+                            <div className="citation-dropdown" ref={el => { citationDropdownRefs.current[actualIndex] = el; }}>
+                              <button
+                                className="publication-btn"
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  setOpenCitationDropdown(openCitationDropdown === actualIndex ? null : actualIndex);
+                                }}
+                                data-tooltip="Copy Citation"
+                              >
+                                <i className="fas fa-quote-right"></i>
+                              </button>
+                              {openCitationDropdown === actualIndex && (
+                                <div className="citation-format-menu">
+                                  <div onClick={() => copyCitation(pub.bibtexId!, 'bibtex', pub)}>BibTeX</div>
+                                  <div onClick={() => copyCitation(pub.bibtexId!, 'apa', pub)}>APA</div>
+                                  <div onClick={() => copyCitation(pub.bibtexId!, 'mla', pub)}>MLA</div>
+                                  <div onClick={() => copyCitation(pub.bibtexId!, 'chicago', pub)}>Chicago</div>
+                                  <div onClick={() => copyCitation(pub.bibtexId!, 'ieee', pub)}>IEEE</div>
+                                </div>
+                              )}
+                            </div>
+                          )}
+                        </div>
+                      </div>
+
+                      {pub.abstract && (
+                        <div className="abstract-section">
+                          <strong>Abstract:</strong>
+                          <p>{pub.abstract}</p>
+                        </div>
+                      )}
                     </div>
                   )}
-
-                  <div className="publication-info-row">
-                    <div className="publication-actions-row">
-                      <p className={`status ${pub.status}`}>{getStatusLabel(pub.status)}</p>
-                      {pub.link ? (
-                        <a href={pub.link} className="publication-btn" target="_blank" rel="noopener" data-tooltip="View Paper">
-                          <i className="fas fa-external-link-alt"></i>
-                        </a>
-                      ) : (
-                        <button className="publication-btn" disabled data-tooltip="Not yet available">
-                          <i className="fas fa-external-link-alt"></i>
-                        </button>
-                      )}
-                      {pub.pdfLink ? (
-                        <div
-                          className="pdf-btn-wrapper"
-                          onMouseEnter={() => setHoveredPub(actualIndex)}
-                          onMouseLeave={() => setHoveredPub(null)}
-                        >
-                          <a href={pub.pdfLink} className="publication-btn" download data-tooltip="Download PDF">
-                            <i className="fas fa-file-pdf"></i>
-                          </a>
-
-                          {/* PDF Preview Tooltip - Desktop only */}
-                          {hoveredPub === actualIndex && (
-                            <div className="pdf-preview-tooltip">
-                              <div className="pdf-preview-content">
-                                <iframe
-                                  src={`${pub.pdfLink}#view=FitH`}
-                                  title={`Preview of ${pub.title}`}
-                                  className="pdf-preview-iframe"
-                                />
-                                <div className="pdf-preview-footer">
-                                  <span>Click to download PDF</span>
-                                </div>
-                              </div>
-                            </div>
-                          )}
-                        </div>
-                      ) : (
-                        <button className="publication-btn" disabled data-tooltip="PDF not available">
-                          <i className="fas fa-file-pdf"></i>
-                        </button>
-                      )}
-                      {pub.bibtexId ? (
-                        <div className="citation-dropdown" ref={el => { citationDropdownRefs.current[actualIndex] = el; }}>
-                          <button
-                            className="publication-btn"
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              setOpenCitationDropdown(openCitationDropdown === actualIndex ? null : actualIndex);
-                            }}
-                            data-tooltip="Copy Citation"
-                          >
-                            <i className="fas fa-quote-right"></i>
-                          </button>
-                          {openCitationDropdown === actualIndex && (
-                            <div className="citation-format-menu">
-                              <div onClick={() => copyCitation(pub.bibtexId!, 'bibtex', pub)}>BibTeX</div>
-                              <div onClick={() => copyCitation(pub.bibtexId!, 'apa', pub)}>APA</div>
-                              <div onClick={() => copyCitation(pub.bibtexId!, 'mla', pub)}>MLA</div>
-                              <div onClick={() => copyCitation(pub.bibtexId!, 'chicago', pub)}>Chicago</div>
-                              <div onClick={() => copyCitation(pub.bibtexId!, 'ieee', pub)}>IEEE</div>
-                            </div>
-                          )}
-                        </div>
-                      ) : (
-                        <button className="publication-btn" disabled data-tooltip="Citation not available">
-                          <i className="fas fa-quote-right"></i>
-                        </button>
-                      )}
-                    </div>
-                  </div>
                 </div>
               );
               })

@@ -815,10 +815,25 @@ body[data-theme="dark"] .expand-arrow.disabled {
   padding: 1rem;
   margin: 0.75rem 0;
   border-radius: 4px;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.details-grid {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 1.5rem;
+  align-items: start;
+  margin-bottom: 1rem;
+}
+
+.detail-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
 .publication-details .detail-item {
-  margin: 0.5rem 0;
+  margin: 0;
   font-size: 0.95rem;
   color: var(--text-color);
 }
@@ -826,4 +841,89 @@ body[data-theme="dark"] .expand-arrow.disabled {
 .publication-details .detail-item strong {
   color: var(--text-color);
   margin-right: 0.5rem;
+}
+
+.status-inline {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 12px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.status-inline.published {
+  background: #e8f5e9;
+  color: #2e7d32;
+}
+
+.status-inline.accepted {
+  background: #fff3e0;
+  color: #e65100;
+}
+
+.status-inline.review {
+  background: #e3f2fd;
+  color: #1565c0;
+}
+
+body[data-theme="dark"] .status-inline.published {
+  background: rgba(46, 125, 50, 0.2);
+  color: #81c784;
+}
+
+body[data-theme="dark"] .status-inline.accepted {
+  background: rgba(230, 81, 0, 0.2);
+  color: #ffb74d;
+}
+
+body[data-theme="dark"] .status-inline.review {
+  background: rgba(21, 101, 192, 0.2);
+  color: #64b5f6;
+}
+
+.detail-actions {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.abstract-section {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-color);
+}
+
+.abstract-section strong {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: var(--text-color);
+  font-size: 0.95rem;
+}
+
+.abstract-section p {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--text-light);
+}
+
+@media (max-width: 768px) {
+  .details-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .detail-actions {
+    justify-content: flex-start;
+  }
+}
+
+/* Hide old publication layout elements outside expandable section */
+.publication-item > .publication-info-row,
+.publication-item > .publication-actions-row,
+.publication-item > .status {
+  display: none;
 }
