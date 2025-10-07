@@ -747,11 +747,20 @@ textarea:focus-visible {
   outline: none;
 }
 
+/* Publication header with expand arrow */
+.publication-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
 /* Publication title as h3 */
 .publication-title {
   font-size: 1.1rem;
   font-weight: 600;
   margin: 0 0 0.5rem 0;
+  flex: 1;
 }
 
 /* Venue inline with title */
@@ -765,4 +774,56 @@ textarea:focus-visible {
 
 body[data-theme="dark"] .venue-inline {
   color: #888;
+}
+
+/* Expand arrow */
+.expand-arrow {
+  color: var(--accent-color);
+  cursor: pointer;
+  font-size: 1.2rem;
+  transition: transform 0.3s ease, color 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.25rem;
+  flex-shrink: 0;
+}
+
+.expand-arrow:hover {
+  color: var(--accent-color);
+  opacity: 0.8;
+}
+
+.expand-arrow.disabled {
+  color: #ccc;
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+body[data-theme="dark"] .expand-arrow.disabled {
+  color: #555;
+}
+
+.expand-arrow i.rotated {
+  transform: rotate(180deg);
+}
+
+/* Publication details section */
+.publication-details {
+  background: var(--gray-light);
+  border-left: 3px solid var(--accent-color);
+  padding: 1rem;
+  margin: 0.75rem 0;
+  border-radius: 4px;
+}
+
+.publication-details .detail-item {
+  margin: 0.5rem 0;
+  font-size: 0.95rem;
+  color: var(--text-color);
+}
+
+.publication-details .detail-item strong {
+  color: var(--text-color);
+  margin-right: 0.5rem;
 }

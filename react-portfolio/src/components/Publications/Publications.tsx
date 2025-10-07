@@ -14,6 +14,7 @@ const Publications = () => {
   const [showAll, setShowAll] = useState(false);
   const [openCitationDropdown, setOpenCitationDropdown] = useState<number | null>(null);
   const [hoveredPub, setHoveredPub] = useState<number | null>(null);
+  const [expandedPub, setExpandedPub] = useState<number | null>(null);
   const statusDropdownRef = useRef<HTMLDivElement>(null);
   const yearDropdownRef = useRef<HTMLDivElement>(null);
   const citationDropdownRefs = useRef<(HTMLDivElement | null)[]>([]);
@@ -292,10 +293,42 @@ const Publications = () => {
                   className={`publication-item ${isHidden ? 'hidden-for-show-more' : ''}`}
                   role="listitem"
                 >
-                  <h3 className="publication-title">
-                    {pub.title}
-                    <span className="venue-inline">{pub.venue}</span>
-                  </h3>
+                  <div className="publication-header">
+                    <h3 className="publication-title">
+                      {pub.title}
+                      <span className="venue-inline">{pub.venue}</span>
+                    </h3>
+                    {pub.status !== 'review' ? (
+                      <span
+                        className="expand-arrow"
+                        onClick={() => setExpandedPub(expandedPub === actualIndex ? null : actualIndex)}
+                        role="button"
+                        tabIndex={0}
+                        onKeyDown={(e) => {
+                          if (e.key === 'Enter' || e.key === ' ') {
+                            e.preventDefault();
+                            setExpandedPub(expandedPub === actualIndex ? null : actualIndex);
+                          }
+                        }}
+                        aria-label={expandedPub === actualIndex ? 'Collapse details' : 'Expand details'}
+                        aria-expanded={expandedPub === actualIndex}
+                      >
+                        <i className={`fas fa-chevron-down ${expandedPub === actualIndex ? 'rotated' : ''}`}></i>
+                      </span>
+                    ) : (
+                      <span className="expand-arrow disabled">
+                        <i className="fas fa-chevron-down"></i>
+                      </span>
+                    )}
+                  </div>
+
+                  {expandedPub === actualIndex && pub.status !== 'review' && (
+                    <div className="publication-details">
+                      <p className="detail-item"><strong>Year:</strong> {pub.year}</p>
+                      <p className="detail-item"><strong>Status:</strong> {getStatusLabel(pub.status)}</p>
+                      {/* Future: Add abstract, authors, keywords here */}
+                    </div>
+                  )}
 
                   <div className="publication-info-row">
                     <div className="publication-actions-row">
