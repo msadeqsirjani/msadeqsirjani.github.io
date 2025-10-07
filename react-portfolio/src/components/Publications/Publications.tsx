@@ -375,9 +375,6 @@ const Publications = () => {
                           {pub.citations !== undefined && (
                             <p className="detail-item"><strong>Citations:</strong> {pub.citations}</p>
                           )}
-                          {pub.downloads !== undefined && (
-                            <p className="detail-item"><strong>Downloads:</strong> {pub.downloads}</p>
-                          )}
                         </div>
 
                         <div className="detail-actions">
