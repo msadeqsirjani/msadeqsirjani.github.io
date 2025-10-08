@@ -1,5 +1,7 @@
-const CACHE_NAME = 'msadeqsirjani-v1';
-const RUNTIME_CACHE = 'runtime-cache-v1';
+// Dynamic cache name with build timestamp to force cache invalidation on updates
+const CACHE_VERSION = '__BUILD_TIME__'; // Will be replaced during build
+const CACHE_NAME = `msadeqsirjani-${CACHE_VERSION}`;
+const RUNTIME_CACHE = `runtime-cache-${CACHE_VERSION}`;
 
 // Assets to cache on install
 const PRECACHE_ASSETS = [
@@ -51,7 +53,30 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  // Cache-first strategy for assets
+  // Network-first strategy for HTML files to ensure fresh content
+  if (request.mode === 'navigate' || url.pathname.endsWith('.html') || url.pathname === '/') {
+    event.respondWith(
+      fetch(request)
+        .then((response) => {
+          if (response && response.status === 200) {
+            const responseClone = response.clone();
+            caches.open(RUNTIME_CACHE).then((cache) => {
+              cache.put(request, responseClone);
+            });
+          }
+          return response;
+        })
+        .catch(() => {
+          // Fallback to cache if offline
+          return caches.match(request).then((cachedResponse) => {
+            return cachedResponse || caches.match('/index.html');
+          });
+        })
+    );
+    return;
+  }
+
+  // Cache-first strategy for static assets (CSS, JS, images, etc.)
   event.respondWith(
     caches.match(request).then((cachedResponse) => {
       if (cachedResponse) {
