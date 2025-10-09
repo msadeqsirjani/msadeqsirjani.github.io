@@ -430,21 +430,33 @@ const Publications = () => {
                           {pub.pdfLink && (
                             <div
                               className="pdf-btn-wrapper"
-                              onMouseEnter={() => setHoveredPub(actualIndex)}
+                              onMouseEnter={() => {
+                                // Only show preview on desktop (wider than 1024px)
+                                if (window.innerWidth > 1024) {
+                                  // Add small delay before showing preview to avoid loading on quick hover
+                                  setTimeout(() => {
+                                    if (hoveredPub === actualIndex) {
+                                      setHoveredPub(actualIndex);
+                                    }
+                                  }, 300);
+                                  setHoveredPub(actualIndex);
+                                }
+                              }}
                               onMouseLeave={() => setHoveredPub(null)}
                             >
                               <a href={pub.pdfLink} className="publication-btn" download data-tooltip="Download PDF">
                                 <i className="fas fa-file-pdf"></i>
                               </a>
 
-                              {/* PDF Preview Tooltip - Desktop only */}
-                              {hoveredPub === actualIndex && (
+                              {/* PDF Preview Tooltip - Desktop only with lazy loading */}
+                              {hoveredPub === actualIndex && window.innerWidth > 1024 && (
                                 <div className="pdf-preview-tooltip">
                                   <div className="pdf-preview-content">
                                     <iframe
                                       src={`${pub.pdfLink}#view=FitH`}
                                       title={`Preview of ${pub.title}`}
                                       className="pdf-preview-iframe"
+                                      loading="lazy"
                                     />
                                     <div className="pdf-preview-footer">
                                       <span>Click to download PDF</span>
