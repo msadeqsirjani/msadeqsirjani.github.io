@@ -85,10 +85,12 @@ body[data-theme="dark"] .cookie-consent-banner {
   .cookie-consent-actions {
     flex-direction: column;
     width: 100%;
+    align-items: center;
   }
 
   .cookie-consent-actions .btn {
     width: 100%;
+    max-width: 300px;
     justify-content: center;
   }
 }
