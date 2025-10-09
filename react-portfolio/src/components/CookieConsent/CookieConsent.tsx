@@ -40,7 +40,7 @@ const CookieConsent = () => {
     <div className="cookie-consent-banner" role="dialog" aria-live="polite" aria-label="Cookie consent">
       <div className="cookie-consent-content">
         <div className="cookie-consent-text">
-          <h3>🍪 Cookie Notice</h3>
+          <h3>Cookie Notice</h3>
           <p>
             We use cookies to analyze site traffic and improve your experience. 
             Your data is anonymized and we respect your privacy.
