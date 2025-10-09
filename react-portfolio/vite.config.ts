@@ -66,6 +66,7 @@ export default defineConfig({
   build: {
     target: 'es2015',
     minify: 'terser',
+    sourcemap: true, // Enable source maps for production debugging
     rollupOptions: {
       output: {
         // Manual chunking for better caching
@@ -74,6 +75,7 @@ export default defineConfig({
           'qrcode': ['qrcode'],
           'toastify': ['toastify-js'],
         },
+        sourcemapExcludeSources: true, // Don't include source code in sourcemaps for security
       },
     },
   },
