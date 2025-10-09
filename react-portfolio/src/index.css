@@ -356,13 +356,6 @@ html {
   font-weight: 900 !important;
 }
 
-/* ResearchGate icon - use normal weight for brands and make it bigger */
-.fa-researchgate {
-  font-family: "Font Awesome 6 Brands" !important;
-  font-weight: 400 !important;
-  font-size: 1.8rem !important;
-}
-
 @media (max-width: 768px) {
   .custom-select {
     min-width: 0;
@@ -389,10 +382,6 @@ html {
   .social-link i,
   .footer-social a i {
     font-size: 1.6rem !important;
-  }
-
-  .fa-researchgate {
-    font-size: 2rem !important;
   }
 }
 
