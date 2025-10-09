@@ -17,9 +17,45 @@ const Contact = () => {
     });
   };
 
+  const validateEmail = (email: string): boolean => {
+    // RFC 5322 compliant email regex (simplified)
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const form = e.target as HTMLFormElement;
+
+    // Validate email before submission
+    if (!validateEmail(formData.email)) {
+      Toastify({
+        text: "Please enter a valid email address",
+        duration: 3000,
+        close: true,
+        gravity: "top",
+        position: "left",
+        style: {
+          background: "#ef4444",
+        }
+      }).showToast();
+      return;
+    }
+
+    // Validate message length
+    if (formData.message.trim().length < 10) {
+      Toastify({
+        text: "Message must be at least 10 characters long",
+        duration: 3000,
+        close: true,
+        gravity: "top",
+        position: "left",
+        style: {
+          background: "#ef4444",
+        }
+      }).showToast();
+      return;
+    }
 
     try {
       const response = await fetch(form.action, {
