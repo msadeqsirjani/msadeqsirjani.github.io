@@ -4,10 +4,18 @@ const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLLIElement>(null);
-  const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  
+  // Initialize theme safely for SSR
   const [theme, setTheme] = useState<'light' | 'dark'>(() => {
+    // Safe check for browser environment
+    if (typeof window === 'undefined') return 'light';
+    
     const saved = localStorage.getItem('theme');
-    return (saved as 'light' | 'dark') || (systemPrefersDark ? 'dark' : 'light');
+    if (saved === 'light' || saved === 'dark') return saved;
+    
+    // Check system preference
+    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    return systemPrefersDark ? 'dark' : 'light';
   });
 
   useEffect(() => {
@@ -92,7 +100,7 @@ const Navbar = () => {
             >
               More
             </button>
-            <ul className={`nav-dropdown-menu ${isDropdownOpen ? 'active' : ''}`}>
+            <ul className={`nav-dropdown-menu ${isDropdownOpen ? 'active' : ''}`} ref={dropdownMenuRef}>
               <li role="none">
                 <a href="#teaching" className="nav-link" onClick={(e) => handleDropdownLinkClick(e, 'teaching')}>Teaching</a>
               </li>
@@ -139,6 +147,19 @@ const Navbar = () => {
             <span className="bar"></span>
             <span className="bar"></span>
           </button>
+        </div>
+      </div>
+    </nav>
+  );
+};
+
+export default Navbar;
+v>
+  );
+};
+
+export default Navbar;
+     </button>
         </div>
       </div>
     </nav>
