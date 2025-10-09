@@ -10,7 +10,14 @@ const Footer = () => {
     const canvas = document.getElementById('qrcode') as HTMLCanvasElement;
     if (canvas) {
       QRCode.toCanvas(canvas, 'https://msadeqsirjani.com', { width: 128 }, (error: Error | null | undefined) => {
-        if (error) console.error(error);
+        if (error) {
+          // Only log errors in development
+          if (import.meta.env.DEV) {
+            console.error('QR Code generation error:', error);
+          }
+          // Silently fail in production - QR code is not critical
+          return;
+        }
         const img = document.getElementById('qrcode-image') as HTMLImageElement;
         if (img && canvas) {
           img.src = canvas.toDataURL();
