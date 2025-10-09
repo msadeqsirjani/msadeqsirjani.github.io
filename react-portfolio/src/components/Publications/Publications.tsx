@@ -3,12 +3,15 @@ import { publications } from '../../data/content';
 import Toastify from 'toastify-js';
 import { trackCitationCopy } from '../../utils/analytics';
 import type { Publication } from '../../types';
+import { useFocusTrap } from '../../hooks/useFocusTrap';
 
 const Publications = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [statusFilter, setStatusFilter] = useState('all');
   const [yearFilter, setYearFilter] = useState('all');
   const [bibtexData, setBibtexData] = useState<Record<string, { bibtex: string }>>({});
+  const [bibtexLoading, setBibtexLoading] = useState(true);
+  const [bibtexError, setBibtexError] = useState<string | null>(null);
   const [statusDropdownOpen, setStatusDropdownOpen] = useState(false);
   const [yearDropdownOpen, setYearDropdownOpen] = useState(false);
   const [showAll, setShowAll] = useState(false);
@@ -18,15 +21,54 @@ const Publications = () => {
   const [expandedPub, setExpandedPub] = useState<number | null>(null);
   const statusDropdownRef = useRef<HTMLDivElement>(null);
   const yearDropdownRef = useRef<HTMLDivElement>(null);
-  const citationDropdownRefs = useRef<(HTMLDivElement | null)[]>([]);
-  const shareDropdownRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const statusItemsRef = useRef<HTMLDivElement | null>(null);
+  const yearItemsRef = useRef<HTMLDivElement | null>(null);
+  // Use Map instead of array to prevent memory leaks
+  const citationDropdownRefs = useRef<Map<number, HTMLDivElement | null>>(new Map());
+  const shareDropdownRefs = useRef<Map<number, HTMLDivElement | null>>(new Map());
+  
+  // Add focus traps for filter dropdowns
+  useFocusTrap(statusItemsRef, statusDropdownOpen);
+  useFocusTrap(yearItemsRef, yearDropdownOpen);
 
   useEffect(() => {
     // Load BibTeX data
+    setBibtexLoading(true);
+    setBibtexError(null);
+    
     fetch('/assets/data/bibtex.json')
-      .then(res => res.json())
-      .then(data => setBibtexData(data))
-      .catch(err => console.error('Failed to load BibTeX data:', err));
+      .then(res => {
+        if (!res.ok) {
+          throw new Error(`HTTP error! status: ${res.status}`);
+        }
+        return res.json();
+      })
+      .then(data => {
+        setBibtexData(data);
+        setBibtexLoading(false);
+      })
+      .catch(err => {
+        const errorMessage = 'Failed to load citation data';
+        setBibtexError(errorMessage);
+        setBibtexLoading(false);
+        
+        // Only log in development
+        if (import.meta.env.DEV) {
+          console.error('Failed to load BibTeX data:', err);
+        }
+        
+        // Show user-friendly error notification
+        Toastify({
+          text: errorMessage + '. Citation features may be limited.',
+          duration: 5000,
+          close: true,
+          gravity: "top",
+          position: "left",
+          style: {
+            background: "#ef4444",
+          }
+        }).showToast();
+      });
   }, []);
 
   useEffect(() => {
@@ -40,7 +82,7 @@ const Publications = () => {
 
       // Check citation dropdowns
       if (openCitationDropdown !== null) {
-        const citationRef = citationDropdownRefs.current[openCitationDropdown];
+        const citationRef = citationDropdownRefs.current.get(openCitationDropdown);
         if (citationRef && !citationRef.contains(event.target as Node)) {
           setOpenCitationDropdown(null);
         }
@@ -48,7 +90,7 @@ const Publications = () => {
 
       // Check share dropdowns
       if (openShareDropdown !== null) {
-        const shareRef = shareDropdownRefs.current[openShareDropdown];
+        const shareRef = shareDropdownRefs.current.get(openShareDropdown);
         if (shareRef && !shareRef.contains(event.target as Node)) {
           setOpenShareDropdown(null);
         }
@@ -250,7 +292,7 @@ const Publications = () => {
                  statusFilter === 'accepted' ? 'Accepted' : 'Under Revision'}
               </button>
               {statusDropdownOpen && (
-                <div className="select-items" role="listbox" aria-label="Publication status options">
+                <div className="select-items" role="listbox" aria-label="Publication status options" ref={statusItemsRef}>
                   <div
                     role="option"
                     onClick={() => { setStatusFilter('all'); setStatusDropdownOpen(false); }}
@@ -413,16 +455,20 @@ const Publications = () => {
                             </div>
                           )}
                           {pub.bibtexId && (
-                            <div className="citation-dropdown" ref={el => { citationDropdownRefs.current[actualIndex] = el; }}>
+                            <div className="citation-dropdown" ref={el => { citationDropdownRefs.current.set(actualIndex, el); }}>
                               <button
                                 className="publication-btn"
                                 onClick={(e) => {
                                   e.stopPropagation();
-                                  setOpenCitationDropdown(openCitationDropdown === actualIndex ? null : actualIndex);
+                                  if (!bibtexLoading) {
+                                    setOpenCitationDropdown(openCitationDropdown === actualIndex ? null : actualIndex);
+                                  }
                                 }}
-                                data-tooltip="Copy Citation"
+                                data-tooltip={bibtexLoading ? "Loading citations..." : bibtexError ? "Citation data unavailable" : "Copy Citation"}
+                                disabled={bibtexLoading}
+                                style={{ opacity: bibtexLoading ? 0.5 : 1, cursor: bibtexLoading ? 'wait' : 'pointer' }}
                               >
-                                <i className="fas fa-quote-right"></i>
+                                {bibtexLoading ? <i className="fas fa-spinner fa-spin"></i> : <i className="fas fa-quote-right"></i>}
                               </button>
                               {openCitationDropdown === actualIndex && (
                                 <div className="citation-format-menu">
@@ -435,7 +481,7 @@ const Publications = () => {
                               )}
                             </div>
                           )}
-                          <div className="citation-dropdown" ref={el => { shareDropdownRefs.current[actualIndex] = el; }}>
+                          <div className="citation-dropdown" ref={el => { shareDropdownRefs.current.set(actualIndex, el); }}>
                             <button
                               className="publication-btn"
                               onClick={(e) => {
