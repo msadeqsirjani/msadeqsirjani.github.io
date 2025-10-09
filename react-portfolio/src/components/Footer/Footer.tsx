@@ -96,7 +96,7 @@ const Footer = () => {
           </div>
           <div className="footer-bottom">
             <p>&copy; {currentYear} Mohammad Sadegh Sirjani. All rights reserved.</p>
-            <p className="last-updated">Last updated: October 5, 2025</p>
+            <p className="last-updated">Last updated: {new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</p>
           </div>
         </div>
       </footer>
