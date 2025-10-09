@@ -1,9 +1,14 @@
 import { useState, useEffect, useRef } from 'react';
+import { useFocusTrap } from '../../hooks/useFocusTrap';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLLIElement>(null);
+  const dropdownMenuRef = useRef<HTMLUListElement | null>(null);
+  
+  // Add focus trap for dropdown
+  useFocusTrap(dropdownMenuRef, isDropdownOpen);
   
   // Initialize theme safely for SSR
   const [theme, setTheme] = useState<'light' | 'dark'>(() => {
@@ -147,19 +152,6 @@ const Navbar = () => {
             <span className="bar"></span>
             <span className="bar"></span>
           </button>
-        </div>
-      </div>
-    </nav>
-  );
-};
-
-export default Navbar;
-v>
-  );
-};
-
-export default Navbar;
-     </button>
         </div>
       </div>
     </nav>
