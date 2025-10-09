@@ -9,6 +9,8 @@ const Contact = () => {
     subject: '',
     message: ''
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [lastSubmitTime, setLastSubmitTime] = useState(0);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({
@@ -26,6 +28,31 @@ const Contact = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const form = e.target as HTMLFormElement;
+
+    // Rate limiting: prevent spam submissions (30 seconds between submissions)
+    const now = Date.now();
+    const timeSinceLastSubmit = now - lastSubmitTime;
+    const rateLimitMs = 30000; // 30 seconds
+
+    if (timeSinceLastSubmit < rateLimitMs && lastSubmitTime > 0) {
+      const remainingSeconds = Math.ceil((rateLimitMs - timeSinceLastSubmit) / 1000);
+      Toastify({
+        text: `Please wait ${remainingSeconds} seconds before sending another message`,
+        duration: 3000,
+        close: true,
+        gravity: "top",
+        position: "left",
+        style: {
+          background: "#ef4444",
+        }
+      }).showToast();
+      return;
+    }
+
+    // Prevent double submission
+    if (isSubmitting) {
+      return;
+    }
 
     // Validate email before submission
     if (!validateEmail(formData.email)) {
@@ -57,6 +84,8 @@ const Contact = () => {
       return;
     }
 
+    setIsSubmitting(true);
+
     try {
       const response = await fetch(form.action, {
         method: form.method,
@@ -68,6 +97,7 @@ const Contact = () => {
 
       if (response.ok) {
         trackContactSubmission();
+        setLastSubmitTime(now);
         Toastify({
           text: "Message sent successfully!",
           duration: 3000,
@@ -109,6 +139,8 @@ const Contact = () => {
           background: "#ef4444",
         }
       }).showToast();
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -201,8 +233,16 @@ const Contact = () => {
                   required
                 ></textarea>
               </div>
-              <button type="submit" className="btn btn-primary">
-                <i className="fas fa-paper-plane"></i> Send Message
+              <button type="submit" className="btn btn-primary" disabled={isSubmitting}>
+                {isSubmitting ? (
+                  <>
+                    <i className="fas fa-spinner fa-spin"></i> Sending...
+                  </>
+                ) : (
+                  <>
+                    <i className="fas fa-paper-plane"></i> Send Message
+                  </>
+                )}
               </button>
             </form>
           </div>
