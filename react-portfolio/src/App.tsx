@@ -7,6 +7,8 @@ import QuickActions from './components/QuickActions/QuickActions';
 import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary';
 import AnimatedSection from './components/AnimatedSection/AnimatedSection';
 import SkeletonLoader from './components/SkeletonLoader/SkeletonLoader';
+import CookieConsent from './components/CookieConsent/CookieConsent';
+import OfflineIndicator from './components/OfflineIndicator/OfflineIndicator';
 
 // Lazy load components below the fold
 const Biography = lazy(() => import('./components/Biography/Biography'));
@@ -114,6 +116,8 @@ function App() {
       <ErrorBoundary>
         <QuickActions />
       </ErrorBoundary>
+      <CookieConsent />
+      <OfflineIndicator />
     </ErrorBoundary>
   );
 }
