@@ -13,20 +13,15 @@ const NotFound = () => {
 
   return (
     <div className="not-found">
-      <div className="not-found-content">
-        <div className="not-found-icon">404</div>
-        <h1>Page Not Found</h1>
-        <p>Oops! The page you're looking for doesn't exist.</p>
-        <p className="not-found-suggestion">
-          It might have been moved or deleted, or you may have mistyped the URL.
-        </p>
-        <div className="not-found-actions">
-          <button onClick={goHome} className="btn btn-primary">
-            <i className="fas fa-home"></i> Go Home
-          </button>
-          <a href="#publications" className="btn btn-secondary">
-            <i className="fas fa-book"></i> View Publications
-          </a>
+      <div className="not-found-container">
+        <div className="not-found-left">
+          <div className="not-found-icon">404</div>
+        </div>
+        <div className="not-found-right">
+          <h1 className="not-found-title">PAGE NOT FOUND</h1>
+          <p className="not-found-subtitle">
+            LET'S GET YOU BACK TO <a href="#home" onClick={goHome} className="not-found-link">HOMEPAGE</a>
+          </p>
         </div>
       </div>
     </div>
