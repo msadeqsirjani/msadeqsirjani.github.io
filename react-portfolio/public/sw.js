@@ -1,5 +1,8 @@
 // Dynamic cache name with build timestamp to force cache invalidation on updates
-const CACHE_VERSION = '__BUILD_TIME__'; // Will be replaced during build
+// Fallback to timestamp if build-time replacement fails
+const CACHE_VERSION = '__BUILD_TIME__' !== '__BUILD' + '_TIME__' 
+  ? '__BUILD_TIME__' 
+  : Date.now().toString();
 const CACHE_NAME = `msadeqsirjani-${CACHE_VERSION}`;
 const RUNTIME_CACHE = `runtime-cache-${CACHE_VERSION}`;
 
