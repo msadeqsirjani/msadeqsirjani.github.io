@@ -3,32 +3,11 @@ import './NotFound.css';
 
 const NotFound = () => {
   useEffect(() => {
-    // Check if we're on a 404 page (GitHub Pages redirects all routes to index.html)
-    // This is a fallback for handling unknown hash routes
-    const hash = window.location.hash;
-    if (hash && !isValidRoute(hash)) {
-      // Show 404 content
-      document.title = '404 - Page Not Found | Mohammad Sadegh Sirjani';
-    }
+    document.title = '404 - Page Not Found | Mohammad Sadegh Sirjani';
   }, []);
 
-  const isValidRoute = (hash: string): boolean => {
-    const validRoutes = [
-      '#home',
-      '#biography', 
-      '#education',
-      '#research',
-      '#publications',
-      '#teaching',
-      '#news',
-      '#awards',
-      '#contact'
-    ];
-    return validRoutes.includes(hash.toLowerCase()) || hash === '';
-  };
-
   const goHome = () => {
-    window.location.hash = '#home';
+    window.location.hash = '';
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 

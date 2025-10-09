@@ -1,4 +1,5 @@
 import { lazy, Suspense } from 'react';
+import * as React from 'react';
 import Navbar from './components/Navbar/Navbar';
 import Hero from './components/Hero/Hero';
 import ReadingProgress from './components/ReadingProgress/ReadingProgress';
@@ -32,6 +33,43 @@ const SectionLoader = () => (
 );
 
 function App() {
+  const [show404, setShow404] = React.useState(false);
+
+  React.useEffect(() => {
+    // Valid hash routes
+    const validRoutes = [
+      '', '#', '#home', '#biography', '#education', '#research',
+      '#publications', '#teaching', '#news', '#awards', '#contact'
+    ];
+
+    const checkRoute = () => {
+      const hash = window.location.hash.toLowerCase();
+      const isValid = validRoutes.includes(hash);
+      setShow404(!isValid && hash !== '');
+    };
+
+    // Check on mount and hash change
+    checkRoute();
+    window.addEventListener('hashchange', checkRoute);
+    
+    return () => window.removeEventListener('hashchange', checkRoute);
+  }, []);
+
+  // Show 404 page for invalid routes
+  if (show404) {
+    const NotFound = lazy(() => import('./components/NotFound/NotFound'));
+    return (
+      <ErrorBoundary>
+        <Navbar />
+        <Suspense fallback={<div style={{ minHeight: '60vh' }} />}>
+          <NotFound />
+        </Suspense>
+        <CookieConsent />
+        <OfflineIndicator />
+      </ErrorBoundary>
+    );
+  }
+
   return (
     <ErrorBoundary>
       <a href="#main-content" className="skip-to-content">Skip to main content</a>
