@@ -32,38 +32,6 @@ const Footer = () => {
             return;
           }
 
-          // Add SS logo overlay in the center
-          const ctx = canvas.getContext('2d');
-          if (ctx) {
-            const centerX = canvas.width / 2;
-            const centerY = canvas.height / 2;
-            const logoSize = 60;
-
-            // Draw white rounded rectangle background
-            ctx.fillStyle = '#FFFFFF';
-            ctx.beginPath();
-            ctx.roundRect(
-              centerX - logoSize / 2,
-              centerY - logoSize / 2,
-              logoSize,
-              logoSize,
-              8
-            );
-            ctx.fill();
-
-            // Draw border
-            ctx.strokeStyle = '#0066FF';
-            ctx.lineWidth = 3;
-            ctx.stroke();
-
-            // Draw SS text
-            ctx.fillStyle = '#0066FF';
-            ctx.font = 'bold 32px Inter, system-ui, sans-serif';
-            ctx.textAlign = 'center';
-            ctx.textBaseline = 'middle';
-            ctx.fillText('SS', centerX, centerY);
-          }
-
           const img = document.getElementById('qrcode-image') as HTMLImageElement;
           if (img && canvas) {
             img.src = canvas.toDataURL('image/png', 1.0); // Maximum quality PNG
