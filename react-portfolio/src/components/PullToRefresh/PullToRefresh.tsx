@@ -13,14 +13,14 @@ const PullToRefresh = () => {
 
     const handleTouchStart = (e: TouchEvent) => {
       // Only trigger if at the top of the page
-      if (window.scrollY === 0) {
+      if (window.scrollY === 0 && e.touches[0]) {
         startY.current = e.touches[0].clientY;
         isPulling.current = true;
       }
     };
 
     const handleTouchMove = (e: TouchEvent) => {
-      if (!isPulling.current) return;
+      if (!isPulling.current || !e.touches[0]) return;
 
       currentY.current = e.touches[0].clientY;
       const pullDistance = Math.min(currentY.current - startY.current, maxPull);
