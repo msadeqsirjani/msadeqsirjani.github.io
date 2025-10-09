@@ -7,24 +7,70 @@ const Footer = () => {
   const [scrollVisible, setScrollVisible] = useState(false);
 
   useEffect(() => {
-    // Generate QR Code
+    // Generate QR Code with enhanced quality and mobile optimization
     const canvas = document.getElementById('qrcode') as HTMLCanvasElement;
     if (canvas) {
-      QRCode.toCanvas(canvas, 'https://msadeqsirjani.com', { width: 128 }, (error: Error | null | undefined) => {
-        if (error) {
-          // Only log errors in development
-          if (import.meta.env.DEV) {
-            console.error('QR Code generation error:', error);
+      QRCode.toCanvas(
+        canvas,
+        'https://msadeqsirjani.com',
+        {
+          width: 256, // Increased size for better scanning
+          margin: 2, // Reduced margin for better use of space
+          errorCorrectionLevel: 'H', // High error correction for better reliability
+          color: {
+            dark: '#000000', // Pure black for maximum contrast
+            light: '#FFFFFF' // Pure white background
           }
-          // Silently fail in production - QR code is not critical
-          return;
+        },
+        (error: Error | null | undefined) => {
+          if (error) {
+            // Only log errors in development
+            if (import.meta.env.DEV) {
+              console.error('QR Code generation error:', error);
+            }
+            // Silently fail in production - QR code is not critical
+            return;
+          }
+
+          // Add SS logo overlay in the center
+          const ctx = canvas.getContext('2d');
+          if (ctx) {
+            const centerX = canvas.width / 2;
+            const centerY = canvas.height / 2;
+            const logoSize = 60;
+
+            // Draw white rounded rectangle background
+            ctx.fillStyle = '#FFFFFF';
+            ctx.beginPath();
+            ctx.roundRect(
+              centerX - logoSize / 2,
+              centerY - logoSize / 2,
+              logoSize,
+              logoSize,
+              8
+            );
+            ctx.fill();
+
+            // Draw border
+            ctx.strokeStyle = '#0066FF';
+            ctx.lineWidth = 3;
+            ctx.stroke();
+
+            // Draw SS text
+            ctx.fillStyle = '#0066FF';
+            ctx.font = 'bold 32px Inter, system-ui, sans-serif';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText('SS', centerX, centerY);
+          }
+
+          const img = document.getElementById('qrcode-image') as HTMLImageElement;
+          if (img && canvas) {
+            img.src = canvas.toDataURL('image/png', 1.0); // Maximum quality PNG
+            img.style.display = 'block';
+          }
         }
-        const img = document.getElementById('qrcode-image') as HTMLImageElement;
-        if (img && canvas) {
-          img.src = canvas.toDataURL();
-          img.style.display = 'block';
-        }
-      });
+      );
     }
   }, []);
 

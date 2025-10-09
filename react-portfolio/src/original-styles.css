@@ -1490,20 +1490,48 @@ kbd {
 }
 
 .qr-code-container img {
-    max-width: 150px;
-    height: auto;
-    border: 2px solid var(--border-color);
-    border-radius: 8px;
-    padding: 8px;
-    background: white;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    width: 180px;
+    height: 180px;
+    max-width: 100%;
+    border: 3px solid var(--border-color);
+    border-radius: 12px;
+    padding: 10px;
+    background: #ffffff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.qr-code-container img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
 }
 
 .qr-hint {
-    font-size: 0.75rem;
+    font-size: 0.85rem;
     color: var(--text-light);
     margin: 0;
     text-align: center;
+    font-weight: 600;
+}
+
+/* Mobile-optimized QR code */
+@media (max-width: 768px) {
+    .qr-code-container img {
+        width: 200px;
+        height: 200px;
+        border-width: 4px;
+        padding: 12px;
+    }
+
+    .qr-hint {
+        font-size: 0.9rem;
+    }
+}
+
+/* Dark mode - ensure QR code stays readable */
+body[data-theme="dark"] .qr-code-container img {
+    background: #ffffff;
+    border-color: var(--accent-color);
 }
 
 .footer-section h3 {
