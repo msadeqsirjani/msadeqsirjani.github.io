@@ -1,0 +1,66 @@
+/* Offline Indicator */
+.offline-indicator {
+  position: fixed;
+  top: 70px;
+  left: 50%;
+  transform: translateX(-50%) translateY(-100px);
+  z-index: 9998;
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+  opacity: 0;
+  pointer-events: none;
+  max-width: 90%;
+}
+
+.offline-indicator.visible {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.offline-indicator.offline {
+  background: #ef4444;
+  color: white;
+}
+
+.offline-indicator.online {
+  background: #10b981;
+  color: white;
+}
+
+.offline-indicator-content {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.offline-indicator-content i {
+  font-size: 1.2rem;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .offline-indicator {
+    top: 60px;
+    padding: 0.875rem 1.25rem;
+  }
+
+  .offline-indicator-content {
+    font-size: 0.875rem;
+  }
+
+  .offline-indicator-content i {
+    font-size: 1rem;
+  }
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .offline-indicator {
+    transition: opacity 0.1s;
+  }
+}
