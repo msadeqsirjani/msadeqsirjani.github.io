@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import QRCode from 'qrcode';
+import { useScrollManager } from '../../hooks/useScrollManager';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -25,18 +26,12 @@ const Footer = () => {
         }
       });
     }
-
-    // Scroll to top visibility
-    const handleScroll = () => {
-      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-      const documentHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const scrollPercent = (scrollTop / documentHeight) * 100;
-      setScrollVisible(scrollPercent >= 80);
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // Use centralized scroll manager
+  useScrollManager((_scrollY, scrollPercent) => {
+    setScrollVisible(scrollPercent >= 80);
+  });
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
