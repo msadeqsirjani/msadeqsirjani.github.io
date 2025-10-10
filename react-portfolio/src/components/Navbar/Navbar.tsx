@@ -1,4 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
 import { useFocusTrap } from '../../hooks/useFocusTrap';
 
 const Navbar = () => {
@@ -140,7 +142,7 @@ const Navbar = () => {
             aria-label="Toggle theme"
             data-tooltip={theme === 'light' ? 'Dark mode' : 'Light mode'}
           >
-            <i className={`fas ${theme === 'light' ? 'fa-moon' : 'fa-sun'}`}></i>
+            <FontAwesomeIcon icon={theme === 'light' ? faMoon : faSun} />
           </button>
           <button
             className="nav-toggle"
