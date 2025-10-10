@@ -358,17 +358,26 @@ html {
   font-weight: 900 !important;
 }
 
-/* Research interests icons - match hero icon size */
-.interest-card svg {
-  font-size: 1.5rem !important;
+/* Research interests icons */
+.interest-card svg,
+.interest-card .interest-icon {
+  font-size: 1.8rem !important;
+  color: var(--accent-color);
+  margin-bottom: 0.75rem;
+  display: block;
 }
 
-/* Research interests - CSS-based icons */
-.interest-icon {
-  font-size: 1.8rem;
-  color: var(--accent-color);
-  margin-bottom: 0.5rem;
+.interest-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.interest-card > span:last-child {
   display: block;
+  margin-top: 0.25rem;
 }
 
 /* Contact icons - CSS-based icons */
@@ -391,11 +400,6 @@ html {
 }
 
 @media (max-width: 768px) {
-  .interest-icon {
-    font-size: 1.5rem;
-    margin-bottom: 0.75rem;
-  }
-
   .contact-item span.fas {
     width: 44px;
     height: 44px;
@@ -436,6 +440,7 @@ html {
   .interest-card svg,
   .interest-card .interest-icon {
     font-size: 1.6rem !important;
+    margin-bottom: 1rem;
   }
 }
 
