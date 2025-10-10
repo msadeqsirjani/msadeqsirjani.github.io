@@ -1,5 +1,7 @@
 import { Component } from 'react';
 import type { ReactNode } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faRedo, faSync, faHome } from '@fortawesome/free-solid-svg-icons';
 
 interface Props {
   children: ReactNode;
@@ -116,7 +118,7 @@ class ErrorBoundary extends Component<Props, State> {
                 fontWeight: '600'
               }}
             >
-              <i className="fas fa-redo"></i> Try Again
+              <FontAwesomeIcon icon={faRedo} /> Try Again
             </button>
             <button
               onClick={this.handleReload}
@@ -131,7 +133,7 @@ class ErrorBoundary extends Component<Props, State> {
                 fontWeight: '600'
               }}
             >
-              <i className="fas fa-sync"></i> Reload Page
+              <FontAwesomeIcon icon={faSync} /> Reload Page
             </button>
             <button
               onClick={this.handleGoHome}
@@ -146,7 +148,7 @@ class ErrorBoundary extends Component<Props, State> {
                 fontWeight: '600'
               }}
             >
-              <i className="fas fa-home"></i> Go Home
+              <FontAwesomeIcon icon={faHome} /> Go Home
             </button>
           </div>
 
