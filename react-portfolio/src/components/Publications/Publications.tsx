@@ -1,6 +1,9 @@
 import { useState, useMemo, useEffect, useRef } from 'react';
 import { publications } from '../../data/content';
 import Toastify from 'toastify-js';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch, faTimes, faRedo, faChevronDown, faQuoteLeft, faExternalLinkAlt, faFilePdf, faSpinner, faQuoteRight, faShareAlt, faEnvelope } from '@fortawesome/free-solid-svg-icons';
+import { faTwitter, faLinkedin, faFacebook } from '@fortawesome/free-brands-svg-icons';
 import { trackCitationCopy } from '../../utils/analytics';
 import type { Publication } from '../../types';
 import { useFocusTrap } from '../../hooks/useFocusTrap';
@@ -255,7 +258,7 @@ const Publications = () => {
 
         <div className="publication-controls">
           <div className="search-box" role="search">
-            <i className="fas fa-search" aria-hidden="true"></i>
+            <FontAwesomeIcon icon={faSearch} aria-hidden="true" />
             <input
               type="text"
               id="publicationSearch"
@@ -274,7 +277,7 @@ const Publications = () => {
                 onClick={() => setSearchTerm('')}
                 aria-label="Clear search"
               >
-                <i className="fas fa-times" aria-hidden="true"></i>
+                <FontAwesomeIcon icon={faTimes} aria-hidden="true" />
               </button>
             )}
           </div>
@@ -360,7 +363,7 @@ const Publications = () => {
               )}
             </div>
             <button id="resetFilters" onClick={handleReset} className="btn-secondary" aria-label="Reset all filters">
-              <i className="fas fa-redo" aria-hidden="true"></i> Reset
+              <FontAwesomeIcon icon={faRedo} aria-hidden="true" /> Reset
             </button>
           </div>
         </div>
@@ -401,11 +404,11 @@ const Publications = () => {
                         aria-label={expandedPub === actualIndex ? 'Collapse details' : 'Expand details'}
                         aria-expanded={expandedPub === actualIndex}
                       >
-                        <i className={`fas fa-chevron-down ${expandedPub === actualIndex ? 'rotated' : ''}`}></i>
+                        <FontAwesomeIcon icon={faChevronDown} className={expandedPub === actualIndex ? 'rotated' : ''} />
                       </span>
                     ) : (
                       <span className="expand-arrow disabled">
-                        <i className="fas fa-chevron-down"></i>
+                        <FontAwesomeIcon icon={faChevronDown} />
                       </span>
                     )}
                   </div>
@@ -417,14 +420,14 @@ const Publications = () => {
                           <span className={`status-inline ${pub.status}`}>{getStatusLabel(pub.status)}</span>
                           {pub.citations !== undefined && (
                             <span className="citations-badge">
-                              <i className="fas fa-quote-left"></i> {pub.citations} {pub.citations === 1 ? 'Citation' : 'Citations'}
+                              <FontAwesomeIcon icon={faQuoteLeft} /> {pub.citations} {pub.citations === 1 ? 'Citation' : 'Citations'}
                             </span>
                           )}
                         </div>
                         <div className="detail-actions">
                           {pub.link && (
                             <a href={pub.link} className="publication-btn" target="_blank" rel="noopener" data-tooltip="View Paper">
-                              <i className="fas fa-external-link-alt"></i>
+                              <FontAwesomeIcon icon={faExternalLinkAlt} />
                             </a>
                           )}
                           {pub.pdfLink && (
@@ -445,7 +448,7 @@ const Publications = () => {
                               onMouseLeave={() => setHoveredPub(null)}
                             >
                               <a href={pub.pdfLink} className="publication-btn" download data-tooltip="Download PDF">
-                                <i className="fas fa-file-pdf"></i>
+                                <FontAwesomeIcon icon={faFilePdf} />
                               </a>
 
                               {/* PDF Preview Tooltip - Desktop only with lazy loading */}
@@ -480,7 +483,7 @@ const Publications = () => {
                                 disabled={bibtexLoading}
                                 style={{ opacity: bibtexLoading ? 0.5 : 1, cursor: bibtexLoading ? 'wait' : 'pointer' }}
                               >
-                                {bibtexLoading ? <i className="fas fa-spinner fa-spin"></i> : <i className="fas fa-quote-right"></i>}
+                                {bibtexLoading ? <FontAwesomeIcon icon={faSpinner} spin /> : <FontAwesomeIcon icon={faQuoteRight} />}
                               </button>
                               {openCitationDropdown === actualIndex && (
                                 <div className="citation-format-menu">
@@ -502,21 +505,21 @@ const Publications = () => {
                               }}
                               data-tooltip="Share"
                             >
-                              <i className="fas fa-share-alt"></i>
+                              <FontAwesomeIcon icon={faShareAlt} />
                             </button>
                             {openShareDropdown === actualIndex && (
                               <div className="citation-format-menu">
                                 <div onClick={() => sharePublication('twitter', pub)}>
-                                  <i className="fab fa-twitter" style={{ marginRight: '0.5rem' }}></i>Twitter
+                                  <FontAwesomeIcon icon={faTwitter} style={{ marginRight: '0.5rem' }} />Twitter
                                 </div>
                                 <div onClick={() => sharePublication('linkedin', pub)}>
-                                  <i className="fab fa-linkedin" style={{ marginRight: '0.5rem' }}></i>LinkedIn
+                                  <FontAwesomeIcon icon={faLinkedin} style={{ marginRight: '0.5rem' }} />LinkedIn
                                 </div>
                                 <div onClick={() => sharePublication('facebook', pub)}>
-                                  <i className="fab fa-facebook" style={{ marginRight: '0.5rem' }}></i>Facebook
+                                  <FontAwesomeIcon icon={faFacebook} style={{ marginRight: '0.5rem' }} />Facebook
                                 </div>
                                 <div onClick={() => sharePublication('email', pub)}>
-                                  <i className="fas fa-envelope" style={{ marginRight: '0.5rem' }}></i>Email
+                                  <FontAwesomeIcon icon={faEnvelope} style={{ marginRight: '0.5rem' }} />Email
                                 </div>
                               </div>
                             )}
@@ -540,7 +543,7 @@ const Publications = () => {
           {filteredPublications.length > 5 && (
             <div className="show-more-container">
               <button id="showMoreBtn" onClick={() => setShowAll(!showAll)} className={showAll ? 'expanded' : ''}>
-                {showAll ? 'Show Less' : 'Show More'} <i className={`fas fa-chevron-down`}></i>
+                {showAll ? 'Show Less' : 'Show More'} <FontAwesomeIcon icon={faChevronDown} />
               </button>
             </div>
           )}
