@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import Toastify from 'toastify-js';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMapMarkerAlt, faEnvelope, faUniversity, faSpinner, faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 import { trackContactSubmission } from '../../utils/analytics';
 
 const Contact = () => {
@@ -152,7 +154,7 @@ const Contact = () => {
           <div className="contact-info">
             <h3>Get in Touch</h3>
             <div className="contact-item">
-              <i className="fas fa-map-marker-alt"></i>
+              <FontAwesomeIcon icon={faMapMarkerAlt} />
               <div>
                 <h4>Location</h4>
                 <p>
@@ -163,7 +165,7 @@ const Contact = () => {
               </div>
             </div>
             <div className="contact-item">
-              <i className="fas fa-envelope"></i>
+              <FontAwesomeIcon icon={faEnvelope} />
               <div>
                 <h4>Email</h4>
                 <p>
@@ -174,7 +176,7 @@ const Contact = () => {
               </div>
             </div>
             <div className="contact-item">
-              <i className="fas fa-university"></i>
+              <FontAwesomeIcon icon={faUniversity} />
               <div>
                 <h4>Institution</h4>
                 <p>
@@ -236,11 +238,11 @@ const Contact = () => {
               <button type="submit" className="btn btn-primary" disabled={isSubmitting}>
                 {isSubmitting ? (
                   <>
-                    <i className="fas fa-spinner fa-spin"></i> Sending...
+                    <FontAwesomeIcon icon={faSpinner} spin /> Sending...
                   </>
                 ) : (
                   <>
-                    <i className="fas fa-paper-plane"></i> Send Message
+                    <FontAwesomeIcon icon={faPaperPlane} /> Send Message
                   </>
                 )}
               </button>
