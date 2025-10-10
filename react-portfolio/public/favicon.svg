@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <style>
+    .bg { fill: #1e40af; }
+    .text { fill: #ffffff; }
+    @media (prefers-color-scheme: dark) {
+      .bg { fill: #60a5fa; }
+      .text { fill: #0f172a; }
+    }
+  </style>
+  <!-- Background circle -->
+  <circle cx="50" cy="50" r="48" class="bg"/>
+  <!-- SS text -->
+  <text x="50" y="66" font-family="Georgia, serif" font-size="48" font-weight="bold" text-anchor="middle" class="text">SS</text>
+</svg>
