@@ -43,7 +43,8 @@ const OfflineIndicator = () => {
         {!isOnline ? (
           <>
             <FontAwesomeIcon icon={faWifi} style={{ textDecoration: 'line-through' }} />
-            <span>You're offline. Some features may be unavailable.</span>
+            <span className="offline-text-desktop">You're offline. Some features may be unavailable.</span>
+            <span className="offline-text-mobile">You're offline</span>
           </>
         ) : (
           <>
