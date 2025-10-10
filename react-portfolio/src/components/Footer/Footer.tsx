@@ -1,5 +1,8 @@
 import { useEffect, useState } from 'react';
 import QRCode from 'qrcode';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEnvelope, faGraduationCap, faArrowUp } from '@fortawesome/free-solid-svg-icons';
+import { faLinkedin, faGithub, faOrcid, faResearchgate } from '@fortawesome/free-brands-svg-icons';
 import { useScrollManager } from '../../hooks/useScrollManager';
 
 const Footer = () => {
@@ -30,38 +33,6 @@ const Footer = () => {
             }
             // Silently fail in production - QR code is not critical
             return;
-          }
-
-          // Add SS logo overlay in the center
-          const ctx = canvas.getContext('2d');
-          if (ctx) {
-            const centerX = canvas.width / 2;
-            const centerY = canvas.height / 2;
-            const logoSize = 60;
-
-            // Draw white rounded rectangle background
-            ctx.fillStyle = '#FFFFFF';
-            ctx.beginPath();
-            ctx.roundRect(
-              centerX - logoSize / 2,
-              centerY - logoSize / 2,
-              logoSize,
-              logoSize,
-              8
-            );
-            ctx.fill();
-
-            // Draw border
-            ctx.strokeStyle = '#0066FF';
-            ctx.lineWidth = 3;
-            ctx.stroke();
-
-            // Draw SS text
-            ctx.fillStyle = '#0066FF';
-            ctx.font = 'bold 32px Inter, system-ui, sans-serif';
-            ctx.textAlign = 'center';
-            ctx.textBaseline = 'middle';
-            ctx.fillText('SS', centerX, centerY);
           }
 
           const img = document.getElementById('qrcode-image') as HTMLImageElement;
@@ -114,22 +85,22 @@ const Footer = () => {
               <h4>Connect & Follow</h4>
               <div className="footer-social">
                 <a href="mailto:mohammadsadegh.sirjani@utsa.edu" target="_blank" rel="noopener" data-tooltip="Email">
-                  <i className="fas fa-envelope"></i>
+                  <FontAwesomeIcon icon={faEnvelope} />
                 </a>
                 <a href="https://scholar.google.com/citations?user=EI5DizMAAAAJ&hl=en" target="_blank" rel="noopener" data-tooltip="Google Scholar">
-                  <i className="fas fa-graduation-cap"></i>
+                  <FontAwesomeIcon icon={faGraduationCap} />
                 </a>
                 <a href="https://www.linkedin.com/in/msadeqsirjani" target="_blank" rel="noopener" data-tooltip="LinkedIn">
-                  <i className="fab fa-linkedin"></i>
+                  <FontAwesomeIcon icon={faLinkedin} />
                 </a>
                 <a href="https://github.com/msadeqsirjani" target="_blank" rel="noopener" data-tooltip="GitHub">
-                  <i className="fab fa-github"></i>
+                  <FontAwesomeIcon icon={faGithub} />
                 </a>
                 <a href="https://orcid.org/0009-0000-5146-0216" target="_blank" rel="noopener" data-tooltip="ORCID">
-                  <i className="fab fa-orcid"></i>
+                  <FontAwesomeIcon icon={faOrcid} />
                 </a>
                 <a href="https://www.researchgate.net/profile/Mohammad-Sadegh-Sirjani" target="_blank" rel="noopener" data-tooltip="ResearchGate">
-                  <i className="fab fa-researchgate"></i>
+                  <FontAwesomeIcon icon={faResearchgate} />
                 </a>
               </div>
             </div>
@@ -155,7 +126,7 @@ const Footer = () => {
         aria-label="Scroll to top"
         data-tooltip="Back to top"
       >
-        <i className="fas fa-arrow-up"></i>
+        <FontAwesomeIcon icon={faArrowUp} />
       </button>
     </>
   );

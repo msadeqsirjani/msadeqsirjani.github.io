@@ -351,16 +351,60 @@ html {
 
 /* Social links icons - bold and bigger */
 .social-link i,
-.footer-social a i {
+.footer-social a i,
+.social-link svg,
+.footer-social a svg {
   font-size: 1.5rem !important;
   font-weight: 900 !important;
 }
 
-/* ResearchGate icon - use normal weight for brands and make it bigger */
-.fa-researchgate {
-  font-family: "Font Awesome 6 Brands" !important;
-  font-weight: 400 !important;
+/* Research interests icons */
+.interest-card svg,
+.interest-card .interest-icon {
   font-size: 1.8rem !important;
+  color: var(--accent-color);
+  margin-bottom: 0.75rem;
+  display: block;
+}
+
+.interest-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.interest-card > span:last-child {
+  display: block;
+  margin-top: 0.25rem;
+}
+
+/* Contact icons - CSS-based icons */
+.contact-item span.fas {
+  width: 40px;
+  height: 40px;
+  font-size: 1.25rem;
+  color: white;
+  background: var(--accent-color);
+  border-radius: 8px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.contact-item:hover span.fas {
+  transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+  .contact-item span.fas {
+    width: 44px;
+    height: 44px;
+    font-size: 1.25rem;
+  }
 }
 
 @media (max-width: 768px) {
@@ -387,12 +431,16 @@ html {
   }
 
   .social-link i,
-  .footer-social a i {
+  .footer-social a i,
+  .social-link svg,
+  .footer-social a svg {
     font-size: 1.6rem !important;
   }
 
-  .fa-researchgate {
-    font-size: 2rem !important;
+  .interest-card svg,
+  .interest-card .interest-icon {
+    font-size: 1.6rem !important;
+    margin-bottom: 1rem;
   }
 }
 

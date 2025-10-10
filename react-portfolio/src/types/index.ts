@@ -45,6 +45,6 @@ export interface AwardItem {
 }
 
 export interface ResearchInterest {
-  icon: string;
+  icon: any; // FontAwesome IconDefinition
   name: string;
 }
