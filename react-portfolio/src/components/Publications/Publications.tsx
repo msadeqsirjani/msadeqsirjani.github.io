@@ -223,25 +223,36 @@ const Publications = () => {
     const venue = pub.venue;
     const year = pub.year;
     const abstract = pub.abstract || '';
-    const url = pub.link || window.location.href;
+    const doi = pub.link || '';
+    const url = doi || window.location.href;
 
-    // Create share text with title, venue, year, and abstract
-    const shareText = `${title}\n\n${venue} (${year})\n\n${abstract.substring(0, 200)}${abstract.length > 200 ? '...' : ''}`;
+    // Create share text - only email includes abstract
+    const doiText = doi ? `\n\nRead More: ${doi}` : '';
+
+    // Simple text for social media (no abstract)
+    const simpleShareText = `${title}\n\n${venue} (${year})${doiText}`;
+
+    // Email gets complete abstract
+    const emailText = `${title}\n\n${venue} (${year})\n\nAbstract:\n${abstract}${doiText}`;
 
     let shareUrl = '';
 
     switch(platform) {
       case 'twitter':
-        shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(`${title}\n${venue} (${year})`)}&url=${encodeURIComponent(url)}`;
+        // Twitter: Title, venue, year, and link only
+        shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(simpleShareText)}`;
         break;
       case 'linkedin':
-        shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`;
+        // LinkedIn: Title, venue, year, and link only
+        shareUrl = `https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(url)}&title=${encodeURIComponent(`${title} - ${venue} (${year})`)}`;
         break;
       case 'facebook':
+        // Facebook: Simple URL sharing
         shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
         break;
       case 'email':
-        shareUrl = `mailto:?subject=${encodeURIComponent(title)}&body=${encodeURIComponent(shareText + '\n\nRead more: ' + url)}`;
+        // Email: Include complete information with full abstract
+        shareUrl = `mailto:?subject=${encodeURIComponent(`${title} - ${venue} (${year})`)}&body=${encodeURIComponent(emailText)}`;
         break;
     }
 
