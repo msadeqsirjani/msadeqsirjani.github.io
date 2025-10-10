@@ -21,12 +21,12 @@
 }
 
 .offline-indicator.offline {
-  background: #ef4444;
+  background: var(--error-color);
   color: white;
 }
 
 .offline-indicator.online {
-  background: #10b981;
+  background: var(--success-color);
   color: white;
 }
 
@@ -42,11 +42,17 @@
   font-size: 1.2rem;
 }
 
+/* Hide mobile text on desktop */
+.offline-text-mobile {
+  display: none;
+}
+
 /* Mobile adjustments */
 @media (max-width: 768px) {
   .offline-indicator {
     top: 60px;
-    padding: 0.875rem 1.25rem;
+    padding: 0.75rem 1rem;
+    max-width: 85%;
   }
 
   .offline-indicator-content {
@@ -54,7 +60,16 @@
   }
 
   .offline-indicator-content i {
-    font-size: 1rem;
+    font-size: 1.1rem;
+  }
+
+  /* Show shorter text on mobile */
+  .offline-text-desktop {
+    display: none;
+  }
+
+  .offline-text-mobile {
+    display: inline;
   }
 }
 
