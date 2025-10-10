@@ -351,9 +351,16 @@ html {
 
 /* Social links icons - bold and bigger */
 .social-link i,
-.footer-social a i {
+.footer-social a i,
+.social-link svg,
+.footer-social a svg {
   font-size: 1.5rem !important;
   font-weight: 900 !important;
+}
+
+/* Research interests icons - match hero icon size */
+.interest-card svg {
+  font-size: 1.5rem !important;
 }
 
 @media (max-width: 768px) {
@@ -380,7 +387,13 @@ html {
   }
 
   .social-link i,
-  .footer-social a i {
+  .footer-social a i,
+  .social-link svg,
+  .footer-social a svg {
+    font-size: 1.6rem !important;
+  }
+
+  .interest-card svg {
     font-size: 1.6rem !important;
   }
 }
