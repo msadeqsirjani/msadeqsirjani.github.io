@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlus, faTimes, faEnvelope, faDownload, faCalendar } from '@fortawesome/free-solid-svg-icons';
 
 const QuickActions = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -11,17 +13,17 @@ const QuickActions = () => {
         onClick={() => setIsOpen(!isOpen)}
         data-tooltip={!isOpen ? 'Quick Actions' : undefined}
       >
-        <i className={`fas ${isOpen ? 'fa-times' : 'fa-plus'}`} aria-hidden="true"></i>
+        <FontAwesomeIcon icon={isOpen ? faTimes : faPlus} aria-hidden="true" />
       </div>
       <div className={`quick-action-menu ${isOpen ? 'active' : ''}`} id="quickActionMenu">
         <a href="mailto:mohammadsadegh.sirjani@utsa.edu" className="quick-action-btn" data-tooltip="Send Email">
-          <i className="fas fa-envelope" aria-hidden="true"></i>
+          <FontAwesomeIcon icon={faEnvelope} aria-hidden="true" />
         </a>
         <a href="/assets/docs/cv/msadeqsirjani-cv.pdf" className="quick-action-btn" download data-tooltip="Download CV">
-          <i className="fas fa-download" aria-hidden="true"></i>
+          <FontAwesomeIcon icon={faDownload} aria-hidden="true" />
         </a>
         <a href="https://calendly.com/msadeqsirjani/meeting" className="quick-action-btn" target="_blank" rel="noopener" data-tooltip="Schedule Meeting">
-          <i className="fas fa-calendar" aria-hidden="true"></i>
+          <FontAwesomeIcon icon={faCalendar} aria-hidden="true" />
         </a>
       </div>
     </div>
