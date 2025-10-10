@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Toastify from 'toastify-js';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMapMarkerAlt, faEnvelope, faUniversity, faSpinner, faPaperPlane } from '@fortawesome/free-solid-svg-icons';
+import { faSpinner, faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 import { trackContactSubmission } from '../../utils/analytics';
 
 const Contact = () => {
@@ -154,7 +154,7 @@ const Contact = () => {
           <div className="contact-info">
             <h3>Get in Touch</h3>
             <div className="contact-item">
-              <FontAwesomeIcon icon={faMapMarkerAlt} />
+              <span className="fas fa-map-marker-alt"></span>
               <div>
                 <h4>Location</h4>
                 <p>
@@ -165,7 +165,7 @@ const Contact = () => {
               </div>
             </div>
             <div className="contact-item">
-              <FontAwesomeIcon icon={faEnvelope} />
+              <span className="fas fa-envelope"></span>
               <div>
                 <h4>Email</h4>
                 <p>
@@ -176,7 +176,7 @@ const Contact = () => {
               </div>
             </div>
             <div className="contact-item">
-              <FontAwesomeIcon icon={faUniversity} />
+              <span className="fas fa-university"></span>
               <div>
                 <h4>Institution</h4>
                 <p>
