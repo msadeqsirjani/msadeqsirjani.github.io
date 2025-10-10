@@ -1,4 +1,5 @@
 import type { Publication, EducationItem, ResearchItem, TeachingItem, NewsItem, AwardItem, ResearchInterest } from '../types';
+import { faNetworkWired, faMicrochip, faServer, faGears, faBolt, faArrowsRotate } from '@fortawesome/free-solid-svg-icons';
 
 export const publications: Publication[] = [
   {
@@ -202,10 +203,10 @@ export const awards: AwardItem[] = [
 ];
 
 export const researchInterests: ResearchInterest[] = [
-  { icon: 'fa-network-wired', name: 'Internet of Things' },
-  { icon: 'fa-microchip', name: 'Tiny AI' },
-  { icon: 'fa-server', name: 'Edge AI' },
-  { icon: 'fa-cogs', name: 'Embedded Systems' },
-  { icon: 'fa-bolt', name: 'Energy Harvesting' },
-  { icon: 'fa-sync-alt', name: 'Intermittent<br>Computing' }
+  { icon: faNetworkWired, name: 'Internet of Things' },
+  { icon: faMicrochip, name: 'Tiny AI' },
+  { icon: faServer, name: 'Edge AI' },
+  { icon: faGears, name: 'Embedded Systems' },
+  { icon: faBolt, name: 'Energy Harvesting' },
+  { icon: faArrowsRotate, name: 'Intermittent<br>Computing' }
 ];
