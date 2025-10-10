@@ -3,6 +3,7 @@ export interface Publication {
   venue: string;
   year: string;
   status: 'published' | 'accepted' | 'review';
+  authors?: string;
   link?: string;
   pdfLink?: string;
   bibtexId?: string;

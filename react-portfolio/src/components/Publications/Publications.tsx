@@ -538,6 +538,20 @@ const Publications = () => {
                         </div>
                       </div>
 
+                      {pub.authors && (
+                        <div className="abstract-section">
+                          <p>
+                            <strong style={{ display: 'inline' }}>Authors: </strong>
+                            {pub.authors.split(', ').map((author, idx, arr) => (
+                              <>
+                                {author.includes('Sirjani') ? <strong style={{ display: 'inline' }} key={idx}>{author}</strong> : author}
+                                {idx < arr.length - 1 && ', '}
+                              </>
+                            ))}
+                          </p>
+                        </div>
+                      )}
+
                       {pub.abstract && (
                         <div className="abstract-section">
                           <strong>Abstract:</strong>
