@@ -1,5 +1,6 @@
 import { lazy, Suspense } from 'react';
 import * as React from 'react';
+import { Toaster } from 'sonner';
 import Navbar from './components/Navbar/Navbar';
 import Hero from './components/Hero/Hero';
 import ReadingProgress from './components/ReadingProgress/ReadingProgress';
@@ -82,6 +83,14 @@ function App() {
         <GlobalSearch isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />
         <CookieConsent />
         <OfflineIndicator />
+        <Toaster
+          position="bottom-left"
+          closeButton
+          expand={false}
+          toastOptions={{
+            className: 'custom-toast',
+          }}
+        />
       </ErrorBoundary>
     );
   }
@@ -173,6 +182,11 @@ function App() {
       </ErrorBoundary>
       <CookieConsent />
       <OfflineIndicator />
+      <Toaster
+        position="bottom-left"
+        closeButton
+        expand={false}
+      />
     </ErrorBoundary>
   );
 }

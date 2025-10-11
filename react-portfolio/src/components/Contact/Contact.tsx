@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import Toastify from 'toastify-js';
+import { toast } from 'sonner';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner, faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 import { trackContactSubmission } from '../../utils/analytics';
@@ -38,16 +38,7 @@ const Contact = () => {
 
     if (timeSinceLastSubmit < rateLimitMs && lastSubmitTime > 0) {
       const remainingSeconds = Math.ceil((rateLimitMs - timeSinceLastSubmit) / 1000);
-      Toastify({
-        text: `Please wait ${remainingSeconds} seconds before sending another message`,
-        duration: 3000,
-        close: true,
-        gravity: "top",
-        position: "left",
-        style: {
-          background: "#ef4444",
-        }
-      }).showToast();
+      toast.error(`Please wait ${remainingSeconds} seconds before sending another message`);
       return;
     }
 
@@ -58,31 +49,13 @@ const Contact = () => {
 
     // Validate email before submission
     if (!validateEmail(formData.email)) {
-      Toastify({
-        text: "Please enter a valid email address",
-        duration: 3000,
-        close: true,
-        gravity: "top",
-        position: "left",
-        style: {
-          background: "#ef4444",
-        }
-      }).showToast();
+      toast.error("Please enter a valid email address");
       return;
     }
 
     // Validate message length
     if (formData.message.trim().length < 10) {
-      Toastify({
-        text: "Message must be at least 10 characters long",
-        duration: 3000,
-        close: true,
-        gravity: "top",
-        position: "left",
-        style: {
-          background: "#ef4444",
-        }
-      }).showToast();
+      toast.error("Message must be at least 10 characters long");
       return;
     }
 
@@ -100,16 +73,7 @@ const Contact = () => {
       if (response.ok) {
         trackContactSubmission();
         setLastSubmitTime(now);
-        Toastify({
-          text: "Message sent successfully!",
-          duration: 3000,
-          close: true,
-          gravity: "top",
-          position: "left",
-          style: {
-            background: "var(--accent-color)",
-          }
-        }).showToast();
+        toast.success("Message sent successfully!");
 
         // Reset form
         setFormData({
@@ -119,28 +83,10 @@ const Contact = () => {
           message: ''
         });
       } else {
-        Toastify({
-          text: "Failed to send message. Please try again.",
-          duration: 3000,
-          close: true,
-          gravity: "top",
-          position: "left",
-          style: {
-            background: "#ef4444",
-          }
-        }).showToast();
+        toast.error("Failed to send message. Please try again.");
       }
     } catch {
-      Toastify({
-        text: "An error occurred. Please try again.",
-        duration: 3000,
-        close: true,
-        gravity: "top",
-        position: "left",
-        style: {
-          background: "#ef4444",
-        }
-      }).showToast();
+      toast.error("An error occurred. Please try again.");
     } finally {
       setIsSubmitting(false);
     }

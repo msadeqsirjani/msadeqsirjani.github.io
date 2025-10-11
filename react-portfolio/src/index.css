@@ -1,6 +1,5 @@
 /* Import original styles */
 @import './original-styles.css';
-@import url('https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css');
 
 /* Font-display optimization for better performance */
 @font-face {
@@ -1114,4 +1113,39 @@ body[data-theme="dark"] .expand-arrow.disabled {
 .publication-item > .publication-actions-row,
 .publication-item > .status {
   display: none;
+}
+
+/* Sonner Toast Customization */
+[data-sonner-toast] {
+  background: var(--white) !important;
+  color: var(--text-color) !important;
+  border: 1px solid var(--border-color) !important;
+}
+
+[data-sonner-toast][data-type="success"] {
+  background: var(--accent-color) !important;
+  color: white !important;
+  border: none !important;
+}
+
+[data-sonner-toast][data-type="error"] {
+  background: #ef4444 !important;
+  color: white !important;
+  border: none !important;
+}
+
+[data-sonner-toast] [data-button] {
+  background: transparent !important;
+  color: currentColor !important;
+  border: 1px solid currentColor !important;
+}
+
+[data-sonner-toast][data-type="success"] [data-button] {
+  border-color: rgba(255, 255, 255, 0.3) !important;
+  color: white !important;
+}
+
+[data-sonner-toast][data-type="error"] [data-button] {
+  border-color: rgba(255, 255, 255, 0.3) !important;
+  color: white !important;
 }

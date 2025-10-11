@@ -1,6 +1,6 @@
 import { useState, useMemo, useEffect, useRef } from 'react';
 import { publications } from '../../data/content';
-import Toastify from 'toastify-js';
+import { toast } from 'sonner';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faTimes, faRedo, faChevronDown, faQuoteLeft, faExternalLinkAlt, faFilePdf, faSpinner, faQuoteRight, faShareAlt, faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { faTwitter, faLinkedin, faFacebook } from '@fortawesome/free-brands-svg-icons';
@@ -59,16 +59,7 @@ const Publications = () => {
         }
         
         // Show user-friendly error notification
-        Toastify({
-          text: errorMessage + '. Citation features may be limited.',
-          duration: 5000,
-          close: true,
-          gravity: "top",
-          position: "left",
-          style: {
-            background: "#ef4444",
-          }
-        }).showToast();
+        toast.error(errorMessage + '. Citation features may be limited.');
       });
   }, []);
 
@@ -145,16 +136,7 @@ const Publications = () => {
       if (navigator.clipboard && navigator.clipboard.writeText) {
         navigator.clipboard.writeText(citation).then(() => {
           trackCitationCopy('bibtex', pub.title);
-          Toastify({
-            text: 'BibTeX citation copied!',
-            duration: 3000,
-            close: true,
-            gravity: "top",
-            position: "left",
-            style: {
-              background: "var(--accent-color)",
-            }
-          }).showToast();
+          toast.success('BibTeX citation copied!');
         }).catch(err => {
           console.error('Failed to copy:', err);
           fallbackCopyBibtex(citation, pub.title);
@@ -177,18 +159,10 @@ const Publications = () => {
     try {
       document.execCommand('copy');
       trackCitationCopy('bibtex', pubTitle);
-      Toastify({
-        text: 'BibTeX citation copied!',
-        duration: 3000,
-        close: true,
-        gravity: "top",
-        position: "left",
-        style: {
-          background: "var(--accent-color)",
-        }
-      }).showToast();
+      toast.success('BibTeX citation copied!');
     } catch (err) {
       console.error('Fallback copy failed:', err);
+      toast.error('Failed to copy citation');
     }
 
     document.body.removeChild(textArea);
