@@ -1,9 +1,13 @@
 import { useState, useEffect, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
+import { faMoon, faSun, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { useFocusTrap } from '../../hooks/useFocusTrap';
 
-const Navbar = () => {
+interface NavbarProps {
+  onSearchClick?: () => void;
+}
+
+const Navbar = ({ onSearchClick }: NavbarProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLLIElement>(null);
@@ -136,6 +140,16 @@ const Navbar = () => {
           </li>
         </ul>
         <div className="nav-controls">
+          {/* Desktop Search Button - Hidden on Mobile */}
+          <button
+            className="search-toggle desktop-only"
+            onClick={onSearchClick}
+            aria-label="Open search"
+            data-tooltip="Search (⌘K)"
+          >
+            <FontAwesomeIcon icon={faSearch} />
+          </button>
+          
           <button
             className="theme-toggle"
             onClick={toggleTheme}
