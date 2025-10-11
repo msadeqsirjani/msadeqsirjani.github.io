@@ -46,7 +46,6 @@ export default defineConfig({
       ],
       safelist: {
         standard: [
-          /^toastify/,
           /^fa-/,
           /^fas/,
           /^fab/,
@@ -56,7 +55,7 @@ export default defineConfig({
           /dark-mode$/,
           /data-theme/,
         ],
-        deep: [/toastify/, /fa-/, /animate-/],
+        deep: [/fa-/, /animate-/, /sonner/],
         greedy: [/^publication-/, /^citation-/, /^select-/, /^nav-/]
       },
       defaultExtractor: (content: string) => content.match(/[\w-/:]+(?<!:)/g) || [],
@@ -73,7 +72,7 @@ export default defineConfig({
         manualChunks: {
           'react-vendor': ['react', 'react-dom'],
           'qrcode': ['qrcode'],
-          'toastify': ['toastify-js'],
+          'sonner': ['sonner'],
         },
         sourcemapExcludeSources: true, // Don't include source code in sourcemaps for security
       },

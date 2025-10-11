@@ -30,7 +30,6 @@
     "@types/qrcode": "^1.5.5",
     "@types/react": "^19.1.16",
     "@types/react-dom": "^19.1.9",
-    "@types/toastify-js": "^1.12.4",
     "@vheemstra/vite-plugin-imagemin": "^2.2.1",
     "@vitejs/plugin-react": "^5.0.4",
     "eslint": "^9.36.0",
