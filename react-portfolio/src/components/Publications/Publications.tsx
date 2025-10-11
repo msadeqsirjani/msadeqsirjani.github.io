@@ -18,7 +18,6 @@ const Publications = () => {
   const [statusDropdownOpen, setStatusDropdownOpen] = useState(false);
   const [yearDropdownOpen, setYearDropdownOpen] = useState(false);
   const [showAll, setShowAll] = useState(false);
-  const [openCitationDropdown, setOpenCitationDropdown] = useState<number | null>(null);
   const [openShareDropdown, setOpenShareDropdown] = useState<number | null>(null);
   const [hoveredPub, setHoveredPub] = useState<number | null>(null);
   const [expandedPub, setExpandedPub] = useState<number | null>(null);
@@ -27,7 +26,6 @@ const Publications = () => {
   const statusItemsRef = useRef<HTMLDivElement | null>(null);
   const yearItemsRef = useRef<HTMLDivElement | null>(null);
   // Use Map instead of array to prevent memory leaks
-  const citationDropdownRefs = useRef<Map<number, HTMLDivElement | null>>(new Map());
   const shareDropdownRefs = useRef<Map<number, HTMLDivElement | null>>(new Map());
   
   // Add focus traps for filter dropdowns
@@ -83,14 +81,6 @@ const Publications = () => {
         setYearDropdownOpen(false);
       }
 
-      // Check citation dropdowns
-      if (openCitationDropdown !== null) {
-        const citationRef = citationDropdownRefs.current.get(openCitationDropdown);
-        if (citationRef && !citationRef.contains(event.target as Node)) {
-          setOpenCitationDropdown(null);
-        }
-      }
-
       // Check share dropdowns
       if (openShareDropdown !== null) {
         const shareRef = shareDropdownRefs.current.get(openShareDropdown);
@@ -105,12 +95,11 @@ const Publications = () => {
       if (event.key === 'Escape') {
         setStatusDropdownOpen(false);
         setYearDropdownOpen(false);
-        setOpenCitationDropdown(null);
         setOpenShareDropdown(null);
       }
     };
 
-    if (statusDropdownOpen || yearDropdownOpen || openCitationDropdown !== null || openShareDropdown !== null) {
+    if (statusDropdownOpen || yearDropdownOpen || openShareDropdown !== null) {
       document.addEventListener('click', handleClickOutside);
       document.addEventListener('keydown', handleKeyDown);
     }
@@ -119,7 +108,7 @@ const Publications = () => {
       document.removeEventListener('click', handleClickOutside);
       document.removeEventListener('keydown', handleKeyDown);
     };
-  }, [statusDropdownOpen, yearDropdownOpen, openCitationDropdown, openShareDropdown]);
+  }, [statusDropdownOpen, yearDropdownOpen, openShareDropdown]);
 
   const filteredPublications = useMemo(() => {
     return publications.filter(pub => {
@@ -149,27 +138,15 @@ const Publications = () => {
     }
   };
 
-  const copyCitation = (pubId: string, format: string, pub: Publication) => {
-    let citation = '';
-
-    if (format === 'bibtex') {
-      citation = bibtexData[pubId]?.bibtex || '';
-    } else if (format === 'apa') {
-      citation = `${pub.title}. (${pub.year}). ${pub.venue}.`;
-    } else if (format === 'mla') {
-      citation = `"${pub.title}." ${pub.venue}, ${pub.year}.`;
-    } else if (format === 'chicago') {
-      citation = `"${pub.title}." ${pub.venue} (${pub.year}).`;
-    } else if (format === 'ieee') {
-      citation = `"${pub.title}," ${pub.venue}, ${pub.year}.`;
-    }
+  const copyBibtex = (pubId: string, pub: Publication) => {
+    const citation = bibtexData[pubId]?.bibtex || '';
 
     if (citation) {
       if (navigator.clipboard && navigator.clipboard.writeText) {
         navigator.clipboard.writeText(citation).then(() => {
-          trackCitationCopy(format, pub.title);
+          trackCitationCopy('bibtex', pub.title);
           Toastify({
-            text: `${format.toUpperCase()} citation copied!`,
+            text: 'BibTeX citation copied!',
             duration: 3000,
             close: true,
             gravity: "top",
@@ -180,16 +157,15 @@ const Publications = () => {
           }).showToast();
         }).catch(err => {
           console.error('Failed to copy:', err);
-          fallbackCopyCitation(citation, format, pub.title);
+          fallbackCopyBibtex(citation, pub.title);
         });
       } else {
-        fallbackCopyCitation(citation, format, pub.title);
+        fallbackCopyBibtex(citation, pub.title);
       }
     }
-    setOpenCitationDropdown(null);
   };
 
-  const fallbackCopyCitation = (text: string, format: string, pubTitle: string) => {
+  const fallbackCopyBibtex = (text: string, pubTitle: string) => {
     const textArea = document.createElement('textarea');
     textArea.value = text;
     textArea.style.position = 'fixed';
@@ -200,9 +176,9 @@ const Publications = () => {
 
     try {
       document.execCommand('copy');
-      trackCitationCopy(format, pubTitle);
+      trackCitationCopy('bibtex', pubTitle);
       Toastify({
-        text: `${format.toUpperCase()} citation copied!`,
+        text: 'BibTeX citation copied!',
         duration: 3000,
         close: true,
         gravity: "top",
@@ -481,31 +457,20 @@ const Publications = () => {
                             </div>
                           )}
                           {pub.bibtexId && (
-                            <div className="citation-dropdown" ref={el => { citationDropdownRefs.current.set(actualIndex, el); }}>
-                              <button
-                                className="publication-btn"
-                                onClick={(e) => {
-                                  e.stopPropagation();
-                                  if (!bibtexLoading) {
-                                    setOpenCitationDropdown(openCitationDropdown === actualIndex ? null : actualIndex);
-                                  }
-                                }}
-                                data-tooltip={bibtexLoading ? "Loading citations..." : bibtexError ? "Citation data unavailable" : "Copy Citation"}
-                                disabled={bibtexLoading}
-                                style={{ opacity: bibtexLoading ? 0.5 : 1, cursor: bibtexLoading ? 'wait' : 'pointer' }}
-                              >
-                                {bibtexLoading ? <FontAwesomeIcon icon={faSpinner} spin /> : <FontAwesomeIcon icon={faQuoteRight} />}
-                              </button>
-                              {openCitationDropdown === actualIndex && (
-                                <div className="citation-format-menu">
-                                  <div onClick={() => copyCitation(pub.bibtexId!, 'bibtex', pub)}>BibTeX</div>
-                                  <div onClick={() => copyCitation(pub.bibtexId!, 'apa', pub)}>APA</div>
-                                  <div onClick={() => copyCitation(pub.bibtexId!, 'mla', pub)}>MLA</div>
-                                  <div onClick={() => copyCitation(pub.bibtexId!, 'chicago', pub)}>Chicago</div>
-                                  <div onClick={() => copyCitation(pub.bibtexId!, 'ieee', pub)}>IEEE</div>
-                                </div>
-                              )}
-                            </div>
+                            <button
+                              className="publication-btn"
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                if (!bibtexLoading) {
+                                  copyBibtex(pub.bibtexId!, pub);
+                                }
+                              }}
+                              data-tooltip={bibtexLoading ? "Loading citations..." : bibtexError ? "Citation data unavailable" : "Copy BibTeX"}
+                              disabled={bibtexLoading}
+                              style={{ opacity: bibtexLoading ? 0.5 : 1, cursor: bibtexLoading ? 'wait' : 'pointer' }}
+                            >
+                              {bibtexLoading ? <FontAwesomeIcon icon={faSpinner} spin /> : <FontAwesomeIcon icon={faQuoteRight} />}
+                            </button>
                           )}
                           <div className="citation-dropdown" ref={el => { shareDropdownRefs.current.set(actualIndex, el); }}>
                             <button
