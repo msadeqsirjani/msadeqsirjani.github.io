@@ -1,5 +1,6 @@
 import { lazy, Suspense } from 'react';
 import * as React from 'react';
+import { Toaster } from 'sonner';
 import Navbar from './components/Navbar/Navbar';
 import Hero from './components/Hero/Hero';
 import ReadingProgress from './components/ReadingProgress/ReadingProgress';
@@ -10,6 +11,7 @@ import AnimatedSection from './components/AnimatedSection/AnimatedSection';
 import SkeletonLoader from './components/SkeletonLoader/SkeletonLoader';
 import CookieConsent from './components/CookieConsent/CookieConsent';
 import OfflineIndicator from './components/OfflineIndicator/OfflineIndicator';
+import GlobalSearch from './components/GlobalSearch/GlobalSearch';
 
 // Lazy load components below the fold
 const Biography = lazy(() => import('./components/Biography/Biography'));
@@ -34,6 +36,7 @@ const SectionLoader = () => (
 
 function App() {
   const [show404, setShow404] = React.useState(false);
+  const [isSearchOpen, setIsSearchOpen] = React.useState(false);
 
   React.useEffect(() => {
     // Valid hash routes
@@ -55,17 +58,39 @@ function App() {
     return () => window.removeEventListener('hashchange', checkRoute);
   }, []);
 
+  // Global search keyboard shortcut (Cmd/Ctrl + K)
+  React.useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault();
+        setIsSearchOpen(true);
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, []);
+
   // Show 404 page for invalid routes
   if (show404) {
     const NotFound = lazy(() => import('./components/NotFound/NotFound'));
     return (
       <ErrorBoundary>
-        <Navbar />
+        <Navbar onSearchClick={() => setIsSearchOpen(true)} />
         <Suspense fallback={<div style={{ minHeight: '60vh' }} />}>
           <NotFound />
         </Suspense>
+        <GlobalSearch isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />
         <CookieConsent />
         <OfflineIndicator />
+        <Toaster
+          position="bottom-left"
+          closeButton
+          expand={false}
+          toastOptions={{
+            className: 'custom-toast',
+          }}
+        />
       </ErrorBoundary>
     );
   }
@@ -75,8 +100,9 @@ function App() {
       <a href="#main-content" className="skip-to-content">Skip to main content</a>
       <PullToRefresh />
       <ErrorBoundary>
-        <Navbar />
+        <Navbar onSearchClick={() => setIsSearchOpen(true)} />
       </ErrorBoundary>
+      <GlobalSearch isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />
       <ReadingProgress />
       <main id="main-content" role="main" aria-label="Main content">
         <ErrorBoundary>
@@ -156,6 +182,11 @@ function App() {
       </ErrorBoundary>
       <CookieConsent />
       <OfflineIndicator />
+      <Toaster
+        position="bottom-left"
+        closeButton
+        expand={false}
+      />
     </ErrorBoundary>
   );
 }

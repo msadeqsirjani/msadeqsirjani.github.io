@@ -3,6 +3,7 @@ export interface Publication {
   venue: string;
   year: string;
   status: 'published' | 'accepted' | 'review';
+  authors?: string;
   link?: string;
   pdfLink?: string;
   bibtexId?: string;
@@ -44,7 +45,9 @@ export interface AwardItem {
   description: string;
 }
 
+import type { IconDefinition } from '@fortawesome/fontawesome-svg-core';
+
 export interface ResearchInterest {
-  icon: any; // FontAwesome IconDefinition
+  icon: IconDefinition;
   name: string;
 }

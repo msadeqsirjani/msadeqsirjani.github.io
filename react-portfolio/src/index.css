@@ -1,6 +1,5 @@
 /* Import original styles */
 @import './original-styles.css';
-@import url('https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css');
 
 /* Font-display optimization for better performance */
 @font-face {
@@ -184,9 +183,91 @@ html {
 
 /* Touch Target Optimization - Minimum 44x44px for accessibility */
 .theme-toggle,
+.search-toggle,
 .nav-toggle {
   min-width: 44px;
   min-height: 44px;
+}
+
+/* Search Toggle Button */
+.search-toggle {
+  background: none;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  padding: 0.5rem;
+  cursor: pointer;
+  color: var(--text-color);
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 0.75rem;
+}
+
+.search-toggle:hover {
+  color: var(--accent-color);
+}
+
+/* Search button tooltip - matches theme toggle style */
+.search-toggle[data-tooltip] {
+  position: relative;
+}
+
+.search-toggle[data-tooltip]::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%) translateY(-4px);
+  background: var(--text-color);
+  color: var(--white);
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease, background 0.3s ease, border-color 0.3s ease;
+  pointer-events: none;
+  z-index: 1000;
+}
+
+.search-toggle[data-tooltip]::before {
+  content: '';
+  position: absolute;
+  top: calc(100% + 3px);
+  left: 50%;
+  transform: translateX(-50%);
+  border: 5px solid transparent;
+  border-bottom-color: var(--text-color);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease, border-color 0.3s ease;
+  pointer-events: none;
+  z-index: 99;
+}
+
+.search-toggle[data-tooltip]:hover::before {
+  opacity: 1;
+  visibility: visible;
+}
+
+.search-toggle[data-tooltip]:hover::after {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* Desktop/Mobile Display Utilities */
+.desktop-only {
+  display: inline-flex !important;
+}
+
+@media (max-width: 768px) {
+  .desktop-only {
+    display: none !important;
+  }
 }
 
 .social-link {
@@ -1032,4 +1113,39 @@ body[data-theme="dark"] .expand-arrow.disabled {
 .publication-item > .publication-actions-row,
 .publication-item > .status {
   display: none;
+}
+
+/* Sonner Toast Customization */
+[data-sonner-toast] {
+  background: var(--white) !important;
+  color: var(--text-color) !important;
+  border: 1px solid var(--border-color) !important;
+}
+
+[data-sonner-toast][data-type="success"] {
+  background: var(--accent-color) !important;
+  color: white !important;
+  border: none !important;
+}
+
+[data-sonner-toast][data-type="error"] {
+  background: #ef4444 !important;
+  color: white !important;
+  border: none !important;
+}
+
+[data-sonner-toast] [data-button] {
+  background: transparent !important;
+  color: currentColor !important;
+  border: 1px solid currentColor !important;
+}
+
+[data-sonner-toast][data-type="success"] [data-button] {
+  border-color: rgba(255, 255, 255, 0.3) !important;
+  color: white !important;
+}
+
+[data-sonner-toast][data-type="error"] [data-button] {
+  border-color: rgba(255, 255, 255, 0.3) !important;
+  color: white !important;
 }
