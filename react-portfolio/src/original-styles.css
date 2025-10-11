@@ -915,11 +915,13 @@ kbd {
     box-shadow: 0 4px 12px rgba(29, 78, 216, 0.2);
 }
 
-#showMoreBtn i {
+#showMoreBtn i,
+#showMoreBtn svg {
     transition: transform 0.3s ease;
 }
 
-#showMoreBtn.expanded i {
+#showMoreBtn.expanded i,
+#showMoreBtn.expanded svg {
     transform: rotate(180deg);
 }
 
