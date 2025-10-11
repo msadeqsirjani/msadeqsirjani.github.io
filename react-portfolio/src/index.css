@@ -787,8 +787,9 @@ body[data-theme="dark"] .pdf-preview-footer {
   transform: translateX(-50%) translateY(0);
 }
 
-/* Hide publications beyond 5 in browser view */
-.publication-item.hidden-for-show-more {
+/* Hide publications and teaching beyond 5 in browser view */
+.publication-item.hidden-for-show-more,
+.teaching-item.hidden-for-show-more {
   display: none;
 }
 
@@ -809,8 +810,9 @@ body[data-theme="dark"] .pdf-preview-footer {
     display: block !important;
   }
 
-  /* Show hidden publications in print */
-  .publication-item.hidden-for-show-more {
+  /* Show hidden publications and teaching in print */
+  .publication-item.hidden-for-show-more,
+  .teaching-item.hidden-for-show-more {
     display: block !important;
   }
 
