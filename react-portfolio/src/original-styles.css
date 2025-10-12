@@ -545,6 +545,70 @@ ul, ol {
     flex: 1;
 }
 
+.education-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+.education-logo-link {
+    display: block;
+    text-decoration: none;
+    cursor: pointer;
+    position: relative;
+}
+
+.education-logo-link::after {
+    content: attr(title);
+    position: absolute;
+    bottom: -35px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.85);
+    color: white;
+    padding: 0.4rem 0.7rem;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+    z-index: 1000;
+}
+
+.education-logo-link:hover::after {
+    opacity: 1;
+}
+
+[data-theme="dark"] .education-logo-link::after {
+    background: rgba(255, 255, 255, 0.9);
+    color: #000;
+}
+
+.education-logo {
+    width: 72px;
+    height: 72px;
+    object-fit: contain;
+    object-position: center;
+    flex-shrink: 0;
+    border-radius: 8px;
+    background: var(--white);
+    padding: 0.6rem;
+    border: 1px solid var(--border-color);
+}
+
+[data-theme="dark"] .education-logo {
+    background: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.education-details {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
 .education-degree {
     font-size: 1.1rem;
     color: var(--accent-color);
@@ -2015,6 +2079,17 @@ body[data-theme="dark"] .qr-code-container img {
         order: 1;
     }
 
+    .education-logo {
+        width: 70px;
+        height: 70px;
+        padding: 0.5rem;
+    }
+
+    .education-header {
+        gap: 1rem;
+        align-items: flex-start;
+    }
+
     .research-item {
         grid-template-columns: 1fr;
         gap: 0.5rem;
@@ -3116,6 +3191,20 @@ html {
     .education-content,
     .research-content {
         order: 1;
+    }
+
+    .education-logo {
+        width: 30px;
+        height: 30px;
+        padding: 0.2rem;
+        print-color-adjust: exact;
+        -webkit-print-color-adjust: exact;
+    }
+
+    .education-header {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.25cm;
     }
 
     .education-dates,
