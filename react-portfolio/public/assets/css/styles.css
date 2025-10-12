@@ -545,6 +545,41 @@ ul, ol {
     flex: 1;
 }
 
+.education-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+.education-logo-link {
+    display: block;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.education-logo {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+    object-position: center;
+    flex-shrink: 0;
+    border-radius: 6px;
+    background: #ffffff;
+    padding: 0.4rem;
+    border: 1px solid var(--border-color);
+}
+
+[data-theme="dark"] .education-logo {
+    background: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.education-details {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
 .education-degree {
     font-size: 1.1rem;
     color: var(--accent-color);
@@ -1985,6 +2020,12 @@ kbd {
         order: 1;
     }
 
+    .education-logo {
+        width: 40px;
+        height: 40px;
+        padding: 0.3rem;
+    }
+
     .research-item {
         grid-template-columns: 1fr;
         gap: 0.5rem;
@@ -3086,6 +3127,17 @@ html {
     .education-content,
     .research-content {
         order: 1;
+    }
+
+    .education-logo,
+    .education-logo-link {
+        display: none;
+    }
+
+    .education-header {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.3cm;
     }
 
     .education-dates,

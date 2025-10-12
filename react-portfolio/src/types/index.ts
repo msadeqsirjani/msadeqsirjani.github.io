@@ -15,8 +15,11 @@ export interface Publication {
 export interface EducationItem {
   degree: string;
   university: string;
+  universityName?: string;
   duration: string;
   gpa: string;
+  logo?: string;
+  universityUrl?: string;
   current?: boolean;
 }
 
