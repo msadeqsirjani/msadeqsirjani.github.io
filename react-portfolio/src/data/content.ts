@@ -80,15 +80,21 @@ export const education: EducationItem[] = [
   {
     degree: 'Ph.D., Computer Science',
     university: 'University of Texas at San Antonio, USA',
+    universityName: 'University of Texas at San Antonio',
     duration: 'Jan. 2025 - Present',
     gpa: 'GPA: 4.0 / 4.0',
+    logo: 'assets/icons/utsa-logo.svg',
+    universityUrl: 'https://www.utsa.edu/',
     current: true
   },
   {
     degree: 'B.Sc., Computer Engineering',
     university: 'Ferdowsi University of Mashhad, Iran',
+    universityName: 'Ferdowsi University of Mashhad',
     duration: 'Sep. 2018 - Feb. 2024',
-    gpa: 'GPA: 3.02 / 4.0 (16.52 / 20)'
+    gpa: 'GPA: 3.02 / 4.0 (16.52 / 20)',
+    logo: 'assets/icons/ferdowsi-logo.png',
+    universityUrl: 'https://en.um.ac.ir/'
   }
 ];
 
