@@ -3129,12 +3129,9 @@ html {
         order: 1;
     }
 
-    .education-logo {
-        width: 35px;
-        height: 35px;
-        padding: 0.2rem;
-        print-color-adjust: exact;
-        -webkit-print-color-adjust: exact;
+    .education-logo,
+    .education-logo-link {
+        display: none;
     }
 
     .education-header {
