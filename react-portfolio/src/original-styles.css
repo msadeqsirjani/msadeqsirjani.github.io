@@ -727,7 +727,7 @@ ul, ol {
     height: 120px;
     flex-shrink: 0;
     border: 1px solid var(--border-color);
-    border-radius: 8px;
+    border-radius: var(--button-border-radius);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -1861,7 +1861,7 @@ kbd {
     .interest-card {
         background: transparent;
         border: 1px solid var(--border-color);
-        border-radius: 6px;
+        border-radius: var(--button-border-radius);
         padding: 1rem;
         height: auto;
         min-height: 100px;
