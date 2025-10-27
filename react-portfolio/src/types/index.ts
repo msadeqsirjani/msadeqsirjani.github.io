@@ -18,7 +18,6 @@ export interface EducationItem {
   universityName?: string;
   duration: string;
   gpa: string;
-  logo?: string;
   universityUrl?: string;
   current?: boolean;
 }
