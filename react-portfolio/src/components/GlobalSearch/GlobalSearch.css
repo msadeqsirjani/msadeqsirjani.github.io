@@ -112,23 +112,25 @@
 
 .clear-search-btn,
 .close-search-btn {
-  background: transparent;
-  border: none;
+  background: var(--bg-color, var(--white));
+  border: var(--button-border-width) solid var(--border-color);
   color: var(--text-muted);
   cursor: pointer;
   padding: 0.25rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 4px;
-  transition: color 0.2s;
+  border-radius: var(--button-border-radius);
+  transition: all 0.2s ease;
   font-size: 1rem;
   flex-shrink: 0;
 }
 
 .clear-search-btn:hover,
 .close-search-btn:hover {
-  color: var(--text-color);
+  color: var(--accent-color);
+  border-color: var(--accent-color);
+  background: var(--gray-light);
 }
 
 .close-search-btn {
@@ -389,11 +391,15 @@
 .clear-search-btn,
 .close-search-btn {
   color: var(--modal-text-muted);
+  background: var(--modal-bg);
+  border-color: var(--modal-border);
 }
 
 .clear-search-btn:hover,
 .close-search-btn:hover {
   color: var(--modal-text);
+  border-color: var(--accent-color);
+  background: var(--modal-hover-bg);
 }
 
 .global-search-header {

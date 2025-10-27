@@ -111,8 +111,8 @@ class ErrorBoundary extends Component<Props, State> {
                 padding: '0.75rem 1.5rem',
                 backgroundColor: 'var(--accent-color)',
                 color: 'white',
-                border: 'none',
-                borderRadius: '6px',
+                border: 'var(--button-border-width, 2px) solid var(--accent-color)',
+                borderRadius: 'var(--button-border-radius, 12px)',
                 cursor: 'pointer',
                 fontSize: '1rem',
                 fontWeight: '600'
@@ -126,8 +126,8 @@ class ErrorBoundary extends Component<Props, State> {
                 padding: '0.75rem 1.5rem',
                 backgroundColor: 'transparent',
                 color: 'var(--text-color)',
-                border: '2px solid var(--border-color)',
-                borderRadius: '6px',
+                border: 'var(--button-border-width, 2px) solid var(--border-color)',
+                borderRadius: 'var(--button-border-radius, 12px)',
                 cursor: 'pointer',
                 fontSize: '1rem',
                 fontWeight: '600'
@@ -141,8 +141,8 @@ class ErrorBoundary extends Component<Props, State> {
                 padding: '0.75rem 1.5rem',
                 backgroundColor: 'transparent',
                 color: 'var(--text-color)',
-                border: '2px solid var(--border-color)',
-                borderRadius: '6px',
+                border: 'var(--button-border-width, 2px) solid var(--border-color)',
+                borderRadius: 'var(--button-border-radius, 12px)',
                 cursor: 'pointer',
                 fontSize: '1rem',
                 fontWeight: '600'
