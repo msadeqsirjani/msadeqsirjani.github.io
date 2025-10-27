@@ -425,7 +425,7 @@ ul, ol {
 [data-theme="dark"] .social-link {
     background: var(--bg-color);
     border-color: var(--border-color);
-    color: var(--white);
+    color: var(--text-color);
 }
 
 [data-theme="dark"] .social-link:hover {
