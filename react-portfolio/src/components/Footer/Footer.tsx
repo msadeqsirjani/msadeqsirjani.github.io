@@ -1,5 +1,4 @@
-import { useEffect, useState } from 'react';
-import QRCode from 'qrcode';
+import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faGraduationCap, faArrowUp } from '@fortawesome/free-solid-svg-icons';
 import { faLinkedin, faGithub, faOrcid, faResearchgate } from '@fortawesome/free-brands-svg-icons';
@@ -8,42 +7,6 @@ import { useScrollManager } from '../../hooks/useScrollManager';
 const Footer = () => {
   const currentYear = new Date().getFullYear();
   const [scrollVisible, setScrollVisible] = useState(false);
-
-  useEffect(() => {
-    // Generate QR Code with enhanced quality and mobile optimization
-    const canvas = document.getElementById('qrcode') as HTMLCanvasElement;
-    if (canvas) {
-      QRCode.toCanvas(
-        canvas,
-        'https://msadeqsirjani.com',
-        {
-          width: 256, // Increased size for better scanning
-          margin: 2, // Reduced margin for better use of space
-          errorCorrectionLevel: 'H', // High error correction for better reliability
-          color: {
-            dark: '#000000', // Pure black for maximum contrast
-            light: '#FFFFFF' // Pure white background
-          }
-        },
-        (error: Error | null | undefined) => {
-          if (error) {
-            // Only log errors in development
-            if (import.meta.env.DEV) {
-              console.error('QR Code generation error:', error);
-            }
-            // Silently fail in production - QR code is not critical
-            return;
-          }
-
-          const img = document.getElementById('qrcode-image') as HTMLImageElement;
-          if (img && canvas) {
-            img.src = canvas.toDataURL('image/png', 1.0); // Maximum quality PNG
-            img.style.display = 'block';
-          }
-        }
-      );
-    }
-  }, []);
 
   // Use centralized scroll manager
   useScrollManager((_scrollY, scrollPercent) => {
@@ -102,14 +65,6 @@ const Footer = () => {
                 <a href="https://www.researchgate.net/profile/Mohammad-Sadegh-Sirjani" target="_blank" rel="noopener" data-tooltip="ResearchGate">
                   <FontAwesomeIcon icon={faResearchgate} />
                 </a>
-              </div>
-            </div>
-            <div className="footer-section qr-section">
-              <h4>Quick Access</h4>
-              <div className="qr-code-container">
-                <canvas id="qrcode" style={{ display: 'none' }}></canvas>
-                <img id="qrcode-image" alt="QR Code for https://msadeqsirjani.com" data-tooltip="Scan to visit on mobile" />
-                <p className="qr-hint">Scan Me</p>
               </div>
             </div>
           </div>
