@@ -403,8 +403,9 @@ ul, ol {
 .social-link {
     width: 40px;
     height: 40px;
-    border: 1px solid var(--border-color);
-    border-radius: 6px;
+    border: var(--button-border-width) solid var(--border-color);
+    border-radius: var(--button-border-radius);
+    background: var(--white);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -419,6 +420,18 @@ ul, ol {
     border-color: var(--accent-color);
     color: white;
     transform: translateY(-2px);
+}
+
+[data-theme="dark"] .social-link {
+    background: var(--bg-color);
+    border-color: var(--border-color);
+    color: var(--white);
+}
+
+[data-theme="dark"] .social-link:hover {
+    background: var(--accent-color);
+    border-color: var(--accent-color);
+    color: var(--white);
 }
 
 /* Tooltips for social links, buttons, and theme toggle */
@@ -889,13 +902,6 @@ kbd {
     white-space: nowrap;
     height: 46px;
     flex-shrink: 0;
-}
-
-#resetFilters.btn-secondary:hover {
-    background: var(--accent-hover);
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(29, 78, 216, 0.2);
-    border-color: var(--accent-hover);
 }
 
 #resetFilters.btn-secondary:active {
@@ -1501,66 +1507,6 @@ kbd {
     max-width: 1200px;
     margin-left: auto;
     margin-right: auto;
-}
-
-/* QR Code Section */
-.qr-section {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.qr-code-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
-    margin-top: 0.5rem;
-}
-
-.qr-code-container img {
-    width: 180px;
-    height: 180px;
-    max-width: 100%;
-    border: 3px solid var(--border-color);
-    border-radius: 12px;
-    padding: 10px;
-    background: #ffffff;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.qr-code-container img:hover {
-    transform: scale(1.05);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
-}
-
-.qr-hint {
-    font-size: 0.85rem;
-    color: var(--text-light);
-    margin: 0;
-    text-align: center;
-    font-weight: 600;
-}
-
-/* Mobile-optimized QR code */
-@media (max-width: 768px) {
-    .qr-code-container img {
-        width: 200px;
-        height: 200px;
-        border-width: 4px;
-        padding: 12px;
-    }
-
-    .qr-hint {
-        font-size: 0.9rem;
-    }
-}
-
-/* Dark mode - ensure QR code stays readable */
-body[data-theme="dark"] .qr-code-container img {
-    background: #ffffff;
-    border-color: var(--accent-color);
 }
 
 .footer-section h3 {
@@ -2661,17 +2607,16 @@ button,
     position: fixed;
     bottom: 2rem;
     right: 2rem;
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
+    width: 54px;
+    height: 54px;
+    border-radius: var(--button-border-radius);
     background: var(--accent-color);
-    color: white;
-    border: var(--button-border-width) solid rgba(255, 255, 255, 0.65);
+    color: var(--white);
+    border: var(--button-border-width) solid var(--accent-color);
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
     opacity: 0;
     visibility: hidden;
     transform: translateY(20px);
@@ -2693,9 +2638,9 @@ button,
 
 .scroll-to-top:hover {
     background: var(--accent-hover);
+    color: var(--white);
+    border-color: var(--accent-hover);
     transform: translateY(-3px);
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
-    border-color: rgba(255, 255, 255, 0.85);
 }
 
 .scroll-to-top:active {
@@ -2704,6 +2649,17 @@ button,
 
 .scroll-to-top i {
     font-size: 1.25rem;
+}
+
+[data-theme="dark"] .scroll-to-top {
+    background: var(--accent-color);
+    color: var(--white);
+    border-color: var(--accent-color);
+}
+
+[data-theme="dark"] .scroll-to-top:hover {
+    background: var(--accent-hover);
+    border-color: var(--accent-hover);
 }
 
 /* Floating Quick Action Buttons */
@@ -2722,28 +2678,31 @@ button,
 }
 
 .quick-action-toggle {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
+    width: 52px;
+    height: 52px;
+    border-radius: var(--button-border-radius);
     background: var(--accent-color);
-    color: white;
+    color: var(--white);
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    border: var(--button-border-width) solid var(--accent-color);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
-    border: var(--button-border-width) solid rgba(255, 255, 255, 0.7);
 }
 
 .quick-action-toggle:hover {
-    transform: scale(1.1);
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
-    border-color: rgba(255, 255, 255, 0.85);
+    background: var(--accent-hover);
+    color: var(--white);
+    border-color: var(--accent-hover);
+    transform: translateY(-2px);
 }
 
 .quick-action-toggle.active {
+    background: var(--accent-hover);
+    color: var(--white);
+    border-color: var(--accent-hover);
     transform: rotate(45deg);
 }
 
@@ -2772,27 +2731,24 @@ button,
 }
 
 .quick-action-btn {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background: white;
-    color: var(--text-color);
+    width: 46px;
+    height: 46px;
+    border-radius: var(--button-border-radius);
+    background: var(--accent-color);
+    color: var(--white);
     display: flex;
     align-items: center;
     justify-content: center;
     text-decoration: none;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    border: var(--button-border-width) solid var(--border-color);
+    border: var(--button-border-width) solid var(--accent-color);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
 }
 
 .quick-action-btn:hover {
-    transform: scale(1.1);
-    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.15);
-    background: var(--accent-color);
-    color: white;
-    border-color: var(--accent-color);
+    transform: translateY(-2px);
+    background: var(--accent-hover);
+    border-color: var(--accent-hover);
 }
 
 .quick-action-btn i {
@@ -2801,13 +2757,26 @@ button,
 
 /* Dark mode styles for quick actions */
 [data-theme="dark"] .quick-action-btn {
-    background: var(--white);
-    border-color: var(--border-color);
+    background: var(--accent-color);
+    border-color: var(--accent-color);
+    color: var(--white);
 }
 
 [data-theme="dark"] .quick-action-btn:hover {
+    background: var(--accent-hover);
+    border-color: var(--accent-hover);
+}
+
+[data-theme="dark"] .quick-action-toggle {
     background: var(--accent-color);
-    color: white;
+    border-color: var(--accent-color);
+}
+
+[data-theme="dark"] .quick-action-toggle:hover,
+[data-theme="dark"] .quick-action-toggle.active {
+    background: var(--accent-hover);
+    border-color: var(--accent-hover);
+    color: var(--white);
 }
 
 /* Tooltips for quick action buttons */
@@ -2863,8 +2832,8 @@ button,
     }
 
     .scroll-to-top {
-        width: 55px;
-        height: 55px;
+        width: 48px;
+        height: 48px;
         bottom: 1.5rem;
         right: 1.5rem;
     }
@@ -2885,13 +2854,13 @@ button,
     }
 
     .quick-action-toggle {
-        width: 55px;
-        height: 55px;
+        width: 46px;
+        height: 46px;
     }
 
     .quick-action-btn {
-        width: 45px;
-        height: 45px;
+        width: 38px;
+        height: 38px;
     }
 
     .quick-action-btn i,
