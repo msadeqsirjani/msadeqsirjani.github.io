@@ -19,7 +19,6 @@ const Publications = () => {
   const [yearDropdownOpen, setYearDropdownOpen] = useState(false);
   const [showAll, setShowAll] = useState(false);
   const [openShareDropdown, setOpenShareDropdown] = useState<number | null>(null);
-  const [hoveredPub, setHoveredPub] = useState<number | null>(null);
   const [expandedPub, setExpandedPub] = useState<number | null>(null);
   const statusDropdownRef = useRef<HTMLDivElement>(null);
   const yearDropdownRef = useRef<HTMLDivElement>(null);
@@ -392,43 +391,9 @@ const Publications = () => {
                             </a>
                           )}
                           {pub.pdfLink && (
-                            <div
-                              className="pdf-btn-wrapper"
-                              onMouseEnter={() => {
-                                // Only show preview on desktop (wider than 1024px)
-                                if (window.innerWidth > 1024) {
-                                  // Add small delay before showing preview to avoid loading on quick hover
-                                  setTimeout(() => {
-                                    if (hoveredPub === actualIndex) {
-                                      setHoveredPub(actualIndex);
-                                    }
-                                  }, 300);
-                                  setHoveredPub(actualIndex);
-                                }
-                              }}
-                              onMouseLeave={() => setHoveredPub(null)}
-                            >
-                              <a href={pub.pdfLink} className="publication-btn" download data-tooltip="Download PDF">
-                                <FontAwesomeIcon icon={faFilePdf} />
-                              </a>
-
-                              {/* PDF Preview Tooltip - Desktop only with lazy loading */}
-                              {hoveredPub === actualIndex && window.innerWidth > 1024 && (
-                                <div className="pdf-preview-tooltip">
-                                  <div className="pdf-preview-content">
-                                    <iframe
-                                      src={`${pub.pdfLink}#view=FitH`}
-                                      title={`Preview of ${pub.title}`}
-                                      className="pdf-preview-iframe"
-                                      loading="lazy"
-                                    />
-                                    <div className="pdf-preview-footer">
-                                      <span>Click to download PDF</span>
-                                    </div>
-                                  </div>
-                                </div>
-                              )}
-                            </div>
+                            <a href={pub.pdfLink} className="publication-btn" download data-tooltip="Download PDF">
+                              <FontAwesomeIcon icon={faFilePdf} />
+                            </a>
                           )}
                           {pub.bibtexId && (
                             <button
