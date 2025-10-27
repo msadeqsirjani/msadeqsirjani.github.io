@@ -2,7 +2,7 @@ export interface Publication {
   title: string;
   venue: string;
   year: string;
-  status: 'published' | 'accepted' | 'review';
+  status: 'published' | 'accepted' | 'review' | 'arxiv';
   authors?: string;
   link?: string;
   pdfLink?: string;

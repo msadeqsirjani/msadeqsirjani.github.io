@@ -983,7 +983,8 @@ body[data-theme="dark"] .expand-arrow.disabled {
 }
 
 .status-inline.accepted,
-.status-inline.review {
+.status-inline.review,
+.status-inline.arxiv {
   background: var(--accent-color);
   border-color: var(--accent-color);
   color: var(--white);
@@ -1006,7 +1007,8 @@ body[data-theme="dark"] .expand-arrow.disabled {
 }
 
 [data-theme="dark"] .status-inline.accepted,
-[data-theme="dark"] .status-inline.review {
+[data-theme="dark"] .status-inline.review,
+[data-theme="dark"] .status-inline.arxiv {
   background: var(--accent-color);
   border-color: var(--accent-color);
   color: var(--white);
