@@ -1570,6 +1570,14 @@ kbd {
     transform: translateY(-2px);
 }
 
+[data-theme="dark"] .footer-social a {
+    color: var(--text-color);
+}
+
+[data-theme="dark"] .footer-social a:hover {
+    color: var(--white);
+}
+
 .footer-bottom {
     text-align: center;
     padding-top: 2rem;
@@ -2653,7 +2661,7 @@ button,
 
 [data-theme="dark"] .scroll-to-top {
     background: var(--accent-color);
-    color: var(--white);
+    color: var(--text-color);
     border-color: var(--accent-color);
 }
 
@@ -2759,7 +2767,7 @@ button,
 [data-theme="dark"] .quick-action-btn {
     background: var(--accent-color);
     border-color: var(--accent-color);
-    color: var(--white);
+    color: var(--text-color);
 }
 
 [data-theme="dark"] .quick-action-btn:hover {
@@ -2770,13 +2778,20 @@ button,
 [data-theme="dark"] .quick-action-toggle {
     background: var(--accent-color);
     border-color: var(--accent-color);
+    color: var(--text-color);
 }
 
 [data-theme="dark"] .quick-action-toggle:hover,
 [data-theme="dark"] .quick-action-toggle.active {
     background: var(--accent-hover);
     border-color: var(--accent-hover);
-    color: var(--white);
+    color: var(--text-color);
+}
+
+[data-theme="dark"] .scroll-to-top i,
+[data-theme="dark"] .quick-action-btn i,
+[data-theme="dark"] .quick-action-toggle i {
+    color: var(--text-color);
 }
 
 /* Tooltips for quick action buttons */
