@@ -26,7 +26,7 @@ export const publications: Publication[] = [
     title: 'Optimizing Task Scheduling in Fog Computing with Deadline Awareness',
     venue: 'arXiv preprint',
     year: '2025',
-    status: 'accepted',
+    status: 'arxiv',
     authors: 'Mohammad Sadegh Sirjani, Somayeh Sobati-Moghadam',
     link: 'https://doi.org/10.48550/arXiv.2509.07378',
     pdfLink: 'assets/docs/publications/2509.07378v2.pdf',
@@ -177,10 +177,6 @@ export const teaching: TeachingItem[] = [
 ];
 
 export const news: NewsItem[] = [
-  {
-    date: 'Sep. 2025',
-    description: 'Optimizing Task Scheduling in Fog Computing with Deadline Awareness accepted at CSCloud 2025 Conference.'
-  },
   {
     date: 'Sep. 2025',
     description: 'SDN controller placement paper published in Cluster Computing Journal.'

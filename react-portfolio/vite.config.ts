@@ -71,7 +71,6 @@ export default defineConfig({
         // Manual chunking for better caching
         manualChunks: {
           'react-vendor': ['react', 'react-dom'],
-          'qrcode': ['qrcode'],
           'sonner': ['sonner'],
         },
         sourcemapExcludeSources: true, // Don't include source code in sourcemaps for security

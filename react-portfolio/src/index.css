@@ -191,9 +191,9 @@ html {
 
 /* Search Toggle Button */
 .search-toggle {
-  background: none;
-  border: 1px solid var(--border-color);
-  border-radius: 4px;
+  background: var(--white);
+  border: var(--button-border-width) solid var(--border-color);
+  border-radius: var(--button-border-radius);
   padding: 0.5rem;
   cursor: pointer;
   color: var(--text-color);
@@ -206,6 +206,7 @@ html {
 
 .search-toggle:hover {
   color: var(--accent-color);
+  border-color: var(--accent-color);
 }
 
 /* Search button tooltip - matches theme toggle style */
@@ -300,15 +301,15 @@ html {
 /* Publication buttons */
 .publication-btn,
 .citation-btn {
-  min-width: 36px;
-  min-height: 36px;
+  min-width: 38px;
+  min-height: 38px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   padding: 0.5rem;
   background: transparent;
-  border: 1px solid var(--border-color);
-  border-radius: 4px;
+  border: var(--button-border-width) solid var(--border-color);
+  border-radius: var(--button-border-radius);
   color: var(--text-light);
   cursor: pointer;
   transition: all 0.2s ease;
@@ -361,8 +362,8 @@ html {
 
 .select-selected {
   padding: 0 1rem;
-  border: 1px solid var(--border-color);
-  border-radius: 6px;
+  border: var(--button-border-width) solid var(--border-color);
+  border-radius: var(--button-border-radius);
   background: var(--white);
   color: var(--text-color);
   font-size: 0.875rem;
@@ -425,9 +426,14 @@ html {
 
 /* Publication status badge - match button height */
 .status {
-  min-height: 36px !important;
-  padding: 0.5rem 0.75rem !important;
-  font-size: 0.7rem !important;
+  display: inline-flex !important;
+  align-items: center;
+  gap: 0.35rem;
+  min-height: 38px !important;
+  padding: 0.5rem 0.9rem !important;
+  font-size: 0.75rem !important;
+  font-weight: 600 !important;
+  border-radius: var(--button-border-radius) !important;
 }
 
 /* Social links icons - bold and bigger */
@@ -504,11 +510,16 @@ html {
     padding: 0.625rem 0.75rem;
     font-size: 0.85rem;
   }
+}
 
-  .status {
+@media (max-width: 768px) {
+  .status,
+  .status-inline,
+  .citations-badge {
     min-height: 44px !important;
-    padding: 0.75rem !important;
-    font-size: 0.75rem !important;
+    padding: 0.75rem 1rem !important;
+    font-size: 0.8rem !important;
+    letter-spacing: 0.06em;
   }
 
   .social-link i,
@@ -523,70 +534,6 @@ html {
     font-size: 1.6rem !important;
     margin-bottom: 1rem;
   }
-}
-
-/* PDF Preview Tooltip - Desktop only */
-.pdf-btn-wrapper {
-  position: relative;
-  display: inline-flex;
-}
-
-.pdf-preview-tooltip {
-  position: absolute;
-  top: 50%;
-  left: calc(100% + 15px);
-  transform: translateY(-50%);
-  z-index: 1000;
-  opacity: 0;
-  animation: fadeIn 0.3s ease-in-out forwards;
-  pointer-events: none;
-}
-
-.pdf-preview-content {
-  background: white;
-  border: 2px solid var(--border-color);
-  border-radius: 8px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
-  overflow: hidden;
-  width: 300px;
-}
-
-.pdf-preview-iframe {
-  width: 100%;
-  height: 400px;
-  border: none;
-  display: block;
-  background: #f5f5f5;
-}
-
-.pdf-preview-footer {
-  padding: 0.75rem;
-  background: var(--gray-light);
-  border-top: 1px solid var(--border-color);
-  text-align: center;
-}
-
-.pdf-preview-footer span {
-  font-size: 0.75rem;
-  color: var(--text-light);
-  font-weight: 500;
-}
-
-/* Hide PDF preview on mobile and tablets */
-@media (max-width: 1024px) {
-  .pdf-preview-tooltip {
-    display: none;
-  }
-}
-
-/* Dark mode support */
-body[data-theme="dark"] .pdf-preview-content {
-  background: var(--bg-color);
-  border-color: var(--border-color);
-}
-
-body[data-theme="dark"] .pdf-preview-footer {
-  background: rgba(255, 255, 255, 0.05);
 }
 
 /* Citation format dropdown */
@@ -735,56 +682,6 @@ body[data-theme="dark"] .pdf-preview-footer {
 
 .nav-dropdown-menu li:last-child .nav-link {
   border-radius: 0 0 6px 6px;
-}
-
-/* QR code tooltip */
-#qrcode-image[data-tooltip] {
-  position: relative;
-  cursor: pointer;
-}
-
-#qrcode-image[data-tooltip]::after {
-  content: attr(data-tooltip);
-  position: absolute;
-  top: calc(100% + 8px);
-  left: 50%;
-  transform: translateX(-50%) translateY(-4px);
-  background: var(--text-color);
-  color: var(--white);
-  padding: 0.5rem 0.75rem;
-  border-radius: 6px;
-  font-size: 0.75rem;
-  white-space: nowrap;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
-  z-index: 100;
-  pointer-events: none;
-}
-
-#qrcode-image[data-tooltip]::before {
-  content: '';
-  position: absolute;
-  top: calc(100% + 3px);
-  left: 50%;
-  transform: translateX(-50%);
-  border: 5px solid transparent;
-  border-bottom-color: var(--text-color);
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.3s ease, visibility 0.3s ease;
-  z-index: 100;
-  pointer-events: none;
-}
-
-#qrcode-image[data-tooltip]:hover::after,
-#qrcode-image[data-tooltip]:hover::before {
-  opacity: 1;
-  visibility: visible;
-}
-
-#qrcode-image[data-tooltip]:hover::after {
-  transform: translateX(-50%) translateY(0);
 }
 
 /* Hide publications and teaching beyond 5 in browser view */
@@ -1005,19 +902,72 @@ body[data-theme="dark"] .expand-arrow.disabled {
   flex-wrap: wrap;
 }
 
-.status-inline {
+.status-inline,
+.citations-badge {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  padding: 0.5rem 0.75rem;
-  min-height: 36px;
-  border-radius: 4px;
-  font-size: 0.7rem;
+  gap: 0.4rem;
+  padding: 0.5rem 0.9rem;
+  min-height: 38px;
+  border-radius: var(--button-border-radius);
+  border: var(--button-border-width) solid transparent;
+  font-size: 0.78rem;
   font-weight: 600;
+  letter-spacing: 0.05em;
+  line-height: 1;
+  transition: all 0.25s ease;
+}
+
+.status-inline {
+  justify-content: center;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
   background: var(--accent-color);
-  color: white;
+  color: var(--white);
+  border-color: var(--accent-color);
+}
+
+.status-inline.published {
+  background: var(--accent-color);
+  border-color: var(--accent-color);
+  color: var(--white);
+}
+
+.status-inline.accepted,
+.status-inline.review,
+.status-inline.arxiv {
+  background: var(--accent-color);
+  border-color: var(--accent-color);
+  color: var(--white);
+}
+
+.citations-badge {
+  justify-content: center;
+  background: rgba(30, 64, 175, 0.12);
+  color: var(--accent-color);
+  border-color: rgba(30, 64, 175, 0.35);
+}
+
+.citations-badge i {
+  font-size: 0.75rem;
+  color: inherit;
+}
+
+[data-theme="dark"] .status-inline {
+  box-shadow: none;
+}
+
+[data-theme="dark"] .status-inline.accepted,
+[data-theme="dark"] .status-inline.review,
+[data-theme="dark"] .status-inline.arxiv {
+  background: var(--accent-color);
+  border-color: var(--accent-color);
+  color: var(--white);
+}
+
+[data-theme="dark"] .citations-badge {
+  background: rgba(96, 165, 250, 0.25);
+  border-color: rgba(96, 165, 250, 0.45);
+  color: #93c5fd;
 }
 
 .detail-actions {
@@ -1026,28 +976,6 @@ body[data-theme="dark"] .expand-arrow.disabled {
   align-items: center;
   flex-wrap: wrap;
 }
-
-.citations-badge {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  padding: 0.5rem 0.75rem;
-  min-height: 36px;
-  background: transparent;
-  border: 1px solid var(--border-color);
-  border-radius: 4px;
-  color: var(--text-color);
-  font-size: 0.85rem;
-  font-weight: 500;
-  transition: all 0.2s ease;
-}
-
-.citations-badge i {
-  font-size: 0.8rem;
-  color: var(--accent-color);
-}
-
 .abstract-section {
   margin-top: 1rem;
   padding-top: 1rem;
@@ -1103,10 +1031,10 @@ body[data-theme="dark"] .expand-arrow.disabled {
 
   .publication-btn,
   .citation-btn {
-    width: 56px;
-    min-width: 56px;
-    min-height: 56px;
-    flex: 0 0 56px;
+    min-width: 44px;
+    min-height: 44px;
+    width: 44px;
+    flex: 0 0 44px;
   }
 }
 
