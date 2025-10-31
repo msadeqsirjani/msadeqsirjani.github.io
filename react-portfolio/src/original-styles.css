@@ -1339,91 +1339,42 @@ kbd {
     hyphens: auto;
 }
 
-/* News Timeline Layout */
-.news-list {
+/* Timeline Layout (News, Awards) */
+.timeline-list {
     max-width: 800px;
     margin: 0 auto;
 }
 
-.news-item {
+.timeline-item {
     display: grid;
-    grid-template-columns: 20% 80%;
+    grid-template-columns: minmax(120px, 20%) 1fr;
     gap: 2rem;
     margin-bottom: 2.5rem;
-    padding-bottom: 0;
-    border-bottom: none;
 }
 
-.news-item:last-child {
+.timeline-item:last-child {
     margin-bottom: 0;
 }
 
-.news-dates {
+.timeline-dates {
     text-align: center;
     padding-top: 0.2rem;
 }
 
-.news-dates .news-date {
+.timeline-date {
     color: var(--text-color);
     font-weight: 400;
     font-size: 0.95rem;
     line-height: 1.4;
-    text-align: center;
-}
-
-.news-content {
-    flex: 1;
-}
-
-.news-description {
-    font-size: 1rem;
-    color: var(--text-color);
-    font-weight: normal;
-    margin: 0;
-    line-height: 1.5;
     display: block;
-    text-align: justify;
-    text-justify: inter-word;
-    hyphens: auto;
-}
-
-/* Awards Timeline Layout */
-.awards-list {
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-.award-item {
-    display: grid;
-    grid-template-columns: 20% 80%;
-    gap: 2rem;
-    margin-bottom: 2.5rem;
-    padding-bottom: 0;
-    border-bottom: none;
-}
-
-.award-item:last-child {
-    margin-bottom: 0;
-}
-
-.award-dates {
-    text-align: center;
-    padding-top: 0.2rem;
-}
-
-.award-dates .award-date {
-    color: var(--text-color);
-    font-weight: 400;
-    font-size: 0.95rem;
-    line-height: 1.4;
     text-align: center;
 }
 
-.award-content {
+.timeline-content {
     flex: 1;
 }
 
-.award-description {
+.timeline-description {
     font-size: 1rem;
     color: var(--text-color);
     font-weight: normal;
@@ -2149,8 +2100,8 @@ kbd {
         order: 1;
     }
 
-    /* Mobile news section - clean design */
-    .news-item {
+    /* Mobile timeline section - clean design */
+    .timeline-item {
         grid-template-columns: 1fr;
         gap: 0.5rem;
         margin-bottom: 2rem;
@@ -2162,11 +2113,11 @@ kbd {
         box-shadow: none;
     }
 
-    .news-item:last-child {
+    .timeline-item:last-child {
         margin-bottom: 0;
     }
 
-    .news-dates {
+    .timeline-dates {
         text-align: left;
         padding-top: 0;
         order: 2;
@@ -2174,7 +2125,7 @@ kbd {
         margin-bottom: 0;
     }
 
-    .news-dates .news-date {
+    .timeline-date {
         display: inline-block;
         font-size: 0.85rem;
         font-weight: 500;
@@ -2186,48 +2137,7 @@ kbd {
         width: fit-content;
     }
 
-    .news-content {
-        order: 1;
-    }
-
-    /* Mobile awards section - clean design */
-    .award-item {
-        grid-template-columns: 1fr;
-        gap: 0.5rem;
-        margin-bottom: 2rem;
-        background: transparent;
-        border: none;
-        border-bottom: 1px solid var(--border-color);
-        border-radius: 0;
-        padding: 1.5rem 0;
-        box-shadow: none;
-    }
-
-    .award-item:last-child {
-        margin-bottom: 0;
-    }
-
-    .award-dates {
-        text-align: left;
-        padding-top: 0;
-        order: 2;
-        margin-top: 0.8rem;
-        margin-bottom: 0;
-    }
-
-    .award-dates .award-date {
-        display: inline-block;
-        font-size: 0.85rem;
-        font-weight: 500;
-        padding: 0;
-        background: transparent;
-        color: var(--text-light);
-        border: none;
-        border-radius: 0;
-        width: fit-content;
-    }
-
-    .award-content {
+    .timeline-content {
         order: 1;
     }
 
@@ -2457,8 +2367,7 @@ kbd {
     .education-item,
     .research-item,
     .teaching-item,
-    .news-item,
-    .award-item {
+    .timeline-item {
         padding: 1.25rem;
         margin-bottom: 1.5rem;
     }
@@ -3480,28 +3389,8 @@ html {
         display: none !important;
     }
 
-    /* Awards - Bullet list */
-    .award-item {
-        display: list-item;
-        list-style-type: disc;
-        margin-left: 0.5cm;
-        margin-bottom: 0.1cm;
-        background: none !important;
-        border: none !important;
-        padding: 0 !important;
-    }
-
-    .award-dates {
-        display: none;
-    }
-
-    .award-description {
-        font-size: 12pt;
-        color: #000 !important;
-    }
-
-    /* News items */
-    .news-item {
+    /* Timeline items */
+    .timeline-item {
         display: list-item;
         list-style-type: disc;
         margin-left: 0.5cm;
@@ -3509,6 +3398,15 @@ html {
         background: none !important;
         border: none !important;
         padding: 0 !important;
+    }
+
+    .timeline-dates {
+        display: none;
+    }
+
+    .timeline-description {
+        font-size: 12pt;
+        color: #000 !important;
     }
 
     /* Contact section */
@@ -3564,7 +3462,7 @@ html {
     .education-item,
     .research-item,
     .publication-item,
-    .award-item {
+    .timeline-item {
         page-break-inside: avoid;
     }
 
