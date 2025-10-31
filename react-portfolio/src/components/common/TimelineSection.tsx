@@ -2,20 +2,26 @@ import type { ReactNode } from 'react';
 
 type ClassName = string | undefined | null | false;
 
-interface TimelineItem {
+export interface TimelineItem {
   date: string;
-  description: ReactNode;
+  description?: ReactNode;
 }
 
-interface TimelineSectionProps<T extends TimelineItem> {
+export interface TimelineSectionProps<T extends TimelineItem> {
   id: string;
-  title: string;
+  title?: string;
   items: T[];
   listClassName?: string;
   itemClassName?: string;
+  dateWrapperClassName?: string;
   dateClassName?: string;
+  contentWrapperClassName?: string;
   descriptionClassName?: string;
-  renderDescription?: (item: T) => ReactNode;
+  renderDate?: (item: T, index: number) => ReactNode;
+  renderContent?: (item: T, index: number) => ReactNode;
+  getItemClassName?: (item: T, index: number) => ClassName;
+  getItemKey?: (item: T, index: number) => string | number;
+  children?: ReactNode;
 }
 
 const joinClassNames = (...classNames: ClassName[]) =>
@@ -27,39 +33,73 @@ const TimelineSection = <T extends TimelineItem>({
   items,
   listClassName,
   itemClassName,
+  dateWrapperClassName,
   dateClassName,
+  contentWrapperClassName,
   descriptionClassName,
-  renderDescription,
+  renderDate,
+  renderContent,
+  getItemClassName,
+  getItemKey,
+  children,
 }: TimelineSectionProps<T>) => {
   return (
     <section id={id} className="section">
       <div className="container">
-        <h2 className="section-title">{title}</h2>
+        {title && <h2 className="section-title">{title}</h2>}
         <div className={joinClassNames('timeline-list', listClassName)} role="list">
-          {items.map((item, index) => (
-            <div
-              key={`${item.date}-${index}`}
-              className={joinClassNames('timeline-item', itemClassName)}
-              role="listitem"
-            >
-              <div className="timeline-dates">
-                <span className={joinClassNames('timeline-date', dateClassName)}>
-                  {item.date}
-                </span>
-              </div>
-              <div className="timeline-content">
-                <span
+          {items.map((item, index) => {
+            const itemKey = getItemKey ? getItemKey(item, index) : `${item.date}-${index}`;
+            const dateContent = renderDate ? renderDate(item, index) : item.date;
+            const descriptionContent = renderContent
+              ? renderContent(item, index)
+              : item.description;
+
+            return (
+              <div
+                key={itemKey}
+                className={joinClassNames(
+                  'timeline-item',
+                  itemClassName,
+                  getItemClassName?.(item, index),
+                )}
+                role="listitem"
+              >
+                <div
+                  className={joinClassNames('timeline-dates', dateWrapperClassName)}
+                >
+                  {typeof dateContent === 'string' ? (
+                    <span className={joinClassNames('timeline-date', dateClassName)}>
+                      {dateContent}
+                    </span>
+                  ) : (
+                    dateContent
+                  )}
+                </div>
+                <div
                   className={joinClassNames(
-                    'timeline-description',
-                    descriptionClassName,
+                    'timeline-content',
+                    contentWrapperClassName,
                   )}
                 >
-                  {renderDescription ? renderDescription(item) : item.description}
-                </span>
+                  {typeof descriptionContent === 'string' ? (
+                    <span
+                      className={joinClassNames(
+                        'timeline-description',
+                        descriptionClassName,
+                      )}
+                    >
+                      {descriptionContent}
+                    </span>
+                  ) : (
+                    descriptionContent
+                  )}
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
+        {children}
       </div>
     </section>
   );

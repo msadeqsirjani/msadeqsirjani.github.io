@@ -1,32 +1,37 @@
 import { researchExperience } from '../../data/content';
+import TimelineSection from '../common/TimelineSection';
 
 const ResearchExperience = () => {
+  const researchItems = researchExperience.map(item => ({
+    ...item,
+    date: item.duration,
+  }));
+
   return (
-    <section id="research" className="section">
-      <div className="container">
-        <h2 className="section-title">Research Experience</h2>
-        <div className="research-timeline">
-          {researchExperience.map((item, index) => (
-            <div key={index} className={`research-item ${item.current ? 'current' : ''}`}>
-              <div className="research-dates">
-                <span className="timeline">{item.duration}</span>
-              </div>
-              <div className="research-content">
-                <span className="research-position">{item.position}</span>
-                <span className="research-lab">{item.lab}</span>
-                <div className="research-description">
-                  <ul>
-                    {item.description.map((desc, i) => (
-                      <li key={i}>{desc}</li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
+    <TimelineSection
+      id="research"
+      title="Research Experience"
+      items={researchItems}
+      listClassName="research-timeline"
+      itemClassName="research-item"
+      dateWrapperClassName="research-dates"
+      dateClassName="timeline"
+      contentWrapperClassName="research-content"
+      getItemClassName={(item) => (item.current ? 'current' : '')}
+      renderContent={(item) => (
+        <>
+          <span className="research-position">{item.position}</span>
+          <span className="research-lab">{item.lab}</span>
+          <div className="research-description">
+            <ul>
+              {item.description.map((desc, index) => (
+                <li key={index}>{desc}</li>
+              ))}
+            </ul>
+          </div>
+        </>
+      )}
+    />
   );
 };
 
