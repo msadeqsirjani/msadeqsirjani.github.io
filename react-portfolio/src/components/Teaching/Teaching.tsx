@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { teaching } from '../../data/content';
+import type { TeachingItem } from '../../types';
 import TimelineSection from '../common/TimelineSection';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
@@ -10,7 +11,7 @@ const Teaching = () => {
   const visibleTeaching = showAll ? teaching : teaching.slice(0, 5);
 
   return (
-    <TimelineSection
+    <TimelineSection<TeachingItem>
       id="teaching"
       title="Teaching Experience"
       items={visibleTeaching}

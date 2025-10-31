@@ -1,23 +1,21 @@
 import { education } from '../../data/content';
+import type { EducationItem } from '../../types';
 import TimelineSection from '../common/TimelineSection';
 
 const Education = () => {
-  const educationItems = education.map(item => ({
-    ...item,
-    date: item.duration,
-  }));
-
   return (
-    <TimelineSection
+    <TimelineSection<EducationItem>
       id="education"
       title="Education"
-      items={educationItems}
+      items={education}
       listClassName="education-timeline"
       itemClassName="education-item"
       dateWrapperClassName="education-dates"
       dateClassName="duration"
       contentWrapperClassName="education-content"
-      getItemClassName={(item) => (item.current ? 'current' : '')}
+      getItemKey={(item, index) => `${item.degree}-${item.university}-${index}`}
+      getItemClassName={(item) => (item.current ? 'current' : undefined)}
+      renderDate={(item) => item.duration}
       renderContent={(item) => (
         <>
           <span className="education-degree">{item.degree}</span>

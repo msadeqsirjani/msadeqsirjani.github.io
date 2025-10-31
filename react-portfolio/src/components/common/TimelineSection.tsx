@@ -2,12 +2,9 @@ import type { ReactNode } from 'react';
 
 type ClassName = string | undefined | null | false;
 
-export interface TimelineItem {
-  date: string;
-  description?: ReactNode;
-}
+type Accessor<T, R> = (item: T, index: number) => R;
 
-export interface TimelineSectionProps<T extends TimelineItem> {
+export interface TimelineSectionProps<T> {
   id: string;
   title?: string;
   items: T[];
@@ -17,17 +14,17 @@ export interface TimelineSectionProps<T extends TimelineItem> {
   dateClassName?: string;
   contentWrapperClassName?: string;
   descriptionClassName?: string;
-  renderDate?: (item: T, index: number) => ReactNode;
-  renderContent?: (item: T, index: number) => ReactNode;
-  getItemClassName?: (item: T, index: number) => ClassName;
-  getItemKey?: (item: T, index: number) => string | number;
+  renderDate?: Accessor<T, ReactNode>;
+  renderContent?: Accessor<T, ReactNode>;
+  getItemClassName?: Accessor<T, ClassName>;
+  getItemKey?: Accessor<T, string | number>;
   children?: ReactNode;
 }
 
 const joinClassNames = (...classNames: ClassName[]) =>
   classNames.filter(Boolean).join(' ');
 
-const TimelineSection = <T extends TimelineItem>({
+const TimelineSection = <T,>({
   id,
   title,
   items,
@@ -49,11 +46,22 @@ const TimelineSection = <T extends TimelineItem>({
         {title && <h2 className="section-title">{title}</h2>}
         <div className={joinClassNames('timeline-list', listClassName)} role="list">
           {items.map((item, index) => {
-            const itemKey = getItemKey ? getItemKey(item, index) : `${item.date}-${index}`;
-            const dateContent = renderDate ? renderDate(item, index) : item.date;
+            const candidate = item as Record<string, unknown>;
+            const defaultDate = candidate['date'] as ReactNode | undefined;
+            const defaultDescription = candidate['description'] as ReactNode | undefined;
+            const itemKey = getItemKey
+              ? getItemKey(item, index)
+              : `${String(
+                  typeof defaultDate === 'string' ? defaultDate : index,
+                )}-${index}`;
+            const dateContent = renderDate ? renderDate(item, index) : defaultDate;
             const descriptionContent = renderContent
               ? renderContent(item, index)
-              : item.description;
+              : defaultDescription;
+            const hasDateContent =
+              dateContent !== undefined && dateContent !== null && dateContent !== '';
+            const hasDescriptionContent =
+              descriptionContent !== undefined && descriptionContent !== null;
 
             return (
               <div
@@ -68,13 +76,15 @@ const TimelineSection = <T extends TimelineItem>({
                 <div
                   className={joinClassNames('timeline-dates', dateWrapperClassName)}
                 >
-                  {typeof dateContent === 'string' ? (
-                    <span className={joinClassNames('timeline-date', dateClassName)}>
-                      {dateContent}
-                    </span>
-                  ) : (
-                    dateContent
-                  )}
+                  {hasDateContent
+                    ? typeof dateContent === 'string'
+                      ? (
+                        <span className={joinClassNames('timeline-date', dateClassName)}>
+                          {dateContent}
+                        </span>
+                      )
+                      : dateContent
+                    : null}
                 </div>
                 <div
                   className={joinClassNames(
@@ -82,18 +92,20 @@ const TimelineSection = <T extends TimelineItem>({
                     contentWrapperClassName,
                   )}
                 >
-                  {typeof descriptionContent === 'string' ? (
-                    <span
-                      className={joinClassNames(
-                        'timeline-description',
-                        descriptionClassName,
-                      )}
-                    >
-                      {descriptionContent}
-                    </span>
-                  ) : (
-                    descriptionContent
-                  )}
+                  {hasDescriptionContent
+                    ? typeof descriptionContent === 'string'
+                      ? (
+                        <span
+                          className={joinClassNames(
+                            'timeline-description',
+                            descriptionClassName,
+                          )}
+                        >
+                          {descriptionContent}
+                        </span>
+                      )
+                      : descriptionContent
+                    : null}
                 </div>
               </div>
             );

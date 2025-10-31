@@ -64,8 +64,18 @@ function App() {
   React.useEffect(() => {
     // Valid hash routes
     const validRoutes = [
-      '', '#', '#home', '#biography', '#education', '#research',
-      '#publications', '#teaching', '#news', '#awards', '#contact'
+      '',
+      '#',
+      '#home',
+      '#biography',
+      '#education',
+      '#research',
+      '#research-interests',
+      '#publications',
+      '#teaching',
+      '#news',
+      '#awards',
+      '#contact',
     ];
 
     const checkRoute = () => {
