@@ -74,7 +74,7 @@ const FormBasedEditor: React.FC<FormBasedEditorProps> = ({ contentType, token, o
         }
       }
 
-      const currentBranch = 'claude/admin-dashboard-content-update-011CUoRUJ37E97fDvjKapQMC';
+      const currentBranch = 'main';
       const content = JSON.stringify(updatedItems, null, 2);
 
       const updateParams: any = {

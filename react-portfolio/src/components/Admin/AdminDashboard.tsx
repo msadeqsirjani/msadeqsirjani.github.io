@@ -10,6 +10,7 @@ const AdminDashboard: React.FC<AdminDashboardProps> = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [activeTab, setActiveTab] = useState<string>('publications');
   const [saveStatus, setSaveStatus] = useState<string>('');
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   useEffect(() => {
     // Check if token exists in sessionStorage
@@ -48,45 +49,79 @@ const AdminDashboard: React.FC<AdminDashboardProps> = () => {
 
   return (
     <div className="admin-dashboard">
-      <div className="admin-header">
-        <h1>Content Management Dashboard</h1>
-        <button onClick={handleLogout} className="logout-btn">
+      {/* Mobile Header */}
+      <div className="admin-mobile-header">
+        <button
+          className="sidebar-toggle"
+          onClick={() => setSidebarOpen(!sidebarOpen)}
+          aria-label="Toggle menu"
+        >
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor">
+            <path d="M3 6h14M3 10h14M3 14h14" strokeWidth="2" strokeLinecap="square"/>
+          </svg>
+        </button>
+        <h1>Admin</h1>
+        <button onClick={handleLogout} className="logout-btn-mobile">
           Logout
         </button>
       </div>
 
-      {saveStatus && (
-        <div className={`save-status ${saveStatus.includes('Error') ? 'error' : 'success'}`}>
-          {saveStatus}
+      {/* Sidebar */}
+      <aside className={`admin-sidebar ${sidebarOpen ? 'open' : ''}`}>
+        <div className="sidebar-header">
+          <h2>Content</h2>
+          <button onClick={handleLogout} className="logout-btn-desktop">
+            Logout
+          </button>
         </div>
+
+        <nav className="sidebar-nav">
+          {tabs.map((tab) => (
+            <button
+              key={tab.id}
+              className={`sidebar-item ${activeTab === tab.id ? 'active' : ''}`}
+              onClick={() => {
+                setActiveTab(tab.id);
+                setSidebarOpen(false);
+              }}
+            >
+              {tab.label}
+            </button>
+          ))}
+        </nav>
+      </aside>
+
+      {/* Overlay for mobile */}
+      {sidebarOpen && (
+        <div
+          className="sidebar-overlay"
+          onClick={() => setSidebarOpen(false)}
+        />
       )}
 
-      <div className="admin-tabs">
-        {tabs.map((tab) => (
-          <button
-            key={tab.id}
-            className={`tab-btn ${activeTab === tab.id ? 'active' : ''}`}
-            onClick={() => setActiveTab(tab.id)}
-          >
-            {tab.label}
-          </button>
-        ))}
-      </div>
+      {/* Main Content */}
+      <main className="admin-main">
+        {saveStatus && (
+          <div className={`save-status ${saveStatus.includes('Error') ? 'error' : 'success'}`}>
+            {saveStatus}
+          </div>
+        )}
 
-      <div className="admin-content">
-        <FormBasedEditor
-          contentType={activeTab}
-          token={token}
-          onSaveStatus={setSaveStatus}
-        />
-      </div>
+        <div className="admin-content">
+          <FormBasedEditor
+            contentType={activeTab}
+            token={token}
+            onSaveStatus={setSaveStatus}
+          />
+        </div>
 
-      <div className="admin-footer">
-        <p>
-          <strong>Note:</strong> Changes are saved directly to your GitHub repository.
-          After saving, you may need to rebuild your site for changes to appear.
-        </p>
-      </div>
+        <div className="admin-footer">
+          <p>
+            <strong>Note:</strong> Changes are saved directly to your GitHub repository.
+            After saving, you may need to rebuild your site for changes to appear.
+          </p>
+        </div>
+      </main>
     </div>
   );
 };
