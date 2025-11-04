@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Octokit } from '@octokit/rest';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPencil, faTrash, faSearch } from '@fortawesome/free-solid-svg-icons';
 import PublicationForm from './PublicationForm';
 import type { Publication } from '../../types';
 import './ContentForm.css';
@@ -16,6 +18,9 @@ const FormBasedEditor: React.FC<FormBasedEditorProps> = ({ contentType, token, o
   const [editing, setEditing] = useState<number | null>(null);
   const [adding, setAdding] = useState(false);
   const [deleteConfirm, setDeleteConfirm] = useState<number | null>(null);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [selectedItems, setSelectedItems] = useState<Set<number>>(new Set());
+  const [bulkDeleteConfirm, setBulkDeleteConfirm] = useState(false);
 
   const fileMap: { [key: string]: string } = {
     'publications': 'publications.json',
@@ -123,6 +128,40 @@ const FormBasedEditor: React.FC<FormBasedEditorProps> = ({ contentType, token, o
     await saveToGitHub(updatedItems);
   };
 
+  const handleBulkDelete = () => {
+    if (selectedItems.size === 0) return;
+    setBulkDeleteConfirm(true);
+  };
+
+  const confirmBulkDelete = async () => {
+    const updatedItems = items.filter((_, i) => !selectedItems.has(i));
+    setItems(updatedItems);
+    setSelectedItems(new Set());
+    setBulkDeleteConfirm(false);
+    await saveToGitHub(updatedItems);
+  };
+
+  const toggleSelectItem = (index: number) => {
+    const newSelected = new Set(selectedItems);
+    if (newSelected.has(index)) {
+      newSelected.delete(index);
+    } else {
+      newSelected.add(index);
+    }
+    setSelectedItems(newSelected);
+  };
+
+  const toggleSelectAll = () => {
+    if (selectedItems.size === filteredItems.length) {
+      setSelectedItems(new Set());
+    } else {
+      const allIndices = filteredItems.map((_, i) =>
+        items.findIndex(item => item === filteredItems[i])
+      );
+      setSelectedItems(new Set(allIndices));
+    }
+  };
+
   const handleSave = async (item: any) => {
     let updatedItems;
     if (editing !== null) {
@@ -142,31 +181,65 @@ const FormBasedEditor: React.FC<FormBasedEditorProps> = ({ contentType, token, o
     setEditing(null);
   };
 
-  const renderPublicationItem = (item: Publication, index: number) => (
-    <div key={index} className="item-card">
-      <div className="item-header">
-        <div style={{ flex: 1 }}>
+  // Filter items based on search query
+  const filteredItems = items.filter(item => {
+    if (!searchQuery) return true;
+
+    const query = searchQuery.toLowerCase();
+    if (contentType === 'publications') {
+      const pub = item as Publication;
+      return (
+        pub.title?.toLowerCase().includes(query) ||
+        pub.authors?.toLowerCase().includes(query) ||
+        pub.venue?.toLowerCase().includes(query) ||
+        pub.year?.toString().includes(query)
+      );
+    }
+    // Add more content type filters here
+    return true;
+  });
+
+  const renderPublicationItem = (item: Publication) => {
+    const actualIndex = items.findIndex(i => i === item);
+    const isSelected = selectedItems.has(actualIndex);
+
+    return (
+      <div key={actualIndex} className={`item-row ${isSelected ? 'selected' : ''}`}>
+        <input
+          type="checkbox"
+          className="item-checkbox"
+          checked={isSelected}
+          onChange={() => toggleSelectItem(actualIndex)}
+          aria-label={`Select ${item.title}`}
+        />
+        <div className="item-content">
           <h3 className="item-title">{item.title}</h3>
-          <p className="item-meta">
-            {item.venue} ({item.year}) - {item.status.toUpperCase()}
-          </p>
-          {item.authors && <p className="item-meta">{item.authors}</p>}
         </div>
         <div className="item-actions">
-          <button onClick={() => handleEdit(index)} className="btn-edit">
-            Edit
+          <button
+            onClick={() => handleEdit(actualIndex)}
+            className="btn-icon btn-edit"
+            aria-label="Edit"
+            title="Edit"
+          >
+            <FontAwesomeIcon icon={faPencil} />
           </button>
-          <button onClick={() => handleDelete(index)} className="btn-delete">
-            Delete
+          <button
+            onClick={() => handleDelete(actualIndex)}
+            className="btn-icon btn-delete"
+            aria-label="Delete"
+            title="Delete"
+          >
+            <FontAwesomeIcon icon={faTrash} />
           </button>
         </div>
       </div>
-    </div>
-  );
+    );
+  };
 
   const renderList = () => {
     if (contentType === 'publications') {
-      return items.map((item, index) => renderPublicationItem(item, index));
+      return filteredItems.map((item) => renderPublicationItem(item));
     }
     // Add more content type renderers here
     return null;
@@ -214,11 +287,57 @@ const FormBasedEditor: React.FC<FormBasedEditorProps> = ({ contentType, token, o
         </button>
       </div>
 
+      {items.length > 0 && (
+        <>
+          <div className="list-controls">
+            <div className="search-container">
+              <FontAwesomeIcon icon={faSearch} className="search-icon" />
+              <input
+                type="text"
+                placeholder="Search items..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="search-input"
+              />
+            </div>
+
+            {selectedItems.size > 0 && (
+              <div className="selection-actions">
+                <span className="selection-count">
+                  {selectedItems.size} selected
+                </span>
+                <button onClick={handleBulkDelete} className="btn-bulk-delete">
+                  <FontAwesomeIcon icon={faTrash} />
+                  Delete Selected
+                </button>
+              </div>
+            )}
+          </div>
+
+          <div className="list-header">
+            <input
+              type="checkbox"
+              className="item-checkbox"
+              checked={selectedItems.size === filteredItems.length && filteredItems.length > 0}
+              onChange={toggleSelectAll}
+              aria-label="Select all"
+            />
+            <span className="list-header-title">Title</span>
+            <span className="list-header-actions">Actions</span>
+          </div>
+        </>
+      )}
+
       <div className="item-list">
         {items.length === 0 ? (
           <div className="empty-state">
             <p>No items yet</p>
             <p>Click "Add New" to create your first item</p>
+          </div>
+        ) : filteredItems.length === 0 ? (
+          <div className="empty-state">
+            <p>No results found</p>
+            <p>Try adjusting your search query</p>
           </div>
         ) : (
           renderList()
@@ -236,6 +355,26 @@ const FormBasedEditor: React.FC<FormBasedEditorProps> = ({ contentType, token, o
               </button>
               <button onClick={confirmDelete} className="btn-delete">
                 Delete
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {bulkDeleteConfirm && (
+        <div className="confirm-dialog">
+          <div className="confirm-content">
+            <h3>Confirm Bulk Delete</h3>
+            <p>
+              Are you sure you want to delete {selectedItems.size} item(s)?
+              This action cannot be undone.
+            </p>
+            <div className="confirm-actions">
+              <button onClick={() => setBulkDeleteConfirm(false)} className="btn-cancel">
+                Cancel
+              </button>
+              <button onClick={confirmBulkDelete} className="btn-delete">
+                Delete All
               </button>
             </div>
           </div>
