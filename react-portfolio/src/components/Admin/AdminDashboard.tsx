@@ -125,19 +125,6 @@ const AdminDashboard: React.FC<AdminDashboardProps> = () => {
         </button>
 
         <div className="sidebar-header">
-          <div className="admin-profile">
-            <img
-              src="/assets/img/profile.webp"
-              alt="Mohammad Sadegh Sirjani"
-              className="admin-avatar"
-            />
-            {!sidebarCollapsed && (
-              <div className="admin-info">
-                <h3>Mohammad Sadegh Sirjani</h3>
-                <p>Administrator</p>
-              </div>
-            )}
-          </div>
           {!sidebarCollapsed && (
             <div className="sidebar-header-actions">
               <button
@@ -172,6 +159,21 @@ const AdminDashboard: React.FC<AdminDashboardProps> = () => {
             </button>
           ))}
         </nav>
+
+        {/* Profile at bottom */}
+        <div className="admin-profile">
+          <img
+            src="/assets/img/profile.webp"
+            alt="Mohammad Sadegh Sirjani"
+            className="admin-avatar"
+          />
+          {!sidebarCollapsed && (
+            <div className="admin-info">
+              <h3>Mohammad Sadegh Sirjani</h3>
+              <p>Administrator</p>
+            </div>
+          )}
+        </div>
       </aside>
 
       {/* Overlay for mobile */}
