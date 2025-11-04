@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
 import AdminAuth from './AdminAuth';
 import FormBasedEditor from './FormBasedEditor';
 import './AdminDashboard.css';
@@ -11,6 +13,20 @@ const AdminDashboard: React.FC<AdminDashboardProps> = () => {
   const [activeTab, setActiveTab] = useState<string>('publications');
   const [saveStatus, setSaveStatus] = useState<string>('');
   const [sidebarOpen, setSidebarOpen] = useState(false);
+
+  // Theme state
+  const [theme, setTheme] = useState<'light' | 'dark'>(() => {
+    if (typeof window === 'undefined') return 'light';
+    const saved = localStorage.getItem('theme');
+    if (saved === 'light' || saved === 'dark') return saved;
+    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    return systemPrefersDark ? 'dark' : 'light';
+  });
+
+  useEffect(() => {
+    // Apply theme
+    document.documentElement.setAttribute('data-theme', theme);
+  }, [theme]);
 
   useEffect(() => {
     // Check if token exists in sessionStorage
@@ -31,6 +47,13 @@ const AdminDashboard: React.FC<AdminDashboardProps> = () => {
     setToken('');
     setIsAuthenticated(false);
     sessionStorage.removeItem('github_token');
+  };
+
+  const toggleTheme = () => {
+    const newTheme = theme === 'light' ? 'dark' : 'light';
+    setTheme(newTheme);
+    localStorage.setItem('theme', newTheme);
+    document.documentElement.setAttribute('data-theme', newTheme);
   };
 
   const tabs = [
@@ -61,18 +84,37 @@ const AdminDashboard: React.FC<AdminDashboardProps> = () => {
           </svg>
         </button>
         <h1>Admin</h1>
-        <button onClick={handleLogout} className="logout-btn-mobile">
-          Logout
-        </button>
+        <div className="mobile-header-actions">
+          <button
+            className="theme-toggle"
+            onClick={toggleTheme}
+            aria-label="Toggle theme"
+          >
+            <FontAwesomeIcon icon={theme === 'light' ? faMoon : faSun} />
+          </button>
+          <button onClick={handleLogout} className="logout-btn-mobile">
+            Logout
+          </button>
+        </div>
       </div>
 
       {/* Sidebar */}
       <aside className={`admin-sidebar ${sidebarOpen ? 'open' : ''}`}>
         <div className="sidebar-header">
           <h2>Content</h2>
-          <button onClick={handleLogout} className="logout-btn-desktop">
-            Logout
-          </button>
+          <div className="sidebar-header-actions">
+            <button
+              className="theme-toggle"
+              onClick={toggleTheme}
+              aria-label="Toggle theme"
+              title={theme === 'light' ? 'Dark mode' : 'Light mode'}
+            >
+              <FontAwesomeIcon icon={theme === 'light' ? faMoon : faSun} />
+            </button>
+            <button onClick={handleLogout} className="logout-btn-desktop">
+              Logout
+            </button>
+          </div>
         </div>
 
         <nav className="sidebar-nav">
