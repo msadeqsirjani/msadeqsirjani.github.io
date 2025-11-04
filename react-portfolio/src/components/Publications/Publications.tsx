@@ -1,14 +1,16 @@
 import { useState, useMemo, useEffect, useRef } from 'react';
-import { publications } from '../../data/content';
+import { fetchPublications } from '../../data/content';
 import { toast } from 'sonner';
+import type { Publication } from '../../types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faTimes, faRedo, faChevronDown, faQuoteLeft, faExternalLinkAlt, faFilePdf, faSpinner, faQuoteRight, faShareAlt, faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { faTwitter, faLinkedin, faFacebook } from '@fortawesome/free-brands-svg-icons';
 import { trackCitationCopy } from '../../utils/analytics';
-import type { Publication } from '../../types';
 import { useFocusTrap } from '../../hooks/useFocusTrap';
 
 const Publications = () => {
+  const [publications, setPublications] = useState<Publication[]>([]);
+  const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
   const [statusFilter, setStatusFilter] = useState('all');
   const [yearFilter, setYearFilter] = useState('all');
@@ -26,16 +28,29 @@ const Publications = () => {
   const yearItemsRef = useRef<HTMLDivElement | null>(null);
   // Use Map instead of array to prevent memory leaks
   const shareDropdownRefs = useRef<Map<number, HTMLDivElement | null>>(new Map());
-  
+
   // Add focus traps for filter dropdowns
   useFocusTrap(statusItemsRef, statusDropdownOpen);
   useFocusTrap(yearItemsRef, yearDropdownOpen);
 
   useEffect(() => {
+    // Load publications data
+    setLoading(true);
+    fetchPublications()
+      .then(data => {
+        setPublications(data);
+        setLoading(false);
+      })
+      .catch(err => {
+        console.error('Failed to load publications:', err);
+        toast.error('Failed to load publications data');
+        setLoading(false);
+      });
+
     // Load BibTeX data
     setBibtexLoading(true);
     setBibtexError(null);
-    
+
     fetch('/assets/data/bibtex.json')
       .then(res => {
         if (!res.ok) {
@@ -51,12 +66,12 @@ const Publications = () => {
         const errorMessage = 'Failed to load citation data';
         setBibtexError(errorMessage);
         setBibtexLoading(false);
-        
+
         // Only log in development
         if (import.meta.env.DEV) {
           console.error('Failed to load BibTeX data:', err);
         }
-        
+
         // Show user-friendly error notification
         toast.error(errorMessage + '. Citation features may be limited.');
       });
@@ -210,6 +225,17 @@ const Publications = () => {
       setOpenShareDropdown(null);
     }
   };
+
+  if (loading) {
+    return (
+      <section id="publications" className="section">
+        <div className="container">
+          <h2 className="section-title">Publications</h2>
+          <p style={{ textAlign: 'center', padding: '2rem' }}>Loading publications...</p>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section id="publications" className="section">

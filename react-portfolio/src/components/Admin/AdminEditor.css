@@ -1,0 +1,142 @@
+.admin-editor {
+  padding: 2rem;
+}
+
+.editor-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+.editor-header h2 {
+  margin: 0;
+  color: #1f2937;
+  font-size: 1.5rem;
+  text-transform: capitalize;
+}
+
+.editor-actions {
+  display: flex;
+  gap: 1rem;
+}
+
+.format-btn,
+.save-btn {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.format-btn {
+  background: #f3f4f6;
+  color: #374151;
+}
+
+.format-btn:hover:not(:disabled) {
+  background: #e5e7eb;
+}
+
+.save-btn {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  box-shadow: 0 2px 4px rgba(102, 126, 234, 0.4);
+}
+
+.save-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(102, 126, 234, 0.4);
+}
+
+.format-btn:disabled,
+.save-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.loading {
+  text-align: center;
+  padding: 3rem;
+  color: #6b7280;
+  font-size: 1.1rem;
+}
+
+.json-editor {
+  width: 100%;
+  min-height: 500px;
+  padding: 1.5rem;
+  border: 2px solid #e5e7eb;
+  border-radius: 8px;
+  font-family: 'Courier New', Consolas, monospace;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  resize: vertical;
+  background: #f9fafb;
+  color: #1f2937;
+  transition: border-color 0.3s;
+}
+
+.json-editor:focus {
+  outline: none;
+  border-color: #667eea;
+  background: white;
+}
+
+.editor-help {
+  margin-top: 1.5rem;
+  padding: 1.5rem;
+  background: #f3f4f6;
+  border-radius: 8px;
+  border-left: 4px solid #667eea;
+}
+
+.editor-help h3 {
+  margin: 0 0 1rem 0;
+  color: #374151;
+  font-size: 1.1rem;
+}
+
+.editor-help ul {
+  margin: 0;
+  padding-left: 1.5rem;
+  color: #6b7280;
+}
+
+.editor-help li {
+  margin-bottom: 0.5rem;
+  line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+  .admin-editor {
+    padding: 1rem;
+  }
+
+  .editor-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .editor-actions {
+    width: 100%;
+  }
+
+  .format-btn,
+  .save-btn {
+    flex: 1;
+    padding: 0.75rem;
+    font-size: 0.9rem;
+  }
+
+  .json-editor {
+    font-size: 0.85rem;
+    min-height: 400px;
+  }
+}

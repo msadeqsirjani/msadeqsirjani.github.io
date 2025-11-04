@@ -67,6 +67,10 @@ export default defineConfig({
     minify: 'terser',
     sourcemap: true, // Enable source maps for production debugging
     rollupOptions: {
+      input: {
+        main: path.resolve(__dirname, 'index.html'),
+        admin: path.resolve(__dirname, 'admin.html'),
+      },
       output: {
         // Manual chunking for better caching
         manualChunks: {
