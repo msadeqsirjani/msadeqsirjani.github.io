@@ -1,59 +1,67 @@
 .admin-dashboard {
   min-height: 100vh;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  padding: 2rem;
+  background: #ffffff;
+  padding: 0;
 }
 
 .admin-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: white;
+  background: #ffffff;
   padding: 1.5rem 2rem;
-  border-radius: 10px;
-  margin-bottom: 2rem;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid #d1d5db;
+  position: sticky;
+  top: 0;
+  z-index: 10;
 }
 
 .admin-header h1 {
   margin: 0;
-  color: #333;
-  font-size: 1.8rem;
+  color: #1a1a1a;
+  font-size: 1.5rem;
+  font-weight: 600;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
 .logout-btn {
-  background: #ef4444;
-  color: white;
-  border: none;
-  padding: 0.75rem 1.5rem;
+  background: #ffffff;
+  color: #1a1a1a;
+  border: 1px solid #d1d5db;
+  padding: 0.5rem 1rem;
   border-radius: 6px;
   cursor: pointer;
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-weight: 500;
-  transition: background 0.3s;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
 }
 
 .logout-btn:hover {
-  background: #dc2626;
+  background: #f7fafc;
+  border-color: #1e40af;
+  color: #1e40af;
 }
 
 .save-status {
-  background: white;
-  padding: 1rem 2rem;
-  border-radius: 8px;
-  margin-bottom: 1.5rem;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background: #ffffff;
+  padding: 0.875rem 1.5rem;
+  margin: 1rem 2rem;
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
   animation: slideIn 0.3s ease-out;
+  font-size: 0.9rem;
 }
 
 .save-status.success {
-  border-left: 4px solid #10b981;
-  color: #065f46;
+  border-left: 3px solid #047857;
+  background: #f0fdf4;
+  color: #047857;
 }
 
 .save-status.error {
-  border-left: 4px solid #ef4444;
-  color: #991b1b;
+  border-left: 3px solid #dc2626;
+  background: #fef2f2;
+  color: #dc2626;
 }
 
 @keyframes slideIn {
@@ -69,80 +77,80 @@
 
 .admin-tabs {
   display: flex;
-  gap: 0.5rem;
-  background: white;
-  padding: 1rem;
-  border-radius: 10px;
-  margin-bottom: 2rem;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  gap: 0.25rem;
+  background: #ffffff;
+  padding: 0 2rem;
+  border-bottom: 1px solid #d1d5db;
   overflow-x: auto;
 }
 
 .tab-btn {
-  background: #f3f4f6;
+  background: transparent;
   border: none;
-  padding: 0.75rem 1.5rem;
-  border-radius: 6px;
+  padding: 1rem 1.25rem;
   cursor: pointer;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   font-weight: 500;
-  color: #6b7280;
-  transition: all 0.3s;
+  color: #475569;
+  transition: color 0.2s ease;
   white-space: nowrap;
+  border-bottom: 2px solid transparent;
+  position: relative;
 }
 
 .tab-btn:hover {
-  background: #e5e7eb;
-  color: #374151;
+  color: #1a1a1a;
 }
 
 .tab-btn.active {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
-  box-shadow: 0 2px 4px rgba(102, 126, 234, 0.4);
+  color: #1e40af;
+  border-bottom-color: #1e40af;
 }
 
 .admin-content {
-  background: white;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  min-height: 500px;
+  background: #ffffff;
+  min-height: calc(100vh - 200px);
 }
 
 .admin-footer {
-  background: white;
-  padding: 1.5rem 2rem;
-  border-radius: 10px;
-  margin-top: 2rem;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background: #f7fafc;
+  padding: 1.25rem 2rem;
+  border-top: 1px solid #d1d5db;
 }
 
 .admin-footer p {
   margin: 0;
-  color: #6b7280;
-  font-size: 0.9rem;
+  color: #475569;
+  font-size: 0.85rem;
+  line-height: 1.5;
 }
 
 .admin-footer strong {
-  color: #374151;
+  color: #1a1a1a;
 }
 
 @media (max-width: 768px) {
   .admin-dashboard {
-    padding: 1rem;
+    padding: 0;
   }
 
   .admin-header {
     flex-direction: column;
     gap: 1rem;
     text-align: center;
+    padding: 1rem 1.5rem;
   }
 
   .admin-header h1 {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
   }
 
   .admin-tabs {
-    flex-wrap: wrap;
+    padding: 0 1rem;
+  }
+
+  .save-status {
+    margin: 1rem;
   }
 }
+
