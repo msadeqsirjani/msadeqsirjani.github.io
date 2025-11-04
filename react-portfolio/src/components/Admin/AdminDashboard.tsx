@@ -1,6 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
+import {
+  faMoon,
+  faSun,
+  faFileLines,
+  faGraduationCap,
+  faFlask,
+  faChalkboardTeacher,
+  faNewspaper,
+  faTrophy,
+  faLightbulb,
+  faBars,
+  faChevronLeft,
+  faChevronRight
+} from '@fortawesome/free-solid-svg-icons';
 import AdminAuth from './AdminAuth';
 import FormBasedEditor from './FormBasedEditor';
 import './AdminDashboard.css';
@@ -13,6 +26,7 @@ const AdminDashboard: React.FC<AdminDashboardProps> = () => {
   const [activeTab, setActiveTab] = useState<string>('publications');
   const [saveStatus, setSaveStatus] = useState<string>('');
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
 
   // Theme state
   const [theme, setTheme] = useState<'light' | 'dark'>(() => {
@@ -57,13 +71,13 @@ const AdminDashboard: React.FC<AdminDashboardProps> = () => {
   };
 
   const tabs = [
-    { id: 'publications', label: 'Publications' },
-    { id: 'education', label: 'Education' },
-    { id: 'research', label: 'Research Experience' },
-    { id: 'teaching', label: 'Teaching' },
-    { id: 'news', label: 'News' },
-    { id: 'awards', label: 'Awards' },
-    { id: 'research-interests', label: 'Research Interests' },
+    { id: 'publications', label: 'Publications', icon: faFileLines },
+    { id: 'education', label: 'Education', icon: faGraduationCap },
+    { id: 'research', label: 'Research Experience', icon: faFlask },
+    { id: 'teaching', label: 'Teaching', icon: faChalkboardTeacher },
+    { id: 'news', label: 'News', icon: faNewspaper },
+    { id: 'awards', label: 'Awards', icon: faTrophy },
+    { id: 'research-interests', label: 'Research Interests', icon: faLightbulb },
   ];
 
   if (!isAuthenticated) {
@@ -79,9 +93,7 @@ const AdminDashboard: React.FC<AdminDashboardProps> = () => {
           onClick={() => setSidebarOpen(!sidebarOpen)}
           aria-label="Toggle menu"
         >
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor">
-            <path d="M3 6h14M3 10h14M3 14h14" strokeWidth="2" strokeLinecap="square"/>
-          </svg>
+          <FontAwesomeIcon icon={faBars} />
         </button>
         <h1>Admin</h1>
         <div className="mobile-header-actions">
@@ -99,21 +111,25 @@ const AdminDashboard: React.FC<AdminDashboardProps> = () => {
       </div>
 
       {/* Sidebar */}
-      <aside className={`admin-sidebar ${sidebarOpen ? 'open' : ''}`}>
+      <aside className={`admin-sidebar ${sidebarOpen ? 'open' : ''} ${sidebarCollapsed ? 'collapsed' : ''}`}>
         <div className="sidebar-header">
-          <h2>Content</h2>
+          {!sidebarCollapsed && <h2>Content</h2>}
           <div className="sidebar-header-actions">
-            <button
-              className="theme-toggle"
-              onClick={toggleTheme}
-              aria-label="Toggle theme"
-              title={theme === 'light' ? 'Dark mode' : 'Light mode'}
-            >
-              <FontAwesomeIcon icon={theme === 'light' ? faMoon : faSun} />
-            </button>
-            <button onClick={handleLogout} className="logout-btn-desktop">
-              Logout
-            </button>
+            {!sidebarCollapsed && (
+              <>
+                <button
+                  className="theme-toggle"
+                  onClick={toggleTheme}
+                  aria-label="Toggle theme"
+                  title={theme === 'light' ? 'Dark mode' : 'Light mode'}
+                >
+                  <FontAwesomeIcon icon={theme === 'light' ? faMoon : faSun} />
+                </button>
+                <button onClick={handleLogout} className="logout-btn-desktop">
+                  Logout
+                </button>
+              </>
+            )}
           </div>
         </div>
 
@@ -126,11 +142,23 @@ const AdminDashboard: React.FC<AdminDashboardProps> = () => {
                 setActiveTab(tab.id);
                 setSidebarOpen(false);
               }}
+              title={sidebarCollapsed ? tab.label : ''}
             >
-              {tab.label}
+              <FontAwesomeIcon icon={tab.icon} className="sidebar-icon" />
+              {!sidebarCollapsed && <span>{tab.label}</span>}
             </button>
           ))}
         </nav>
+
+        {/* Collapse Toggle Button - Desktop Only */}
+        <button
+          className="sidebar-collapse-toggle desktop-only-collapse"
+          onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
+          aria-label={sidebarCollapsed ? 'Expand sidebar' : 'Collapse sidebar'}
+          title={sidebarCollapsed ? 'Expand sidebar' : 'Collapse sidebar'}
+        >
+          <FontAwesomeIcon icon={sidebarCollapsed ? faChevronRight : faChevronLeft} />
+        </button>
       </aside>
 
       {/* Overlay for mobile */}
