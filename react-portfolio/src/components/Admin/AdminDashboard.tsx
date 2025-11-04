@@ -12,7 +12,8 @@ import {
   faLightbulb,
   faBars,
   faChevronLeft,
-  faChevronRight
+  faChevronRight,
+  faRightFromBracket
 } from '@fortawesome/free-solid-svg-icons';
 import AdminAuth from './AdminAuth';
 import FormBasedEditor from './FormBasedEditor';
@@ -105,7 +106,8 @@ const AdminDashboard: React.FC<AdminDashboardProps> = () => {
             <FontAwesomeIcon icon={theme === 'light' ? faMoon : faSun} />
           </button>
           <button onClick={handleLogout} className="logout-btn-mobile">
-            Logout
+            <FontAwesomeIcon icon={faRightFromBracket} />
+            <span>Logout</span>
           </button>
         </div>
       </div>
@@ -113,24 +115,35 @@ const AdminDashboard: React.FC<AdminDashboardProps> = () => {
       {/* Sidebar */}
       <aside className={`admin-sidebar ${sidebarOpen ? 'open' : ''} ${sidebarCollapsed ? 'collapsed' : ''}`}>
         <div className="sidebar-header">
-          {!sidebarCollapsed && <h2>Content</h2>}
-          <div className="sidebar-header-actions">
+          <div className="admin-profile">
+            <img
+              src="/assets/img/profile.webp"
+              alt="Mohammad Sadegh Sirjani"
+              className="admin-avatar"
+            />
             {!sidebarCollapsed && (
-              <>
-                <button
-                  className="theme-toggle"
-                  onClick={toggleTheme}
-                  aria-label="Toggle theme"
-                  title={theme === 'light' ? 'Dark mode' : 'Light mode'}
-                >
-                  <FontAwesomeIcon icon={theme === 'light' ? faMoon : faSun} />
-                </button>
-                <button onClick={handleLogout} className="logout-btn-desktop">
-                  Logout
-                </button>
-              </>
+              <div className="admin-info">
+                <h3>Mohammad Sadegh Sirjani</h3>
+                <p>Administrator</p>
+              </div>
             )}
           </div>
+          {!sidebarCollapsed && (
+            <div className="sidebar-header-actions">
+              <button
+                className="theme-toggle"
+                onClick={toggleTheme}
+                aria-label="Toggle theme"
+                title={theme === 'light' ? 'Dark mode' : 'Light mode'}
+              >
+                <FontAwesomeIcon icon={theme === 'light' ? faMoon : faSun} />
+              </button>
+              <button onClick={handleLogout} className="logout-btn-desktop">
+                <FontAwesomeIcon icon={faRightFromBracket} />
+                <span>Logout</span>
+              </button>
+            </div>
+          )}
         </div>
 
         <nav className="sidebar-nav">
