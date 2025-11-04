@@ -21,6 +21,7 @@ const FormBasedEditor: React.FC<FormBasedEditorProps> = ({ contentType, token, o
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedItems, setSelectedItems] = useState<Set<number>>(new Set());
   const [bulkDeleteConfirm, setBulkDeleteConfirm] = useState(false);
+  const [checkboxMode, setCheckboxMode] = useState(false);
 
   const fileMap: { [key: string]: string } = {
     'publications': 'publications.json',
@@ -199,19 +200,33 @@ const FormBasedEditor: React.FC<FormBasedEditorProps> = ({ contentType, token, o
     return true;
   });
 
+  const handleDoubleClick = () => {
+    setCheckboxMode(!checkboxMode);
+    if (checkboxMode) {
+      // Exit checkbox mode and clear selections
+      setSelectedItems(new Set());
+    }
+  };
+
   const renderPublicationItem = (item: Publication) => {
     const actualIndex = items.findIndex(i => i === item);
     const isSelected = selectedItems.has(actualIndex);
 
     return (
-      <div key={actualIndex} className={`item-row ${isSelected ? 'selected' : ''}`}>
-        <input
-          type="checkbox"
-          className="item-checkbox"
-          checked={isSelected}
-          onChange={() => toggleSelectItem(actualIndex)}
-          aria-label={`Select ${item.title}`}
-        />
+      <div
+        key={actualIndex}
+        className={`item-row ${isSelected ? 'selected' : ''}`}
+        onDoubleClick={handleDoubleClick}
+      >
+        {checkboxMode && (
+          <input
+            type="checkbox"
+            className="item-checkbox"
+            checked={isSelected}
+            onChange={() => toggleSelectItem(actualIndex)}
+            aria-label={`Select ${item.title}`}
+          />
+        )}
         <div className="item-content">
           <h3 className="item-title">{item.title}</h3>
         </div>
@@ -301,6 +316,12 @@ const FormBasedEditor: React.FC<FormBasedEditorProps> = ({ contentType, token, o
               />
             </div>
 
+            {!checkboxMode && (
+              <div className="checkbox-hint">
+                <span>Double-click on any item to enable selection mode</span>
+              </div>
+            )}
+
             {selectedItems.size > 0 && (
               <div className="selection-actions">
                 <span className="selection-count">
@@ -314,14 +335,16 @@ const FormBasedEditor: React.FC<FormBasedEditorProps> = ({ contentType, token, o
             )}
           </div>
 
-          <div className="list-header">
-            <input
-              type="checkbox"
-              className="item-checkbox"
-              checked={selectedItems.size === filteredItems.length && filteredItems.length > 0}
-              onChange={toggleSelectAll}
-              aria-label="Select all"
-            />
+          <div className={`list-header ${checkboxMode ? '' : 'no-checkbox'}`}>
+            {checkboxMode && (
+              <input
+                type="checkbox"
+                className="item-checkbox"
+                checked={selectedItems.size === filteredItems.length && filteredItems.length > 0}
+                onChange={toggleSelectAll}
+                aria-label="Select all"
+              />
+            )}
             <span className="list-header-title">Title</span>
             <span className="list-header-actions">Actions</span>
           </div>
