@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import AdminAuth from './AdminAuth';
-import AdminEditor from './AdminEditor';
+import FormBasedEditor from './FormBasedEditor';
 import './AdminDashboard.css';
 
 interface AdminDashboardProps {}
@@ -74,7 +74,7 @@ const AdminDashboard: React.FC<AdminDashboardProps> = () => {
       </div>
 
       <div className="admin-content">
-        <AdminEditor
+        <FormBasedEditor
           contentType={activeTab}
           token={token}
           onSaveStatus={setSaveStatus}
