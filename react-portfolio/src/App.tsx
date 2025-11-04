@@ -54,7 +54,7 @@ function App() {
     // Check on mount and hash change
     checkRoute();
     window.addEventListener('hashchange', checkRoute);
-    
+
     return () => window.removeEventListener('hashchange', checkRoute);
   }, []);
 

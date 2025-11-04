@@ -1,0 +1,32 @@
+[
+  {
+    "position": "Research Assistant",
+    "lab": "ASIC Laboratory, USA",
+    "duration": "Jan. 2025 - Present",
+    "description": [
+      "Developing energy-efficient neural network accelerators for edge AI applications on IoT devices.",
+      "Investigating ultra-low-power ML inference using hardware-software co-design approaches."
+    ],
+    "current": true
+  },
+  {
+    "position": "Research Assistant",
+    "lab": "Software Quality Laboratory, Iran",
+    "duration": "Aug. 2022 - Jan. 2024",
+    "description": [
+      "Analyzed Java application execution traces using XRebel and JRebel for software enhancement.",
+      "Developed code analysis techniques to identify class, interface, and enum connections.",
+      "Built tool for recommending microservice migration strategies from monolithic codebases."
+    ]
+  },
+  {
+    "position": "Research Assistant",
+    "lab": "Web Technology Laboratory, Iran",
+    "duration": "Dec. 2023 - Aug. 2024",
+    "description": [
+      "Designed database structure and web-based API for psychological survey data collection.",
+      "Integrated LLMs to generate enhanced client assessment reports from survey data.",
+      "Successfully deployed production application through iterative prompt engineering refinements."
+    ]
+  }
+]

@@ -1,0 +1,26 @@
+[
+  {
+    "icon": "faNetworkWired",
+    "name": "Internet of Things"
+  },
+  {
+    "icon": "faMicrochip",
+    "name": "Tiny AI"
+  },
+  {
+    "icon": "faServer",
+    "name": "Edge AI"
+  },
+  {
+    "icon": "faGears",
+    "name": "Embedded Systems"
+  },
+  {
+    "icon": "faBolt",
+    "name": "Energy Harvesting"
+  },
+  {
+    "icon": "faArrowsRotate",
+    "name": "Intermittent<br>Computing"
+  }
+]
