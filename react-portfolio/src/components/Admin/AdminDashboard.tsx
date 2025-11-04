@@ -114,6 +114,16 @@ const AdminDashboard: React.FC<AdminDashboardProps> = () => {
 
       {/* Sidebar */}
       <aside className={`admin-sidebar ${sidebarOpen ? 'open' : ''} ${sidebarCollapsed ? 'collapsed' : ''}`}>
+        {/* Collapse Toggle Button - Top Right Corner - Desktop Only */}
+        <button
+          className="sidebar-collapse-toggle desktop-only-collapse"
+          onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
+          aria-label={sidebarCollapsed ? 'Expand sidebar' : 'Collapse sidebar'}
+          title={sidebarCollapsed ? 'Expand sidebar' : 'Collapse sidebar'}
+        >
+          <FontAwesomeIcon icon={sidebarCollapsed ? faChevronRight : faChevronLeft} />
+        </button>
+
         <div className="sidebar-header">
           <div className="admin-profile">
             <img
@@ -162,16 +172,6 @@ const AdminDashboard: React.FC<AdminDashboardProps> = () => {
             </button>
           ))}
         </nav>
-
-        {/* Collapse Toggle Button - Desktop Only */}
-        <button
-          className="sidebar-collapse-toggle desktop-only-collapse"
-          onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
-          aria-label={sidebarCollapsed ? 'Expand sidebar' : 'Collapse sidebar'}
-          title={sidebarCollapsed ? 'Expand sidebar' : 'Collapse sidebar'}
-        >
-          <FontAwesomeIcon icon={sidebarCollapsed ? faChevronRight : faChevronLeft} />
-        </button>
       </aside>
 
       {/* Overlay for mobile */}

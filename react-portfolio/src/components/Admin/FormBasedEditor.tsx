@@ -152,17 +152,6 @@ const FormBasedEditor: React.FC<FormBasedEditorProps> = ({ contentType, token, o
     setSelectedItems(newSelected);
   };
 
-  const toggleSelectAll = () => {
-    if (selectedItems.size === filteredItems.length) {
-      setSelectedItems(new Set());
-    } else {
-      const allIndices = filteredItems.map((_, i) =>
-        items.findIndex(item => item === filteredItems[i])
-      );
-      setSelectedItems(new Set(allIndices));
-    }
-  };
-
   const handleSave = async (item: any) => {
     let updatedItems;
     if (editing !== null) {
@@ -208,29 +197,37 @@ const FormBasedEditor: React.FC<FormBasedEditorProps> = ({ contentType, token, o
     }
   };
 
-  const renderPublicationItem = (item: Publication) => {
+  const renderPublicationItem = (item: Publication, index: number) => {
     const actualIndex = items.findIndex(i => i === item);
     const isSelected = selectedItems.has(actualIndex);
 
     return (
-      <div
+      <tr
         key={actualIndex}
-        className={`item-row ${isSelected ? 'selected' : ''}`}
+        className={`table-row ${isSelected ? 'selected' : ''}`}
         onDoubleClick={handleDoubleClick}
       >
         {checkboxMode && (
-          <input
-            type="checkbox"
-            className="item-checkbox"
-            checked={isSelected}
-            onChange={() => toggleSelectItem(actualIndex)}
-            aria-label={`Select ${item.title}`}
-          />
+          <td className="table-cell checkbox-cell">
+            <input
+              type="checkbox"
+              className="item-checkbox"
+              checked={isSelected}
+              onChange={() => toggleSelectItem(actualIndex)}
+              aria-label={`Select ${item.title}`}
+            />
+          </td>
         )}
-        <div className="item-content">
-          <h3 className="item-title">{item.title}</h3>
-        </div>
-        <div className="item-actions">
+        <td className="table-cell number-cell">{index + 1}</td>
+        <td className="table-cell title-cell">{item.title}</td>
+        <td className="table-cell venue-cell">{item.venue}</td>
+        <td className="table-cell year-cell">{item.year}</td>
+        <td className="table-cell status-cell">
+          <span className={`status-badge status-${item.status.toLowerCase()}`}>
+            {item.status}
+          </span>
+        </td>
+        <td className="table-cell actions-cell">
           <button
             onClick={() => handleEdit(actualIndex)}
             className="btn-icon btn-edit"
@@ -247,14 +244,31 @@ const FormBasedEditor: React.FC<FormBasedEditorProps> = ({ contentType, token, o
           >
             <FontAwesomeIcon icon={faTrash} />
           </button>
-        </div>
-      </div>
+        </td>
+      </tr>
     );
   };
 
   const renderList = () => {
     if (contentType === 'publications') {
-      return filteredItems.map((item) => renderPublicationItem(item));
+      return (
+        <table className="publications-table">
+          <thead>
+            <tr>
+              {checkboxMode && <th className="checkbox-header"></th>}
+              <th className="number-header">#</th>
+              <th className="title-header">Title</th>
+              <th className="venue-header">Venue</th>
+              <th className="year-header">Year</th>
+              <th className="status-header">Status</th>
+              <th className="actions-header">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {filteredItems.map((item, index) => renderPublicationItem(item, index))}
+          </tbody>
+        </table>
+      );
     }
     // Add more content type renderers here
     return null;
@@ -335,19 +349,6 @@ const FormBasedEditor: React.FC<FormBasedEditorProps> = ({ contentType, token, o
             )}
           </div>
 
-          <div className={`list-header ${checkboxMode ? '' : 'no-checkbox'}`}>
-            {checkboxMode && (
-              <input
-                type="checkbox"
-                className="item-checkbox"
-                checked={selectedItems.size === filteredItems.length && filteredItems.length > 0}
-                onChange={toggleSelectAll}
-                aria-label="Select all"
-              />
-            )}
-            <span className="list-header-title">Title</span>
-            <span className="list-header-actions">Actions</span>
-          </div>
         </>
       )}
 
