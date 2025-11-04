@@ -1,37 +1,40 @@
+/* Admin Auth - Matching Original Design System */
+
 .admin-auth {
   min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #fafafa;
+  background: var(--gray-light);
   padding: 2rem;
 }
 
 .auth-container {
-  background: #ffffff;
-  border-radius: 0;
+  background: var(--white);
+  border-radius: var(--button-border-radius);
   padding: 4rem 3.5rem;
-  max-width: 440px;
+  max-width: 480px;
   width: 100%;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
-  border: 1px solid #f0f0f0;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+  border: var(--button-border-width) solid var(--border-color);
+  transition: all 0.3s ease;
 }
 
 .auth-container h1 {
   margin: 0 0 0.75rem 0;
-  color: #000000;
-  font-size: 1.625rem;
-  font-weight: 400;
-  letter-spacing: -0.02em;
+  color: var(--text-color);
+  font-size: 1.875rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
   text-align: center;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
 .auth-description {
-  color: #666666;
+  color: var(--text-light);
   text-align: center;
   margin-bottom: 3rem;
-  font-size: 0.875rem;
+  font-size: 0.9375rem;
   line-height: 1.6;
   font-weight: 400;
 }
@@ -42,124 +45,169 @@
 
 .form-group label {
   display: block;
-  margin-bottom: 0.625rem;
-  color: #000000;
-  font-weight: 400;
-  font-size: 0.8125rem;
-  letter-spacing: 0.01em;
-  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+  color: var(--text-color);
+  font-weight: 600;
+  font-size: 0.875rem;
+  letter-spacing: -0.01em;
 }
 
 .token-input {
   width: 100%;
-  padding: 0.875rem 0;
-  border: none;
-  border-bottom: 1px solid #e0e0e0;
-  border-radius: 0;
+  padding: 0.875rem 1rem;
+  border: var(--button-border-width) solid var(--border-color);
+  border-radius: var(--button-border-radius);
   font-size: 0.9375rem;
-  transition: border-color 0.3s ease;
+  transition: all 0.2s ease;
   font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Courier New', monospace;
-  background-color: transparent;
-  color: #000000;
+  background-color: var(--white);
+  color: var(--text-color);
   letter-spacing: 0.02em;
 }
 
 .token-input:focus {
   outline: none;
-  border-bottom-color: #000000;
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 3px rgba(30, 64, 175, 0.1);
+}
+
+[data-theme="dark"] .token-input:focus {
+  box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.1);
 }
 
 .token-input::placeholder {
-  color: #999999;
+  color: var(--text-light);
+  opacity: 0.6;
   letter-spacing: 0;
 }
 
 .error-message {
-  background: transparent;
-  color: #dc2626;
-  padding: 0.75rem 0;
-  border-radius: 0;
+  background: rgba(220, 38, 38, 0.1);
+  color: var(--error-color);
+  padding: 0.875rem 1rem;
+  border-radius: var(--button-border-radius);
   margin-bottom: 1.5rem;
-  border-left: none;
-  font-size: 0.8125rem;
-  text-align: center;
+  border-left: 3px solid var(--error-color);
+  font-size: 0.875rem;
+  font-weight: 500;
 }
 
 .login-btn {
   width: 100%;
-  background: #000000;
-  color: white;
-  border: none;
-  padding: 1rem;
-  border-radius: 0;
-  font-size: 0.8125rem;
-  font-weight: 500;
+  background: var(--accent-color);
+  color: var(--white);
+  border: var(--button-border-width) solid var(--accent-color);
+  padding: 1rem 1.5rem;
+  border-radius: var(--button-border-radius);
+  font-size: 0.9375rem;
+  font-weight: 600;
   cursor: pointer;
-  transition: opacity 0.3s ease;
+  transition: all 0.2s ease;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
+  letter-spacing: -0.01em;
   margin-top: 1rem;
+  min-height: 48px;
 }
 
 .login-btn:hover {
-  opacity: 0.85;
+  background: var(--accent-hover);
+  border-color: var(--accent-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(30, 64, 175, 0.2);
+}
+
+[data-theme="dark"] .login-btn:hover {
+  box-shadow: 0 4px 12px rgba(96, 165, 250, 0.2);
 }
 
 .login-btn:active {
-  opacity: 0.7;
+  transform: translateY(0);
+}
+
+.login-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
 }
 
 .auth-help {
   margin-top: 3rem;
   padding-top: 2.5rem;
-  border-top: 1px solid #f0f0f0;
+  border-top: 1px solid var(--border-color);
 }
 
 .auth-help h3 {
-  color: #000000;
-  font-size: 0.8125rem;
+  color: var(--text-color);
+  font-size: 0.9375rem;
   margin-bottom: 1.25rem;
-  font-weight: 500;
-  letter-spacing: 0.01em;
-  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: -0.01em;
 }
 
 .auth-help ol {
-  color: #666666;
-  padding-left: 1.125rem;
+  color: var(--text-light);
+  padding-left: 1.25rem;
   line-height: 1.75;
-  font-size: 0.8125rem;
+  font-size: 0.875rem;
 }
 
 .auth-help ol li {
-  margin-bottom: 0.625rem;
+  margin-bottom: 0.75rem;
+}
+
+.auth-help a {
+  color: var(--accent-color);
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.auth-help a:hover {
+  color: var(--accent-hover);
+  text-decoration: underline;
 }
 
 .warning {
-  background: transparent;
-  color: #666666;
-  padding: 1rem 0;
-  border-radius: 0;
+  background: rgba(234, 179, 8, 0.1);
+  color: var(--text-light);
+  padding: 1rem 1.25rem;
+  border-radius: var(--button-border-radius);
   margin-top: 1.5rem;
-  border-left: none;
-  font-size: 0.75rem;
+  border-left: 3px solid #eab308;
+  font-size: 0.8125rem;
   line-height: 1.6;
-  text-align: center;
-  border-top: 1px solid #f0f0f0;
-  padding-top: 1.5rem;
 }
 
 @media (max-width: 768px) {
   .auth-container {
     padding: 3rem 2rem;
+    max-width: 100%;
   }
 
   .auth-container h1 {
-    font-size: 1.375rem;
+    font-size: 1.5rem;
   }
 
   .auth-description {
+    font-size: 0.875rem;
+  }
+
+  .auth-help h3 {
+    font-size: 0.875rem;
+  }
+
+  .auth-help ol {
     font-size: 0.8125rem;
   }
+
+  .login-btn {
+    font-size: 0.875rem;
+  }
+}
+
+/* Focus states for accessibility */
+.token-input:focus-visible,
+.login-btn:focus-visible {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 2px;
 }
