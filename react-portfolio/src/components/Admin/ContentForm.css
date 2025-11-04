@@ -10,6 +10,23 @@
   transition: all 0.3s ease;
 }
 
+/* Editor Header */
+.editor-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 3rem;
+}
+
+.editor-header h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-color);
+  letter-spacing: -0.02em;
+  text-transform: capitalize;
+}
+
 .form-row {
   display: grid;
   grid-template-columns: 1fr;
@@ -157,8 +174,206 @@
   transform: none;
 }
 
+/* Search and List Controls */
+.list-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.search-container {
+  position: relative;
+  flex: 1;
+  min-width: 280px;
+  max-width: 500px;
+}
+
+.search-icon {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-light);
+  font-size: 0.875rem;
+  pointer-events: none;
+}
+
+.search-input {
+  width: 100%;
+  padding: 0.75rem 1rem 0.75rem 2.75rem;
+  border: var(--button-border-width) solid var(--border-color);
+  border-radius: var(--button-border-radius);
+  font-size: 0.9375rem;
+  background-color: var(--white);
+  color: var(--text-color);
+  transition: all 0.2s ease;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 3px rgba(30, 64, 175, 0.1);
+}
+
+[data-theme="dark"] .search-input:focus {
+  box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.1);
+}
+
+.search-input::placeholder {
+  color: var(--text-light);
+  opacity: 0.6;
+}
+
+.selection-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.selection-count {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-color);
+}
+
+.btn-bulk-delete {
+  background: var(--error-color);
+  color: var(--white);
+  border: var(--button-border-width) solid var(--error-color);
+  padding: 0.625rem 1.25rem;
+  border-radius: var(--button-border-radius);
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 40px;
+}
+
+.btn-bulk-delete:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
+}
+
+/* List Header */
+.list-header {
+  display: grid;
+  grid-template-columns: 40px 1fr 100px;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.875rem 1.5rem;
+  background: var(--gray-light);
+  border: var(--button-border-width) solid var(--border-color);
+  border-radius: var(--button-border-radius);
+  margin-bottom: 0.5rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--text-light);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.list-header-title {
+  flex: 1;
+}
+
+.list-header-actions {
+  text-align: right;
+}
+
+/* Item Rows */
 .item-list {
   margin-bottom: 2rem;
+}
+
+.item-row {
+  display: grid;
+  grid-template-columns: 40px 1fr 100px;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.5rem;
+  background: var(--white);
+  border: var(--button-border-width) solid var(--border-color);
+  border-radius: var(--button-border-radius);
+  margin-bottom: 0.5rem;
+  transition: all 0.2s ease;
+}
+
+.item-row:hover {
+  border-color: var(--accent-color);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.item-row.selected {
+  background: rgba(30, 64, 175, 0.05);
+  border-color: var(--accent-color);
+}
+
+[data-theme="dark"] .item-row.selected {
+  background: rgba(96, 165, 250, 0.1);
+}
+
+.item-checkbox {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  accent-color: var(--accent-color);
+}
+
+.item-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.item-row .item-title {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text-color);
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Icon Buttons */
+.item-actions {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: flex-end;
+}
+
+.btn-icon {
+  background: transparent;
+  border: var(--button-border-width) solid var(--border-color);
+  border-radius: var(--button-border-radius);
+  width: 36px;
+  height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: var(--text-color);
+  font-size: 0.875rem;
+}
+
+.btn-icon.btn-edit:hover {
+  background: var(--gray-light);
+  border-color: var(--accent-color);
+  color: var(--accent-color);
+}
+
+.btn-icon.btn-delete:hover {
+  background: rgba(220, 38, 38, 0.1);
+  border-color: var(--error-color);
+  color: var(--error-color);
 }
 
 .item-card {
@@ -377,8 +592,61 @@
     padding: 2rem 1.5rem;
   }
 
+  .editor-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .editor-header h2 {
+    font-size: 1.25rem;
+  }
+
   .form-row:has(.form-field:nth-child(2)) {
     grid-template-columns: 1fr;
+  }
+
+  .list-controls {
+    flex-direction: column;
+    align-items: stretch;
+    margin-bottom: 1.5rem;
+  }
+
+  .search-container {
+    max-width: none;
+  }
+
+  .selection-actions {
+    justify-content: space-between;
+  }
+
+  .list-header {
+    grid-template-columns: 36px 1fr 80px;
+    padding: 0.75rem 1rem;
+    font-size: 0.75rem;
+    gap: 0.75rem;
+  }
+
+  .item-row {
+    grid-template-columns: 36px 1fr 80px;
+    padding: 0.875rem 1rem;
+    gap: 0.75rem;
+  }
+
+  .item-row .item-title {
+    font-size: 0.9375rem;
+  }
+
+  .item-checkbox {
+    width: 18px;
+    height: 18px;
+  }
+
+  .btn-icon {
+    width: 36px;
+    height: 36px;
+    font-size: 0.8125rem;
   }
 
   .item-card {
@@ -415,6 +683,10 @@
     justify-content: center;
   }
 
+  .btn-bulk-delete {
+    flex: 1;
+  }
+
   .confirm-content {
     padding: 2rem 1.5rem;
   }
@@ -442,7 +714,11 @@
 .btn-save:focus-visible,
 .btn-edit:focus-visible,
 .btn-delete:focus-visible,
-.add-button:focus-visible {
+.add-button:focus-visible,
+.btn-icon:focus-visible,
+.btn-bulk-delete:focus-visible,
+.search-input:focus-visible,
+.item-checkbox:focus-visible {
   outline: 2px solid var(--accent-color);
   outline-offset: 2px;
 }
