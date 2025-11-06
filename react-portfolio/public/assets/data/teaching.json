@@ -1,0 +1,44 @@
+[
+  {
+    "course": "Fundamentals of Operating Systems",
+    "instructor": "Instructor: Dr. Sam Silvestro",
+    "university": "University of Texas at San Antonio",
+    "date": "Fall 2025"
+  },
+  {
+    "course": "Data Science",
+    "instructor": "Instructor: Dr. Amin Sahba",
+    "university": "University of Texas at San Antonio",
+    "date": "Summer 2025"
+  },
+  {
+    "course": "Computer Organization",
+    "instructor": "Instructor: Dr. Subhasish Das",
+    "university": "University of Texas at San Antonio",
+    "date": "Summer 2025"
+  },
+  {
+    "course": "Fundamentals of Operating Systems",
+    "instructor": "Instructor: Dr. Mimi Xie",
+    "university": "University of Texas at San Antonio",
+    "date": "Spring 2025"
+  },
+  {
+    "course": "Fundamentals of Cloud Computing",
+    "instructor": "Instructor: Dr. Somayeh Sobati-Moghadam",
+    "university": "Ferdowsi University of Mashhad",
+    "date": "Spring 2024"
+  },
+  {
+    "course": "Principles of Compiler Design",
+    "instructor": "Instructor: Dr. Haleh Amintoosi",
+    "university": "Ferdowsi University of Mashhad",
+    "date": "Fall 2023"
+  },
+  {
+    "course": "Fundamentals of Data Mining",
+    "instructor": "Instructor: Dr. Behshid Behkamal",
+    "university": "Ferdowsi University of Mashhad",
+    "date": "Fall 2023"
+  }
+]
