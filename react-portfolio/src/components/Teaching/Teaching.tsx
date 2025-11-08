@@ -1,14 +1,18 @@
 import { useState } from 'react';
-import { teaching } from '../../data/content';
+import { fetchTeaching, teaching } from '../../data/content';
 import type { TeachingItem } from '../../types';
 import TimelineSection from '../common/TimelineSection';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
+import useContentData from '../../hooks/useContentData';
 
 const Teaching = () => {
   const [showAll, setShowAll] = useState(false);
+  const { data: teachingItems } = useContentData(fetchTeaching, teaching, {
+    logLabel: 'teaching data',
+  });
 
-  const visibleTeaching = showAll ? teaching : teaching.slice(0, 5);
+  const visibleTeaching = showAll ? teachingItems : teachingItems.slice(0, 5);
 
   return (
     <TimelineSection<TeachingItem>
@@ -29,7 +33,7 @@ const Teaching = () => {
         </>
       )}
     >
-      {teaching.length > 5 && (
+      {teachingItems.length > 5 && (
         <div className="show-more-container">
           <button
             id="showMoreBtn"

@@ -126,7 +126,7 @@ const Publications = () => {
 
       return matchesSearch && matchesStatus && matchesYear;
     });
-  }, [searchTerm, statusFilter, yearFilter]);
+  }, [publications, searchTerm, statusFilter, yearFilter]);
 
   const handleReset = () => {
     setSearchTerm('');

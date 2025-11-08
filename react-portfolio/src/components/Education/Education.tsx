@@ -1,13 +1,18 @@
-import { education } from '../../data/content';
+import { education, fetchEducation } from '../../data/content';
 import type { EducationItem } from '../../types';
 import TimelineSection from '../common/TimelineSection';
+import useContentData from '../../hooks/useContentData';
 
 const Education = () => {
+  const { data: educationItems } = useContentData(fetchEducation, education, {
+    logLabel: 'education data',
+  });
+
   return (
     <TimelineSection<EducationItem>
       id="education"
       title="Education"
-      items={education}
+      items={educationItems}
       listClassName="education-timeline"
       itemClassName="education-item"
       dateWrapperClassName="education-dates"

@@ -1,13 +1,18 @@
-import { researchExperience } from '../../data/content';
+import { fetchResearchExperience, researchExperience } from '../../data/content';
 import type { ResearchItem } from '../../types';
 import TimelineSection from '../common/TimelineSection';
+import useContentData from '../../hooks/useContentData';
 
 const ResearchExperience = () => {
+  const { data: researchItems } = useContentData(fetchResearchExperience, researchExperience, {
+    logLabel: 'research experience data',
+  });
+
   return (
     <TimelineSection<ResearchItem>
       id="research"
       title="Research Experience"
-      items={researchExperience}
+      items={researchItems}
       listClassName="research-timeline"
       itemClassName="research-item"
       dateWrapperClassName="research-dates"
