@@ -1,22 +1,26 @@
 [
   {
+    "date": "Nov. 2025",
+    "description": "Paper \"Q-Learning-Based Task Scheduling Scheme to Enhance Energy Consumption and QoS in IoT Environments\" accepted at Sustainable Computing: Informatics and Systems Journal."
+  },
+  {
     "date": "Sep. 2025",
-    "description": "SDN controller placement paper published in Cluster Computing Journal."
+    "description": "Paper \"Controller placement in software-defined networks using reinforcement learning and metaheuristics\" published in Cluster Computing: The Journal of Networks, Software Tools and Applications."
   },
   {
     "date": "Jun. 2025",
-    "description": "Won first place at DAC 2025 for energy-efficient AI healthcare research presentation."
+    "description": "Award \"DAC 2025 2-minute video presentation contest\" winner."
   },
   {
     "date": "Jun. 2025",
-    "description": "Presented Tiny AI research at DAC 2025 and networked with industry leaders."
+    "description": "Event \"DAC 2025\" presentation on research and networking."
   },
   {
     "date": "May 2025",
-    "description": "Research on reinforcement learning for SDN accepted at Cluster Computing Journal."
+    "description": "Paper \"Controller placement in software-defined networks using reinforcement learning and metaheuristics\" accepted at Cluster Computing: The Journal of Networks, Software Tools and Applications."
   },
   {
     "date": "Jan. 2025",
-    "description": "Began Ph.D. in Computer Science at University of Texas at San Antonio, focusing on IoT and Edge AI systems."
+    "description": "Milestone \"Ph.D. in Computer Science at University of Texas at San Antonio\" began with a focus on IoT and Edge AI systems."
   }
 ]

@@ -24,6 +24,29 @@ const News = lazy(() => import('./components/News/News'));
 const Awards = lazy(() => import('./components/Awards/Awards'));
 const Contact = lazy(() => import('./components/Contact/Contact'));
 const Footer = lazy(() => import('./components/Footer/Footer'));
+const NotFound = lazy(() => import('./components/NotFound/NotFound'));
+
+type LazyComponent = React.LazyExoticComponent<React.ComponentType<any>>;
+
+interface LazySection {
+  key: string;
+  Component: LazyComponent;
+  delay?: number;
+}
+
+const DEFAULT_SECTION_DELAY = 100;
+
+const lazySections: LazySection[] = [
+  { key: 'biography', Component: Biography, delay: 0 },
+  { key: 'education', Component: Education },
+  { key: 'research-interests', Component: ResearchInterests },
+  { key: 'research-experience', Component: ResearchExperience },
+  { key: 'publications', Component: Publications },
+  { key: 'teaching', Component: Teaching },
+  { key: 'news', Component: News },
+  { key: 'awards', Component: Awards },
+  { key: 'contact', Component: Contact },
+];
 
 // Loading fallback component with skeleton
 const SectionLoader = () => (
@@ -41,8 +64,18 @@ function App() {
   React.useEffect(() => {
     // Valid hash routes
     const validRoutes = [
-      '', '#', '#home', '#biography', '#education', '#research',
-      '#publications', '#teaching', '#news', '#awards', '#contact'
+      '',
+      '#',
+      '#home',
+      '#biography',
+      '#education',
+      '#research',
+      '#research-interests',
+      '#publications',
+      '#teaching',
+      '#news',
+      '#awards',
+      '#contact',
     ];
 
     const checkRoute = () => {
@@ -73,7 +106,6 @@ function App() {
 
   // Show 404 page for invalid routes
   if (show404) {
-    const NotFound = lazy(() => import('./components/NotFound/NotFound'));
     return (
       <ErrorBoundary>
         <Navbar onSearchClick={() => setIsSearchOpen(true)} />
@@ -108,69 +140,15 @@ function App() {
         <ErrorBoundary>
           <Hero />
         </ErrorBoundary>
-        <ErrorBoundary>
-          <AnimatedSection>
-            <Suspense fallback={<SectionLoader />}>
-              <Biography />
-            </Suspense>
-          </AnimatedSection>
-        </ErrorBoundary>
-        <ErrorBoundary>
-          <AnimatedSection delay={100}>
-            <Suspense fallback={<SectionLoader />}>
-              <Education />
-            </Suspense>
-          </AnimatedSection>
-        </ErrorBoundary>
-        <ErrorBoundary>
-          <AnimatedSection delay={100}>
-            <Suspense fallback={<SectionLoader />}>
-              <ResearchInterests />
-            </Suspense>
-          </AnimatedSection>
-        </ErrorBoundary>
-        <ErrorBoundary>
-          <AnimatedSection delay={100}>
-            <Suspense fallback={<SectionLoader />}>
-              <ResearchExperience />
-            </Suspense>
-          </AnimatedSection>
-        </ErrorBoundary>
-        <ErrorBoundary>
-          <AnimatedSection delay={100}>
-            <Suspense fallback={<SectionLoader />}>
-              <Publications />
-            </Suspense>
-          </AnimatedSection>
-        </ErrorBoundary>
-        <ErrorBoundary>
-          <AnimatedSection delay={100}>
-            <Suspense fallback={<SectionLoader />}>
-              <Teaching />
-            </Suspense>
-          </AnimatedSection>
-        </ErrorBoundary>
-        <ErrorBoundary>
-          <AnimatedSection delay={100}>
-            <Suspense fallback={<SectionLoader />}>
-              <News />
-            </Suspense>
-          </AnimatedSection>
-        </ErrorBoundary>
-        <ErrorBoundary>
-          <AnimatedSection delay={100}>
-            <Suspense fallback={<SectionLoader />}>
-              <Awards />
-            </Suspense>
-          </AnimatedSection>
-        </ErrorBoundary>
-        <ErrorBoundary>
-          <AnimatedSection delay={100}>
-            <Suspense fallback={<SectionLoader />}>
-              <Contact />
-            </Suspense>
-          </AnimatedSection>
-        </ErrorBoundary>
+        {lazySections.map(({ key, Component, delay }) => (
+          <ErrorBoundary key={key}>
+            <AnimatedSection delay={delay ?? DEFAULT_SECTION_DELAY}>
+              <Suspense fallback={<SectionLoader />}>
+                <Component />
+              </Suspense>
+            </AnimatedSection>
+          </ErrorBoundary>
+        ))}
       </main>
       <ErrorBoundary>
         <Suspense fallback={null}>
