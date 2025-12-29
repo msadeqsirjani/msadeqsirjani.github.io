@@ -169,11 +169,6 @@ const Publications = () => {
               onChange={(e) => setSearchTerm(e.target.value)}
               aria-label="Search publications"
             />
-            {searchTerm && (
-              <button className="clear-search" onClick={() => setSearchTerm('')} aria-label="Clear search">
-                <FontAwesomeIcon icon={faTimes} />
-              </button>
-            )}
           </div>
 
           <div className="custom-select" ref={yearDropdownRef}>
