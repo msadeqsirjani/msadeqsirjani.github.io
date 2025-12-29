@@ -4,6 +4,20 @@ import { faLinkedin, faGithub, faOrcid, faResearchgate } from '@fortawesome/free
 import { trackCVDownload, trackExternalLink } from '../../utils/analytics';
 
 const Hero = () => {
+  const buttons = [
+    { href: '/assets/docs/cv/msadeqsirjani-cv.pdf', icon: faDownload, label: 'Download CV', primary: true, download: true, onClick: trackCVDownload },
+    { href: '#contact', icon: faEnvelope, label: 'Contact', primary: false }
+  ];
+
+  const socialLinks = [
+    { href: 'mailto:mohammadsadegh.sirjani@utsa.edu', icon: faEnvelope, label: 'Email', tooltip: 'Email' },
+    { href: 'https://scholar.google.com/citations?user=EI5DizMAAAAJ&hl=en', icon: faGraduationCap, label: 'Google Scholar', tooltip: 'Google Scholar' },
+    { href: 'https://www.linkedin.com/in/msadeqsirjani', icon: faLinkedin, label: 'LinkedIn', tooltip: 'LinkedIn' },
+    { href: 'https://github.com/msadeqsirjani', icon: faGithub, label: 'GitHub', tooltip: 'GitHub' },
+    { href: 'https://orcid.org/0009-0000-5146-0216', icon: faOrcid, label: 'ORCID', tooltip: 'ORCID' },
+    { href: 'https://www.researchgate.net/profile/Mohammad-Sadegh-Sirjani', icon: faResearchgate, label: 'ResearchGate', tooltip: 'ResearchGate' }
+  ];
+
   return (
     <section id="home" className="hero">
       <div className="container">
@@ -39,33 +53,36 @@ const Hero = () => {
             <p className="hero-tagline">TinyAI & Embedded Systems Researcher</p>
 
             <div className="hero-buttons">
-              <a href="/assets/docs/cv/msadeqsirjani-cv.pdf" className="btn btn-primary" download onClick={() => trackCVDownload()}>
-                <FontAwesomeIcon icon={faDownload} /> Download CV
-              </a>
-              <a href="#contact" className="btn btn-secondary">
-                <FontAwesomeIcon icon={faEnvelope} /> Contact
-              </a>
+              {buttons.map((btn, idx) => (
+                <a
+                  key={idx}
+                  href={btn.href}
+                  className={`btn ${btn.primary ? 'btn-primary' : 'btn-secondary'}`}
+                  {...(btn.download && { download: true })}
+                  {...(btn.onClick && { onClick: () => btn.onClick() })}
+                >
+                  <FontAwesomeIcon icon={btn.icon} /> {btn.label}
+                </a>
+              ))}
             </div>
 
             <div className="social-links">
-              <a href="mailto:mohammadsadegh.sirjani@utsa.edu" className="social-link" aria-label="Email" data-tooltip="Email">
-                <FontAwesomeIcon icon={faEnvelope} />
-              </a>
-              <a href="https://scholar.google.com/citations?user=EI5DizMAAAAJ&hl=en" className="social-link" aria-label="Google Scholar" target="_blank" rel="noopener" data-tooltip="Google Scholar" onClick={() => trackExternalLink('https://scholar.google.com/citations?user=EI5DizMAAAAJ&hl=en', 'Google Scholar')}>
-                <FontAwesomeIcon icon={faGraduationCap} />
-              </a>
-              <a href="https://www.linkedin.com/in/msadeqsirjani" className="social-link" aria-label="LinkedIn" target="_blank" rel="noopener" data-tooltip="LinkedIn" onClick={() => trackExternalLink('https://www.linkedin.com/in/msadeqsirjani', 'LinkedIn')}>
-                <FontAwesomeIcon icon={faLinkedin} />
-              </a>
-              <a href="https://github.com/msadeqsirjani" className="social-link" aria-label="GitHub" target="_blank" rel="noopener" data-tooltip="GitHub" onClick={() => trackExternalLink('https://github.com/msadeqsirjani', 'GitHub')}>
-                <FontAwesomeIcon icon={faGithub} />
-              </a>
-              <a href="https://orcid.org/0009-0000-5146-0216" className="social-link" aria-label="ORCID" target="_blank" rel="noopener" data-tooltip="ORCID" onClick={() => trackExternalLink('https://orcid.org/0009-0000-5146-0216', 'ORCID')}>
-                <FontAwesomeIcon icon={faOrcid} />
-              </a>
-              <a href="https://www.researchgate.net/profile/Mohammad-Sadegh-Sirjani" className="social-link" aria-label="ResearchGate" target="_blank" rel="noopener" data-tooltip="ResearchGate" onClick={() => trackExternalLink('https://www.researchgate.net/profile/Mohammad-Sadegh-Sirjani', 'ResearchGate')}>
-                <FontAwesomeIcon icon={faResearchgate} />
-              </a>
+              {socialLinks.map((link, idx) => (
+                <a
+                  key={idx}
+                  href={link.href}
+                  className="social-link"
+                  aria-label={link.label}
+                  data-tooltip={link.tooltip}
+                  {...(!link.href.startsWith('mailto:') && {
+                    target: '_blank',
+                    rel: 'noopener',
+                    onClick: () => trackExternalLink(link.href, link.label)
+                  })}
+                >
+                  <FontAwesomeIcon icon={link.icon} />
+                </a>
+              ))}
             </div>
           </div>
         </div>
