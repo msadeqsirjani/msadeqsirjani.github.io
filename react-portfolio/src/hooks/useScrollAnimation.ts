@@ -9,7 +9,6 @@ export const useScrollAnimation = (threshold = 0.1) => {
       ([entry]) => {
         if (entry?.isIntersecting) {
           setIsVisible(true);
-          // Once visible, stop observing
           if (ref.current) {
             observer.unobserve(ref.current);
           }

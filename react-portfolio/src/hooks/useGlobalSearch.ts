@@ -11,38 +11,31 @@ interface SearchResults {
   awards: AwardItem[];
 }
 
+const emptyResults: SearchResults = {
+  publications: [],
+  education: [],
+  research: [],
+  teaching: [],
+  news: [],
+  awards: []
+};
+
 export const useGlobalSearch = (query: string) => {
-  const [results, setResults] = useState<SearchResults>({
-    publications: [],
-    education: [],
-    research: [],
-    teaching: [],
-    news: [],
-    awards: []
-  });
+  const [results, setResults] = useState<SearchResults>(emptyResults);
   const [isSearching, setIsSearching] = useState(false);
 
   useEffect(() => {
     if (!query.trim()) {
-      setResults({
-        publications: [],
-        education: [],
-        research: [],
-        teaching: [],
-        news: [],
-        awards: []
-      });
+      setResults(emptyResults);
       setIsSearching(false);
       return;
     }
 
     setIsSearching(true);
 
-    // Debounce search
     const timeoutId = setTimeout(() => {
       const searchTerm = query.toLowerCase().trim();
 
-      // Search publications
       const matchedPublications = publications.filter(pub =>
         pub.title.toLowerCase().includes(searchTerm) ||
         pub.venue.toLowerCase().includes(searchTerm) ||
@@ -51,14 +44,12 @@ export const useGlobalSearch = (query: string) => {
         pub.year.toLowerCase().includes(searchTerm)
       );
 
-      // Search education
       const matchedEducation = education.filter(edu =>
         edu.degree.toLowerCase().includes(searchTerm) ||
         edu.university.toLowerCase().includes(searchTerm) ||
         edu.duration.toLowerCase().includes(searchTerm)
       );
 
-      // Search research experience
       const matchedResearch = researchExperience.filter(res =>
         res.position.toLowerCase().includes(searchTerm) ||
         res.lab.toLowerCase().includes(searchTerm) ||
@@ -66,7 +57,6 @@ export const useGlobalSearch = (query: string) => {
         res.description.some(desc => desc.toLowerCase().includes(searchTerm))
       );
 
-      // Search teaching
       const matchedTeaching = teaching.filter(teach =>
         teach.course.toLowerCase().includes(searchTerm) ||
         teach.instructor.toLowerCase().includes(searchTerm) ||
@@ -74,13 +64,11 @@ export const useGlobalSearch = (query: string) => {
         teach.date.toLowerCase().includes(searchTerm)
       );
 
-      // Search news
       const matchedNews = news.filter(newsItem =>
         newsItem.description.toLowerCase().includes(searchTerm) ||
         newsItem.date.toLowerCase().includes(searchTerm)
       );
 
-      // Search awards
       const matchedAwards = awards.filter(award =>
         award.description.toLowerCase().includes(searchTerm) ||
         award.date.toLowerCase().includes(searchTerm)

@@ -1,6 +1,5 @@
 import { useEffect, useCallback } from 'react';
 
-// Singleton scroll manager to consolidate all scroll listeners
 class ScrollManager {
   private listeners: Set<(scrollY: number, scrollPercent: number) => void> = new Set();
   private scrollY = 0;
@@ -30,7 +29,6 @@ class ScrollManager {
     if (!this.isListening) {
       window.addEventListener('scroll', this.handleScroll, { passive: true });
       this.isListening = true;
-      // Trigger once to get initial values
       this.calculateScroll();
       listener(this.scrollY, this.scrollPercent);
     }
@@ -55,10 +53,6 @@ class ScrollManager {
 
 const scrollManager = new ScrollManager();
 
-/**
- * Hook to subscribe to scroll events through centralized scroll manager
- * Reduces multiple scroll listeners to a single one with requestAnimationFrame throttling
- */
 export const useScrollManager = (
   callback: (scrollY: number, scrollPercent: number) => void
 ) => {
