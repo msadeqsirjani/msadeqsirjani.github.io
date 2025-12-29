@@ -1,7 +1,6 @@
 import { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faTimes, faBook, faGraduationCap, faMicroscope, faChalkboardTeacher, faNewspaper, faTrophy } from '@fortawesome/free-solid-svg-icons';
-import type { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 import { useGlobalSearch } from '../../hooks/useGlobalSearch';
 import './GlobalSearch.css';
 
