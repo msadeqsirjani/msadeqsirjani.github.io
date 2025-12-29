@@ -8,7 +8,6 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
   const [scrollVisible, setScrollVisible] = useState(false);
 
-  // Use centralized scroll manager
   useScrollManager((_scrollY, scrollPercent) => {
     setScrollVisible(scrollPercent >= 80);
   });
@@ -25,6 +24,22 @@ const Footer = () => {
     }
   };
 
+  const quickLinks = [
+    { id: 'home', label: 'Home' },
+    { id: 'research', label: 'Research' },
+    { id: 'publications', label: 'Publications' },
+    { id: 'contact', label: 'Contact' }
+  ];
+
+  const socialLinks = [
+    { href: 'mailto:mohammadsadegh.sirjani@utsa.edu', icon: faEnvelope, label: 'Email' },
+    { href: 'https://scholar.google.com/citations?user=EI5DizMAAAAJ&hl=en', icon: faGraduationCap, label: 'Google Scholar' },
+    { href: 'https://www.linkedin.com/in/msadeqsirjani', icon: faLinkedin, label: 'LinkedIn' },
+    { href: 'https://github.com/msadeqsirjani', icon: faGithub, label: 'GitHub' },
+    { href: 'https://orcid.org/0009-0000-5146-0216', icon: faOrcid, label: 'ORCID' },
+    { href: 'https://www.researchgate.net/profile/Mohammad-Sadegh-Sirjani', icon: faResearchgate, label: 'ResearchGate' }
+  ];
+
   return (
     <>
       <footer className="footer">
@@ -38,33 +53,29 @@ const Footer = () => {
             <div className="footer-section">
               <h4>Quick Links</h4>
               <ul>
-                <li><a href="#home" onClick={(e) => scrollToSection(e, 'home')}>Home</a></li>
-                <li><a href="#research" onClick={(e) => scrollToSection(e, 'research')}>Research</a></li>
-                <li><a href="#publications" onClick={(e) => scrollToSection(e, 'publications')}>Publications</a></li>
-                <li><a href="#contact" onClick={(e) => scrollToSection(e, 'contact')}>Contact</a></li>
+                {quickLinks.map(link => (
+                  <li key={link.id}>
+                    <a href={`#${link.id}`} onClick={(e) => scrollToSection(e, link.id)}>
+                      {link.label}
+                    </a>
+                  </li>
+                ))}
               </ul>
             </div>
             <div className="footer-section">
               <h4>Connect & Follow</h4>
               <div className="footer-social">
-                <a href="mailto:mohammadsadegh.sirjani@utsa.edu" target="_blank" rel="noopener" data-tooltip="Email">
-                  <FontAwesomeIcon icon={faEnvelope} />
-                </a>
-                <a href="https://scholar.google.com/citations?user=EI5DizMAAAAJ&hl=en" target="_blank" rel="noopener" data-tooltip="Google Scholar">
-                  <FontAwesomeIcon icon={faGraduationCap} />
-                </a>
-                <a href="https://www.linkedin.com/in/msadeqsirjani" target="_blank" rel="noopener" data-tooltip="LinkedIn">
-                  <FontAwesomeIcon icon={faLinkedin} />
-                </a>
-                <a href="https://github.com/msadeqsirjani" target="_blank" rel="noopener" data-tooltip="GitHub">
-                  <FontAwesomeIcon icon={faGithub} />
-                </a>
-                <a href="https://orcid.org/0009-0000-5146-0216" target="_blank" rel="noopener" data-tooltip="ORCID">
-                  <FontAwesomeIcon icon={faOrcid} />
-                </a>
-                <a href="https://www.researchgate.net/profile/Mohammad-Sadegh-Sirjani" target="_blank" rel="noopener" data-tooltip="ResearchGate">
-                  <FontAwesomeIcon icon={faResearchgate} />
-                </a>
+                {socialLinks.map((link, idx) => (
+                  <a
+                    key={idx}
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener"
+                    data-tooltip={link.label}
+                  >
+                    <FontAwesomeIcon icon={link.icon} />
+                  </a>
+                ))}
               </div>
             </div>
           </div>
