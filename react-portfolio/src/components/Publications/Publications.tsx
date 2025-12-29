@@ -3,7 +3,7 @@ import { fetchPublications } from '../../data/content';
 import { toast } from 'sonner';
 import type { Publication } from '../../types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch, faTimes, faRedo, faChevronDown, faChevronUp, faQuoteLeft, faExternalLinkAlt, faFilePdf, faSpinner, faQuoteRight, faShareAlt, faEnvelope } from '@fortawesome/free-solid-svg-icons';
+import { faSearch, faTimes, faChevronDown, faChevronUp, faQuoteLeft, faExternalLinkAlt, faFilePdf, faSpinner, faQuoteRight, faShareAlt, faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { faTwitter, faLinkedin, faFacebook } from '@fortawesome/free-brands-svg-icons';
 import { trackCitationCopy } from '../../utils/analytics';
 import { useFocusTrap } from '../../hooks/useFocusTrap';
@@ -16,7 +16,6 @@ const Publications = () => {
   const [publications, setPublications] = useState<Publication[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
-  const [statusFilter, setStatusFilter] = useState('all');
   const [yearFilter, setYearFilter] = useState('all');
   const [bibtexData, setBibtexData] = useState<Record<string, { bibtex: string }>>({});
   const [bibtexLoading, setBibtexLoading] = useState(true);
@@ -130,12 +129,6 @@ const Publications = () => {
       return matchesSearch && matchesYear;
     });
   }, [publications, searchTerm, yearFilter]);
-
-  const handleReset = () => {
-    setSearchTerm('');
-    setStatusFilter('all');
-    setYearFilter('all');
-  };
 
   const getStatusLabel = (status: string) => {
     switch (status) {

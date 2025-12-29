@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPalette, faCheck, faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
+import { faCheck, faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
 import './ColorPicker.css';
 
 interface ColorPalette {
@@ -69,7 +69,7 @@ const ColorPicker = ({ currentTheme, onThemeToggle }: ColorPickerProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedColor, setSelectedColor] = useState<string>('Blue');
   const modalRef = useRef<HTMLDivElement>(null);
-  const clickTimeout = useRef<NodeJS.Timeout | null>(null);
+  const clickTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     // Load saved color preference
