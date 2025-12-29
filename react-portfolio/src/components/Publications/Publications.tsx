@@ -19,26 +19,17 @@ const Publications = () => {
   const [yearFilter, setYearFilter] = useState('all');
   const [bibtexData, setBibtexData] = useState<Record<string, { bibtex: string }>>({});
   const [bibtexLoading, setBibtexLoading] = useState(true);
-  const [bibtexError, setBibtexError] = useState<string | null>(null);
-  const [statusDropdownOpen, setStatusDropdownOpen] = useState(false);
   const [yearDropdownOpen, setYearDropdownOpen] = useState(false);
   const [showAll, setShowAll] = useState(false);
   const [openShareDropdown, setOpenShareDropdown] = useState<number | null>(null);
   const [expandedPub, setExpandedPub] = useState<number | null>(null);
-  const statusDropdownRef = useRef<HTMLDivElement>(null);
   const yearDropdownRef = useRef<HTMLDivElement>(null);
-  const statusItemsRef = useRef<HTMLDivElement | null>(null);
   const yearItemsRef = useRef<HTMLDivElement | null>(null);
-  // Use Map instead of array to prevent memory leaks
   const shareDropdownRefs = useRef<Map<number, HTMLDivElement | null>>(new Map());
 
-  // Add focus traps for filter dropdowns
-  useFocusTrap(statusItemsRef, statusDropdownOpen);
   useFocusTrap(yearItemsRef, yearDropdownOpen);
 
   useEffect(() => {
-    // Load publications data
-    setLoading(true);
     fetchPublications()
       .then(data => {
         setPublications(data);
@@ -50,46 +41,26 @@ const Publications = () => {
         setLoading(false);
       });
 
-    // Load BibTeX data
-    setBibtexLoading(true);
-    setBibtexError(null);
-
     fetch('/assets/data/bibtex.json')
-      .then(res => {
-        if (!res.ok) {
-          throw new Error(`HTTP error! status: ${res.status}`);
-        }
-        return res.json();
-      })
+      .then(res => res.ok ? res.json() : Promise.reject())
       .then(data => {
         setBibtexData(data);
         setBibtexLoading(false);
       })
-      .catch(err => {
-        const errorMessage = 'Failed to load citation data';
-        setBibtexError(errorMessage);
+      .catch(() => {
         setBibtexLoading(false);
-
-        // Only log in development
         if (import.meta.env.DEV) {
-          console.error('Failed to load BibTeX data:', err);
+          console.error('Failed to load BibTeX data');
         }
-
-        // Show user-friendly error notification
-        toast.error(errorMessage + '. Citation features may be limited.');
       });
   }, []);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (statusDropdownRef.current && !statusDropdownRef.current.contains(event.target as Node)) {
-        setStatusDropdownOpen(false);
-      }
       if (yearDropdownRef.current && !yearDropdownRef.current.contains(event.target as Node)) {
         setYearDropdownOpen(false);
       }
 
-      // Check share dropdowns
       if (openShareDropdown !== null) {
         const shareRef = shareDropdownRefs.current.get(openShareDropdown);
         if (shareRef && !shareRef.contains(event.target as Node)) {
@@ -99,15 +70,13 @@ const Publications = () => {
     };
 
     const handleKeyDown = (event: KeyboardEvent) => {
-      // Escape key closes dropdowns
       if (event.key === 'Escape') {
-        setStatusDropdownOpen(false);
         setYearDropdownOpen(false);
         setOpenShareDropdown(null);
       }
     };
 
-    if (statusDropdownOpen || yearDropdownOpen || openShareDropdown !== null) {
+    if (yearDropdownOpen || openShareDropdown !== null) {
       document.addEventListener('click', handleClickOutside);
       document.addEventListener('keydown', handleKeyDown);
     }
@@ -116,110 +85,62 @@ const Publications = () => {
       document.removeEventListener('click', handleClickOutside);
       document.removeEventListener('keydown', handleKeyDown);
     };
-  }, [statusDropdownOpen, yearDropdownOpen, openShareDropdown]);
+  }, [yearDropdownOpen, openShareDropdown]);
 
   const filteredPublications = useMemo(() => {
     return publications.filter(pub => {
       const matchesSearch = searchTerm === '' ||
         pub.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
         pub.venue.toLowerCase().includes(searchTerm.toLowerCase());
-
       const matchesYear = yearFilter === 'all' || pub.year === yearFilter;
-
       return matchesSearch && matchesYear;
     });
   }, [publications, searchTerm, yearFilter]);
 
   const getStatusLabel = (status: string) => {
-    switch (status) {
-      case 'published': return 'PUBLISHED';
-      case 'accepted': return 'ACCEPTED';
-      case 'review': return 'UNDER REVISION';
-      default: return status.toUpperCase();
-    }
+    const labels: Record<string, string> = {
+      published: 'PUBLISHED',
+      accepted: 'ACCEPTED',
+      review: 'UNDER REVISION'
+    };
+    return labels[status] || status.toUpperCase();
   };
 
-  const copyBibtex = (pubId: string, pub: Publication) => {
-    const citation = bibtexData[pubId]?.bibtex || '';
-
-    if (citation) {
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(citation).then(() => {
-          trackCitationCopy('bibtex', pub.title);
-          toast.success('BibTeX citation copied!');
-        }).catch(err => {
-          console.error('Failed to copy:', err);
-          fallbackCopyBibtex(citation, pub.title);
-        });
-      } else {
-        fallbackCopyBibtex(citation, pub.title);
-      }
-    }
-  };
-
-  const fallbackCopyBibtex = (text: string, pubTitle: string) => {
-    const textArea = document.createElement('textarea');
-    textArea.value = text;
-    textArea.style.position = 'fixed';
-    textArea.style.left = '-999999px';
-    document.body.appendChild(textArea);
-    textArea.focus();
-    textArea.select();
+  const copyBibtex = async (pubId: string, pub: Publication) => {
+    const citation = bibtexData[pubId]?.bibtex;
+    if (!citation) return;
 
     try {
-      document.execCommand('copy');
-      trackCitationCopy('bibtex', pubTitle);
+      await navigator.clipboard.writeText(citation);
+      trackCitationCopy('bibtex', pub.title);
       toast.success('BibTeX citation copied!');
     } catch (err) {
-      console.error('Fallback copy failed:', err);
+      console.error('Failed to copy:', err);
       toast.error('Failed to copy citation');
     }
-
-    document.body.removeChild(textArea);
   };
 
   const sharePublication = (platform: string, pub: Publication) => {
-    const title = pub.title;
-    const venue = pub.venue;
-    const year = pub.year;
-    const abstract = pub.abstract || '';
-    const doi = pub.link || '';
-    const url = doi || window.location.href;
+    const url = pub.link || window.location.href;
+    const text = `${pub.title}\n\n${pub.venue} (${pub.year})${pub.link ? `\n\nRead More: ${pub.link}` : ''}`;
+    const emailText = `${pub.title}\n\n${pub.venue} (${pub.year})\n\nAbstract:\n${pub.abstract || ''}${pub.link ? `\n\nRead More: ${pub.link}` : ''}`;
 
-    // Create share text - only email includes abstract
-    const doiText = doi ? `\n\nRead More: ${doi}` : '';
+    const urls: Record<string, string> = {
+      twitter: `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`,
+      linkedin: `https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(url)}&title=${encodeURIComponent(`${pub.title} - ${pub.venue} (${pub.year})`)}`,
+      facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`,
+      email: `mailto:?subject=${encodeURIComponent(`${pub.title} - ${pub.venue} (${pub.year})`)}&body=${encodeURIComponent(emailText)}`
+    };
 
-    // Simple text for social media (no abstract)
-    const simpleShareText = `${title}\n\n${venue} (${year})${doiText}`;
-
-    // Email gets complete abstract
-    const emailText = `${title}\n\n${venue} (${year})\n\nAbstract:\n${abstract}${doiText}`;
-
-    let shareUrl = '';
-
-    switch(platform) {
-      case 'twitter':
-        // Twitter: Title, venue, year, and link only
-        shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(simpleShareText)}`;
-        break;
-      case 'linkedin':
-        // LinkedIn: Title, venue, year, and link only
-        shareUrl = `https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(url)}&title=${encodeURIComponent(`${title} - ${venue} (${year})`)}`;
-        break;
-      case 'facebook':
-        // Facebook: Simple URL sharing
-        shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
-        break;
-      case 'email':
-        // Email: Include complete information with full abstract
-        shareUrl = `mailto:?subject=${encodeURIComponent(`${title} - ${venue} (${year})`)}&body=${encodeURIComponent(emailText)}`;
-        break;
-    }
-
-    if (shareUrl) {
-      window.open(shareUrl, '_blank', 'width=600,height=400');
+    if (urls[platform]) {
+      window.open(urls[platform], '_blank', 'width=600,height=400');
       setOpenShareDropdown(null);
     }
+  };
+
+  const handleYearSelect = (year: string) => {
+    setYearFilter(year);
+    setYearDropdownOpen(false);
   };
 
   if (loading) {
@@ -243,23 +164,14 @@ const Publications = () => {
             <FontAwesomeIcon icon={faSearch} aria-hidden="true" />
             <input
               type="text"
-              id="publicationSearch"
               placeholder="Search by title, venue, or keywords..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               aria-label="Search publications"
-              aria-describedby="search-hint"
             />
-            <span id="search-hint" className="visually-hidden">
-              Type to filter publications by title, venue, or keywords
-            </span>
             {searchTerm && (
-              <button
-                className="clear-search"
-                onClick={() => setSearchTerm('')}
-                aria-label="Clear search"
-              >
-                <FontAwesomeIcon icon={faTimes} aria-hidden="true" />
+              <button className="clear-search" onClick={() => setSearchTerm('')} aria-label="Clear search">
+                <FontAwesomeIcon icon={faTimes} />
               </button>
             )}
           </div>
@@ -270,53 +182,36 @@ const Publications = () => {
               onClick={() => setYearDropdownOpen(!yearDropdownOpen)}
               aria-haspopup="listbox"
               aria-expanded={yearDropdownOpen}
-              aria-label="Filter by publication year"
             >
               {yearFilter === 'all' ? 'All Years' : yearFilter}
             </button>
             {yearDropdownOpen && (
-              <div className="select-items" role="listbox" aria-label="Publication year options" ref={yearItemsRef}>
-                <div
-                  role="option"
-                  onClick={() => { setYearFilter('all'); setYearDropdownOpen(false); }}
-                  onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setYearFilter('all'); setYearDropdownOpen(false); }}}
-                  tabIndex={0}
-                >All Years</div>
-                <div
-                  role="option"
-                  onClick={() => { setYearFilter('2025'); setYearDropdownOpen(false); }}
-                  onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setYearFilter('2025'); setYearDropdownOpen(false); }}}
-                  tabIndex={0}
-                >2025</div>
-                <div
-                  role="option"
-                  onClick={() => { setYearFilter('2024'); setYearDropdownOpen(false); }}
-                  onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setYearFilter('2024'); setYearDropdownOpen(false); }}}
-                  tabIndex={0}
-                >2024</div>
-                <div
-                  role="option"
-                  onClick={() => { setYearFilter('2023'); setYearDropdownOpen(false); }}
-                  onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setYearFilter('2023'); setYearDropdownOpen(false); }}}
-                  tabIndex={0}
-                >2023</div>
+              <div className="select-items" role="listbox" ref={yearItemsRef}>
+                {['all', '2025', '2024', '2023'].map(year => (
+                  <div
+                    key={year}
+                    role="option"
+                    onClick={() => handleYearSelect(year)}
+                    onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && handleYearSelect(year)}
+                    tabIndex={0}
+                  >
+                    {year === 'all' ? 'All Years' : year}
+                  </div>
+                ))}
               </div>
             )}
           </div>
         </div>
 
         <div className="publications-container">
-          <div className="publication-list" role="list" aria-label="Publications">
+          <div className="publication-list" role="list">
             {filteredPublications.length === 0 ? (
-              <p className="no-results" role="status" aria-live="polite">No publications found matching your criteria.</p>
+              <p className="no-results">No publications found matching your criteria.</p>
             ) : (
-              filteredPublications.map((pub, index) => {
-                const actualIndex = index;
-                const isHidden = !showAll && index >= initialLimit;
-                return (
+              filteredPublications.map((pub, index) => (
                 <div
-                  key={actualIndex}
-                  className={`publication-item ${isHidden ? 'hidden-for-show-more' : ''}`}
+                  key={index}
+                  className={`publication-item ${!showAll && index >= initialLimit ? 'hidden-for-show-more' : ''}`}
                   role="listitem"
                 >
                   <div className="publication-header">
@@ -329,19 +224,19 @@ const Publications = () => {
                     {pub.status !== 'review' ? (
                       <span
                         className="expand-arrow"
-                        onClick={() => setExpandedPub(expandedPub === actualIndex ? null : actualIndex)}
+                        onClick={() => setExpandedPub(expandedPub === index ? null : index)}
                         role="button"
                         tabIndex={0}
                         onKeyDown={(e) => {
                           if (e.key === 'Enter' || e.key === ' ') {
                             e.preventDefault();
-                            setExpandedPub(expandedPub === actualIndex ? null : actualIndex);
+                            setExpandedPub(expandedPub === index ? null : index);
                           }
                         }}
-                        aria-label={expandedPub === actualIndex ? 'Collapse details' : 'Expand details'}
-                        aria-expanded={expandedPub === actualIndex}
+                        aria-label={expandedPub === index ? 'Collapse details' : 'Expand details'}
+                        aria-expanded={expandedPub === index}
                       >
-                        <FontAwesomeIcon icon={faChevronDown} className={expandedPub === actualIndex ? 'rotated' : ''} />
+                        <FontAwesomeIcon icon={faChevronDown} className={expandedPub === index ? 'rotated' : ''} />
                       </span>
                     ) : (
                       <span className="expand-arrow disabled">
@@ -350,7 +245,7 @@ const Publications = () => {
                     )}
                   </div>
 
-                  {expandedPub === actualIndex && pub.status !== 'review' && (
+                  {expandedPub === index && pub.status !== 'review' && (
                     <div className="publication-details">
                       <div className="details-grid">
                         <div className="detail-left">
@@ -377,42 +272,37 @@ const Publications = () => {
                               className="publication-btn"
                               onClick={(e) => {
                                 e.stopPropagation();
-                                if (!bibtexLoading) {
-                                  copyBibtex(pub.bibtexId!, pub);
-                                }
+                                if (!bibtexLoading) copyBibtex(pub.bibtexId!, pub);
                               }}
-                              data-tooltip={bibtexLoading ? "Loading citations..." : bibtexError ? "Citation data unavailable" : "Copy BibTeX"}
+                              data-tooltip={bibtexLoading ? "Loading citations..." : "Copy BibTeX"}
                               disabled={bibtexLoading}
-                              style={{ opacity: bibtexLoading ? 0.5 : 1, cursor: bibtexLoading ? 'wait' : 'pointer' }}
                             >
-                              {bibtexLoading ? <FontAwesomeIcon icon={faSpinner} spin /> : <FontAwesomeIcon icon={faQuoteRight} />}
+                              <FontAwesomeIcon icon={bibtexLoading ? faSpinner : faQuoteRight} spin={bibtexLoading} />
                             </button>
                           )}
-                          <div className="citation-dropdown" ref={el => { shareDropdownRefs.current.set(actualIndex, el); }}>
+                          <div className="citation-dropdown" ref={el => { shareDropdownRefs.current.set(index, el); }}>
                             <button
                               className="publication-btn"
                               onClick={(e) => {
                                 e.stopPropagation();
-                                setOpenShareDropdown(openShareDropdown === actualIndex ? null : actualIndex);
+                                setOpenShareDropdown(openShareDropdown === index ? null : index);
                               }}
                               data-tooltip="Share"
                             >
                               <FontAwesomeIcon icon={faShareAlt} />
                             </button>
-                            {openShareDropdown === actualIndex && (
+                            {openShareDropdown === index && (
                               <div className="citation-format-menu">
-                                <div onClick={() => sharePublication('twitter', pub)}>
-                                  <FontAwesomeIcon icon={faTwitter} style={{ marginRight: '0.5rem' }} />Twitter
-                                </div>
-                                <div onClick={() => sharePublication('linkedin', pub)}>
-                                  <FontAwesomeIcon icon={faLinkedin} style={{ marginRight: '0.5rem' }} />LinkedIn
-                                </div>
-                                <div onClick={() => sharePublication('facebook', pub)}>
-                                  <FontAwesomeIcon icon={faFacebook} style={{ marginRight: '0.5rem' }} />Facebook
-                                </div>
-                                <div onClick={() => sharePublication('email', pub)}>
-                                  <FontAwesomeIcon icon={faEnvelope} style={{ marginRight: '0.5rem' }} />Email
-                                </div>
+                                {[
+                                  { platform: 'twitter', icon: faTwitter, label: 'Twitter' },
+                                  { platform: 'linkedin', icon: faLinkedin, label: 'LinkedIn' },
+                                  { platform: 'facebook', icon: faFacebook, label: 'Facebook' },
+                                  { platform: 'email', icon: faEnvelope, label: 'Email' }
+                                ].map(({ platform, icon, label }) => (
+                                  <div key={platform} onClick={() => sharePublication(platform, pub)}>
+                                    <FontAwesomeIcon icon={icon} style={{ marginRight: '0.5rem' }} />{label}
+                                  </div>
+                                ))}
                               </div>
                             )}
                           </div>
@@ -423,12 +313,7 @@ const Publications = () => {
                         <div className="abstract-section">
                           <p>
                             <strong style={{ display: 'inline' }}>Keywords: </strong>
-                            {pub.keywords.map((keyword, idx, arr) => (
-                              <span key={idx}>
-                                {keyword}
-                                {idx < arr.length - 1 && ', '}
-                              </span>
-                            ))}
+                            {pub.keywords.join(', ')}
                           </p>
                         </div>
                       )}
@@ -437,10 +322,10 @@ const Publications = () => {
                         <div className="abstract-section">
                           <p>
                             <strong style={{ display: 'inline' }}>Authors: </strong>
-                            {pub.authors.split(', ').map((author, idx, arr) => (
+                            {pub.authors.split(', ').map((author, idx) => (
                               <span key={idx}>
                                 {author.includes('Sirjani') ? <strong style={{ display: 'inline' }}>{author}</strong> : author}
-                                {idx < arr.length - 1 && ', '}
+                                {idx < pub.authors!.split(', ').length - 1 && ', '}
                               </span>
                             ))}
                           </p>
@@ -458,8 +343,7 @@ const Publications = () => {
                     </div>
                   )}
                 </div>
-              );
-              })
+              ))
             )}
           </div>
           {filteredPublications.length > initialLimit && settings.displayLimits.publications.showMoreEnabled && (
