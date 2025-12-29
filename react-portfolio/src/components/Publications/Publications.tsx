@@ -473,10 +473,10 @@ const Publications = () => {
                           <p>
                             <strong style={{ display: 'inline' }}>Authors: </strong>
                             {pub.authors.split(', ').map((author, idx, arr) => (
-                              <>
-                                {author.includes('Sirjani') ? <strong style={{ display: 'inline' }} key={idx}>{author}</strong> : author}
+                              <span key={idx}>
+                                {author.includes('Sirjani') ? <strong style={{ display: 'inline' }}>{author}</strong> : author}
                                 {idx < arr.length - 1 && ', '}
-                              </>
+                              </span>
                             ))}
                           </p>
                         </div>

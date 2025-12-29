@@ -51,6 +51,7 @@ body, h1, h2, h3, h4, h5, h6 {
     --border-color: #d1d5db;      /* More visible borders */
     --accent-color: #1e40af;      /* Contrast 7.7:1 with white (improved from #1d4ed8) */
     --accent-hover: #1e3a8a;      /* Darker accent for hover */
+    --accent-rgb: 30, 64, 175;    /* RGB values for accent color with alpha */
     --error-color: #dc2626;       /* Contrast 5.9:1 with white */
     --success-color: #047857;     /* Contrast 5.0:1 with white (improved from #059669) */
     --focus-color: #2563eb;       /* High contrast focus */
@@ -67,6 +68,7 @@ body, h1, h2, h3, h4, h5, h6 {
     --border-color: #475569;      /* More visible borders */
     --accent-color: #60a5fa;      /* Brighter blue for dark mode */
     --accent-hover: #93c5fd;      /* Lighter hover for dark mode */
+    --accent-rgb: 96, 165, 250;   /* RGB values for accent color with alpha */
     --error-color: #fca5a5;       /* Light red for dark mode */
     --success-color: #6ee7b7;     /* Light green for dark mode */
     --focus-color: #93c5fd;       /* Bright focus for dark mode */
@@ -242,6 +244,12 @@ ul, ol {
     margin: 0;
 }
 
+.nav-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
 .theme-toggle {
     background: var(--white);
     border: var(--button-border-width) solid var(--border-color);
@@ -254,6 +262,12 @@ ul, ol {
     justify-content: center;
     width: 40px;
     height: 40px;
+    font-size: 1.2rem;
+}
+
+.theme-toggle svg {
+    width: 1.2rem;
+    height: 1.2rem;
 }
 
 .theme-toggle:hover {
@@ -1265,15 +1279,15 @@ kbd {
     font-weight: 600;
     letter-spacing: 0.05em;
     border-radius: var(--button-border-radius);
-    border: var(--button-border-width) solid rgba(30, 64, 175, 0.35);
-    background: rgba(30, 64, 175, 0.12);
+    border: var(--button-border-width) solid rgba(var(--accent-rgb, 30, 64, 175), 0.35);
+    background: rgba(var(--accent-rgb, 30, 64, 175), 0.12);
     color: var(--accent-color);
 }
 
 [data-theme="dark"] .citation-badge {
-    background: rgba(96, 165, 250, 0.25);
-    border-color: rgba(96, 165, 250, 0.45);
-    color: #93c5fd;
+    background: rgba(var(--accent-rgb, 96, 165, 250), 0.25);
+    border-color: rgba(var(--accent-rgb, 96, 165, 250), 0.45);
+    color: var(--accent-color);
 }
 
 .citation-badge i {
@@ -1709,7 +1723,7 @@ kbd {
     .nav-controls {
         display: flex;
         align-items: center;
-        gap: 0.5rem;
+        gap: 0.75rem;
     }
 
     .nav-toggle {
@@ -3914,7 +3928,14 @@ html {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  margin-right: 0.75rem;
+  width: 40px;
+  height: 40px;
+  font-size: 1.2rem;
+}
+
+.search-toggle svg {
+  width: 1.2rem;
+  height: 1.2rem;
 }
 
 .search-toggle:hover {
@@ -4653,9 +4674,9 @@ body[data-theme="dark"] .expand-arrow.disabled {
 
 .citations-badge {
   justify-content: center;
-  background: rgba(30, 64, 175, 0.12);
+  background: rgba(var(--accent-rgb, 30, 64, 175), 0.12);
   color: var(--accent-color);
-  border-color: rgba(30, 64, 175, 0.35);
+  border-color: rgba(var(--accent-rgb, 30, 64, 175), 0.35);
 }
 
 .citations-badge i {
@@ -4676,9 +4697,9 @@ body[data-theme="dark"] .expand-arrow.disabled {
 }
 
 [data-theme="dark"] .citations-badge {
-  background: rgba(96, 165, 250, 0.25);
-  border-color: rgba(96, 165, 250, 0.45);
-  color: #93c5fd;
+  background: rgba(var(--accent-rgb, 96, 165, 250), 0.25);
+  border-color: rgba(var(--accent-rgb, 96, 165, 250), 0.45);
+  color: var(--accent-color);
 }
 
 .detail-actions {

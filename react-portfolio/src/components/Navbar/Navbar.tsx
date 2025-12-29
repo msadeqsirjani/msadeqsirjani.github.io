@@ -1,7 +1,8 @@
 import { useState, useEffect, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMoon, faSun, faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { useFocusTrap } from '../../hooks/useFocusTrap';
+import ColorPicker from '../ColorPicker/ColorPicker';
 
 interface NavbarProps {
   onSearchClick?: () => void;
@@ -149,15 +150,9 @@ const Navbar = ({ onSearchClick }: NavbarProps) => {
           >
             <FontAwesomeIcon icon={faSearch} />
           </button>
-          
-          <button
-            className="theme-toggle"
-            onClick={toggleTheme}
-            aria-label="Toggle theme"
-            data-tooltip={theme === 'light' ? 'Dark mode' : 'Light mode'}
-          >
-            <FontAwesomeIcon icon={theme === 'light' ? faMoon : faSun} />
-          </button>
+
+          <ColorPicker currentTheme={theme} onThemeToggle={toggleTheme} />
+
           <button
             className="nav-toggle"
             onClick={toggleMenu}
