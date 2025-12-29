@@ -4,6 +4,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner, faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 import { trackContactSubmission } from '../../utils/analytics';
 
+const RATE_LIMIT_MS = 30000;
+const MIN_MESSAGE_LENGTH = 10;
+
 const Contact = () => {
   const [formData, setFormData] = useState({
     name: '',
@@ -14,6 +17,37 @@ const Contact = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [lastSubmitTime, setLastSubmitTime] = useState(0);
 
+  const contactInfo = [
+    {
+      icon: 'fa-map-marker-alt',
+      title: 'Location',
+      href: 'https://maps.google.com/?q=1+UTSA+Circle,+San+Antonio,+TX+78249',
+      text: '1 UT San Antonio Circle, San Antonio, TX 78249',
+      external: true
+    },
+    {
+      icon: 'fa-envelope',
+      title: 'Email',
+      href: 'mailto:mohammadsadegh.sirjani@utsa.edu',
+      text: 'mohammadsadegh.sirjani@utsa.edu',
+      external: false
+    },
+    {
+      icon: 'fa-university',
+      title: 'Institution',
+      href: 'https://utsa.edu',
+      text: 'University of Texas at San Antonio',
+      external: true
+    }
+  ];
+
+  const formFields = [
+    { id: 'name', name: 'name', type: 'text', placeholder: 'Your Name' },
+    { id: 'email', name: 'email', type: 'email', placeholder: 'Your Email' },
+    { id: 'subject', name: 'subject', type: 'text', placeholder: 'Subject' },
+    { id: 'message', name: 'message', type: 'textarea', placeholder: 'Your Message', rows: 5 }
+  ];
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({
       ...formData,
@@ -22,7 +56,6 @@ const Contact = () => {
   };
 
   const validateEmail = (email: string): boolean => {
-    // RFC 5322 compliant email regex (simplified)
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
   };
@@ -31,31 +64,24 @@ const Contact = () => {
     e.preventDefault();
     const form = e.target as HTMLFormElement;
 
-    // Rate limiting: prevent spam submissions (30 seconds between submissions)
     const now = Date.now();
     const timeSinceLastSubmit = now - lastSubmitTime;
-    const rateLimitMs = 30000; // 30 seconds
 
-    if (timeSinceLastSubmit < rateLimitMs && lastSubmitTime > 0) {
-      const remainingSeconds = Math.ceil((rateLimitMs - timeSinceLastSubmit) / 1000);
+    if (timeSinceLastSubmit < RATE_LIMIT_MS && lastSubmitTime > 0) {
+      const remainingSeconds = Math.ceil((RATE_LIMIT_MS - timeSinceLastSubmit) / 1000);
       toast.error(`Please wait ${remainingSeconds} seconds before sending another message`);
       return;
     }
 
-    // Prevent double submission
-    if (isSubmitting) {
-      return;
-    }
+    if (isSubmitting) return;
 
-    // Validate email before submission
     if (!validateEmail(formData.email)) {
       toast.error("Please enter a valid email address");
       return;
     }
 
-    // Validate message length
-    if (formData.message.trim().length < 10) {
-      toast.error("Message must be at least 10 characters long");
+    if (formData.message.trim().length < MIN_MESSAGE_LENGTH) {
+      toast.error(`Message must be at least ${MIN_MESSAGE_LENGTH} characters long`);
       return;
     }
 
@@ -65,23 +91,14 @@ const Contact = () => {
       const response = await fetch(form.action, {
         method: form.method,
         body: new FormData(form),
-        headers: {
-          'Accept': 'application/json'
-        }
+        headers: { 'Accept': 'application/json' }
       });
 
       if (response.ok) {
         trackContactSubmission();
         setLastSubmitTime(now);
         toast.success("Message sent successfully!");
-
-        // Reset form
-        setFormData({
-          name: '',
-          email: '',
-          subject: '',
-          message: ''
-        });
+        setFormData({ name: '', email: '', subject: '', message: '' });
       } else {
         toast.error("Failed to send message. Please try again.");
       }
@@ -99,88 +116,52 @@ const Contact = () => {
         <div className="contact-container">
           <div className="contact-info">
             <h3>Get in Touch</h3>
-            <div className="contact-item">
-              <span className="fas fa-map-marker-alt"></span>
-              <div>
-                <h4>Location</h4>
-                <p>
-                  <a href="https://maps.google.com/?q=1+UTSA+Circle,+San+Antonio,+TX+78249" target="_blank" rel="noopener">
-                    1 UT San Antonio Circle, San Antonio, TX 78249
-                  </a>
-                </p>
+            {contactInfo.map((item, idx) => (
+              <div key={idx} className="contact-item">
+                <span className={`fas ${item.icon}`}></span>
+                <div>
+                  <h4>{item.title}</h4>
+                  <p>
+                    <a
+                      href={item.href}
+                      {...(item.external && { target: '_blank', rel: 'noopener' })}
+                    >
+                      {item.text}
+                    </a>
+                  </p>
+                </div>
               </div>
-            </div>
-            <div className="contact-item">
-              <span className="fas fa-envelope"></span>
-              <div>
-                <h4>Email</h4>
-                <p>
-                  <a href="mailto:mohammadsadegh.sirjani@utsa.edu">
-                    mohammadsadegh.sirjani@utsa.edu
-                  </a>
-                </p>
-              </div>
-            </div>
-            <div className="contact-item">
-              <span className="fas fa-university"></span>
-              <div>
-                <h4>Institution</h4>
-                <p>
-                  <a href="https://utsa.edu" target="_blank" rel="noopener">
-                    University of Texas at San Antonio
-                  </a>
-                </p>
-              </div>
-            </div>
+            ))}
           </div>
 
           <div className="contact-form">
             <h3>Send a Message</h3>
             <form id="contact-form" action="https://formspree.io/f/xblywejw" method="POST" onSubmit={handleSubmit}>
-              <div className="form-group">
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  placeholder="Your Name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-              <div className="form-group">
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  placeholder="Your Email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-              <div className="form-group">
-                <input
-                  type="text"
-                  id="subject"
-                  name="subject"
-                  placeholder="Subject"
-                  value={formData.subject}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-              <div className="form-group">
-                <textarea
-                  id="message"
-                  name="message"
-                  placeholder="Your Message"
-                  rows={5}
-                  value={formData.message}
-                  onChange={handleChange}
-                  required
-                ></textarea>
-              </div>
+              {formFields.map((field) => (
+                <div key={field.id} className="form-group">
+                  {field.type === 'textarea' ? (
+                    <textarea
+                      id={field.id}
+                      name={field.name}
+                      placeholder={field.placeholder}
+                      rows={field.rows}
+                      value={formData[field.name as keyof typeof formData]}
+                      onChange={handleChange}
+                      required
+                    />
+                  ) : (
+                    <input
+                      type={field.type}
+                      id={field.id}
+                      name={field.name}
+                      placeholder={field.placeholder}
+                      value={formData[field.name as keyof typeof formData]}
+                      onChange={handleChange}
+                      required
+                    />
+                  )}
+                </div>
+              ))}
               <button type="submit" className="btn btn-primary" disabled={isSubmitting}>
                 {isSubmitting ? (
                   <>
