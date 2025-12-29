@@ -1,5 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
 
+const PULL_THRESHOLD = 80;
+const MAX_PULL_DISTANCE = 150;
+const REFRESH_DELAY = 500;
+
 const PullToRefresh = () => {
   const [pullState, setPullState] = useState<'idle' | 'pulling' | 'ready' | 'refreshing'>('idle');
   const pullToRefreshRef = useRef<HTMLDivElement>(null);
@@ -8,11 +12,7 @@ const PullToRefresh = () => {
   const isPulling = useRef(false);
 
   useEffect(() => {
-    const threshold = 80; // Pixels to pull before triggering refresh
-    const maxPull = 150; // Maximum pull distance
-
     const handleTouchStart = (e: TouchEvent) => {
-      // Only trigger if at the top of the page
       if (window.scrollY === 0 && e.touches[0]) {
         startY.current = e.touches[0].clientY;
         isPulling.current = true;
@@ -23,19 +23,13 @@ const PullToRefresh = () => {
       if (!isPulling.current || !e.touches[0]) return;
 
       currentY.current = e.touches[0].clientY;
-      const pullDistance = Math.min(currentY.current - startY.current, maxPull);
+      const pullDistance = Math.min(currentY.current - startY.current, MAX_PULL_DISTANCE);
 
       if (pullDistance > 0) {
-        // Prevent default scrolling when pulling down
         if (window.scrollY === 0) {
           e.preventDefault();
         }
-
-        if (pullDistance < threshold) {
-          setPullState('pulling');
-        } else {
-          setPullState('ready');
-        }
+        setPullState(pullDistance < PULL_THRESHOLD ? 'pulling' : 'ready');
       }
     };
 
@@ -44,13 +38,9 @@ const PullToRefresh = () => {
 
       const pullDistance = currentY.current - startY.current;
 
-      if (pullDistance >= threshold) {
+      if (pullDistance >= PULL_THRESHOLD) {
         setPullState('refreshing');
-        
-        // Trigger page refresh after animation
-        setTimeout(() => {
-          window.location.reload();
-        }, 500);
+        setTimeout(() => window.location.reload(), REFRESH_DELAY);
       } else {
         setPullState('idle');
       }
@@ -60,7 +50,6 @@ const PullToRefresh = () => {
       currentY.current = 0;
     };
 
-    // Add touch event listeners
     document.addEventListener('touchstart', handleTouchStart, { passive: false });
     document.addEventListener('touchmove', handleTouchMove, { passive: false });
     document.addEventListener('touchend', handleTouchEnd);
@@ -73,8 +62,8 @@ const PullToRefresh = () => {
   }, []);
 
   return (
-    <div 
-      className={`pull-to-refresh ${pullState !== 'idle' ? pullState : ''}`} 
+    <div
+      className={`pull-to-refresh ${pullState !== 'idle' ? pullState : ''}`}
       id="pullToRefresh"
       ref={pullToRefreshRef}
     >
