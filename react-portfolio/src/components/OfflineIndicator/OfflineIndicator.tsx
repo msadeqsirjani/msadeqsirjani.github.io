@@ -11,7 +11,6 @@ const OfflineIndicator = () => {
     const handleOnline = () => {
       setIsOnline(true);
       setShowMessage(true);
-      // Hide the "back online" message after 3 seconds
       setTimeout(() => setShowMessage(false), 3000);
     };
 
@@ -29,11 +28,10 @@ const OfflineIndicator = () => {
     };
   }, []);
 
-  // Don't show anything if online and no recent status change
   if (isOnline && !showMessage) return null;
 
   return (
-    <div 
+    <div
       className={`offline-indicator ${!isOnline ? 'offline' : 'online'} ${showMessage ? 'visible' : ''}`}
       role="status"
       aria-live="polite"
