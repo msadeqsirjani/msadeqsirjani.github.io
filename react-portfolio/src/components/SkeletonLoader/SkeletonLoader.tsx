@@ -10,13 +10,10 @@ const SkeletonLoader = ({ type = 'card', count = 1 }: SkeletonLoaderProps) => {
     switch (type) {
       case 'text':
         return <div className="skeleton skeleton-text" />;
-
       case 'title':
         return <div className="skeleton skeleton-title" />;
-
       case 'avatar':
         return <div className="skeleton skeleton-avatar" />;
-
       case 'publication':
         return (
           <div className="skeleton-publication">
@@ -29,7 +26,6 @@ const SkeletonLoader = ({ type = 'card', count = 1 }: SkeletonLoaderProps) => {
             </div>
           </div>
         );
-
       case 'card':
       default:
         return (
