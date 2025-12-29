@@ -1,8 +1,8 @@
 import type { Publication, EducationItem, ResearchItem, TeachingItem, NewsItem, AwardItem, ResearchInterest } from '../types';
 import { faNetworkWired, faMicrochip, faServer, faGears, faBolt, faArrowsRotate } from '@fortawesome/free-solid-svg-icons';
+import type { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 
-// Icon mapping for research interests
-const iconMap: { [key: string]: any } = {
+const iconMap: Record<string, IconDefinition> = {
   faNetworkWired,
   faMicrochip,
   faServer,
@@ -11,47 +11,26 @@ const iconMap: { [key: string]: any } = {
   faArrowsRotate
 };
 
-// Fetch data from JSON files
-export const fetchPublications = async (): Promise<Publication[]> => {
-  const response = await fetch('/assets/data/publications.json');
+const fetchData = async <T>(url: string): Promise<T> => {
+  const response = await fetch(url);
   return response.json();
 };
 
-export const fetchEducation = async (): Promise<EducationItem[]> => {
-  const response = await fetch('/assets/data/education.json');
-  return response.json();
-};
-
-export const fetchResearchExperience = async (): Promise<ResearchItem[]> => {
-  const response = await fetch('/assets/data/research.json');
-  return response.json();
-};
-
-export const fetchTeaching = async (): Promise<TeachingItem[]> => {
-  const response = await fetch('/assets/data/teaching.json');
-  return response.json();
-};
-
-export const fetchNews = async (): Promise<NewsItem[]> => {
-  const response = await fetch('/assets/data/news.json');
-  return response.json();
-};
-
-export const fetchAwards = async (): Promise<AwardItem[]> => {
-  const response = await fetch('/assets/data/awards.json');
-  return response.json();
-};
+export const fetchPublications = () => fetchData<Publication[]>('/assets/data/publications.json');
+export const fetchEducation = () => fetchData<EducationItem[]>('/assets/data/education.json');
+export const fetchResearchExperience = () => fetchData<ResearchItem[]>('/assets/data/research.json');
+export const fetchTeaching = () => fetchData<TeachingItem[]>('/assets/data/teaching.json');
+export const fetchNews = () => fetchData<NewsItem[]>('/assets/data/news.json');
+export const fetchAwards = () => fetchData<AwardItem[]>('/assets/data/awards.json');
 
 export const fetchResearchInterests = async (): Promise<ResearchInterest[]> => {
-  const response = await fetch('/assets/data/research-interests.json');
-  const data = await response.json();
+  const data = await fetchData<any[]>('/assets/data/research-interests.json');
   return data.map((item: any) => ({
     ...item,
     icon: iconMap[item.icon]
   }));
 };
 
-// Default exports for initial render (empty arrays)
 export const publications: Publication[] = [];
 export const education: EducationItem[] = [];
 export const researchExperience: ResearchItem[] = [];
