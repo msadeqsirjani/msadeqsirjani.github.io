@@ -1,4 +1,3 @@
-
 const Biography = () => {
   return (
     <section id="biography" className="section">
