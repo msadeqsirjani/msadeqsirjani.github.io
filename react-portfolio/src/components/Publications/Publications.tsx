@@ -426,6 +426,20 @@ const Publications = () => {
                         </div>
                       </div>
 
+                      {pub.keywords && pub.keywords.length > 0 && (
+                        <div className="abstract-section">
+                          <p>
+                            <strong style={{ display: 'inline' }}>Keywords: </strong>
+                            {pub.keywords.map((keyword, idx, arr) => (
+                              <span key={idx}>
+                                {keyword}
+                                {idx < arr.length - 1 && ', '}
+                              </span>
+                            ))}
+                          </p>
+                        </div>
+                      )}
+
                       {pub.authors && (
                         <div className="abstract-section">
                           <p>
@@ -442,8 +456,10 @@ const Publications = () => {
 
                       {pub.abstract && (
                         <div className="abstract-section">
-                          <strong>Abstract:</strong>
-                          <p>{pub.abstract}</p>
+                          <p>
+                            <strong style={{ display: 'inline' }}>Abstract: </strong>
+                            {pub.abstract}
+                          </p>
                         </div>
                       )}
                     </div>

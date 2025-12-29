@@ -4741,6 +4741,49 @@ body[data-theme="dark"] .expand-arrow.disabled {
   text-align: justify;
 }
 
+/* Keywords Section */
+.keywords-section {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-color);
+}
+
+.keywords-section strong {
+  display: block;
+  margin-bottom: 0.75rem;
+  color: var(--text-color);
+  font-size: 0.95rem;
+}
+
+.keywords-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.keyword-tag {
+  display: inline-block;
+  padding: 0.4rem 0.8rem;
+  background-color: rgba(var(--accent-rgb, 30, 64, 175), 0.1);
+  border: 1px solid rgba(var(--accent-rgb, 30, 64, 175), 0.3);
+  border-radius: 6px;
+  color: var(--accent-color);
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.keyword-tag:hover {
+  background-color: rgba(var(--accent-rgb, 30, 64, 175), 0.15);
+  border-color: var(--accent-color);
+  transform: translateY(-1px);
+}
+
+[data-theme="dark"] .keyword-tag {
+  background-color: rgba(var(--accent-rgb, 96, 165, 250), 0.15);
+  border-color: rgba(var(--accent-rgb, 96, 165, 250), 0.35);
+}
+
 @media (max-width: 768px) {
   .details-grid {
     flex-direction: column;

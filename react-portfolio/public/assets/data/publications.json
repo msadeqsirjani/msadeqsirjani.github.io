@@ -9,7 +9,8 @@
     "pdfLink": "assets/docs/publications/S2210-5379(25)00168-4.pdf",
     "bibtexId": "GHAFFARI2025101247",
     "citations": 0,
-    "abstract": "As the proliferation of Internet of Things (IoT) devices continues unabated, the demand for efficient task scheduling mechanisms becomes increasingly critical. Task scheduling in the IoT is pivotal for optimizing resource utilization, minimizing latency, and enhancing the overall system’s performance. This research proposes a novel method called QTE-IoT, standing for a Q-learning-based task scheduling scheme to enhance energy consumption and QoS in IoT environments. QTE-IoT commences by categorizing tasks into three classes: time-sensitive tasks, security tasks, and normal tasks. This classification is achieved using a multi-layer perceptron artificial neural network. Subsequently, time-sensitive tasks are offloaded to the fog layer and scheduled using the proposed African Vulture Algorithm combined with Q-learning, which we designate as QAVA. Security tasks are offloaded to the private cloud, while normal tasks are offloaded to the public cloud. For task scheduling in private and public cloud environments, QTE-IoT employs a proposed enhanced version of Artificial Rabbits Optimization integrated with the Q-learning algorithm, known as QARO. Additionally, the QTE-IoT method incorporates a monitoring agent to oversee resource workload, thereby preventing congestion and delays. Simulation results on instances of the HCSP benchmark dataset demonstrate that QTE-IoT outperforms other state-of-the-art methods in various performance metrics. QTE-IoT achieves significant improvements compared to other methods and algorithms, including a 6% to 12% reduction in energy consumption. Furthermore, QTE-IoT exhibits substantial improvements in load imbalance (42% to 79%), response time (25% to 40%), and deadline satisfaction (6% to 39%) compared to existing approaches."
+    "abstract": "As the proliferation of Internet of Things (IoT) devices continues unabated, the demand for efficient task scheduling mechanisms becomes increasingly critical. Task scheduling in the IoT is pivotal for optimizing resource utilization, minimizing latency, and enhancing the overall system's performance. This research proposes a novel method called QTE-IoT, standing for a Q-learning-based task scheduling scheme to enhance energy consumption and QoS in IoT environments. QTE-IoT commences by categorizing tasks into three classes: time-sensitive tasks, security tasks, and normal tasks. This classification is achieved using a multi-layer perceptron artificial neural network. Subsequently, time-sensitive tasks are offloaded to the fog layer and scheduled using the proposed African Vulture Algorithm combined with Q-learning, which we designate as QAVA. Security tasks are offloaded to the private cloud, while normal tasks are offloaded to the public cloud. For task scheduling in private and public cloud environments, QTE-IoT employs a proposed enhanced version of Artificial Rabbits Optimization integrated with the Q-learning algorithm, known as QARO. Additionally, the QTE-IoT method incorporates a monitoring agent to oversee resource workload, thereby preventing congestion and delays. Simulation results on instances of the HCSP benchmark dataset demonstrate that QTE-IoT outperforms other state-of-the-art methods in various performance metrics. QTE-IoT achieves significant improvements compared to other methods and algorithms, including a 6% to 12% reduction in energy consumption. Furthermore, QTE-IoT exhibits substantial improvements in load imbalance (42% to 79%), response time (25% to 40%), and deadline satisfaction (6% to 39%) compared to existing approaches.",
+    "keywords": ["Internet of Things", "Metaheuristic", "Reinforcement Learning", "Task Scheduling"]
   },
   {
     "title": "Controller placement in software-defined networks using reinforcement learning and metaheuristics",
@@ -21,7 +22,8 @@
     "pdfLink": "assets/docs/publications/s10586-025-05331-y.pdf",
     "bibtexId": "Sirjani2025",
     "abstract": "Software-Defined Networking (SDN) separates the control and data layers, offering scalable and flexible network management. A key challenge is the optimal placement of SDN controllers, which has been shown to be an NP-hard problem. Existing methods often struggle to balance multiple performance objectives effectively. This paper presents a novel two-step approach for SDN controller placement. First, Deep Q-Learning (DQL) is employed to find an initial solution by learning from the network environment. Then, the Bedbug-GLA metaheuristic algorithm refines this solution. We evaluate our method using four real-world network topologies and compare it with eight state-of-the-art algorithms. Experimental results demonstrate that our approach achieves an 18% improvement in controller load, a 69% reduction in congested overload, and a 20% decrease in energy consumption.",
-    "citations": 2
+    "citations": 2,
+    "keywords": ["Bedbug Metaheuristic Algorithm", "Controller Placement Problem", "Energy Consumption", "Software-Defined Network"]
   },
   {
     "title": "Optimizing Task Scheduling in Fog Computing with Deadline Awareness",
@@ -33,7 +35,8 @@
     "pdfLink": "assets/docs/publications/2509.07378v2.pdf",
     "bibtexId": "arXiv2509.07378",
     "abstract": "The Internet of Things (IoT) has become a fundamental component of modern smart applications, particularly in time-sensitive scenarios such as healthcare monitoring and autonomous systems. Many IoT applications require guaranteed response times to meet stringent deadlines, making efficient task scheduling a critical challenge. Fog computing addresses these needs by positioning computational resources closer to end users. However, existing task scheduling approaches often fail to fully consider deadline awareness, which can lead to performance degradation in time-critical environments. In this paper, we propose a novel Reinforcement Learning-based Improved GEO (RIGEO) algorithm that combines improved Geometric Optimization (IGEO) with Reinforcement Learning (RL) to enhance task scheduling performance in fog computing environments. The key innovation is the integration of deadline awareness into the optimization framework, which significantly reduces task failures in delay-sensitive applications. Through comprehensive simulation experiments using iFogSim, we evaluate RIGEO against several state-of-the-art algorithms, including ACO-IWD, SB-PSO, EEMR, and NSGA-III. Our results demonstrate substantial performance improvements, with RIGEO achieving a 29% reduction in energy consumption, an 86% improvement in average response time, and a 19% reduction in deadline violations.",
-    "citations": 1
+    "citations": 1,
+    "keywords": ["Internet of Things", "Fog Computing", "Job Scheduling", "Golden Eagle Optimization Algorithm", "Reinforcement Learning"]
   },
   {
     "title": "Data mining and cloud computing for customer pattern analysis",
@@ -45,7 +48,8 @@
     "pdfLink": "assets/docs/publications/QICAR61538.2024.10496623.pdf",
     "bibtexId": "10496623",
     "abstract": "In today's competitive business landscape, understanding customer behavior is crucial for organizational success. This paper explores the integration of cloud computing infrastructure, software engineering methodologies, and data mining techniques to analyze customer patterns and optimize the customer lifecycle. We present a comprehensive framework that leverages cloud-based resources to process large-scale customer data efficiently. Our approach combines various data mining algorithms to extract meaningful insights about customer preferences, purchasing patterns, and engagement behaviors. The proposed system demonstrates how organizations can utilize these technologies to enhance customer relationship management, improve service delivery, and make data-driven decisions.",
-    "citations": 2
+    "citations": 2,
+    "keywords": ["Data Mining", "Software Engineering", "Customer Pattern Analysis", "Cloud Computing", "Optimization"]
   },
   {
     "title": "SecVanet: provably secure authentication protocol for sending emergency events in VANET",
@@ -57,7 +61,8 @@
     "pdfLink": "assets/docs/publications/IKT62039.2023.10433027.pdf",
     "bibtexId": "10433027",
     "abstract": "Vehicular Ad Hoc Networks (VANETs) play a vital role in intelligent transportation systems by enabling vehicle-to-vehicle and vehicle-to-infrastructure communications. However, the transmission of emergency messages in VANETs faces significant security challenges, including authentication, privacy preservation, and resistance to various attacks. This paper presents SecVanet, a provably secure authentication protocol specifically designed for emergency event communication in VANET environments. Our protocol ensures secure message transmission while maintaining vehicle privacy and preventing unauthorized access. We formally verify the security properties of SecVanet using the Scyther verification tool, demonstrating its resistance to common attacks such as replay attacks, man-in-the-middle attacks, and impersonation attacks. Performance analysis shows that SecVanet achieves lower computational complexity compared to existing protocols while maintaining robust security guarantees.",
-    "citations": 10
+    "citations": 10,
+    "keywords": ["Authentication", "Privacy", "Key Agreement", "VANET", "Scyther Tool"]
   },
   {
     "title": "A Comparative Evaluation of Machine Learning Algorithms for IDS in IoT network",
@@ -69,6 +74,7 @@
     "pdfLink": "assets/docs/publications/IKT62039.2023.10433047.pdf",
     "bibtexId": "10433047",
     "abstract": "The rapid proliferation of Internet of Things (IoT) devices has introduced significant security challenges, making Intrusion Detection Systems (IDS) essential for protecting IoT networks from cyber threats. Machine learning algorithms have emerged as promising solutions for developing effective IDS. However, selecting the most appropriate algorithm remains a challenge due to varying performance characteristics across different attack scenarios. This paper presents a comprehensive comparative evaluation of five popular machine learning algorithms: Logistic Regression (LR), Random Forest (RF), K-Nearest Neighbors (KNN), Support Vector Machine (SVM), and XGBoost for IoT intrusion detection. We conduct extensive experiments using the UNSW-NB15 dataset, which contains diverse network attack patterns. Our evaluation considers multiple performance metrics including accuracy, precision, recall, and F1-score. The experimental results demonstrate that XGBoost achieves the highest overall accuracy and recall rates, making it particularly suitable for IoT-based intrusion detection systems.",
-    "citations": 2
+    "citations": 2,
+    "keywords": ["Network Security", "Intrusion Detection System", "Artificial Intelligence", "Machine Learning", "Data Mining"]
   }
 ]

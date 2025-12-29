@@ -10,6 +10,7 @@ export interface Publication {
   abstract?: string;
   downloads?: number;
   citations?: number;
+  keywords?: string[];
 }
 
 export interface EducationItem {
