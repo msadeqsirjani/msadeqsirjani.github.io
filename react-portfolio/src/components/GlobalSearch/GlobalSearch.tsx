@@ -160,11 +160,6 @@ const GlobalSearch = ({ isOpen, onClose }: GlobalSearchProps) => {
               onChange={(e) => setSearchQuery(e.target.value)}
               aria-label="Global search"
             />
-            {searchQuery && (
-              <button className="clear-search-btn" onClick={() => setSearchQuery('')} aria-label="Clear search">
-                <FontAwesomeIcon icon={faTimes} />
-              </button>
-            )}
           </div>
           <button className="close-search-btn" onClick={onClose} aria-label="Close search">
             <FontAwesomeIcon icon={faTimes} />
