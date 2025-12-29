@@ -5,16 +5,8 @@ import './ColorPicker.css';
 
 interface ColorPalette {
   name: string;
-  light: {
-    accent: string;
-    accentHover: string;
-    focus: string;
-  };
-  dark: {
-    accent: string;
-    accentHover: string;
-    focus: string;
-  };
+  light: { accent: string; accentHover: string; focus: string };
+  dark: { accent: string; accentHover: string; focus: string };
 }
 
 interface ColorPickerProps {
@@ -71,48 +63,15 @@ const ColorPicker = ({ currentTheme, onThemeToggle }: ColorPickerProps) => {
   const modalRef = useRef<HTMLDivElement>(null);
   const clickTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  useEffect(() => {
-    // Load saved color preference
-    const savedColor = localStorage.getItem('primaryColor');
-    if (savedColor) {
-      setSelectedColor(savedColor);
-      applyColorPalette(savedColor);
-    }
-  }, []);
-
-  useEffect(() => {
-    // Reapply color when theme changes
-    applyColorPalette(selectedColor);
-  }, [currentTheme, selectedColor]);
-
-  useEffect(() => {
-    // Cleanup timeout on unmount
-    return () => {
-      if (clickTimeout.current) {
-        clearTimeout(clickTimeout.current);
-      }
+  const hexToRgb = (hex: string) => {
+    const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    if (!result || !result[1] || !result[2] || !result[3]) return null;
+    return {
+      r: parseInt(result[1], 16),
+      g: parseInt(result[2], 16),
+      b: parseInt(result[3], 16)
     };
-  }, []);
-
-  useEffect(() => {
-    // Close modal when clicking outside
-    const handleClickOutside = (event: MouseEvent) => {
-      if (modalRef.current && !modalRef.current.contains(event.target as Node)) {
-        setIsOpen(false);
-      }
-    };
-
-    if (isOpen) {
-      document.addEventListener('mousedown', handleClickOutside);
-      // Prevent body scroll when modal is open
-      document.body.style.overflow = 'hidden';
-    }
-
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-      document.body.style.overflow = '';
-    };
-  }, [isOpen]);
+  };
 
   const applyColorPalette = (colorName: string) => {
     const palette = colorPalettes.find(p => p.name === colorName);
@@ -125,24 +84,47 @@ const ColorPicker = ({ currentTheme, onThemeToggle }: ColorPickerProps) => {
     root.style.setProperty('--accent-hover', colors.accentHover);
     root.style.setProperty('--focus-color', colors.focus);
 
-    // Set alpha-based colors for badges and other elements
     const accentRgb = hexToRgb(colors.accent);
     if (accentRgb) {
       root.style.setProperty('--accent-rgb', `${accentRgb.r}, ${accentRgb.g}, ${accentRgb.b}`);
     }
   };
 
-  const hexToRgb = (hex: string): { r: number; g: number; b: number } | null => {
-    const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-    if (!result || !result[1] || !result[2] || !result[3]) {
-      return null;
-    }
-    return {
-      r: parseInt(result[1], 16),
-      g: parseInt(result[2], 16),
-      b: parseInt(result[3], 16)
+  useEffect(() => {
+    const savedColor = localStorage.getItem('primaryColor') || 'Blue';
+    setSelectedColor(savedColor);
+    applyColorPalette(savedColor);
+  }, []);
+
+  useEffect(() => {
+    applyColorPalette(selectedColor);
+  }, [currentTheme, selectedColor]);
+
+  useEffect(() => {
+    return () => {
+      if (clickTimeout.current) {
+        clearTimeout(clickTimeout.current);
+      }
     };
-  };
+  }, []);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (modalRef.current && !modalRef.current.contains(event.target as Node)) {
+        setIsOpen(false);
+      }
+    };
+
+    if (isOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+      document.body.style.overflow = 'hidden';
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.body.style.overflow = '';
+    };
+  }, [isOpen]);
 
   const handleColorSelect = (colorName: string) => {
     setSelectedColor(colorName);
@@ -160,19 +142,21 @@ const ColorPicker = ({ currentTheme, onThemeToggle }: ColorPickerProps) => {
 
   const handleButtonClick = () => {
     if (clickTimeout.current) {
-      // Double click detected
       clearTimeout(clickTimeout.current);
       clickTimeout.current = null;
       setIsOpen(true);
     } else {
-      // Wait to see if it's a double click
       clickTimeout.current = setTimeout(() => {
-        // Single click - just toggle theme
         onThemeToggle();
         clickTimeout.current = null;
-      }, 250); // 250ms delay to detect double click
+      }, 250);
     }
   };
+
+  const themeOptions = [
+    { theme: 'light', icon: faSun, label: 'Light' },
+    { theme: 'dark', icon: faMoon, label: 'Dark' }
+  ];
 
   return (
     <>
@@ -191,58 +175,50 @@ const ColorPicker = ({ currentTheme, onThemeToggle }: ColorPickerProps) => {
             <h2 id="color-picker-title" className="color-picker-title">Appearance Settings</h2>
             <p className="settings-hint">Tip: Single-click the palette icon to quickly toggle theme</p>
 
-            {/* Theme Toggle Section */}
             <div className="theme-section">
               <h3 className="section-subtitle">Theme</h3>
               <div className="theme-toggle-buttons">
-                <button
-                  className={`theme-option ${currentTheme === 'light' ? 'selected' : ''}`}
-                  onClick={onThemeToggle}
-                  aria-label="Light theme"
-                  aria-pressed={currentTheme === 'light'}
-                >
-                  <FontAwesomeIcon icon={faSun} />
-                  <span>Light</span>
-                </button>
-                <button
-                  className={`theme-option ${currentTheme === 'dark' ? 'selected' : ''}`}
-                  onClick={onThemeToggle}
-                  aria-label="Dark theme"
-                  aria-pressed={currentTheme === 'dark'}
-                >
-                  <FontAwesomeIcon icon={faMoon} />
-                  <span>Dark</span>
-                </button>
+                {themeOptions.map(({ theme, icon, label }) => (
+                  <button
+                    key={theme}
+                    className={`theme-option ${currentTheme === theme ? 'selected' : ''}`}
+                    onClick={onThemeToggle}
+                    aria-label={`${label} theme`}
+                    aria-pressed={currentTheme === theme}
+                  >
+                    <FontAwesomeIcon icon={icon} />
+                    <span>{label}</span>
+                  </button>
+                ))}
               </div>
             </div>
 
-            {/* Color Palette Section */}
             <div className="color-section">
               <h3 className="section-subtitle">Primary Color</h3>
               <div className="color-palette-grid">
-              {colorPalettes.map((palette) => (
-                <button
-                  key={palette.name}
-                  className={`color-palette-option ${selectedColor === palette.name ? 'selected' : ''}`}
-                  onClick={() => handleColorSelect(palette.name)}
-                  onKeyDown={(e) => handleKeyDown(e, palette.name)}
-                  aria-label={`${palette.name} color palette`}
-                  aria-pressed={selectedColor === palette.name}
-                >
-                  <div className="color-preview-container">
-                    <div
-                      className="color-preview"
-                      style={{ backgroundColor: currentTheme === 'light' ? palette.light.accent : palette.dark.accent }}
-                    />
-                    {selectedColor === palette.name && (
-                      <div className="color-check">
-                        <FontAwesomeIcon icon={faCheck} />
-                      </div>
-                    )}
-                  </div>
-                  <span className="color-name">{palette.name}</span>
-                </button>
-              ))}
+                {colorPalettes.map((palette) => (
+                  <button
+                    key={palette.name}
+                    className={`color-palette-option ${selectedColor === palette.name ? 'selected' : ''}`}
+                    onClick={() => handleColorSelect(palette.name)}
+                    onKeyDown={(e) => handleKeyDown(e, palette.name)}
+                    aria-label={`${palette.name} color palette`}
+                    aria-pressed={selectedColor === palette.name}
+                  >
+                    <div className="color-preview-container">
+                      <div
+                        className="color-preview"
+                        style={{ backgroundColor: currentTheme === 'light' ? palette.light.accent : palette.dark.accent }}
+                      />
+                      {selectedColor === palette.name && (
+                        <div className="color-check">
+                          <FontAwesomeIcon icon={faCheck} />
+                        </div>
+                      )}
+                    </div>
+                    <span className="color-name">{palette.name}</span>
+                  </button>
+                ))}
               </div>
             </div>
           </div>
