@@ -1,6 +1,6 @@
 import { education, fetchEducation } from '../../data/content';
 import type { EducationItem } from '../../types';
-import TimelineSection from '../common/TimelineSection';
+import TimelineSection from '../TimelineSection/TimelineSection';
 import useContentData from '../../hooks/useContentData';
 
 const Education = () => {

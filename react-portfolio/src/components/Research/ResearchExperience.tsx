@@ -1,6 +1,6 @@
 import { fetchResearchExperience, researchExperience } from '../../data/content';
 import type { ResearchItem } from '../../types';
-import TimelineSection from '../common/TimelineSection';
+import TimelineSection from '../TimelineSection/TimelineSection';
 import useContentData from '../../hooks/useContentData';
 import useSettings from '../../hooks/useSettings';
 
