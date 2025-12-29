@@ -1,0 +1,24 @@
+{
+  "displayLimits": {
+    "publications": {
+      "initial": 5,
+      "showMoreEnabled": true
+    },
+    "news": {
+      "initial": 5,
+      "showMoreEnabled": true
+    },
+    "teaching": {
+      "initial": 5,
+      "showMoreEnabled": true
+    },
+    "research": {
+      "initial": 5,
+      "showMoreEnabled": true
+    },
+    "awards": {
+      "initial": 5,
+      "showMoreEnabled": true
+    }
+  }
+}

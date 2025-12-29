@@ -1,4 +1,7 @@
+import { useState } from 'react';
 import type { ReactNode } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
 
 type ClassName = string | undefined | null | false;
 
@@ -19,6 +22,8 @@ export interface TimelineSectionProps<T> {
   getItemClassName?: Accessor<T, ClassName>;
   getItemKey?: Accessor<T, string | number>;
   children?: ReactNode;
+  initialLimit?: number;
+  showMoreEnabled?: boolean;
 }
 
 const joinClassNames = (...classNames: ClassName[]) =>
@@ -39,13 +44,19 @@ const TimelineSection = <T,>({
   getItemClassName,
   getItemKey,
   children,
+  initialLimit = 5,
+  showMoreEnabled = false,
 }: TimelineSectionProps<T>) => {
+  const [showAll, setShowAll] = useState(false);
+  const displayItems = showMoreEnabled && !showAll ? items.slice(0, initialLimit) : items;
+  const hasMore = showMoreEnabled && items.length > initialLimit;
+
   return (
     <section id={id} className="section">
       <div className="container">
         {title && <h2 className="section-title">{title}</h2>}
         <div className={joinClassNames('timeline-list', listClassName)} role="list">
-          {items.map((item, index) => {
+          {displayItems.map((item, index) => {
             const candidate = item as Record<string, unknown>;
             const defaultDate = candidate['date'] as ReactNode | undefined;
             const defaultDescription = candidate['description'] as ReactNode | undefined;
@@ -111,6 +122,18 @@ const TimelineSection = <T,>({
             );
           })}
         </div>
+        {hasMore && (
+          <div className="show-more-container">
+            <button
+              id="showMoreBtn"
+              className={showAll ? 'expanded' : ''}
+              onClick={() => setShowAll(!showAll)}
+              aria-label={showAll ? 'Show fewer items' : `Show all ${items.length} items`}
+            >
+              {showAll ? 'Show Less' : 'Show More'} <FontAwesomeIcon icon={showAll ? faChevronUp : faChevronDown} />
+            </button>
+          </div>
+        )}
         {children}
       </div>
     </section>

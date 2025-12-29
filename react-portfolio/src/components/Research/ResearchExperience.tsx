@@ -2,11 +2,13 @@ import { fetchResearchExperience, researchExperience } from '../../data/content'
 import type { ResearchItem } from '../../types';
 import TimelineSection from '../common/TimelineSection';
 import useContentData from '../../hooks/useContentData';
+import useSettings from '../../hooks/useSettings';
 
 const ResearchExperience = () => {
   const { data: researchItems } = useContentData(fetchResearchExperience, researchExperience, {
     logLabel: 'research experience data',
   });
+  const { settings } = useSettings();
 
   return (
     <TimelineSection<ResearchItem>
@@ -34,6 +36,8 @@ const ResearchExperience = () => {
           </div>
         </>
       )}
+      initialLimit={settings.displayLimits.research.initial}
+      showMoreEnabled={settings.displayLimits.research.showMoreEnabled}
     />
   );
 };

@@ -3,12 +3,16 @@ import { fetchPublications } from '../../data/content';
 import { toast } from 'sonner';
 import type { Publication } from '../../types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch, faTimes, faRedo, faChevronDown, faQuoteLeft, faExternalLinkAlt, faFilePdf, faSpinner, faQuoteRight, faShareAlt, faEnvelope } from '@fortawesome/free-solid-svg-icons';
+import { faSearch, faTimes, faRedo, faChevronDown, faChevronUp, faQuoteLeft, faExternalLinkAlt, faFilePdf, faSpinner, faQuoteRight, faShareAlt, faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { faTwitter, faLinkedin, faFacebook } from '@fortawesome/free-brands-svg-icons';
 import { trackCitationCopy } from '../../utils/analytics';
 import { useFocusTrap } from '../../hooks/useFocusTrap';
+import useSettings from '../../hooks/useSettings';
 
 const Publications = () => {
+  const { settings } = useSettings();
+  const initialLimit = settings.displayLimits.publications.initial;
+
   const [publications, setPublications] = useState<Publication[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
@@ -121,12 +125,11 @@ const Publications = () => {
         pub.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
         pub.venue.toLowerCase().includes(searchTerm.toLowerCase());
 
-      const matchesStatus = statusFilter === 'all' || pub.status === statusFilter;
       const matchesYear = yearFilter === 'all' || pub.year === yearFilter;
 
-      return matchesSearch && matchesStatus && matchesYear;
+      return matchesSearch && matchesYear;
     });
-  }, [publications, searchTerm, statusFilter, yearFilter]);
+  }, [publications, searchTerm, yearFilter]);
 
   const handleReset = () => {
     setSearchTerm('');
@@ -267,90 +270,45 @@ const Publications = () => {
               </button>
             )}
           </div>
-          <div className="filter-controls" role="group" aria-label="Publication filters">
-            <div className="custom-select" ref={statusDropdownRef}>
-              <button
-                className="select-selected"
-                onClick={() => setStatusDropdownOpen(!statusDropdownOpen)}
-                aria-haspopup="listbox"
-                aria-expanded={statusDropdownOpen}
-                aria-label="Filter by publication status"
-              >
-                {statusFilter === 'all' ? 'All Status' :
-                 statusFilter === 'published' ? 'Published' :
-                 statusFilter === 'accepted' ? 'Accepted' : 'Under Revision'}
-              </button>
-              {statusDropdownOpen && (
-                <div className="select-items" role="listbox" aria-label="Publication status options" ref={statusItemsRef}>
-                  <div
-                    role="option"
-                    onClick={() => { setStatusFilter('all'); setStatusDropdownOpen(false); }}
-                    onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setStatusFilter('all'); setStatusDropdownOpen(false); }}}
-                    tabIndex={0}
-                  >All Status</div>
-                  <div
-                    role="option"
-                    onClick={() => { setStatusFilter('published'); setStatusDropdownOpen(false); }}
-                    onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setStatusFilter('published'); setStatusDropdownOpen(false); }}}
-                    tabIndex={0}
-                  >Published</div>
-                  <div
-                    role="option"
-                    onClick={() => { setStatusFilter('accepted'); setStatusDropdownOpen(false); }}
-                    onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setStatusFilter('accepted'); setStatusDropdownOpen(false); }}}
-                    tabIndex={0}
-                  >Accepted</div>
-                  <div
-                    role="option"
-                    onClick={() => { setStatusFilter('review'); setStatusDropdownOpen(false); }}
-                    onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setStatusFilter('review'); setStatusDropdownOpen(false); }}}
-                    tabIndex={0}
-                  >Under Revision</div>
-                </div>
-              )}
-            </div>
-            <div className="custom-select" ref={yearDropdownRef}>
-              <button
-                className="select-selected"
-                onClick={() => setYearDropdownOpen(!yearDropdownOpen)}
-                aria-haspopup="listbox"
-                aria-expanded={yearDropdownOpen}
-                aria-label="Filter by publication year"
-              >
-                {yearFilter === 'all' ? 'All Years' : yearFilter}
-              </button>
-              {yearDropdownOpen && (
-                <div className="select-items" role="listbox" aria-label="Publication year options">
-                  <div
-                    role="option"
-                    onClick={() => { setYearFilter('all'); setYearDropdownOpen(false); }}
-                    onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setYearFilter('all'); setYearDropdownOpen(false); }}}
-                    tabIndex={0}
-                  >All Years</div>
-                  <div
-                    role="option"
-                    onClick={() => { setYearFilter('2025'); setYearDropdownOpen(false); }}
-                    onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setYearFilter('2025'); setYearDropdownOpen(false); }}}
-                    tabIndex={0}
-                  >2025</div>
-                  <div
-                    role="option"
-                    onClick={() => { setYearFilter('2024'); setYearDropdownOpen(false); }}
-                    onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setYearFilter('2024'); setYearDropdownOpen(false); }}}
-                    tabIndex={0}
-                  >2024</div>
-                  <div
-                    role="option"
-                    onClick={() => { setYearFilter('2023'); setYearDropdownOpen(false); }}
-                    onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setYearFilter('2023'); setYearDropdownOpen(false); }}}
-                    tabIndex={0}
-                  >2023</div>
-                </div>
-              )}
-            </div>
-            <button id="resetFilters" onClick={handleReset} className="btn-secondary" aria-label="Reset all filters">
-              <FontAwesomeIcon icon={faRedo} aria-hidden="true" /> Reset
+
+          <div className="custom-select" ref={yearDropdownRef}>
+            <button
+              className="select-selected"
+              onClick={() => setYearDropdownOpen(!yearDropdownOpen)}
+              aria-haspopup="listbox"
+              aria-expanded={yearDropdownOpen}
+              aria-label="Filter by publication year"
+            >
+              {yearFilter === 'all' ? 'All Years' : yearFilter}
             </button>
+            {yearDropdownOpen && (
+              <div className="select-items" role="listbox" aria-label="Publication year options" ref={yearItemsRef}>
+                <div
+                  role="option"
+                  onClick={() => { setYearFilter('all'); setYearDropdownOpen(false); }}
+                  onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setYearFilter('all'); setYearDropdownOpen(false); }}}
+                  tabIndex={0}
+                >All Years</div>
+                <div
+                  role="option"
+                  onClick={() => { setYearFilter('2025'); setYearDropdownOpen(false); }}
+                  onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setYearFilter('2025'); setYearDropdownOpen(false); }}}
+                  tabIndex={0}
+                >2025</div>
+                <div
+                  role="option"
+                  onClick={() => { setYearFilter('2024'); setYearDropdownOpen(false); }}
+                  onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setYearFilter('2024'); setYearDropdownOpen(false); }}}
+                  tabIndex={0}
+                >2024</div>
+                <div
+                  role="option"
+                  onClick={() => { setYearFilter('2023'); setYearDropdownOpen(false); }}
+                  onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setYearFilter('2023'); setYearDropdownOpen(false); }}}
+                  tabIndex={0}
+                >2023</div>
+              </div>
+            )}
           </div>
         </div>
 
@@ -361,7 +319,7 @@ const Publications = () => {
             ) : (
               filteredPublications.map((pub, index) => {
                 const actualIndex = index;
-                const isHidden = !showAll && index >= 5;
+                const isHidden = !showAll && index >= initialLimit;
                 return (
                 <div
                   key={actualIndex}
@@ -495,10 +453,10 @@ const Publications = () => {
               })
             )}
           </div>
-          {filteredPublications.length > 5 && (
+          {filteredPublications.length > initialLimit && settings.displayLimits.publications.showMoreEnabled && (
             <div className="show-more-container">
               <button id="showMoreBtn" onClick={() => setShowAll(!showAll)} className={showAll ? 'expanded' : ''}>
-                {showAll ? 'Show Less' : 'Show More'} <FontAwesomeIcon icon={faChevronDown} />
+                {showAll ? 'Show Less' : 'Show More'} <FontAwesomeIcon icon={showAll ? faChevronUp : faChevronDown} />
               </button>
             </div>
           )}
