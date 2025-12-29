@@ -1,5 +1,5 @@
-import { lazy, Suspense } from 'react';
-import * as React from 'react';
+import { lazy, Suspense, useState, useEffect } from 'react';
+import type { LazyExoticComponent, ComponentType } from 'react';
 import { Toaster } from 'sonner';
 import Navbar from './components/Navbar/Navbar';
 import Hero from './components/Hero/Hero';
@@ -13,7 +13,6 @@ import CookieConsent from './components/CookieConsent/CookieConsent';
 import OfflineIndicator from './components/OfflineIndicator/OfflineIndicator';
 import GlobalSearch from './components/GlobalSearch/GlobalSearch';
 
-// Lazy load components below the fold
 const Biography = lazy(() => import('./components/Biography/Biography'));
 const Education = lazy(() => import('./components/Education/Education'));
 const ResearchInterests = lazy(() => import('./components/Research/ResearchInterests'));
@@ -26,7 +25,7 @@ const Contact = lazy(() => import('./components/Contact/Contact'));
 const Footer = lazy(() => import('./components/Footer/Footer'));
 const NotFound = lazy(() => import('./components/NotFound/NotFound'));
 
-type LazyComponent = React.LazyExoticComponent<React.ComponentType<any>>;
+type LazyComponent = LazyExoticComponent<ComponentType<any>>;
 
 interface LazySection {
   key: string;
@@ -48,7 +47,6 @@ const lazySections: LazySection[] = [
   { key: 'contact', Component: Contact },
 ];
 
-// Loading fallback component with skeleton
 const SectionLoader = () => (
   <div style={{ padding: '2rem 0' }}>
     <div className="container">
@@ -58,11 +56,10 @@ const SectionLoader = () => (
 );
 
 function App() {
-  const [show404, setShow404] = React.useState(false);
-  const [isSearchOpen, setIsSearchOpen] = React.useState(false);
+  const [show404, setShow404] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
 
-  React.useEffect(() => {
-    // Valid hash routes
+  useEffect(() => {
     const validRoutes = [
       '',
       '#',
@@ -84,15 +81,13 @@ function App() {
       setShow404(!isValid && hash !== '');
     };
 
-    // Check on mount and hash change
     checkRoute();
     window.addEventListener('hashchange', checkRoute);
 
     return () => window.removeEventListener('hashchange', checkRoute);
   }, []);
 
-  // Global search keyboard shortcut (Cmd/Ctrl + K)
-  React.useEffect(() => {
+  useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
         e.preventDefault();
@@ -104,7 +99,6 @@ function App() {
     return () => document.removeEventListener('keydown', handleKeyDown);
   }, []);
 
-  // Show 404 page for invalid routes
   if (show404) {
     return (
       <ErrorBoundary>
