@@ -77,7 +77,7 @@ const Hero = () => {
                   {...(!link.href.startsWith('mailto:') && {
                     target: '_blank',
                     rel: 'noopener',
-                    onClick: () => trackExternalLink(link.href, link.label)
+                    onClick: () => trackExternalLink(link.label)
                   })}
                 >
                   <FontAwesomeIcon icon={link.icon} />
