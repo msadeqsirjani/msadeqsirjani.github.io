@@ -21,7 +21,7 @@
     "pdfLink": "assets/docs/publications/s10586-025-05331-y.pdf",
     "bibtexId": "Sirjani2025",
     "abstract": "Software-Defined Networking (SDN) separates the control and data layers, offering scalable and flexible network management. A key challenge is the optimal placement of SDN controllers, which has been shown to be an NP-hard problem. Existing methods often struggle to balance multiple performance objectives effectively. This paper presents a novel two-step approach for SDN controller placement. First, Deep Q-Learning (DQL) is employed to find an initial solution by learning from the network environment. Then, the Bedbug-GLA metaheuristic algorithm refines this solution. We evaluate our method using four real-world network topologies and compare it with eight state-of-the-art algorithms. Experimental results demonstrate that our approach achieves an 18% improvement in controller load, a 69% reduction in congested overload, and a 20% decrease in energy consumption.",
-    "citations": 1
+    "citations": 2
   },
   {
     "title": "Optimizing Task Scheduling in Fog Computing with Deadline Awareness",
