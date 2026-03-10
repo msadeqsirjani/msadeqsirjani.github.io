@@ -22,20 +22,20 @@
     "pdfLink": "assets/docs/publications/s10586-025-05331-y.pdf",
     "bibtexId": "Sirjani2025",
     "abstract": "Software-Defined Networking (SDN) separates the control and data layers, offering scalable and flexible network management. A key challenge is the optimal placement of SDN controllers, which has been shown to be an NP-hard problem. Existing methods often struggle to balance multiple performance objectives effectively. This paper presents a novel two-step approach for SDN controller placement. First, Deep Q-Learning (DQL) is employed to find an initial solution by learning from the network environment. Then, the Bedbug-GLA metaheuristic algorithm refines this solution. We evaluate our method using four real-world network topologies and compare it with eight state-of-the-art algorithms. Experimental results demonstrate that our approach achieves an 18% improvement in controller load, a 69% reduction in congested overload, and a 20% decrease in energy consumption.",
-    "citations": 2,
+    "citations": 3,
     "keywords": ["Bedbug Metaheuristic Algorithm", "Controller Placement Problem", "Energy Consumption", "Software-Defined Network"]
   },
   {
     "title": "Optimizing Task Scheduling in Fog Computing with Deadline Awareness",
-    "venue": "arXiv preprint",
-    "year": "2025",
-    "status": "arxiv",
+    "venue": "2nd IEEE Conference on Secure and Trustworthy CyberInfrastructure for IoT and Microelectronics (SaTC 2026)",
+    "year": "2026",
+    "status": "accepted",
     "authors": "Mohammad Sadegh Sirjani, Mohammad Ahmad, Mousavi Amir, Erfan Nourbakhsh, Khoa Nguyen",
     "link": "https://doi.org/10.48550/arXiv.2509.07378",
     "pdfLink": "assets/docs/publications/2509.07378v5.pdf",
     "bibtexId": "arXiv2509.07378",
     "abstract": "The Internet of Things (IoT) has become a fundamental component of modern smart applications, particularly in time-sensitive scenarios such as healthcare monitoring and autonomous systems. Many IoT applications require guaranteed response times to meet stringent deadlines, making efficient task scheduling a critical challenge. Fog computing addresses these needs by positioning computational resources closer to end users. However, existing task scheduling approaches often fail to fully consider deadline awareness, which can lead to performance degradation in time-critical environments. In this paper, we propose a novel Reinforcement Learning-based Improved GEO (RIGEO) algorithm that combines improved Geometric Optimization (IGEO) with Reinforcement Learning (RL) to enhance task scheduling performance in fog computing environments. The key innovation is the integration of deadline awareness into the optimization framework, which significantly reduces task failures in delay-sensitive applications. Through comprehensive simulation experiments using iFogSim, we evaluate RIGEO against several state-of-the-art algorithms, including ACO-IWD, SB-PSO, EEMR, and NSGA-III. Our results demonstrate substantial performance improvements, with RIGEO achieving a 29% reduction in energy consumption, an 86% improvement in average response time, and a 19% reduction in deadline violations.",
-    "citations": 1,
+    "citations": 2,
     "keywords": ["Internet of Things", "Fog Computing", "Job Scheduling", "Golden Eagle Optimization Algorithm", "Reinforcement Learning"]
   },
   {

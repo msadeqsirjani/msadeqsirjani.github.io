@@ -87,14 +87,21 @@ const Publications = () => {
     };
   }, [yearDropdownOpen, openShareDropdown]);
 
+  const availableYears = useMemo(() => {
+    const years = [...new Set(publications.map(pub => pub.year))].sort((a, b) => Number(b) - Number(a));
+    return ['all', ...years];
+  }, [publications]);
+
   const filteredPublications = useMemo(() => {
-    return publications.filter(pub => {
-      const matchesSearch = searchTerm === '' ||
-        pub.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        pub.venue.toLowerCase().includes(searchTerm.toLowerCase());
-      const matchesYear = yearFilter === 'all' || pub.year === yearFilter;
-      return matchesSearch && matchesYear;
-    });
+    return publications
+      .filter(pub => {
+        const matchesSearch = searchTerm === '' ||
+          pub.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          pub.venue.toLowerCase().includes(searchTerm.toLowerCase());
+        const matchesYear = yearFilter === 'all' || pub.year === yearFilter;
+        return matchesSearch && matchesYear;
+      })
+      .sort((a, b) => Number(b.year) - Number(a.year));
   }, [publications, searchTerm, yearFilter]);
 
   const getStatusLabel = (status: string) => {
@@ -182,7 +189,7 @@ const Publications = () => {
             </button>
             {yearDropdownOpen && (
               <div className="select-items" role="listbox" ref={yearItemsRef}>
-                {['all', '2025', '2024', '2023'].map(year => (
+                {availableYears.map(year => (
                   <div
                     key={year}
                     role="option"
