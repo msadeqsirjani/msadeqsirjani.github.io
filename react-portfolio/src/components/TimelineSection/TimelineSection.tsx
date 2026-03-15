@@ -111,9 +111,8 @@ const TimelineSection = <T,>({
                             'timeline-description',
                             descriptionClassName,
                           )}
-                        >
-                          {descriptionContent}
-                        </span>
+                          dangerouslySetInnerHTML={{ __html: descriptionContent }}
+                        />
                       )
                       : descriptionContent
                     : null}

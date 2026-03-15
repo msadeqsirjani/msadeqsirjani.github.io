@@ -1402,6 +1402,16 @@ kbd {
     hyphens: auto;
 }
 
+.timeline-description a {
+    color: var(--accent-color);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.timeline-description a:hover {
+    text-decoration: underline;
+}
+
 /* Contact */
 .contact-container {
     display: grid;
