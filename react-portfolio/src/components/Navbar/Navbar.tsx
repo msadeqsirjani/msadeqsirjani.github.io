@@ -11,6 +11,15 @@ interface NavbarProps {
 const Navbar = ({ onSearchClick }: NavbarProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10);
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
   const dropdownRef = useRef<HTMLLIElement>(null);
   const dropdownMenuRef = useRef<HTMLUListElement | null>(null);
 
@@ -55,7 +64,10 @@ const Navbar = ({ onSearchClick }: NavbarProps) => {
     e.preventDefault();
     const element = document.getElementById(id);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      const navbar = document.querySelector('.navbar') as HTMLElement;
+      const navbarHeight = navbar ? navbar.offsetHeight : 0;
+      const top = element.getBoundingClientRect().top + window.scrollY - navbarHeight - 24;
+      window.scrollTo({ top, behavior: 'smooth' });
       setIsMenuOpen(false);
       setIsDropdownOpen(false);
     }
@@ -77,7 +89,7 @@ const Navbar = ({ onSearchClick }: NavbarProps) => {
   ];
 
   return (
-    <nav className="navbar" role="navigation" aria-label="Main navigation">
+    <nav className={`navbar${isScrolled ? ' navbar--scrolled' : ''}`} role="navigation" aria-label="Main navigation">
       <div className="nav-container">
         <div className="nav-logo">
           <a href="#home" className="logo-text" onClick={(e) => scrollToSection(e, 'home')}>
