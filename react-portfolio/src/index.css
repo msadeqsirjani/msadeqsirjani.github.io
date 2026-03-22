@@ -537,8 +537,6 @@ ul, ol {
 /* Sections */
 .section {
     padding: 4rem 0;
-    border-bottom: 1px solid var(--border-color);
-    transition: border-color 0.3s ease;
 }
 
 .section-title {
@@ -1966,7 +1964,6 @@ kbd {
     .publication-item {
         background: transparent;
         border: none;
-        border-bottom: 1px solid var(--border-color);
         border-radius: 0;
         padding: 1.5rem 0;
         margin-bottom: 0;
@@ -2012,7 +2009,6 @@ kbd {
         justify-content: center;
         gap: 1rem;
         padding-top: 1rem;
-        border-top: 1px solid var(--border-color);
     }
 
     /* Status badges in mobile - same as desktop */
@@ -2044,7 +2040,6 @@ kbd {
         margin-bottom: 2rem;
         background: transparent;
         border: none;
-        border-bottom: 1px solid var(--border-color);
         border-radius: 0;
         padding: 1.5rem 0;
         box-shadow: none;
@@ -2095,7 +2090,6 @@ kbd {
         margin-bottom: 2rem;
         background: transparent;
         border: none;
-        border-bottom: 1px solid var(--border-color);
         border-radius: 0;
         padding: 1.5rem 0;
         box-shadow: none;
@@ -2133,7 +2127,6 @@ kbd {
         margin-bottom: 2rem;
         background: transparent;
         border: none;
-        border-bottom: 1px solid var(--border-color);
         border-radius: 0;
         padding: 1.5rem 0;
         box-shadow: none;
@@ -2174,7 +2167,6 @@ kbd {
         margin-bottom: 2rem;
         background: transparent;
         border: none;
-        border-bottom: 1px solid var(--border-color);
         border-radius: 0;
         padding: 1.5rem 0;
         box-shadow: none;
