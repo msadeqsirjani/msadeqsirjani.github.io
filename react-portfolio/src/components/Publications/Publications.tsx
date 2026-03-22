@@ -150,6 +150,10 @@ const Publications = () => {
     setYearDropdownOpen(false);
   };
 
+  const totalCitations = useMemo(() => {
+    return publications.reduce((sum, pub) => sum + (pub.citations ?? 0), 0);
+  }, [publications]);
+
   if (loading) {
     return (
       <section id="publications" className="section">
@@ -164,7 +168,16 @@ const Publications = () => {
   return (
     <section id="publications" className="section">
       <div className="container">
-        <h2 className="section-title">Publications</h2>
+        <h2 className="section-title">
+          <span style={{ position: 'relative', display: 'inline-block' }}>
+            Publications
+            {totalCitations > 0 && (
+              <span className="total-citations-badge" title={`${totalCitations} total citations`}>
+                {totalCitations}
+              </span>
+            )}
+          </span>
+        </h2>
 
         <div className="publication-controls">
           <div className="search-box" role="search">

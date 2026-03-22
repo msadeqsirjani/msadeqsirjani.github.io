@@ -1213,6 +1213,33 @@ kbd {
     animation: slideDown 0.2s ease;
 }
 
+@keyframes citationPulse {
+    0%   { transform: scale(1);    box-shadow: 0 0 0 0 rgba(229,62,62,0.55); }
+    50%  { transform: scale(1.18); box-shadow: 0 0 0 6px rgba(229,62,62,0); }
+    100% { transform: scale(1);    box-shadow: 0 0 0 0 rgba(229,62,62,0); }
+}
+
+.total-citations-badge {
+    position: absolute;
+    top: -10px;
+    left: calc(100% + 1px);
+    min-width: 26px;
+    height: 26px;
+    padding: 0 5px;
+    border-radius: 50px;
+    background: radial-gradient(circle at 35% 35%, #ff6b6b, #e53e3e);
+    box-shadow: 0 0 0 3px rgba(229,62,62,0.2), 0 2px 8px rgba(229,62,62,0.45);
+    color: #fff;
+    font-size: 0.68rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: citationPulse 2s ease-in-out infinite;
+    cursor: default;
+    white-space: nowrap;
+}
+
 @keyframes slideDown {
     from {
         opacity: 0;
