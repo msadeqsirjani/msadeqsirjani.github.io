@@ -2,6 +2,14 @@ import type { Publication, EducationItem, ResearchItem, TeachingItem, NewsItem, 
 import { faNetworkWired, faMicrochip, faServer, faGears, faBolt, faArrowsRotate } from '@fortawesome/free-solid-svg-icons';
 import type { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 
+import publicationsData from './publications.json';
+import educationData from './education.json';
+import researchData from './research.json';
+import teachingData from './teaching.json';
+import newsData from './news.json';
+import awardsData from './awards.json';
+import researchInterestsData from './research-interests.json';
+
 const iconMap: Record<string, IconDefinition> = {
   faNetworkWired,
   faMicrochip,
@@ -11,30 +19,39 @@ const iconMap: Record<string, IconDefinition> = {
   faArrowsRotate
 };
 
-const fetchData = async <T>(url: string): Promise<T> => {
-  const response = await fetch(url);
-  return response.json();
-};
+export const fetchPublications = (): Promise<Publication[]> =>
+  Promise.resolve(publicationsData as Publication[]);
 
-export const fetchPublications = () => fetchData<Publication[]>('/assets/data/publications.json');
-export const fetchEducation = () => fetchData<EducationItem[]>('/assets/data/education.json');
-export const fetchResearchExperience = () => fetchData<ResearchItem[]>('/assets/data/research.json');
-export const fetchTeaching = () => fetchData<TeachingItem[]>('/assets/data/teaching.json');
-export const fetchNews = () => fetchData<NewsItem[]>('/assets/data/news.json');
-export const fetchAwards = () => fetchData<AwardItem[]>('/assets/data/awards.json');
+export const fetchEducation = (): Promise<EducationItem[]> =>
+  Promise.resolve(educationData as EducationItem[]);
 
-export const fetchResearchInterests = async (): Promise<ResearchInterest[]> => {
-  const data = await fetchData<any[]>('/assets/data/research-interests.json');
-  return data.map((item: any) => ({
+export const fetchResearchExperience = (): Promise<ResearchItem[]> =>
+  Promise.resolve(researchData as ResearchItem[]);
+
+export const fetchTeaching = (): Promise<TeachingItem[]> =>
+  Promise.resolve(teachingData as TeachingItem[]);
+
+export const fetchNews = (): Promise<NewsItem[]> =>
+  Promise.resolve(newsData as NewsItem[]);
+
+export const fetchAwards = (): Promise<AwardItem[]> =>
+  Promise.resolve(awardsData as AwardItem[]);
+
+export const fetchResearchInterests = (): Promise<ResearchInterest[]> => {
+  const data = (researchInterestsData as any[]).map((item: any) => ({
     ...item,
     icon: iconMap[item.icon]
   }));
+  return Promise.resolve(data);
 };
 
-export const publications: Publication[] = [];
-export const education: EducationItem[] = [];
-export const researchExperience: ResearchItem[] = [];
-export const teaching: TeachingItem[] = [];
-export const news: NewsItem[] = [];
-export const awards: AwardItem[] = [];
-export const researchInterests: ResearchInterest[] = [];
+export const publications = publicationsData as Publication[];
+export const education = educationData as EducationItem[];
+export const researchExperience = researchData as ResearchItem[];
+export const teaching = teachingData as TeachingItem[];
+export const news = newsData as NewsItem[];
+export const awards = awardsData as AwardItem[];
+export const researchInterests = (researchInterestsData as any[]).map((item: any) => ({
+  ...item,
+  icon: iconMap[item.icon]
+})) as ResearchInterest[];

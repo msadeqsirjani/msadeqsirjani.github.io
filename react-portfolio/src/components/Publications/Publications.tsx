@@ -1,13 +1,16 @@
 import { useState, useMemo, useEffect, useRef } from 'react';
 import { fetchPublications } from '../../data/content';
+import bibtexJson from '../../data/bibtex.json';
 import { toast } from 'sonner';
 import type { Publication } from '../../types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch, faChevronDown, faChevronUp, faQuoteLeft, faExternalLinkAlt, faFilePdf, faSpinner, faQuoteRight, faShareAlt, faEnvelope } from '@fortawesome/free-solid-svg-icons';
+import { faSearch, faChevronDown, faChevronUp, faQuoteLeft, faExternalLinkAlt, faFilePdf, faQuoteRight, faShareAlt, faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { faTwitter, faLinkedin, faFacebook } from '@fortawesome/free-brands-svg-icons';
 import { trackCitationCopy } from '../../utils/analytics';
 import { useFocusTrap } from '../../hooks/useFocusTrap';
 import useSettings from '../../hooks/useSettings';
+
+const bibtexData = bibtexJson as Record<string, { bibtex: string }>;
 
 const Publications = () => {
   const { settings } = useSettings();
@@ -17,8 +20,6 @@ const Publications = () => {
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
   const [yearFilter, setYearFilter] = useState('all');
-  const [bibtexData, setBibtexData] = useState<Record<string, { bibtex: string }>>({});
-  const [bibtexLoading, setBibtexLoading] = useState(true);
   const [yearDropdownOpen, setYearDropdownOpen] = useState(false);
   const [showAll, setShowAll] = useState(false);
   const [openShareDropdown, setOpenShareDropdown] = useState<number | null>(null);
@@ -39,19 +40,6 @@ const Publications = () => {
         console.error('Failed to load publications:', err);
         toast.error('Failed to load publications data');
         setLoading(false);
-      });
-
-    fetch('/assets/data/bibtex.json')
-      .then(res => res.ok ? res.json() : Promise.reject())
-      .then(data => {
-        setBibtexData(data);
-        setBibtexLoading(false);
-      })
-      .catch(() => {
-        setBibtexLoading(false);
-        if (import.meta.env.DEV) {
-          console.error('Failed to load BibTeX data');
-        }
       });
   }, []);
 
@@ -287,12 +275,11 @@ const Publications = () => {
                               className="publication-btn"
                               onClick={(e) => {
                                 e.stopPropagation();
-                                if (!bibtexLoading) copyBibtex(pub.bibtexId!, pub);
+                                copyBibtex(pub.bibtexId!, pub);
                               }}
-                              data-tooltip={bibtexLoading ? "Loading citations..." : "Copy BibTeX"}
-                              disabled={bibtexLoading}
+                              data-tooltip="Copy BibTeX"
                             >
-                              <FontAwesomeIcon icon={bibtexLoading ? faSpinner : faQuoteRight} spin={bibtexLoading} />
+                              <FontAwesomeIcon icon={faQuoteRight} />
                             </button>
                           )}
                           <div className="citation-dropdown" ref={el => { shareDropdownRefs.current.set(index, el); }}>
