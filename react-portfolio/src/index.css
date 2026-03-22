@@ -117,7 +117,21 @@ ul, ol {
     z-index: 100;
     padding: 1rem 0;
     width: 100%;
-    transition: background-color 0.3s ease, border-color 0.3s ease;
+    transition: background-color 0.3s ease, border-color 0.3s ease, backdrop-filter 0.3s ease, box-shadow 0.3s ease;
+}
+
+.navbar--scrolled {
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    border-bottom: 1px solid rgba(209, 213, 219, 0.3);
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.04);
+}
+
+[data-theme="dark"] .navbar--scrolled {
+    background: rgba(15, 23, 42, 0.4);
+    border-bottom: 1px solid rgba(71, 85, 105, 0.25);
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.2);
 }
 
 .nav-container {
