@@ -5,7 +5,7 @@ import { faPlus, faTimes, faEnvelope, faDownload, faCalendar } from '@fortawesom
 const QuickActions = () => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const actions = [
+  const actions: { href: string; icon: typeof faEnvelope; tooltip: string; external?: boolean; download?: boolean }[] = [
     {
       href: 'mailto:mohammadsadegh.sirjani@utsa.edu',
       icon: faEnvelope,
@@ -15,7 +15,7 @@ const QuickActions = () => {
       href: '/assets/docs/cv/msadeqsirjani-cv.pdf',
       icon: faDownload,
       tooltip: 'Download CV',
-      external: true
+      download: true
     },
     {
       href: 'https://calendly.com/msadeqsirjani/meeting',
