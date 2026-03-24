@@ -5,34 +5,30 @@
   },
   {
     "date": "Mar. 2026",
-    "description": "Paper \"Optimizing Task Scheduling in Fog Computing with Deadline Awareness\" accepted at the 2nd IEEE Conference on Secure and Trustworthy CyberInfrastructure for IoT and Microelectronics (SaTC 2026)."
+    "description": "Paper \"Optimizing Task Scheduling in Fog Computing with Deadline Awareness\" accepted at the <a href=\"https://www.satcconf.com/\" target=\"_blank\" rel=\"noopener noreferrer\">2nd IEEE SaTC 2026</a>."
   },
   {
     "date": "Jan. 2026",
-    "description": "Began Research Assistantship at ASIC Laboratory, University of Texas at San Antonio."
+    "description": "Started my Research Assistantship at the <a href=\"https://caicc.utsa.edu/computer-science/research/facilities.html\" target=\"_blank\" rel=\"noopener noreferrer\">ASIC Lab</a>, <a href=\"https://www.utsa.edu/\" target=\"_blank\" rel=\"noopener noreferrer\">UT San Antonio</a>."
   },
   {
     "date": "Nov. 2025",
-    "description": "Paper \"QTE-IoT: Q-Learning-Based Task Scheduling Scheme to Enhance Energy Consumption and QoS in IoT Environments\" published in Sustainable Computing: Informatics and Systems Journal."
+    "description": "Paper \"QTE-IoT: Q-Learning-Based Task Scheduling Scheme to Enhance Energy Consumption and QoS in IoT Environments\" published in <a href=\"https://www.journals.elsevier.com/sustainable-computing-informatics-and-systems\" target=\"_blank\" rel=\"noopener noreferrer\">Sustainable Computing: Informatics and Systems</a>."
   },
   {
     "date": "Sep. 2025",
-    "description": "Paper \"Controller placement in software-defined networks using reinforcement learning and metaheuristics\" published in Cluster Computing: The Journal of Networks, Software Tools and Applications."
+    "description": "Paper \"Controller Placement in Software-Defined Networks Using Reinforcement Learning and Metaheuristics\" published in <a href=\"https://www.springer.com/journal/10586\" target=\"_blank\" rel=\"noopener noreferrer\">Cluster Computing</a>."
   },
   {
     "date": "Jun. 2025",
-    "description": "Award \"DAC 2025 2-minute video presentation contest\" winner."
+    "description": "Won the 2-minute presentation award competition at the <a href=\"https://archive.dac.com/about/conference-archive/62nd-dac-2025.html\" target=\"_blank\" rel=\"noopener noreferrer\">62nd DAC</a>."
   },
   {
     "date": "Jun. 2025",
-    "description": "Event \"DAC 2025\" presentation on research and networking."
-  },
-  {
-    "date": "May 2025",
-    "description": "Paper \"Controller placement in software-defined networks using reinforcement learning and metaheuristics\" accepted at Cluster Computing: The Journal of Networks, Software Tools and Applications."
+    "description": "Awarded the DAC Young Fellows fellowship. Attended <a href=\"https://archive.dac.com/about/conference-archive/62nd-dac-2025.html\" target=\"_blank\" rel=\"noopener noreferrer\">DAC 2025</a> as a Young Fellow and presented my research."
   },
   {
     "date": "Jan. 2025",
-    "description": "Milestone \"Ph.D. in Computer Science at University of Texas at San Antonio\" began with a focus on IoT and Edge AI systems."
+    "description": "Started my PhD in Computer Science at <a href=\"https://www.utsa.edu/\" target=\"_blank\" rel=\"noopener noreferrer\">UT San Antonio</a>, advised by <a href=\"https://sites.google.com/view/mxie\" target=\"_blank\" rel=\"noopener noreferrer\">Dr. Mimi Xie</a>. Joined the <a href=\"https://caicc.utsa.edu/computer-science/research/facilities.html\" target=\"_blank\" rel=\"noopener noreferrer\">ASIC Lab</a>."
   }
 ]

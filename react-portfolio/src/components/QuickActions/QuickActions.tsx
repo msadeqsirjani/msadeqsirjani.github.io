@@ -15,7 +15,7 @@ const QuickActions = () => {
       href: '/assets/docs/cv/msadeqsirjani-cv.pdf',
       icon: faDownload,
       tooltip: 'Download CV',
-      download: true
+      external: true
     },
     {
       href: 'https://calendly.com/msadeqsirjani/meeting',

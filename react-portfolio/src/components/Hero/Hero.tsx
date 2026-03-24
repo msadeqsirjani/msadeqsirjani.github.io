@@ -5,7 +5,7 @@ import { trackCVDownload, trackExternalLink } from '../../utils/analytics';
 
 const Hero = () => {
   const buttons = [
-    { href: '/assets/docs/cv/msadeqsirjani-cv.pdf', icon: faDownload, label: 'Download CV', primary: true, download: true, onClick: trackCVDownload },
+    { href: '/assets/docs/cv/msadeqsirjani-cv.pdf', icon: faDownload, label: 'Download CV', primary: true, target: '_blank', onClick: trackCVDownload },
     { href: '#contact', icon: faEnvelope, label: 'Contact', primary: false }
   ];
 
@@ -58,7 +58,7 @@ const Hero = () => {
                   key={idx}
                   href={btn.href}
                   className={`btn ${btn.primary ? 'btn-primary' : 'btn-secondary'}`}
-                  {...(btn.download && { download: true })}
+                  {...(btn.target && { target: btn.target, rel: 'noopener noreferrer' })}
                   {...(btn.onClick && { onClick: () => btn.onClick() })}
                 >
                   <FontAwesomeIcon icon={btn.icon} /> {btn.label}
