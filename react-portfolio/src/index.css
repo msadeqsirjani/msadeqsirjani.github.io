@@ -78,10 +78,15 @@ body, h1, h2, h3, h4, h5, h6 {
 
 body {
     font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-weight: 300;
     line-height: 1.6;
     color: var(--text-color);
     background-color: var(--white);
     transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+h1, h2, h3, .section-title, .hero-title {
+    font-weight: 700;
 }
 
 /* Font Loading Optimization */
@@ -710,12 +715,14 @@ ul, ol {
     grid-template-columns: 180px 1fr;
     gap: 2rem;
     margin-bottom: 2.5rem;
-    padding-bottom: 0;
-    border-bottom: none;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid var(--border-color);
 }
 
 .research-item:last-child {
     margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
 }
 
 .research-dates {
@@ -1347,12 +1354,14 @@ kbd {
     grid-template-columns: 20% 80%;
     gap: 2rem;
     margin-bottom: 2.5rem;
-    padding-bottom: 0;
-    border-bottom: none;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid var(--border-color);
 }
 
 .teaching-item:last-child {
     margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
 }
 
 .teaching-dates {
@@ -1406,10 +1415,14 @@ kbd {
     grid-template-columns: minmax(120px, 20%) 1fr;
     gap: 2rem;
     margin-bottom: 2.5rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid var(--border-color);
 }
 
 .timeline-item:last-child {
     margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
 }
 
 .timeline-dates {
@@ -2091,6 +2104,7 @@ kbd {
         margin-bottom: 2rem;
         background: transparent;
         border: none;
+        border-bottom: 1px solid var(--border-color);
         border-radius: 0;
         padding: 1.5rem 0;
         box-shadow: none;
@@ -2128,6 +2142,7 @@ kbd {
         margin-bottom: 2rem;
         background: transparent;
         border: none;
+        border-bottom: 1px solid var(--border-color);
         border-radius: 0;
         padding: 1.5rem 0;
         box-shadow: none;
@@ -2168,6 +2183,7 @@ kbd {
         margin-bottom: 2rem;
         background: transparent;
         border: none;
+        border-bottom: 1px solid var(--border-color);
         border-radius: 0;
         padding: 1.5rem 0;
         box-shadow: none;
