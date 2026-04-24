@@ -100,7 +100,7 @@ const Publications = () => {
                         )}
                         {pub.abstract && (
                           <button
-                            className="pub-text-link"
+                            className="pub-text-link doi-link"
                             onClick={() => setExpandedPub(expandedPub === index ? null : index)}
                           >
                             Abstract <FontAwesomeIcon icon={expandedPub === index ? faChevronUp : faChevronDown} size="xs" />
