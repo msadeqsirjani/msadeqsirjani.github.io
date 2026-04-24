@@ -22,7 +22,12 @@ const ResearchExperience = () => {
       contentWrapperClassName="research-content"
       getItemKey={(item, index) => `${item.position}-${item.lab}-${index}`}
       getItemClassName={(item) => (item.current ? 'current' : undefined)}
-      renderDate={(item) => item.duration}
+      renderDate={(item) => (
+        <>
+          <span className="timeline research-date-text">{item.duration}</span>
+          {item.current && <span className="research-current-badge">Current</span>}
+        </>
+      )}
       renderContent={(item) => (
         <>
           <span className="research-position">{item.position}</span>

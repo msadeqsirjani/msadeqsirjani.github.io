@@ -600,9 +600,9 @@ ul, ol {
 }
 
 /* Education & Research Timeline Layout */
-.research-timeline {
-    max-width: 800px;
-    margin: 0 auto;
+.timeline-list.research-timeline {
+    max-width: none;
+    margin: 0;
 }
 
 /* Education Timeline Layout */
@@ -751,7 +751,7 @@ ul, ol {
 }
 
 /* Research Timeline Layout */
-.research-item {
+.timeline-item.research-item {
     display: grid;
     grid-template-columns: 180px 1fr;
     gap: 2rem;
@@ -760,19 +760,22 @@ ul, ol {
     border-bottom: 1px solid var(--border-color);
 }
 
-.research-item:last-child {
+.timeline-item.research-item:last-child {
     margin-bottom: 0;
     padding-bottom: 0;
     border-bottom: none;
 }
 
-.research-dates {
-    text-align: left;
+.research-item .research-dates {
+    text-align: center;
     padding-top: 0.2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .research-dates .timeline {
-    color: var(--text-color);
+    color: #555;
     font-weight: 400;
     font-size: 0.95rem;
     line-height: 1.4;
@@ -784,8 +787,8 @@ ul, ol {
 
 .research-position {
     font-size: 1.1rem;
-    color: var(--accent-color);
-    font-weight: 500;
+    color: #111;
+    font-weight: 700;
     margin-bottom: 0.3rem;
     display: block;
 }
@@ -826,6 +829,29 @@ ul, ol {
     hyphens: auto;
 }
 
+.research-description ul {
+    list-style-type: disc;
+    padding-left: 1.2rem;
+    margin: 0;
+}
+
+.research-description li {
+    margin-bottom: 0.25rem;
+}
+
+
+.research-current-badge {
+    display: block;
+    background-color: #d1fae5;
+    color: #065f46;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.15rem 0.6rem;
+    border-radius: 3px;
+    margin-top: 0.4rem;
+    width: fit-content;
+    text-transform: uppercase;
+}
 
 /* Research Interests - Single Line Sliding Style */
 .interests-container {
