@@ -843,15 +843,31 @@ ul, ol {
     flex: 1;
 }
 
-.research-position {
-    font-size: 1.1rem;
-    color: #111;
-    font-weight: 700;
+.research-title-row {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 0;
     margin-bottom: 0.3rem;
-    display: block;
+}
+
+.research-position {
+    font-size: 0.95rem;
+    color: #111;
+    font-weight: 400;
 }
 
 [data-theme="dark"] .research-position {
+    color: #f0f0f0;
+}
+
+.research-sep {
+    color: #555;
+    font-weight: 400;
+    font-size: 0.95rem;
+}
+
+[data-theme="dark"] .research-sep {
     color: #f0f0f0;
 }
 
@@ -865,9 +881,10 @@ ul, ol {
 }
 
 .research-lab {
-    font-size: 1rem;
+    font-size: 1.1rem;
     color: var(--accent-color);
-    font-style: italic;
+    font-weight: 800;
+    font-style: normal;
     font-weight: normal;
     margin-bottom: 0.3rem;
     display: block;

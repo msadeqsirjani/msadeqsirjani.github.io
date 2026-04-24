@@ -30,8 +30,11 @@ const ResearchExperience = () => {
       )}
       renderContent={(item) => (
         <>
-          <span className="research-position">{item.position}</span>
-          <span className="research-lab">{item.lab}</span>
+          <div className="research-title-row">
+            <span className="research-lab">{item.lab}</span>
+            <span className="research-sep">,&nbsp;</span>
+            <span className="research-position">{item.position}</span>
+          </div>
           <div className="research-description">
             <ul>
               {item.description.map((desc, index) => (
