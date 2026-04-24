@@ -1158,9 +1158,9 @@ kbd {
 }
 
 .publications-container {
-    max-width: 800px;
+    max-width: none;
     width: 100%;
-    margin: 0 auto;
+    margin: 0;
 }
 
 .publication-category {
@@ -1203,13 +1203,41 @@ kbd {
 }
 
 .publication-title {
-    font-weight: 600;
-    color: var(--text-color);
-    margin-bottom: 0.5rem;
-    text-align: justify;
-    text-justify: inter-word;
-    hyphens: auto;
+    font-weight: 700;
+    color: #111;
+    margin-bottom: 0.2rem;
     line-height: 1.4;
+}
+
+[data-theme="dark"] .publication-title {
+    color: #f0f0f0;
+}
+
+.publication-authors {
+    font-size: 0.9rem;
+    color: #888;
+    margin: 0.1rem 0;
+    font-weight: 400;
+}
+
+[data-theme="dark"] .publication-authors {
+    color: #aaa;
+}
+
+.publication-authors strong {
+    font-weight: 700;
+    color: #555;
+}
+
+[data-theme="dark"] .publication-authors strong {
+    color: #ccc;
+}
+
+.publication-venue {
+    font-size: 0.9rem;
+    color: var(--accent-color);
+    font-style: italic;
+    margin: 0.1rem 0 0.4rem;
 }
 
 .publication-item h4 {
@@ -1243,9 +1271,85 @@ kbd {
     margin-bottom: 0.5rem;
 }
 
-.publication-venue {
-    flex: 1;
-    min-width: 0;
+.publication-links {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 0.1rem;
+}
+
+.pub-text-link {
+    background: none;
+    border: none;
+    outline: none;
+    padding: 0;
+    cursor: pointer;
+    font-size: 0.88rem;
+    font-weight: 400;
+    color: var(--text-light);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.pub-text-link.doi-link {
+    font-weight: 600;
+    color: var(--accent-color);
+}
+
+.pub-text-link:focus,
+.pub-text-link:focus-visible {
+    outline: none;
+    box-shadow: none;
+}
+
+.pub-text-link:hover {
+    text-decoration: underline;
+}
+
+.pub-keywords {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-top: 0.3rem;
+}
+
+.pub-keyword-tag {
+    background: #f0f0f0;
+    color: #555;
+    font-size: 0.78rem;
+    padding: 0.15rem 0.55rem;
+    border-radius: 4px;
+}
+
+[data-theme="dark"] .pub-keyword-tag {
+    background: #333;
+    color: #bbb;
+}
+
+.publication-abstract {
+    margin-top: 0;
+    margin-bottom: 0.75rem;
+    padding: 1rem 1.25rem;
+    background: rgba(var(--accent-rgb, 30, 64, 175), 0.06);
+    border-radius: 6px;
+    font-size: 0.88rem;
+    color: #666;
+    line-height: 1.7;
+    text-align: justify;
+    text-justify: inter-word;
+}
+
+[data-theme="dark"] .publication-abstract {
+    background: rgba(var(--accent-rgb, 30, 64, 175), 0.1);
+    color: #aaa;
+}
+
+.pub-keywords {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-top: 0;
 }
 
 .publication-actions-row {
@@ -1402,34 +1506,53 @@ kbd {
     flex-wrap: wrap;
 }
 
-.status-inline,
-.citations-badge {
-    display: inline-flex;
+.publication-badges {
+    display: flex;
     align-items: center;
     gap: 0.4rem;
-    padding: 0.5rem 0.9rem;
-    min-height: 38px;
-    border-radius: var(--button-border-radius);
-    border: var(--button-border-width) solid transparent;
-    font-size: 0.78rem;
-    font-weight: 600;
-    letter-spacing: 0.05em;
-    line-height: 1;
+    margin-bottom: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.status-inline,
+.citations-badge,
+.pub-year-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.15rem 0.55rem;
+    border-radius: 4px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    line-height: 1.5;
 }
 
 .status-inline {
-    justify-content: center;
-    text-transform: uppercase;
-    background: var(--accent-color);
-    color: var(--white);
-    border-color: var(--accent-color);
-}
-
-.citations-badge {
-    justify-content: center;
     background: rgba(var(--accent-rgb, 30, 64, 175), 0.12);
     color: var(--accent-color);
-    border-color: rgba(var(--accent-rgb, 30, 64, 175), 0.35);
+}
+
+.status-inline.accepted {
+    background-color: #d1fae5;
+    color: #065f46;
+}
+
+[data-theme="dark"] .status-inline.accepted {
+    background-color: rgba(6, 95, 70, 0.3);
+    color: #6ee7b7;
+}
+
+.citations-badge,
+.pub-year-badge {
+    background: #f0f0f0;
+    color: #555;
+}
+
+[data-theme="dark"] .citations-badge,
+[data-theme="dark"] .pub-year-badge {
+    background: #333;
+    color: #bbb;
 }
 
 .detail-actions {
