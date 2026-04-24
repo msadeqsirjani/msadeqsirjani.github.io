@@ -600,20 +600,39 @@ ul, ol {
 }
 
 /* Education & Research Timeline Layout */
-.education-timeline,
 .research-timeline {
     max-width: 800px;
     margin: 0 auto;
 }
 
-/* Education Timeline Layout - Same as Research */
-.education-item {
-    display: grid;
-    grid-template-columns: 180px 1fr;
-    gap: 2rem;
+/* Education Timeline Layout */
+.timeline-list.education-timeline {
+    max-width: none;
+    margin: 0;
+}
+
+.timeline-item.education-item {
+    display: block;
+    position: relative;
     margin-bottom: 2.5rem;
-    padding-bottom: 0;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.timeline-item.education-item:last-child {
     border-bottom: none;
+    padding-bottom: 0;
+}
+
+.timeline-item.education-item .timeline-dates {
+    position: absolute;
+    top: 0;
+    right: 0;
+    text-align: right;
+}
+
+.timeline-item.education-item .timeline-content {
+    padding-right: 220px;
 }
 
 .education-item:last-child {
