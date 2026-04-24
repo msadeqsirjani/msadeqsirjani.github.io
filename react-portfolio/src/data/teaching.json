@@ -2,24 +2,28 @@
   {
     "course": "Fundamentals of Operating Systems",
     "instructor": "Instructor: Dr. Sam Silvestro",
+    "instructorUrl": "https://caicc.utsa.edu/faculty/profiles/silvestro-sam.html",
     "university": "University of Texas at San Antonio",
     "date": "Fall 2025"
   },
   {
     "course": "Data Science",
     "instructor": "Instructor: Dr. Amin Sahba",
+    "instructorUrl": "https://caicc.utsa.edu/faculty/profiles/sahba-amin.html",
     "university": "University of Texas at San Antonio",
     "date": "Summer 2025"
   },
   {
     "course": "Computer Organization",
     "instructor": "Instructor: Dr. Subhasish Das",
+    "instructorUrl": "https://caicc.utsa.edu/faculty/profiles/das-subhasish.html",
     "university": "University of Texas at San Antonio",
     "date": "Summer 2025"
   },
   {
     "course": "Fundamentals of Operating Systems",
     "instructor": "Instructor: Dr. Mimi Xie",
+    "instructorUrl": "https://caicc.utsa.edu/faculty/profiles/xie-mimi.html",
     "university": "University of Texas at San Antonio",
     "date": "Spring 2025"
   },
@@ -32,12 +36,14 @@
   {
     "course": "Principles of Compiler Design",
     "instructor": "Instructor: Dr. Haleh Amintoosi",
+    "instructorUrl": "https://scholar.google.com/citations?user=UsoEbboAAAAJ&hl=en",
     "university": "Ferdowsi University of Mashhad",
     "date": "Fall 2023"
   },
   {
     "course": "Fundamentals of Data Mining",
     "instructor": "Instructor: Dr. Behshid Behkamal",
+    "instructorUrl": "https://ca.linkedin.com/in/behkamal",
     "university": "Ferdowsi University of Mashhad",
     "date": "Fall 2023"
   }

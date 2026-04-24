@@ -883,9 +883,8 @@ ul, ol {
 .research-lab {
     font-size: 1.1rem;
     color: var(--accent-color);
-    font-weight: 800;
     font-style: normal;
-    font-weight: normal;
+    font-weight: 700;
     margin-bottom: 0.3rem;
     display: block;
 }
