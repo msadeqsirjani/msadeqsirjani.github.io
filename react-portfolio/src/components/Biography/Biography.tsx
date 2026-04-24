@@ -10,7 +10,7 @@ const Biography = () => {
               <a href="https://utsa.edu" target="_blank" rel="noopener">
                 University of Texas at San Antonio
               </a>
-              , working in the ASIC Laboratory under{' '}
+              , working in the ASIC Lab under{' '}
               <a href="https://caicc.utsa.edu/faculty/profiles/xie-mimi.html" target="_blank" rel="noopener">
                 Prof. Mimi Xie
               </a>
