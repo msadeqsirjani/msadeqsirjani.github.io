@@ -12,7 +12,6 @@ const Publications = () => {
 
   const [publications, setPublications] = useState<Publication[]>([]);
   const [loading, setLoading] = useState(true);
-  const [yearFilter] = useState('all');
   const [showAll, setShowAll] = useState(false);
   const [expandedPub, setExpandedPub] = useState<number | null>(null);
 
@@ -31,10 +30,8 @@ const Publications = () => {
 
 
   const filteredPublications = useMemo(() => {
-    return publications
-      .filter(pub => yearFilter === 'all' || pub.year === yearFilter)
-      .sort((a, b) => Number(b.year) - Number(a.year));
-  }, [publications, yearFilter]);
+    return [...publications].sort((a, b) => Number(b.year) - Number(a.year));
+  }, [publications]);
 
   const getStatusLabel = (status: string) => {
     const labels: Record<string, string> = {

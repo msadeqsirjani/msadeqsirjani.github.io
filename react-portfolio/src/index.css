@@ -629,13 +629,8 @@ ul, ol {
     text-decoration: underline;
 }
 
-/* Education & Research Timeline Layout */
-.timeline-list.research-timeline {
-    max-width: none;
-    margin: 0;
-}
-
-/* Education Timeline Layout */
+/* Full-width timeline overrides */
+.timeline-list.research-timeline,
 .timeline-list.education-timeline {
     max-width: none;
     margin: 0;
@@ -675,7 +670,8 @@ ul, ol {
     color: #aaa;
 }
 
-.education-current-badge {
+.education-current-badge,
+.research-current-badge {
     display: block;
     background-color: #d1fae5;
     color: #065f46;
@@ -903,20 +899,6 @@ ul, ol {
     position: absolute;
     left: 0;
     color: #555;
-}
-
-
-.research-current-badge {
-    display: block;
-    background-color: #d1fae5;
-    color: #065f46;
-    font-size: 0.75rem;
-    font-weight: 600;
-    padding: 0.15rem 0.6rem;
-    border-radius: 3px;
-    margin-top: 0.4rem;
-    width: fit-content;
-    text-transform: uppercase;
 }
 
 /* Research Interests - Single Line Sliding Style */
@@ -1759,33 +1741,20 @@ kbd {
     font-size: 0.72rem;
 }
 
-/* Awards Timeline Layout */
-.timeline-list.awards-list {
-    max-width: none;
-    margin: 0;
-}
-
-.timeline-item.awards-item {
-    grid-template-columns: 140px 1fr;
-    gap: 1rem;
-}
-
-.timeline-item.awards-item .timeline-dates.awards-dates {
-    text-align: left;
-    padding-left: 0;
-}
-
-/* News Timeline Layout */
+/* Awards & News Timeline Layout */
+.timeline-list.awards-list,
 .timeline-list.news-list {
     max-width: none;
     margin: 0;
 }
 
+.timeline-item.awards-item,
 .timeline-item.news-item {
     grid-template-columns: 140px 1fr;
     gap: 1rem;
 }
 
+.timeline-item.awards-item .timeline-dates.awards-dates,
 .timeline-item.news-item .timeline-dates.news-dates {
     text-align: left;
     padding-left: 0;
