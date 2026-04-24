@@ -1606,6 +1606,22 @@ kbd {
     font-size: 0.72rem;
 }
 
+/* Awards Timeline Layout */
+.timeline-list.awards-list {
+    max-width: none;
+    margin: 0;
+}
+
+.timeline-item.awards-item {
+    grid-template-columns: 140px 1fr;
+    gap: 1rem;
+}
+
+.timeline-item.awards-item .timeline-dates.awards-dates {
+    text-align: left;
+    padding-left: 0;
+}
+
 /* News Timeline Layout */
 .timeline-list.news-list {
     max-width: none;

@@ -12,8 +12,11 @@ const Awards = () => {
   return (
     <TimelineSection
       id="awards"
-      title="Awards and Honors"
+      title="Awards & Honors"
       items={awardItems}
+      listClassName="awards-list"
+      itemClassName="awards-item"
+      dateWrapperClassName="awards-dates"
       initialLimit={settings.displayLimits.awards.initial}
       showMoreEnabled={settings.displayLimits.awards.showMoreEnabled}
     />
