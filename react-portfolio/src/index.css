@@ -210,7 +210,7 @@ ul, ol {
 }
 
 .nav-dropdown-toggle {
-    background: var(--white);
+    background: transparent;
     border: none;
     border-radius: var(--button-border-radius);
     color: var(--text-color);
@@ -221,6 +221,12 @@ ul, ol {
     cursor: pointer;
     position: relative;
     transition: all 0.2s ease;
+    outline: none;
+}
+
+.nav-dropdown-toggle:focus-visible {
+    outline: 3px solid var(--focus-color);
+    outline-offset: 2px;
 }
 
 .nav-dropdown-toggle::after {
@@ -238,7 +244,7 @@ ul, ol {
 
 .nav-dropdown-toggle:hover {
     color: var(--accent-color);
-    background: var(--gray-light);
+    background: transparent;
 }
 
 .nav-dropdown-menu {
@@ -246,20 +252,39 @@ ul, ol {
     position: absolute;
     top: 100%;
     right: 0;
-    background: var(--white);
-    border: 1px solid var(--border-color);
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    border: 1px solid rgba(209, 213, 219, 0.3);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
     padding: 0.5rem 0;
     min-width: 150px;
+    transition: background 0.3s ease, border-color 0.3s ease;
 }
 
 .nav-dropdown.open .nav-dropdown-menu {
     display: block;
 }
 
+[data-theme="dark"] .nav-dropdown-menu {
+    background: rgba(15, 23, 42, 0.75);
+    border-color: rgba(71, 85, 105, 0.25);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+}
+
 .nav-dropdown-menu .nav-link {
     display: block;
     padding: 0.5rem 1rem;
     margin: 0;
+    outline: none;
+}
+
+.nav-dropdown-menu .nav-link:hover,
+.nav-dropdown-menu .nav-link:focus-visible {
+    color: var(--accent-color);
+    font-weight: 700;
+    outline: none;
+    box-shadow: none;
 }
 
 .nav-controls {
@@ -2706,6 +2731,11 @@ select:focus,
     outline-offset: 2px;
     border-radius: 0;
     box-shadow: 0 0 0 1px var(--white), 0 0 0 4px var(--focus-color);
+}
+
+.nav-dropdown-menu .nav-link:focus {
+    outline: none;
+    box-shadow: none;
 }
 
 /* High contrast focus for better visibility */

@@ -20,17 +20,18 @@ const Navbar = ({ onSearchClick }: NavbarProps) => {
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
   const dropdownRef = useRef<HTMLLIElement>(null);
   const dropdownMenuRef = useRef<HTMLUListElement | null>(null);
+  const dropdownToggleRef = useRef<HTMLButtonElement>(null);
+  const dropdownItemRefs = useRef<(HTMLAnchorElement | null)[]>([]);
 
   useFocusTrap(dropdownMenuRef, isDropdownOpen);
 
   const [theme, setTheme] = useState<'light' | 'dark'>(() => {
     if (typeof window === 'undefined') return 'light';
-
     const saved = localStorage.getItem('theme');
     if (saved === 'light' || saved === 'dark') return saved;
-
     return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
   });
 
@@ -44,11 +45,9 @@ const Navbar = ({ onSearchClick }: NavbarProps) => {
         setIsDropdownOpen(false);
       }
     };
-
     if (isDropdownOpen) {
       document.addEventListener('click', handleClickOutside);
     }
-
     return () => {
       document.removeEventListener('click', handleClickOutside);
     };
@@ -58,6 +57,40 @@ const Navbar = ({ onSearchClick }: NavbarProps) => {
     const newTheme = theme === 'light' ? 'dark' : 'light';
     setTheme(newTheme);
     localStorage.setItem('theme', newTheme);
+  };
+
+  const closeDropdown = () => setIsDropdownOpen(false);
+
+  const focusItem = (index: number) => {
+    dropdownItemRefs.current[index]?.focus();
+  };
+
+  const handleToggleKeyDown = (e: React.KeyboardEvent<HTMLButtonElement>) => {
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      setIsDropdownOpen(true);
+      setTimeout(() => focusItem(0), 0);
+    } else if (e.key === 'Escape') {
+      closeDropdown();
+    }
+  };
+
+  const handleItemKeyDown = (e: React.KeyboardEvent<HTMLAnchorElement>, index: number) => {
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      focusItem((index + 1) % dropdownLinks.length);
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      if (index === 0) {
+        closeDropdown();
+        dropdownToggleRef.current?.focus();
+      } else {
+        focusItem(index - 1);
+      }
+    } else if (e.key === 'Escape') {
+      closeDropdown();
+      dropdownToggleRef.current?.focus();
+    }
   };
 
   const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
@@ -107,19 +140,28 @@ const Navbar = ({ onSearchClick }: NavbarProps) => {
           <li className={`nav-dropdown ${isDropdownOpen ? 'open' : ''}`} role="none" ref={dropdownRef}>
             <button
               className="nav-dropdown-toggle"
+              ref={dropdownToggleRef}
               onClick={(e) => {
                 e.stopPropagation();
-                setIsDropdownOpen(!isDropdownOpen);
+                if (isDropdownOpen) closeDropdown();
+                else setIsDropdownOpen(true);
               }}
+              onKeyDown={handleToggleKeyDown}
               aria-haspopup="true"
               aria-expanded={isDropdownOpen}
             >
               More
             </button>
             <ul className={`nav-dropdown-menu ${isDropdownOpen ? 'active' : ''}`} ref={dropdownMenuRef}>
-              {dropdownLinks.map(link => (
+              {dropdownLinks.map((link, index) => (
                 <li key={link.id} role="none">
-                  <a href={`#${link.id}`} className="nav-link" onClick={(e) => scrollToSection(e, link.id)}>
+                  <a
+                    href={`#${link.id}`}
+                    className="nav-link"
+                    ref={el => { dropdownItemRefs.current[index] = el; }}
+                    onClick={(e) => scrollToSection(e, link.id)}
+                    onKeyDown={(e) => handleItemKeyDown(e, index)}
+                  >
                     {link.label}
                   </a>
                 </li>
