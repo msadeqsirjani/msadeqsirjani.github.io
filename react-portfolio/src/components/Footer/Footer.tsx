@@ -48,7 +48,7 @@ const Footer = () => {
             <div className="footer-section">
               <h3>Mohammad Sadegh Sirjani</h3>
               <p>Ph.D. Student in Computer Science</p>
-              <p>University of Texas at San Antonio</p>
+              <p><a href="https://www.utsa.edu/" target="_blank" rel="noopener">University of Texas at San Antonio</a></p>
             </div>
             <div className="footer-section">
               <h4>Quick Links</h4>

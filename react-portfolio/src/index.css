@@ -5,6 +5,15 @@
     box-sizing: border-box;
 }
 
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
 /* Dark Mode Smooth Transitions */
 *, *::before, *::after {
     transition-property: background-color, border-color, color, fill, stroke;

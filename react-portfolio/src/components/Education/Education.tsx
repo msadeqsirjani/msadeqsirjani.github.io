@@ -30,7 +30,11 @@ const Education = () => {
         <>
           <span className="education-degree">{item.degree}</span>
           <div className="education-university-row">
-            <span className="education-university">{item.university}</span>
+            <span className="education-university">
+              {item.universityUrl
+                ? <a href={item.universityUrl} target="_blank" rel="noopener">{item.university}</a>
+                : item.university}
+            </span>
             {item.gpa && <span className="education-gpa">{item.gpa}</span>}
           </div>
         </>

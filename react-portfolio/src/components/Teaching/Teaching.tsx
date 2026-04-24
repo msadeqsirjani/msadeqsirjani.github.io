@@ -28,7 +28,9 @@ const Teaching = () => {
           <span className="teaching-meta">
             <span className="teaching-instructor-name">{item.instructor.replace(/^Instructor:\s*/, '')}</span>
             <span className="teaching-sep"> · </span>
-            {item.university}
+            {item.university === 'University of Texas at San Antonio'
+              ? <a href="https://www.utsa.edu/" target="_blank" rel="noopener">{item.university}</a>
+              : item.university}
           </span>
         </>
       )}
