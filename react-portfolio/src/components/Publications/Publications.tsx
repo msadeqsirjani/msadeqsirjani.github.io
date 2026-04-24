@@ -103,7 +103,7 @@ const Publications = () => {
                             className="pub-text-link"
                             onClick={() => setExpandedPub(expandedPub === index ? null : index)}
                           >
-                            {expandedPub === index ? 'Hide abstract' : 'Abstract'}
+                            Abstract <FontAwesomeIcon icon={expandedPub === index ? faChevronUp : faChevronDown} size="xs" />
                           </button>
                         )}
                       </div>
