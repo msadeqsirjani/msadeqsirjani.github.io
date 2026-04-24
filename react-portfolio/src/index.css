@@ -211,7 +211,7 @@ ul, ol {
 
 .nav-dropdown-toggle {
     background: var(--white);
-    border: var(--button-border-width) solid var(--border-color);
+    border: none;
     border-radius: var(--button-border-radius);
     color: var(--text-color);
     font-weight: 500;
@@ -238,7 +238,6 @@ ul, ol {
 
 .nav-dropdown-toggle:hover {
     color: var(--accent-color);
-    border-color: var(--accent-color);
     background: var(--gray-light);
 }
 
