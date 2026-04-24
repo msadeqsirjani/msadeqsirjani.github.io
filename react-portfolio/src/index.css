@@ -440,15 +440,15 @@ ul, ol {
 }
 
 .hero-buttons .btn-secondary {
-    background: var(--accent-color);
-    color: white;
+    background: transparent;
+    color: var(--accent-color);
     border: var(--button-border-width) solid var(--accent-color);
     border-radius: var(--button-border-radius);
 }
 
 .hero-buttons .btn-secondary:hover {
-    background: var(--white);
-    color: var(--accent-color);
+    background: var(--accent-color);
+    color: white;
     border: var(--button-border-width) solid var(--accent-color);
 }
 
@@ -612,8 +612,9 @@ ul, ol {
 }
 
 .timeline-item.education-item {
-    display: block;
-    position: relative;
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 2rem;
     margin-bottom: 2.5rem;
     padding-bottom: 1.25rem;
     border-bottom: 1px solid var(--border-color);
@@ -622,33 +623,39 @@ ul, ol {
 .timeline-item.education-item:last-child {
     border-bottom: none;
     padding-bottom: 0;
-}
-
-.timeline-item.education-item .timeline-dates {
-    position: absolute;
-    top: 0;
-    right: 0;
-    text-align: right;
-}
-
-.timeline-item.education-item .timeline-content {
-    padding-right: 220px;
-}
-
-.education-item:last-child {
     margin-bottom: 0;
 }
 
-.education-dates {
-    text-align: left;
+.education-item .education-dates {
+    text-align: center;
     padding-top: 0.2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .education-dates .duration {
-    color: var(--text-color);
+    color: #666;
     font-weight: 400;
     font-size: 0.95rem;
     line-height: 1.4;
+}
+
+[data-theme="dark"] .education-dates .duration {
+    color: #aaa;
+}
+
+.education-current-badge {
+    display: block;
+    background-color: #d1fae5;
+    color: #065f46;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.15rem 0.6rem;
+    border-radius: 3px;
+    margin-top: 0.4rem;
+    width: fit-content;
+    text-transform: uppercase;
 }
 
 .education-content {
@@ -721,19 +728,31 @@ ul, ol {
 
 .education-degree {
     font-size: 1.1rem;
-    color: var(--accent-color);
-    font-weight: 500;
+    color: #111;
+    font-weight: 700;
     margin-bottom: 0.3rem;
     display: block;
 }
 
+[data-theme="dark"] .education-degree {
+    color: #f0f0f0;
+}
+
+.education-university-row {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.3rem;
+}
+
 .education-university {
     font-size: 1rem;
-    color: var(--text-color);
+    color: var(--accent-color);
     font-style: italic;
     font-weight: normal;
-    margin-bottom: 0.3rem;
-    display: block;
+    margin: 0;
+    display: inline;
 }
 
 .education-gpa {
@@ -741,7 +760,7 @@ ul, ol {
     color: var(--text-light);
     font-weight: normal;
     margin: 0;
-    display: block;
+    display: inline;
 }
 
 .description {
@@ -775,10 +794,14 @@ ul, ol {
 }
 
 .research-dates .timeline {
-    color: #555;
+    color: #666;
     font-weight: 400;
     font-size: 0.95rem;
     line-height: 1.4;
+}
+
+[data-theme="dark"] .research-dates .timeline {
+    color: #aaa;
 }
 
 .research-content {
@@ -791,6 +814,10 @@ ul, ol {
     font-weight: 700;
     margin-bottom: 0.3rem;
     display: block;
+}
+
+[data-theme="dark"] .research-position {
+    color: #f0f0f0;
 }
 
 .research-university {
@@ -830,13 +857,22 @@ ul, ol {
 }
 
 .research-description ul {
-    list-style-type: disc;
-    padding-left: 1.2rem;
+    list-style: none;
+    padding-left: 0;
     margin: 0;
 }
 
 .research-description li {
+    padding-left: 1.4rem;
+    position: relative;
     margin-bottom: 0.25rem;
+}
+
+.research-description li::before {
+    content: "—";
+    position: absolute;
+    left: 0;
+    color: #555;
 }
 
 

@@ -20,12 +20,19 @@ const Education = () => {
       contentWrapperClassName="education-content"
       getItemKey={(item, index) => `${item.degree}-${item.university}-${index}`}
       getItemClassName={(item) => (item.current ? 'current' : undefined)}
-      renderDate={(item) => item.duration}
+      renderDate={(item) => (
+        <>
+          <span className="duration">{item.duration}</span>
+          {item.current && <span className="education-current-badge">Current</span>}
+        </>
+      )}
       renderContent={(item) => (
         <>
           <span className="education-degree">{item.degree}</span>
-          <span className="education-university">{item.university}</span>
-          {item.gpa && <span className="education-gpa">{item.gpa}</span>}
+          <div className="education-university-row">
+            <span className="education-university">{item.university}</span>
+            {item.gpa && <span className="education-gpa">{item.gpa}</span>}
+          </div>
         </>
       )}
     />
