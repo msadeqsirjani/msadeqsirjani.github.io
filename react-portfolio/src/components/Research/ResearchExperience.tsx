@@ -31,7 +31,11 @@ const ResearchExperience = () => {
       renderContent={(item) => (
         <>
           <div className="research-title-row">
-            <span className="research-lab">{item.lab}</span>
+            {item.labUrl ? (
+              <a href={item.labUrl} className="research-lab" target="_blank" rel="noopener">{item.lab}</a>
+            ) : (
+              <span className="research-lab">{item.lab}</span>
+            )}
             <span className="research-sep">,&nbsp;</span>
             <span className="research-position">{item.position}</span>
           </div>
