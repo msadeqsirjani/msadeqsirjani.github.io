@@ -32,6 +32,8 @@ const Teaching = () => {
             <span className="teaching-sep"> · </span>
             {item.university === 'University of Texas at San Antonio'
               ? <a href="https://www.utsa.edu/" target="_blank" rel="noopener">{item.university}</a>
+              : item.university === 'Ferdowsi University of Mashhad'
+              ? <a href="https://en.um.ac.ir/" target="_blank" rel="noopener">{item.university}</a>
               : item.university}
           </span>
         </>
