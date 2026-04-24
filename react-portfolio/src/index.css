@@ -563,6 +563,36 @@ ul, ol {
     transform: translateX(-50%) translateY(0);
 }
 
+/* Section Divider */
+.section-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 2rem;
+    position: relative;
+}
+
+.section-divider::before,
+.section-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--border-color));
+}
+
+.section-divider::after {
+    background: linear-gradient(to left, transparent, var(--border-color));
+}
+
+.section-divider span {
+    width: 6px;
+    height: 6px;
+    background: var(--border-color);
+    transform: rotate(45deg);
+    margin: 0 0.75rem;
+    flex-shrink: 0;
+}
+
 /* Sections */
 .section {
     padding: 4rem 0;

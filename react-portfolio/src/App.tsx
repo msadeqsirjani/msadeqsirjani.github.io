@@ -136,6 +136,7 @@ function App() {
         </ErrorBoundary>
         {lazySections.map(({ key, Component, delay }) => (
           <ErrorBoundary key={key}>
+            <div className="section-divider" aria-hidden="true"><span /></div>
             <AnimatedSection delay={delay ?? DEFAULT_SECTION_DELAY}>
               <Suspense fallback={<SectionLoader />}>
                 <Component />
