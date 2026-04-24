@@ -23,7 +23,7 @@ const Biography = () => {
 
             <p>
               I earned my B.Sc. in Computer Engineering from{' '}
-              <a href="https://um.ac.ir" target="_blank" rel="noopener">
+              <a href="https://en.um.ac.ir/" target="_blank" rel="noopener">
                 Ferdowsi University of Mashhad
               </a>
               . My research on energy-efficient AI systems has been recognized through the{' '}
