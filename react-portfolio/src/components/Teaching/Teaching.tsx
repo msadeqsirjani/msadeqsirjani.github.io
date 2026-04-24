@@ -21,11 +21,15 @@ const Teaching = () => {
       dateClassName="teaching-date"
       contentWrapperClassName="teaching-content"
       getItemKey={(item, index) => `${item.course}-${item.date}-${index}`}
+      renderDate={(item) => item.date}
       renderContent={(item) => (
         <>
           <span className="teaching-course">{item.course}</span>
-          <span className="teaching-instructor">{item.instructor}</span>
-          <span className="teaching-university">{item.university}</span>
+          <span className="teaching-meta">
+            <span className="teaching-instructor-name">{item.instructor.replace(/^Instructor:\s*/, '')}</span>
+            <span className="teaching-sep"> · </span>
+            {item.university}
+          </span>
         </>
       )}
       initialLimit={settings.displayLimits.teaching.initial}

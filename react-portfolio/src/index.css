@@ -1607,64 +1607,81 @@ kbd {
 }
 
 /* Teaching Timeline Layout */
-.teaching-list {
-    max-width: 800px;
-    margin: 0 auto;
+.timeline-list.teaching-list {
+    max-width: none;
+    margin: 0;
+    border-top: 1px solid var(--border-color);
 }
 
-.teaching-item {
-    display: grid;
-    grid-template-columns: 20% 80%;
-    gap: 2rem;
-    margin-bottom: 2.5rem;
-    padding-bottom: 1.25rem;
+.timeline-item.teaching-item {
+    display: block;
+    position: relative;
+    margin-bottom: 0;
+    padding: 1.25rem 0;
     border-bottom: 1px solid var(--border-color);
 }
 
-.teaching-item:last-child {
+.timeline-item.teaching-item:last-child {
+    padding: 1.25rem 0;
     margin-bottom: 0;
-    padding-bottom: 0;
-    border-bottom: none;
+    border-bottom: 1px solid var(--border-color);
 }
 
-.teaching-dates {
-    text-align: center;
-    padding-top: 0.2rem;
+.teaching-item .teaching-dates {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 0;
+    text-align: right;
 }
 
 .teaching-dates .teaching-date {
-    color: var(--text-color);
+    color: #888;
     font-weight: 400;
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     line-height: 1.4;
-    text-align: center;
 }
 
-.teaching-content {
-    flex: 1;
+[data-theme="dark"] .teaching-dates .teaching-date {
+    color: #aaa;
+}
+
+.teaching-item .teaching-content {
+    padding-right: 160px;
 }
 
 .teaching-course {
-    font-size: 1.1rem;
-    color: var(--accent-color);
-    font-weight: 500;
-    margin-bottom: 0.3rem;
+    font-size: 1.05rem;
+    color: #111;
+    font-weight: 700;
+    margin-bottom: 0.2rem;
     display: block;
-    text-align: justify;
-    text-justify: inter-word;
-    hyphens: auto;
 }
 
-.teaching-university {
-    font-size: 1rem;
-    color: var(--text-color);
-    font-style: italic;
-    font-weight: normal;
-    margin: 0;
+[data-theme="dark"] .teaching-course {
+    color: #f0f0f0;
+}
+
+.teaching-meta {
+    font-size: 0.9rem;
+    color: #888;
     display: block;
-    text-align: justify;
-    text-justify: inter-word;
-    hyphens: auto;
+}
+
+[data-theme="dark"] .teaching-meta {
+    color: #aaa;
+}
+
+.teaching-sep {
+    color: #aaa;
+}
+
+.teaching-instructor-name {
+    color: var(--accent-color);
+}
+
+#teaching .show-more-container {
+    margin-top: 2.5rem;
 }
 
 /* Timeline Layout (News, Awards) */
