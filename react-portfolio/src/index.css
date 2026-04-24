@@ -1606,6 +1606,22 @@ kbd {
     font-size: 0.72rem;
 }
 
+/* News Timeline Layout */
+.timeline-list.news-list {
+    max-width: none;
+    margin: 0;
+}
+
+.timeline-item.news-item {
+    grid-template-columns: 140px 1fr;
+    gap: 1rem;
+}
+
+.timeline-item.news-item .timeline-dates.news-dates {
+    text-align: left;
+    padding-left: 0;
+}
+
 /* Teaching Timeline Layout */
 .timeline-list.teaching-list {
     max-width: none;

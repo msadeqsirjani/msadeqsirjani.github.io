@@ -14,6 +14,9 @@ const News = () => {
       id="news"
       title="News"
       items={newsItems}
+      listClassName="news-list"
+      itemClassName="news-item"
+      dateWrapperClassName="news-dates"
       initialLimit={settings.displayLimits.news.initial}
       showMoreEnabled={settings.displayLimits.news.showMoreEnabled}
     />
