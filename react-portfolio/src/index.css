@@ -3467,633 +3467,574 @@ html {
 
 /* Print-Friendly Stylesheet - Academic CV Style */
 @media print {
-    /* Page setup matching LaTeX CV format */
     @page {
-        margin: 0.7in;
-        size: a4 portrait;
-
-        /* Page numbers in footer */
-        @bottom-right {
-            content: counter(page) " / " counter(pages);
-            font-family: 'Times New Roman', Times, serif;
-            font-size: 10pt;
-            color: #666;
-        }
-
-        @bottom-center {
-            content: "Mohammad Sadegh Sirjani - Curriculum Vitae";
-            font-family: 'Times New Roman', Times, serif;
-            font-size: 9pt;
-            color: #999;
-        }
+        margin: 0.4in;
+        size: A4 portrait;
     }
 
-    /* Base styles */
+    /* Fix scroll-animation opacity */
+    .fade-in-section {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+    }
+
+    /* Force light-mode variables */
+    :root,
+    [data-theme="dark"] {
+        --text-color:   #000 !important;
+        --text-light:   #444 !important;
+        --bg-color:     #fff !important;
+        --white:        #fff !important;
+        --border-color: #ccc !important;
+        --accent-color: #000 !important;
+    }
+
+    /* Base reset */
     * {
-        box-shadow: none !important;
+        box-shadow:  none !important;
         text-shadow: none !important;
+        background:  #fff !important;
+        color:       #000 !important;
+        transition:  none !important;
+        animation:   none !important;
+    }
+
+    /* Hide ALL SVG icons globally — prevents FontAwesome glyphs
+       rendering as wrong characters when font is forced to Times New Roman */
+    svg {
+        display: none !important;
+        width: 0 !important;
+        height: 0 !important;
+        overflow: hidden !important;
+    }
+
+    /* Suppress FontAwesome CDN ::before glyphs (fa-* classes from all.min.css).
+       Without this, code-point characters render in the Times New Roman fallback
+       font and appear as stray characters such as Đ. */
+    [class^="fa-"]::before, [class*=" fa-"]::before,
+    .fa::before, .fas::before, .far::before, .fab::before,
+    .fa-solid::before, .fa-regular::before, .fa-brands::before {
+        content: none !important;
+        display: none !important;
     }
 
     body {
-        font-family: 'Times New Roman', Times, serif !important;
-        font-size: 12pt;
-        line-height: 1.3;
-        color: #000;
-        background: #fff;
+        font-family: "Times New Roman", Times, serif !important;
+        font-size:   11pt !important;
+        line-height: 1.35 !important;
     }
 
-    * {
-        font-family: 'Times New Roman', Times, serif !important;
-    }
-
-    /* Hyperlinks - LaTeX style (blue, underlined) */
-    a,
-    a:link,
-    a:visited {
-        color: #0000FF !important;
-        text-decoration: underline;
-    }
-
-    a:hover {
-        color: #0000FF !important;
-    }
-
-    /* Hide web-only elements */
-    .navbar,
-    .nav-toggle,
-    .theme-toggle,
-    .quick-actions,
-    .scroll-to-top,
-    .reading-progress,
-    .hero-buttons,
-    .contact-form,
-    .footer,
-    .profile-image,
-    #news,
-    #contact,
-    #biography,
-    #research-interests,
-    .publication-controls,
-    .search-box,
-    .filter-controls,
-    #resetFilters,
-    #clearSearch,
-    .show-more-container {
+    /* ── HIDE web-only + biography ── */
+    .navbar, .nav-toggle, .theme-toggle, .color-picker,
+    .reading-progress, .quick-actions,
+    .hero-buttons, .hero-left, .social-links, .profile-image,
+    .section-divider, .cookie-consent, .offline-indicator,
+    .global-search, .skip-to-content, .pull-to-refresh, .footer,
+    #biography, .fade-in-section:has(#biography),
+    #research-interests, .fade-in-section:has(#research-interests),
+    #news, #contact,
+    button,
+    .show-more-container, .publication-controls, .filter-controls,
+    .pub-keywords, .publication-links, .publication-abstract,
+    .publication-badges, .status-inline, .pub-year-badge,
+    .citations-badge, .timeline-dot, .timeline-connector,
+    .timeline-line, .education-current-badge, .research-current-badge {
         display: none !important;
     }
 
-    /* Show publication buttons for print */
-    .publication-btn,
-    .copy-btn,
-    button {
-        display: none !important;
+    /* Show all publications */
+    .publication-item,
+    .publication-item.hidden-for-show-more {
+        display: block !important;
     }
 
-    /* Container and layout */
+    /* ── Layout reset ── */
     .container {
-        max-width: 100%;
-        padding: 0;
-        margin: 0;
+        max-width: 100% !important;
+        padding:   0 !important;
+        margin:    0 !important;
+        width:     100% !important;
+    }
+
+    .timeline-list {
+        max-width: 100% !important;
+        margin:    0 !important;
     }
 
     .section {
-        padding: 0.15cm 0 0.2cm 0;
-        border-bottom: none;
+        padding:       0.1cm 0 !important;
+        margin:        0 !important;
+        border-bottom: none !important;
     }
 
-    /* Header - Centered layout like LaTeX */
+    /* ══════════════════════════════════════
+       HEADER  (no divider line below)
+    ══════════════════════════════════════ */
     .hero {
-        padding: 0;
-        margin-bottom: 0.15cm;
-        border-bottom: none;
-        text-align: center;
+        padding:       0 0 0.15cm 0 !important;
+        margin:        0 !important;
+        text-align:    center;
+        border-bottom: none !important;
     }
 
-    .hero-content {
-        display: block;
-        text-align: center;
-    }
+    .hero-content { display: block !important; text-align: center; }
+    .hero-right   { text-align: center; }
 
-    .hero-right {
-        text-align: center;
-    }
+    /* No divider line after header */
+    .hero::after  { display: none !important; content: none !important; border: none !important; }
 
     .hero-title {
-        font-size: 20pt;
-        font-weight: bold;
-        color: #000 !important;
-        margin-bottom: 0.1cm;
-        text-align: center;
+        font-size:     18pt !important;
+        font-weight:   bold !important;
+        margin-bottom: 0.06cm;
+        letter-spacing: 0.02em;
     }
 
     .hero-subtitle {
-        display: none;
+        font-size:     11pt !important;
+        font-weight:   normal !important;
+        margin-bottom: 0.03cm;
+        display:       block !important;
     }
 
     .hero-institution {
-        font-size: 10pt;
-        color: #000 !important;
-        margin-bottom: 0.05cm;
-        text-align: center;
-        font-weight: normal;
+        font-size:     11pt !important;
+        margin-bottom: 0.03cm;
+        display:       block !important;
+    }
+
+    .hero-institution a { text-decoration: none !important; }
+
+    .hero-tagline {
+        font-size:  10pt !important;
+        font-style: italic;
+        display:    block !important;
+        margin:     0;
     }
 
     .hero-institution::after {
-        content: "\Amohammadsadegh.sirjani@utsa.edu\A https://msadeqsirjani.com";
-        display: block;
-        white-space: pre;
-        font-size: 10pt;
-        color: #000;
-        margin-top: 0.05cm;
-        line-height: 1.3;
+        content:    "mohammadsadegh.sirjani@utsa.edu  \B7  msadeqsirjani.com";
+        display:    block;
+        font-size:  10pt !important;
+        margin-top: 0.03cm;
     }
 
-    .hero-tagline {
-        display: none;
-    }
-
-    .hero-left {
-        display: none;
-    }
-
-    /* Hide social links */
-    .social-links {
-        display: none !important;
-    }
-
-    /* Section titles - Blue headers with underline like LaTeX */
+    /* ══════════════════════════════════════
+       SECTION TITLES
+    ══════════════════════════════════════ */
     .section-title {
-        font-size: 14pt;
-        font-weight: bold;
-        color: #0000FF !important;
-        margin-bottom: 0.15cm;
-        margin-top: 0.3cm;
-        border-bottom: 0.5pt solid #000;
-        padding-bottom: 0.05cm;
+        font-size:        11.5pt !important;
+        font-weight:      bold !important;
+        text-transform:   uppercase;
+        letter-spacing:   0.06em;
+        border-bottom:    0.5pt solid #000 !important;
+        padding:          0 0 0.03cm 0 !important;
+        margin:           0.18cm 0 0.1cm 0 !important;
+        page-break-after: avoid;
     }
 
-    /* Hide Biography and Research Interests section titles */
-    #biography .section-title,
-    #research-interests .section-title {
-        display: none !important;
+    /* ══════════════════════════════════════
+       EDUCATION
+       flex row + order swap: content LEFT, dates RIGHT
+    ══════════════════════════════════════ */
+    .timeline-item.education-item {
+        display:        flex !important;
+        flex-direction: row !important;
+        align-items:    flex-start !important;
+        flex-wrap:      nowrap !important;
+        gap:            0.3cm !important;
+        margin:         0 0 0.15cm 0 !important;
+        padding:        0 !important;
+        border-bottom:  none !important;
     }
 
-    /* Education - Two column layout */
-    .education-item,
-    .research-item {
-        display: grid;
-        grid-template-columns: 1fr auto;
-        gap: 0.8cm;
-        margin-bottom: 0.2cm;
-        page-break-inside: avoid;
-        background: none !important;
-        border: none !important;
-        padding: 0 !important;
+    .timeline-item.education-item .timeline-content.education-content {
+        order:     1 !important;
+        flex:      1 1 auto !important;
+        min-width: 0 !important;
     }
 
-    .education-content,
-    .research-content {
-        order: 1;
+    .timeline-item.education-item .timeline-dates.education-dates {
+        order:       2 !important;
+        flex:        0 0 auto !important;
+        text-align:  right !important;
+        white-space: nowrap !important;
+        padding:     0 !important;
+        border:      none !important;
     }
 
-    .education-logo {
-        width: 30px;
-        height: 30px;
-        padding: 0.2rem;
-        print-color-adjust: exact;
-        -webkit-print-color-adjust: exact;
-    }
-
-    .education-header {
-        display: flex;
-        align-items: flex-start;
-        gap: 0.25cm;
-    }
-
-    .education-dates,
-    .research-dates {
-        order: 2;
-        text-align: right;
-        font-size: 12pt;
-        color: #000 !important;
-        background: none !important;
-        border: none !important;
-        padding: 0 !important;
-        border-radius: 0 !important;
-        box-shadow: none !important;
-    }
-
-    .education-dates *,
-    .research-dates * {
-        background: none !important;
-        border: none !important;
-        padding: 0 !important;
-    }
+    .education-logo { display: none !important; }
 
     .education-degree {
-        font-size: 12pt;
-        font-weight: bold;
-        color: #000 !important;
-        margin-bottom: 0.05cm;
-        display: inline;
+        font-size:   11pt !important;
+        font-weight: bold !important;
+        display:     block !important;
+        margin:      0 !important;
     }
 
-    .research-position {
-        font-size: 12pt;
-        font-weight: bold;
-        color: #000 !important;
-        margin-bottom: 0;
-        margin-right: 0.3cm;
-        display: inline;
+    .education-university-row {
+        display:     flex !important;
+        align-items: baseline !important;
+        flex-wrap:   wrap;
+        gap:         0.15cm;
+        margin:      0.02cm 0 0 0 !important;
     }
 
     .education-university,
-    .research-university {
-        font-size: 12pt;
-        font-style: normal;
-        color: #0000FF !important;
-        text-decoration: underline;
-        margin-bottom: 0.05cm;
+    .education-university a {
+        font-size:       11pt !important;
+        font-style:      italic;
+        text-decoration: none !important;
+        margin:          0 !important;
     }
 
-    .research-lab {
-        font-size: 12pt;
-        font-style: normal;
-        color: #000 !important;
-        margin-bottom: 0.05cm;
-        display: block;
+    .education-gpa { font-size: 10.5pt !important; margin: 0 !important; }
+
+    .education-dates .duration,
+    .education-dates * {
+        font-size:  11pt !important;
+        padding:    0 !important;
+        border:     none !important;
+        background: none !important;
     }
 
-    .education-gpa,
-    .research-advisor {
-        font-size: 12pt;
-        color: #000 !important;
-    }
-
-    .research-description {
-        font-size: 12pt;
-        margin-top: 0.1cm;
-        line-height: 1.3;
-    }
-
-    .research-description ul {
-        margin: 0;
-        padding: 0;
-        margin-left: 0.5cm;
-        list-style-type: disc;
-    }
-
-    .research-description li {
-        margin-bottom: 0.05cm;
-        padding-left: 0;
-        line-height: 1.3;
-    }
-
-    /* Research Interests - Three-column bullet list */
+    /* ══════════════════════════════════════
+       RESEARCH INTERESTS
+       No icons (SVG hidden globally), no bullets — plain 3-col text
+    ══════════════════════════════════════ */
     .interests-container {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 0.15cm 0.5cm;
-        margin-bottom: 0.3cm;
+        display:        flex !important;
+        flex-wrap:      wrap !important;
+        padding:        0 !important;
+        margin:         0 0 0.05cm 0 !important;
+        gap:            0.04cm 0 !important;
     }
 
     .interest-card {
-        display: list-item;
-        list-style-type: disc;
-        list-style-position: outside;
-        margin-left: 0.5cm;
-        border: none;
-        padding: 0;
-        background: none !important;
-        text-align: left;
-        page-break-inside: avoid;
+        display:         block !important;
+        width:           33% !important;
+        height:          auto !important;
+        min-height:      0 !important;
+        /* No left padding needed — icon/bullet removed */
+        padding:         0 0 0.07cm 0 !important;
+        border:          none !important;
+        text-align:      left !important;
+        flex-shrink:     0 !important;
+        flex-direction:  unset !important;
+        align-items:     unset !important;
+        justify-content: unset !important;
+        box-sizing:      border-box !important;
     }
 
-    .interest-card i {
-        display: none;
+    /* No bullet markers or icon remnants */
+    .interest-card::before,
+    .interest-card::after { display: none !important; content: none !important; }
+
+    /* Explicitly kill the SVG icon even if the global svg rule is overridden */
+    .interest-card svg,
+    .interest-card .interest-icon {
+        display: none !important;
+        width: 0 !important;
+        height: 0 !important;
     }
 
     .interest-card span {
-        font-size: 12pt;
-        color: #000 !important;
+        font-size:   10.5pt !important;
+        text-align:  left !important;
+        display:     block !important;
+        white-space: normal !important;
+        word-break:  break-word !important;
     }
 
-    /* Teaching - Simple list */
-    .teaching-item {
-        display: grid;
-        grid-template-columns: 1fr auto;
-        margin-bottom: 0.1cm;
-        page-break-inside: avoid;
-        background: none !important;
-        border: none !important;
-        padding: 0 !important;
+    /* ══════════════════════════════════════
+       RESEARCH EXPERIENCE
+       Lab name + role on one line LEFT — date on same line RIGHT
+       Then description bullets below
+    ══════════════════════════════════════ */
+    .timeline-item.research-item {
+        display:        flex !important;
+        flex-direction: row !important;
+        align-items:    flex-start !important;
+        flex-wrap:      nowrap !important;
+        gap:            0.3cm !important;
+        margin:         0 0 0.15cm 0 !important;
+        padding:        0 !important;
+        border-bottom:  none !important;
     }
 
-    .teaching-content {
-        order: 1;
+    /* Content block (LEFT): title row + bullets stacked */
+    .timeline-item.research-item .timeline-content.research-content {
+        order:     1 !important;
+        flex:      1 1 auto !important;
+        min-width: 0 !important;
     }
 
-    .teaching-dates {
-        order: 2;
-        text-align: right;
-        font-size: 12pt;
-        color: #000 !important;
-        background: none !important;
-        border: none !important;
-        padding: 0 !important;
-        border-radius: 0 !important;
-        box-shadow: none !important;
+    /* Date (RIGHT): fixed width, aligns to top = same line as title */
+    .timeline-item.research-item .timeline-dates.research-dates {
+        order:       2 !important;
+        flex:        0 0 auto !important;
+        text-align:  right !important;
+        white-space: nowrap !important;
+        padding:     0 !important;
+        border:      none !important;
+        padding-top: 0 !important;
     }
 
-    .teaching-dates *,
-    .teaching-dates span {
-        background: none !important;
-        border: none !important;
-        padding: 0 !important;
+    /* Title row: lab name + comma + role on one line */
+    .research-title-row {
+        display:     flex !important;
+        flex-wrap:   nowrap !important;
+        align-items: baseline !important;
+        margin:      0 0 0.03cm 0 !important;
+        white-space: nowrap !important;
     }
 
-    .teaching-course {
-        font-size: 12pt;
-        font-weight: bold;
-        color: #000 !important;
+    .research-lab,
+    .research-lab a {
+        font-size:       11pt !important;
+        font-weight:     bold !important;
+        text-decoration: none !important;
+        margin:          0 !important;
+        display:         inline !important;
+        white-space:     nowrap !important;
     }
 
-    .teaching-instructor {
-        font-size: 12pt;
-        color: #000 !important;
+    .research-sep {
+        display:     inline !important;
+        white-space: nowrap !important;
     }
 
-    .teaching-university {
-        font-size: 12pt;
-        color: #000 !important;
+    .research-position {
+        font-size:   11pt !important;
+        display:     inline !important;
+        margin:      0 !important;
+        white-space: nowrap !important;
     }
 
-    /* Publications - Numbered list */
-    .publication-category h3 {
-        font-size: 10pt;
-        font-weight: bold;
-        color: #000 !important;
-        font-style: italic;
-        margin-bottom: 0.1cm;
-        margin-top: 0.15cm;
+    .research-description {
+        font-size:   10.5pt !important;
+        margin-top:  0.03cm !important;
+        line-height: 1.35;
+        hyphens:     auto;
     }
+
+    .research-description ul {
+        list-style:   none !important;
+        padding:      0 !important;
+        margin:       0 !important;
+        padding-left: 0.5cm !important;
+    }
+
+    .research-description li {
+        position:      relative !important;
+        padding-left:  0.4cm !important;
+        margin-bottom: 0.02cm !important;
+    }
+
+    .research-description li::before {
+        content:  "4";
+        position: absolute !important;
+        left:     0 !important;
+    }
+
+    .research-dates .timeline,
+    .research-dates span,
+    .research-dates * {
+        font-size: 11pt !important;
+        padding:   0 !important;
+        margin:    0 !important;
+        border:    none !important;
+    }
+
+    /* ══════════════════════════════════════
+       PUBLICATIONS
+    ══════════════════════════════════════ */
+    .publications-container { margin: 0 !important; }
 
     .publication-list {
-        counter-reset: publication;
+        counter-reset: pub-counter;
+        margin:        0 !important;
+        padding:       0 !important;
     }
 
     .publication-item {
-        margin-bottom: 0.2cm;
-        padding: 0;
+        counter-increment: pub-counter;
+        display:           block !important;
+        margin:            0 0 0.15cm 0 !important;
+        padding:           0 0 0 0.55cm !important;
         page-break-inside: avoid;
-        background: none !important;
-        border: none !important;
-        counter-increment: publication;
-        line-height: 1.3;
-        font-size: 12pt;
+        border:            none !important;
+        font-size:         10.5pt !important;
+        line-height:       1.35;
+        position:          relative !important;
     }
 
     .publication-item::before {
-        content: counter(publication) ". ";
+        content:     "[" counter(pub-counter) "]";
+        position:    absolute !important;
+        left:        0 !important;
+        top:         0 !important;
         font-weight: normal;
     }
 
-    .publication-category {
-        counter-reset: publication;
-        border-bottom: none;
-        margin-bottom: 0.2cm;
+    .publication-header,
+    .publication-header-content {
+        display: block !important;
+        border:  none !important;
+        padding: 0 !important;
+        margin:  0 !important;
     }
 
     .publication-title {
-        font-size: 12pt;
-        font-weight: normal;
-        color: #000 !important;
-        margin-bottom: 0;
-        display: inline;
+        font-size:   10.5pt !important;
+        font-weight: normal !important;
+        display:     inline !important;
+        margin:      0 !important;
     }
 
-    /* Make publication titles quoted */
-    .publication-title::before {
-        content: "\"";
-    }
+    .publication-title::before { content: "\201C"; }
+    .publication-title::after  { content: "\201D, "; }
 
-    .publication-title::after {
-        content: "\", ";
+    .publication-authors {
+        font-size: 10.5pt !important;
+        display:   block !important;
+        margin:    0 !important;
     }
 
     .publication-venue {
-        display: inline;
-        font-size: 12pt;
+        font-size:  10.5pt !important;
         font-style: italic;
-        color: #000 !important;
+        display:    block !important;
+        margin:     0 !important;
     }
 
-    .publication-venue p {
-        display: inline;
-        font-size: 12pt;
-        color: #000 !important;
+    /* ══════════════════════════════════════
+       TEACHING
+    ══════════════════════════════════════ */
+    .timeline-list.teaching-list { border-top: none !important; }
+
+    .timeline-item.teaching-item {
+        display:         flex !important;
+        flex-direction:  row !important;
+        align-items:     center !important;
+        justify-content: space-between !important;
+        padding:         0 !important;
+        margin:          0 0 0.08cm 0 !important;
+        border-bottom:   none !important;
+        position:        static !important;
+        page-break-inside: avoid;
     }
 
-    .publication-info-row,
-    .publication-actions-row,
-    .publication-meta-row {
-        display: inline;
+    .teaching-item .teaching-content {
+        flex:      1 1 auto !important;
+        padding:   0 !important;
+        min-width: 0 !important;
     }
 
-    /* Show publication URLs */
-    .publication-btn[href]::after {
-        content: ", " attr(href);
-        color: #0000FF !important;
-        text-decoration: underline;
-        font-size: 12pt;
+    .teaching-item .teaching-dates {
+        flex:        0 0 auto !important;
+        position:    static !important;
+        transform:   none !important;
+        text-align:  right !important;
+        white-space: nowrap !important;
+        margin-left: 0.35cm !important;
+        padding:     0 !important;
+        border:      none !important;
     }
 
-    .publication-authors {
-        font-size: 12pt;
-        color: #000 !important;
+    .teaching-dates span,
+    .teaching-dates * {
+        font-size: 11pt !important;
+        padding:   0 !important;
+        border:    none !important;
     }
 
-    .publication-year {
-        font-size: 12pt;
-        color: #000 !important;
+    .teaching-course {
+        font-size:   11pt !important;
+        font-weight: bold !important;
+        display:     block !important;
+        margin:      0 !important;
     }
 
-    .status {
-        display: none !important;
+    .teaching-meta {
+        font-size: 10.5pt !important;
+        display:   block !important;
+        margin:    0 !important;
     }
 
-    .citation-badge,
-    .badge,
-    .publication-badge,
-    [class*="badge"] {
-        display: none !important;
+    .teaching-instructor-name,
+    .teaching-meta a,
+    .teaching-sep {
+        font-size:       10.5pt !important;
+        text-decoration: none !important;
     }
 
-    /* Timeline items */
-    .timeline-item {
-        display: list-item;
-        list-style-type: disc;
-        margin-left: 0.5cm;
-        margin-bottom: 0.2cm;
-        background: none !important;
-        border: none !important;
-        padding: 0 !important;
+    /* ══════════════════════════════════════
+       AWARDS  (date LEFT, description RIGHT)
+    ══════════════════════════════════════ */
+    .timeline-item.awards-item {
+        display:        flex !important;
+        flex-direction: row !important;
+        align-items:    flex-start !important;
+        flex-wrap:      nowrap !important;
+        gap:            0.3cm !important;
+        margin:         0 0 0.1cm 0 !important;
+        padding:        0 !important;
+        border-bottom:  none !important;
+        page-break-inside: avoid;
     }
 
-    .timeline-dates {
-        display: none;
+    .timeline-item.awards-item .timeline-dates.awards-dates {
+        flex:        0 0 2cm !important;
+        text-align:  right !important;
+        white-space: nowrap !important;
+        padding:     0 !important;
+        border:      none !important;
+        font-size:   10.5pt !important;
+    }
+
+    .timeline-item.awards-item .timeline-content {
+        flex:      1 1 auto !important;
+        min-width: 0 !important;
     }
 
     .timeline-description {
-        font-size: 12pt;
-        color: #000 !important;
+        font-size:  10.5pt !important;
+        margin:     0 !important;
+        text-align: left !important;
+        display:    block !important;
     }
 
-    /* Contact section */
-    .contact-container {
-        display: block;
-    }
+    /* ══════════════════════════════════════
+       LINKS
+    ══════════════════════════════════════ */
+    a, a:visited { text-decoration: none !important; }
+    a::after     { content: "" !important; }
 
-    .contact-info {
-        display: block;
-    }
-
-    .contact-item {
-        display: inline;
-        margin-right: 1cm;
-    }
-
-    .contact-item i {
-        display: none;
-    }
-
-    .contact-item h4,
-    .contact-item p {
-        display: inline;
-        font-size: 10pt;
-    }
-
-    /* Links - Blue and underlined like CV */
-    a {
-        color: #00427e !important;
-        text-decoration: underline;
-    }
-
-    a[href^="mailto"],
-    a[href^="tel"] {
-        color: #000 !important;
-        text-decoration: none;
-    }
-
-    /* Biography */
-    .bio-text p {
-        font-size: 9pt;
-        text-align: justify;
-        margin-bottom: 0.15cm;
-        line-height: 1.3;
-    }
-
-    /* Page break control */
+    /* ══════════════════════════════════════
+       PAGE BREAKS
+    ══════════════════════════════════════ */
     h1, h2, h3, .section-title {
-        page-break-after: avoid;
+        page-break-after:  avoid;
         page-break-inside: avoid;
     }
 
-    .education-item,
-    .research-item,
-    .publication-item,
-    .timeline-item {
+    .timeline-item.education-item,
+    .timeline-item.teaching-item,
+    .timeline-item.awards-item,
+    .publication-item {
         page-break-inside: avoid;
     }
 
-    /* Typography */
-    p, li {
-        orphans: 3;
-        widows: 3;
-    }
+    #awards { page-break-inside: avoid; }
 
-    /* Timeline elements - hide for print */
-    .timeline-container::before,
-    .timeline-dot,
-    .timeline-connector {
-        display: none !important;
-    }
-
-    /* Optimize timeline layout for print */
-    .timeline-entry {
-        background: none !important;
-        border: none !important;
-        padding: 0 !important;
-        margin-bottom: 0.2cm;
-    }
-
-    /* Print-friendly colors - ensure black text */
-    h1, h2, h3, h4, h5, h6,
-    p, span, div, li {
-        color-adjust: exact;
-        -webkit-print-color-adjust: exact;
-        print-color-adjust: exact;
-    }
-
-    /* Optimize images for print */
-    img {
-        max-width: 100%;
-        page-break-inside: avoid;
-    }
-
-    /* Ensure proper rendering of special characters */
-    * {
-        text-rendering: optimizeLegibility;
-    }
-
-    /* Footer with page numbers */
-    @page {
-        @bottom-right {
-            content: counter(page) " of " counter(pages);
-            font-size: 9pt;
-            color: #666;
-        }
-    }
-
-    /* Accessibility - ensure sufficient contrast */
-    .text-light,
-    .text-muted {
-        color: #000 !important;
-    }
-
-    /* Remove any remaining decorative elements */
-    .badge,
-    .tag,
-    .label,
-    .icon:not(.publication-item *) {
-        display: none !important;
-    }
-
-    /* Optimize spacing for dense CV layout */
-    .section:first-of-type {
-        padding-top: 0;
-    }
-
-    .section:last-of-type {
-        padding-bottom: 0;
-        border-bottom: none;
-    }
-
-    /* Ensure links are visible with URLs in print */
-    a[href^="http"]::after {
-        content: " (" attr(href) ")";
-        font-size: 8pt;
-        color: #666;
-        word-wrap: break-word;
-    }
-
-    /* Don't show URLs for internal links or email/tel */
-    a[href^="#"]::after,
-    a[href^="mailto"]::after,
-    a[href^="tel"]::after {
-        content: "";
-    }
+    p, li { orphans: 3; widows: 3; }
+    img   { max-width: 100%; page-break-inside: avoid; }
 }
+
+
+
 
 /* Pull-to-Refresh for Mobile - Minimal Floating Design */
 .pull-to-refresh {
@@ -4811,45 +4752,6 @@ html {
   display: none;
 }
 
-/* Print styles - show all publications and force light mode */
-@media print {
-  /* Force light mode colors */
-  * {
-    color: #000 !important;
-    background: #fff !important;
-  }
-
-  body {
-    background: #fff !important;
-  }
-
-  /* Show all publications - override show more/less */
-  .publication-item {
-    display: block !important;
-  }
-
-  /* Show hidden publications in print */
-  .publication-item.hidden-for-show-more {
-    display: block !important;
-  }
-
-  /* Ensure all publications are visible */
-  .publication-list .publication-item.hidden,
-  .publication-list .publication-item.collapsed {
-    display: block !important;
-  }
-
-  /* Force light mode variable colors */
-  :root,
-  [data-theme="dark"] {
-    --text-color: #000 !important;
-    --text-light: #666 !important;
-    --bg-color: #fff !important;
-    --white: #fff !important;
-    --border-color: #ddd !important;
-    --accent-color: #0000FF !important;
-  }
-}
 
 /* Loading Spinner */
 .loading-spinner {
