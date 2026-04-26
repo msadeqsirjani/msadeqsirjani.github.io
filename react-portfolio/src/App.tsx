@@ -1,4 +1,4 @@
-import { lazy, Suspense, useState, useEffect } from 'react';
+import { lazy, Suspense, useState, useEffect, useRef } from 'react';
 import type { LazyExoticComponent, ComponentType } from 'react';
 import { Toaster } from 'sonner';
 import Navbar from './components/Navbar/Navbar';
@@ -58,6 +58,7 @@ const SectionLoader = () => (
 function App() {
   const [show404, setShow404] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const prevShow404 = useRef(false);
 
   useEffect(() => {
     const validRoutes = [
@@ -75,10 +76,14 @@ function App() {
       '#contact',
     ];
 
+    const validPathnames = ['/', '/index.html'];
+
     const checkRoute = () => {
+      const pathname = window.location.pathname.toLowerCase();
       const hash = window.location.hash.toLowerCase();
-      const isValid = validRoutes.includes(hash);
-      setShow404(!isValid && hash !== '');
+      const invalidPath = !validPathnames.includes(pathname);
+      const invalidHash = hash !== '' && !validRoutes.includes(hash);
+      setShow404(invalidPath || invalidHash);
     };
 
     checkRoute();
@@ -86,6 +91,26 @@ function App() {
 
     return () => window.removeEventListener('hashchange', checkRoute);
   }, []);
+
+  useEffect(() => {
+    if (prevShow404.current && !show404) {
+      const hash = window.location.hash.replace('#', '');
+      if (hash) {
+        const tryScroll = (attempts = 0) => {
+          const el = document.getElementById(hash);
+          if (el) {
+            const navbar = document.querySelector('.navbar') as HTMLElement;
+            const offset = navbar ? navbar.offsetHeight + 24 : 24;
+            window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - offset, behavior: 'smooth' });
+          } else if (attempts < 50) {
+            setTimeout(() => tryScroll(attempts + 1), 100);
+          }
+        };
+        tryScroll();
+      }
+    }
+    prevShow404.current = show404;
+  }, [show404]);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -118,7 +143,6 @@ function App() {
   if (show404) {
     return (
       <ErrorBoundary>
-        <Navbar onSearchClick={() => setIsSearchOpen(true)} />
         <Suspense fallback={<div style={{ minHeight: '60vh' }} />}>
           <NotFound />
         </Suspense>

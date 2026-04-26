@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import './NotFound.css';
 
 const quickLinks = [
-  { label: 'About', href: '#about' },
+  { label: 'Biography', href: '#biography' },
   { label: 'Publications', href: '#publications' },
   { label: 'Research Experience', href: '#research' },
   { label: 'Contact', href: '#contact' },
@@ -26,9 +26,6 @@ const NotFound = () => {
         <div className="nf-actions">
           <a className="nf-btn nf-btn-primary" href="#home">
             &#8592; Back to portfolio
-          </a>
-          <a className="nf-btn nf-btn-secondary" href="#contact">
-            Contact me
           </a>
         </div>
 
