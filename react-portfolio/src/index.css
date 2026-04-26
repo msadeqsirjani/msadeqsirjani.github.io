@@ -14,11 +14,11 @@ a:hover {
     text-decoration: underline;
 }
 
-/* Dark Mode Smooth Transitions */
-*, *::before, *::after {
-    transition-property: background-color, border-color, color, fill, stroke;
-    transition-duration: 0.3s;
-    transition-timing-function: ease;
+/* Dark Mode Smooth Transitions — only active during theme switch */
+.theme-transitioning *,
+.theme-transitioning *::before,
+.theme-transitioning *::after {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease !important;
 }
 
 /* Performance Optimizations */
@@ -27,12 +27,9 @@ html {
     -webkit-tap-highlight-color: transparent;
 }
 
-/* Optimize rendering performance */
 img, picture {
     max-width: 100%;
     height: auto;
-    image-rendering: -webkit-optimize-contrast;
-    image-rendering: crisp-edges;
 }
 
 .navbar,
@@ -94,16 +91,6 @@ body {
 
 h1, h2, h3, .section-title, .hero-title {
     font-weight: 700;
-}
-
-/* Font Loading Optimization */
-@font-face {
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 300 700;
-    font-display: swap;
-    src: url('https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyeMZs.woff2') format('woff2');
-    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
 .container {
@@ -502,16 +489,14 @@ ul, ol {
 .social-link,
 .btn[data-tooltip],
 .theme-toggle[data-tooltip],
-.footer-social a[data-tooltip],
-.publication-btn[data-tooltip] {
+.footer-social a[data-tooltip] {
     position: relative;
 }
 
 .social-link::after,
 .btn[data-tooltip]::after,
 .theme-toggle[data-tooltip]::after,
-.footer-social a[data-tooltip]::after,
-.publication-btn[data-tooltip]::after {
+.footer-social a[data-tooltip]::after {
     content: attr(data-tooltip);
     position: absolute;
     top: calc(100% + 8px);
@@ -535,8 +520,7 @@ ul, ol {
 .social-link::before,
 .btn[data-tooltip]::before,
 .theme-toggle[data-tooltip]::before,
-.footer-social a[data-tooltip]::before,
-.publication-btn[data-tooltip]::before {
+.footer-social a[data-tooltip]::before {
     content: '';
     position: absolute;
     top: calc(100% + 3px);
@@ -554,8 +538,7 @@ ul, ol {
 .social-link:hover::before,
 .btn[data-tooltip]:hover::before,
 .theme-toggle[data-tooltip]:hover::before,
-.footer-social a[data-tooltip]:hover::before,
-.publication-btn[data-tooltip]:hover::before {
+.footer-social a[data-tooltip]:hover::before {
     opacity: 1;
     visibility: visible;
 }
@@ -563,8 +546,7 @@ ul, ol {
 .social-link:hover::after,
 .btn[data-tooltip]:hover::after,
 .theme-toggle[data-tooltip]:hover::after,
-.footer-social a[data-tooltip]:hover::after,
-.publication-btn[data-tooltip]:hover::after {
+.footer-social a[data-tooltip]:hover::after {
     opacity: 1;
     visibility: visible;
     transform: translateX(-50%) translateY(0);
@@ -606,10 +588,11 @@ ul, ol {
 }
 
 .section-title {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     font-weight: 700;
     margin-bottom: 3rem;
     color: var(--text-color);
+    letter-spacing: 0.06em;
     text-transform: uppercase;
 }
 
@@ -1013,149 +996,6 @@ kbd {
     align-items: center;
 }
 
-.publication-controls .search-box {
-    position: relative;
-    display: flex;
-    align-items: center;
-    background: var(--gray-light);
-    border: 2px solid var(--border-color);
-    border-radius: 0;
-    padding: 0.625rem 1rem;
-    transition: border-color 0.3s ease;
-    min-height: 46px;
-    max-height: 46px;
-    height: 46px;
-    flex: 7;
-}
-
-.publication-controls .custom-select {
-    flex: 2;
-    min-width: 120px;
-}
-
-.search-box:focus-within {
-    border-color: var(--accent-color);
-}
-
-.search-box i {
-    color: var(--text-light);
-    margin-right: 0.75rem;
-    font-size: 1rem;
-}
-
-.search-box input {
-    flex: 1;
-    border: none;
-    background: transparent;
-    font-size: 16px;
-    color: var(--text-color);
-    outline: none !important;
-    box-shadow: none !important;
-    font-family: inherit;
-    -webkit-appearance: none;
-    appearance: none;
-    margin: 0;
-    padding: 0;
-}
-
-.search-box input:focus {
-    outline: none !important;
-    box-shadow: none !important;
-    border: none !important;
-    font-size: 16px;
-    transform: none !important;
-}
-
-.search-box input::placeholder {
-    color: var(--text-light);
-}
-
-.clear-search {
-    background: var(--white);
-    border: var(--button-border-width) solid var(--border-color);
-    color: var(--text-light);
-    cursor: pointer;
-    padding: 0.25rem;
-    margin-left: 0.5rem;
-    border-radius: var(--button-border-radius);
-    width: 24px;
-    height: 24px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.2s ease;
-}
-
-.clear-search:hover {
-    background: var(--gray-light);
-    color: var(--accent-color);
-    border-color: var(--accent-color);
-}
-
-.filter-controls {
-    display: flex;
-    gap: 0.75rem;
-    flex-wrap: nowrap;
-}
-
-.filter-controls select {
-    flex: 1;
-    min-width: 150px;
-    padding: 0 1rem;
-    border: 1px solid var(--border-color);
-    border-radius: 6px;
-    background: var(--white);
-    color: var(--text-color);
-    font-size: 0.875rem;
-    font-weight: 500;
-    font-family: inherit;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    height: 46px;
-    appearance: none;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%234a5568' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: right 1rem center;
-    padding-right: 2.5rem;
-}
-
-.filter-controls select:hover {
-    border-color: var(--accent-color);
-    background-color: var(--gray-light);
-}
-
-.filter-controls select:focus {
-    outline: none;
-    border-color: var(--accent-color);
-}
-
-#resetFilters.btn-secondary {
-    padding: 0 1.25rem;
-    border: var(--button-border-width) solid var(--accent-color);
-    border-radius: var(--button-border-radius);
-    background: var(--accent-color);
-    color: #ffffff;
-    font-size: 0.875rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    white-space: nowrap;
-    height: 46px;
-    flex-shrink: 0;
-}
-
-#resetFilters.btn-secondary:active {
-    transform: translateY(0);
-}
-
-#resetFilters.btn-secondary:focus {
-    outline: none;
-    border-color: var(--accent-color);
-}
-
 .publication-item.hidden {
     display: none;
 }
@@ -1442,96 +1282,6 @@ kbd {
 }
 
 
-.publication-btn {
-    padding: 0.4rem;
-    background: none;
-    border: 1px solid var(--border-color);
-    border-radius: 0;
-    color: var(--text-color);
-    cursor: pointer;
-    text-decoration: none;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s ease;
-    font-size: 0.9rem;
-    min-width: 34px;
-    min-height: 34px;
-}
-
-.publication-btn:hover {
-    border-color: var(--accent-color);
-    color: var(--accent-color);
-}
-
-/* Citation format dropdown */
-.citation-dropdown {
-    position: relative;
-    display: inline-block;
-}
-
-.citation-format-btn {
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.citation-format-menu {
-    display: block;
-    position: absolute;
-    top: calc(100% + 0.5rem);
-    right: 0;
-    background: var(--white);
-    border: 1px solid var(--border-color);
-    border-radius: 0;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
-    min-width: 140px;
-    z-index: 1000;
-    overflow: hidden;
-    animation: slideDown 0.2s ease;
-}
-
-@keyframes citationPulse {
-    0%   { transform: scale(1);    box-shadow: 0 0 0 0 rgba(229,62,62,0.55); }
-    50%  { transform: scale(1.18); box-shadow: 0 0 0 6px rgba(229,62,62,0); }
-    100% { transform: scale(1);    box-shadow: 0 0 0 0 rgba(229,62,62,0); }
-}
-
-.total-citations-badge {
-    position: absolute;
-    top: -10px;
-    left: calc(100% + 1px);
-    min-width: 26px;
-    height: 26px;
-    padding: 0 5px;
-    border-radius: 50px;
-    background: radial-gradient(circle at 35% 35%, #ff6b6b, #e53e3e);
-    box-shadow: 0 0 0 3px rgba(229,62,62,0.2), 0 2px 8px rgba(229,62,62,0.45);
-    color: #fff;
-    font-size: 0.68rem;
-    font-weight: 700;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    animation: citationPulse 2s ease-in-out infinite;
-    cursor: default;
-    white-space: nowrap;
-}
-
-@keyframes slideDown {
-    from {
-        opacity: 0;
-        transform: translateY(-10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.citation-format-menu.show {
-    display: block;
-}
-
 /* Publications (consolidated current layout) */
 .details-grid {
     display: flex;
@@ -1738,17 +1488,7 @@ kbd {
     color: white;
 }
 
-.publication-btn:disabled {
-    opacity: 0.3;
-    cursor: not-allowed;
-    background: var(--gray-light);
-}
 
-.publication-btn:disabled:hover {
-    border-color: var(--border-color);
-    color: var(--text-color);
-    background: var(--gray-light);
-}
 
 /* Citation badge styling - exactly matching status badges */
 .citation-badge {
@@ -2195,19 +1935,6 @@ kbd {
     }
 
     /* Publication filters - keep all in one line on mobile */
-    .filter-controls {
-        flex-wrap: nowrap;
-        gap: 0.5rem;
-    }
-
-    .filter-controls select {
-        min-width: 0;
-        flex: 1;
-        font-size: 0.85rem;
-        padding: 0 0.75rem;
-        padding-right: 2rem;
-        background-position: right 0.5rem center;
-    }
 
     .btn-secondary {
         padding: 0 0.75rem;
@@ -2503,17 +2230,6 @@ kbd {
     /* Status badges in mobile - same as desktop */
     .status {
         font-size: 0.7rem;
-    }
-
-    .publication-btn {
-        padding: 0.75rem;
-        border-radius: 6px;
-        min-width: 44px;
-        min-height: 44px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1.1rem;
     }
 
     .publication-meta-row {
@@ -3551,7 +3267,7 @@ html {
     #research-interests, .fade-in-section:has(#research-interests),
     #news, #contact,
     button,
-    .show-more-container, .publication-controls, .filter-controls,
+    .show-more-container, .publication-controls,
     .pub-keywords, .publication-links, .publication-abstract,
     .publication-badges, .status-inline, .pub-year-badge,
     .citations-badge, .timeline-dot, .timeline-connector,
@@ -4211,16 +3927,6 @@ html {
 }
 /* Import original styles */
 
-/* Font-display optimization for better performance */
-@font-face {
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 300 700;
-  font-display: swap;
-  src: url('https://fonts.gstatic.com/s/inter/v13/UcC73FwrK3iLTeHuS_fvQtMwCp50KnMa1ZL7W0Q5nw.woff2') format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-
 /* Smooth Scroll */
 html {
   scroll-behavior: smooth;
@@ -4515,38 +4221,6 @@ html {
   min-height: 44px;
 }
 
-/* Publication buttons */
-.publication-btn,
-.citation-btn {
-  min-width: 38px;
-  min-height: 38px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.5rem;
-  background: transparent;
-  border: var(--button-border-width) solid var(--border-color);
-  border-radius: var(--button-border-radius);
-  color: var(--text-light);
-  cursor: pointer;
-  transition: all 0.2s ease;
-  text-decoration: none;
-  font-size: 0.9rem;
-}
-
-.publication-btn:hover,
-.citation-btn:hover {
-  background: var(--gray-light);
-  border-color: var(--accent-color);
-  color: var(--accent-color);
-  transform: translateY(-1px);
-}
-
-.publication-btn:active,
-.citation-btn:active {
-  transform: translateY(0);
-}
-
 /* Mobile menu items */
 @media (max-width: 768px) {
   .nav-link {
@@ -4839,12 +4513,6 @@ textarea:focus-visible {
 
 /* Dropdown items keyboard navigation */
 .select-items div:focus {
-  background-color: var(--accent-color);
-  color: var(--white);
-  outline: none;
-}
-
-.citation-format-menu div:focus {
   background-color: var(--accent-color);
   color: var(--white);
   outline: none;

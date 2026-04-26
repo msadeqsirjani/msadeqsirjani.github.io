@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { useFocusTrap } from '../../hooks/useFocusTrap';
+import { useTheme } from '../../context/ThemeContext';
 import ColorPicker from '../ColorPicker/ColorPicker';
 
 interface NavbarProps {
@@ -28,16 +29,7 @@ const Navbar = ({ onSearchClick }: NavbarProps) => {
 
   useFocusTrap(dropdownMenuRef, isDropdownOpen);
 
-  const [theme, setTheme] = useState<'light' | 'dark'>(() => {
-    if (typeof window === 'undefined') return 'light';
-    const saved = localStorage.getItem('theme');
-    if (saved === 'light' || saved === 'dark') return saved;
-    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-  });
-
-  useEffect(() => {
-    document.documentElement.setAttribute('data-theme', theme);
-  }, [theme]);
+  const { theme, toggleTheme } = useTheme();
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -52,12 +44,6 @@ const Navbar = ({ onSearchClick }: NavbarProps) => {
       document.removeEventListener('click', handleClickOutside);
     };
   }, [isDropdownOpen]);
-
-  const toggleTheme = () => {
-    const newTheme = theme === 'light' ? 'dark' : 'light';
-    setTheme(newTheme);
-    localStorage.setItem('theme', newTheme);
-  };
 
   const closeDropdown = () => setIsDropdownOpen(false);
 
@@ -186,7 +172,7 @@ const Navbar = ({ onSearchClick }: NavbarProps) => {
             <FontAwesomeIcon icon={faSearch} />
           </button>
 
-          <ColorPicker currentTheme={theme} onThemeToggle={toggleTheme} />
+          <ColorPicker />
 
           <button
             className="nav-toggle"

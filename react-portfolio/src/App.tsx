@@ -1,6 +1,7 @@
 import { lazy, Suspense, useState, useEffect, useRef } from 'react';
 import type { LazyExoticComponent, ComponentType } from 'react';
 import { Toaster } from 'sonner';
+import { ThemeProvider } from './context/ThemeContext';
 import Navbar from './components/Navbar/Navbar';
 import Hero from './components/Hero/Hero';
 import ReadingProgress from './components/ReadingProgress/ReadingProgress';
@@ -142,65 +143,69 @@ function App() {
 
   if (show404) {
     return (
+      <ThemeProvider>
+        <ErrorBoundary>
+          <Suspense fallback={<div style={{ minHeight: '60vh' }} />}>
+            <NotFound />
+          </Suspense>
+          <GlobalSearch isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />
+          <CookieConsent />
+          <OfflineIndicator />
+          <Toaster
+            position="bottom-left"
+            closeButton
+            expand={false}
+            toastOptions={{
+              className: 'custom-toast',
+            }}
+          />
+        </ErrorBoundary>
+      </ThemeProvider>
+    );
+  }
+
+  return (
+    <ThemeProvider>
       <ErrorBoundary>
-        <Suspense fallback={<div style={{ minHeight: '60vh' }} />}>
-          <NotFound />
-        </Suspense>
+        <a href="#main-content" className="skip-to-content">Skip to main content</a>
+        <PullToRefresh />
+        <ErrorBoundary>
+          <Navbar onSearchClick={() => setIsSearchOpen(true)} />
+        </ErrorBoundary>
         <GlobalSearch isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />
+        <ReadingProgress />
+        <main id="main-content" role="main" aria-label="Main content">
+          <ErrorBoundary>
+            <Hero />
+          </ErrorBoundary>
+          {lazySections.map(({ key, Component, delay }) => (
+            <ErrorBoundary key={key}>
+              <div className="section-divider" aria-hidden="true"><span /></div>
+              <AnimatedSection delay={delay ?? DEFAULT_SECTION_DELAY}>
+                <Suspense fallback={<SectionLoader />}>
+                  <Component />
+                </Suspense>
+              </AnimatedSection>
+            </ErrorBoundary>
+          ))}
+        </main>
+        <ErrorBoundary>
+          <Suspense fallback={null}>
+            <Footer />
+          </Suspense>
+        </ErrorBoundary>
+        <ErrorBoundary>
+          <QuickActions />
+        </ErrorBoundary>
         <CookieConsent />
         <OfflineIndicator />
         <Toaster
           position="bottom-left"
           closeButton
           expand={false}
-          toastOptions={{
-            className: 'custom-toast',
-          }}
         />
       </ErrorBoundary>
-    );
-  }
-
-  return (
-    <ErrorBoundary>
-      <a href="#main-content" className="skip-to-content">Skip to main content</a>
-      <PullToRefresh />
-      <ErrorBoundary>
-        <Navbar onSearchClick={() => setIsSearchOpen(true)} />
-      </ErrorBoundary>
-      <GlobalSearch isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />
-      <ReadingProgress />
-      <main id="main-content" role="main" aria-label="Main content">
-        <ErrorBoundary>
-          <Hero />
-        </ErrorBoundary>
-        {lazySections.map(({ key, Component, delay }) => (
-          <ErrorBoundary key={key}>
-            <div className="section-divider" aria-hidden="true"><span /></div>
-            <AnimatedSection delay={delay ?? DEFAULT_SECTION_DELAY}>
-              <Suspense fallback={<SectionLoader />}>
-                <Component />
-              </Suspense>
-            </AnimatedSection>
-          </ErrorBoundary>
-        ))}
-      </main>
-      <ErrorBoundary>
-        <Suspense fallback={null}>
-          <Footer />
-        </Suspense>
-      </ErrorBoundary>
-      <ErrorBoundary>
-        <QuickActions />
-      </ErrorBoundary>
-      <CookieConsent />
-      <OfflineIndicator />
-      <Toaster
-        position="bottom-left"
-        closeButton
-        expand={false}
-      />
-    </ErrorBoundary>
+    </ThemeProvider>
   );
 }
 

@@ -1,17 +1,13 @@
 import { useState, useEffect, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheck, faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
+import { faCheck, faMoon, faSun, faPalette } from '@fortawesome/free-solid-svg-icons';
+import { useTheme } from '../../context/ThemeContext';
 import './ColorPicker.css';
 
 interface ColorPalette {
   name: string;
   light: { accent: string; accentHover: string; focus: string };
   dark: { accent: string; accentHover: string; focus: string };
-}
-
-interface ColorPickerProps {
-  currentTheme: 'light' | 'dark';
-  onThemeToggle: () => void;
 }
 
 const colorPalettes: ColorPalette[] = [
@@ -57,11 +53,11 @@ const colorPalettes: ColorPalette[] = [
   }
 ];
 
-const ColorPicker = ({ currentTheme, onThemeToggle }: ColorPickerProps) => {
+const ColorPicker = () => {
+  const { theme, toggleTheme } = useTheme();
   const [isOpen, setIsOpen] = useState(false);
   const [selectedColor, setSelectedColor] = useState<string>('Blue');
   const modalRef = useRef<HTMLDivElement>(null);
-  const clickTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const hexToRgb = (hex: string) => {
     const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
@@ -78,7 +74,7 @@ const ColorPicker = ({ currentTheme, onThemeToggle }: ColorPickerProps) => {
     if (!palette) return;
 
     const root = document.documentElement;
-    const colors = currentTheme === 'light' ? palette.light : palette.dark;
+    const colors = theme === 'light' ? palette.light : palette.dark;
 
     root.style.setProperty('--accent-color', colors.accent);
     root.style.setProperty('--accent-hover', colors.accentHover);
@@ -98,7 +94,7 @@ const ColorPicker = ({ currentTheme, onThemeToggle }: ColorPickerProps) => {
 
   useEffect(() => {
     applyColorPalette(selectedColor);
-  }, [currentTheme, selectedColor]);
+  }, [theme, selectedColor]);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -115,10 +111,6 @@ const ColorPicker = ({ currentTheme, onThemeToggle }: ColorPickerProps) => {
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
       document.body.style.overflow = '';
-      if (clickTimeout.current) {
-        clearTimeout(clickTimeout.current);
-        clickTimeout.current = null;
-      }
     };
   }, [isOpen]);
 
@@ -136,19 +128,6 @@ const ColorPicker = ({ currentTheme, onThemeToggle }: ColorPickerProps) => {
     }
   };
 
-  const handleButtonClick = () => {
-    if (clickTimeout.current) {
-      clearTimeout(clickTimeout.current);
-      clickTimeout.current = null;
-      setIsOpen(true);
-    } else {
-      clickTimeout.current = setTimeout(() => {
-        onThemeToggle();
-        clickTimeout.current = null;
-      }, 250);
-    }
-  };
-
   const themeOptions = [
     { theme: 'light', icon: faSun, label: 'Light' },
     { theme: 'dark', icon: faMoon, label: 'Dark' }
@@ -158,29 +137,37 @@ const ColorPicker = ({ currentTheme, onThemeToggle }: ColorPickerProps) => {
     <>
       <button
         className="color-picker-toggle"
-        onClick={handleButtonClick}
-        aria-label="Toggle theme (double-click for settings)"
-        data-tooltip={currentTheme === 'light' ? 'Dark mode' : 'Light mode'}
+        onClick={toggleTheme}
+        aria-label={theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode'}
+        data-tooltip={theme === 'light' ? 'Dark mode' : 'Light mode'}
       >
-        <FontAwesomeIcon icon={currentTheme === 'light' ? faMoon : faSun} />
+        <FontAwesomeIcon icon={theme === 'light' ? faMoon : faSun} />
+      </button>
+
+      <button
+        className="color-picker-toggle"
+        onClick={() => setIsOpen(true)}
+        aria-label="Open appearance settings"
+        data-tooltip="Appearance"
+      >
+        <FontAwesomeIcon icon={faPalette} />
       </button>
 
       {isOpen && (
         <div className="color-picker-overlay" role="dialog" aria-modal="true" aria-labelledby="color-picker-title">
           <div className="color-picker-modal" ref={modalRef}>
             <h2 id="color-picker-title" className="color-picker-title">Appearance Settings</h2>
-            <p className="settings-hint">Tip: Single-click the palette icon to quickly toggle theme</p>
 
             <div className="theme-section">
               <h3 className="section-subtitle">Theme</h3>
               <div className="theme-toggle-buttons">
-                {themeOptions.map(({ theme, icon, label }) => (
+                {themeOptions.map(({ theme: t, icon, label }) => (
                   <button
-                    key={theme}
-                    className={`theme-option ${currentTheme === theme ? 'selected' : ''}`}
-                    onClick={onThemeToggle}
+                    key={t}
+                    className={`theme-option ${theme === t ? 'selected' : ''}`}
+                    onClick={toggleTheme}
                     aria-label={`${label} theme`}
-                    aria-pressed={currentTheme === theme}
+                    aria-pressed={theme === t}
                   >
                     <FontAwesomeIcon icon={icon} />
                     <span>{label}</span>
@@ -204,7 +191,7 @@ const ColorPicker = ({ currentTheme, onThemeToggle }: ColorPickerProps) => {
                     <div className="color-preview-container">
                       <div
                         className="color-preview"
-                        style={{ backgroundColor: currentTheme === 'light' ? palette.light.accent : palette.dark.accent }}
+                        style={{ backgroundColor: theme === 'light' ? palette.light.accent : palette.dark.accent }}
                       />
                       {selectedColor === palette.name && (
                         <div className="color-check">
