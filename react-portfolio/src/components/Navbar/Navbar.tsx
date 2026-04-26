@@ -2,7 +2,6 @@ import { useState, useEffect, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { useFocusTrap } from '../../hooks/useFocusTrap';
-import { useTheme } from '../../context/ThemeContext';
 import ColorPicker from '../ColorPicker/ColorPicker';
 
 interface NavbarProps {
@@ -28,8 +27,6 @@ const Navbar = ({ onSearchClick }: NavbarProps) => {
   const dropdownItemRefs = useRef<(HTMLAnchorElement | null)[]>([]);
 
   useFocusTrap(dropdownMenuRef, isDropdownOpen);
-
-  const { theme, toggleTheme } = useTheme();
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
