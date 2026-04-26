@@ -7,7 +7,7 @@ interface AnimatedSectionProps {
 }
 
 const AnimatedSection = ({ children, delay = 0 }: AnimatedSectionProps) => {
-  const { ref, isVisible } = useScrollAnimation();
+  const { ref, isVisible } = useScrollAnimation<HTMLDivElement>();
 
   return (
     <div
