@@ -27,14 +27,16 @@ const QuickActions = () => {
 
   return (
     <div className="quick-actions">
-      <div
+      <button
         className="quick-action-toggle"
         id="quickActionToggle"
         onClick={() => setIsOpen(!isOpen)}
+        aria-expanded={isOpen}
+        aria-label={isOpen ? 'Close quick actions' : 'Open quick actions'}
         data-tooltip={!isOpen ? 'Quick Actions' : undefined}
       >
         <FontAwesomeIcon icon={isOpen ? faTimes : faPlus} aria-hidden="true" />
-      </div>
+      </button>
       <div className={`quick-action-menu ${isOpen ? 'active' : ''}`} id="quickActionMenu">
         {actions.map((action, idx) => (
           <a

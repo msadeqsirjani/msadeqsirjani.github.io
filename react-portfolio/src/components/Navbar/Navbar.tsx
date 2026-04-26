@@ -125,7 +125,7 @@ const Navbar = ({ onSearchClick }: NavbarProps) => {
     <nav className={`navbar${isScrolled ? ' navbar--scrolled' : ''}`} role="navigation" aria-label="Main navigation">
       <div className="nav-container">
         <div className="nav-logo">
-          <a href="#home" className="logo-text" onClick={(e) => scrollToSection(e, 'home')}>
+          <a href="#home" className="logo-text" onClick={(e) => scrollToSection(e, 'home')} aria-label="Mohammad Sadegh Sirjani — Home">
             SS
           </a>
         </div>

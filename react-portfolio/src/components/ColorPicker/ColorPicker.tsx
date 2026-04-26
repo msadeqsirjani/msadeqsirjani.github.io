@@ -101,14 +101,6 @@ const ColorPicker = ({ currentTheme, onThemeToggle }: ColorPickerProps) => {
   }, [currentTheme, selectedColor]);
 
   useEffect(() => {
-    return () => {
-      if (clickTimeout.current) {
-        clearTimeout(clickTimeout.current);
-      }
-    };
-  }, []);
-
-  useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (modalRef.current && !modalRef.current.contains(event.target as Node)) {
         setIsOpen(false);
@@ -123,6 +115,10 @@ const ColorPicker = ({ currentTheme, onThemeToggle }: ColorPickerProps) => {
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
       document.body.style.overflow = '';
+      if (clickTimeout.current) {
+        clearTimeout(clickTimeout.current);
+        clickTimeout.current = null;
+      }
     };
   }, [isOpen]);
 

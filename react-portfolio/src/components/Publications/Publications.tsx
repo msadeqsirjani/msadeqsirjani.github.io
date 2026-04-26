@@ -67,7 +67,7 @@ const Publications = () => {
             ) : (
               filteredPublications.map((pub, index) => (
                 <div
-                  key={index}
+                  key={`${pub.year}-${pub.title.slice(0, 32)}`}
                   className={`publication-item ${!showAll && index >= initialLimit ? 'hidden-for-show-more' : ''}`}
                   role="listitem"
                 >
