@@ -1,9 +1,5 @@
 [
   {
-    "date": "Mar. 2026",
-    "description": "Awarded the DAC Young Fellows fellowship."
-  },
-  {
     "date": "Apr. 2026",
     "description": "Our paper for the <a href=\"https://gem-workshop.com/\" target=\"_blank\" rel=\"noopener noreferrer\">GEM Workshop at ACL 2026</a> was accepted."
   },
@@ -18,6 +14,10 @@
   {
     "date": "Apr. 2026",
     "description": "Invited to serve as a reviewer for <a href=\"https://www.glsvlsi.org/\" target=\"_blank\" rel=\"noopener noreferrer\">GLSVLSI 2026</a>."
+  },
+  {
+    "date": "Mar. 2026",
+    "description": "Awarded the DAC Young Fellows fellowship."
   },
   {
     "date": "Mar. 2026",
