@@ -587,6 +587,12 @@ ul, ol {
     padding: 4rem 0;
 }
 
+/* Reduce top spacing for News and Awards sections only */
+#news.section,
+#awards.section {
+    padding-top: 2.5rem;
+}
+
 .section-title {
     font-size: 1.25rem;
     font-weight: 700;
@@ -1527,6 +1533,8 @@ kbd {
 .timeline-item.news-item {
     grid-template-columns: 140px 1fr;
     gap: 1rem;
+    margin-bottom: 1.2rem;
+    padding-bottom: 0.6rem;
 }
 
 .timeline-item.awards-item .timeline-dates.awards-dates,
