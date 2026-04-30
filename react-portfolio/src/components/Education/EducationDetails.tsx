@@ -19,6 +19,10 @@ const EducationDetails = ({ item }: EducationDetailsProps) => (
       </span>
       {item.gpa ? <span className="education-gpa">{item.gpa}</span> : null}
     </div>
+    <div className="education-date-mobile">
+      <span className="duration">{item.duration}</span>
+      {item.current ? <span className="education-current-badge">Current</span> : null}
+    </div>
   </div>
 );
 

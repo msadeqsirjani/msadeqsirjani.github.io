@@ -736,6 +736,10 @@ ul, ol {
     min-width: 0;
 }
 
+.education-date-mobile {
+    display: none;
+}
+
 .education-header {
     display: flex;
     align-items: flex-start;
@@ -888,6 +892,10 @@ ul, ol {
 .research-main__body {
     flex: 1;
     min-width: 0;
+}
+
+.research-date-mobile {
+    display: none;
 }
 
 .research-lab-logo {
@@ -2026,6 +2034,51 @@ kbd {
 
 /* Mobile and small tablets */
 @media (max-width: 768px) {
+    /* Education mobile: left logo + right details/date */
+    .timeline-item.education-item {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+    }
+
+    .timeline-item.education-item .education-content {
+        order: 1;
+        text-align: left;
+    }
+
+    .timeline-item.education-item .education-main {
+        justify-content: flex-start;
+        align-items: flex-start;
+    }
+
+    .timeline-item.education-item .education-main__body {
+        text-align: left;
+    }
+
+    .timeline-item.education-item .education-university-row {
+        justify-content: flex-start;
+    }
+
+    .timeline-item.education-item .education-dates {
+        display: none;
+    }
+
+    .timeline-item.education-item .education-date-mobile {
+        display: flex;
+        align-items: center;
+        gap: 0.65rem;
+        flex-wrap: wrap;
+        margin-top: 0.45rem;
+    }
+
+    .timeline-item.education-item .education-date-mobile .duration {
+        color: var(--text-light);
+        font-size: 0.95rem;
+    }
+
+    .timeline-item.education-item .education-date-mobile .education-current-badge {
+        margin-top: 0;
+    }
+
     /* Mobile logo sizing - match nav controls height */
     .logo-text {
         font-size: 1.8rem;
@@ -2386,9 +2439,9 @@ kbd {
     }
 
     .education-logo.education-logo--circle {
-        width: 44px;
-        height: 44px;
-        padding: 0.3rem;
+        width: 64px;
+        height: 64px;
+        padding: 0.45rem;
     }
 
     .education-header {
@@ -2430,6 +2483,57 @@ kbd {
 
     .research-content {
         order: 1;
+    }
+
+    .timeline-item.research-item .research-dates {
+        display: none;
+    }
+
+    .timeline-item.research-item .research-date-mobile {
+        display: flex;
+        align-items: center;
+        gap: 0.65rem;
+        flex-wrap: wrap;
+        margin-top: 0.45rem;
+    }
+
+    .timeline-item.research-item .research-date-mobile .timeline {
+        color: var(--text-light);
+        font-size: 0.95rem;
+        line-height: 1.4;
+    }
+
+    .timeline-item.research-item .research-date-mobile .research-current-badge {
+        margin-top: 0;
+    }
+
+    /* Research mobile readability: stable two-column row and natural wrapping */
+    .timeline-item.research-item .research-main {
+        display: grid;
+        grid-template-columns: 64px minmax(0, 1fr);
+        column-gap: 0.85rem;
+        align-items: start;
+    }
+
+    .timeline-item.research-item .research-main__logo {
+        width: 64px;
+    }
+
+    .timeline-item.research-item .research-main__body {
+        min-width: 0;
+    }
+
+    .timeline-item.research-item .research-description {
+        text-wrap: wrap;
+        hyphens: none;
+        overflow-wrap: normal;
+        word-break: normal;
+        line-height: 1.55;
+    }
+
+    .timeline-item.research-item .research-description li {
+        padding-left: 1rem;
+        margin-bottom: 0.45rem;
     }
 
 
