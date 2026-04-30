@@ -4802,6 +4802,24 @@ html {
     gap: 0.75rem;
   }
 
+  .show-more-container {
+    margin-top: 1.25rem;
+  }
+
+  #showMoreBtn {
+    min-height: 40px;
+    padding: 0.55rem 1rem;
+    font-size: 0.9rem;
+    gap: 0.5rem;
+    border-width: 1.5px;
+    line-height: 1.2;
+  }
+
+  #showMoreBtn:hover {
+    transform: none;
+    box-shadow: none;
+  }
+
   .search-box {
     width: 100%;
   }
