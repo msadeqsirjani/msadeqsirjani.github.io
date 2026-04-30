@@ -77,6 +77,7 @@ const ColorPicker = () => {
     const colors = theme === 'light' ? palette.light : palette.dark;
 
     root.style.setProperty('--accent-color', colors.accent);
+    root.style.setProperty('--accent-color-light', palette.light.accent);
     root.style.setProperty('--accent-hover', colors.accentHover);
     root.style.setProperty('--focus-color', colors.focus);
 

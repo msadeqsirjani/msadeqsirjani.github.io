@@ -54,6 +54,7 @@ body, h1, h2, h3, h4, h5, h6 {
     --gray-light: #f7fafc;
     --border-color: #d1d5db;      /* More visible borders */
     --accent-color: #1e40af;      /* Contrast 7.7:1 with white (improved from #1d4ed8) */
+    --accent-color-light: #1e40af; /* Always light-mode accent, updated by ColorPicker */
     --accent-hover: #1e3a8a;      /* Darker accent for hover */
     --accent-rgb: 30, 64, 175;    /* RGB values for accent color with alpha */
     --error-color: #dc2626;       /* Contrast 5.9:1 with white */
@@ -910,19 +911,20 @@ ul, ol {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: var(--accent-color) !important;
-    color: #fff;
+    background: #ffffff !important;
+    color: var(--accent-color-light);
     font-family: 'Cinzel', serif;
-    font-size: 1.15rem;
+    font-size: 1.5rem;
     font-weight: 600;
     letter-spacing: 0.08em;
-    border: none !important;
+    border: 1px solid var(--border-color) !important;
     padding: 0 !important;
 }
 
 [data-theme="dark"] .research-lab-logo--placeholder {
-    background: var(--accent-color) !important;
-    border: none !important;
+    background: #ffffff !important;
+    color: var(--accent-color-light);
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
 }
 
 .research-position {
