@@ -1652,6 +1652,12 @@ kbd {
     padding-left: 0;
 }
 
+/* Desktop: justify News and Awards descriptions */
+.timeline-item.news-item .timeline-description,
+.timeline-item.awards-item .timeline-description {
+    text-align: justify;
+}
+
 /* Teaching Timeline Layout */
 .timeline-list.teaching-list {
     max-width: none;
@@ -2755,7 +2761,8 @@ kbd {
     /* News mobile: description on top, date below */
     .timeline-item.news-item {
         grid-template-columns: 1fr;
-        gap: 0.45rem;
+        gap: 0.2rem;
+        padding: 1rem 0;
     }
 
     .timeline-item.news-item .timeline-content {
@@ -2764,13 +2771,13 @@ kbd {
     }
 
     .timeline-item.news-item .timeline-description {
-        text-align: justify;
+        text-align: left;
     }
 
     .timeline-item.news-item .timeline-dates.news-dates {
         order: 2;
-        text-align: center;
-        margin-top: 0.2rem;
+        text-align: left;
+        margin-top: 0.15rem;
     }
 
     .timeline-item.news-item .timeline-date {
@@ -2781,7 +2788,8 @@ kbd {
     /* Awards mobile: description on top, date below */
     .timeline-item.awards-item {
         grid-template-columns: 1fr;
-        gap: 0.45rem;
+        gap: 0.2rem;
+        padding: 1rem 0;
     }
 
     .timeline-item.awards-item .timeline-content {
@@ -2790,13 +2798,13 @@ kbd {
     }
 
     .timeline-item.awards-item .timeline-description {
-        text-align: justify;
+        text-align: left;
     }
 
     .timeline-item.awards-item .timeline-dates.awards-dates {
         order: 2;
-        text-align: center;
-        margin-top: 0.2rem;
+        text-align: left;
+        margin-top: 0.15rem;
     }
 
     .timeline-item.awards-item .timeline-date {
