@@ -27,13 +27,14 @@ const Teaching = () => {
           <span className="teaching-course">{item.course}</span>
           <span className="teaching-meta">
             {item.instructorUrl
-              ? <a href={item.instructorUrl} className="teaching-instructor-name" target="_blank" rel="noopener">{item.instructor.replace(/^Instructor:\s*/, '')}</a>
+              ? <a href={item.instructorUrl} className="teaching-instructor-name" target="_blank" rel="noopener noreferrer">{item.instructor.replace(/^Instructor:\s*/, '')}</a>
               : <span className="teaching-instructor-name">{item.instructor.replace(/^Instructor:\s*/, '')}</span>}
-            <span className="teaching-sep"> · </span>
+          </span>
+          <span className="teaching-meta teaching-university-name">
             {item.university === 'University of Texas at San Antonio'
-              ? <a href="https://www.utsa.edu/" target="_blank" rel="noopener">{item.university}</a>
+              ? <a href="https://www.utsa.edu/" target="_blank" rel="noopener noreferrer">{item.university}</a>
               : item.university === 'Ferdowsi University of Mashhad'
-              ? <a href="https://en.um.ac.ir/" target="_blank" rel="noopener">{item.university}</a>
+              ? <a href="https://en.um.ac.ir/" target="_blank" rel="noopener noreferrer">{item.university}</a>
               : item.university}
           </span>
         </>

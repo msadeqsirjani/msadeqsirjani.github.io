@@ -2598,10 +2598,10 @@ kbd {
     }
 
 
-    /* Mobile teaching section - clean design */
-    .teaching-item {
-        grid-template-columns: 1fr;
-        gap: 0.5rem;
+    /* Mobile teaching section: left text group + right date group */
+    .timeline-item.teaching-item {
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: 0.75rem;
         margin-bottom: 2rem;
         background: transparent;
         border: none;
@@ -2609,34 +2609,56 @@ kbd {
         border-radius: 0;
         padding: 1.5rem 0;
         box-shadow: none;
+        align-items: start;
     }
 
-    .teaching-item:last-child {
+    .timeline-item.teaching-item:last-child {
         margin-bottom: 0;
     }
 
-    .teaching-dates {
-        text-align: left;
+    .timeline-item.teaching-item .teaching-dates {
+        text-align: right;
         padding-top: 0;
-        order: 2;
-        margin-top: 0.8rem;
+        order: 0;
+        margin-top: 0;
         margin-bottom: 0;
+        align-self: start;
     }
 
-    .teaching-dates .teaching-date {
+    .timeline-item.teaching-item .teaching-dates .teaching-date {
         display: inline-block;
-        font-size: 0.85rem;
+        font-size: 0.9rem;
         font-weight: 500;
         padding: 0;
         background: transparent;
         color: var(--text-light);
         border: none;
         border-radius: 0;
-        width: fit-content;
+        width: auto;
+        white-space: nowrap;
     }
 
-    .teaching-content {
-        order: 1;
+    .timeline-item.teaching-item .teaching-content {
+        order: 0;
+        min-width: 0;
+    }
+
+    .timeline-item.teaching-item .teaching-course,
+    .timeline-item.teaching-item .teaching-meta,
+    .timeline-item.teaching-item .teaching-university-name {
+        display: block;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        line-height: 1.35;
+    }
+
+    .timeline-item.teaching-item .teaching-course {
+        margin-bottom: 0.25rem;
+    }
+
+    .timeline-item.teaching-item .teaching-meta {
+        margin-bottom: 0.2rem;
     }
 
     /* Mobile timeline section - clean design */
@@ -2678,6 +2700,56 @@ kbd {
 
     .timeline-content {
         order: 1;
+    }
+
+    /* Re-apply teaching mobile grouping after generic timeline mobile rules */
+    .timeline-item.teaching-item {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 0.45rem;
+        align-items: start;
+        position: static;
+        margin: 0;
+        padding: 0.85rem 0;
+        border-top: 1px solid var(--border-color);
+        border-bottom: none;
+    }
+
+    .timeline-item.teaching-item + .timeline-item.teaching-item {
+        margin-top: 0;
+    }
+
+    .timeline-list.teaching-list {
+        border-top: none;
+    }
+
+    .timeline-item.teaching-item .teaching-content {
+        order: 1;
+        min-width: 0;
+        padding-right: 0;
+        text-align: center;
+    }
+
+    .timeline-item.teaching-item .teaching-dates {
+        order: 2;
+        position: static;
+        transform: none;
+        right: auto;
+        text-align: center;
+        margin-top: 0;
+        align-self: start;
+    }
+
+    .timeline-item.teaching-item .teaching-dates .teaching-date {
+        display: inline-block;
+        white-space: nowrap;
+        width: auto;
+    }
+
+    .timeline-item.teaching-item .teaching-course,
+    .timeline-item.teaching-item .teaching-meta,
+    .timeline-item.teaching-item .teaching-university-name {
+        text-align: center;
     }
 
     .degree-info h3,
