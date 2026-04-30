@@ -2772,12 +2772,12 @@ kbd {
     }
 
     .timeline-item.news-item .timeline-description {
-        text-align: left;
+        text-align: center;
     }
 
     .timeline-item.news-item .timeline-dates.news-dates {
         order: 2;
-        text-align: left;
+        text-align: center;
         margin-top: 0.1rem;
     }
 
@@ -2800,12 +2800,12 @@ kbd {
     }
 
     .timeline-item.awards-item .timeline-description {
-        text-align: left;
+        text-align: center;
     }
 
     .timeline-item.awards-item .timeline-dates.awards-dates {
         order: 2;
-        text-align: left;
+        text-align: center;
         margin-top: 0.1rem;
     }
 
