@@ -690,14 +690,14 @@ ul, ol {
 }
 
 .education-dates .duration {
-    color: #666;
-    font-weight: 400;
-    font-size: 0.95rem;
+    color: var(--text-light);
+    font-weight: 300;
+    font-size: 0.9rem;
     line-height: 1.4;
 }
 
 [data-theme="dark"] .education-dates .duration {
-    color: #aaa;
+    color: var(--text-light);
 }
 
 .education-current-badge,
@@ -862,14 +862,14 @@ ul, ol {
 }
 
 .research-dates .timeline {
-    color: #666;
-    font-weight: 400;
-    font-size: 0.95rem;
+    color: var(--text-light);
+    font-weight: 300;
+    font-size: 0.9rem;
     line-height: 1.4;
 }
 
 [data-theme="dark"] .research-dates .timeline {
-    color: #aaa;
+    color: var(--text-light);
 }
 
 .research-content {
@@ -1682,14 +1682,14 @@ kbd {
 }
 
 .teaching-dates .teaching-date {
-    color: #888;
-    font-weight: 400;
+    color: var(--text-light);
+    font-weight: 300;
     font-size: 0.9rem;
     line-height: 1.4;
 }
 
 [data-theme="dark"] .teaching-dates .teaching-date {
-    color: #aaa;
+    color: var(--text-light);
 }
 
 .teaching-item .teaching-content {
@@ -1757,9 +1757,9 @@ kbd {
 }
 
 .timeline-date {
-    color: var(--text-color);
-    font-weight: 400;
-    font-size: 0.95rem;
+    color: var(--text-light);
+    font-weight: 300;
+    font-size: 0.9rem;
     line-height: 1.4;
     display: block;
     text-align: center;
