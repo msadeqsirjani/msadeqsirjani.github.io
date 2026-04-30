@@ -2804,6 +2804,16 @@ kbd {
         width: auto;
     }
 
+    /* Unified mobile date size across sections */
+    .timeline-item.education-item .education-date-mobile .duration,
+    .timeline-item.research-item .research-date-mobile .timeline,
+    .timeline-item.teaching-item .teaching-dates .teaching-date,
+    .timeline-item.news-item .timeline-date,
+    .timeline-item.awards-item .timeline-date {
+        font-size: 0.95rem;
+        line-height: 1.4;
+    }
+
     .degree-info h3,
     .lab-info h3,
     .course-info h3 {
