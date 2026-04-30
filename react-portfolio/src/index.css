@@ -2778,6 +2778,32 @@ kbd {
         width: auto;
     }
 
+    /* Awards mobile: description on top, date below */
+    .timeline-item.awards-item {
+        grid-template-columns: 1fr;
+        gap: 0.45rem;
+    }
+
+    .timeline-item.awards-item .timeline-content {
+        order: 1;
+        text-align: center;
+    }
+
+    .timeline-item.awards-item .timeline-description {
+        text-align: justify;
+    }
+
+    .timeline-item.awards-item .timeline-dates.awards-dates {
+        order: 2;
+        text-align: center;
+        margin-top: 0.2rem;
+    }
+
+    .timeline-item.awards-item .timeline-date {
+        display: inline-block;
+        width: auto;
+    }
+
     .degree-info h3,
     .lab-info h3,
     .course-info h3 {
