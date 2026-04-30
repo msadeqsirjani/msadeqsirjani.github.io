@@ -610,7 +610,7 @@ ul, ol {
     font-size: 1.1rem;
     color: var(--text-color);
     margin-bottom: 1.5rem;
-    text-align: left;
+    text-align: justify;
 
     text-wrap: pretty;
 
