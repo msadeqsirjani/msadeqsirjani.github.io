@@ -2810,7 +2810,9 @@ kbd {
     .timeline-item.teaching-item .teaching-dates .teaching-date,
     .timeline-item.news-item .timeline-date,
     .timeline-item.awards-item .timeline-date {
-        font-size: 0.95rem;
+        color: var(--text-light);
+        font-weight: 300;
+        font-size: 0.9rem;
         line-height: 1.4;
     }
 
