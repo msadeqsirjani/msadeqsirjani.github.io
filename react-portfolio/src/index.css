@@ -777,10 +777,10 @@ ul, ol {
 }
 
 .education-logo--circle {
-    width: 48px;
-    height: 48px;
+    width: 64px;
+    height: 64px;
     border-radius: 50%;
-    padding: 0.35rem;
+    padding: 0.45rem;
     object-fit: contain;
     object-position: center;
     display: block;
@@ -2050,8 +2050,17 @@ kbd {
     }
 
     .timeline-item.education-item .education-main {
-        justify-content: flex-start;
+        display: grid;
+        grid-template-columns: 64px minmax(0, 1fr);
+        column-gap: 0.85rem;
         align-items: flex-start;
+        width: fit-content;
+        max-width: 100%;
+        margin: 0 auto;
+    }
+
+    .timeline-item.education-item .education-main__logo {
+        width: 64px;
     }
 
     .timeline-item.education-item .education-main__body {
@@ -2069,6 +2078,7 @@ kbd {
     .timeline-item.education-item .education-date-mobile {
         display: flex;
         align-items: center;
+        justify-content: flex-start;
         gap: 0.65rem;
         flex-wrap: wrap;
         margin-top: 0.45rem;
@@ -2453,7 +2463,7 @@ kbd {
         align-items: flex-start;
     }
 
-    .research-item {
+    .timeline-item.research-item {
         grid-template-columns: 1fr;
         gap: 0.5rem;
         margin-bottom: 2rem;
@@ -2485,7 +2495,7 @@ kbd {
         width: fit-content;
     }
 
-    .research-content {
+    .timeline-item.research-item .research-content {
         order: 1;
     }
 
@@ -2496,6 +2506,7 @@ kbd {
     .timeline-item.research-item .research-date-mobile {
         display: flex;
         align-items: center;
+        justify-content: flex-start;
         gap: 0.65rem;
         flex-wrap: wrap;
         margin-top: 0.45rem;
@@ -2517,6 +2528,9 @@ kbd {
         grid-template-columns: 64px minmax(0, 1fr);
         column-gap: 0.85rem;
         align-items: start;
+        width: fit-content;
+        max-width: 100%;
+        margin: 0 auto;
     }
 
     .timeline-item.research-item .research-main__logo {
@@ -2525,19 +2539,25 @@ kbd {
 
     .timeline-item.research-item .research-main__body {
         min-width: 0;
+        text-align: left;
     }
 
-    .timeline-item.research-item .research-description {
-        text-wrap: wrap;
-        hyphens: none;
-        overflow-wrap: normal;
-        word-break: normal;
-        line-height: 1.55;
+    .timeline-item.research-item .research-title-row {
+        display: block;
+        margin-bottom: 0.2rem;
+        text-align: left;
     }
 
-    .timeline-item.research-item .research-description li {
-        padding-left: 1rem;
+    .timeline-item.research-item .research-university {
+        display: block;
         margin-bottom: 0.45rem;
+        text-align: left;
+    }
+
+    .timeline-item.research-item .research-sep,
+    .timeline-item.research-item .research-position,
+    .timeline-item.research-item .research-description {
+        display: none;
     }
 
 
