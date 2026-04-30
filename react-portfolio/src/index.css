@@ -2762,7 +2762,8 @@ kbd {
     .timeline-item.news-item {
         grid-template-columns: 1fr;
         gap: 0.2rem;
-        padding: 1rem 0;
+        padding: 0.85rem 0;
+        margin-bottom: 0;
     }
 
     .timeline-item.news-item .timeline-content {
@@ -2777,7 +2778,7 @@ kbd {
     .timeline-item.news-item .timeline-dates.news-dates {
         order: 2;
         text-align: left;
-        margin-top: 0.15rem;
+        margin-top: 0.1rem;
     }
 
     .timeline-item.news-item .timeline-date {
@@ -2789,7 +2790,8 @@ kbd {
     .timeline-item.awards-item {
         grid-template-columns: 1fr;
         gap: 0.2rem;
-        padding: 1rem 0;
+        padding: 0.85rem 0;
+        margin-bottom: 0;
     }
 
     .timeline-item.awards-item .timeline-content {
@@ -2804,7 +2806,7 @@ kbd {
     .timeline-item.awards-item .timeline-dates.awards-dates {
         order: 2;
         text-align: left;
-        margin-top: 0.15rem;
+        margin-top: 0.1rem;
     }
 
     .timeline-item.awards-item .timeline-date {
