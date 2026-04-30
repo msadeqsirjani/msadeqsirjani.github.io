@@ -6,6 +6,7 @@
     "duration": "Jan. 2025 - Present",
     "gpa": "GPA: 3.95 / 4.0",
     "universityUrl": "https://www.utsa.edu/",
+    "logo": "/assets/logos/ut-san-antonio.svg",
     "current": true
   },
   {
@@ -14,6 +15,7 @@
     "universityName": "Ferdowsi University of Mashhad",
     "duration": "Sep. 2018 - Feb. 2024",
     "gpa": "GPA: 3.02 / 4.0 (16.52 / 20)",
-    "universityUrl": "https://en.um.ac.ir/"
+    "universityUrl": "https://en.um.ac.ir/",
+    "logo": "/assets/logos/fum.svg"
   }
 ]
