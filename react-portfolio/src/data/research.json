@@ -14,6 +14,7 @@
     "position": "Research Assistant",
     "lab": "Software Quality Lab",
     "labUrl": "https://www.linkedin.com/company/software-quality-lab-sql/",
+    "logo": "/assets/logos/SQL.svg",
     "duration": "Aug. 2022 - Jan. 2024",
     "description": [
       "Analyzed Java application execution traces using XRebel and JRebel for software enhancement.",
@@ -25,6 +26,7 @@
     "position": "Research Assistant",
     "lab": "Web Technology Lab",
     "labUrl": "https://wtlab.um.ac.ir/fa/index.html",
+    "logo": "/assets/logos/WTL.svg",
     "duration": "Dec. 2023 - Aug. 2024",
     "description": [
       "Designed database structure and web-based API for psychological survey data collection.",
