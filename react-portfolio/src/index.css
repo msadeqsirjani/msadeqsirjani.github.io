@@ -2361,13 +2361,35 @@ kbd {
         margin-bottom: 0;
     }
 
+    .publication-header,
+    .publication-header-content,
+    .publication-title,
+    .publication-authors,
+    .publication-venue,
+    .publication-links,
+    .pub-keywords {
+        text-align: center;
+    }
+
+    .publication-badges,
+    .publication-links,
+    .pub-keywords {
+        justify-content: center;
+    }
+
+    .publication-abstract,
+    .publication-abstract p {
+        text-align: justify;
+    }
+
     .publication-title {
         font-size: 1rem;
         font-weight: 600;
         line-height: 1.4;
+        margin-top: 0.65rem;
         margin-bottom: 1rem;
         color: var(--text-color);
-        text-align: left;
+        text-align: center;
 
         text-wrap: pretty;
 
