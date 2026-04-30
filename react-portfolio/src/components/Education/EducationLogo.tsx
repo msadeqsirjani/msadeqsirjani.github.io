@@ -27,7 +27,7 @@ const EducationLogo = ({ item }: EducationLogoProps) => {
           target="_blank"
           rel="noopener noreferrer"
           className="education-logo-link education-logo-link--row"
-          title={uniName}
+          data-tooltip={uniName}
         >
           {img}
         </a>
