@@ -4,6 +4,14 @@ import TimelineSection from '../TimelineSection/TimelineSection';
 import useContentData from '../../hooks/useContentData';
 import useSettings from '../../hooks/useSettings';
 
+const getLabInitials = (lab: string) =>
+  lab
+    .split(' ')
+    .filter(w => w.length > 2)
+    .slice(0, 2)
+    .map(w => w[0].toUpperCase())
+    .join('');
+
 const ResearchExperience = () => {
   const { data: researchItems } = useContentData(fetchResearchExperience, researchExperience, {
     logLabel: 'research experience data',
@@ -30,21 +38,41 @@ const ResearchExperience = () => {
       )}
       renderContent={(item) => (
         <>
-          <div className="research-title-row">
-            {item.labUrl ? (
-              <a href={item.labUrl} className="research-lab" target="_blank" rel="noopener">{item.lab}</a>
-            ) : (
-              <span className="research-lab">{item.lab}</span>
-            )}
-            <span className="research-sep">,&nbsp;</span>
-            <span className="research-position">{item.position}</span>
-          </div>
-          <div className="research-description">
-            <ul>
-              {item.description.map((desc, index) => (
-                <li key={index}>{desc}</li>
-              ))}
-            </ul>
+          <div className="research-main">
+            <div className="research-main__logo">
+              {item.logo ? (
+                <img
+                  src={item.logo}
+                  alt=""
+                  className="research-lab-logo"
+                  width={64}
+                  height={64}
+                  decoding="async"
+                />
+              ) : (
+                <div className="research-lab-logo research-lab-logo--placeholder">
+                  {getLabInitials(item.lab)}
+                </div>
+              )}
+            </div>
+            <div className="research-main__body">
+              <div className="research-title-row">
+                {item.labUrl ? (
+                  <a href={item.labUrl} className="research-lab" target="_blank" rel="noopener">{item.lab}</a>
+                ) : (
+                  <span className="research-lab">{item.lab}</span>
+                )}
+                <span className="research-sep">,&nbsp;</span>
+                <span className="research-position">{item.position}</span>
+              </div>
+              <div className="research-description">
+                <ul>
+                  {item.description.map((desc, index) => (
+                    <li key={index}>{desc}</li>
+                  ))}
+                </ul>
+              </div>
+            </div>
           </div>
         </>
       )}
