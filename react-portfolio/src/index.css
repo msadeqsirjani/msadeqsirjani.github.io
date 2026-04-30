@@ -1423,6 +1423,7 @@ kbd {
 .pub-year-badge {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     padding: 0.15rem 0.55rem;
     border-radius: 4px;
     font-size: 0.72rem;
@@ -1430,6 +1431,9 @@ kbd {
     letter-spacing: 0.06em;
     text-transform: uppercase;
     line-height: 1.5;
+    min-width: 120px;
+    min-height: 36px;
+    box-sizing: border-box;
 }
 
 .status-inline {
@@ -2345,6 +2349,7 @@ kbd {
     .publication-item {
         background: transparent;
         border: none;
+        border-bottom: 1px solid var(--border-color);
         border-radius: 0;
         padding: 1.5rem 0;
         margin-bottom: 0;
@@ -4652,12 +4657,13 @@ html {
 }
 
 @media (max-width: 768px) {
-  .status,
   .status-inline,
-  .citations-badge {
-    min-height: 44px !important;
-    padding: 0.75rem 1rem !important;
-    font-size: 0.8rem !important;
+  .citations-badge,
+  .pub-year-badge {
+    min-width: 92px !important;
+    min-height: 30px !important;
+    padding: 0.35rem 0.6rem !important;
+    font-size: 0.72rem !important;
     letter-spacing: 0.06em;
   }
 
