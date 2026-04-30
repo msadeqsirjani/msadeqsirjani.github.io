@@ -1183,6 +1183,14 @@ kbd {
     color: var(--accent-color);
 }
 
+/* Match anchor and button (Abstract) — UA button styles can skew weight */
+.publication-links a.pub-text-link.doi-link,
+.publication-links button.pub-text-link.doi-link {
+    font-family: inherit;
+    font-size: 0.88rem;
+    font-weight: 600;
+}
+
 .pub-text-link:focus,
 .pub-text-link:focus-visible {
     outline: none;
@@ -1222,7 +1230,7 @@ kbd {
     font-size: 0.88rem;
     color: #666;
     line-height: 1.7;
-    text-align: left;
+    text-align: justify;
 
     text-wrap: pretty;
 
@@ -1408,7 +1416,7 @@ kbd {
     font-size: 0.9rem;
     line-height: 1.6;
     color: var(--text-light);
-    text-align: left;
+    text-align: justify;
 
     text-wrap: pretty;
 
