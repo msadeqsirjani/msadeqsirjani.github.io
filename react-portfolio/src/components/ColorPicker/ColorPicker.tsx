@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import { createPortal } from 'react-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faMoon, faSun, faPalette } from '@fortawesome/free-solid-svg-icons';
 import { useTheme } from '../../context/ThemeContext';
@@ -154,7 +155,7 @@ const ColorPicker = () => {
         <FontAwesomeIcon icon={faPalette} />
       </button>
 
-      {isOpen && (
+      {isOpen && createPortal(
         <div className="color-picker-overlay" role="dialog" aria-modal="true" aria-labelledby="color-picker-title">
           <div className="color-picker-modal" ref={modalRef}>
             <h2 id="color-picker-title" className="color-picker-title">Appearance Settings</h2>
@@ -207,7 +208,7 @@ const ColorPicker = () => {
             </div>
           </div>
         </div>
-      )}
+      , document.body)}
     </>
   );
 };
