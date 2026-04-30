@@ -2362,19 +2362,19 @@ kbd {
     }
 
     .publication-header,
-    .publication-header-content,
-    .publication-title,
-    .publication-authors,
-    .publication-venue,
-    .publication-links,
-    .pub-keywords {
-        text-align: center;
+    .publication-header-content {
+        text-align: left;
     }
 
     .publication-badges,
-    .publication-links,
-    .pub-keywords {
+    .publication-links {
         justify-content: center;
+    }
+
+    .publication-authors,
+    .publication-venue,
+    .pub-keywords {
+        text-align: left;
     }
 
     .publication-abstract,
@@ -2386,10 +2386,10 @@ kbd {
         font-size: 1rem;
         font-weight: 600;
         line-height: 1.4;
-        margin-top: 0.65rem;
-        margin-bottom: 1rem;
+        margin-top: 1.25rem;
+        margin-bottom: 0.7rem;
         color: var(--text-color);
-        text-align: center;
+        text-align: left;
 
         text-wrap: pretty;
 
@@ -2406,6 +2406,16 @@ kbd {
 
     .publication-venue {
         flex: none;
+        margin-bottom: 0.75rem;
+    }
+
+    .publication-links {
+        margin-bottom: 0.6rem;
+    }
+
+    .pub-keywords {
+        justify-content: flex-start;
+        gap: 0.45rem;
     }
 
     .journal,
