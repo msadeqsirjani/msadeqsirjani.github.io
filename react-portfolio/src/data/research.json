@@ -2,6 +2,7 @@
   {
     "position": "Research Assistant",
     "lab": "ASIC Lab",
+    "university": "University of Texas at San Antonio",
     "labUrl": "https://caicc.utsa.edu/computer-science/research/facilities.html",
     "duration": "Jan. 2025 - Present",
     "description": [
@@ -13,6 +14,7 @@
   {
     "position": "Research Assistant",
     "lab": "Software Quality Lab",
+    "university": "Ferdowsi University of Mashhad",
     "labUrl": "https://www.linkedin.com/company/software-quality-lab-sql/",
     "logo": "/assets/logos/SQL.svg",
     "duration": "Aug. 2022 - Jan. 2024",
@@ -25,6 +27,7 @@
   {
     "position": "Research Assistant",
     "lab": "Web Technology Lab",
+    "university": "Ferdowsi University of Mashhad",
     "labUrl": "https://wtlab.um.ac.ir/fa/index.html",
     "logo": "/assets/logos/WTL.svg",
     "duration": "Dec. 2023 - Aug. 2024",

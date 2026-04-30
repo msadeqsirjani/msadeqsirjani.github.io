@@ -62,8 +62,12 @@ const ResearchExperience = () => {
                 ) : (
                   <span className="research-lab">{item.lab}</span>
                 )}
-                <span className="research-sep">,&nbsp;</span>
-                <span className="research-position">{item.position}</span>
+                {item.university ? <span className="research-sep">,&nbsp;</span> : null}
+                {item.university ? <span className="research-university">{item.university}</span> : null}
+              </div>
+              <div className="research-date-mobile">
+                <span className="timeline research-date-text">{item.duration}</span>
+                {item.current && <span className="research-current-badge">Current</span>}
               </div>
               <div className="research-description">
                 <ul>

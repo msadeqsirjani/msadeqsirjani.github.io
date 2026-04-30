@@ -957,19 +957,23 @@ ul, ol {
 
 .research-university {
     font-size: 1rem;
-    color: var(--text-color);
+    color: var(--accent-color);
     font-style: italic;
     font-weight: normal;
-    margin-bottom: 0.3rem;
-    display: block;
+    margin-bottom: 0;
+    display: inline;
 }
 
 .research-lab {
     font-size: 1.1rem;
-    color: var(--accent-color);
+    color: #111;
     font-style: normal;
     font-weight: 700;
     display: inline;
+}
+
+[data-theme="dark"] .research-lab {
+    color: #f0f0f0;
 }
 
 .research-advisor {
