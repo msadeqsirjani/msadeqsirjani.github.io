@@ -2,6 +2,8 @@ import { education, fetchEducation } from '../../data/content';
 import type { EducationItem } from '../../types';
 import TimelineSection from '../TimelineSection/TimelineSection';
 import useContentData from '../../hooks/useContentData';
+import EducationLogo from './EducationLogo';
+import EducationDetails from './EducationDetails';
 
 const Education = () => {
   const { data: educationItems } = useContentData(fetchEducation, education, {
@@ -27,17 +29,10 @@ const Education = () => {
         </>
       )}
       renderContent={(item) => (
-        <>
-          <span className="education-degree">{item.degree}</span>
-          <div className="education-university-row">
-            <span className="education-university">
-              {item.universityUrl
-                ? <a href={item.universityUrl} target="_blank" rel="noopener">{item.university}</a>
-                : item.university}
-            </span>
-            {item.gpa && <span className="education-gpa">{item.gpa}</span>}
-          </div>
-        </>
+        <div className="education-main">
+          <EducationLogo item={item} />
+          <EducationDetails item={item} />
+        </div>
       )}
     />
   );
