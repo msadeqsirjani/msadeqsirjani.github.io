@@ -1,7 +1,13 @@
 import { useState } from 'react';
 import { toast } from 'sonner';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSpinner, faPaperPlane } from '@fortawesome/free-solid-svg-icons';
+import {
+  faSpinner,
+  faPaperPlane,
+  faMapMarkerAlt,
+  faEnvelope,
+  faUniversity,
+} from '@fortawesome/free-solid-svg-icons';
 import { trackContactSubmission } from '../../utils/analytics';
 
 const RATE_LIMIT_MS = 30000;
@@ -19,21 +25,21 @@ const Contact = () => {
 
   const contactInfo = [
     {
-      icon: 'fa-map-marker-alt',
+      icon: faMapMarkerAlt,
       title: 'Location',
       href: 'https://maps.google.com/?q=1+UTSA+Circle,+San+Antonio,+TX+78249',
       text: '1 UT San Antonio Circle, San Antonio, TX 78249',
       external: true
     },
     {
-      icon: 'fa-envelope',
+      icon: faEnvelope,
       title: 'Email',
       href: 'mailto:mohammadsadegh.sirjani@utsa.edu',
       text: 'mohammadsadegh.sirjani@utsa.edu',
       external: false
     },
     {
-      icon: 'fa-university',
+      icon: faUniversity,
       title: 'Institution',
       href: 'https://utsa.edu',
       text: 'University of Texas at San Antonio',
@@ -118,7 +124,7 @@ const Contact = () => {
             <h3>Get in Touch</h3>
             {contactInfo.map((item, idx) => (
               <div key={idx} className="contact-item">
-                <span className={`fas ${item.icon}`}></span>
+                <FontAwesomeIcon icon={item.icon} className="contact-info-icon" aria-hidden />
                 <div>
                   <h4>{item.title}</h4>
                   <p>

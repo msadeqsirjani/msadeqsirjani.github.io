@@ -1,18 +1,20 @@
 import { lazy, Suspense, useState, useEffect, useRef } from 'react';
 import type { LazyExoticComponent, ComponentType } from 'react';
-import { Toaster } from 'sonner';
 import { ThemeProvider } from './context/ThemeContext';
 import Navbar from './components/Navbar/Navbar';
 import Hero from './components/Hero/Hero';
-import ReadingProgress from './components/ReadingProgress/ReadingProgress';
-import PullToRefresh from './components/PullToRefresh/PullToRefresh';
-import QuickActions from './components/QuickActions/QuickActions';
 import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary';
 import AnimatedSection from './components/AnimatedSection/AnimatedSection';
 import SkeletonLoader from './components/SkeletonLoader/SkeletonLoader';
-import CookieConsent from './components/CookieConsent/CookieConsent';
-import OfflineIndicator from './components/OfflineIndicator/OfflineIndicator';
-import GlobalSearch from './components/GlobalSearch/GlobalSearch';
+import DeferredIdle from './components/DeferredIdle/DeferredIdle';
+import DeferredToaster from './components/DeferredToaster/DeferredToaster';
+import LazyGlobalSearch from './components/LazyGlobalSearch/LazyGlobalSearch';
+
+const ReadingProgress = lazy(() => import('./components/ReadingProgress/ReadingProgress'));
+const PullToRefresh = lazy(() => import('./components/PullToRefresh/PullToRefresh'));
+const QuickActions = lazy(() => import('./components/QuickActions/QuickActions'));
+const CookieConsent = lazy(() => import('./components/CookieConsent/CookieConsent'));
+const OfflineIndicator = lazy(() => import('./components/OfflineIndicator/OfflineIndicator'));
 
 const Biography = lazy(() => import('./components/Biography/Biography'));
 const Education = lazy(() => import('./components/Education/Education'));
@@ -149,10 +151,18 @@ function App() {
           <Suspense fallback={<div style={{ minHeight: '60vh' }} />}>
             <NotFound />
           </Suspense>
-          <GlobalSearch isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />
-          <CookieConsent />
-          <OfflineIndicator />
-          <Toaster
+          <LazyGlobalSearch isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />
+          <DeferredIdle>
+            <Suspense fallback={null}>
+              <CookieConsent />
+            </Suspense>
+          </DeferredIdle>
+          <DeferredIdle>
+            <Suspense fallback={null}>
+              <OfflineIndicator />
+            </Suspense>
+          </DeferredIdle>
+          <DeferredToaster
             position="bottom-left"
             closeButton
             expand={false}
@@ -169,12 +179,20 @@ function App() {
     <ThemeProvider>
       <ErrorBoundary>
         <a href="/#main-content" className="skip-to-content">Skip to main content</a>
-        <PullToRefresh />
+        <DeferredIdle>
+          <Suspense fallback={null}>
+            <PullToRefresh />
+          </Suspense>
+        </DeferredIdle>
         <ErrorBoundary>
           <Navbar onSearchClick={() => setIsSearchOpen(true)} />
         </ErrorBoundary>
-        <GlobalSearch isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />
-        <ReadingProgress />
+        <LazyGlobalSearch isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />
+        <DeferredIdle>
+          <Suspense fallback={null}>
+            <ReadingProgress />
+          </Suspense>
+        </DeferredIdle>
         <main id="main-content" role="main" aria-label="Main content">
           <ErrorBoundary>
             <Hero />
@@ -195,16 +213,22 @@ function App() {
             <Footer />
           </Suspense>
         </ErrorBoundary>
-        <ErrorBoundary>
-          <QuickActions />
-        </ErrorBoundary>
-        <CookieConsent />
-        <OfflineIndicator />
-        <Toaster
-          position="bottom-left"
-          closeButton
-          expand={false}
-        />
+        <DeferredIdle>
+          <Suspense fallback={null}>
+            <QuickActions />
+          </Suspense>
+        </DeferredIdle>
+        <DeferredIdle>
+          <Suspense fallback={null}>
+            <CookieConsent />
+          </Suspense>
+        </DeferredIdle>
+        <DeferredIdle>
+          <Suspense fallback={null}>
+            <OfflineIndicator />
+          </Suspense>
+        </DeferredIdle>
+        <DeferredToaster position="bottom-left" closeButton expand={false} />
       </ErrorBoundary>
     </ThemeProvider>
   );

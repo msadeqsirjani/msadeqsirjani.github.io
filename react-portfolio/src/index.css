@@ -1866,7 +1866,7 @@ kbd {
     transition: all 0.3s ease;
 }
 
-.contact-item i {
+.contact-item .contact-info-icon {
     width: 40px;
     height: 40px;
     font-size: 1.25rem;
@@ -1880,7 +1880,7 @@ kbd {
     transition: all 0.3s ease;
 }
 
-.contact-item:hover i {
+.contact-item:hover .contact-info-icon {
     transform: scale(1.05);
 }
 
@@ -2335,7 +2335,7 @@ kbd {
         align-items: center;
     }
 
-    .contact-item i {
+    .contact-item .contact-info-icon {
         width: 44px;
         height: 44px;
         font-size: 1.25rem;
@@ -4818,33 +4818,6 @@ html {
 .interest-card > span:last-child {
   display: block;
   margin-top: 0.25rem;
-}
-
-/* Contact icons - CSS-based icons */
-.contact-item span.fas {
-  width: 40px;
-  height: 40px;
-  font-size: 1.25rem;
-  color: white;
-  background: var(--accent-color);
-  border-radius: 0;
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.3s ease;
-}
-
-.contact-item:hover span.fas {
-  transform: scale(1.05);
-}
-
-@media (max-width: 768px) {
-  .contact-item span.fas {
-    width: 44px;
-    height: 44px;
-    font-size: 1.25rem;
-  }
 }
 
 @media (max-width: 768px) {

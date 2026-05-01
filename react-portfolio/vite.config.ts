@@ -75,6 +75,12 @@ export default defineConfig({
         manualChunks: {
           'react-vendor': ['react', 'react-dom'],
           'sonner': ['sonner'],
+          'fontawesome': [
+            '@fortawesome/fontawesome-svg-core',
+            '@fortawesome/react-fontawesome',
+            '@fortawesome/free-solid-svg-icons',
+            '@fortawesome/free-brands-svg-icons',
+          ],
         },
         sourcemapExcludeSources: true, // Don't include source code in sourcemaps for security
       },

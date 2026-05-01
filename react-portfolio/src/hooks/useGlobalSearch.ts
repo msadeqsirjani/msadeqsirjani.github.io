@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { fetchPublications, fetchEducation, fetchResearchExperience, fetchTeaching, fetchNews, fetchAwards } from '../data/content';
 import type { Publication, EducationItem, ResearchItem, TeachingItem, NewsItem, AwardItem } from '../types';
 
@@ -29,15 +29,27 @@ interface AllData {
   awards: AwardItem[];
 }
 
-export const useGlobalSearch = (query: string) => {
+export const useGlobalSearch = (query: string, enabled: boolean) => {
   const [results, setResults] = useState<SearchResults>(emptyResults);
   const [isSearching, setIsSearching] = useState(false);
   const [allData, setAllData] = useState<AllData | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
+  const hydrateAttemptedRef = useRef(false);
 
-  // Fetch all data on mount
   useEffect(() => {
+    if (!enabled) {
+      return;
+    }
+
+    if (hydrateAttemptedRef.current) {
+      setIsLoading(false);
+      return;
+    }
+
+    let cancelled = false;
+
     const loadAllData = async () => {
+      setIsLoading(true);
       try {
         const [pubs, edu, research, teach, newsItems, awardItems] = await Promise.all([
           fetchPublications(),
@@ -48,6 +60,9 @@ export const useGlobalSearch = (query: string) => {
           fetchAwards()
         ]);
 
+        if (cancelled) return;
+
+        hydrateAttemptedRef.current = true;
         setAllData({
           publications: pubs,
           education: edu,
@@ -60,24 +75,33 @@ export const useGlobalSearch = (query: string) => {
         if (import.meta.env.DEV) {
           console.error('Failed to load data for global search:', error);
         }
-        setAllData({
-          publications: [],
-          education: [],
-          researchExperience: [],
-          teaching: [],
-          news: [],
-          awards: []
-        });
+        if (!cancelled) {
+          hydrateAttemptedRef.current = true;
+          setAllData({
+            publications: [],
+            education: [],
+            researchExperience: [],
+            teaching: [],
+            news: [],
+            awards: []
+          });
+        }
       } finally {
-        setIsLoading(false);
+        if (!cancelled) {
+          setIsLoading(false);
+        }
       }
     };
 
-    loadAllData();
-  }, []);
+    void loadAllData();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [enabled]);
 
   useEffect(() => {
-    if (!allData || isLoading) {
+    if (!enabled || !allData || isLoading) {
       return;
     }
 
@@ -143,7 +167,8 @@ export const useGlobalSearch = (query: string) => {
     }, 300);
 
     return () => clearTimeout(timeoutId);
-  }, [query, allData, isLoading]);
+  }, [query, allData, isLoading, enabled]);
 
-  return { results, isSearching: isSearching || isLoading };
+  const busy = enabled && isLoading;
+  return { results, isSearching: isSearching || busy };
 };

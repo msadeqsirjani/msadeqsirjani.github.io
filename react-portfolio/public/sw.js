@@ -7,8 +7,9 @@ const RUNTIME_CACHE = `runtime-cache-${CACHE_VERSION}`;
 const PRECACHE_ASSETS = [
   '/',
   '/index.html',
-  '/assets/img/profile.webp',
+  '/assets/img/profile-360.webp',
   '/assets/img/profile.jpg',
+  '/assets/img/profile-og.jpg',
   '/assets/data/bibtex.json',
   '/assets/docs/cv/msadeqsirjani-cv.pdf',
 ];

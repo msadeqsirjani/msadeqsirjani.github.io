@@ -57,7 +57,7 @@ const categories = [
 
 const GlobalSearch = ({ isOpen, onClose }: GlobalSearchProps) => {
   const [searchQuery, setSearchQuery] = useState('');
-  const { results, isSearching } = useGlobalSearch(searchQuery);
+  const { results, isSearching } = useGlobalSearch(searchQuery, isOpen);
   const [selectedIndex, setSelectedIndex] = useState(-1);
   const searchInputRef = useRef<HTMLInputElement>(null);
   const modalRef = useRef<HTMLDivElement>(null);
