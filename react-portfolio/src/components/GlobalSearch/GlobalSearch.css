@@ -27,7 +27,7 @@
 /* Global Search Modal */
 .global-search-modal {
   background: var(--bg-color);
-  border-radius: 0;
+  border-radius: var(--button-border-radius);
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
   width: 100%;
   max-width: 700px;
@@ -65,7 +65,7 @@
   align-items: center;
   background: var(--gray-light);
   border: 2px solid var(--border-color);
-  border-radius: 0;
+  border-radius: var(--button-border-radius);
   padding: 0.625rem 1rem;
   transition: border-color 0.3s ease;
   min-height: 46px;
@@ -337,7 +337,7 @@ a.result-item {
   padding: 1rem 1.5rem;
   border-top: 1px solid var(--border-color);
   background: var(--card-bg);
-  border-radius: 0;
+  border-radius: var(--button-border-radius);
 }
 
 .search-tips {

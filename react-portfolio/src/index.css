@@ -60,7 +60,8 @@ body, h1, h2, h3, h4, h5, h6 {
     --error-color: #dc2626;       /* Contrast 5.9:1 with white */
     --success-color: #047857;     /* Contrast 5.0:1 with white (improved from #059669) */
     --focus-color: #2563eb;       /* High contrast focus */
-    --button-border-radius: 0px;
+    --button-border-radius: 5px;
+    --icon-border-radius: 5px;
     --button-border-width: 2px;
 }
 
@@ -456,7 +457,7 @@ ul, ol {
     width: 40px;
     height: 40px;
     border: var(--button-border-width) solid var(--border-color);
-    border-radius: var(--button-border-radius);
+    border-radius: var(--icon-border-radius);
     background: var(--white);
     display: flex;
     align-items: center;
@@ -1876,7 +1877,7 @@ kbd {
     justify-content: center;
     background: var(--accent-color);
     color: #fff;
-    border-radius: 0;
+    border-radius: var(--icon-border-radius);
     transition: transform 0.3s ease;
 }
 
@@ -2028,7 +2029,7 @@ kbd {
     width: 38px;
     height: 38px;
     border: 1px solid var(--border-color);
-    border-radius: 0;
+    border-radius: var(--button-border-radius);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -3202,7 +3203,7 @@ select:focus,
 .social-link:focus {
     outline: 3px solid var(--focus-color);
     outline-offset: 2px;
-    border-radius: 0;
+    border-radius: 5px;
     box-shadow: 0 0 0 1px var(--white), 0 0 0 4px var(--focus-color);
 }
 
@@ -3344,7 +3345,7 @@ button,
     right: 2rem;
     width: 52px;
     height: 52px;
-    border-radius: var(--button-border-radius);
+    border-radius: var(--icon-border-radius);
     background: var(--accent-color);
     color: var(--white);
     border: var(--button-border-width) solid var(--accent-color);
@@ -3421,7 +3422,7 @@ button,
 .quick-action-toggle {
     width: 52px;
     height: 52px;
-    border-radius: var(--button-border-radius);
+    border-radius: var(--icon-border-radius);
     background: var(--accent-color);
     color: var(--white);
     display: flex;
@@ -3480,7 +3481,7 @@ button,
 .quick-action-btn {
     width: 52px;
     height: 52px;
-    border-radius: var(--button-border-radius);
+    border-radius: var(--icon-border-radius);
     background: var(--accent-color);
     color: var(--white);
     display: flex;
@@ -3506,6 +3507,11 @@ button,
     width: 1.25rem;
     height: 1.25rem;
     display: block;
+}
+
+.quick-action-toggle:focus,
+.quick-action-btn:focus {
+    border-radius: var(--icon-border-radius);
 }
 
 /* Dark mode styles for quick actions */

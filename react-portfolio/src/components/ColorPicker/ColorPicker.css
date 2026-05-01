@@ -2,7 +2,7 @@
 .color-picker-toggle {
   background: var(--white);
   border: var(--button-border-width) solid var(--border-color);
-  border-radius: 0;
+  border-radius: var(--button-border-radius);
   padding: 0.5rem;
   cursor: pointer;
   color: var(--text-color);
@@ -112,7 +112,7 @@
 /* Modal Container */
 .color-picker-modal {
   background-color: var(--white);
-  border-radius: 16px;
+  border-radius: var(--button-border-radius);
   padding: 2rem;
   max-width: 500px;
   width: 90%;
@@ -186,7 +186,7 @@
   padding: 1rem;
   background: none;
   border: 2px solid var(--border-color);
-  border-radius: 0;
+  border-radius: var(--button-border-radius);
   cursor: pointer;
   transition: all 0.3s ease;
   font-size: 0.875rem;
@@ -232,7 +232,7 @@
 .color-palette-option {
   background: none;
   border: 2px solid var(--border-color);
-  border-radius: 0;
+  border-radius: var(--button-border-radius);
   padding: 1rem;
   cursor: pointer;
   transition: all 0.3s ease;
