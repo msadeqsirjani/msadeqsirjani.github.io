@@ -40,7 +40,31 @@ const ResearchExperience = () => {
         <>
           <div className="research-main">
             <div className="research-main__logo">
-              {item.logo ? (
+              {item.labUrl ? (
+                <a
+                  href={item.labUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="research-logo-link"
+                  data-tooltip={item.lab}
+                  aria-label={`Visit ${item.lab}`}
+                >
+                  {item.logo ? (
+                    <img
+                      src={item.logo}
+                      alt={`${item.lab} research group logo, ${item.university} — ${item.position}`}
+                      className="research-lab-logo"
+                      width={64}
+                      height={64}
+                      decoding="async"
+                    />
+                  ) : (
+                    <div className="research-lab-logo research-lab-logo--placeholder">
+                      {getLabInitials(item.lab)}
+                    </div>
+                  )}
+                </a>
+              ) : item.logo ? (
                 <img
                   src={item.logo}
                   alt={`${item.lab} research group logo, ${item.university} — ${item.position}`}

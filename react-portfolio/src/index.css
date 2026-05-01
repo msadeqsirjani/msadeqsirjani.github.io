@@ -491,14 +491,20 @@ ul, ol {
 .social-link,
 .btn[data-tooltip],
 .theme-toggle[data-tooltip],
-.footer-social a[data-tooltip] {
+.footer-social a[data-tooltip],
+.research-logo-link[data-tooltip] {
     position: relative;
+}
+
+.research-logo-link {
+    display: inline-flex;
 }
 
 .social-link::after,
 .btn[data-tooltip]::after,
 .theme-toggle[data-tooltip]::after,
-.footer-social a[data-tooltip]::after {
+.footer-social a[data-tooltip]::after,
+.research-logo-link[data-tooltip]::after {
     content: attr(data-tooltip);
     position: absolute;
     top: calc(100% + 8px);
@@ -510,6 +516,7 @@ ul, ol {
     border-radius: 6px;
     font-size: 0.75rem;
     font-weight: 500;
+    line-height: 1.2;
     white-space: nowrap;
     opacity: 0;
     visibility: hidden;
@@ -522,7 +529,8 @@ ul, ol {
 .social-link::before,
 .btn[data-tooltip]::before,
 .theme-toggle[data-tooltip]::before,
-.footer-social a[data-tooltip]::before {
+.footer-social a[data-tooltip]::before,
+.research-logo-link[data-tooltip]::before {
     content: '';
     position: absolute;
     top: calc(100% + 3px);
@@ -540,7 +548,8 @@ ul, ol {
 .social-link:hover::before,
 .btn[data-tooltip]:hover::before,
 .theme-toggle[data-tooltip]:hover::before,
-.footer-social a[data-tooltip]:hover::before {
+.footer-social a[data-tooltip]:hover::before,
+.research-logo-link[data-tooltip]:hover::before {
     opacity: 1;
     visibility: visible;
 }
@@ -548,7 +557,8 @@ ul, ol {
 .social-link:hover::after,
 .btn[data-tooltip]:hover::after,
 .theme-toggle[data-tooltip]:hover::after,
-.footer-social a[data-tooltip]:hover::after {
+.footer-social a[data-tooltip]:hover::after,
+.research-logo-link[data-tooltip]:hover::after {
     opacity: 1;
     visibility: visible;
     transform: translateX(-50%) translateY(0);
@@ -3587,6 +3597,7 @@ button,
     .btn[data-tooltip]::after,
     .theme-toggle[data-tooltip]::after,
     .footer-social a[data-tooltip]::after,
+    .research-logo-link[data-tooltip]::after,
     .scroll-to-top[data-tooltip]::after,
     .quick-action-btn[data-tooltip]::after,
     .quick-action-toggle[data-tooltip]::after,
@@ -3596,6 +3607,7 @@ button,
     .btn[data-tooltip]::before,
     .theme-toggle[data-tooltip]::before,
     .footer-social a[data-tooltip]::before,
+    .research-logo-link[data-tooltip]::before,
     .scroll-to-top[data-tooltip]::before,
     .quick-action-btn[data-tooltip]::before,
     .quick-action-toggle[data-tooltip]::before,
