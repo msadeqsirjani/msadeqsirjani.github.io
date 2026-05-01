@@ -80,16 +80,32 @@
     {
       "@context": "https://schema.org",
       "@type": "Person",
+      "@id": "https://msadeqsirjani.com/#person",
       "name": "Mohammad Sadegh Sirjani",
       "givenName": "Mohammad Sadegh",
       "familyName": "Sirjani",
       "url": "https://msadeqsirjani.com",
       "image": "https://msadeqsirjani.com/assets/img/profile.jpg",
       "jobTitle": "Ph.D. Student in Computer Science",
+      "memberOf": {
+        "@type": "Organization",
+        "name": "ASIC Lab",
+        "url": "https://caicc.utsa.edu/computer-science/research/facilities.html",
+        "parentOrganization": {
+          "@type": "CollegeOrUniversity",
+          "name": "University of Texas at San Antonio",
+          "sameAs": "https://www.utsa.edu"
+        }
+      },
       "worksFor": {
         "@type": "EducationalOrganization",
         "name": "University of Texas at San Antonio",
-        "sameAs": "https://www.utsa.edu"
+        "sameAs": "https://www.utsa.edu",
+        "department": {
+          "@type": "Organization",
+          "name": "Department of Computer Science",
+          "url": "https://www.cs.utsa.edu"
+        }
       },
       "alumniOf": [
         {
@@ -154,11 +170,7 @@
     {
       "@context": "https://schema.org",
       "@type": "ProfilePage",
-      "mainEntity": {
-        "@type": "Person",
-        "name": "Mohammad Sadegh Sirjani",
-        "@id": "https://msadeqsirjani.com/#person"
-      },
+      "mainEntity": { "@id": "https://msadeqsirjani.com/#person" },
       "breadcrumb": {
         "@type": "BreadcrumbList",
         "itemListElement": [
