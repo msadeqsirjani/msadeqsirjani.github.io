@@ -1,5 +1,3 @@
-import { sectionHref } from '../../constants/siteNav';
-
 const Biography = () => {
   return (
     <section id="biography" className="section">
@@ -8,7 +6,7 @@ const Biography = () => {
         <div className="biography-content">
           <div className="bio-text">
             <p>
-              I am a Ph.D. student in Computer Science at the{' '}
+              I am Mohammad Sadegh Sirjani, a Ph.D. student in Computer Science at the{' '}
               <a href="https://utsa.edu" target="_blank" rel="noopener">
                 University of Texas at San Antonio
               </a>
@@ -20,7 +18,7 @@ const Biography = () => {
               <a href="https://caicc.utsa.edu/faculty/profiles/xie-mimi.html" target="_blank" rel="noopener">
                 Prof. Mimi Xie
               </a>
-              . My research focuses on TinyAI and embedded systems, enabling efficient AI deployment on resource-constrained devices.
+              . My work focuses on TinyML, edge AI, and embedded systems, with an emphasis on efficient on-device intelligence for resource-constrained platforms.
             </p>
 
             <p>
@@ -28,16 +26,27 @@ const Biography = () => {
               <a href="https://en.um.ac.ir/" target="_blank" rel="noopener">
                 Ferdowsi University of Mashhad
               </a>
-              . My research on energy-efficient AI systems has been recognized through the{' '}
-              <a href="https://www.dac.com/About/Young-Professionals-Program" target="_blank" rel="noopener">
-                DAC Young Fellow
+              . In 2026, I passed my Ph.D. qualifying exam and was invited to serve as a reviewer for{' '}
+              <a href="https://www.glsvlsi.org/" target="_blank" rel="noopener">
+                GLSVLSI 2026
+              </a>
+              . I received the DAC Young Fellowship in both{' '}
+              <a href="https://dac.com/2026" target="_blank" rel="noopener">
+                DAC 2026
               </a>{' '}
-              award and first place at the{' '}
-              <a href="https://www.dac.com" target="_blank" rel="noopener">
+              and{' '}
+              <a href="https://archive.dac.com/about/conference-archive/62nd-dac-2025.html" target="_blank" rel="noopener">
                 DAC 2025
-              </a>{' '}
-              Video Presentation Contest              . Beyond research, I teach Operating Systems, Cloud Computing, and Compiler Design—summarized on my{' '}
-              <a href={sectionHref('teaching')}>teaching</a> page.
+              </a>
+              , attended the 62nd DAC conference, and won the 2-minute video presentation competition. I was also selected for the{' '}
+              <a href="https://dair-3.org/" target="_blank" rel="noopener">
+                DAiR3 Data Science Summer School
+              </a>
+              , and won the Fan Favorite Award at the{' '}
+              <a href="https://caicc.utsa.edu/draper/" target="_blank" rel="noopener">
+                Draper Data Science Business Plan Competition
+              </a>
+              .
             </p>
           </div>
         </div>
