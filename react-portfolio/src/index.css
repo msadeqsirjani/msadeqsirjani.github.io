@@ -3342,8 +3342,8 @@ button,
     position: fixed;
     bottom: 2rem;
     right: 2rem;
-    width: 54px;
-    height: 54px;
+    width: 52px;
+    height: 52px;
     border-radius: var(--button-border-radius);
     background: var(--accent-color);
     color: var(--white);
@@ -3384,6 +3384,12 @@ button,
 
 .scroll-to-top i {
     font-size: 1.25rem;
+}
+
+.scroll-to-top svg {
+    width: 1.25rem;
+    height: 1.25rem;
+    display: block;
 }
 
 [data-theme="dark"] .scroll-to-top {
@@ -3446,6 +3452,12 @@ button,
     transition: transform 0.3s ease;
 }
 
+.quick-action-toggle svg {
+    width: 1.25rem;
+    height: 1.25rem;
+    display: block;
+}
+
 .quick-action-menu {
     position: absolute;
     bottom: 70px;
@@ -3466,8 +3478,8 @@ button,
 }
 
 .quick-action-btn {
-    width: 46px;
-    height: 46px;
+    width: 52px;
+    height: 52px;
     border-radius: var(--button-border-radius);
     background: var(--accent-color);
     color: var(--white);
@@ -3487,7 +3499,13 @@ button,
 }
 
 .quick-action-btn i {
-    font-size: 1.1rem;
+    font-size: 1.25rem;
+}
+
+.quick-action-btn svg {
+    width: 1.25rem;
+    height: 1.25rem;
+    display: block;
 }
 
 /* Dark mode styles for quick actions */
@@ -3517,7 +3535,10 @@ button,
 
 [data-theme="dark"] .scroll-to-top i,
 [data-theme="dark"] .quick-action-btn i,
-[data-theme="dark"] .quick-action-toggle i {
+[data-theme="dark"] .quick-action-toggle i,
+[data-theme="dark"] .scroll-to-top svg,
+[data-theme="dark"] .quick-action-btn svg,
+[data-theme="dark"] .quick-action-toggle svg {
     color: var(--text-color);
 }
 
