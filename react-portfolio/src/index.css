@@ -50,8 +50,8 @@ body, h1, h2, h3, h4, h5, h6 {
     /* WCAG AA compliant color scheme */
     --text-color: #1a1a1a;        /* Contrast 13.9:1 with white */
     --text-light: #475569;        /* Contrast 7.1:1 with white (improved from #4a5568) */
-    --white: #ffffff;
-    --gray-light: #f7fafc;
+    --white: #f4f7ff;
+    --gray-light: #eaf0ff;
     --border-color: #d1d5db;      /* More visible borders */
     --accent-color: #1e40af;      /* Contrast 7.7:1 with white (improved from #1d4ed8) */
     --accent-color-light: #1e40af; /* Always light-mode accent, updated by ColorPicker */
