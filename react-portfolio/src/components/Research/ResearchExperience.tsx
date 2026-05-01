@@ -43,7 +43,7 @@ const ResearchExperience = () => {
               {item.logo ? (
                 <img
                   src={item.logo}
-                  alt=""
+                  alt={`${item.lab} research group logo, ${item.university} — ${item.position}`}
                   className="research-lab-logo"
                   width={64}
                   height={64}

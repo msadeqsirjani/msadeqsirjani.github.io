@@ -8,10 +8,11 @@ const EducationLogo = ({ item }: EducationLogoProps) => {
   if (!item.logo) return null;
 
   const uniName = item.universityName ?? item.university;
+  const logoAlt = `${uniName} logo — ${item.degree}`;
   const img = (
     <img
       src={item.logo}
-      alt=""
+      alt={logoAlt}
       className="education-logo education-logo--circle"
       width={48}
       height={48}
