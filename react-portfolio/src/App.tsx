@@ -66,6 +66,7 @@ function App() {
       '',
       '#',
       '#home',
+      '#person',
       '#biography',
       '#education',
       '#research',

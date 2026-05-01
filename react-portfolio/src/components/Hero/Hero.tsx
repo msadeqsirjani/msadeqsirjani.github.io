@@ -47,7 +47,9 @@ const Hero = () => {
             </div>
           </div>
           <div className="hero-right">
-            <h1 className="hero-title">Mohammad Sadegh Sirjani</h1>
+            <h1 className="hero-title" id="person">
+              Mohammad Sadegh Sirjani
+            </h1>
             <h2 className="hero-subtitle">Ph.D. Student in Computer Science</h2>
             <p className="hero-institution">
               <a href="https://www.utsa.edu/" target="_blank" rel="noopener">University of Texas at San Antonio</a>
