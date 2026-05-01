@@ -10,6 +10,12 @@ interface GlobalSearchProps {
   onClose: () => void;
 }
 
+const toPlainText = (value: string) =>
+  value
+    .replace(/<[^>]*>/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+
 const categories = [
   {
     key: 'publications' as const,
@@ -43,14 +49,14 @@ const categories = [
     key: 'news' as const,
     icon: faNewspaper,
     label: 'News',
-    getTitle: (item: any) => item.description,
+    getTitle: (item: any) => toPlainText(item.description),
     getMeta: (item: any) => item.date
   },
   {
     key: 'awards' as const,
     icon: faTrophy,
     label: 'Awards',
-    getTitle: (item: any) => item.description,
+    getTitle: (item: any) => toPlainText(item.description),
     getMeta: (item: any) => item.date
   }
 ];
