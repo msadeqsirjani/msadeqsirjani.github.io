@@ -5,6 +5,7 @@ import type { Publication } from '../../types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown, faChevronUp, faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 import useSettings from '../../hooks/useSettings';
+import bibtexData from '../../data/bibtex.json';
 
 const Publications = () => {
   const { settings } = useSettings();
@@ -40,6 +41,25 @@ const Publications = () => {
       review: 'UNDER REVISION'
     };
     return labels[status] || status.toUpperCase();
+  };
+
+  const handleCopyBibtex = async (pub: Publication) => {
+    const bibtexId = pub.bibtexId;
+    if (!bibtexId) return;
+
+    const entry = (bibtexData as Record<string, { bibtex?: string }>)[bibtexId];
+    const bibtex = entry?.bibtex;
+    if (!bibtex) {
+      toast.error('BibTeX entry not found for this publication');
+      return;
+    }
+
+    try {
+      await navigator.clipboard.writeText(bibtex);
+      toast.success('BibTeX copied to clipboard');
+    } catch {
+      toast.error('Unable to copy BibTeX automatically');
+    }
   };
 
 
@@ -96,6 +116,19 @@ const Publications = () => {
                           <a href={pub.link} className="pub-text-link doi-link" target="_blank" rel="noopener">
                             DOI <FontAwesomeIcon icon={faExternalLinkAlt} size="xs" />
                           </a>
+                        )}
+                        {pub.pdfLink && (
+                          <a href={`/${pub.pdfLink}`} className="pub-text-link doi-link" target="_blank" rel="noopener">
+                            PDF <FontAwesomeIcon icon={faExternalLinkAlt} size="xs" />
+                          </a>
+                        )}
+                        {pub.bibtexId && (
+                          <button
+                            className="pub-text-link doi-link"
+                            onClick={() => void handleCopyBibtex(pub)}
+                          >
+                            BibTeX <FontAwesomeIcon icon={faExternalLinkAlt} size="xs" />
+                          </button>
                         )}
                         {pub.abstract && (
                           <button
