@@ -703,8 +703,8 @@ ul, ol {
 .education-current-badge,
 .research-current-badge {
     display: block;
-    background-color: #d1fae5;
-    color: #065f46;
+    background: rgba(var(--accent-rgb, 30, 64, 175), 0.12);
+    color: var(--accent-color);
     font-size: 0.75rem;
     font-weight: 600;
     padding: 0.15rem 0.6rem;
