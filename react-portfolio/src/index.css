@@ -1866,21 +1866,29 @@ kbd {
     transition: all 0.3s ease;
 }
 
-.contact-item .contact-info-icon {
+/* Shell centers the glyph; never use display:flex on the <svg> — it fragments FA paths in WebKit. */
+.contact-item .contact-info-icon-shell {
     width: 40px;
     height: 40px;
-    font-size: 1.25rem;
-    color: white;
-    background: var(--accent-color);
-    border-radius: 0;
     flex-shrink: 0;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all 0.3s ease;
+    background: var(--accent-color);
+    color: #fff;
+    border-radius: 0;
+    transition: transform 0.3s ease;
 }
 
-.contact-item:hover .contact-info-icon {
+.contact-item .contact-info-icon-svg {
+    width: 1.25rem;
+    height: 1.25rem;
+    display: block;
+    overflow: visible;
+    flex-shrink: 0;
+}
+
+.contact-item:hover .contact-info-icon-shell {
     transform: scale(1.05);
 }
 
@@ -2335,10 +2343,14 @@ kbd {
         align-items: center;
     }
 
-    .contact-item .contact-info-icon {
+    .contact-item .contact-info-icon-shell {
         width: 44px;
         height: 44px;
-        font-size: 1.25rem;
+    }
+
+    .contact-item .contact-info-icon-svg {
+        width: 1.35rem;
+        height: 1.35rem;
     }
 
     .contact-item h4 {

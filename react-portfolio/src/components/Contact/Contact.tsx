@@ -124,7 +124,9 @@ const Contact = () => {
             <h3>Get in Touch</h3>
             {contactInfo.map((item, idx) => (
               <div key={idx} className="contact-item">
-                <FontAwesomeIcon icon={item.icon} className="contact-info-icon" aria-hidden />
+                <span className="contact-info-icon-shell" aria-hidden="true">
+                  <FontAwesomeIcon icon={item.icon} className="contact-info-icon-svg" />
+                </span>
                 <div>
                   <h4>{item.title}</h4>
                   <p>
