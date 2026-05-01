@@ -168,7 +168,7 @@ function App() {
   return (
     <ThemeProvider>
       <ErrorBoundary>
-        <a href="#main-content" className="skip-to-content">Skip to main content</a>
+        <a href="/#main-content" className="skip-to-content">Skip to main content</a>
         <PullToRefresh />
         <ErrorBoundary>
           <Navbar onSearchClick={() => setIsSearchOpen(true)} />

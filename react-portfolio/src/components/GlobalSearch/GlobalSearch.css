@@ -307,6 +307,12 @@
   transition: all 0.2s;
 }
 
+a.result-item {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
 .result-item:hover,
 .result-item:focus {
   background: var(--hover-bg, rgba(0, 0, 0, 0.05));

@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { useFocusTrap } from '../../hooks/useFocusTrap';
 import ColorPicker from '../ColorPicker/ColorPicker';
+import { sectionHref } from '../../constants/siteNav';
 
 interface NavbarProps {
   onSearchClick?: () => void;
@@ -108,14 +109,14 @@ const Navbar = ({ onSearchClick }: NavbarProps) => {
     <nav className={`navbar${isScrolled ? ' navbar--scrolled' : ''}`} role="navigation" aria-label="Main navigation">
       <div className="nav-container">
         <div className="nav-logo">
-          <a href="#home" className="logo-text" onClick={(e) => scrollToSection(e, 'home')} aria-label="Mohammad Sadegh Sirjani — Home">
+          <a href={sectionHref('home')} className="logo-text" onClick={(e) => scrollToSection(e, 'home')} aria-label="Mohammad Sadegh Sirjani — Home">
             SS
           </a>
         </div>
         <ul className={`nav-menu ${isMenuOpen ? 'active' : ''}`} id="nav-menu" role="menubar">
           {mainLinks.map(link => (
             <li key={link.id} role="none">
-              <a href={`#${link.id}`} className="nav-link" onClick={(e) => scrollToSection(e, link.id)}>
+              <a href={sectionHref(link.id)} className="nav-link" onClick={(e) => scrollToSection(e, link.id)}>
                 {link.label}
               </a>
             </li>
@@ -139,7 +140,7 @@ const Navbar = ({ onSearchClick }: NavbarProps) => {
               {dropdownLinks.map((link, index) => (
                 <li key={link.id} role="none">
                   <a
-                    href={`#${link.id}`}
+                    href={sectionHref(link.id)}
                     className="nav-link"
                     ref={el => { dropdownItemRefs.current[index] = el; }}
                     onClick={(e) => scrollToSection(e, link.id)}
@@ -153,7 +154,7 @@ const Navbar = ({ onSearchClick }: NavbarProps) => {
           </li>
           {dropdownLinks.map(link => (
             <li key={`mobile-${link.id}`} className="nav-mobile-item" role="none">
-              <a href={`#${link.id}`} className="nav-link" onClick={(e) => scrollToSection(e, link.id)}>
+              <a href={sectionHref(link.id)} className="nav-link" onClick={(e) => scrollToSection(e, link.id)}>
                 {link.label}
               </a>
             </li>

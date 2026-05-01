@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faGraduationCap, faArrowUp } from '@fortawesome/free-solid-svg-icons';
 import { faLinkedin, faGithub, faOrcid, faResearchgate } from '@fortawesome/free-brands-svg-icons';
 import { useScrollManager } from '../../hooks/useScrollManager';
+import { sectionHref } from '../../constants/siteNav';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -55,7 +56,7 @@ const Footer = () => {
               <ul>
                 {quickLinks.map(link => (
                   <li key={link.id}>
-                    <a href={`#${link.id}`} onClick={(e) => scrollToSection(e, link.id)}>
+                    <a href={sectionHref(link.id)} onClick={(e) => scrollToSection(e, link.id)}>
                       {link.label}
                     </a>
                   </li>

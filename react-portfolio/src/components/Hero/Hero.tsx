@@ -2,11 +2,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDownload, faEnvelope, faGraduationCap } from '@fortawesome/free-solid-svg-icons';
 import { faLinkedin, faGithub, faOrcid, faResearchgate } from '@fortawesome/free-brands-svg-icons';
 import { trackCVDownload, trackExternalLink } from '../../utils/analytics';
+import { sectionHref } from '../../constants/siteNav';
 
 const Hero = () => {
   const buttons = [
     { href: '/assets/docs/cv/msadeqsirjani-cv.pdf', icon: faDownload, label: 'Download CV', primary: true, target: '_blank', onClick: trackCVDownload },
-    { href: '#contact', icon: faEnvelope, label: 'Contact', primary: false }
+    { href: sectionHref('contact'), icon: faEnvelope, label: 'Contact', primary: false }
   ];
 
   const socialLinks = [

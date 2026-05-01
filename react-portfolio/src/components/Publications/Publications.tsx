@@ -5,6 +5,7 @@ import type { Publication } from '../../types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown, faChevronUp, faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 import useSettings from '../../hooks/useSettings';
+import { sectionHref } from '../../constants/siteNav';
 
 const Publications = () => {
   const { settings } = useSettings();
@@ -49,6 +50,12 @@ const Publications = () => {
       <section id="publications" className="section">
         <div className="container">
           <h2 className="section-title">Publications</h2>
+          <p className="publications-intro">
+            Peer-reviewed and forthcoming papers. Related:{' '}
+            <a href={sectionHref('research')}>research experience</a>,{' '}
+            <a href={sectionHref('research-interests')}>research interests</a>, and{' '}
+            <a href={sectionHref('news')}>news</a>.
+          </p>
           <p style={{ textAlign: 'center', padding: '2rem' }}>Loading publications...</p>
         </div>
       </section>
@@ -59,6 +66,12 @@ const Publications = () => {
     <section id="publications" className="section">
       <div className="container">
         <h2 className="section-title">Publications</h2>
+        <p className="publications-intro">
+          Peer-reviewed and forthcoming papers. Related:{' '}
+          <a href={sectionHref('research')}>research experience</a>,{' '}
+          <a href={sectionHref('research-interests')}>research interests</a>, and{' '}
+          <a href={sectionHref('news')}>news</a>.
+        </p>
 
         <div className="publications-container">
           <div className="publication-list" role="list">

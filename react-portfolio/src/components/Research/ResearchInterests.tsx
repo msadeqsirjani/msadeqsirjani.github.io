@@ -1,6 +1,7 @@
 import { fetchResearchInterests, researchInterests } from '../../data/content';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import useContentData from '../../hooks/useContentData';
+import { sectionHref } from '../../constants/siteNav';
 
 const ResearchInterests = () => {
   const { data: interests } = useContentData(fetchResearchInterests, researchInterests, {
@@ -19,6 +20,11 @@ const ResearchInterests = () => {
             </div>
           ))}
         </div>
+        <p className="interests-crossnav">
+          Related on this site:{' '}
+          <a href={sectionHref('publications')}>publications</a> ·{' '}
+          <a href={sectionHref('research')}>research experience</a>
+        </p>
       </div>
     </section>
   );

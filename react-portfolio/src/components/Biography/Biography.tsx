@@ -1,3 +1,5 @@
+import { sectionHref } from '../../constants/siteNav';
+
 const Biography = () => {
   return (
     <section id="biography" className="section">
@@ -34,7 +36,16 @@ const Biography = () => {
               <a href="https://www.dac.com" target="_blank" rel="noopener">
                 DAC 2025
               </a>{' '}
-              Video Presentation Contest. Beyond research, I teach Operating Systems, Cloud Computing, and Compiler Design.
+              Video Presentation Contest              . Beyond research, I teach Operating Systems, Cloud Computing, and Compiler Design—summarized on my{' '}
+              <a href={sectionHref('teaching')}>teaching</a> page.
+            </p>
+            <p>
+              On this site:{' '}
+              <a href={sectionHref('publications')}>publications</a>,{' '}
+              <a href={sectionHref('research')}>research experience</a>,{' '}
+              <a href={sectionHref('research-interests')}>research interests</a>,{' '}
+              <a href={sectionHref('education')}>education</a>, and{' '}
+              <a href={sectionHref('news')}>news</a>.
             </p>
           </div>
         </div>

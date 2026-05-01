@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faTimes, faBook, faGraduationCap, faMicroscope, faChalkboardTeacher, faNewspaper, faTrophy } from '@fortawesome/free-solid-svg-icons';
 import { useGlobalSearch } from '../../hooks/useGlobalSearch';
 import './GlobalSearch.css';
+import { sectionHref } from '../../constants/siteNav';
 
 interface GlobalSearchProps {
   isOpen: boolean;
@@ -60,7 +61,7 @@ const GlobalSearch = ({ isOpen, onClose }: GlobalSearchProps) => {
   const [selectedIndex, setSelectedIndex] = useState(-1);
   const searchInputRef = useRef<HTMLInputElement>(null);
   const modalRef = useRef<HTMLDivElement>(null);
-  const resultsRef = useRef<(HTMLDivElement | null)[]>([]);
+  const resultsRef = useRef<(HTMLAnchorElement | null)[]>([]);
 
   useEffect(() => {
     if (isOpen && searchInputRef.current) {
@@ -214,13 +215,15 @@ const GlobalSearch = ({ isOpen, onClose }: GlobalSearchProps) => {
                           r => r.type === category.key && r.item === item
                         );
                         return (
-                          <div
+                          <a
                             key={index}
+                            href={sectionHref(category.key)}
                             ref={el => { resultsRef.current[globalIndex] = el; }}
                             className={`result-item ${selectedIndex === globalIndex ? 'selected' : ''}`}
-                            onClick={() => handleResultClick(category.key)}
-                            role="button"
-                            tabIndex={0}
+                            onClick={(e) => {
+                              e.preventDefault();
+                              handleResultClick(category.key);
+                            }}
                             onKeyDown={(e) => {
                               if (e.key === 'Enter' || e.key === ' ') {
                                 e.preventDefault();
@@ -230,7 +233,7 @@ const GlobalSearch = ({ isOpen, onClose }: GlobalSearchProps) => {
                           >
                             <div className="result-title">{category.getTitle(item)}</div>
                             <div className="result-meta">{category.getMeta(item)}</div>
-                          </div>
+                          </a>
                         );
                       })}
                     </div>

@@ -1,11 +1,12 @@
 import { useEffect } from 'react';
 import './NotFound.css';
+import { sectionHref } from '../../constants/siteNav';
 
 const quickLinks = [
-  { label: 'Biography', href: '#biography' },
-  { label: 'Publications', href: '#publications' },
-  { label: 'Research Experience', href: '#research' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'Biography', href: sectionHref('biography') },
+  { label: 'Publications', href: sectionHref('publications') },
+  { label: 'Research Experience', href: sectionHref('research') },
+  { label: 'Contact', href: sectionHref('contact') },
 ];
 
 const NotFound = () => {
@@ -24,7 +25,7 @@ const NotFound = () => {
         </p>
 
         <div className="nf-actions">
-          <a className="nf-btn nf-btn-primary" href="#home">
+          <a className="nf-btn nf-btn-primary" href={sectionHref('home')}>
             &#8592; Back to portfolio
           </a>
         </div>

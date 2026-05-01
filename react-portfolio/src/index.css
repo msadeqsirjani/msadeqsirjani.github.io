@@ -1072,6 +1072,24 @@ ul, ol {
     text-align: center;
 }
 
+.interests-crossnav {
+    margin-top: 1.5rem;
+    text-align: center;
+    font-size: 0.95rem;
+    color: var(--text-light);
+    line-height: 1.6;
+}
+
+.interests-crossnav a {
+    color: var(--accent-color);
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.interests-crossnav a:hover {
+    text-decoration: underline;
+}
+
 /* Keyboard shortcut styling */
 kbd {
     display: inline-block;
@@ -1088,6 +1106,25 @@ kbd {
 }
 
 /* Publications */
+.publications-intro {
+    max-width: 42rem;
+    margin: 0 auto 1.5rem;
+    text-align: center;
+    color: var(--text-light);
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.publications-intro a {
+    color: var(--accent-color);
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.publications-intro a:hover {
+    text-decoration: underline;
+}
+
 .publication-controls {
     max-width: 800px;
     width: 100%;
