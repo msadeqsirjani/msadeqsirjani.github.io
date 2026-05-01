@@ -492,7 +492,8 @@ ul, ol {
 .btn[data-tooltip],
 .theme-toggle[data-tooltip],
 .footer-social a[data-tooltip],
-.research-logo-link[data-tooltip] {
+.research-logo-link[data-tooltip],
+.education-logo-link[data-tooltip] {
     position: relative;
 }
 
@@ -504,7 +505,8 @@ ul, ol {
 .btn[data-tooltip]::after,
 .theme-toggle[data-tooltip]::after,
 .footer-social a[data-tooltip]::after,
-.research-logo-link[data-tooltip]::after {
+.research-logo-link[data-tooltip]::after,
+.education-logo-link[data-tooltip]::after {
     content: attr(data-tooltip);
     position: absolute;
     top: calc(100% + 8px);
@@ -530,7 +532,8 @@ ul, ol {
 .btn[data-tooltip]::before,
 .theme-toggle[data-tooltip]::before,
 .footer-social a[data-tooltip]::before,
-.research-logo-link[data-tooltip]::before {
+.research-logo-link[data-tooltip]::before,
+.education-logo-link[data-tooltip]::before {
     content: '';
     position: absolute;
     top: calc(100% + 3px);
@@ -549,7 +552,8 @@ ul, ol {
 .btn[data-tooltip]:hover::before,
 .theme-toggle[data-tooltip]:hover::before,
 .footer-social a[data-tooltip]:hover::before,
-.research-logo-link[data-tooltip]:hover::before {
+.research-logo-link[data-tooltip]:hover::before,
+.education-logo-link[data-tooltip]:hover::before {
     opacity: 1;
     visibility: visible;
 }
@@ -558,40 +562,11 @@ ul, ol {
 .btn[data-tooltip]:hover::after,
 .theme-toggle[data-tooltip]:hover::after,
 .footer-social a[data-tooltip]:hover::after,
-.research-logo-link[data-tooltip]:hover::after {
-    opacity: 1;
-    visibility: visible;
-    transform: translateX(-50%) translateY(0);
-}
-
-/* Tooltip for education university logos — matches quick action style */
-.education-logo-link[data-tooltip] {
-    position: relative;
-}
-
-.education-logo-link[data-tooltip]::after {
-    content: attr(data-tooltip);
-    position: absolute;
-    left: 50%;
-    top: calc(100% + 8px);
-    transform: translateX(-50%);
-    background: var(--text-color);
-    color: var(--white);
-    padding: 8px 14px;
-    border-radius: 6px;
-    font-size: 1rem;
-    text-align: center;
-    white-space: nowrap;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s, visibility 0.3s;
-    pointer-events: none;
-    z-index: 10;
-}
-
+.research-logo-link[data-tooltip]:hover::after,
 .education-logo-link[data-tooltip]:hover::after {
     opacity: 1;
     visibility: visible;
+    transform: translateX(-50%) translateY(0);
 }
 
 /* Section Divider */
