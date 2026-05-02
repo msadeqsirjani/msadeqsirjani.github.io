@@ -5,31 +5,49 @@ import PurgeCSS from 'vite-plugin-purgecss'
 import fs from 'fs'
 import path from 'path'
 
+// Build-time constants shared between the Vite `define` hook (for app code)
+// and the closeBundle hook (for the service worker file).
+const BUILD_TIMESTAMP = Date.now().toString();
+
 // Custom plugin to inject build timestamp into service worker
 function injectBuildTime(): PluginOption {
+  let outDir = path.join(__dirname, 'dist');
   return {
     name: 'inject-build-time',
+    configResolved(config) {
+      outDir = path.isAbsolute(config.build.outDir)
+        ? config.build.outDir
+        : path.join(config.root, config.build.outDir);
+    },
     closeBundle() {
-      const buildTime = Date.now().toString();
       const swPath = path.join(__dirname, 'public', 'sw.js');
-      const distSwPath = path.join(__dirname, 'dist', 'sw.js');
+      const distSwPath = path.join(outDir, 'sw.js');
 
-      // Read the service worker file
-      let swContent = fs.readFileSync(swPath, 'utf-8');
+      // Read the service worker source from public/.
+      const swContent = fs.readFileSync(swPath, 'utf-8');
 
-      // Replace the placeholder with actual build time
-      swContent = swContent.replace('__BUILD_TIME__', buildTime);
+      if (!swContent.includes('__BUILD_TIME__')) {
+        throw new Error(
+          'inject-build-time: __BUILD_TIME__ placeholder not found in public/sw.js — ' +
+            'refusing to ship a service worker without a deterministic cache version.'
+        );
+      }
 
-      // Write to dist folder
-      fs.writeFileSync(distSwPath, swContent, 'utf-8');
+      // Replace every placeholder occurrence with the build timestamp.
+      const replaced = swContent.replace(/__BUILD_TIME__/g, BUILD_TIMESTAMP);
 
-      console.log(`Service worker cache version set to: ${buildTime}`);
+      fs.writeFileSync(distSwPath, replaced, 'utf-8');
+
+      console.log(`Service worker cache version set to: ${BUILD_TIMESTAMP}`);
     }
   };
 }
 
 // https://vite.dev/config/
 export default defineConfig({
+  define: {
+    __BUILD_TIMESTAMP__: JSON.stringify(BUILD_TIMESTAMP),
+  },
   plugins: [
     react(),
     injectBuildTime(),
