@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { createPortal } from 'react-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faMoon, faSun, faPalette } from '@fortawesome/free-solid-svg-icons';
@@ -70,7 +70,7 @@ const ColorPicker = () => {
     };
   };
 
-  const applyColorPalette = (colorName: string) => {
+  const applyColorPalette = useCallback((colorName: string) => {
     const palette = colorPalettes.find(p => p.name === colorName);
     if (!palette) return;
 
@@ -86,17 +86,17 @@ const ColorPicker = () => {
     if (accentRgb) {
       root.style.setProperty('--accent-rgb', `${accentRgb.r}, ${accentRgb.g}, ${accentRgb.b}`);
     }
-  };
+  }, [theme]);
 
   useEffect(() => {
     const savedColor = localStorage.getItem('primaryColor') || 'Blue';
     setSelectedColor(savedColor);
     applyColorPalette(savedColor);
-  }, []);
+  }, [applyColorPalette]);
 
   useEffect(() => {
     applyColorPalette(selectedColor);
-  }, [theme, selectedColor]);
+  }, [applyColorPalette, selectedColor]);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
