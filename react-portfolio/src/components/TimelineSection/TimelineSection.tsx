@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import type { ReactNode } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
+import { sanitizeHtml } from '../../utils/sanitizeHtml';
 
 type ClassName = string | undefined | null | false;
 
@@ -28,6 +29,16 @@ export interface TimelineSectionProps<T> {
 
 const joinClassNames = (...classNames: ClassName[]) =>
   classNames.filter(Boolean).join(' ');
+
+interface SafeHtmlProps {
+  className?: string;
+  html: string;
+}
+
+const SafeHtml = ({ className, html }: SafeHtmlProps) => {
+  const cleaned = useMemo(() => sanitizeHtml(html), [html]);
+  return <span className={className} dangerouslySetInnerHTML={{ __html: cleaned }} />;
+};
 
 const TimelineSection = <T,>({
   id,
@@ -106,12 +117,12 @@ const TimelineSection = <T,>({
                   {hasDescriptionContent
                     ? typeof descriptionContent === 'string'
                       ? (
-                        <span
+                        <SafeHtml
                           className={joinClassNames(
                             'timeline-description',
                             descriptionClassName,
                           )}
-                          dangerouslySetInnerHTML={{ __html: descriptionContent }}
+                          html={descriptionContent}
                         />
                       )
                       : descriptionContent
@@ -124,9 +135,10 @@ const TimelineSection = <T,>({
         {hasMore && (
           <div className="show-more-container">
             <button
-              id="showMoreBtn"
-              className={showAll ? 'expanded' : ''}
+              type="button"
+              className={`show-more-btn${showAll ? ' expanded' : ''}`}
               onClick={() => setShowAll(!showAll)}
+              aria-expanded={showAll}
               aria-label={showAll ? 'Show fewer items' : `Show all ${items.length} items`}
             >
               {showAll ? 'Show Less' : 'Show More'} <FontAwesomeIcon icon={showAll ? faChevronUp : faChevronDown} />
