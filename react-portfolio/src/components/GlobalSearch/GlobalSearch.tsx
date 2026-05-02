@@ -1,9 +1,18 @@
 import { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faTimes, faBook, faGraduationCap, faMicroscope, faChalkboardTeacher, faNewspaper, faTrophy } from '@fortawesome/free-solid-svg-icons';
+import type { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 import { useGlobalSearch } from '../../hooks/useGlobalSearch';
 import './GlobalSearch.css';
 import { sectionHref } from '../../constants/siteNav';
+import type {
+  Publication,
+  ResearchItem,
+  TeachingItem,
+  EducationItem,
+  NewsItem,
+  AwardItem,
+} from '../../types';
 
 interface GlobalSearchProps {
   isOpen: boolean;
@@ -16,49 +25,85 @@ const toPlainText = (value: string) =>
     .replace(/\s+/g, ' ')
     .trim();
 
-const categories = [
+type SearchableItem =
+  | Publication
+  | ResearchItem
+  | TeachingItem
+  | EducationItem
+  | NewsItem
+  | AwardItem;
+
+type CategoryKey =
+  | 'publications'
+  | 'research'
+  | 'teaching'
+  | 'education'
+  | 'news'
+  | 'awards';
+
+interface CategoryConfig {
+  key: CategoryKey;
+  icon: IconDefinition;
+  label: string;
+  getTitle: (item: SearchableItem) => string;
+  getMeta: (item: SearchableItem) => string;
+}
+
+const categories: readonly CategoryConfig[] = [
   {
-    key: 'publications' as const,
+    key: 'publications',
     icon: faBook,
     label: 'Publications',
-    getTitle: (item: any) => item.title,
-    getMeta: (item: any) => `${item.venue} • ${item.year}`
+    getTitle: (item) => (item as Publication).title,
+    getMeta: (item) => {
+      const pub = item as Publication;
+      return `${pub.venue} • ${pub.year}`;
+    },
   },
   {
-    key: 'research' as const,
+    key: 'research',
     icon: faMicroscope,
     label: 'Research',
-    getTitle: (item: any) => item.position,
-    getMeta: (item: any) => `${item.lab} • ${item.duration}`
+    getTitle: (item) => (item as ResearchItem).position,
+    getMeta: (item) => {
+      const res = item as ResearchItem;
+      return `${res.lab} • ${res.duration}`;
+    },
   },
   {
-    key: 'teaching' as const,
+    key: 'teaching',
     icon: faChalkboardTeacher,
     label: 'Teaching',
-    getTitle: (item: any) => item.course,
-    getMeta: (item: any) => `${item.university} • ${item.date}`
+    getTitle: (item) => (item as TeachingItem).course,
+    getMeta: (item) => {
+      const t = item as TeachingItem;
+      return `${t.university} • ${t.date}`;
+    },
   },
   {
-    key: 'education' as const,
+    key: 'education',
     icon: faGraduationCap,
     label: 'Education',
-    getTitle: (item: any) => item.degree,
-    getMeta: (item: any) => `${item.university} • ${item.duration}`
+    getTitle: (item) => (item as EducationItem).degree,
+    getMeta: (item) => {
+      const edu = item as EducationItem;
+      return `${edu.university} • ${edu.duration}`;
+    },
   },
   {
-    key: 'news' as const,
+    key: 'news',
     icon: faNewspaper,
     label: 'News',
-    getTitle: (item: any) => toPlainText(item.description),
-    getMeta: (item: any) => item.date
+    getTitle: (item) => toPlainText((item as NewsItem).description),
+    getMeta: (item) => (item as NewsItem).date,
   },
   {
-    key: 'awards' as const,
+    key: 'awards',
     icon: faTrophy,
     label: 'Awards',
-    getTitle: (item: any) => toPlainText(item.description),
-    getMeta: (item: any) => item.date
-  }
+    getTitle: (item) => toPlainText((item as AwardItem).description),
+    getMeta: (item) => (item as AwardItem).date,
+  },
 ];
 
 const GlobalSearch = ({ isOpen, onClose }: GlobalSearchProps) => {
