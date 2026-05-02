@@ -3,7 +3,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { useFocusTrap } from '../../hooks/useFocusTrap';
 import ColorPicker from '../ColorPicker/ColorPicker';
-import { sectionHref } from '../../constants/siteNav';
+import {
+  DROPDOWN_NAV_LINKS,
+  MAIN_NAV_LINKS,
+  sectionHref,
+} from '../../constants/siteNav';
 
 interface NavbarProps {
   onSearchClick?: () => void;
@@ -90,20 +94,8 @@ const Navbar = ({ onSearchClick }: NavbarProps) => {
     }
   };
 
-  const mainLinks = [
-    { id: 'home', label: 'Home' },
-    { id: 'biography', label: 'About' },
-    { id: 'education', label: 'Education' },
-    { id: 'research', label: 'Research' },
-    { id: 'publications', label: 'Publications' }
-  ];
-
-  const dropdownLinks = [
-    { id: 'teaching', label: 'Teaching' },
-    { id: 'news', label: 'News' },
-    { id: 'awards', label: 'Awards' },
-    { id: 'contact', label: 'Contact' }
-  ];
+  const mainLinks = MAIN_NAV_LINKS;
+  const dropdownLinks = DROPDOWN_NAV_LINKS;
 
   return (
     <nav className={`navbar${isScrolled ? ' navbar--scrolled' : ''}`} role="navigation" aria-label="Main navigation">
