@@ -569,6 +569,28 @@ ul, ol {
     transform: translateX(-50%) translateY(0);
 }
 
+/* Show tooltips on keyboard focus too — accessibility parity with hover. */
+.social-link:focus-visible::before,
+.btn[data-tooltip]:focus-visible::before,
+.theme-toggle[data-tooltip]:focus-visible::before,
+.footer-social a[data-tooltip]:focus-visible::before,
+.research-logo-link[data-tooltip]:focus-visible::before,
+.education-logo-link[data-tooltip]:focus-visible::before {
+    opacity: 1;
+    visibility: visible;
+}
+
+.social-link:focus-visible::after,
+.btn[data-tooltip]:focus-visible::after,
+.theme-toggle[data-tooltip]:focus-visible::after,
+.footer-social a[data-tooltip]:focus-visible::after,
+.research-logo-link[data-tooltip]:focus-visible::after,
+.education-logo-link[data-tooltip]:focus-visible::after {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+}
+
 /* Section Divider */
 .section-divider {
     display: flex;
@@ -1131,6 +1153,7 @@ kbd {
     margin-top: 2rem;
 }
 
+.show-more-btn,
 #showMoreBtn {
     padding: 0.75rem 1.5rem;
     background: var(--white);
@@ -1146,6 +1169,7 @@ kbd {
     gap: 0.75rem;
 }
 
+.show-more-btn:hover,
 #showMoreBtn:hover {
     background: var(--accent-color);
     color: var(--white);
@@ -1154,6 +1178,8 @@ kbd {
     border-color: var(--accent-color);
 }
 
+.show-more-btn i,
+.show-more-btn svg,
 #showMoreBtn i,
 #showMoreBtn svg {
     transition: transform 0.3s ease;
@@ -3556,7 +3582,9 @@ button,
 }
 
 .quick-action-toggle[data-tooltip]:hover::after,
-.quick-action-btn[data-tooltip]:hover::after {
+.quick-action-btn[data-tooltip]:hover::after,
+.quick-action-toggle[data-tooltip]:focus-visible::after,
+.quick-action-btn[data-tooltip]:focus-visible::after {
     opacity: 1;
     visibility: visible;
 }
@@ -4656,12 +4684,14 @@ html {
   z-index: 99;
 }
 
-.search-toggle[data-tooltip]:hover::before {
+.search-toggle[data-tooltip]:hover::before,
+.search-toggle[data-tooltip]:focus-visible::before {
   opacity: 1;
   visibility: visible;
 }
 
-.search-toggle[data-tooltip]:hover::after {
+.search-toggle[data-tooltip]:hover::after,
+.search-toggle[data-tooltip]:focus-visible::after {
   opacity: 1;
   visibility: visible;
   transform: translateX(-50%) translateY(0);
@@ -4852,6 +4882,7 @@ html {
     margin-top: 1.25rem;
   }
 
+  .show-more-btn,
   #showMoreBtn {
     min-height: 40px;
     padding: 0.55rem 1rem;
@@ -4861,6 +4892,7 @@ html {
     line-height: 1.2;
   }
 
+  .show-more-btn:hover,
   #showMoreBtn:hover {
     transform: none;
     box-shadow: none;
