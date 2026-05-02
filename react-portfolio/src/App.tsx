@@ -9,6 +9,7 @@ import SkeletonLoader from './components/SkeletonLoader/SkeletonLoader';
 import DeferredIdle from './components/DeferredIdle/DeferredIdle';
 import DeferredToaster from './components/DeferredToaster/DeferredToaster';
 import LazyGlobalSearch from './components/LazyGlobalSearch/LazyGlobalSearch';
+import { isValidRoute } from './constants/siteNav';
 
 const ReadingProgress = lazy(() => import('./components/ReadingProgress/ReadingProgress'));
 const PullToRefresh = lazy(() => import('./components/PullToRefresh/PullToRefresh'));
@@ -64,36 +65,18 @@ function App() {
   const prevShow404 = useRef(false);
 
   useEffect(() => {
-    const validRoutes = [
-      '',
-      '#',
-      '#home',
-      '#person',
-      '#biography',
-      '#education',
-      '#research',
-      '#research-interests',
-      '#publications',
-      '#teaching',
-      '#news',
-      '#awards',
-      '#contact',
-    ];
-
-    const validPathnames = ['/', '/index.html'];
-
     const checkRoute = () => {
-      const pathname = window.location.pathname.toLowerCase();
-      const hash = window.location.hash.toLowerCase();
-      const invalidPath = !validPathnames.includes(pathname);
-      const invalidHash = hash !== '' && !validRoutes.includes(hash);
-      setShow404(invalidPath || invalidHash);
+      setShow404(!isValidRoute(window.location.pathname, window.location.hash));
     };
 
     checkRoute();
     window.addEventListener('hashchange', checkRoute);
+    window.addEventListener('popstate', checkRoute);
 
-    return () => window.removeEventListener('hashchange', checkRoute);
+    return () => {
+      window.removeEventListener('hashchange', checkRoute);
+      window.removeEventListener('popstate', checkRoute);
+    };
   }, []);
 
   useEffect(() => {
@@ -178,7 +161,7 @@ function App() {
   return (
     <ThemeProvider>
       <ErrorBoundary>
-        <a href="/#main-content" className="skip-to-content">Skip to main content</a>
+        <a href="#main-content" className="skip-to-content">Skip to main content</a>
         <DeferredIdle>
           <Suspense fallback={null}>
             <PullToRefresh />
