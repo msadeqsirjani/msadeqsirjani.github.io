@@ -45,6 +45,11 @@ function injectBuildTime(): PluginOption {
 
 // https://vite.dev/config/
 export default defineConfig({
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, 'src'),
+    },
+  },
   define: {
     __BUILD_TIMESTAMP__: JSON.stringify(BUILD_TIMESTAMP),
   },
