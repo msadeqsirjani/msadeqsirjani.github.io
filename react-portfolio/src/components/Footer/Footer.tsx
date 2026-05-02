@@ -1,13 +1,26 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faGraduationCap, faArrowUp } from '@fortawesome/free-solid-svg-icons';
 import { faLinkedin, faGithub, faOrcid, faResearchgate } from '@fortawesome/free-brands-svg-icons';
 import { useScrollManager } from '../../hooks/useScrollManager';
 import { sectionHref } from '../../constants/siteNav';
 
+const BUILD_TIMESTAMP = Number(__BUILD_TIMESTAMP__);
+
 const Footer = () => {
   const currentYear = new Date().getFullYear();
   const [scrollVisible, setScrollVisible] = useState(false);
+
+  const lastUpdated = useMemo(() => {
+    const ts = Number.isFinite(BUILD_TIMESTAMP) && BUILD_TIMESTAMP > 0
+      ? BUILD_TIMESTAMP
+      : Date.now();
+    return new Date(ts).toLocaleDateString('en-US', {
+      month: 'long',
+      day: 'numeric',
+      year: 'numeric',
+    });
+  }, []);
 
   useScrollManager((_scrollY, scrollPercent) => {
     setScrollVisible(scrollPercent >= 80);
@@ -82,7 +95,7 @@ const Footer = () => {
           </div>
           <div className="footer-bottom">
             <p>&copy; {currentYear} Mohammad Sadegh Sirjani. All rights reserved.</p>
-            <p className="last-updated">Last updated: {new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</p>
+            <p className="last-updated">Last updated: {lastUpdated}</p>
           </div>
         </div>
       </footer>
