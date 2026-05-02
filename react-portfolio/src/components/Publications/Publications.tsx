@@ -14,7 +14,9 @@ const Publications = () => {
   const [publications, setPublications] = useState<Publication[]>([]);
   const [loading, setLoading] = useState(true);
   const [showAll, setShowAll] = useState(false);
-  const [expandedPub, setExpandedPub] = useState<number | null>(null);
+  const [expandedPub, setExpandedPub] = useState<string | null>(null);
+
+  const pubKey = (pub: Publication) => pub.bibtexId ?? `${pub.year}-${pub.title}`;
 
   useEffect(() => {
     fetchPublications()
@@ -84,9 +86,12 @@ const Publications = () => {
             {filteredPublications.length === 0 ? (
               <p className="no-results">No publications found matching your criteria.</p>
             ) : (
-              filteredPublications.map((pub, index) => (
+              filteredPublications.map((pub, index) => {
+                const key = pubKey(pub);
+                const isExpanded = expandedPub === key;
+                return (
                 <div
-                  key={`${pub.year}-${pub.title.slice(0, 32)}`}
+                  key={key}
                   className={`publication-item ${!showAll && index >= initialLimit ? 'hidden-for-show-more' : ''}`}
                   role="listitem"
                 >
@@ -133,34 +138,41 @@ const Publications = () => {
                         {pub.abstract && (
                           <button
                             className="pub-text-link doi-link"
-                            onClick={() => setExpandedPub(expandedPub === index ? null : index)}
+                            onClick={() => setExpandedPub(isExpanded ? null : key)}
+                            aria-expanded={isExpanded}
                           >
-                            Abstract <FontAwesomeIcon icon={expandedPub === index ? faChevronUp : faChevronDown} size="xs" />
+                            Abstract <FontAwesomeIcon icon={isExpanded ? faChevronUp : faChevronDown} size="xs" />
                           </button>
                         )}
                       </div>
                     </div>
                   </div>
 
-                  {expandedPub === index && pub.abstract && (
+                  {isExpanded && pub.abstract && (
                     <div className="publication-abstract">
                       <p>{pub.abstract}</p>
                     </div>
                   )}
                   {pub.keywords && pub.keywords.length > 0 && (
                     <div className="pub-keywords">
-                      {pub.keywords.map((kw, i) => (
-                        <span key={i} className="pub-keyword-tag">{kw}</span>
+                      {pub.keywords.map(kw => (
+                        <span key={kw} className="pub-keyword-tag">{kw}</span>
                       ))}
                     </div>
                   )}
                 </div>
-              ))
+                );
+              })
             )}
           </div>
           {filteredPublications.length > initialLimit && settings.displayLimits.publications.showMoreEnabled && (
             <div className="show-more-container">
-              <button id="showMoreBtn" onClick={() => setShowAll(!showAll)} className={showAll ? 'expanded' : ''}>
+              <button
+                type="button"
+                onClick={() => setShowAll(!showAll)}
+                className={`show-more-btn${showAll ? ' expanded' : ''}`}
+                aria-expanded={showAll}
+              >
                 {showAll ? 'Show Less' : 'Show More'} <FontAwesomeIcon icon={showAll ? faChevronUp : faChevronDown} />
               </button>
             </div>
