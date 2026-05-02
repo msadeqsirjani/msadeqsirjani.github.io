@@ -1,7 +1,9 @@
-import { useEffect, useCallback } from 'react';
+import { useEffect, useRef } from 'react';
+
+type ScrollListener = (scrollY: number, scrollPercent: number) => void;
 
 class ScrollManager {
-  private listeners: Set<(scrollY: number, scrollPercent: number) => void> = new Set();
+  private listeners: Set<ScrollListener> = new Set();
   private scrollY = 0;
   private scrollPercent = 0;
   private rafId: number | null = null;
@@ -23,15 +25,15 @@ class ScrollManager {
     });
   };
 
-  subscribe(listener: (scrollY: number, scrollPercent: number) => void) {
+  subscribe(listener: ScrollListener) {
     this.listeners.add(listener);
 
     if (!this.isListening) {
       window.addEventListener('scroll', this.handleScroll, { passive: true });
       this.isListening = true;
       this.calculateScroll();
-      listener(this.scrollY, this.scrollPercent);
     }
+    listener(this.scrollY, this.scrollPercent);
 
     return () => {
       this.listeners.delete(listener);
@@ -53,15 +55,24 @@ class ScrollManager {
 
 const scrollManager = new ScrollManager();
 
-export const useScrollManager = (
-  callback: (scrollY: number, scrollPercent: number) => void
-) => {
-  const memoizedCallback = useCallback(callback, [callback]);
+/**
+ * Subscribes to global scroll events. The callback is stored in a ref so
+ * callers can pass inline arrow functions without causing the listener to
+ * tear down and resubscribe on every render.
+ */
+export const useScrollManager = (callback: ScrollListener) => {
+  const callbackRef = useRef<ScrollListener>(callback);
 
   useEffect(() => {
-    const unsubscribe = scrollManager.subscribe(memoizedCallback);
-    return unsubscribe;
-  }, [memoizedCallback]);
+    callbackRef.current = callback;
+  }, [callback]);
+
+  useEffect(() => {
+    const stableListener: ScrollListener = (scrollY, scrollPercent) => {
+      callbackRef.current(scrollY, scrollPercent);
+    };
+    return scrollManager.subscribe(stableListener);
+  }, []);
 };
 
 export default scrollManager;
