@@ -13,9 +13,13 @@ const PullToRefresh = () => {
 
   useEffect(() => {
     const handleTouchStart = (e: TouchEvent) => {
+      // Only arm pull-to-refresh when the user starts the gesture at the very
+      // top of the page; otherwise let normal scrolling proceed.
       if (window.scrollY === 0 && e.touches[0]) {
         startY.current = e.touches[0].clientY;
         isPulling.current = true;
+      } else {
+        isPulling.current = false;
       }
     };
 
@@ -25,11 +29,14 @@ const PullToRefresh = () => {
       currentY.current = e.touches[0].clientY;
       const pullDistance = Math.min(currentY.current - startY.current, MAX_PULL_DISTANCE);
 
-      if (pullDistance > 0) {
-        if (window.scrollY === 0) {
-          e.preventDefault();
-        }
+      if (pullDistance > 0 && window.scrollY === 0) {
+        // Only block native scroll while we're actively dragging the indicator.
+        if (e.cancelable) e.preventDefault();
         setPullState(pullDistance < PULL_THRESHOLD ? 'pulling' : 'ready');
+      } else if (pullDistance <= 0) {
+        // User reversed direction — release the gesture.
+        isPulling.current = false;
+        setPullState('idle');
       }
     };
 
@@ -50,14 +57,17 @@ const PullToRefresh = () => {
       currentY.current = 0;
     };
 
-    document.addEventListener('touchstart', handleTouchStart, { passive: false });
+    // touchstart is passive — we only need preventDefault inside touchmove.
+    document.addEventListener('touchstart', handleTouchStart, { passive: true });
     document.addEventListener('touchmove', handleTouchMove, { passive: false });
-    document.addEventListener('touchend', handleTouchEnd);
+    document.addEventListener('touchend', handleTouchEnd, { passive: true });
+    document.addEventListener('touchcancel', handleTouchEnd, { passive: true });
 
     return () => {
       document.removeEventListener('touchstart', handleTouchStart);
       document.removeEventListener('touchmove', handleTouchMove);
       document.removeEventListener('touchend', handleTouchEnd);
+      document.removeEventListener('touchcancel', handleTouchEnd);
     };
   }, []);
 
