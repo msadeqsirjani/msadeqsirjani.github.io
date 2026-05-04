@@ -112,6 +112,7 @@
 /* Modal Container */
 .color-picker-modal {
   background-color: var(--white);
+  border: 1px solid var(--border-color);
   border-radius: var(--button-border-radius);
   padding: 2rem;
   max-width: 500px;

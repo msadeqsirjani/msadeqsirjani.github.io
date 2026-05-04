@@ -370,12 +370,12 @@ a.result-item {
 
 /* Light Theme (Default) */
 .global-search-modal {
-  --modal-bg: #ffffff;
-  --modal-text: #1a202c;
-  --modal-text-muted: #718096;
-  --modal-border: #e2e8f0;
-  --modal-card-bg: #f7fafc;
-  --modal-hover-bg: #edf2f7;
+  --modal-bg: var(--white);
+  --modal-text: var(--text-color);
+  --modal-text-muted: var(--text-light);
+  --modal-border: var(--border-color);
+  --modal-card-bg: var(--gray-light);
+  --modal-hover-bg: rgba(15, 23, 42, 0.06);
 }
 
 [data-theme="dark"] .global-search-modal {
