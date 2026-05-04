@@ -248,10 +248,10 @@ ul, ol {
     position: absolute;
     top: 100%;
     right: 0;
-    background: rgba(255, 255, 255, 0.75);
+    background: var(--white);
     backdrop-filter: blur(16px) saturate(180%);
     -webkit-backdrop-filter: blur(16px) saturate(180%);
-    border: 1px solid rgba(209, 213, 219, 0.3);
+    border: 1px solid var(--border-color);
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
     padding: 0.5rem 0;
     min-width: 150px;
@@ -359,6 +359,11 @@ ul, ol {
     height: 300px;
     border-radius: 50%;
     object-fit: cover;
+    border: 3px solid #cbd5e1;
+}
+
+[data-theme="dark"] .profile-image img {
+    border-color: #94a3b8;
 }
 
 .hero-right {
