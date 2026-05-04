@@ -121,7 +121,7 @@ const Contact = () => {
         <h2 className="section-title">Contact</h2>
         <div className="contact-container">
           <div className="contact-info">
-            <h3>Get in Touch</h3>
+            <h3>GET IN TOUCH</h3>
             {contactInfo.map((item, idx) => (
               <div key={idx} className="contact-item">
                 <span className="contact-info-icon-shell" aria-hidden="true">
@@ -143,7 +143,7 @@ const Contact = () => {
           </div>
 
           <div className="contact-form">
-            <h3>Send a Message</h3>
+            <h3>SEND A MESSAGE</h3>
             <form id="contact-form" action="https://formspree.io/f/xblywejw" method="POST" onSubmit={handleSubmit}>
               {formFields.map((field) => (
                 <div key={field.id} className="form-group">
