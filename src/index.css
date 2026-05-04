@@ -50,7 +50,7 @@ body, h1, h2, h3, h4, h5, h6 {
     /* WCAG AA compliant color scheme */
     --text-color: #1a1a1a;        /* Contrast 13.9:1 with white */
     --text-light: #475569;        /* Contrast 7.1:1 with white (improved from #4a5568) */
-    --white: #ffffff;
+    --white: #f1f5f9;
     --gray-light: #f7fafc;
     --border-color: #d1d5db;      /* More visible borders */
     --accent-color: #1e40af;      /* Contrast 7.7:1 with white (improved from #1d4ed8) */
@@ -765,7 +765,7 @@ ul, ol {
     object-position: center;
     flex-shrink: 0;
     border-radius: 8px;
-    background: var(--white);
+    background: #ffffff;
     padding: 0.6rem;
     border: 1px solid var(--border-color);
 }
@@ -909,7 +909,7 @@ ul, ol {
     object-position: center;
     flex-shrink: 0;
     border-radius: 50%;
-    background: var(--white);
+    background: #ffffff;
     padding: 0.4rem;
     border: 1px solid var(--border-color);
 }
@@ -1351,8 +1351,8 @@ kbd {
 }
 
 .pub-keyword-tag {
-    background: #f0f0f0;
-    color: #555;
+    background: #e2e8f0;
+    color: #475569;
     font-size: 0.78rem;
     padding: 0.15rem 0.55rem;
     border-radius: 4px;
@@ -1498,8 +1498,8 @@ kbd {
 
 .citations-badge,
 .pub-year-badge {
-    background: #f0f0f0;
-    color: #555;
+    background: #e2e8f0;
+    color: #475569;
 }
 
 [data-theme="dark"] .citations-badge,
