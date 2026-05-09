@@ -1240,6 +1240,8 @@ kbd {
     color: #111;
     margin-bottom: 0.2rem;
     line-height: 1.4;
+    text-align: justify;
+    text-justify: inter-word;
 }
 
 [data-theme="dark"] .publication-title {
@@ -1251,6 +1253,8 @@ kbd {
     color: #888;
     margin: 0.1rem 0;
     font-weight: 400;
+    text-align: justify;
+    text-justify: inter-word;
 }
 
 [data-theme="dark"] .publication-authors {
@@ -1271,6 +1275,8 @@ kbd {
     color: var(--accent-color);
     font-style: italic;
     margin: 0.1rem 0 0.4rem;
+    text-align: justify;
+    text-justify: inter-word;
 }
 
 .publication-item h4 {
@@ -2442,7 +2448,8 @@ kbd {
     .publication-authors,
     .publication-venue,
     .pub-keywords {
-        text-align: left;
+        text-align: justify;
+        text-justify: inter-word;
     }
 
     .publication-abstract,
@@ -2457,7 +2464,8 @@ kbd {
         margin-top: 1.25rem;
         margin-bottom: 0.7rem;
         color: var(--text-color);
-        text-align: left;
+        text-align: justify;
+        text-justify: inter-word;
 
         text-wrap: pretty;
 
