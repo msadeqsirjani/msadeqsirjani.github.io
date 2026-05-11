@@ -184,6 +184,12 @@ ul, ol {
     background: linear-gradient(135deg, #ffffff, #e5e5e5);
 }
 
+.logo-text:hover,
+.logo-text:focus,
+.logo-text:focus-visible {
+    text-decoration: none;
+}
+
 .nav-menu {
     display: flex;
     gap: 2rem;
