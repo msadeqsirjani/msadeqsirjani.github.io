@@ -74,7 +74,7 @@
     "pdfLink": "assets/docs/publications/IKT62039.2023.10433047.pdf",
     "bibtexId": "10433047",
     "abstract": "The rapid proliferation of Internet of Things (IoT) devices has introduced significant security challenges, making Intrusion Detection Systems (IDS) essential for protecting IoT networks from cyber threats. Machine learning algorithms have emerged as promising solutions for developing effective IDS. However, selecting the most appropriate algorithm remains a challenge due to varying performance characteristics across different attack scenarios. This paper presents a comprehensive comparative evaluation of five popular machine learning algorithms: Logistic Regression (LR), Random Forest (RF), K-Nearest Neighbors (KNN), Support Vector Machine (SVM), and XGBoost for IoT intrusion detection. We conduct extensive experiments using the UNSW-NB15 dataset, which contains diverse network attack patterns. Our evaluation considers multiple performance metrics including accuracy, precision, recall, and F1-score. The experimental results demonstrate that XGBoost achieves the highest overall accuracy and recall rates, making it particularly suitable for IoT-based intrusion detection systems.",
-    "citations": 2,
+    "citations": 3,
     "keywords": ["Network Security", "Intrusion Detection System", "Artificial Intelligence", "Machine Learning", "Data Mining"]
   }
 ]
