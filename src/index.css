@@ -54,7 +54,7 @@ body, h1, h2, h3, h4, h5, h6 {
     --gray-light: #f7fafc;
     --border-color: #d1d5db;      /* More visible borders */
     --accent-color: #1e40af;      /* Contrast 7.7:1 with white (improved from #1d4ed8) */
-    --accent-color-light: #1e40af; /* Always light-mode accent, updated by ColorPicker */
+    --accent-color-light: #1e40af; /* Light-mode accent for use on dark surfaces */
     --accent-hover: #1e3a8a;      /* Darker accent for hover */
     --accent-rgb: 30, 64, 175;    /* RGB values for accent color with alpha */
     --error-color: #dc2626;       /* Contrast 5.9:1 with white */
