@@ -1,19 +1,9 @@
-/**
- * Tiny allowlist sanitizer for the small subset of HTML used in
- * news/awards descriptions: only <a> tags with safe href/target/rel attrs.
- *
- * This is intentionally minimal — the data lives in the repo and is reviewed
- * at commit time. The sanitizer exists so that if any description ever grows
- * accidental script/iframe/style markup, we strip it before render.
- */
-
 const ALLOWED_TAGS = new Set(['a']);
 const ALLOWED_ATTRS = new Set(['href', 'target', 'rel']);
 const SAFE_PROTOCOLS = ['http:', 'https:', 'mailto:'];
 
 const isSafeUrl = (value: string): boolean => {
   const trimmed = value.trim();
-  // Permit relative URLs and fragment links.
   if (trimmed.startsWith('/') || trimmed.startsWith('#')) return true;
   try {
     const parsed = new URL(trimmed, 'https://example.com/');
@@ -35,13 +25,11 @@ const sanitizeNode = (node: Node, parent: Node) => {
   const tag = el.tagName.toLowerCase();
 
   if (!ALLOWED_TAGS.has(tag)) {
-    // Replace the element with its text content so we don't lose context.
     const text = el.textContent ?? '';
     parent.replaceChild(el.ownerDocument!.createTextNode(text), el);
     return;
   }
 
-  // Strip every attribute we don't allow; validate href.
   for (const attr of Array.from(el.attributes)) {
     const name = attr.name.toLowerCase();
     if (!ALLOWED_ATTRS.has(name)) {
@@ -53,7 +41,6 @@ const sanitizeNode = (node: Node, parent: Node) => {
     }
   }
 
-  // Force safe defaults for outbound links.
   if (el.getAttribute('target') === '_blank') {
     const rel = (el.getAttribute('rel') ?? '').split(/\s+/).filter(Boolean);
     if (!rel.includes('noopener')) rel.push('noopener');
@@ -68,7 +55,6 @@ const sanitizeNode = (node: Node, parent: Node) => {
 
 export const sanitizeHtml = (input: string): string => {
   if (typeof window === 'undefined' || typeof DOMParser === 'undefined') {
-    // SSR fallback: strip all tags entirely.
     return input.replace(/<[^>]*>/g, '');
   }
   const doc = new DOMParser().parseFromString(`<div>${input}</div>`, 'text/html');

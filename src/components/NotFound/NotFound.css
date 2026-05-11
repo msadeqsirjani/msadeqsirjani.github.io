@@ -1,4 +1,4 @@
-/* ── 404 Not Found Page ── */
+
 
 .nf-page {
   min-height: 100vh;
@@ -14,7 +14,7 @@
   max-width: 760px;
 }
 
-/* Error label */
+
 .nf-error-label {
   display: flex;
   align-items: center;
@@ -35,7 +35,7 @@
   flex-shrink: 0;
 }
 
-/* 404 number */
+
 .nf-code {
   font-size: clamp(4rem, 14vw, 7.5rem);
   font-weight: 300;
@@ -45,7 +45,7 @@
   margin-bottom: 0.6rem;
 }
 
-/* Subtitle */
+
 .nf-title {
   font-size: clamp(1.1rem, 2.5vw, 1.3rem);
   font-weight: 600;
@@ -54,7 +54,7 @@
   margin-bottom: 1.25rem;
 }
 
-/* Description with left border */
+
 .nf-desc {
   border-left: 3px solid var(--border-color);
   padding-left: 1.1rem;
@@ -65,7 +65,7 @@
   margin-bottom: 2.2rem;
 }
 
-/* Buttons */
+
 .nf-actions {
   display: flex;
   flex-wrap: wrap;
@@ -93,7 +93,7 @@
   text-decoration: none;
 }
 
-/* Primary — uses site accent */
+
 .nf-btn-primary {
   background: var(--accent-color);
   color: #fff;
@@ -106,7 +106,7 @@
   opacity: 1;
 }
 
-/* Secondary — outlined */
+
 .nf-btn-secondary {
   background: transparent;
   color: var(--text-color);
@@ -119,14 +119,14 @@
   opacity: 1;
 }
 
-/* Divider */
+
 .nf-divider {
   height: 1px;
   background: var(--border-color);
   margin-bottom: 2.4rem;
 }
 
-/* Quick links label */
+
 .nf-links-label {
   font-size: 0.68rem;
   letter-spacing: 0.16em;
@@ -135,7 +135,7 @@
   margin-bottom: 0.2rem;
 }
 
-/* Quick links list */
+
 .nf-links-list {
   list-style: none;
 }
@@ -176,7 +176,7 @@
   transform: translateX(3px);
 }
 
-/* Mobile */
+
 @media (max-width: 480px) {
   .nf-page {
     padding: 3rem 1.4rem 3rem;

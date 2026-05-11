@@ -13,8 +13,6 @@ const PullToRefresh = () => {
 
   useEffect(() => {
     const handleTouchStart = (e: TouchEvent) => {
-      // Only arm pull-to-refresh when the user starts the gesture at the very
-      // top of the page; otherwise let normal scrolling proceed.
       if (window.scrollY === 0 && e.touches[0]) {
         startY.current = e.touches[0].clientY;
         isPulling.current = true;
@@ -30,11 +28,9 @@ const PullToRefresh = () => {
       const pullDistance = Math.min(currentY.current - startY.current, MAX_PULL_DISTANCE);
 
       if (pullDistance > 0 && window.scrollY === 0) {
-        // Only block native scroll while we're actively dragging the indicator.
         if (e.cancelable) e.preventDefault();
         setPullState(pullDistance < PULL_THRESHOLD ? 'pulling' : 'ready');
       } else if (pullDistance <= 0) {
-        // User reversed direction — release the gesture.
         isPulling.current = false;
         setPullState('idle');
       }
@@ -57,7 +53,6 @@ const PullToRefresh = () => {
       currentY.current = 0;
     };
 
-    // touchstart is passive — we only need preventDefault inside touchmove.
     document.addEventListener('touchstart', handleTouchStart, { passive: true });
     document.addEventListener('touchmove', handleTouchMove, { passive: false });
     document.addEventListener('touchend', handleTouchEnd, { passive: true });

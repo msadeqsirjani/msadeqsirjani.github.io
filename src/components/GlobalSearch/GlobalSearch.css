@@ -1,4 +1,4 @@
-/* Global Search Overlay */
+
 .global-search-overlay {
   position: fixed;
   top: 0;
@@ -24,7 +24,7 @@
   }
 }
 
-/* Global Search Modal */
+
 .global-search-modal {
   background: var(--bg-color);
   border-radius: var(--button-border-radius);
@@ -49,7 +49,7 @@
   }
 }
 
-/* Search Header */
+
 .global-search-header {
   display: flex;
   align-items: center;
@@ -137,7 +137,7 @@
   font-size: 1.2rem;
 }
 
-/* Search Body */
+
 .global-search-body {
   flex: 1;
   overflow-y: auto;
@@ -145,7 +145,7 @@
   min-height: 300px;
 }
 
-/* Empty State */
+
 .search-empty-state {
   display: flex;
   flex-direction: column;
@@ -190,7 +190,7 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* Loading State */
+
 .search-loading {
   display: flex;
   flex-direction: column;
@@ -216,7 +216,7 @@
   }
 }
 
-/* No Results */
+
 .search-no-results {
   display: flex;
   flex-direction: column;
@@ -236,7 +236,7 @@
   opacity: 0.7;
 }
 
-/* Search Results */
+
 .search-results {
   display: flex;
   flex-direction: column;
@@ -252,7 +252,7 @@
   font-weight: 500;
 }
 
-/* Result Category */
+
 .result-category {
   display: flex;
   flex-direction: column;
@@ -291,7 +291,7 @@
   font-weight: 600;
 }
 
-/* Result List */
+
 .result-list {
   display: flex;
   flex-direction: column;
@@ -332,7 +332,7 @@ a.result-item {
   font-size: 0.875rem;
 }
 
-/* Search Footer */
+
 .global-search-footer {
   padding: 1rem 1.5rem;
   border-top: 1px solid var(--border-color);
@@ -368,7 +368,7 @@ a.result-item {
   text-align: center;
 }
 
-/* Light Theme (Default) */
+
 .global-search-modal {
   --modal-bg: var(--white);
   --modal-text: var(--text-color);
@@ -387,7 +387,7 @@ a.result-item {
   --modal-hover-bg: rgba(255, 255, 255, 0.08);
 }
 
-/* Use modal-specific variables */
+
 .global-search-modal {
   background: var(--modal-bg);
   border: 1px solid var(--modal-border);
@@ -462,12 +462,12 @@ a.result-item {
   border-top-color: var(--accent-color);
 }
 
-/* Dark Theme Shadow */
+
 [data-theme="dark"] .global-search-modal {
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
 }
 
-/* Scrollbar Styling */
+
 .global-search-body::-webkit-scrollbar {
   width: 8px;
 }
@@ -485,7 +485,7 @@ a.result-item {
   background: var(--text-muted);
 }
 
-/* Hide Global Search on Mobile */
+
 @media (max-width: 768px) {
   .global-search-overlay {
     display: none !important;

@@ -1,4 +1,4 @@
-/* Cookie Consent Banner */
+
 .cookie-consent-banner {
   position: fixed;
   bottom: 0;
@@ -59,13 +59,13 @@
   min-width: 100px;
 }
 
-/* Dark mode support */
+
 body[data-theme="dark"] .cookie-consent-banner {
   background: var(--bg-color);
   border-top-color: var(--border-color);
 }
 
-/* Mobile responsiveness */
+
 @media (max-width: 768px) {
   .cookie-consent-content {
     flex-direction: column;
@@ -95,7 +95,7 @@ body[data-theme="dark"] .cookie-consent-banner {
   }
 }
 
-/* Reduce motion for accessibility */
+
 @media (prefers-reduced-motion: reduce) {
   .cookie-consent-banner {
     animation: none;

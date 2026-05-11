@@ -1,6 +1,3 @@
-// Replaced at build time by vite-config.ts → injectBuildTime plugin.
-// In dev (`vite`), the placeholder remains literal; the SW only registers in
-// production builds, so a literal placeholder would never reach a real cache.
 const CACHE_VERSION = '__BUILD_TIME__';
 const CACHE_NAME = `msadeqsirjani-${CACHE_VERSION}`;
 const RUNTIME_CACHE = `runtime-cache-${CACHE_VERSION}`;

@@ -3,9 +3,6 @@ import type { Toaster } from 'sonner';
 
 type SonnerProps = ComponentProps<typeof Toaster>;
 
-/**
- * Sonner is only needed after idle or interaction; keeps it out of the critical JS payload.
- */
 export default function DeferredToaster(props: SonnerProps) {
   const [Toaster, setToaster] = useState<ComponentType<SonnerProps> | null>(null);
 

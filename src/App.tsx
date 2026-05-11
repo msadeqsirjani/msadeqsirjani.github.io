@@ -107,9 +107,7 @@ function App() {
       }
       if ((e.metaKey || e.ctrlKey) && e.key === 'p') {
         e.preventDefault();
-        // Ensure all animated sections are visible before printing
         document.querySelectorAll('.fade-in-section').forEach(el => el.classList.add('is-visible'));
-        // Show all publications (bypass show-more limit)
         const hiddenPubs = document.querySelectorAll<HTMLElement>('.publication-item.hidden-for-show-more');
         hiddenPubs.forEach(el => el.setAttribute('data-print-hidden', 'true'));
         hiddenPubs.forEach(el => el.classList.remove('hidden-for-show-more'));

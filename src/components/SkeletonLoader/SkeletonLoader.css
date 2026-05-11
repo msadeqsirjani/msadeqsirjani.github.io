@@ -77,7 +77,7 @@
   border-radius: 6px;
 }
 
-/* Dark mode support */
+
 body[data-theme="dark"] .skeleton {
   background: linear-gradient(
     90deg,
@@ -94,7 +94,7 @@ body[data-theme="dark"] .skeleton-publication {
   border-color: rgba(255, 255, 255, 0.1);
 }
 
-/* Accessibility - reduce motion */
+
 @media (prefers-reduced-motion: reduce) {
   .skeleton {
     animation: none;

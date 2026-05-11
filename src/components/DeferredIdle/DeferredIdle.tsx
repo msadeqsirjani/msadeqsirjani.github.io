@@ -2,14 +2,9 @@ import { useEffect, useState, type ReactNode } from 'react';
 
 type Props = {
   children: ReactNode;
-  /** Max wait before running even if the main thread stays busy (ms). */
   timeoutMs?: number;
 };
 
-/**
- * Defers mounting children until the browser is idle (or timeout).
- * Keeps initial JS + main-thread work smaller for mobile FCP/LCP.
- */
 export default function DeferredIdle({ children, timeoutMs = 2800 }: Props) {
   const [ready, setReady] = useState(false);
 

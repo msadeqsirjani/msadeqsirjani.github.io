@@ -55,11 +55,6 @@ class ScrollManager {
 
 const scrollManager = new ScrollManager();
 
-/**
- * Subscribes to global scroll events. The callback is stored in a ref so
- * callers can pass inline arrow functions without causing the listener to
- * tear down and resubscribe on every render.
- */
 export const useScrollManager = (callback: ScrollListener) => {
   const callbackRef = useRef<ScrollListener>(callback);
 

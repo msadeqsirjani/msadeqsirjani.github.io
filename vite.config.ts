@@ -5,11 +5,8 @@ import PurgeCSS from 'vite-plugin-purgecss'
 import fs from 'fs'
 import path from 'path'
 
-// Build-time constants shared between the Vite `define` hook (for app code)
-// and the closeBundle hook (for the service worker file).
 const BUILD_TIMESTAMP = Date.now().toString();
 
-// Custom plugin to inject build timestamp into service worker
 function injectBuildTime(): PluginOption {
   let outDir = path.join(__dirname, 'dist');
   return {
@@ -23,7 +20,6 @@ function injectBuildTime(): PluginOption {
       const swPath = path.join(__dirname, 'public', 'sw.js');
       const distSwPath = path.join(outDir, 'sw.js');
 
-      // Read the service worker source from public/.
       const swContent = fs.readFileSync(swPath, 'utf-8');
 
       if (!swContent.includes('__BUILD_TIME__')) {
@@ -33,7 +29,6 @@ function injectBuildTime(): PluginOption {
         );
       }
 
-      // Replace every placeholder occurrence with the build timestamp.
       const replaced = swContent.replace(/__BUILD_TIME__/g, BUILD_TIMESTAMP);
 
       fs.writeFileSync(distSwPath, replaced, 'utf-8');
@@ -43,7 +38,6 @@ function injectBuildTime(): PluginOption {
   };
 }
 
-// https://vite.dev/config/
 export default defineConfig({
   resolve: {
     alias: {
@@ -88,13 +82,12 @@ export default defineConfig({
   build: {
     target: 'es2015',
     minify: 'terser',
-    sourcemap: true, // Enable source maps for production debugging
+    sourcemap: true,
     rollupOptions: {
       input: {
         main: path.resolve(__dirname, 'index.html'),
       },
       output: {
-        // Manual chunking for better caching
         manualChunks: {
           'react-vendor': ['react', 'react-dom'],
           'sonner': ['sonner'],
@@ -105,7 +98,7 @@ export default defineConfig({
             '@fortawesome/free-brands-svg-icons',
           ],
         },
-        sourcemapExcludeSources: true, // Don't include source code in sourcemaps for security
+        sourcemapExcludeSources: true,
       },
     },
   },

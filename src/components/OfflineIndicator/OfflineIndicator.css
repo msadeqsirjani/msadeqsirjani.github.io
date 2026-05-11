@@ -1,4 +1,4 @@
-/* Offline Indicator */
+
 .offline-indicator {
   position: fixed;
   top: 70px;
@@ -42,12 +42,12 @@
   font-size: 1.2rem;
 }
 
-/* Hide mobile text on desktop */
+
 .offline-text-mobile {
   display: none;
 }
 
-/* Mobile adjustments */
+
 @media (max-width: 768px) {
   .offline-indicator {
     top: 60px;
@@ -63,7 +63,7 @@
     font-size: 1.1rem;
   }
 
-  /* Show shorter text on mobile */
+  
   .offline-text-desktop {
     display: none;
   }
@@ -73,7 +73,7 @@
   }
 }
 
-/* Reduce motion for accessibility */
+
 @media (prefers-reduced-motion: reduce) {
   .offline-indicator {
     transition: opacity 0.1s;

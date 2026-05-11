@@ -5,10 +5,6 @@ export interface LazyGlobalSearchProps {
   onClose: () => void;
 }
 
-/**
- * Loads the global search chunk only after the user opens search once,
- * avoiding duplicate JSON hydration work on initial load.
- */
 export default function LazyGlobalSearch({ isOpen, onClose }: LazyGlobalSearchProps) {
   const [Modal, setModal] = useState<ComponentType<LazyGlobalSearchProps> | null>(null);
 

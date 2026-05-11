@@ -5,19 +5,15 @@ const CookieConsent = () => {
   const [showBanner, setShowBanner] = useState(false);
 
   useEffect(() => {
-    // Check if user has already made a choice
     const consent = localStorage.getItem('cookie-consent');
     if (!consent) {
-      // Show banner after a short delay
       setTimeout(() => setShowBanner(true), 1000);
     } else if (consent === 'accepted') {
-      // Load analytics if consent was previously given
       loadAnalytics();
     }
   }, []);
 
   const loadAnalytics = () => {
-    // Dynamically import analytics to avoid loading it before consent
     import('../../utils/analytics').then(({ initAnalytics }) => {
       initAnalytics();
     });
