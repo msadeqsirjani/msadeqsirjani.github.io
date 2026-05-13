@@ -21,15 +21,23 @@ const Teaching = () => {
       dateClassName="teaching-date"
       contentWrapperClassName="teaching-content"
       getItemKey={(item, index) => `${item.course}-${item.date}-${index}`}
-      renderDate={(item) => item.date}
+      renderDate={(item) => (
+        <div className="teaching-date-col">
+          <span className="teaching-role">{item.role}</span>
+          <span className="teaching-date">{item.date}</span>
+        </div>
+      )}
       renderContent={(item) => (
         <>
-          <span className="teaching-course">{item.course}</span>
+          <span className="teaching-course-row">
+            <span className="teaching-course">{item.course}</span>
+          </span>
           <span className="teaching-meta">
             {item.instructorUrl
               ? <a href={item.instructorUrl} className="teaching-instructor-name" target="_blank" rel="noopener noreferrer">{item.instructor.replace(/^Instructor:\s*/, '')}</a>
               : <span className="teaching-instructor-name">{item.instructor.replace(/^Instructor:\s*/, '')}</span>}
           </span>
+          <span className="teaching-meta teaching-role-mobile">{item.role}</span>
           <span className="teaching-meta teaching-university-name">
             {item.university === 'University of Texas at San Antonio'
               ? <a href="https://www.utsa.edu/" target="_blank" rel="noopener noreferrer">{item.university}</a>

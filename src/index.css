@@ -1728,8 +1728,10 @@ kbd {
 }
 
 .timeline-item.teaching-item {
-    display: block;
-    position: relative;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 1.5rem;
+    align-items: stretch;
     margin-bottom: 0;
     padding: 1.25rem 0;
     border-bottom: 1px solid var(--border-color);
@@ -1742,11 +1744,17 @@ kbd {
 }
 
 .teaching-item .teaching-dates {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    right: 0;
+    position: static;
     text-align: right;
+    order: 2;
+}
+
+.teaching-date-col {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: space-between;
+    height: 100%;
 }
 
 .teaching-dates .teaching-date {
@@ -1761,19 +1769,27 @@ kbd {
 }
 
 .teaching-item .teaching-content {
-    padding-right: 160px;
+    padding-right: 0;
+    order: 1;
 }
 
 .teaching-course {
     font-size: 1.05rem;
     color: #111;
     font-weight: 700;
-    margin-bottom: 0.2rem;
-    display: block;
 }
 
 [data-theme="dark"] .teaching-course {
     color: #f0f0f0;
+}
+
+
+.teaching-role {
+    color: var(--accent-color);
+    font-weight: 600;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    white-space: nowrap;
 }
 
 .teaching-meta {
@@ -2826,6 +2842,14 @@ kbd {
         display: inline-block;
         white-space: nowrap;
         width: auto;
+    }
+
+    .timeline-item.teaching-item .teaching-date-col {
+        align-items: center;
+    }
+
+    .timeline-item.teaching-item .teaching-date-col .teaching-role {
+        display: none;
     }
 
     .timeline-item.teaching-item .teaching-course,
@@ -4426,6 +4450,9 @@ html {
 
 @media (min-width: 769px) {
     .pull-to-refresh {
+        display: none;
+    }
+    .teaching-role-mobile {
         display: none;
     }
 }
