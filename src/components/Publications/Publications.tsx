@@ -15,6 +15,7 @@ const Publications = () => {
   const [loading, setLoading] = useState(true);
   const [showAll, setShowAll] = useState(false);
   const [expandedPub, setExpandedPub] = useState<string | null>(null);
+  const [expandedKeywords, setExpandedKeywords] = useState<string | null>(null);
 
   const pubKey = (pub: Publication) => pub.bibtexId ?? `${pub.year}-${pub.title}`;
 
@@ -89,6 +90,7 @@ const Publications = () => {
               filteredPublications.map((pub, index) => {
                 const key = pubKey(pub);
                 const isExpanded = expandedPub === key;
+                const isKeywordsExpanded = expandedKeywords === key;
                 return (
                 <div
                   key={key}
@@ -144,6 +146,15 @@ const Publications = () => {
                             Abstract <FontAwesomeIcon icon={isExpanded ? faChevronUp : faChevronDown} size="xs" />
                           </button>
                         )}
+                        {pub.keywords && pub.keywords.length > 0 && (
+                          <button
+                            className="pub-text-link doi-link"
+                            onClick={() => setExpandedKeywords(isKeywordsExpanded ? null : key)}
+                            aria-expanded={isKeywordsExpanded}
+                          >
+                            Keywords <FontAwesomeIcon icon={isKeywordsExpanded ? faChevronUp : faChevronDown} size="xs" />
+                          </button>
+                        )}
                       </div>
                     </div>
                   </div>
@@ -153,8 +164,8 @@ const Publications = () => {
                       <p>{pub.abstract}</p>
                     </div>
                   )}
-                  {pub.keywords && pub.keywords.length > 0 && (
-                    <div className="pub-keywords">
+                  {isKeywordsExpanded && pub.keywords && pub.keywords.length > 0 && (
+                    <div className="pub-keywords pub-keywords-expanded">
                       {pub.keywords.map(kw => (
                         <span key={kw} className="pub-keyword-tag">{kw}</span>
                       ))}

@@ -1220,8 +1220,8 @@ kbd {
 }
 
 .publication-item {
-    margin-bottom: 1.5rem;
-    padding-bottom: 1rem;
+    margin-bottom: 0.6rem;
+    padding-bottom: 0.3rem;
     border-bottom: 1px solid var(--border-color);
 }
 
@@ -1406,6 +1406,11 @@ kbd {
     flex-wrap: wrap;
     gap: 0.4rem;
     margin-top: 0;
+}
+
+.pub-keywords-expanded {
+    margin-top: 0;
+    margin-bottom: 0.75rem;
 }
 
 .publication-actions-row {
@@ -2447,7 +2452,7 @@ kbd {
         border: none;
         border-bottom: 1px solid var(--border-color);
         border-radius: 0;
-        padding: 1.5rem 0;
+        padding: 0.6rem 0;
         margin-bottom: 0;
         box-shadow: none;
     }
