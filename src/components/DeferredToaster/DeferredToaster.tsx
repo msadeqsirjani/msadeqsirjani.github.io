@@ -1,16 +1,16 @@
 import { useEffect, useState, type ComponentType, type ComponentProps } from 'react';
-import type { Toaster } from 'sonner';
+import type { Toaster } from 'react-hot-toast';
 
-type SonnerProps = ComponentProps<typeof Toaster>;
+type ToasterProps = ComponentProps<typeof Toaster>;
 
-export default function DeferredToaster(props: SonnerProps) {
-  const [Toaster, setToaster] = useState<ComponentType<SonnerProps> | null>(null);
+export default function DeferredToaster(props: ToasterProps) {
+  const [Toaster, setToaster] = useState<ComponentType<ToasterProps> | null>(null);
 
   useEffect(() => {
     let cancelled = false;
 
     const load = () => {
-      void import('sonner').then(({ Toaster: T }) => {
+      void import('react-hot-toast').then(({ Toaster: T }) => {
         if (!cancelled) setToaster(() => T);
       });
     };

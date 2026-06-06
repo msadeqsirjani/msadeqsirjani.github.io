@@ -5109,36 +5109,23 @@ textarea:focus-visible {
 }
 
 
-[data-sonner-toast] {
+.custom-toast {
   background: var(--white) !important;
   color: var(--text-color) !important;
   border: 1px solid var(--border-color) !important;
+  border-radius: var(--button-border-radius) !important;
+  font-size: 0.88rem !important;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12) !important;
 }
 
-[data-sonner-toast][data-type="success"] {
+.custom-toast.toast-success {
   background: var(--accent-color) !important;
-  color: white !important;
+  color: #fff !important;
   border: none !important;
 }
 
-[data-sonner-toast][data-type="error"] {
+.custom-toast.toast-error {
   background: #ef4444 !important;
-  color: white !important;
+  color: #fff !important;
   border: none !important;
-}
-
-[data-sonner-toast] [data-button] {
-  background: transparent !important;
-  color: currentColor !important;
-  border: 1px solid currentColor !important;
-}
-
-[data-sonner-toast][data-type="success"] [data-button] {
-  border-color: rgba(255, 255, 255, 0.3) !important;
-  color: white !important;
-}
-
-[data-sonner-toast][data-type="error"] [data-button] {
-  border-color: rgba(255, 255, 255, 0.3) !important;
-  color: white !important;
 }

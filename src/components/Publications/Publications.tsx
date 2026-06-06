@@ -1,6 +1,6 @@
 import { useState, useMemo, useEffect } from 'react';
 import { fetchPublications } from '../../data/content';
-import { toast } from 'sonner';
+import toast from 'react-hot-toast';
 import type { Publication } from '../../types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown, faChevronUp, faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';

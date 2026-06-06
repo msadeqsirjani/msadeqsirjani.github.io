@@ -72,7 +72,7 @@ export default defineConfig({
           /dark-mode$/,
           /data-theme/,
         ],
-        deep: [/fa-/, /animate-/, /sonner/],
+        deep: [/fa-/, /animate-/, /toast/],
         greedy: [/^publication-/, /^citation-/, /^select-/, /^nav-/]
       },
       defaultExtractor: (content: string) => content.match(/[\w-/:]+(?<!:)/g) || [],
@@ -90,7 +90,7 @@ export default defineConfig({
       output: {
         manualChunks: {
           'react-vendor': ['react', 'react-dom'],
-          'sonner': ['sonner'],
+          'react-hot-toast': ['react-hot-toast'],
           'fontawesome': [
             '@fortawesome/fontawesome-svg-core',
             '@fortawesome/react-fontawesome',

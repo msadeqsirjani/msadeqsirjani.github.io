@@ -144,11 +144,12 @@ function App() {
             </Suspense>
           </DeferredIdle>
           <DeferredToaster
-            position="bottom-left"
-            closeButton
-            expand={false}
+            position="top-center"
             toastOptions={{
               className: 'custom-toast',
+              duration: 4000,
+              success: { className: 'custom-toast toast-success' },
+              error: { className: 'custom-toast toast-error' },
             }}
           />
         </ErrorBoundary>
@@ -209,7 +210,15 @@ function App() {
             <OfflineIndicator />
           </Suspense>
         </DeferredIdle>
-        <DeferredToaster position="bottom-left" closeButton expand={false} />
+        <DeferredToaster
+          position="top-center"
+          toastOptions={{
+            className: 'custom-toast',
+            duration: 4000,
+            success: { className: 'custom-toast toast-success' },
+            error: { className: 'custom-toast toast-error' },
+          }}
+        />
       </ErrorBoundary>
     </ThemeProvider>
   );
