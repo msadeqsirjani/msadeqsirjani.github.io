@@ -14,8 +14,12 @@ const Publications = () => {
   const [publications, setPublications] = useState<Publication[]>([]);
   const [loading, setLoading] = useState(true);
   const [showAll, setShowAll] = useState(false);
-  const [expandedPub, setExpandedPub] = useState<string | null>(null);
-  const [expandedKeywords, setExpandedKeywords] = useState<string | null>(null);
+  const [expandedSection, setExpandedSection] = useState<string | null>(null);
+
+  const toggleSection = (key: string, section: string) => {
+    const id = `${key}:${section}`;
+    setExpandedSection(prev => (prev === id ? null : id));
+  };
 
   const pubKey = (pub: Publication) => pub.bibtexId ?? `${pub.year}-${pub.title}`;
 
@@ -89,8 +93,9 @@ const Publications = () => {
             ) : (
               filteredPublications.map((pub, index) => {
                 const key = pubKey(pub);
-                const isExpanded = expandedPub === key;
-                const isKeywordsExpanded = expandedKeywords === key;
+                const isExpanded = expandedSection === `${key}:abstract`;
+                const isKeywordsExpanded = expandedSection === `${key}:keywords`;
+                const isInfoExpanded = expandedSection === `${key}:info`;
                 return (
                 <div
                   key={key}
@@ -99,13 +104,6 @@ const Publications = () => {
                 >
                   <div className="publication-header">
                     <div className="publication-header-content">
-                      <div className="publication-badges">
-                        <span className={`status-inline ${pub.status}`}>{getStatusLabel(pub.status)}</span>
-                        <span className="pub-year-badge">{pub.year}</span>
-                        {pub.citations !== undefined && (
-                          <span className="citations-badge">CITED {pub.citations}×</span>
-                        )}
-                      </div>
                       <h3 className="publication-title">{pub.title}</h3>
                       {pub.authors && (
                         <p className="publication-authors">
@@ -137,10 +135,17 @@ const Publications = () => {
                             BibTeX <FontAwesomeIcon icon={faExternalLinkAlt} size="xs" />
                           </button>
                         )}
+                        <button
+                          className="pub-text-link doi-link"
+                          onClick={() => toggleSection(key, 'info')}
+                          aria-expanded={isInfoExpanded}
+                        >
+                          Info <FontAwesomeIcon icon={isInfoExpanded ? faChevronUp : faChevronDown} size="xs" />
+                        </button>
                         {pub.abstract && (
                           <button
                             className="pub-text-link doi-link"
-                            onClick={() => setExpandedPub(isExpanded ? null : key)}
+                            onClick={() => toggleSection(key, 'abstract')}
                             aria-expanded={isExpanded}
                           >
                             Abstract <FontAwesomeIcon icon={isExpanded ? faChevronUp : faChevronDown} size="xs" />
@@ -149,7 +154,7 @@ const Publications = () => {
                         {pub.keywords && pub.keywords.length > 0 && (
                           <button
                             className="pub-text-link doi-link"
-                            onClick={() => setExpandedKeywords(isKeywordsExpanded ? null : key)}
+                            onClick={() => toggleSection(key, 'keywords')}
                             aria-expanded={isKeywordsExpanded}
                           >
                             Keywords <FontAwesomeIcon icon={isKeywordsExpanded ? faChevronUp : faChevronDown} size="xs" />
@@ -159,6 +164,24 @@ const Publications = () => {
                     </div>
                   </div>
 
+                  {isInfoExpanded && (
+                    <div className="publication-info">
+                      <span className="info-chip">
+                        <span className="info-label">Status</span>
+                        <span className="info-value">{getStatusLabel(pub.status)}</span>
+                      </span>
+                      <span className="info-chip">
+                        <span className="info-label">Year</span>
+                        <span className="info-value">{pub.year}</span>
+                      </span>
+                      {pub.citations !== undefined && (
+                        <span className="info-chip">
+                          <span className="info-label">Citations</span>
+                          <span className="info-value">{pub.citations}×</span>
+                        </span>
+                      )}
+                    </div>
+                  )}
                   {isExpanded && pub.abstract && (
                     <div className="publication-abstract">
                       <p>{pub.abstract}</p>
