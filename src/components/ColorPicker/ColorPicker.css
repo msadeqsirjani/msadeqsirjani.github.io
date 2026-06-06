@@ -15,7 +15,7 @@
   width: 40px;
   height: 40px;
   position: relative;
-  font-size: 1.2rem;
+  font-size: var(--fs-lg);
 }
 
 .color-picker-toggle svg {
@@ -47,7 +47,7 @@
   color: var(--white);
   padding: 0.5rem 0.75rem;
   border-radius: 6px;
-  font-size: 0.75rem;
+  font-size: var(--fs-xs);
   font-weight: 500;
   white-space: nowrap;
   opacity: 0;
@@ -90,7 +90,7 @@
     min-width: 44px;
     min-height: 44px;
     padding: 0.5rem;
-    font-size: 1.2rem;
+    font-size: var(--fs-lg);
   }
 
   .color-picker-toggle svg {

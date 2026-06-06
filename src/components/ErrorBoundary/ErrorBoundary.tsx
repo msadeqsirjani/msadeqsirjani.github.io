@@ -56,7 +56,7 @@ const styles = {
   } as CSSProperties,
   code: {
     display: 'block',
-    fontSize: '0.85rem',
+    fontSize: 'var(--fs-sm)',
     color: '#d32f2f',
     whiteSpace: 'pre-wrap',
     wordBreak: 'break-word'
@@ -75,7 +75,7 @@ const styles = {
     border: 'var(--button-border-width, 2px) solid var(--accent-color)',
     borderRadius: 'var(--button-border-radius, 12px)',
     cursor: 'pointer',
-    fontSize: '1rem',
+    fontSize: 'var(--fs-base)',
     fontWeight: '600'
   } as CSSProperties,
   secondaryButton: {
@@ -85,11 +85,11 @@ const styles = {
     border: 'var(--button-border-width, 2px) solid var(--border-color)',
     borderRadius: 'var(--button-border-radius, 12px)',
     cursor: 'pointer',
-    fontSize: '1rem',
+    fontSize: 'var(--fs-base)',
     fontWeight: '600'
   } as CSSProperties,
   footer: {
-    fontSize: '0.875rem',
+    fontSize: 'var(--fs-sm)',
     color: 'var(--text-light)',
     marginTop: '1rem'
   } as CSSProperties
@@ -131,7 +131,7 @@ class ErrorBoundary extends Component<Props, State> {
 
       return (
         <div style={styles.container}>
-          <div style={{ fontSize: '3rem', marginBottom: '0.5rem' }}>⚠️</div>
+          <div style={{ fontSize: 'var(--fs-3xl)', marginBottom: '0.5rem' }}>⚠️</div>
           <h2 style={styles.title}>Something went wrong</h2>
           <p style={styles.description}>
             We encountered an error while loading this section. You can try one of the options below:

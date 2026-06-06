@@ -19,7 +19,7 @@
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  font-size: 0.72rem;
+  font-size: var(--fs-xs);
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--text-light);
@@ -80,7 +80,7 @@
   gap: 0.45rem;
   padding: 0.7rem 1.35rem;
   border-radius: var(--button-border-radius, 8px);
-  font-size: 0.92rem;
+  font-size: var(--fs-sm);
   font-weight: 500;
   transition: opacity 140ms ease, transform 140ms ease, background-color 140ms ease, border-color 140ms ease;
   border: var(--button-border-width, 1.5px) solid transparent;
@@ -128,7 +128,7 @@
 
 
 .nf-links-label {
-  font-size: 0.68rem;
+  font-size: var(--fs-xs);
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--text-light);
@@ -154,7 +154,7 @@
   justify-content: space-between;
   text-decoration: none;
   color: var(--text-color);
-  font-size: 0.98rem;
+  font-size: var(--fs-base);
   padding: 0.95rem 0;
   transition: color 140ms ease;
 }
@@ -166,7 +166,7 @@
 
 .nf-arrow {
   color: var(--text-light);
-  font-size: 1rem;
+  font-size: var(--fs-base);
   flex-shrink: 0;
   transition: color 140ms ease, transform 140ms ease;
 }

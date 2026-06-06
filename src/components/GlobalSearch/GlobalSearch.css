@@ -80,7 +80,7 @@
 .search-input-wrapper .search-icon {
   color: var(--text-light);
   margin-right: 0.75rem;
-  font-size: 1rem;
+  font-size: var(--fs-base);
 }
 
 .global-search-input {
@@ -122,7 +122,7 @@
   justify-content: center;
   border-radius: var(--button-border-radius);
   transition: all 0.2s ease;
-  font-size: 1rem;
+  font-size: var(--fs-base);
   flex-shrink: 0;
 }
 
@@ -134,7 +134,7 @@
 }
 
 .close-search-btn {
-  font-size: 1.2rem;
+  font-size: var(--fs-lg);
 }
 
 
@@ -157,13 +157,13 @@
 }
 
 .search-empty-state .empty-icon {
-  font-size: 3rem;
+  font-size: var(--fs-3xl);
   margin-bottom: 1rem;
   opacity: 0.5;
 }
 
 .search-empty-state p {
-  font-size: 1.1rem;
+  font-size: var(--fs-md);
   margin-bottom: 1.5rem;
 }
 
@@ -175,7 +175,7 @@
 }
 
 .shortcut-hint {
-  font-size: 0.875rem;
+  font-size: var(--fs-sm);
   color: var(--text-muted);
 }
 
@@ -185,7 +185,7 @@
   border-radius: 4px;
   padding: 0.25rem 0.5rem;
   font-family: inherit;
-  font-size: 0.875rem;
+  font-size: var(--fs-sm);
   margin: 0 0.25rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
@@ -232,7 +232,7 @@
 }
 
 .search-no-results .suggestion {
-  font-size: 0.875rem;
+  font-size: var(--fs-sm);
   opacity: 0.7;
 }
 
@@ -248,7 +248,7 @@
   background: var(--card-bg);
   border-radius: 6px;
   color: var(--text-muted);
-  font-size: 0.875rem;
+  font-size: var(--fs-sm);
   font-weight: 500;
 }
 
@@ -272,12 +272,12 @@
 
 .category-header svg {
   color: var(--accent-color);
-  font-size: 1rem;
+  font-size: var(--fs-base);
 }
 
 .category-header h3 {
   flex: 1;
-  font-size: 0.95rem;
+  font-size: var(--fs-base);
   margin: 0;
   font-weight: 600;
 }
@@ -287,7 +287,7 @@
   color: white;
   padding: 0.125rem 0.5rem;
   border-radius: 12px;
-  font-size: 0.75rem;
+  font-size: var(--fs-xs);
   font-weight: 600;
 }
 
@@ -329,7 +329,7 @@ a.result-item {
 
 .result-meta {
   color: var(--text-muted);
-  font-size: 0.875rem;
+  font-size: var(--fs-sm);
 }
 
 
@@ -352,7 +352,7 @@ a.result-item {
   display: flex;
   align-items: center;
   gap: 0.375rem;
-  font-size: 0.75rem;
+  font-size: var(--fs-xs);
   color: var(--text-muted);
 }
 
@@ -362,7 +362,7 @@ a.result-item {
   border-radius: 4px;
   padding: 0.125rem 0.375rem;
   font-family: inherit;
-  font-size: 0.75rem;
+  font-size: var(--fs-xs);
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
   min-width: 20px;
   text-align: center;

@@ -34,12 +34,12 @@
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  font-size: 0.95rem;
+  font-size: var(--fs-base);
   font-weight: 500;
 }
 
 .offline-indicator-content i {
-  font-size: 1.2rem;
+  font-size: var(--fs-lg);
 }
 
 
@@ -56,11 +56,11 @@
   }
 
   .offline-indicator-content {
-    font-size: 0.875rem;
+    font-size: var(--fs-sm);
   }
 
   .offline-indicator-content i {
-    font-size: 1.1rem;
+    font-size: var(--fs-md);
   }
 
   
