@@ -1,11 +1,15 @@
 [
   {
-    "date": "Apr. 2026",
-    "description": "Our paper for the <a href=\"https://gem-workshop.com/\" target=\"_blank\" rel=\"noopener noreferrer\">GEM Workshop at ACL 2026</a> was accepted."
+    "date": "Jun. 2026",
+    "description": "Paper \"Optimizing Task Scheduling in Fog Computing with Deadline Awareness\" published at the <a href=\"https://www.satcconf.com/\" target=\"_blank\" rel=\"noopener noreferrer\">2nd IEEE SaTC 2026</a>."
   },
   {
     "date": "Apr. 2026",
-    "description": "Selected as a scholarship recipient to attend the <a href=\"https://dair-3.org/\" target=\"_blank\" rel=\"noopener noreferrer\">DAiR3 Data Science Summer School</a>."
+    "description": "Paper \"Are LLM Benchmarks Already Contaminated? A Systematic Review of Contamination Detection Methods\" accepted at the <a href=\"https://gem-workshop.com/\" target=\"_blank\" rel=\"noopener noreferrer\">GEM Workshop at ACL 2026</a>."
+  },
+  {
+    "date": "Apr. 2026",
+    "description": "Selected as a scholarship recipient for the <a href=\"https://dair-3.org/\" target=\"_blank\" rel=\"noopener noreferrer\">DAiR3 Data Science Summer School</a>."
   },
   {
     "date": "Apr. 2026",
@@ -21,15 +25,11 @@
   },
   {
     "date": "Mar. 2026",
-    "description": "Passed my PhD Qualifying Examination. Thank you <a href=\"https://sites.google.com/view/mxie\" target=\"_blank\" rel=\"noopener noreferrer\">Dr. Mimi Xie</a>, <a href=\"https://www.cs.utsa.edu/~dzhu/\" target=\"_blank\" rel=\"noopener noreferrer\">Dr. Dakai Zhu</a>, and <a href=\"https://wwang.github.io/\" target=\"_blank\" rel=\"noopener noreferrer\">Dr. Wei Wang</a>!"
-  },
-  {
-    "date": "Mar. 2026",
-    "description": "Paper \"Optimizing Task Scheduling in Fog Computing with Deadline Awareness\" accepted at the <a href=\"https://www.satcconf.com/\" target=\"_blank\" rel=\"noopener noreferrer\">2nd IEEE SaTC 2026</a>."
+    "description": "Passed the PhD Qualifying Examination. Thank you <a href=\"https://sites.google.com/view/mxie\" target=\"_blank\" rel=\"noopener noreferrer\">Dr. Mimi Xie</a>, <a href=\"https://www.cs.utsa.edu/~dzhu/\" target=\"_blank\" rel=\"noopener noreferrer\">Dr. Dakai Zhu</a>, and <a href=\"https://wwang.github.io/\" target=\"_blank\" rel=\"noopener noreferrer\">Dr. Wei Wang</a>!"
   },
   {
     "date": "Jan. 2026",
-    "description": "Started my Research Assistantship at the <a href=\"https://caicc.utsa.edu/computer-science/research/facilities.html\" target=\"_blank\" rel=\"noopener noreferrer\">ASIC Lab</a>, <a href=\"https://www.utsa.edu/\" target=\"_blank\" rel=\"noopener noreferrer\">UT San Antonio</a>."
+    "description": "Started a Research Assistantship at the <a href=\"https://caicc.utsa.edu/computer-science/research/facilities.html\" target=\"_blank\" rel=\"noopener noreferrer\">ASIC Lab</a>, <a href=\"https://www.utsa.edu/\" target=\"_blank\" rel=\"noopener noreferrer\">UT San Antonio</a>."
   },
   {
     "date": "Nov. 2025",
@@ -45,10 +45,10 @@
   },
   {
     "date": "Jun. 2025",
-    "description": "Awarded the DAC Young Fellows fellowship. Attended <a href=\"https://archive.dac.com/about/conference-archive/62nd-dac-2025.html\" target=\"_blank\" rel=\"noopener noreferrer\">DAC 2025</a> as a Young Fellow and presented my research."
+    "description": "Awarded the DAC Young Fellows fellowship and attended <a href=\"https://archive.dac.com/about/conference-archive/62nd-dac-2025.html\" target=\"_blank\" rel=\"noopener noreferrer\">DAC 2025</a> as a Young Fellow."
   },
   {
     "date": "Jan. 2025",
-    "description": "Started my PhD in Computer Science at <a href=\"https://www.utsa.edu/\" target=\"_blank\" rel=\"noopener noreferrer\">UT San Antonio</a>, advised by <a href=\"https://sites.google.com/view/mxie\" target=\"_blank\" rel=\"noopener noreferrer\">Dr. Mimi Xie</a>. Joined the <a href=\"https://caicc.utsa.edu/computer-science/research/facilities.html\" target=\"_blank\" rel=\"noopener noreferrer\">ASIC Lab</a>."
+    "description": "Started the PhD in Computer Science at <a href=\"https://www.utsa.edu/\" target=\"_blank\" rel=\"noopener noreferrer\">UT San Antonio</a>, advised by <a href=\"https://sites.google.com/view/mxie\" target=\"_blank\" rel=\"noopener noreferrer\">Dr. Mimi Xie</a>, and joined the <a href=\"https://caicc.utsa.edu/computer-science/research/facilities.html\" target=\"_blank\" rel=\"noopener noreferrer\">ASIC Lab</a>."
   }
 ]
