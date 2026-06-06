@@ -136,7 +136,7 @@ const Publications = () => {
                           </button>
                         )}
                         <button
-                          className="pub-text-link doi-link"
+                          className="pub-text-link pub-toggle"
                           onClick={() => toggleSection(key, 'info')}
                           aria-expanded={isInfoExpanded}
                         >
@@ -144,7 +144,7 @@ const Publications = () => {
                         </button>
                         {pub.abstract && (
                           <button
-                            className="pub-text-link doi-link"
+                            className="pub-text-link pub-toggle"
                             onClick={() => toggleSection(key, 'abstract')}
                             aria-expanded={isExpanded}
                           >
@@ -153,7 +153,7 @@ const Publications = () => {
                         )}
                         {pub.keywords && pub.keywords.length > 0 && (
                           <button
-                            className="pub-text-link doi-link"
+                            className="pub-text-link pub-toggle"
                             onClick={() => toggleSection(key, 'keywords')}
                             aria-expanded={isKeywordsExpanded}
                           >

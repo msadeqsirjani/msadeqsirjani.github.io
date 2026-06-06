@@ -1220,8 +1220,8 @@ kbd {
 }
 
 .publication-item {
-    margin-bottom: 0.6rem;
-    padding-bottom: 0.3rem;
+    margin-bottom: 1.2rem;
+    padding-bottom: 0.6rem;
     border-bottom: 1px solid var(--border-color);
 }
 
@@ -1242,12 +1242,12 @@ kbd {
 }
 
 .publication-title {
+    font-size: 1.05rem;
     font-weight: 700;
     color: #111;
-    margin-bottom: 0.2rem;
-    line-height: 1.4;
-    text-align: justify;
-    text-justify: inter-word;
+    margin: 0 0 0.25rem;
+    line-height: 1.45;
+    text-align: left;
 }
 
 [data-theme="dark"] .publication-title {
@@ -1259,8 +1259,8 @@ kbd {
     color: #888;
     margin: 0.1rem 0;
     font-weight: 400;
-    text-align: justify;
-    text-justify: inter-word;
+    line-height: 1.5;
+    text-align: left;
 }
 
 [data-theme="dark"] .publication-authors {
@@ -1288,7 +1288,7 @@ kbd {
     display: flex;
     flex-wrap: wrap;
     gap: 0.5rem;
-    margin: 0 0 0.75rem;
+    margin: 0.6rem 0 0.75rem;
 }
 
 .info-chip {
@@ -1358,6 +1358,7 @@ kbd {
     outline: none;
     padding: 0;
     cursor: pointer;
+    font-family: inherit;
     font-size: 0.88rem;
     font-weight: 400;
     color: var(--text-light);
@@ -1365,19 +1366,19 @@ kbd {
     display: inline-flex;
     align-items: center;
     gap: 0.3rem;
+    min-height: 0;
+    min-width: 0;
 }
 
 .pub-text-link.doi-link {
-    font-weight: 600;
+    font-family: inherit;
+    font-weight: 500;
     color: var(--accent-color);
 }
 
-
-.publication-links a.pub-text-link.doi-link,
-.publication-links button.pub-text-link.doi-link {
-    font-family: inherit;
-    font-size: 0.88rem;
-    font-weight: 600;
+.pub-text-link.pub-toggle {
+    font-weight: 500;
+    color: var(--accent-color);
 }
 
 .pub-text-link:focus,
@@ -1387,7 +1388,8 @@ kbd {
 }
 
 .pub-text-link:hover {
-    text-decoration: underline;
+    color: var(--accent-color);
+    text-decoration: none;
 }
 
 .pub-keywords {
@@ -1410,24 +1412,20 @@ kbd {
 }
 
 .publication-abstract {
-    margin-top: 0;
+    margin-top: 0.6rem;
     margin-bottom: 0.75rem;
     padding: 1rem 1.25rem;
-    background: rgba(var(--accent-rgb, 30, 64, 175), 0.06);
-    border-radius: 6px;
+    background: var(--gray-light);
+    border: 1px solid var(--border-color);
+    border-radius: var(--button-border-radius);
     font-size: 0.88rem;
-    color: #666;
+    color: var(--text-light);
     line-height: 1.7;
     text-align: justify;
 
     text-wrap: pretty;
 
     hyphens: auto;
-}
-
-[data-theme="dark"] .publication-abstract {
-    background: rgba(var(--accent-rgb, 30, 64, 175), 0.1);
-    color: #aaa;
 }
 
 .pub-keywords {
@@ -1438,7 +1436,7 @@ kbd {
 }
 
 .pub-keywords-expanded {
-    margin-top: 0;
+    margin-top: 0.6rem;
     margin-bottom: 0.75rem;
 }
 
@@ -2471,7 +2469,7 @@ kbd {
         border: none;
         border-bottom: 1px solid var(--border-color);
         border-radius: 0;
-        padding: 0.6rem 0;
+        padding: 0.85rem 0;
         margin-bottom: 0;
         box-shadow: none;
     }
@@ -2494,8 +2492,7 @@ kbd {
     .publication-authors,
     .publication-venue,
     .pub-keywords {
-        text-align: justify;
-        text-justify: inter-word;
+        text-align: left;
     }
 
     .publication-abstract,
@@ -2532,12 +2529,57 @@ kbd {
     }
 
     .publication-links {
+        display: grid;
+        grid-template-columns: repeat(3, max-content);
+        justify-content: center;
+        column-gap: 1.25rem;
+        row-gap: 0.65rem;
         margin-bottom: 0.6rem;
+    }
+
+    .publication-links .pub-text-link {
+        line-height: 1.2;
+        margin: 0;
+        padding: 0;
+        min-height: 0;
+        min-width: 0;
+    }
+
+    .publication-info {
+        flex-wrap: nowrap;
+        gap: 0.35rem;
+        justify-content: flex-start;
+    }
+
+    .info-chip {
+        flex: 1 1 0;
+        justify-content: center;
+        gap: 0.25rem;
+        padding: 0.25rem 0.4rem;
+        min-width: 0;
+    }
+
+    .info-chip .info-label {
+        font-size: 0.55rem;
+    }
+
+    .info-chip .info-value {
+        font-size: 0.72rem;
+    }
+
+    .publication-links .pub-text-link {
+        justify-content: center;
+        font-size: 0.82rem;
     }
 
     .pub-keywords {
         justify-content: flex-start;
-        gap: 0.45rem;
+        gap: 0.35rem;
+    }
+
+    .pub-keyword-tag {
+        font-size: 0.72rem;
+        padding: 0.25rem 0.5rem;
     }
 
     .journal,
