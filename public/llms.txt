@@ -14,7 +14,7 @@
 
 ## Research areas
 
-Internet of Things (IoT); Tiny AI / TinyML; edge AI and on-device inference; embedded systems and hardware–software co-design; energy harvesting and intermittent computing; fog/cloud orchestration; reinforcement learning and metaheuristics for networking and scheduling; security and intrusion detection in IoT networks.
+Internet of Things (IoT); Tiny AI / TinyML; edge AI and on-device inference; embedded systems and hardware–software co-design; energy harvesting and intermittent computing; fog/cloud orchestration; reinforcement learning and metaheuristics for networking and scheduling; security and intrusion detection in IoT networks; cognitive load assessment from wearable signals (ECG foundation models, eye-gaze, Mamba); trustworthy LLM evaluation and benchmark contamination detection.
 
 **Application angles:** Energy-efficient neural accelerators and ultra-low-power ML at the edge support sensing-heavy domains—including time-critical health IoT (e.g., monitoring workloads where latency and deadlines matter) and broader ambient intelligence—not merely datacenter-scale ML.
 
@@ -29,12 +29,15 @@ Internet of Things (IoT); Tiny AI / TinyML; edge AI and on-device inference; emb
 
 ## Publications (compact)
 
-1. Ghaffari et al., “Q-Learning-Based Task Scheduling Scheme to Enhance Energy Consumption and QoS in IoT Environments,” Sustainable Computing: Informatics and Systems, 2025. https://doi.org/10.1016/j.suscom.2025.101247
-2. Sirjani et al., “Controller placement in software-defined networks using reinforcement learning and metaheuristics,” Cluster Computing, 2025. https://doi.org/10.1007/s10586-025-05331-y
-3. Sirjani et al., “Optimizing Task Scheduling in Fog Computing with Deadline Awareness,” IEEE CST IoT & Microelectronics (accepted); preprint https://doi.org/10.48550/arXiv.2509.07378
-4. Sirjani et al., “Data mining and cloud computing for customer pattern analysis,” IEEE QICAR, 2024. https://doi.org/10.1109/QICAR61538.2024.10496623
-5. Mousavi et al., “SecVanet: provably secure authentication protocol for sending emergency events in VANET,” IEEE IKT, 2023. https://doi.org/10.1109/IKT62039.2023.10433027
-6. Mousavi et al., “A Comparative Evaluation of Machine Learning Algorithms for IDS in IoT network,” IEEE IKT, 2023. https://doi.org/10.1109/IKT62039.2023.10433047
+1. Nourbakhsh et al., “Are LLM Benchmarks Already Contaminated? A Systematic Review of Contamination Detection Methods,” Preprint, 2026 (accepted, GEM Workshop @ ACL 2026). https://doi.org/10.13140/RG.2.2.12579.41764
+2. Mousavi et al., “CogAdapt: Transferring Clinical ECG Foundation Models to Wearable Cognitive Load Assessment via Lead Adaptation,” arXiv preprint, 2026. https://arxiv.org/abs/2605.22774
+3. Mousavi et al., “MambaGaze: Bidirectional Mamba with Explicit Missing Data Modeling for Cognitive Load Assessment from Eye-Gaze Tracking Data,” arXiv preprint, 2026. https://arxiv.org/abs/2605.22775
+4. Ghaffari et al., “Q-Learning-Based Task Scheduling Scheme to Enhance Energy Consumption and QoS in IoT Environments,” Sustainable Computing: Informatics and Systems, 2025. https://doi.org/10.1016/j.suscom.2025.101247
+5. Sirjani et al., “Controller placement in software-defined networks using reinforcement learning and metaheuristics,” Cluster Computing, 2025. https://doi.org/10.1007/s10586-025-05331-y
+6. Sirjani et al., “Optimizing Task Scheduling in Fog Computing with Deadline Awareness,” 2026 IEEE 2nd Int. Conf. on Secure IoT, Assured and Trusted Computing (SATC), 2026. https://doi.org/10.1109/SATC69565.2026.11542230
+7. Sirjani et al., “Data mining and cloud computing for customer pattern analysis,” IEEE QICAR, 2024. https://doi.org/10.1109/QICAR61538.2024.10496623
+8. Mousavi et al., “SecVanet: provably secure authentication protocol for sending emergency events in VANET,” IEEE IKT, 2023. https://doi.org/10.1109/IKT62039.2023.10433027
+9. Mousavi et al., “A Comparative Evaluation of Machine Learning Algorithms for IDS in IoT network,” IEEE IKT, 2023. https://doi.org/10.1109/IKT62039.2023.10433047
 
 ## Profiles
 

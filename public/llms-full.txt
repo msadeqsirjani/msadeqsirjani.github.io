@@ -33,8 +33,10 @@ Primary themes aligned with this site and publications:
 - Energy harvesting and intermittent computing  
 - Fog computing: task scheduling, deadlines, QoS, energy  
 - Reinforcement learning and metaheuristics for scheduling and networking  
-- Software-defined networking (SDN): controller placement, load, congestion, energy  
-- IoT security: intrusion detection with ML; authenticated protocols in vehicular networks  
+- Software-defined networking (SDN): controller placement, load, congestion, energy
+- IoT security: intrusion detection with ML; authenticated protocols in vehicular networks
+- Cognitive load assessment from wearable signals: ECG foundation models, eye-gaze tracking, Mamba/state-space models, edge deployment
+- Trustworthy LLM evaluation: benchmark/data contamination detection and mitigation
 
 **Related query hooks:** Researchers working on TinyML; edge AI for sensing pipelines; low-power inference; IoT-to-fog orchestration with deadline guarantees; RL/metaheuristics for network control—not specialized exclusively to one biomedical modality, but doctoral lab direction explicitly targets ultra-low-power edge ML relevant to wearable and ambient sensing contexts where latency and energy dominate.
 
@@ -58,6 +60,14 @@ Experience combining reinforcement learning (e.g., Deep Q-Learning) with metaheu
 
 Comparative study of ML classifiers for IoT intrusion detection; separate protocol work with formal verification for emergency messaging in VANETs.
 
+### Cognitive load & wearable sensing
+
+Recent work adapts clinical ECG foundation models to 3-lead wearable signals (CogAdapt) and models eye-gaze with bidirectional Mamba under explicit missing-data handling (MambaGaze), targeting subject-independent, real-time cognitive load assessment with edge deployment on NVIDIA Jetson.
+
+### Trustworthy LLM evaluation
+
+Systematic review of LLM benchmark contamination: a four-tier taxonomy, comparison of detection families and mitigation strategies, and a Contamination Transparency Card framework (accepted, GEM Workshop @ ACL 2026).
+
 ---
 
 ## Publications (with abstracts)
@@ -66,25 +76,61 @@ Listed newest-first by year as on the portfolio. Status reflects the site datase
 
 ---
 
-### 1. Optimizing Task Scheduling in Fog Computing with Deadline Awareness
+### 1. Are LLM Benchmarks Already Contaminated? A Systematic Review of Contamination Detection Methods
 
-**Authors:** Mohammad Sadegh Sirjani, Mohammad Ahmad, Mousavi Amir, Erfan Nourbakhsh, Khoa Nguyen  
+**Authors:** Erfan Nourbakhsh, Mohammad Sadegh Sirjani, Amir Mousavi, Khoa Nguyen, John Quarles, Mimi Xie, Rocky Slavin
 
-**Venue:** 2nd IEEE Conference on Secure and Trustworthy CyberInfrastructure for IoT and Microelectronics  
+**Venue:** Preprint (accepted, GEM Workshop @ ACL 2026)
 
-**Year:** 2026  
+**Year:** 2026
 
-**Status:** Accepted  
+**Status:** Accepted
 
-**DOI / link:** https://doi.org/10.48550/arXiv.2509.07378  
+**DOI / link:** https://doi.org/10.13140/RG.2.2.12579.41764
 
-**Keywords:** Internet of Things; Fog Computing; Job Scheduling; Golden Eagle Optimization Algorithm; Reinforcement Learning  
+**Keywords:** Large Language Models; Benchmark Contamination; Data Contamination; Contamination Detection; Systematic Review
 
-**Abstract:** The Internet of Things (IoT) has become a fundamental component of modern smart applications, particularly in time-sensitive scenarios such as healthcare monitoring and autonomous systems. Many IoT applications require guaranteed response times to meet stringent deadlines, making efficient task scheduling a critical challenge. Fog computing addresses these needs by positioning computational resources closer to end users. However, existing task scheduling approaches often fail to fully consider deadline awareness, which can lead to performance degradation in time-critical environments. In this paper, we propose a novel Reinforcement Learning-based Improved GEO (RIGEO) algorithm that combines improved Geometric Optimization (IGEO) with Reinforcement Learning (RL) to enhance task scheduling performance in fog computing environments. The key innovation is the integration of deadline awareness into the optimization framework, which significantly reduces task failures in delay-sensitive applications. Through comprehensive simulation experiments using iFogSim, we evaluate RIGEO against several state-of-the-art algorithms, including ACO-IWD, SB-PSO, EEMR, and NSGA-III. Our results demonstrate substantial performance improvements, with RIGEO achieving a 29% reduction in energy consumption, an 86% improvement in average response time, and a 19% reduction in deadline violations.
+**Abstract:** Large Language Models (LLMs) are trained on web-scale corpora, increasing the risk that benchmark test data appears in training sets and inflates reported performance. We present a systematic literature review of 55 studies on LLM benchmark contamination through late 2025. Our contributions are: (1) a four-tier contamination taxonomy (Exact, Syntactic, Semantic, Task-Level; T1-T4); (2) a comparative analysis of five detection families (string-matching, likelihood-based, membership inference, LLM-prompted detection, and benchmark auditing), including access assumptions and failure modes; (3) a synthesis of contamination evidence on MMLU, GSM8K, HumanEval, and HellaSwag by measurement construct; (4) a comparative evaluation of mitigation strategies across lifecycle points, access assumptions, and evidence maturity; and (5) a Contamination Transparency Card (CTC) framework for future releases. Across studies, no detection method is consistently reliable across contamination tiers, model-access settings, and training stages. We identify instruction tuning as a persistent blind spot, note that RL/post-training contamination auditing is only beginning to mature, and report inflation estimates spanning roughly 6%-40% under benchmark- and setting-dependent assumptions.
 
 ---
 
-### 2. Q-Learning-Based Task Scheduling Scheme to Enhance Energy Consumption and QoS in IoT Environments
+### 2. CogAdapt: Transferring Clinical ECG Foundation Models to Wearable Cognitive Load Assessment via Lead Adaptation
+
+**Authors:** Amir Mousavi, Mohammad Sadegh Sirjani, Erfan Nourbakhsh, Mimi Xie, Rocky Slavin, Leslie Neely, John Davis, John Quarles
+
+**Venue:** arXiv preprint
+
+**Year:** 2026
+
+**Status:** Preprint
+
+**DOI / link:** https://arxiv.org/abs/2605.22774
+
+**Keywords:** Cognitive Load Assessment; ECG Foundation Models; Wearable Sensors; Transfer Learning; Fine-Tuning
+
+**Abstract:** Real-time cognitive load assessment is essential for adaptive human-computer interaction but remains challenging due to limited labeled data and poor cross-subject generalization. Recent ECG foundation models pre-trained on millions of clinical recordings offer rich representations, but cannot be directly applied to wearable devices due to sensor configuration mismatch and task differences. In this paper, we propose CogAdapt, a framework that adapts clinical ECG foundation models to wearable cognitive load assessment. CogAdapt introduces LeadBridge, a learnable adapter that transforms 3-lead wearable signals into anatomically consistent 12-lead representations, and ProFine, a progressive fine-tuning strategy that gradually unfreezes encoder layers while preventing catastrophic forgetting. Evaluations on two public datasets (CLARE and CL-Drive) under leave-one-subject-out cross-validation show that CogAdapt substantially outperforms baselines trained from scratch, achieving macro-F1 scores of 0.626 and 0.768. These results demonstrate the promise of foundation model adaptation for subject-independent cognitive load assessment from wearable sensors.
+
+---
+
+### 3. MambaGaze: Bidirectional Mamba with Explicit Missing Data Modeling for Cognitive Load Assessment from Eye-Gaze Tracking Data
+
+**Authors:** Amir Mousavi, Mohammad Sadegh Sirjani, Erfan Nourbakhsh, Mimi Xie, Rocky Slavin, Leslie Neely, John Davis, John Quarles
+
+**Venue:** arXiv preprint
+
+**Year:** 2026
+
+**Status:** Preprint
+
+**DOI / link:** https://arxiv.org/abs/2605.22775
+
+**Keywords:** Cognitive Load Assessment; Eye-Gaze Tracking; Mamba; Deep Learning; Edge Computing
+
+**Abstract:** Real-time cognitive load assessment from eye-tracking signals could potentially enable adaptive human-centered-AI such as safety-critical applications such as driver vigilance monitoring or automated flight deck assistance, yet two challenges persist: handling frequent data missingness from blinks and tracking failures, and efficiently modeling long-range temporal dependencies. We propose MambaGaze, a framework that addresses these challenges through 1) XMD encoding, which augments raw features with observation masks and time-deltas to explicitly model data uncertainty, and 2) bidirectional Mamba-2, which captures temporal dependencies with linear computational complexity. Experiments on CLARE and CL-Drive datasets under leave-one-subject-out evaluation show that MambaGaze achieves 76.8% and 73.1% accuracy, respectively, outperforming CNN, Transformer, ResNet, and VGG baselines by 4-12 percentage points. Edge deployment benchmarks on NVIDIA Jetson platforms demonstrate real-time inference at 43-68 FPS with power consumption below 7.5W, confirming feasibility for wearable cognitive load monitoring.
+
+---
+
+### 4. Q-Learning-Based Task Scheduling Scheme to Enhance Energy Consumption and QoS in IoT Environments
 
 **Authors:** Ali Ghaffari, Vesal Firoozi, Ali Maleki, Mohammad Sadegh Sirjani, Maedeh Abedini Bagha  
 
@@ -102,7 +148,7 @@ Listed newest-first by year as on the portfolio. Status reflects the site datase
 
 ---
 
-### 3. Controller placement in software-defined networks using reinforcement learning and metaheuristics
+### 5. Controller placement in software-defined networks using reinforcement learning and metaheuristics
 
 **Authors:** Mohammad Sadegh Sirjani, Ali Maleki, Amir Pakmehr, Maedeh Abedini Bagha, Ali Ghaffari, Ali Asghar Pour Haji Kazem  
 
@@ -120,7 +166,25 @@ Listed newest-first by year as on the portfolio. Status reflects the site datase
 
 ---
 
-### 4. Data mining and cloud computing for customer pattern analysis
+### 6. Optimizing Task Scheduling in Fog Computing with Deadline Awareness
+
+**Authors:** Mohammad Sadegh Sirjani, Mohammad Ahmad, Amir Mousavi, Erfan Nourbakhsh, Khoa Nguyen
+
+**Venue:** 2026 IEEE 2nd International Conference on Secure IoT, Assured and Trusted Computing (SATC)
+
+**Year:** 2026
+
+**Status:** Published
+
+**DOI / link:** https://doi.org/10.1109/SATC69565.2026.11542230
+
+**Keywords:** Internet of Things; Fog Computing; Job Scheduling; Golden Eagle Optimization Algorithm; Reinforcement Learning
+
+**Abstract:** The Internet of Things (IoT) has become a fundamental component of modern smart applications, particularly in time-sensitive scenarios such as healthcare monitoring and autonomous systems. Many IoT applications require guaranteed response times to meet stringent deadlines, making efficient task scheduling a critical challenge. Fog computing addresses these needs by positioning computational resources closer to end users. However, existing task scheduling approaches often fail to fully consider deadline awareness, which can lead to performance degradation in time-critical environments. In this paper, we propose a novel Reinforcement Learning-based Improved GEO (RIGEO) algorithm that combines improved Geometric Optimization (IGEO) with Reinforcement Learning (RL) to enhance task scheduling performance in fog computing environments. The key innovation is the integration of deadline awareness into the optimization framework, which significantly reduces task failures in delay-sensitive applications. Through comprehensive simulation experiments using iFogSim, we evaluate RIGEO against several state-of-the-art algorithms, including ACO-IWD, SB-PSO, EEMR, and NSGA-III. Our results demonstrate substantial performance improvements, with RIGEO achieving a 29% reduction in energy consumption, an 86% improvement in average response time, and a 19% reduction in deadline violations.
+
+---
+
+### 7. Data mining and cloud computing for customer pattern analysis
 
 **Authors:** Mohammad Sadegh Sirjani, Seyed Amir Mousavi, Mostafa Sadeghi  
 
@@ -138,7 +202,7 @@ Listed newest-first by year as on the portfolio. Status reflects the site datase
 
 ---
 
-### 5. SecVanet: provably secure authentication protocol for sending emergency events in VANET
+### 8. SecVanet: provably secure authentication protocol for sending emergency events in VANET
 
 **Authors:** Seyed Amir Mousavi, Mohammad Sadegh Sirjani, Seyyed Javad Bozorg Zadeh Razavi, Morteza Nikooghadam  
 
@@ -156,7 +220,7 @@ Listed newest-first by year as on the portfolio. Status reflects the site datase
 
 ---
 
-### 6. A Comparative Evaluation of Machine Learning Algorithms for IDS in IoT network
+### 9. A Comparative Evaluation of Machine Learning Algorithms for IDS in IoT network
 
 **Authors:** Seyed Amir Mousavi, Mostafa Sadeghi, Mohammad Sadegh Sirjani  
 
