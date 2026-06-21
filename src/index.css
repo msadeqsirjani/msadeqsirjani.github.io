@@ -237,8 +237,11 @@ ul, ol {
     position: relative;
 }
 
-.nav-link:hover {
+.nav-link:hover,
+.nav-link:focus,
+.nav-link:focus-visible {
     color: var(--accent-color);
+    text-decoration: none;
 }
 
 .nav-menu > li > .nav-link::after {

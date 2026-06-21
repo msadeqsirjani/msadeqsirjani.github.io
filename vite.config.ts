@@ -1,5 +1,5 @@
 import { defineConfig, type PluginOption } from 'vite'
-import react from '@vitejs/plugin-react'
+import preact from '@preact/preset-vite'
 import { visualizer } from 'rollup-plugin-visualizer'
 import PurgeCSS from 'vite-plugin-purgecss'
 import fs from 'fs'
@@ -48,7 +48,7 @@ export default defineConfig({
     __BUILD_TIMESTAMP__: JSON.stringify(BUILD_TIMESTAMP),
   },
   plugins: [
-    react(),
+    preact(),
     injectBuildTime(),
     visualizer({
       filename: './dist/stats.html',
@@ -97,6 +97,8 @@ export default defineConfig({
         manualChunks(id) {
           if (!id.includes('node_modules')) return;
           if (
+            id.includes('/preact/') ||
+            id.includes('/preact') ||
             id.includes('/react-dom/') ||
             id.includes('/react/') ||
             id.includes('/scheduler/')
