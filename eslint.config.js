@@ -21,5 +21,40 @@ export default defineConfig([
       ecmaVersion: 2020,
       globals: globals.browser,
     },
+    rules: {
+      // Google TypeScript Style naming conventions
+      '@typescript-eslint/naming-convention': [
+        'error',
+        {
+          selector: 'default',
+          format: ['camelCase'],
+          leadingUnderscore: 'allow',
+        },
+        {
+          selector: 'variable',
+          format: ['camelCase', 'UPPER_CASE', 'PascalCase'],
+          leadingUnderscore: 'allowDouble',
+          trailingUnderscore: 'allowDouble',
+        },
+        // Components are functions in PascalCase; render props may be PascalCase
+        {selector: 'function', format: ['camelCase', 'PascalCase']},
+        {
+          selector: 'parameter',
+          format: ['camelCase', 'PascalCase'],
+          leadingUnderscore: 'allow',
+        },
+        {selector: 'typeLike', format: ['PascalCase']},
+        {selector: 'typeParameter', format: ['PascalCase']},
+        {
+          selector: 'interface',
+          format: ['PascalCase'],
+          custom: {regex: '^I[A-Z]', match: false},
+        },
+        {selector: 'enumMember', format: ['PascalCase', 'UPPER_CASE']},
+        // HTML/ARIA attrs, data keys and external shapes vary — don't enforce
+        {selector: ['property', 'typeProperty'], format: null},
+        {selector: 'import', format: ['camelCase', 'PascalCase']},
+      ],
+    },
   },
 ]);
