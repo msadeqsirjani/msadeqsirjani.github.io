@@ -213,7 +213,7 @@ const GlobalSearch = ({ isOpen, onClose }: GlobalSearchProps) => {
               aria-label="Global search"
             />
           </div>
-          <button className="close-search-btn" onClick={onClose} aria-label="Close search">
+          <button type="button" className="close-search-btn" onClick={onClose} aria-label="Close search">
             <FontAwesomeIcon icon={faTimes} />
           </button>
         </div>

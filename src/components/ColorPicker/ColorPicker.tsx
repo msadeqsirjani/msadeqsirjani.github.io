@@ -16,7 +16,7 @@ const ColorPicker = () => {
   }, []);
 
   return (
-    <button
+    <button type="button"
       className="color-picker-toggle"
       onClick={toggleTheme}
       aria-label={theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode'}

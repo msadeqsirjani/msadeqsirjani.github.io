@@ -1,7 +1,7 @@
 import { Component } from 'react';
 import type { ReactNode, CSSProperties } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faRedo, faSync, faHome } from '@fortawesome/free-solid-svg-icons';
+import { faRedo, faSync, faHome, faTriangleExclamation } from '@fortawesome/free-solid-svg-icons';
 
 interface Props {
   children: ReactNode;
@@ -131,7 +131,9 @@ class ErrorBoundary extends Component<Props, State> {
 
       return (
         <div style={styles.container}>
-          <div style={{ fontSize: 'var(--fs-3xl)', marginBottom: '0.5rem' }}>⚠️</div>
+          <div style={{ fontSize: 'var(--fs-3xl)', marginBottom: '0.5rem', color: 'var(--error-color)' }} aria-hidden="true">
+            <FontAwesomeIcon icon={faTriangleExclamation} />
+          </div>
           <h2 style={styles.title}>Something went wrong</h2>
           <p style={styles.description}>
             We encountered an error while loading this section. You can try one of the options below:
@@ -148,7 +150,7 @@ class ErrorBoundary extends Component<Props, State> {
 
           <div style={styles.buttonContainer}>
             {buttons.map((btn, idx) => (
-              <button
+              <button type="button"
                 key={idx}
                 onClick={btn.onClick}
                 style={btn.primary ? styles.primaryButton : styles.secondaryButton}

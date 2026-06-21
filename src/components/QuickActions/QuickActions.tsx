@@ -27,7 +27,7 @@ const QuickActions = () => {
 
   return (
     <div className="quick-actions">
-      <button
+      <button type="button"
         className="quick-action-toggle"
         id="quickActionToggle"
         onClick={() => setIsOpen(!isOpen)}

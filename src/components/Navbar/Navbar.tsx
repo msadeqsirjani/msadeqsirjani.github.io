@@ -114,7 +114,7 @@ const Navbar = ({ onSearchClick }: NavbarProps) => {
             </li>
           ))}
           <li className={`nav-dropdown ${isDropdownOpen ? 'open' : ''}`} role="none" ref={dropdownRef}>
-            <button
+            <button type="button"
               className="nav-dropdown-toggle"
               ref={dropdownToggleRef}
               onClick={(e) => {
@@ -153,7 +153,7 @@ const Navbar = ({ onSearchClick }: NavbarProps) => {
           ))}
         </ul>
         <div className="nav-controls">
-          <button
+          <button type="button"
             className="search-toggle desktop-only"
             onClick={onSearchClick}
             aria-label="Open search"
@@ -164,7 +164,7 @@ const Navbar = ({ onSearchClick }: NavbarProps) => {
 
           <ColorPicker />
 
-          <button
+          <button type="button"
             className="nav-toggle"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label="Toggle navigation menu"

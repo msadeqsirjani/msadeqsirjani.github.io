@@ -43,14 +43,14 @@ const CookieConsent = () => {
           </p>
         </div>
         <div className="cookie-consent-actions">
-          <button 
+          <button type="button" 
             onClick={handleAccept} 
             className="btn btn-primary"
             aria-label="Accept cookies"
           >
             Accept
           </button>
-          <button 
+          <button type="button" 
             onClick={handleDecline} 
             className="btn btn-secondary"
             aria-label="Decline cookies"

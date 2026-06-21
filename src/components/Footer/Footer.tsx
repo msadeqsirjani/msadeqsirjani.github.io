@@ -100,7 +100,7 @@ const Footer = () => {
         </div>
       </footer>
 
-      <button
+      <button type="button"
         className={`scroll-to-top ${scrollVisible ? 'visible' : ''}`}
         onClick={scrollToTop}
         aria-label="Scroll to top"

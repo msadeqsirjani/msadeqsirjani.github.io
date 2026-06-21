@@ -128,14 +128,14 @@ const Publications = () => {
                           </a>
                         )}
                         {pub.bibtexId && (
-                          <button
+                          <button type="button"
                             className="pub-text-link doi-link"
                             onClick={() => void handleCopyBibtex(pub)}
                           >
                             BibTeX <FontAwesomeIcon icon={faExternalLinkAlt} size="xs" />
                           </button>
                         )}
-                        <button
+                        <button type="button"
                           className="pub-text-link pub-toggle"
                           onClick={() => toggleSection(key, 'info')}
                           aria-expanded={isInfoExpanded}
@@ -143,7 +143,7 @@ const Publications = () => {
                           Info <FontAwesomeIcon icon={isInfoExpanded ? faChevronUp : faChevronDown} size="xs" />
                         </button>
                         {pub.abstract && (
-                          <button
+                          <button type="button"
                             className="pub-text-link pub-toggle"
                             onClick={() => toggleSection(key, 'abstract')}
                             aria-expanded={isExpanded}
@@ -152,7 +152,7 @@ const Publications = () => {
                           </button>
                         )}
                         {pub.keywords && pub.keywords.length > 0 && (
-                          <button
+                          <button type="button"
                             className="pub-text-link pub-toggle"
                             onClick={() => toggleSection(key, 'keywords')}
                             aria-expanded={isKeywordsExpanded}
