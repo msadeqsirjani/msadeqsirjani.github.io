@@ -32,6 +32,28 @@ img, picture {
     height: auto;
 }
 
+.icon-svg {
+    display: inline-block;
+    vertical-align: -0.125em;
+    overflow: visible;
+    flex-shrink: 0;
+}
+
+.icon-spin {
+    animation: icon-spin 1s linear infinite;
+}
+
+@keyframes icon-spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .icon-spin {
+        animation-duration: 1.5s;
+    }
+}
+
 .navbar,
 .btn {
     backface-visibility: hidden;

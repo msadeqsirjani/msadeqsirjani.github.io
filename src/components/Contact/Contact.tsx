@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import toast from 'react-hot-toast';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Icon from '../Icon/Icon';
 import {
   faSpinner,
   faPaperPlane,
@@ -125,7 +125,7 @@ const Contact = () => {
             {contactInfo.map((item, idx) => (
               <div key={idx} className="contact-item">
                 <span className="contact-info-icon-shell" aria-hidden="true">
-                  <FontAwesomeIcon icon={item.icon} className="contact-info-icon-svg" />
+                  <Icon icon={item.icon} className="contact-info-icon-svg" />
                 </span>
                 <div>
                   <h4>{item.title}</h4>
@@ -173,11 +173,11 @@ const Contact = () => {
               <button type="submit" className="btn btn-primary" disabled={isSubmitting}>
                 {isSubmitting ? (
                   <>
-                    <FontAwesomeIcon icon={faSpinner} spin /> Sending...
+                    <Icon icon={faSpinner} spin /> Sending...
                   </>
                 ) : (
                   <>
-                    <FontAwesomeIcon icon={faPaperPlane} /> Send Message
+                    <Icon icon={faPaperPlane} /> Send Message
                   </>
                 )}
               </button>

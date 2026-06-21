@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Icon from '../Icon/Icon';
 import { faPlus, faTimes, faEnvelope, faDownload, faCalendar } from '@fortawesome/free-solid-svg-icons';
 
 const QuickActions = () => {
@@ -35,7 +35,7 @@ const QuickActions = () => {
         aria-label={isOpen ? 'Close quick actions' : 'Open quick actions'}
         data-tooltip={!isOpen ? 'Quick Actions' : undefined}
       >
-        <FontAwesomeIcon icon={isOpen ? faTimes : faPlus} aria-hidden="true" />
+        <Icon icon={isOpen ? faTimes : faPlus} aria-hidden="true" />
       </button>
       <div className={`quick-action-menu ${isOpen ? 'active' : ''}`} id="quickActionMenu">
         {actions.map((action, idx) => (
@@ -47,7 +47,7 @@ const QuickActions = () => {
             {...(action.download && { download: true })}
             {...(action.external && { target: '_blank', rel: 'noopener' })}
           >
-            <FontAwesomeIcon icon={action.icon} aria-hidden="true" />
+            <Icon icon={action.icon} aria-hidden="true" />
           </a>
         ))}
       </div>

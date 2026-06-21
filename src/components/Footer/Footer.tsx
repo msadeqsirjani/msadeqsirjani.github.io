@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Icon from '../Icon/Icon';
 import { faEnvelope, faGraduationCap, faArrowUp } from '@fortawesome/free-solid-svg-icons';
 import { faLinkedin, faGithub, faOrcid, faResearchgate } from '@fortawesome/free-brands-svg-icons';
 import { useScrollManager } from '../../hooks/useScrollManager';
@@ -87,7 +87,7 @@ const Footer = () => {
                     rel="noopener"
                     data-tooltip={link.label}
                   >
-                    <FontAwesomeIcon icon={link.icon} />
+                    <Icon icon={link.icon} />
                   </a>
                 ))}
               </div>
@@ -106,7 +106,7 @@ const Footer = () => {
         aria-label="Scroll to top"
         data-tooltip="Back to top"
       >
-        <FontAwesomeIcon icon={faArrowUp} />
+        <Icon icon={faArrowUp} />
       </button>
     </>
   );

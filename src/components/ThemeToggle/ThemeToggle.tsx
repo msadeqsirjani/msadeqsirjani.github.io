@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Icon from '../Icon/Icon';
 import { faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
 import { useTheme } from '../../context/ThemeContext';
 import './ThemeToggle.css';
@@ -23,7 +23,7 @@ const ThemeToggle = () => {
       aria-label={theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode'}
       data-tooltip={theme === 'light' ? 'Dark mode' : 'Light mode'}
     >
-      <FontAwesomeIcon
+      <Icon
         icon={theme === 'light' ? faMoon : faSun}
         className="theme-toggle-icon"
       />

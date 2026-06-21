@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useCallback, useMemo } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Icon from '../Icon/Icon';
 import { faSearch, faTimes, faBook, faGraduationCap, faMicroscope, faChalkboardTeacher, faNewspaper, faTrophy } from '@fortawesome/free-solid-svg-icons';
 import type { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 import { useGlobalSearch } from '../../hooks/useGlobalSearch';
@@ -202,7 +202,7 @@ const GlobalSearch = ({ isOpen, onClose }: GlobalSearchProps) => {
       <div className="global-search-modal" ref={modalRef}>
         <div className="global-search-header">
           <div className="search-input-wrapper">
-            <FontAwesomeIcon icon={faSearch} className="search-icon" />
+            <Icon icon={faSearch} className="search-icon" />
             <input
               ref={searchInputRef}
               type="text"
@@ -214,14 +214,14 @@ const GlobalSearch = ({ isOpen, onClose }: GlobalSearchProps) => {
             />
           </div>
           <button type="button" className="close-search-btn" onClick={onClose} aria-label="Close search">
-            <FontAwesomeIcon icon={faTimes} />
+            <Icon icon={faTimes} />
           </button>
         </div>
 
         <div className="global-search-body">
           {!searchQuery && (
             <div className="search-empty-state">
-              <FontAwesomeIcon icon={faSearch} className="empty-icon" />
+              <Icon icon={faSearch} className="empty-icon" />
               <p>Start typing to search across all content</p>
               <div className="search-shortcuts">
                 <span className="shortcut-hint">Press <kbd>ESC</kbd> to close</span>
@@ -256,7 +256,7 @@ const GlobalSearch = ({ isOpen, onClose }: GlobalSearchProps) => {
                 return (
                   <div key={category.key} className="result-category">
                     <div className="category-header">
-                      <FontAwesomeIcon icon={category.icon} />
+                      <Icon icon={category.icon} />
                       <h3>{category.label}</h3>
                       <span className="result-count">{categoryResults.length}</span>
                     </div>

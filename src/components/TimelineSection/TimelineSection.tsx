@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react';
 import type { ReactNode } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Icon from '../Icon/Icon';
 import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
 import { sanitizeHtml } from '../../utils/sanitizeHtml';
 
@@ -141,7 +141,7 @@ const TimelineSection = <T,>({
               aria-expanded={showAll}
               aria-label={showAll ? 'Show fewer items' : `Show all ${items.length} items`}
             >
-              {showAll ? 'Show Less' : 'Show More'} <FontAwesomeIcon icon={showAll ? faChevronUp : faChevronDown} />
+              {showAll ? 'Show Less' : 'Show More'} <Icon icon={showAll ? faChevronUp : faChevronDown} />
             </button>
           </div>
         )}

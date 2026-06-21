@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import type { ReactNode, CSSProperties } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Icon from '../Icon/Icon';
 import { faRedo, faSync, faHome, faTriangleExclamation } from '@fortawesome/free-solid-svg-icons';
 
 interface Props {
@@ -132,7 +132,7 @@ class ErrorBoundary extends Component<Props, State> {
       return (
         <div style={styles.container}>
           <div style={{ fontSize: 'var(--fs-3xl)', marginBottom: '0.5rem', color: 'var(--error-color)' }} aria-hidden="true">
-            <FontAwesomeIcon icon={faTriangleExclamation} />
+            <Icon icon={faTriangleExclamation} />
           </div>
           <h2 style={styles.title}>Something went wrong</h2>
           <p style={styles.description}>
@@ -155,7 +155,7 @@ class ErrorBoundary extends Component<Props, State> {
                 onClick={btn.onClick}
                 style={btn.primary ? styles.primaryButton : styles.secondaryButton}
               >
-                <FontAwesomeIcon icon={btn.icon} /> {btn.label}
+                <Icon icon={btn.icon} /> {btn.label}
               </button>
             ))}
           </div>

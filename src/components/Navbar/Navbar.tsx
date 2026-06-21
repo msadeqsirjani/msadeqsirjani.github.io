@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Icon from '../Icon/Icon';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { useFocusTrap } from '../../hooks/useFocusTrap';
 import ThemeToggle from '../ThemeToggle/ThemeToggle';
@@ -159,7 +159,7 @@ const Navbar = ({ onSearchClick }: NavbarProps) => {
             aria-label="Open search"
             data-tooltip="Search (⌘K)"
           >
-            <FontAwesomeIcon icon={faSearch} />
+            <Icon icon={faSearch} />
           </button>
 
           <ThemeToggle />

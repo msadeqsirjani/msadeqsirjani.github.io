@@ -1,5 +1,5 @@
 import { fetchResearchInterests, researchInterests } from '../../data/content';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Icon from '../Icon/Icon';
 import useContentData from '../../hooks/useContentData';
 
 const ResearchInterests = () => {
@@ -14,7 +14,7 @@ const ResearchInterests = () => {
         <div className="interests-container">
           {interests.map((interest, index) => (
             <div key={index} className="interest-card">
-              <FontAwesomeIcon icon={interest.icon} className="interest-icon" />
+              <Icon icon={interest.icon} className="interest-icon" />
               <span dangerouslySetInnerHTML={{ __html: interest.name }}></span>
             </div>
           ))}

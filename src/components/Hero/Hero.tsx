@@ -1,4 +1,4 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Icon from '../Icon/Icon';
 import { faDownload, faEnvelope, faGraduationCap } from '@fortawesome/free-solid-svg-icons';
 import { faLinkedin, faGithub, faOrcid, faResearchgate } from '@fortawesome/free-brands-svg-icons';
 import { trackCVDownload, trackExternalLink } from '../../utils/analytics';
@@ -67,7 +67,7 @@ const Hero = () => {
                   {...(btn.target && { target: btn.target, rel: 'noopener noreferrer' })}
                   {...(btn.onClick && { onClick: () => btn.onClick() })}
                 >
-                  <FontAwesomeIcon icon={btn.icon} /> {btn.label}
+                  <Icon icon={btn.icon} /> {btn.label}
                 </a>
               ))}
             </div>
@@ -86,7 +86,7 @@ const Hero = () => {
                     onClick: () => trackExternalLink(link.label)
                   })}
                 >
-                  <FontAwesomeIcon icon={link.icon} />
+                  <Icon icon={link.icon} />
                 </a>
               ))}
             </div>

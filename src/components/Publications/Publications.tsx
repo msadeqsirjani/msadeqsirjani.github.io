@@ -2,7 +2,7 @@ import { useState, useMemo, useEffect } from 'react';
 import { fetchPublications } from '../../data/content';
 import toast from 'react-hot-toast';
 import type { Publication } from '../../types';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Icon from '../Icon/Icon';
 import { faChevronDown, faChevronUp, faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 import useSettings from '../../hooks/useSettings';
 import bibtexData from '../../data/bibtex.json';
@@ -119,12 +119,12 @@ const Publications = () => {
                       <div className="publication-links">
                         {pub.link && (
                           <a href={pub.link} className="pub-text-link doi-link" target="_blank" rel="noopener">
-                            DOI <FontAwesomeIcon icon={faExternalLinkAlt} size="xs" />
+                            DOI <Icon icon={faExternalLinkAlt} size="xs" />
                           </a>
                         )}
                         {pub.pdfLink && (
                           <a href={`/${pub.pdfLink}`} className="pub-text-link doi-link" target="_blank" rel="noopener">
-                            PDF <FontAwesomeIcon icon={faExternalLinkAlt} size="xs" />
+                            PDF <Icon icon={faExternalLinkAlt} size="xs" />
                           </a>
                         )}
                         {pub.bibtexId && (
@@ -132,7 +132,7 @@ const Publications = () => {
                             className="pub-text-link doi-link"
                             onClick={() => void handleCopyBibtex(pub)}
                           >
-                            BibTeX <FontAwesomeIcon icon={faExternalLinkAlt} size="xs" />
+                            BibTeX <Icon icon={faExternalLinkAlt} size="xs" />
                           </button>
                         )}
                         <button type="button"
@@ -140,7 +140,7 @@ const Publications = () => {
                           onClick={() => toggleSection(key, 'info')}
                           aria-expanded={isInfoExpanded}
                         >
-                          Info <FontAwesomeIcon icon={isInfoExpanded ? faChevronUp : faChevronDown} size="xs" />
+                          Info <Icon icon={isInfoExpanded ? faChevronUp : faChevronDown} size="xs" />
                         </button>
                         {pub.abstract && (
                           <button type="button"
@@ -148,7 +148,7 @@ const Publications = () => {
                             onClick={() => toggleSection(key, 'abstract')}
                             aria-expanded={isExpanded}
                           >
-                            Abstract <FontAwesomeIcon icon={isExpanded ? faChevronUp : faChevronDown} size="xs" />
+                            Abstract <Icon icon={isExpanded ? faChevronUp : faChevronDown} size="xs" />
                           </button>
                         )}
                         {pub.keywords && pub.keywords.length > 0 && (
@@ -157,7 +157,7 @@ const Publications = () => {
                             onClick={() => toggleSection(key, 'keywords')}
                             aria-expanded={isKeywordsExpanded}
                           >
-                            Keywords <FontAwesomeIcon icon={isKeywordsExpanded ? faChevronUp : faChevronDown} size="xs" />
+                            Keywords <Icon icon={isKeywordsExpanded ? faChevronUp : faChevronDown} size="xs" />
                           </button>
                         )}
                       </div>
@@ -207,7 +207,7 @@ const Publications = () => {
                 className={`show-more-btn${showAll ? ' expanded' : ''}`}
                 aria-expanded={showAll}
               >
-                {showAll ? 'Show Less' : 'Show More'} <FontAwesomeIcon icon={showAll ? faChevronUp : faChevronDown} />
+                {showAll ? 'Show Less' : 'Show More'} <Icon icon={showAll ? faChevronUp : faChevronDown} />
               </button>
             </div>
           )}
