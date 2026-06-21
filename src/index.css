@@ -448,10 +448,7 @@ ol {
 }
 
 .hero {
-  padding: 3.5rem 0;
-  min-height: calc(100svh - 76px);
-  display: flex;
-  align-items: center;
+  padding: 4rem 0 4.5rem;
 }
 
 .hero-content {
@@ -1378,7 +1375,7 @@ kbd {
   padding: 0.3rem 0.7rem;
   border: 1px solid var(--border-color);
   border-radius: var(--button-border-radius);
-  background: var(--gray-light);
+  background: var(--white);
 }
 
 .info-chip .info-label {
@@ -1484,12 +1481,12 @@ kbd {
 .pub-keyword-tag {
   display: inline-flex;
   align-items: center;
-  background: var(--gray-light);
+  background: rgba(var(--accent-rgb), 0.12);
   color: var(--accent-color);
   font-size: var(--fs-sm);
   font-weight: 600;
   padding: 0.3rem 0.7rem;
-  border: 1px solid var(--border-color);
+  border: 1px solid transparent;
   border-radius: var(--button-border-radius);
 }
 
@@ -1497,8 +1494,9 @@ kbd {
   margin-top: 0.6rem;
   margin-bottom: 0.75rem;
   padding: 1rem 1.25rem;
-  background: var(--gray-light);
+  background: var(--white);
   border: 1px solid var(--border-color);
+  border-left: 3px solid var(--accent-color);
   border-radius: var(--button-border-radius);
   font-size: var(--fs-sm);
   color: var(--text-light);
@@ -1614,11 +1612,11 @@ kbd {
   background: rgba(var(--accent-rgb), 0.1);
 }
 
-/* year & citations: neutral pill */
+/* year & citations: neutral pill on the card surface */
 .citations-badge,
 .pub-year-badge {
   color: var(--text-light);
-  background: var(--gray-light);
+  background: var(--white);
   border: 1px solid var(--border-color);
 }
 
