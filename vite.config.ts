@@ -80,25 +80,28 @@ export default defineConfig({
   ],
   base: '/',
   build: {
-    target: 'es2015',
+    target: 'es2020',
     minify: 'terser',
-    sourcemap: true,
+    sourcemap: false,
     rollupOptions: {
       input: {
         main: path.resolve(__dirname, 'index.html'),
       },
       output: {
-        manualChunks: {
-          'react-vendor': ['react', 'react-dom'],
-          'react-hot-toast': ['react-hot-toast'],
-          'fontawesome': [
-            '@fortawesome/fontawesome-svg-core',
-            '@fortawesome/react-fontawesome',
-            '@fortawesome/free-solid-svg-icons',
-            '@fortawesome/free-brands-svg-icons',
-          ],
+        manualChunks(id) {
+          if (!id.includes('node_modules')) return;
+          if (
+            id.includes('/react-dom/') ||
+            id.includes('/react/') ||
+            id.includes('/scheduler/')
+          ) {
+            return 'react-vendor';
+          }
+          if (id.includes('@fortawesome')) return 'fontawesome';
+          if (id.includes('react-hot-toast') || id.includes('/goober/')) {
+            return 'react-hot-toast';
+          }
         },
-        sourcemapExcludeSources: true,
       },
     },
   },
