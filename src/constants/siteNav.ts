@@ -4,18 +4,18 @@ export interface NavLink {
 }
 
 export const MAIN_NAV_LINKS: readonly NavLink[] = [
-  { id: 'home', label: 'Home' },
-  { id: 'biography', label: 'About' },
-  { id: 'education', label: 'Education' },
-  { id: 'research', label: 'Research' },
-  { id: 'publications', label: 'Publications' },
+  {id: 'home', label: 'Home'},
+  {id: 'biography', label: 'About'},
+  {id: 'education', label: 'Education'},
+  {id: 'research', label: 'Research'},
+  {id: 'publications', label: 'Publications'},
 ];
 
 export const DROPDOWN_NAV_LINKS: readonly NavLink[] = [
-  { id: 'teaching', label: 'Teaching' },
-  { id: 'news', label: 'News' },
-  { id: 'awards', label: 'Awards' },
-  { id: 'contact', label: 'Contact' },
+  {id: 'teaching', label: 'Teaching'},
+  {id: 'news', label: 'News'},
+  {id: 'awards', label: 'Awards'},
+  {id: 'contact', label: 'Contact'},
 ];
 
 export const ALL_NAV_LINKS: readonly NavLink[] = [

@@ -1,4 +1,3 @@
-
 .cookie-consent-banner {
   position: fixed;
   bottom: 0;
@@ -59,12 +58,10 @@
   min-width: 100px;
 }
 
-
-body[data-theme="dark"] .cookie-consent-banner {
+body[data-theme='dark'] .cookie-consent-banner {
   background: var(--bg-color);
   border-top-color: var(--border-color);
 }
-
 
 @media (max-width: 768px) {
   .cookie-consent-content {
@@ -94,7 +91,6 @@ body[data-theme="dark"] .cookie-consent-banner {
     justify-content: center;
   }
 }
-
 
 @media (prefers-reduced-motion: reduce) {
   .cookie-consent-banner {

@@ -1,14 +1,14 @@
-import { fetchTeaching, teaching } from '../../data/content';
-import type { TeachingItem } from '../../types';
+import {fetchTeaching, teaching} from '../../data/content';
+import type {TeachingItem} from '../../types';
 import TimelineSection from '../TimelineSection/TimelineSection';
 import useContentData from '../../hooks/useContentData';
 import useSettings from '../../hooks/useSettings';
 
 const Teaching = () => {
-  const { data: teachingItems } = useContentData(fetchTeaching, teaching, {
+  const {data: teachingItems} = useContentData(fetchTeaching, teaching, {
     logLabel: 'teaching data',
   });
-  const { settings } = useSettings();
+  const {settings} = useSettings();
 
   return (
     <TimelineSection<TeachingItem>
@@ -21,29 +21,56 @@ const Teaching = () => {
       dateClassName="teaching-date"
       contentWrapperClassName="teaching-content"
       getItemKey={(item, index) => `${item.course}-${item.date}-${index}`}
-      renderDate={(item) => (
+      renderDate={item => (
         <div className="teaching-date-col">
           <span className="teaching-role">{item.role}</span>
           <span className="teaching-date">{item.date}</span>
         </div>
       )}
-      renderContent={(item) => (
+      renderContent={item => (
         <>
           <span className="teaching-course-row">
             <span className="teaching-course">{item.course}</span>
           </span>
           <span className="teaching-meta">
-            {item.instructorUrl
-              ? <a href={item.instructorUrl} className="teaching-instructor-name" target="_blank" rel="noopener noreferrer">{item.instructor.replace(/^Instructor:\s*/, '')}</a>
-              : <span className="teaching-instructor-name">{item.instructor.replace(/^Instructor:\s*/, '')}</span>}
+            {item.instructorUrl ? (
+              <a
+                href={item.instructorUrl}
+                className="teaching-instructor-name"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {item.instructor.replace(/^Instructor:\s*/, '')}
+              </a>
+            ) : (
+              <span className="teaching-instructor-name">
+                {item.instructor.replace(/^Instructor:\s*/, '')}
+              </span>
+            )}
           </span>
-          <span className="teaching-meta teaching-role-mobile">{item.role}</span>
+          <span className="teaching-meta teaching-role-mobile">
+            {item.role}
+          </span>
           <span className="teaching-meta teaching-university-name">
-            {item.university === 'University of Texas at San Antonio'
-              ? <a href="https://www.utsa.edu/" target="_blank" rel="noopener noreferrer">{item.university}</a>
-              : item.university === 'Ferdowsi University of Mashhad'
-              ? <a href="https://en.um.ac.ir/" target="_blank" rel="noopener noreferrer">{item.university}</a>
-              : item.university}
+            {item.university === 'University of Texas at San Antonio' ? (
+              <a
+                href="https://www.utsa.edu/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {item.university}
+              </a>
+            ) : item.university === 'Ferdowsi University of Mashhad' ? (
+              <a
+                href="https://en.um.ac.ir/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {item.university}
+              </a>
+            ) : (
+              item.university
+            )}
           </span>
         </>
       )}

@@ -7,6 +7,8 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
+    "format": "prettier --write \"src/**/*.{ts,tsx,css}\" \"*.{ts,js,json,html}\"",
+    "format:check": "prettier --check \"src/**/*.{ts,tsx,css}\" \"*.{ts,js,json,html}\"",
     "preview": "vite preview"
   },
   "dependencies": {
@@ -26,9 +28,11 @@
     "@types/react-dom": "^19.1.9",
     "@vheemstra/vite-plugin-imagemin": "^2.2.1",
     "eslint": "^9.36.0",
+    "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.22",
     "globals": "^16.4.0",
+    "prettier": "^3.8.4",
     "rollup-plugin-visualizer": "^6.0.4",
     "terser": "^5.44.0",
     "typescript": "~5.9.3",

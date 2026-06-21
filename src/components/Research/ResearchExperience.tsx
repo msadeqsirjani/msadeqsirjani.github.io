@@ -1,5 +1,5 @@
-import { fetchResearchExperience, researchExperience } from '../../data/content';
-import type { ResearchItem } from '../../types';
+import {fetchResearchExperience, researchExperience} from '../../data/content';
+import type {ResearchItem} from '../../types';
 import TimelineSection from '../TimelineSection/TimelineSection';
 import useContentData from '../../hooks/useContentData';
 import useSettings from '../../hooks/useSettings';
@@ -13,10 +13,14 @@ const getLabInitials = (lab: string) =>
     .join('');
 
 const ResearchExperience = () => {
-  const { data: researchItems } = useContentData(fetchResearchExperience, researchExperience, {
-    logLabel: 'research experience data',
-  });
-  const { settings } = useSettings();
+  const {data: researchItems} = useContentData(
+    fetchResearchExperience,
+    researchExperience,
+    {
+      logLabel: 'research experience data',
+    },
+  );
+  const {settings} = useSettings();
 
   return (
     <TimelineSection<ResearchItem>
@@ -29,14 +33,16 @@ const ResearchExperience = () => {
       dateClassName="timeline"
       contentWrapperClassName="research-content"
       getItemKey={(item, index) => `${item.position}-${item.lab}-${index}`}
-      getItemClassName={(item) => (item.current ? 'current' : undefined)}
-      renderDate={(item) => (
+      getItemClassName={item => (item.current ? 'current' : undefined)}
+      renderDate={item => (
         <>
           <span className="timeline research-date-text">{item.duration}</span>
-          {item.current && <span className="research-current-badge">Current</span>}
+          {item.current && (
+            <span className="research-current-badge">Current</span>
+          )}
         </>
       )}
-      renderContent={(item) => (
+      renderContent={item => (
         <>
           <div className="research-main">
             <div className="research-main__logo">
@@ -82,16 +88,31 @@ const ResearchExperience = () => {
             <div className="research-main__body">
               <div className="research-title-row">
                 {item.labUrl ? (
-                  <a href={item.labUrl} className="research-lab" target="_blank" rel="noopener">{item.lab}</a>
+                  <a
+                    href={item.labUrl}
+                    className="research-lab"
+                    target="_blank"
+                    rel="noopener"
+                  >
+                    {item.lab}
+                  </a>
                 ) : (
                   <span className="research-lab">{item.lab}</span>
                 )}
-                {item.university ? <span className="research-sep">,&nbsp;</span> : null}
-                {item.university ? <span className="research-university">{item.university}</span> : null}
+                {item.university ? (
+                  <span className="research-sep">,&nbsp;</span>
+                ) : null}
+                {item.university ? (
+                  <span className="research-university">{item.university}</span>
+                ) : null}
               </div>
               <div className="research-date-mobile">
-                <span className="timeline research-date-text">{item.duration}</span>
-                {item.current && <span className="research-current-badge">Current</span>}
+                <span className="timeline research-date-text">
+                  {item.duration}
+                </span>
+                {item.current && (
+                  <span className="research-current-badge">Current</span>
+                )}
               </div>
               <div className="research-description">
                 <ul>

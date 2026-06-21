@@ -1,4 +1,3 @@
-
 .global-search-overlay {
   position: fixed;
   top: 0;
@@ -24,7 +23,6 @@
   }
 }
 
-
 .global-search-modal {
   background: var(--bg-color);
   border-radius: var(--button-border-radius);
@@ -48,7 +46,6 @@
     transform: translateY(0);
   }
 }
-
 
 .global-search-header {
   display: flex;
@@ -137,14 +134,12 @@
   font-size: var(--fs-lg);
 }
 
-
 .global-search-body {
   flex: 1;
   overflow-y: auto;
   padding: 1rem;
   min-height: 300px;
 }
-
 
 .search-empty-state {
   display: flex;
@@ -190,7 +185,6 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-
 .search-loading {
   display: flex;
   flex-direction: column;
@@ -216,7 +210,6 @@
   }
 }
 
-
 .search-no-results {
   display: flex;
   flex-direction: column;
@@ -236,7 +229,6 @@
   opacity: 0.7;
 }
 
-
 .search-results {
   display: flex;
   flex-direction: column;
@@ -251,7 +243,6 @@
   font-size: var(--fs-sm);
   font-weight: 500;
 }
-
 
 .result-category {
   display: flex;
@@ -290,7 +281,6 @@
   font-size: var(--fs-xs);
   font-weight: 600;
 }
-
 
 .result-list {
   display: flex;
@@ -332,7 +322,6 @@ a.result-item {
   font-size: var(--fs-sm);
 }
 
-
 .global-search-footer {
   padding: 1rem 1.5rem;
   border-top: 1px solid var(--border-color);
@@ -368,7 +357,6 @@ a.result-item {
   text-align: center;
 }
 
-
 .global-search-modal {
   --modal-bg: var(--white);
   --modal-text: var(--text-color);
@@ -378,7 +366,7 @@ a.result-item {
   --modal-hover-bg: rgba(15, 23, 42, 0.06);
 }
 
-[data-theme="dark"] .global-search-modal {
+[data-theme='dark'] .global-search-modal {
   --modal-bg: #1a202c;
   --modal-text: #e2e8f0;
   --modal-text-muted: #a0aec0;
@@ -386,7 +374,6 @@ a.result-item {
   --modal-card-bg: #2d3748;
   --modal-hover-bg: rgba(255, 255, 255, 0.08);
 }
-
 
 .global-search-modal {
   background: var(--modal-bg);
@@ -462,11 +449,9 @@ a.result-item {
   border-top-color: var(--accent-color);
 }
 
-
-[data-theme="dark"] .global-search-modal {
+[data-theme='dark'] .global-search-modal {
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
 }
-
 
 .global-search-body::-webkit-scrollbar {
   width: 8px;
@@ -484,7 +469,6 @@ a.result-item {
 .global-search-body::-webkit-scrollbar-thumb:hover {
   background: var(--text-muted);
 }
-
 
 @media (max-width: 768px) {
   .global-search-overlay {

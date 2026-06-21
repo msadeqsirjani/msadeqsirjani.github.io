@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import {useState, useEffect} from 'react';
 import './CookieConsent.css';
 
 const CookieConsent = () => {
@@ -14,7 +14,7 @@ const CookieConsent = () => {
   }, []);
 
   const loadAnalytics = () => {
-    import('../../utils/analytics').then(({ initAnalytics }) => {
+    import('../../utils/analytics').then(({initAnalytics}) => {
       initAnalytics();
     });
   };
@@ -33,25 +33,32 @@ const CookieConsent = () => {
   if (!showBanner) return null;
 
   return (
-    <div className="cookie-consent-banner" role="dialog" aria-live="polite" aria-label="Cookie consent">
+    <div
+      className="cookie-consent-banner"
+      role="dialog"
+      aria-live="polite"
+      aria-label="Cookie consent"
+    >
       <div className="cookie-consent-content">
         <div className="cookie-consent-text">
           <h3>Cookie Notice</h3>
           <p>
-            We use cookies to analyze site traffic and improve your experience. 
+            We use cookies to analyze site traffic and improve your experience.
             Your data is anonymized and we respect your privacy.
           </p>
         </div>
         <div className="cookie-consent-actions">
-          <button type="button" 
-            onClick={handleAccept} 
+          <button
+            type="button"
+            onClick={handleAccept}
             className="btn btn-primary"
             aria-label="Accept cookies"
           >
             Accept
           </button>
-          <button type="button" 
-            onClick={handleDecline} 
+          <button
+            type="button"
+            onClick={handleDecline}
             className="btn btn-secondary"
             aria-label="Decline cookies"
           >

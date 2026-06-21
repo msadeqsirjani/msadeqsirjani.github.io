@@ -1,11 +1,11 @@
-import { useEffect, useState } from 'react';
+import {useEffect, useState} from 'react';
 
 interface UseContentOptions {
   logLabel?: string;
   errorMessage?: string;
 }
 
-const shouldSkipFetch = <T,>(initialValue: T) => {
+const shouldSkipFetch = <T>(initialValue: T) => {
   if (Array.isArray(initialValue)) {
     return initialValue.length > 0;
   }
@@ -56,7 +56,7 @@ export function useContentData<T>(
     };
   }, [fetcher, initialValue, options.errorMessage, options.logLabel]);
 
-  return { data, loading, error };
+  return {data, loading, error};
 }
 
 export default useContentData;

@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { useScrollManager } from '../../hooks/useScrollManager';
+import {useState} from 'react';
+import {useScrollManager} from '../../hooks/useScrollManager';
 
 const ReadingProgress = () => {
   const [progress, setProgress] = useState(0);
@@ -13,7 +13,7 @@ const ReadingProgress = () => {
       className="reading-progress"
       id="readingProgress"
       aria-label="Reading progress"
-      style={{ width: `${progress}%` }}
+      style={{width: `${progress}%`}}
     />
   );
 };

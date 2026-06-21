@@ -5,7 +5,7 @@ interface SkeletonLoaderProps {
   count?: number;
 }
 
-const SkeletonLoader = ({ type = 'card', count = 1 }: SkeletonLoaderProps) => {
+const SkeletonLoader = ({type = 'card', count = 1}: SkeletonLoaderProps) => {
   const renderSkeleton = () => {
     switch (type) {
       case 'text':
@@ -17,8 +17,11 @@ const SkeletonLoader = ({ type = 'card', count = 1 }: SkeletonLoaderProps) => {
       case 'publication':
         return (
           <div className="skeleton-publication">
-            <div className="skeleton skeleton-title" style={{ width: '80%' }} />
-            <div className="skeleton skeleton-text" style={{ width: '60%', marginTop: '0.5rem' }} />
+            <div className="skeleton skeleton-title" style={{width: '80%'}} />
+            <div
+              className="skeleton skeleton-text"
+              style={{width: '60%', marginTop: '0.5rem'}}
+            />
             <div className="skeleton-actions">
               <div className="skeleton skeleton-badge" />
               <div className="skeleton skeleton-button" />
@@ -33,7 +36,7 @@ const SkeletonLoader = ({ type = 'card', count = 1 }: SkeletonLoaderProps) => {
             <div className="skeleton skeleton-avatar" />
             <div className="skeleton skeleton-title" />
             <div className="skeleton skeleton-text" />
-            <div className="skeleton skeleton-text" style={{ width: '80%' }} />
+            <div className="skeleton skeleton-text" style={{width: '80%'}} />
           </div>
         );
     }
@@ -41,10 +44,8 @@ const SkeletonLoader = ({ type = 'card', count = 1 }: SkeletonLoaderProps) => {
 
   return (
     <div className="skeleton-container">
-      {Array.from({ length: count }).map((_, index) => (
-        <div key={index}>
-          {renderSkeleton()}
-        </div>
+      {Array.from({length: count}).map((_, index) => (
+        <div key={index}>{renderSkeleton()}</div>
       ))}
     </div>
   );

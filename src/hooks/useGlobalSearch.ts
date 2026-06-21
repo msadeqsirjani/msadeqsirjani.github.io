@@ -1,6 +1,20 @@
-import { useState, useEffect, useRef } from 'react';
-import { fetchPublications, fetchEducation, fetchResearchExperience, fetchTeaching, fetchNews, fetchAwards } from '../data/content';
-import type { Publication, EducationItem, ResearchItem, TeachingItem, NewsItem, AwardItem } from '../types';
+import {useState, useEffect, useRef} from 'react';
+import {
+  fetchPublications,
+  fetchEducation,
+  fetchResearchExperience,
+  fetchTeaching,
+  fetchNews,
+  fetchAwards,
+} from '../data/content';
+import type {
+  Publication,
+  EducationItem,
+  ResearchItem,
+  TeachingItem,
+  NewsItem,
+  AwardItem,
+} from '../types';
 
 interface SearchResults {
   publications: Publication[];
@@ -17,7 +31,7 @@ const emptyResults: SearchResults = {
   research: [],
   teaching: [],
   news: [],
-  awards: []
+  awards: [],
 };
 
 interface AllData {
@@ -51,14 +65,15 @@ export const useGlobalSearch = (query: string, enabled: boolean) => {
     const loadAllData = async () => {
       setIsLoading(true);
       try {
-        const [pubs, edu, research, teach, newsItems, awardItems] = await Promise.all([
-          fetchPublications(),
-          fetchEducation(),
-          fetchResearchExperience(),
-          fetchTeaching(),
-          fetchNews(),
-          fetchAwards()
-        ]);
+        const [pubs, edu, research, teach, newsItems, awardItems] =
+          await Promise.all([
+            fetchPublications(),
+            fetchEducation(),
+            fetchResearchExperience(),
+            fetchTeaching(),
+            fetchNews(),
+            fetchAwards(),
+          ]);
 
         if (cancelled) return;
 
@@ -69,7 +84,7 @@ export const useGlobalSearch = (query: string, enabled: boolean) => {
           researchExperience: research,
           teaching: teach,
           news: newsItems,
-          awards: awardItems
+          awards: awardItems,
         });
       } catch (error) {
         if (import.meta.env.DEV) {
@@ -83,7 +98,7 @@ export const useGlobalSearch = (query: string, enabled: boolean) => {
             researchExperience: [],
             teaching: [],
             news: [],
-            awards: []
+            awards: [],
           });
         }
       } finally {
@@ -116,42 +131,48 @@ export const useGlobalSearch = (query: string, enabled: boolean) => {
     const timeoutId = setTimeout(() => {
       const searchTerm = query.toLowerCase().trim();
 
-      const matchedPublications = allData.publications.filter(pub =>
-        pub.title.toLowerCase().includes(searchTerm) ||
-        pub.venue.toLowerCase().includes(searchTerm) ||
-        pub.authors?.toLowerCase().includes(searchTerm) ||
-        pub.abstract?.toLowerCase().includes(searchTerm) ||
-        pub.year.toLowerCase().includes(searchTerm)
+      const matchedPublications = allData.publications.filter(
+        pub =>
+          pub.title.toLowerCase().includes(searchTerm) ||
+          pub.venue.toLowerCase().includes(searchTerm) ||
+          pub.authors?.toLowerCase().includes(searchTerm) ||
+          pub.abstract?.toLowerCase().includes(searchTerm) ||
+          pub.year.toLowerCase().includes(searchTerm),
       );
 
-      const matchedEducation = allData.education.filter(edu =>
-        edu.degree.toLowerCase().includes(searchTerm) ||
-        edu.university.toLowerCase().includes(searchTerm) ||
-        edu.duration.toLowerCase().includes(searchTerm)
+      const matchedEducation = allData.education.filter(
+        edu =>
+          edu.degree.toLowerCase().includes(searchTerm) ||
+          edu.university.toLowerCase().includes(searchTerm) ||
+          edu.duration.toLowerCase().includes(searchTerm),
       );
 
-      const matchedResearch = allData.researchExperience.filter(res =>
-        res.position.toLowerCase().includes(searchTerm) ||
-        res.lab.toLowerCase().includes(searchTerm) ||
-        res.duration.toLowerCase().includes(searchTerm) ||
-        res.description.some(desc => desc.toLowerCase().includes(searchTerm))
+      const matchedResearch = allData.researchExperience.filter(
+        res =>
+          res.position.toLowerCase().includes(searchTerm) ||
+          res.lab.toLowerCase().includes(searchTerm) ||
+          res.duration.toLowerCase().includes(searchTerm) ||
+          res.description.some(desc => desc.toLowerCase().includes(searchTerm)),
       );
 
-      const matchedTeaching = allData.teaching.filter(teach =>
-        teach.course.toLowerCase().includes(searchTerm) ||
-        teach.instructor.toLowerCase().includes(searchTerm) ||
-        teach.university.toLowerCase().includes(searchTerm) ||
-        teach.date.toLowerCase().includes(searchTerm)
+      const matchedTeaching = allData.teaching.filter(
+        teach =>
+          teach.course.toLowerCase().includes(searchTerm) ||
+          teach.instructor.toLowerCase().includes(searchTerm) ||
+          teach.university.toLowerCase().includes(searchTerm) ||
+          teach.date.toLowerCase().includes(searchTerm),
       );
 
-      const matchedNews = allData.news.filter(newsItem =>
-        newsItem.description.toLowerCase().includes(searchTerm) ||
-        newsItem.date.toLowerCase().includes(searchTerm)
+      const matchedNews = allData.news.filter(
+        newsItem =>
+          newsItem.description.toLowerCase().includes(searchTerm) ||
+          newsItem.date.toLowerCase().includes(searchTerm),
       );
 
-      const matchedAwards = allData.awards.filter(award =>
-        award.description.toLowerCase().includes(searchTerm) ||
-        award.date.toLowerCase().includes(searchTerm)
+      const matchedAwards = allData.awards.filter(
+        award =>
+          award.description.toLowerCase().includes(searchTerm) ||
+          award.date.toLowerCase().includes(searchTerm),
       );
 
       setResults({
@@ -160,7 +181,7 @@ export const useGlobalSearch = (query: string, enabled: boolean) => {
         research: matchedResearch,
         teaching: matchedTeaching,
         news: matchedNews,
-        awards: matchedAwards
+        awards: matchedAwards,
       });
 
       setIsSearching(false);
@@ -170,5 +191,5 @@ export const useGlobalSearch = (query: string, enabled: boolean) => {
   }, [query, allData, isLoading, enabled]);
 
   const busy = enabled && isLoading;
-  return { results, isSearching: isSearching || busy };
+  return {results, isSearching: isSearching || busy};
 };

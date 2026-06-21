@@ -1,5 +1,5 @@
-import type { CSSProperties } from 'react';
-import type { IconDefinition } from '@fortawesome/fontawesome-svg-core';
+import type {CSSProperties} from 'react';
+import type {IconDefinition} from '@fortawesome/fontawesome-svg-core';
 
 const SIZE_EM: Record<string, string> = {
   xs: '0.75em',
@@ -25,7 +25,15 @@ interface IconProps {
  * @fortawesome/fontawesome-svg-core or react-fontawesome runtime.
  * An IconDefinition's `icon` field is [width, height, ligs, unicode, path].
  */
-const Icon = ({ icon, className, size, spin, style, title, ...rest }: IconProps) => {
+const Icon = ({
+  icon,
+  className,
+  size,
+  spin,
+  style,
+  title,
+  ...rest
+}: IconProps) => {
   const [width, height, , , path] = icon.icon;
   const d = Array.isArray(path) ? path[path.length - 1] : path;
   const labelled = Boolean(rest['aria-label']);
@@ -45,7 +53,7 @@ const Icon = ({ icon, className, size, spin, style, title, ...rest }: IconProps)
       style={{
         width: `${(width / height).toFixed(3)}em`,
         height: '1em',
-        ...(size ? { fontSize: SIZE_EM[size] } : null),
+        ...(size ? {fontSize: SIZE_EM[size]} : null),
         ...style,
       }}
       {...rest}

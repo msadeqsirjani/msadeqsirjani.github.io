@@ -18,7 +18,7 @@ interface Settings {
 const settings = settingsData as Settings;
 
 export const useSettings = () => {
-  return { settings, loading: false };
+  return {settings, loading: false};
 };
 
 export default useSettings;

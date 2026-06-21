@@ -1,11 +1,11 @@
-import { useEffect, useState, type ReactNode } from 'react';
+import {useEffect, useState, type ReactNode} from 'react';
 
 type Props = {
   children: ReactNode;
   timeoutMs?: number;
 };
 
-export default function DeferredIdle({ children, timeoutMs = 2800 }: Props) {
+export default function DeferredIdle({children, timeoutMs = 2800}: Props) {
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
@@ -15,7 +15,7 @@ export default function DeferredIdle({ children, timeoutMs = 2800 }: Props) {
     };
 
     if (typeof requestIdleCallback !== 'undefined') {
-      const id = requestIdleCallback(go, { timeout: timeoutMs });
+      const id = requestIdleCallback(go, {timeout: timeoutMs});
       return () => {
         cancelled = true;
         cancelIdleCallback(id);

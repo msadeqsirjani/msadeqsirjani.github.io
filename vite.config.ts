@@ -1,9 +1,9 @@
-import { defineConfig, type PluginOption } from 'vite'
-import preact from '@preact/preset-vite'
-import { visualizer } from 'rollup-plugin-visualizer'
-import PurgeCSS from 'vite-plugin-purgecss'
-import fs from 'fs'
-import path from 'path'
+import {defineConfig, type PluginOption} from 'vite';
+import preact from '@preact/preset-vite';
+import {visualizer} from 'rollup-plugin-visualizer';
+import PurgeCSS from 'vite-plugin-purgecss';
+import fs from 'fs';
+import path from 'path';
 
 const BUILD_TIMESTAMP = Date.now().toString();
 
@@ -25,7 +25,7 @@ function injectBuildTime(): PluginOption {
       if (!swContent.includes('__BUILD_TIME__')) {
         throw new Error(
           'inject-build-time: __BUILD_TIME__ placeholder not found in public/sw.js — ' +
-            'refusing to ship a service worker without a deterministic cache version.'
+            'refusing to ship a service worker without a deterministic cache version.',
         );
       }
 
@@ -34,7 +34,7 @@ function injectBuildTime(): PluginOption {
       fs.writeFileSync(distSwPath, replaced, 'utf-8');
 
       console.log(`Service worker cache version set to: ${BUILD_TIMESTAMP}`);
-    }
+    },
   };
 }
 
@@ -57,10 +57,7 @@ export default defineConfig({
       brotliSize: true,
     }),
     PurgeCSS({
-      content: [
-        './index.html',
-        './src/**/*.{js,jsx,ts,tsx}',
-      ],
+      content: ['./index.html', './src/**/*.{js,jsx,ts,tsx}'],
       safelist: {
         standard: [
           /^fa-/,
@@ -73,10 +70,11 @@ export default defineConfig({
           /data-theme/,
         ],
         deep: [/fa-/, /animate-/, /toast/],
-        greedy: [/^publication-/, /^citation-/, /^select-/, /^nav-/]
+        greedy: [/^publication-/, /^citation-/, /^select-/, /^nav-/],
       },
-      defaultExtractor: (content: string) => content.match(/[\w-/:]+(?<!:)/g) || [],
-    }) as PluginOption
+      defaultExtractor: (content: string) =>
+        content.match(/[\w-/:]+(?<!:)/g) || [],
+    }) as PluginOption,
   ],
   base: '/',
   build: {
@@ -113,4 +111,4 @@ export default defineConfig({
       },
     },
   },
-})
+});

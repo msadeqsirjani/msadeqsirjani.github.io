@@ -1,22 +1,73 @@
 import Icon from '../Icon/Icon';
-import { faDownload, faEnvelope, faGraduationCap } from '@fortawesome/free-solid-svg-icons';
-import { faLinkedin, faGithub, faOrcid, faResearchgate } from '@fortawesome/free-brands-svg-icons';
-import { trackCVDownload, trackExternalLink } from '../../utils/analytics';
-import { sectionHref } from '../../constants/siteNav';
+import {
+  faDownload,
+  faEnvelope,
+  faGraduationCap,
+} from '@fortawesome/free-solid-svg-icons';
+import {
+  faLinkedin,
+  faGithub,
+  faOrcid,
+  faResearchgate,
+} from '@fortawesome/free-brands-svg-icons';
+import {trackCVDownload, trackExternalLink} from '../../utils/analytics';
+import {sectionHref} from '../../constants/siteNav';
 
 const Hero = () => {
   const buttons = [
-    { href: '/assets/docs/cv/msadeqsirjani-cv.pdf', icon: faDownload, label: 'Download CV', primary: true, target: '_blank', onClick: trackCVDownload },
-    { href: sectionHref('contact'), icon: faEnvelope, label: 'Contact', primary: false }
+    {
+      href: '/assets/docs/cv/msadeqsirjani-cv.pdf',
+      icon: faDownload,
+      label: 'Download CV',
+      primary: true,
+      target: '_blank',
+      onClick: trackCVDownload,
+    },
+    {
+      href: sectionHref('contact'),
+      icon: faEnvelope,
+      label: 'Contact',
+      primary: false,
+    },
   ];
 
   const socialLinks = [
-    { href: 'mailto:mohammadsadegh.sirjani@utsa.edu', icon: faEnvelope, label: 'Email', tooltip: 'Email' },
-    { href: 'https://scholar.google.com/citations?user=EI5DizMAAAAJ&hl=en', icon: faGraduationCap, label: 'Google Scholar', tooltip: 'Google Scholar' },
-    { href: 'https://www.linkedin.com/in/msadeqsirjani', icon: faLinkedin, label: 'LinkedIn', tooltip: 'LinkedIn' },
-    { href: 'https://github.com/msadeqsirjani', icon: faGithub, label: 'GitHub', tooltip: 'GitHub' },
-    { href: 'https://orcid.org/0009-0000-5146-0216', icon: faOrcid, label: 'ORCID', tooltip: 'ORCID' },
-    { href: 'https://www.researchgate.net/profile/Mohammad-Sadegh-Sirjani', icon: faResearchgate, label: 'ResearchGate', tooltip: 'ResearchGate' }
+    {
+      href: 'mailto:mohammadsadegh.sirjani@utsa.edu',
+      icon: faEnvelope,
+      label: 'Email',
+      tooltip: 'Email',
+    },
+    {
+      href: 'https://scholar.google.com/citations?user=EI5DizMAAAAJ&hl=en',
+      icon: faGraduationCap,
+      label: 'Google Scholar',
+      tooltip: 'Google Scholar',
+    },
+    {
+      href: 'https://www.linkedin.com/in/msadeqsirjani',
+      icon: faLinkedin,
+      label: 'LinkedIn',
+      tooltip: 'LinkedIn',
+    },
+    {
+      href: 'https://github.com/msadeqsirjani',
+      icon: faGithub,
+      label: 'GitHub',
+      tooltip: 'GitHub',
+    },
+    {
+      href: 'https://orcid.org/0009-0000-5146-0216',
+      icon: faOrcid,
+      label: 'ORCID',
+      tooltip: 'ORCID',
+    },
+    {
+      href: 'https://www.researchgate.net/profile/Mohammad-Sadegh-Sirjani',
+      icon: faResearchgate,
+      label: 'ResearchGate',
+      tooltip: 'ResearchGate',
+    },
   ];
 
   return (
@@ -54,7 +105,9 @@ const Hero = () => {
             </h1>
             <h2 className="hero-subtitle">Ph.D. Student in Computer Science</h2>
             <p className="hero-institution">
-              <a href="https://www.utsa.edu/" target="_blank" rel="noopener">University of Texas at San Antonio</a>
+              <a href="https://www.utsa.edu/" target="_blank" rel="noopener">
+                University of Texas at San Antonio
+              </a>
             </p>
             <p className="hero-tagline">TinyAI & Embedded Systems Researcher</p>
 
@@ -64,8 +117,11 @@ const Hero = () => {
                   key={idx}
                   href={btn.href}
                   className={`btn ${btn.primary ? 'btn-primary' : 'btn-secondary'}`}
-                  {...(btn.target && { target: btn.target, rel: 'noopener noreferrer' })}
-                  {...(btn.onClick && { onClick: () => btn.onClick() })}
+                  {...(btn.target && {
+                    target: btn.target,
+                    rel: 'noopener noreferrer',
+                  })}
+                  {...(btn.onClick && {onClick: () => btn.onClick()})}
                 >
                   <Icon icon={btn.icon} /> {btn.label}
                 </a>
@@ -83,7 +139,7 @@ const Hero = () => {
                   {...(!link.href.startsWith('mailto:') && {
                     target: '_blank',
                     rel: 'noopener',
-                    onClick: () => trackExternalLink(link.label)
+                    onClick: () => trackExternalLink(link.label),
                   })}
                 >
                   <Icon icon={link.icon} />

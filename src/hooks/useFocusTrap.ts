@@ -1,8 +1,8 @@
-import { useEffect, type RefObject } from 'react';
+import {useEffect, type RefObject} from 'react';
 
 export const useFocusTrap = (
   ref: RefObject<HTMLElement | null>,
-  isActive: boolean
+  isActive: boolean,
 ) => {
   useEffect(() => {
     if (!isActive || !ref.current) return;
@@ -10,7 +10,7 @@ export const useFocusTrap = (
     const element = ref.current;
 
     const focusableElements = element.querySelectorAll<HTMLElement>(
-      'a[href], button:not([disabled]), textarea:not([disabled]), input:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])'
+      'a[href], button:not([disabled]), textarea:not([disabled]), input:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])',
     );
 
     const firstFocusable = focusableElements[0];
