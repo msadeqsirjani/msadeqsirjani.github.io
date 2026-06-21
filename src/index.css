@@ -2519,9 +2519,9 @@ kbd {
     background: var(--gray-light);
     border: 1px solid transparent;
     border-radius: var(--shape-card);
-    padding: 1rem;
+    padding: 1.25rem;
     margin-inline: 0;
-    margin-bottom: 0.85rem;
+    margin-bottom: 1rem;
     box-shadow: var(--elev-1);
   }
 
@@ -2663,7 +2663,7 @@ kbd {
   .education-item {
     grid-template-columns: 1fr;
     gap: 0.5rem;
-    margin-bottom: 0.85rem;
+    margin-bottom: 1rem;
     background: var(--gray-light);
     border: 1px solid transparent;
     border-radius: var(--shape-card);
@@ -2720,7 +2720,7 @@ kbd {
   .timeline-item.research-item {
     grid-template-columns: 1fr;
     gap: 0.5rem;
-    margin-bottom: 0.85rem;
+    margin-bottom: 1rem;
     background: var(--gray-light);
     border: 1px solid transparent;
     border-radius: var(--shape-card);
@@ -2816,7 +2816,7 @@ kbd {
   .timeline-item.teaching-item {
     grid-template-columns: minmax(0, 1fr) auto;
     gap: 0.75rem;
-    margin-bottom: 0.85rem;
+    margin-bottom: 1rem;
     background: var(--gray-light);
     border: 1px solid transparent;
     border-radius: var(--shape-card);
@@ -2878,7 +2878,7 @@ kbd {
   .timeline-item {
     grid-template-columns: 1fr;
     gap: 0.5rem;
-    margin-bottom: 0.85rem;
+    margin-bottom: 1rem;
     background: var(--gray-light);
     border: 1px solid transparent;
     border-radius: var(--shape-card);
@@ -2888,7 +2888,7 @@ kbd {
   }
 
   .timeline-item:last-child {
-    margin-bottom: 0.85rem;
+    margin-bottom: 1rem;
   }
 
   .timeline-dates {
@@ -3270,7 +3270,7 @@ kbd {
 
   .publication-item {
     padding: 1.25rem;
-    margin-bottom: 1.25rem;
+    margin-bottom: 1rem;
   }
 }
 
