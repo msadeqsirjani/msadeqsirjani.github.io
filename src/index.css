@@ -2581,6 +2581,10 @@ kbd {
         margin-bottom: 0.6rem;
     }
 
+    .publication-links .pub-toggle {
+        order: -1;
+    }
+
     .publication-links .pub-text-link {
         line-height: 1.2;
         margin: 0;
