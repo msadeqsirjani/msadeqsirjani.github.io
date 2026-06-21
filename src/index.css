@@ -781,15 +781,6 @@ ol {
   display: grid;
   grid-template-columns: 180px 1fr;
   gap: 2rem;
-  margin-bottom: 2.5rem;
-  padding-bottom: 1.25rem;
-  border-bottom: 1px solid var(--border-color);
-}
-
-.timeline-item.education-item:last-child {
-  border-bottom: none;
-  padding-bottom: 0;
-  margin-bottom: 0;
 }
 
 .education-item .education-dates {
@@ -947,15 +938,6 @@ ol {
   display: grid;
   grid-template-columns: 180px 1fr;
   gap: 2rem;
-  margin-bottom: 2.5rem;
-  padding-bottom: 1.25rem;
-  border-bottom: 1px solid var(--border-color);
-}
-
-.timeline-item.research-item:last-child {
-  margin-bottom: 0;
-  padding-bottom: 0;
-  border-bottom: none;
 }
 
 .research-item .research-dates {
@@ -1818,8 +1800,6 @@ kbd {
 .timeline-item.news-item {
   grid-template-columns: 140px 1fr;
   gap: 1rem;
-  margin-bottom: 1.2rem;
-  padding-bottom: 0.6rem;
 }
 
 .timeline-item.awards-item .timeline-dates.awards-dates,
@@ -1836,7 +1816,6 @@ kbd {
 .timeline-list.teaching-list {
   max-width: none;
   margin: 0;
-  border-top: 1px solid var(--border-color);
 }
 
 .timeline-item.teaching-item {
@@ -1844,15 +1823,6 @@ kbd {
   grid-template-columns: 1fr auto;
   gap: 1.5rem;
   align-items: stretch;
-  margin-bottom: 0;
-  padding: 1.25rem 1rem;
-  border-bottom: 1px solid var(--border-color);
-}
-
-.timeline-item.teaching-item:last-child {
-  padding: 1.25rem 1rem;
-  margin-bottom: 0;
-  border-bottom: 1px solid var(--border-color);
 }
 
 .teaching-item .teaching-dates {
