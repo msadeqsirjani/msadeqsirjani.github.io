@@ -78,21 +78,36 @@ h6 {
 }
 
 :root {
-  --text-color: #1a1a1a;
-  --text-light: #475569;
-  --white: #f1f5f9;
-  --gray-light: #f7fafc;
-  --border-color: #d1d5db;
-  --accent-color: #1e40af;
-  --accent-color-light: #1e40af;
-  --accent-hover: #1e3a8a;
-  --accent-rgb: 30, 64, 175;
-  --error-color: #dc2626;
-  --success-color: #047857;
-  --focus-color: #2563eb;
-  --button-border-radius: 5px;
-  --icon-border-radius: 5px;
-  --button-border-width: 2px;
+  /* Material 3 — light scheme (blue primary seed) */
+  --text-color: #1b1b1f; /* on-surface */
+  --text-light: #44474e; /* on-surface-variant */
+  --white: #fdfcff; /* surface */
+  --gray-light: #eef0f7; /* surface-variant / container */
+  --border-color: #c4c7cf; /* outline-variant */
+  --accent-color: #1565c0; /* primary */
+  --accent-color-light: #1565c0;
+  --accent-hover: #0d47a1;
+  --accent-rgb: 21, 101, 192;
+  --error-color: #ba1a1a;
+  --success-color: #146c2e;
+  --focus-color: #1565c0;
+
+  /* Material 3 shape scale */
+  --button-border-radius: 20px;
+  --icon-border-radius: 12px;
+  --button-border-width: 1px;
+  --shape-card: 16px;
+  --shape-chip: 8px;
+
+  /* Material 3 elevation (umbra + penumbra) */
+  --elev-1: 0 1px 2px rgba(0, 0, 0, 0.3), 0 1px 3px 1px rgba(0, 0, 0, 0.12);
+  --elev-2: 0 1px 2px rgba(0, 0, 0, 0.3), 0 2px 6px 2px rgba(0, 0, 0, 0.12);
+  --elev-3: 0 1px 3px rgba(0, 0, 0, 0.3), 0 4px 8px 3px rgba(0, 0, 0, 0.12);
+
+  /* State layer opacities (MD3) */
+  --state-hover: 0.08;
+  --state-press: 0.12;
+
   /* Logos are designed for a light backing; intentionally white in both themes */
   --logo-surface: #ffffff;
   /* Readable text/icon color on top of --accent-color (per theme) */
@@ -110,30 +125,34 @@ h6 {
 }
 
 [data-theme='dark'] {
-  --text-color: #f9fafb;
-  --text-light: #e5e7eb;
-  --white: #0f172a;
-  --gray-light: #1e293b;
-  --border-color: #475569;
-  --accent-color: #60a5fa;
-  --accent-hover: #93c5fd;
-  --accent-rgb: 96, 165, 250;
-  --error-color: #fca5a5;
-  --success-color: #6ee7b7;
-  --focus-color: #93c5fd;
-  --card-bg: #1e293b;
-  --hover-bg: #334155;
-  /* Dark accent (#60a5fa) is light — needs dark text on top for contrast */
-  --on-accent: #0f172a;
+  /* Material 3 — dark scheme */
+  --text-color: #e4e2e6; /* on-surface */
+  --text-light: #c4c6cf; /* on-surface-variant */
+  --white: #131316; /* surface */
+  --gray-light: #1e1f24; /* surface-variant / container */
+  --border-color: #43474e; /* outline-variant */
+  --accent-color: #a8c7fa; /* primary (light tone) */
+  --accent-hover: #c8defb;
+  --accent-rgb: 168, 199, 250;
+  --error-color: #ffb4ab;
+  --success-color: #6dd58c;
+  --focus-color: #a8c7fa;
+  --card-bg: #1e1f24;
+  --hover-bg: #2a2b31;
+  /* Dark primary is light — needs dark text on top for contrast */
+  --on-accent: #0a305f;
+  /* Dark elevation uses subtler shadows */
+  --elev-1: 0 1px 3px rgba(0, 0, 0, 0.6);
+  --elev-2: 0 2px 6px rgba(0, 0, 0, 0.6);
+  --elev-3: 0 4px 10px rgba(0, 0, 0, 0.7);
 }
 
 body {
   font-family:
-    'DM Sans',
+    'Roboto',
     -apple-system,
     BlinkMacSystemFont,
     'Segoe UI',
-    Roboto,
     sans-serif;
   font-weight: 400;
   line-height: 1.6;
@@ -169,7 +188,8 @@ ol {
   position: sticky;
   top: 0;
   background: var(--white);
-  border-bottom: 1px solid var(--border-color);
+  border-bottom: none;
+  box-shadow: var(--elev-1);
   z-index: 100;
   padding: 1rem 0;
   width: 100%;
@@ -536,13 +556,14 @@ ol {
   color: var(--on-accent);
   border: var(--button-border-width) solid var(--accent-color);
   border-radius: var(--button-border-radius);
-  box-shadow: 0 4px 14px -4px rgba(var(--accent-rgb), 0.5);
+  box-shadow: var(--elev-1);
 }
 
 .btn-primary:hover {
-  background: var(--white);
-  color: var(--accent-color);
-  border: var(--button-border-width) solid var(--accent-color);
+  background: var(--accent-hover);
+  color: var(--on-accent);
+  border-color: var(--accent-hover);
+  box-shadow: var(--elev-2);
 }
 
 .hero-buttons .btn-secondary {
@@ -1292,16 +1313,22 @@ kbd {
 }
 
 .publication-item {
-  margin-bottom: 1.2rem;
-  padding: 0.7rem 1rem 0.7rem 1rem;
-  margin-inline: -1rem;
-  border-bottom: 1px solid var(--border-color);
-  border-radius: 8px;
-  transition: background-color 0.25s ease;
+  margin-bottom: 1rem;
+  padding: 1.25rem 1.25rem;
+  margin-inline: 0;
+  background: var(--gray-light);
+  border: 1px solid transparent;
+  border-radius: var(--shape-card);
+  box-shadow: var(--elev-1);
+  transition:
+    box-shadow 0.25s ease,
+    transform 0.25s ease,
+    background-color 0.25s ease;
 }
 
 .publication-item:hover {
-  background-color: rgba(var(--accent-rgb), 0.045);
+  box-shadow: var(--elev-2);
+  transform: translateY(-2px);
 }
 
 .publication-item:last-child {
@@ -1590,8 +1617,8 @@ kbd {
   letter-spacing: 0.04em;
   text-transform: uppercase;
   line-height: 1.3;
-  padding: 0.22rem 0.6rem;
-  border-radius: 999px;
+  padding: 0.3rem 0.7rem;
+  border-radius: var(--shape-chip);
   box-sizing: border-box;
 }
 
@@ -1899,21 +1926,25 @@ kbd {
   display: grid;
   grid-template-columns: minmax(120px, 20%) 1fr;
   gap: 2rem;
-  margin-bottom: 2.5rem;
-  padding: 1rem 1rem 1.25rem;
-  margin-inline: -1rem;
-  border-bottom: 1px solid var(--border-color);
-  border-radius: 8px;
-  transition: background-color 0.25s ease;
+  margin-bottom: 1rem;
+  padding: 1.25rem;
+  margin-inline: 0;
+  background: var(--gray-light);
+  border: 1px solid transparent;
+  border-radius: var(--shape-card);
+  box-shadow: var(--elev-1);
+  transition:
+    box-shadow 0.25s ease,
+    transform 0.25s ease;
 }
 
 .timeline-item:hover {
-  background-color: rgba(var(--accent-rgb), 0.045);
+  box-shadow: var(--elev-2);
+  transform: translateY(-2px);
 }
 
 .timeline-item:last-child {
-  margin-bottom: 0;
-  padding-bottom: 0;
+  margin-bottom: 1rem;
   border-bottom: none;
 }
 
@@ -2515,14 +2546,13 @@ kbd {
   }
 
   .publication-item {
-    background: transparent;
-    border: none;
-    border-bottom: 1px solid var(--border-color);
-    border-radius: 0;
-    padding: 0.85rem 0;
+    background: var(--gray-light);
+    border: 1px solid transparent;
+    border-radius: var(--shape-card);
+    padding: 1rem;
     margin-inline: 0;
-    margin-bottom: 0;
-    box-shadow: none;
+    margin-bottom: 0.85rem;
+    box-shadow: var(--elev-1);
   }
 
   .publication-item:last-child {
@@ -2663,13 +2693,13 @@ kbd {
   .education-item {
     grid-template-columns: 1fr;
     gap: 0.5rem;
-    margin-bottom: 2rem;
-    background: transparent;
-    border: none;
-    border-radius: 0;
-    padding: 1.5rem 0;
+    margin-bottom: 0.85rem;
+    background: var(--gray-light);
+    border: 1px solid transparent;
+    border-radius: var(--shape-card);
+    padding: 1.25rem;
     margin-inline: 0;
-    box-shadow: none;
+    box-shadow: var(--elev-1);
   }
 
   .education-item:last-child {
@@ -2720,14 +2750,13 @@ kbd {
   .timeline-item.research-item {
     grid-template-columns: 1fr;
     gap: 0.5rem;
-    margin-bottom: 2rem;
-    background: transparent;
-    border: none;
-    border-bottom: 1px solid var(--border-color);
-    border-radius: 0;
-    padding: 1.5rem 0;
+    margin-bottom: 0.85rem;
+    background: var(--gray-light);
+    border: 1px solid transparent;
+    border-radius: var(--shape-card);
+    padding: 1.25rem;
     margin-inline: 0;
-    box-shadow: none;
+    box-shadow: var(--elev-1);
   }
 
   .research-dates {
@@ -2817,14 +2846,13 @@ kbd {
   .timeline-item.teaching-item {
     grid-template-columns: minmax(0, 1fr) auto;
     gap: 0.75rem;
-    margin-bottom: 2rem;
-    background: transparent;
-    border: none;
-    border-bottom: 1px solid var(--border-color);
-    border-radius: 0;
-    padding: 1.5rem 0;
+    margin-bottom: 0.85rem;
+    background: var(--gray-light);
+    border: 1px solid transparent;
+    border-radius: var(--shape-card);
+    padding: 1.25rem;
     margin-inline: 0;
-    box-shadow: none;
+    box-shadow: var(--elev-1);
     align-items: start;
   }
 
@@ -2880,18 +2908,17 @@ kbd {
   .timeline-item {
     grid-template-columns: 1fr;
     gap: 0.5rem;
-    margin-bottom: 2rem;
-    background: transparent;
-    border: none;
-    border-bottom: 1px solid var(--border-color);
-    border-radius: 0;
-    padding: 1.5rem 0;
+    margin-bottom: 0.85rem;
+    background: var(--gray-light);
+    border: 1px solid transparent;
+    border-radius: var(--shape-card);
+    padding: 1.25rem;
     margin-inline: 0;
-    box-shadow: none;
+    box-shadow: var(--elev-1);
   }
 
   .timeline-item:last-child {
-    margin-bottom: 0;
+    margin-bottom: 0.85rem;
   }
 
   .timeline-dates {
