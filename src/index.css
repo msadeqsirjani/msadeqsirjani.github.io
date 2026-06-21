@@ -1425,8 +1425,15 @@ kbd {
 
 .publication-links {
   display: flex;
+  flex-wrap: wrap;
+  align-items: center;
   gap: 1rem;
   margin-bottom: 0.1rem;
+}
+
+/* Order: Info/Abstract/Keywords first, then DOI/PDF/BibTeX — grouped together */
+.publication-links .pub-toggle {
+  order: -1;
 }
 
 .pub-text-link {
