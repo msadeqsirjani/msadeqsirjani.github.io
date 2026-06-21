@@ -449,6 +449,9 @@ ol {
 
 .hero {
   padding: 3.5rem 0;
+  min-height: calc(100svh - 76px);
+  display: flex;
+  align-items: center;
 }
 
 .hero-content {
@@ -458,6 +461,7 @@ ol {
   align-items: center;
   max-width: 1000px;
   margin: 0 auto;
+  width: 100%;
 }
 
 .profile-image {
