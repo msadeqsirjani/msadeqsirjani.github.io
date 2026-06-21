@@ -2,9 +2,9 @@ import { useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
 import { useTheme } from '../../context/ThemeContext';
-import './ColorPicker.css';
+import './ThemeToggle.css';
 
-const ColorPicker = () => {
+const ThemeToggle = () => {
   const { theme, toggleTheme } = useTheme();
 
   useEffect(() => {
@@ -16,15 +16,19 @@ const ColorPicker = () => {
   }, []);
 
   return (
-    <button type="button"
-      className="color-picker-toggle"
+    <button
+      type="button"
+      className="theme-toggle-btn"
       onClick={toggleTheme}
       aria-label={theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode'}
       data-tooltip={theme === 'light' ? 'Dark mode' : 'Light mode'}
     >
-      <FontAwesomeIcon icon={theme === 'light' ? faMoon : faSun} />
+      <FontAwesomeIcon
+        icon={theme === 'light' ? faMoon : faSun}
+        className="theme-toggle-icon"
+      />
     </button>
   );
 };
 
-export default ColorPicker;
+export default ThemeToggle;

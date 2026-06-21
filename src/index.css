@@ -63,6 +63,8 @@ body, h1, h2, h3, h4, h5, h6 {
     --button-border-radius: 5px;
     --icon-border-radius: 5px;
     --button-border-width: 2px;
+    /* Logos are designed for a light backing; intentionally white in both themes */
+    --logo-surface: #ffffff;
 
     /* Type scale — fixed font-size tokens (single source of truth) */
     --fs-xs: 0.75rem;     /* 12px — badges, labels, captions */
@@ -665,28 +667,26 @@ ul, ol {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 0 2rem;
+    gap: 0.55rem;
+    padding: 0.75rem 0;
     position: relative;
 }
 
 .section-divider::before,
 .section-divider::after {
     content: '';
-    flex: 1;
-    height: 1px;
-    background: linear-gradient(to right, transparent, var(--border-color));
-}
-
-.section-divider::after {
-    background: linear-gradient(to left, transparent, var(--border-color));
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--border-color);
+    flex-shrink: 0;
 }
 
 .section-divider span {
     width: 6px;
     height: 6px;
-    background: var(--border-color);
-    transform: rotate(45deg);
-    margin: 0 0.75rem;
+    border-radius: 50%;
+    background: var(--accent-color);
     flex-shrink: 0;
 }
 
@@ -840,13 +840,13 @@ ul, ol {
     object-position: center;
     flex-shrink: 0;
     border-radius: 8px;
-    background: #ffffff;
+    background: var(--logo-surface);
     padding: 0.6rem;
     border: 1px solid var(--border-color);
 }
 
 [data-theme="dark"] .education-logo {
-    background: #ffffff;
+    background: var(--logo-surface);
     border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
@@ -980,13 +980,13 @@ ul, ol {
     object-position: center;
     flex-shrink: 0;
     border-radius: 50%;
-    background: #ffffff;
+    background: var(--logo-surface);
     padding: 0.4rem;
     border: 1px solid var(--border-color);
 }
 
 [data-theme="dark"] .research-lab-logo {
-    background: #ffffff;
+    background: var(--logo-surface);
     border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
@@ -994,7 +994,7 @@ ul, ol {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #ffffff;
+    background: var(--logo-surface);
     color: var(--accent-color-light);
     font-family: 'Cinzel', serif;
     font-size: var(--fs-xl);
@@ -1005,7 +1005,7 @@ ul, ol {
 }
 
 [data-theme="dark"] .research-lab-logo.research-lab-logo--placeholder {
-    background: #ffffff;
+    background: var(--logo-surface);
     color: var(--accent-color-light);
     border: 1px solid rgba(255, 255, 255, 0.2);
 }
@@ -1207,32 +1207,48 @@ kbd {
 }
 
 .show-more-container {
-    text-align: center;
-    margin-top: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    margin-top: 2.5rem;
+}
+
+.show-more-container::before,
+.show-more-container::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--border-color));
+}
+
+.show-more-container::after {
+    background: linear-gradient(to left, transparent, var(--border-color));
 }
 
 .show-more-btn,
 #showMoreBtn {
-    padding: 0.75rem 1.5rem;
-    background: var(--white);
+    flex-shrink: 0;
+    padding: 0.5rem 1.25rem;
+    background: rgba(var(--accent-rgb), 0.08);
     color: var(--accent-color);
-    border: var(--button-border-width) solid var(--accent-color);
-    border-radius: var(--button-border-radius);
-    font-size: var(--fs-base);
+    border: 1px solid transparent;
+    border-radius: 999px;
+    font-size: var(--fs-sm);
     font-weight: 600;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: color 0.25s ease, background-color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
     display: inline-flex;
     align-items: center;
-    gap: 0.75rem;
+    gap: 0.6rem;
 }
 
 .show-more-btn:hover,
 #showMoreBtn:hover {
     background: var(--accent-color);
     color: var(--white);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(var(--accent-rgb), 0.2);
+    box-shadow: 0 4px 14px -4px rgba(var(--accent-rgb), 0.5);
     border-color: var(--accent-color);
 }
 
@@ -1525,9 +1541,9 @@ kbd {
 [data-theme="dark"] .status.review,
 [data-theme="dark"] .status.accepted,
 [data-theme="dark"] .status.submitted {
-    background: rgba(96, 165, 250, 0.15);
+    background: rgba(var(--accent-rgb), 0.15);
     color: var(--accent-color);
-    border: var(--button-border-width) solid rgba(96, 165, 250, 0.3);
+    border: var(--button-border-width) solid rgba(var(--accent-rgb), 0.3);
 }
 
 
@@ -1706,7 +1722,7 @@ kbd {
     color: var(--text-color);
     text-align: left;
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
     font-size: var(--fs-sm);
     font-weight: 500;
     border-bottom: 1px solid var(--border-color);
@@ -3529,7 +3545,7 @@ button,
     opacity: 0;
     visibility: hidden;
     transform: translateY(20px);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     z-index: 999;
 }
 
@@ -3603,7 +3619,7 @@ button,
     justify-content: center;
     cursor: pointer;
     border: var(--button-border-width) solid var(--accent-color);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
 }
 
@@ -3642,7 +3658,7 @@ button,
     opacity: 0;
     visibility: hidden;
     transform: translateY(20px);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .quick-action-menu.active {
@@ -3662,7 +3678,7 @@ button,
     justify-content: center;
     text-decoration: none;
     border: var(--button-border-width) solid var(--accent-color);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
 }
 
@@ -3933,7 +3949,7 @@ html {
     }
 
     
-    .navbar, .nav-toggle, .theme-toggle, .color-picker,
+    .navbar, .nav-toggle, .theme-toggle, .theme-toggle-btn,
     .reading-progress, .quick-actions,
     .hero-buttons, .hero-left, .social-links, .profile-image,
     .section-divider, .cookie-consent, .offline-indicator,
@@ -4433,7 +4449,7 @@ html {
     align-items: center;
     justify-content: center;
     z-index: 200;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: color 0.4s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.4s cubic-bezier(0.4, 0, 0.2, 1), transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     opacity: 0;
 }
 
@@ -4462,7 +4478,7 @@ html {
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
 }
 
@@ -4480,7 +4496,7 @@ html {
     border: 2.5px solid var(--accent-color);
     border-top-color: transparent;
     border-radius: 50%;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .pull-to-refresh-icon::after {
@@ -4494,7 +4510,7 @@ html {
     top: 12px;
     left: 50%;
     margin-left: 4px;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 
@@ -4667,7 +4683,7 @@ html {
 
 
 .publication-card {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .publication-card:hover {
@@ -4773,7 +4789,7 @@ html {
   padding: 0.5rem;
   cursor: pointer;
   color: var(--text-color);
-  transition: all 0.2s ease;
+  transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -4923,7 +4939,7 @@ html {
   font-weight: 500;
   font-family: inherit;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
   height: 46px;
   display: flex;
   align-items: center;
@@ -4964,7 +4980,7 @@ html {
   font-size: var(--fs-sm);
   font-weight: 500;
   color: var(--text-color);
-  transition: all 0.2s ease;
+  transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
   white-space: nowrap;
 }
 
@@ -5032,11 +5048,11 @@ html {
 
   .show-more-btn,
   #showMoreBtn {
-    min-height: 40px;
-    padding: 0.55rem 1rem;
+    min-height: 44px;
+    padding: 0.55rem 1.1rem;
     font-size: var(--fs-sm);
     gap: 0.5rem;
-    border-width: 1.5px;
+    border-width: 1px;
     line-height: 1.2;
   }
 

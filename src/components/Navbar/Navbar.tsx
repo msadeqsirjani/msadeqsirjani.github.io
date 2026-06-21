@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { useFocusTrap } from '../../hooks/useFocusTrap';
-import ColorPicker from '../ColorPicker/ColorPicker';
+import ThemeToggle from '../ThemeToggle/ThemeToggle';
 import {
   DROPDOWN_NAV_LINKS,
   MAIN_NAV_LINKS,
@@ -162,7 +162,7 @@ const Navbar = ({ onSearchClick }: NavbarProps) => {
             <FontAwesomeIcon icon={faSearch} />
           </button>
 
-          <ColorPicker />
+          <ThemeToggle />
 
           <button type="button"
             className="nav-toggle"
