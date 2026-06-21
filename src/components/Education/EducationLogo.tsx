@@ -1,10 +1,10 @@
-import type { EducationItem } from '../../types';
+import type {EducationItem} from '../../types';
 
 type EducationLogoProps = {
   item: EducationItem;
 };
 
-const EducationLogo = ({ item }: EducationLogoProps) => {
+const EducationLogo = ({item}: EducationLogoProps) => {
   if (!item.logo) return null;
 
   const uniName = item.universityName ?? item.university;

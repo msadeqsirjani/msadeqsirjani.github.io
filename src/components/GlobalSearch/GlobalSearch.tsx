@@ -1,10 +1,19 @@
-import { useState, useEffect, useRef, useCallback, useMemo } from 'react';
+import {useState, useEffect, useRef, useCallback, useMemo} from 'react';
 import Icon from '../Icon/Icon';
-import { faSearch, faTimes, faBook, faGraduationCap, faMicroscope, faChalkboardTeacher, faNewspaper, faTrophy } from '@fortawesome/free-solid-svg-icons';
-import type { IconDefinition } from '@fortawesome/fontawesome-svg-core';
-import { useGlobalSearch } from '../../hooks/useGlobalSearch';
+import {
+  faSearch,
+  faTimes,
+  faBook,
+  faGraduationCap,
+  faMicroscope,
+  faChalkboardTeacher,
+  faNewspaper,
+  faTrophy,
+} from '@fortawesome/free-solid-svg-icons';
+import type {IconDefinition} from '@fortawesome/fontawesome-svg-core';
+import {useGlobalSearch} from '../../hooks/useGlobalSearch';
 import './GlobalSearch.css';
-import { sectionHref } from '../../constants/siteNav';
+import {sectionHref} from '../../constants/siteNav';
 import type {
   Publication,
   ResearchItem,
@@ -54,8 +63,8 @@ const categories: readonly CategoryConfig[] = [
     key: 'publications',
     icon: faBook,
     label: 'Publications',
-    getTitle: (item) => (item as Publication).title,
-    getMeta: (item) => {
+    getTitle: item => (item as Publication).title,
+    getMeta: item => {
       const pub = item as Publication;
       return `${pub.venue} • ${pub.year}`;
     },
@@ -64,8 +73,8 @@ const categories: readonly CategoryConfig[] = [
     key: 'research',
     icon: faMicroscope,
     label: 'Research',
-    getTitle: (item) => (item as ResearchItem).position,
-    getMeta: (item) => {
+    getTitle: item => (item as ResearchItem).position,
+    getMeta: item => {
       const res = item as ResearchItem;
       return `${res.lab} • ${res.duration}`;
     },
@@ -74,8 +83,8 @@ const categories: readonly CategoryConfig[] = [
     key: 'teaching',
     icon: faChalkboardTeacher,
     label: 'Teaching',
-    getTitle: (item) => (item as TeachingItem).course,
-    getMeta: (item) => {
+    getTitle: item => (item as TeachingItem).course,
+    getMeta: item => {
       const t = item as TeachingItem;
       return `${t.university} • ${t.date}`;
     },
@@ -84,8 +93,8 @@ const categories: readonly CategoryConfig[] = [
     key: 'education',
     icon: faGraduationCap,
     label: 'Education',
-    getTitle: (item) => (item as EducationItem).degree,
-    getMeta: (item) => {
+    getTitle: item => (item as EducationItem).degree,
+    getMeta: item => {
       const edu = item as EducationItem;
       return `${edu.university} • ${edu.duration}`;
     },
@@ -94,21 +103,21 @@ const categories: readonly CategoryConfig[] = [
     key: 'news',
     icon: faNewspaper,
     label: 'News',
-    getTitle: (item) => toPlainText((item as NewsItem).description),
-    getMeta: (item) => (item as NewsItem).date,
+    getTitle: item => toPlainText((item as NewsItem).description),
+    getMeta: item => (item as NewsItem).date,
   },
   {
     key: 'awards',
     icon: faTrophy,
     label: 'Awards',
-    getTitle: (item) => toPlainText((item as AwardItem).description),
-    getMeta: (item) => (item as AwardItem).date,
+    getTitle: item => toPlainText((item as AwardItem).description),
+    getMeta: item => (item as AwardItem).date,
   },
 ];
 
-const GlobalSearch = ({ isOpen, onClose }: GlobalSearchProps) => {
+const GlobalSearch = ({isOpen, onClose}: GlobalSearchProps) => {
   const [searchQuery, setSearchQuery] = useState('');
-  const { results, isSearching } = useGlobalSearch(searchQuery, isOpen);
+  const {results, isSearching} = useGlobalSearch(searchQuery, isOpen);
   const [selectedIndex, setSelectedIndex] = useState(-1);
   const searchInputRef = useRef<HTMLInputElement>(null);
   const modalRef = useRef<HTMLDivElement>(null);
@@ -120,19 +129,24 @@ const GlobalSearch = ({ isOpen, onClose }: GlobalSearchProps) => {
     }
   }, [isOpen]);
 
-  const handleResultClick = useCallback((sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-      onClose();
-      setSearchQuery('');
-    }
-  }, [onClose]);
+  const handleResultClick = useCallback(
+    (sectionId: string) => {
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({behavior: 'smooth'});
+        onClose();
+        setSearchQuery('');
+      }
+    },
+    [onClose],
+  );
 
-  const allResults = useMemo(() =>
-    categories.flatMap(cat =>
-      results[cat.key].map(item => ({ type: cat.key, item }))
-    ), [results]
+  const allResults = useMemo(
+    () =>
+      categories.flatMap(cat =>
+        results[cat.key].map(item => ({type: cat.key, item})),
+      ),
+    [results],
   );
 
   useEffect(() => {
@@ -147,10 +161,12 @@ const GlobalSearch = ({ isOpen, onClose }: GlobalSearchProps) => {
         onClose();
       } else if (e.key === 'ArrowDown') {
         e.preventDefault();
-        setSelectedIndex(prev => prev < allResults.length - 1 ? prev + 1 : prev);
+        setSelectedIndex(prev =>
+          prev < allResults.length - 1 ? prev + 1 : prev,
+        );
       } else if (e.key === 'ArrowUp') {
         e.preventDefault();
-        setSelectedIndex(prev => prev > 0 ? prev - 1 : -1);
+        setSelectedIndex(prev => (prev > 0 ? prev - 1 : -1));
       } else if (e.key === 'Enter' && selectedIndex >= 0) {
         e.preventDefault();
         const selected = allResults[selectedIndex];
@@ -195,7 +211,10 @@ const GlobalSearch = ({ isOpen, onClose }: GlobalSearchProps) => {
 
   if (!isOpen) return null;
 
-  const totalResults = Object.values(results).reduce((sum, items) => sum + items.length, 0);
+  const totalResults = Object.values(results).reduce(
+    (sum, items) => sum + items.length,
+    0,
+  );
 
   return (
     <div className="global-search-overlay">
@@ -209,11 +228,16 @@ const GlobalSearch = ({ isOpen, onClose }: GlobalSearchProps) => {
               className="global-search-input"
               placeholder="Search publications, research, teaching, news, and more..."
               value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
+              onChange={e => setSearchQuery(e.target.value)}
               aria-label="Global search"
             />
           </div>
-          <button type="button" className="close-search-btn" onClick={onClose} aria-label="Close search">
+          <button
+            type="button"
+            className="close-search-btn"
+            onClick={onClose}
+            aria-label="Close search"
+          >
             <Icon icon={faTimes} />
           </button>
         </div>
@@ -224,7 +248,9 @@ const GlobalSearch = ({ isOpen, onClose }: GlobalSearchProps) => {
               <Icon icon={faSearch} className="empty-icon" />
               <p>Start typing to search across all content</p>
               <div className="search-shortcuts">
-                <span className="shortcut-hint">Press <kbd>ESC</kbd> to close</span>
+                <span className="shortcut-hint">
+                  Press <kbd>ESC</kbd> to close
+                </span>
               </div>
             </div>
           )}
@@ -239,7 +265,9 @@ const GlobalSearch = ({ isOpen, onClose }: GlobalSearchProps) => {
           {searchQuery && !isSearching && totalResults === 0 && (
             <div className="search-no-results">
               <p>No results found for "{searchQuery}"</p>
-              <p className="suggestion">Try different keywords or check your spelling</p>
+              <p className="suggestion">
+                Try different keywords or check your spelling
+              </p>
             </div>
           )}
 
@@ -258,32 +286,40 @@ const GlobalSearch = ({ isOpen, onClose }: GlobalSearchProps) => {
                     <div className="category-header">
                       <Icon icon={category.icon} />
                       <h3>{category.label}</h3>
-                      <span className="result-count">{categoryResults.length}</span>
+                      <span className="result-count">
+                        {categoryResults.length}
+                      </span>
                     </div>
                     <div className="result-list">
                       {categoryResults.map((item, index) => {
                         const globalIndex = allResults.findIndex(
-                          r => r.type === category.key && r.item === item
+                          r => r.type === category.key && r.item === item,
                         );
                         return (
                           <a
                             key={index}
                             href={sectionHref(category.key)}
-                            ref={el => { resultsRef.current[globalIndex] = el; }}
+                            ref={el => {
+                              resultsRef.current[globalIndex] = el;
+                            }}
                             className={`result-item ${selectedIndex === globalIndex ? 'selected' : ''}`}
-                            onClick={(e) => {
+                            onClick={e => {
                               e.preventDefault();
                               handleResultClick(category.key);
                             }}
-                            onKeyDown={(e) => {
+                            onKeyDown={e => {
                               if (e.key === 'Enter' || e.key === ' ') {
                                 e.preventDefault();
                                 handleResultClick(category.key);
                               }
                             }}
                           >
-                            <div className="result-title">{category.getTitle(item)}</div>
-                            <div className="result-meta">{category.getMeta(item)}</div>
+                            <div className="result-title">
+                              {category.getTitle(item)}
+                            </div>
+                            <div className="result-meta">
+                              {category.getMeta(item)}
+                            </div>
                           </a>
                         );
                       })}
@@ -297,9 +333,15 @@ const GlobalSearch = ({ isOpen, onClose }: GlobalSearchProps) => {
 
         <div className="global-search-footer">
           <div className="search-tips">
-            <span><kbd>↑</kbd> <kbd>↓</kbd> to navigate</span>
-            <span><kbd>↵</kbd> to select</span>
-            <span><kbd>ESC</kbd> to close</span>
+            <span>
+              <kbd>↑</kbd> <kbd>↓</kbd> to navigate
+            </span>
+            <span>
+              <kbd>↵</kbd> to select
+            </span>
+            <span>
+              <kbd>ESC</kbd> to close
+            </span>
           </div>
         </div>
       </div>

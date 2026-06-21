@@ -1,11 +1,13 @@
-import { useEffect, useRef, useState } from 'react';
+import {useEffect, useRef, useState} from 'react';
 
 const PULL_THRESHOLD = 80;
 const MAX_PULL_DISTANCE = 150;
 const REFRESH_DELAY = 500;
 
 const PullToRefresh = () => {
-  const [pullState, setPullState] = useState<'idle' | 'pulling' | 'ready' | 'refreshing'>('idle');
+  const [pullState, setPullState] = useState<
+    'idle' | 'pulling' | 'ready' | 'refreshing'
+  >('idle');
   const pullToRefreshRef = useRef<HTMLDivElement>(null);
   const startY = useRef(0);
   const currentY = useRef(0);
@@ -25,7 +27,10 @@ const PullToRefresh = () => {
       if (!isPulling.current || !e.touches[0]) return;
 
       currentY.current = e.touches[0].clientY;
-      const pullDistance = Math.min(currentY.current - startY.current, MAX_PULL_DISTANCE);
+      const pullDistance = Math.min(
+        currentY.current - startY.current,
+        MAX_PULL_DISTANCE,
+      );
 
       if (pullDistance > 0 && window.scrollY === 0) {
         if (e.cancelable) e.preventDefault();
@@ -53,10 +58,10 @@ const PullToRefresh = () => {
       currentY.current = 0;
     };
 
-    document.addEventListener('touchstart', handleTouchStart, { passive: true });
-    document.addEventListener('touchmove', handleTouchMove, { passive: false });
-    document.addEventListener('touchend', handleTouchEnd, { passive: true });
-    document.addEventListener('touchcancel', handleTouchEnd, { passive: true });
+    document.addEventListener('touchstart', handleTouchStart, {passive: true});
+    document.addEventListener('touchmove', handleTouchMove, {passive: false});
+    document.addEventListener('touchend', handleTouchEnd, {passive: true});
+    document.addEventListener('touchcancel', handleTouchEnd, {passive: true});
 
     return () => {
       document.removeEventListener('touchstart', handleTouchStart);
@@ -74,7 +79,13 @@ const PullToRefresh = () => {
     >
       <div className="pull-to-refresh-icon-wrapper">
         <svg className="pull-to-refresh-progress" viewBox="0 0 50 50">
-          <circle cx="25" cy="25" r="22" strokeDasharray="138.2" strokeDashoffset="138.2"></circle>
+          <circle
+            cx="25"
+            cy="25"
+            r="22"
+            strokeDasharray="138.2"
+            strokeDashoffset="138.2"
+          ></circle>
         </svg>
         <div className="pull-to-refresh-icon"></div>
       </div>

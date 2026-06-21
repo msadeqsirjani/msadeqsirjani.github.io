@@ -1,9 +1,18 @@
-import { useMemo, useState } from 'react';
+import {useMemo, useState} from 'react';
 import Icon from '../Icon/Icon';
-import { faEnvelope, faGraduationCap, faArrowUp } from '@fortawesome/free-solid-svg-icons';
-import { faLinkedin, faGithub, faOrcid, faResearchgate } from '@fortawesome/free-brands-svg-icons';
-import { useScrollManager } from '../../hooks/useScrollManager';
-import { sectionHref } from '../../constants/siteNav';
+import {
+  faEnvelope,
+  faGraduationCap,
+  faArrowUp,
+} from '@fortawesome/free-solid-svg-icons';
+import {
+  faLinkedin,
+  faGithub,
+  faOrcid,
+  faResearchgate,
+} from '@fortawesome/free-brands-svg-icons';
+import {useScrollManager} from '../../hooks/useScrollManager';
+import {sectionHref} from '../../constants/siteNav';
 
 const BUILD_TIMESTAMP = Number(__BUILD_TIMESTAMP__);
 
@@ -12,9 +21,10 @@ const Footer = () => {
   const [scrollVisible, setScrollVisible] = useState(false);
 
   const lastUpdated = useMemo(() => {
-    const ts = Number.isFinite(BUILD_TIMESTAMP) && BUILD_TIMESTAMP > 0
-      ? BUILD_TIMESTAMP
-      : Date.now();
+    const ts =
+      Number.isFinite(BUILD_TIMESTAMP) && BUILD_TIMESTAMP > 0
+        ? BUILD_TIMESTAMP
+        : Date.now();
     return new Date(ts).toLocaleDateString('en-US', {
       month: 'long',
       day: 'numeric',
@@ -27,31 +37,54 @@ const Footer = () => {
   });
 
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({top: 0, behavior: 'smooth'});
   };
 
-  const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+  const scrollToSection = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    id: string,
+  ) => {
     e.preventDefault();
     const element = document.getElementById(id);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      element.scrollIntoView({behavior: 'smooth'});
     }
   };
 
   const quickLinks = [
-    { id: 'home', label: 'Home' },
-    { id: 'research', label: 'Research' },
-    { id: 'publications', label: 'Publications' },
-    { id: 'contact', label: 'Contact' }
+    {id: 'home', label: 'Home'},
+    {id: 'research', label: 'Research'},
+    {id: 'publications', label: 'Publications'},
+    {id: 'contact', label: 'Contact'},
   ];
 
   const socialLinks = [
-    { href: 'mailto:mohammadsadegh.sirjani@utsa.edu', icon: faEnvelope, label: 'Email' },
-    { href: 'https://scholar.google.com/citations?user=EI5DizMAAAAJ&hl=en', icon: faGraduationCap, label: 'Google Scholar' },
-    { href: 'https://www.linkedin.com/in/msadeqsirjani', icon: faLinkedin, label: 'LinkedIn' },
-    { href: 'https://github.com/msadeqsirjani', icon: faGithub, label: 'GitHub' },
-    { href: 'https://orcid.org/0009-0000-5146-0216', icon: faOrcid, label: 'ORCID' },
-    { href: 'https://www.researchgate.net/profile/Mohammad-Sadegh-Sirjani', icon: faResearchgate, label: 'ResearchGate' }
+    {
+      href: 'mailto:mohammadsadegh.sirjani@utsa.edu',
+      icon: faEnvelope,
+      label: 'Email',
+    },
+    {
+      href: 'https://scholar.google.com/citations?user=EI5DizMAAAAJ&hl=en',
+      icon: faGraduationCap,
+      label: 'Google Scholar',
+    },
+    {
+      href: 'https://www.linkedin.com/in/msadeqsirjani',
+      icon: faLinkedin,
+      label: 'LinkedIn',
+    },
+    {href: 'https://github.com/msadeqsirjani', icon: faGithub, label: 'GitHub'},
+    {
+      href: 'https://orcid.org/0009-0000-5146-0216',
+      icon: faOrcid,
+      label: 'ORCID',
+    },
+    {
+      href: 'https://www.researchgate.net/profile/Mohammad-Sadegh-Sirjani',
+      icon: faResearchgate,
+      label: 'ResearchGate',
+    },
   ];
 
   return (
@@ -62,14 +95,21 @@ const Footer = () => {
             <div className="footer-section">
               <h3>Mohammad Sadegh Sirjani</h3>
               <p>Ph.D. Student in Computer Science</p>
-              <p><a href="https://www.utsa.edu/" target="_blank" rel="noopener">University of Texas at San Antonio</a></p>
+              <p>
+                <a href="https://www.utsa.edu/" target="_blank" rel="noopener">
+                  University of Texas at San Antonio
+                </a>
+              </p>
             </div>
             <div className="footer-section">
               <h4>Quick Links</h4>
               <ul>
                 {quickLinks.map(link => (
                   <li key={link.id}>
-                    <a href={sectionHref(link.id)} onClick={(e) => scrollToSection(e, link.id)}>
+                    <a
+                      href={sectionHref(link.id)}
+                      onClick={e => scrollToSection(e, link.id)}
+                    >
                       {link.label}
                     </a>
                   </li>
@@ -85,6 +125,7 @@ const Footer = () => {
                     href={link.href}
                     target="_blank"
                     rel="noopener"
+                    aria-label={link.label}
                     data-tooltip={link.label}
                   >
                     <Icon icon={link.icon} />
@@ -94,13 +135,16 @@ const Footer = () => {
             </div>
           </div>
           <div className="footer-bottom">
-            <p>&copy; {currentYear} Mohammad Sadegh Sirjani. All rights reserved.</p>
+            <p>
+              &copy; {currentYear} Mohammad Sadegh Sirjani. All rights reserved.
+            </p>
             <p className="last-updated">Last updated: {lastUpdated}</p>
           </div>
         </div>
       </footer>
 
-      <button type="button"
+      <button
+        type="button"
         className={`scroll-to-top ${scrollVisible ? 'visible' : ''}`}
         onClick={scrollToTop}
         aria-label="Scroll to top"

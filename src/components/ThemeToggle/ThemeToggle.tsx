@@ -1,17 +1,21 @@
-import { useEffect } from 'react';
+import {useEffect} from 'react';
 import Icon from '../Icon/Icon';
-import { faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
-import { useTheme } from '../../context/theme-context';
+import {faMoon, faSun} from '@fortawesome/free-solid-svg-icons';
+import {useTheme} from '../../context/theme-context';
 import './ThemeToggle.css';
 
 const ThemeToggle = () => {
-  const { theme, toggleTheme } = useTheme();
+  const {theme, toggleTheme} = useTheme();
 
   useEffect(() => {
     const root = document.documentElement;
-    ['--accent-color', '--accent-color-light', '--accent-hover', '--focus-color', '--accent-rgb'].forEach(
-      (prop) => root.style.removeProperty(prop)
-    );
+    [
+      '--accent-color',
+      '--accent-color-light',
+      '--accent-hover',
+      '--focus-color',
+      '--accent-rgb',
+    ].forEach(prop => root.style.removeProperty(prop));
     localStorage.removeItem('primaryColor');
   }, []);
 
@@ -20,7 +24,9 @@ const ThemeToggle = () => {
       type="button"
       className="theme-toggle-btn"
       onClick={toggleTheme}
-      aria-label={theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode'}
+      aria-label={
+        theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode'
+      }
       data-tooltip={theme === 'light' ? 'Dark mode' : 'Light mode'}
     >
       <Icon

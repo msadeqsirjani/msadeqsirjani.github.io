@@ -1,7 +1,7 @@
-import { useState, useEffect, useRef } from 'react';
+import {useState, useEffect, useRef} from 'react';
 import Icon from '../Icon/Icon';
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
-import { useFocusTrap } from '../../hooks/useFocusTrap';
+import {faSearch} from '@fortawesome/free-solid-svg-icons';
+import {useFocusTrap} from '../../hooks/useFocusTrap';
 import ThemeToggle from '../ThemeToggle/ThemeToggle';
 import {
   DROPDOWN_NAV_LINKS,
@@ -13,7 +13,7 @@ interface NavbarProps {
   onSearchClick?: () => void;
 }
 
-const Navbar = ({ onSearchClick }: NavbarProps) => {
+const Navbar = ({onSearchClick}: NavbarProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -22,7 +22,7 @@ const Navbar = ({ onSearchClick }: NavbarProps) => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10);
     };
-    window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('scroll', handleScroll, {passive: true});
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -35,7 +35,10 @@ const Navbar = ({ onSearchClick }: NavbarProps) => {
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
+      ) {
         setIsDropdownOpen(false);
       }
     };
@@ -63,7 +66,10 @@ const Navbar = ({ onSearchClick }: NavbarProps) => {
     }
   };
 
-  const handleItemKeyDown = (e: React.KeyboardEvent<HTMLAnchorElement>, index: number) => {
+  const handleItemKeyDown = (
+    e: React.KeyboardEvent<HTMLAnchorElement>,
+    index: number,
+  ) => {
     if (e.key === 'ArrowDown') {
       e.preventDefault();
       focusItem((index + 1) % dropdownLinks.length);
@@ -81,14 +87,21 @@ const Navbar = ({ onSearchClick }: NavbarProps) => {
     }
   };
 
-  const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+  const scrollToSection = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    id: string,
+  ) => {
     e.preventDefault();
     const element = document.getElementById(id);
     if (element) {
       const navbar = document.querySelector('.navbar') as HTMLElement;
       const navbarHeight = navbar ? navbar.offsetHeight : 0;
-      const top = element.getBoundingClientRect().top + window.scrollY - navbarHeight - 24;
-      window.scrollTo({ top, behavior: 'smooth' });
+      const top =
+        element.getBoundingClientRect().top +
+        window.scrollY -
+        navbarHeight -
+        24;
+      window.scrollTo({top, behavior: 'smooth'});
       setIsMenuOpen(false);
       setIsDropdownOpen(false);
     }
@@ -98,26 +111,43 @@ const Navbar = ({ onSearchClick }: NavbarProps) => {
   const dropdownLinks = DROPDOWN_NAV_LINKS;
 
   return (
-    <nav className={`navbar${isScrolled ? ' navbar--scrolled' : ''}`} role="navigation" aria-label="Main navigation">
+    <nav
+      className={`navbar${isScrolled ? ' navbar--scrolled' : ''}`}
+      role="navigation"
+      aria-label="Main navigation"
+    >
       <div className="nav-container">
         <div className="nav-logo">
-          <a href={sectionHref('home')} className="logo-text" onClick={(e) => scrollToSection(e, 'home')} aria-label="Mohammad Sadegh Sirjani — Home">
+          <a
+            href={sectionHref('home')}
+            className="logo-text"
+            onClick={e => scrollToSection(e, 'home')}
+            aria-label="SS — Mohammad Sadegh Sirjani, Home"
+          >
             SS
           </a>
         </div>
-        <ul className={`nav-menu ${isMenuOpen ? 'active' : ''}`} id="nav-menu" role="menubar">
+        <ul className={`nav-menu ${isMenuOpen ? 'active' : ''}`} id="nav-menu">
           {mainLinks.map(link => (
-            <li key={link.id} role="none">
-              <a href={sectionHref(link.id)} className="nav-link" onClick={(e) => scrollToSection(e, link.id)}>
+            <li key={link.id}>
+              <a
+                href={sectionHref(link.id)}
+                className="nav-link"
+                onClick={e => scrollToSection(e, link.id)}
+              >
                 {link.label}
               </a>
             </li>
           ))}
-          <li className={`nav-dropdown ${isDropdownOpen ? 'open' : ''}`} role="none" ref={dropdownRef}>
-            <button type="button"
+          <li
+            className={`nav-dropdown ${isDropdownOpen ? 'open' : ''}`}
+            ref={dropdownRef}
+          >
+            <button
+              type="button"
               className="nav-dropdown-toggle"
               ref={dropdownToggleRef}
-              onClick={(e) => {
+              onClick={e => {
                 e.stopPropagation();
                 if (isDropdownOpen) closeDropdown();
                 else setIsDropdownOpen(true);
@@ -128,15 +158,20 @@ const Navbar = ({ onSearchClick }: NavbarProps) => {
             >
               More
             </button>
-            <ul className={`nav-dropdown-menu ${isDropdownOpen ? 'active' : ''}`} ref={dropdownMenuRef}>
+            <ul
+              className={`nav-dropdown-menu ${isDropdownOpen ? 'active' : ''}`}
+              ref={dropdownMenuRef}
+            >
               {dropdownLinks.map((link, index) => (
-                <li key={link.id} role="none">
+                <li key={link.id}>
                   <a
                     href={sectionHref(link.id)}
                     className="nav-link"
-                    ref={el => { dropdownItemRefs.current[index] = el; }}
-                    onClick={(e) => scrollToSection(e, link.id)}
-                    onKeyDown={(e) => handleItemKeyDown(e, index)}
+                    ref={el => {
+                      dropdownItemRefs.current[index] = el;
+                    }}
+                    onClick={e => scrollToSection(e, link.id)}
+                    onKeyDown={e => handleItemKeyDown(e, index)}
                   >
                     {link.label}
                   </a>
@@ -145,15 +180,20 @@ const Navbar = ({ onSearchClick }: NavbarProps) => {
             </ul>
           </li>
           {dropdownLinks.map(link => (
-            <li key={`mobile-${link.id}`} className="nav-mobile-item" role="none">
-              <a href={sectionHref(link.id)} className="nav-link" onClick={(e) => scrollToSection(e, link.id)}>
+            <li key={`mobile-${link.id}`} className="nav-mobile-item">
+              <a
+                href={sectionHref(link.id)}
+                className="nav-link"
+                onClick={e => scrollToSection(e, link.id)}
+              >
                 {link.label}
               </a>
             </li>
           ))}
         </ul>
         <div className="nav-controls">
-          <button type="button"
+          <button
+            type="button"
             className="search-toggle desktop-only"
             onClick={onSearchClick}
             aria-label="Open search"
@@ -164,7 +204,8 @@ const Navbar = ({ onSearchClick }: NavbarProps) => {
 
           <ThemeToggle />
 
-          <button type="button"
+          <button
+            type="button"
             className="nav-toggle"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label="Toggle navigation menu"

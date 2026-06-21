@@ -1,8 +1,8 @@
-import { useMemo, useState } from 'react';
-import type { ReactNode } from 'react';
+import {useMemo, useState} from 'react';
+import type {ReactNode} from 'react';
 import Icon from '../Icon/Icon';
-import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
-import { sanitizeHtml } from '../../utils/sanitizeHtml';
+import {faChevronDown, faChevronUp} from '@fortawesome/free-solid-svg-icons';
+import {sanitizeHtml} from '../../utils/sanitizeHtml';
 
 type ClassName = string | undefined | null | false;
 
@@ -35,9 +35,11 @@ interface SafeHtmlProps {
   html: string;
 }
 
-const SafeHtml = ({ className, html }: SafeHtmlProps) => {
+const SafeHtml = ({className, html}: SafeHtmlProps) => {
   const cleaned = useMemo(() => sanitizeHtml(html), [html]);
-  return <span className={className} dangerouslySetInnerHTML={{ __html: cleaned }} />;
+  return (
+    <span className={className} dangerouslySetInnerHTML={{__html: cleaned}} />
+  );
 };
 
 const TimelineSection = <T,>({
@@ -59,29 +61,39 @@ const TimelineSection = <T,>({
   showMoreEnabled = false,
 }: TimelineSectionProps<T>) => {
   const [showAll, setShowAll] = useState(false);
-  const displayItems = showMoreEnabled && !showAll ? items.slice(0, initialLimit) : items;
+  const displayItems =
+    showMoreEnabled && !showAll ? items.slice(0, initialLimit) : items;
   const hasMore = showMoreEnabled && items.length > initialLimit;
 
   return (
     <section id={id} className="section">
       <div className="container">
         {title && <h2 className="section-title">{title}</h2>}
-        <div className={joinClassNames('timeline-list', listClassName)} role="list">
+        <div
+          className={joinClassNames('timeline-list', listClassName)}
+          role="list"
+        >
           {displayItems.map((item, index) => {
             const candidate = item as Record<string, unknown>;
             const defaultDate = candidate['date'] as ReactNode | undefined;
-            const defaultDescription = candidate['description'] as ReactNode | undefined;
+            const defaultDescription = candidate['description'] as
+              | ReactNode
+              | undefined;
             const itemKey = getItemKey
               ? getItemKey(item, index)
               : `${String(
                   typeof defaultDate === 'string' ? defaultDate : index,
                 )}-${index}`;
-            const dateContent = renderDate ? renderDate(item, index) : defaultDate;
+            const dateContent = renderDate
+              ? renderDate(item, index)
+              : defaultDate;
             const descriptionContent = renderContent
               ? renderContent(item, index)
               : defaultDescription;
             const hasDateContent =
-              dateContent !== undefined && dateContent !== null && dateContent !== '';
+              dateContent !== undefined &&
+              dateContent !== null &&
+              dateContent !== '';
             const hasDescriptionContent =
               descriptionContent !== undefined && descriptionContent !== null;
 
@@ -96,17 +108,25 @@ const TimelineSection = <T,>({
                 role="listitem"
               >
                 <div
-                  className={joinClassNames('timeline-dates', dateWrapperClassName)}
+                  className={joinClassNames(
+                    'timeline-dates',
+                    dateWrapperClassName,
+                  )}
                 >
-                  {hasDateContent
-                    ? typeof dateContent === 'string'
-                      ? (
-                        <span className={joinClassNames('timeline-date', dateClassName)}>
-                          {dateContent}
-                        </span>
-                      )
-                      : dateContent
-                    : null}
+                  {hasDateContent ? (
+                    typeof dateContent === 'string' ? (
+                      <span
+                        className={joinClassNames(
+                          'timeline-date',
+                          dateClassName,
+                        )}
+                      >
+                        {dateContent}
+                      </span>
+                    ) : (
+                      dateContent
+                    )
+                  ) : null}
                 </div>
                 <div
                   className={joinClassNames(
@@ -114,19 +134,19 @@ const TimelineSection = <T,>({
                     contentWrapperClassName,
                   )}
                 >
-                  {hasDescriptionContent
-                    ? typeof descriptionContent === 'string'
-                      ? (
-                        <SafeHtml
-                          className={joinClassNames(
-                            'timeline-description',
-                            descriptionClassName,
-                          )}
-                          html={descriptionContent}
-                        />
-                      )
-                      : descriptionContent
-                    : null}
+                  {hasDescriptionContent ? (
+                    typeof descriptionContent === 'string' ? (
+                      <SafeHtml
+                        className={joinClassNames(
+                          'timeline-description',
+                          descriptionClassName,
+                        )}
+                        html={descriptionContent}
+                      />
+                    ) : (
+                      descriptionContent
+                    )
+                  ) : null}
                 </div>
               </div>
             );
@@ -139,9 +159,12 @@ const TimelineSection = <T,>({
               className={`show-more-btn${showAll ? ' expanded' : ''}`}
               onClick={() => setShowAll(!showAll)}
               aria-expanded={showAll}
-              aria-label={showAll ? 'Show fewer items' : `Show all ${items.length} items`}
+              aria-label={
+                showAll ? 'Show fewer items' : `Show all ${items.length} items`
+              }
             >
-              {showAll ? 'Show Less' : 'Show More'} <Icon icon={showAll ? faChevronUp : faChevronDown} />
+              {showAll ? 'Show Less' : 'Show More'}{' '}
+              <Icon icon={showAll ? faChevronUp : faChevronDown} />
             </button>
           </div>
         )}

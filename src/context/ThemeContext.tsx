@@ -1,15 +1,17 @@
-import { useState, useEffect } from 'react';
-import type { ReactNode } from 'react';
-import { ThemeContext, type Theme } from './theme-context';
+import {useState, useEffect} from 'react';
+import type {ReactNode} from 'react';
+import {ThemeContext, type Theme} from './theme-context';
 
 const TRANSITION_MS = 300;
 
-export const ThemeProvider = ({ children }: { children: ReactNode }) => {
+export const ThemeProvider = ({children}: {children: ReactNode}) => {
   const [theme, setTheme] = useState<Theme>(() => {
     if (typeof window === 'undefined') return 'light';
     const saved = localStorage.getItem('theme');
     if (saved === 'light' || saved === 'dark') return saved;
-    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    return window.matchMedia('(prefers-color-scheme: dark)').matches
+      ? 'dark'
+      : 'light';
   });
 
   useEffect(() => {
@@ -27,7 +29,7 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
   };
 
   return (
-    <ThemeContext.Provider value={{ theme, toggleTheme }}>
+    <ThemeContext.Provider value={{theme, toggleTheme}}>
       {children}
     </ThemeContext.Provider>
   );

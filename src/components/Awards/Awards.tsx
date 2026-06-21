@@ -1,13 +1,13 @@
-import { awards, fetchAwards } from '../../data/content';
+import {awards, fetchAwards} from '../../data/content';
 import TimelineSection from '../TimelineSection/TimelineSection';
 import useContentData from '../../hooks/useContentData';
 import useSettings from '../../hooks/useSettings';
 
 const Awards = () => {
-  const { data: awardItems } = useContentData(fetchAwards, awards, {
+  const {data: awardItems} = useContentData(fetchAwards, awards, {
     logLabel: 'awards data',
   });
-  const { settings } = useSettings();
+  const {settings} = useSettings();
 
   return (
     <TimelineSection

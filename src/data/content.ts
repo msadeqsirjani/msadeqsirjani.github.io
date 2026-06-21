@@ -15,7 +15,7 @@ import {
   faBolt,
   faArrowsRotate,
 } from '@fortawesome/free-solid-svg-icons';
-import type { IconDefinition } from '@fortawesome/fontawesome-svg-core';
+import type {IconDefinition} from '@fortawesome/fontawesome-svg-core';
 
 import publicationsData from './publications.json';
 import educationData from './education.json';
@@ -39,17 +39,21 @@ interface RawResearchInterest {
   name: string;
 }
 
-const buildResearchInterests = (raw: readonly RawResearchInterest[]): ResearchInterest[] =>
+const buildResearchInterests = (
+  raw: readonly RawResearchInterest[],
+): ResearchInterest[] =>
   raw
     .map(item => {
       const icon = iconMap[item.icon];
       if (!icon) {
         if (import.meta.env.DEV) {
-          console.warn(`Unknown research-interest icon "${item.icon}" — skipping.`);
+          console.warn(
+            `Unknown research-interest icon "${item.icon}" — skipping.`,
+          );
         }
         return null;
       }
-      return { icon, name: item.name };
+      return {icon, name: item.name};
     })
     .filter((item): item is ResearchInterest => item !== null);
 
@@ -72,7 +76,9 @@ export const fetchAwards = (): Promise<AwardItem[]> =>
   Promise.resolve(awardsData as AwardItem[]);
 
 export const fetchResearchInterests = (): Promise<ResearchInterest[]> =>
-  Promise.resolve(buildResearchInterests(researchInterestsData as RawResearchInterest[]));
+  Promise.resolve(
+    buildResearchInterests(researchInterestsData as RawResearchInterest[]),
+  );
 
 export const publications = publicationsData as Publication[];
 export const education = educationData as EducationItem[];

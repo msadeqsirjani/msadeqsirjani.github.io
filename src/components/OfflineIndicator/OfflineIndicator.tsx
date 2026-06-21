@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
+import {useState, useEffect} from 'react';
 import Icon from '../Icon/Icon';
-import { faWifi } from '@fortawesome/free-solid-svg-icons';
+import {faWifi} from '@fortawesome/free-solid-svg-icons';
 import './OfflineIndicator.css';
 
 const OfflineIndicator = () => {
@@ -40,8 +40,10 @@ const OfflineIndicator = () => {
       <div className="offline-indicator-content">
         {!isOnline ? (
           <>
-            <Icon icon={faWifi} style={{ textDecoration: 'line-through' }} />
-            <span className="offline-text-desktop">You're offline. Some features may be unavailable.</span>
+            <Icon icon={faWifi} style={{textDecoration: 'line-through'}} />
+            <span className="offline-text-desktop">
+              You're offline. Some features may be unavailable.
+            </span>
             <span className="offline-text-mobile">You're offline</span>
           </>
         ) : (

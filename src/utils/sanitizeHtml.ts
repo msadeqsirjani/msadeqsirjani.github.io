@@ -57,7 +57,10 @@ export const sanitizeHtml = (input: string): string => {
   if (typeof window === 'undefined' || typeof DOMParser === 'undefined') {
     return input.replace(/<[^>]*>/g, '');
   }
-  const doc = new DOMParser().parseFromString(`<div>${input}</div>`, 'text/html');
+  const doc = new DOMParser().parseFromString(
+    `<div>${input}</div>`,
+    'text/html',
+  );
   const root = doc.body.firstElementChild;
   if (!root) return '';
   for (const child of Array.from(root.childNodes)) {

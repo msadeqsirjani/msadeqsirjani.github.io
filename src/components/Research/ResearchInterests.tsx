@@ -1,11 +1,15 @@
-import { fetchResearchInterests, researchInterests } from '../../data/content';
+import {fetchResearchInterests, researchInterests} from '../../data/content';
 import Icon from '../Icon/Icon';
 import useContentData from '../../hooks/useContentData';
 
 const ResearchInterests = () => {
-  const { data: interests } = useContentData(fetchResearchInterests, researchInterests, {
-    logLabel: 'research interests data',
-  });
+  const {data: interests} = useContentData(
+    fetchResearchInterests,
+    researchInterests,
+    {
+      logLabel: 'research interests data',
+    },
+  );
 
   return (
     <section id="research-interests" className="section">
@@ -15,7 +19,7 @@ const ResearchInterests = () => {
           {interests.map((interest, index) => (
             <div key={index} className="interest-card">
               <Icon icon={interest.icon} className="interest-icon" />
-              <span dangerouslySetInnerHTML={{ __html: interest.name }}></span>
+              <span dangerouslySetInnerHTML={{__html: interest.name}}></span>
             </div>
           ))}
         </div>

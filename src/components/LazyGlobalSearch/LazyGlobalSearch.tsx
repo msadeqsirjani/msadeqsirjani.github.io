@@ -1,18 +1,22 @@
-import { useEffect, useState, type ComponentType } from 'react';
+import {useEffect, useState, type ComponentType} from 'react';
 
 export interface LazyGlobalSearchProps {
   isOpen: boolean;
   onClose: () => void;
 }
 
-export default function LazyGlobalSearch({ isOpen, onClose }: LazyGlobalSearchProps) {
-  const [Modal, setModal] = useState<ComponentType<LazyGlobalSearchProps> | null>(null);
+export default function LazyGlobalSearch({
+  isOpen,
+  onClose,
+}: LazyGlobalSearchProps) {
+  const [Modal, setModal] =
+    useState<ComponentType<LazyGlobalSearchProps> | null>(null);
 
   useEffect(() => {
     if (!isOpen || Modal) return;
 
     let cancelled = false;
-    void import('../GlobalSearch/GlobalSearch').then((m) => {
+    void import('../GlobalSearch/GlobalSearch').then(m => {
       if (!cancelled) setModal(() => m.default);
     });
 

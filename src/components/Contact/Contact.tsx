@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import {useState} from 'react';
 import toast from 'react-hot-toast';
 import Icon from '../Icon/Icon';
 import {
@@ -8,7 +8,7 @@ import {
   faEnvelope,
   faUniversity,
 } from '@fortawesome/free-solid-svg-icons';
-import { trackContactSubmission } from '../../utils/analytics';
+import {trackContactSubmission} from '../../utils/analytics';
 
 const RATE_LIMIT_MS = 30000;
 const MIN_MESSAGE_LENGTH = 10;
@@ -18,7 +18,7 @@ const Contact = () => {
     name: '',
     email: '',
     subject: '',
-    message: ''
+    message: '',
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [lastSubmitTime, setLastSubmitTime] = useState(0);
@@ -29,35 +29,43 @@ const Contact = () => {
       title: 'Location',
       href: 'https://maps.google.com/?q=1+UTSA+Circle,+San+Antonio,+TX+78249',
       text: '1 UT San Antonio Circle, San Antonio, TX 78249',
-      external: true
+      external: true,
     },
     {
       icon: faEnvelope,
       title: 'Email',
       href: 'mailto:mohammadsadegh.sirjani@utsa.edu',
       text: 'mohammadsadegh.sirjani@utsa.edu',
-      external: false
+      external: false,
     },
     {
       icon: faUniversity,
       title: 'Institution',
       href: 'https://utsa.edu',
       text: 'University of Texas at San Antonio',
-      external: true
-    }
+      external: true,
+    },
   ];
 
   const formFields = [
-    { id: 'name', name: 'name', type: 'text', placeholder: 'Your Name' },
-    { id: 'email', name: 'email', type: 'email', placeholder: 'Your Email' },
-    { id: 'subject', name: 'subject', type: 'text', placeholder: 'Subject' },
-    { id: 'message', name: 'message', type: 'textarea', placeholder: 'Your Message', rows: 5 }
+    {id: 'name', name: 'name', type: 'text', placeholder: 'Your Name'},
+    {id: 'email', name: 'email', type: 'email', placeholder: 'Your Email'},
+    {id: 'subject', name: 'subject', type: 'text', placeholder: 'Subject'},
+    {
+      id: 'message',
+      name: 'message',
+      type: 'textarea',
+      placeholder: 'Your Message',
+      rows: 5,
+    },
   ];
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
@@ -74,20 +82,26 @@ const Contact = () => {
     const timeSinceLastSubmit = now - lastSubmitTime;
 
     if (timeSinceLastSubmit < RATE_LIMIT_MS && lastSubmitTime > 0) {
-      const remainingSeconds = Math.ceil((RATE_LIMIT_MS - timeSinceLastSubmit) / 1000);
-      toast.error(`Please wait ${remainingSeconds} seconds before sending another message`);
+      const remainingSeconds = Math.ceil(
+        (RATE_LIMIT_MS - timeSinceLastSubmit) / 1000,
+      );
+      toast.error(
+        `Please wait ${remainingSeconds} seconds before sending another message`,
+      );
       return;
     }
 
     if (isSubmitting) return;
 
     if (!validateEmail(formData.email)) {
-      toast.error("Please enter a valid email address");
+      toast.error('Please enter a valid email address');
       return;
     }
 
     if (formData.message.trim().length < MIN_MESSAGE_LENGTH) {
-      toast.error(`Message must be at least ${MIN_MESSAGE_LENGTH} characters long`);
+      toast.error(
+        `Message must be at least ${MIN_MESSAGE_LENGTH} characters long`,
+      );
       return;
     }
 
@@ -97,19 +111,19 @@ const Contact = () => {
       const response = await fetch(form.action, {
         method: form.method,
         body: new FormData(form),
-        headers: { 'Accept': 'application/json' }
+        headers: {Accept: 'application/json'},
       });
 
       if (response.ok) {
         trackContactSubmission();
         setLastSubmitTime(now);
-        toast.success("Message sent successfully!");
-        setFormData({ name: '', email: '', subject: '', message: '' });
+        toast.success('Message sent successfully!');
+        setFormData({name: '', email: '', subject: '', message: ''});
       } else {
-        toast.error("Failed to send message. Please try again.");
+        toast.error('Failed to send message. Please try again.');
       }
     } catch {
-      toast.error("An error occurred. Please try again.");
+      toast.error('An error occurred. Please try again.');
     } finally {
       setIsSubmitting(false);
     }
@@ -132,7 +146,10 @@ const Contact = () => {
                   <p>
                     <a
                       href={item.href}
-                      {...(item.external && { target: '_blank', rel: 'noopener' })}
+                      {...(item.external && {
+                        target: '_blank',
+                        rel: 'noopener',
+                      })}
                     >
                       {item.text}
                     </a>
@@ -144,8 +161,13 @@ const Contact = () => {
 
           <div className="contact-form">
             <h3>SEND A MESSAGE</h3>
-            <form id="contact-form" action="https://formspree.io/f/xblywejw" method="POST" onSubmit={handleSubmit}>
-              {formFields.map((field) => (
+            <form
+              id="contact-form"
+              action="https://formspree.io/f/xblywejw"
+              method="POST"
+              onSubmit={handleSubmit}
+            >
+              {formFields.map(field => (
                 <div key={field.id} className="form-group">
                   {field.type === 'textarea' ? (
                     <textarea
@@ -170,7 +192,11 @@ const Contact = () => {
                   )}
                 </div>
               ))}
-              <button type="submit" className="btn btn-primary" disabled={isSubmitting}>
+              <button
+                type="submit"
+                className="btn btn-primary"
+                disabled={isSubmitting}
+              >
                 {isSubmitting ? (
                   <>
                     <Icon icon={faSpinner} spin /> Sending...

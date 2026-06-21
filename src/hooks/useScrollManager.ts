@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import {useEffect, useRef} from 'react';
 
 type ScrollListener = (scrollY: number, scrollPercent: number) => void;
 
@@ -11,8 +11,10 @@ class ScrollManager {
 
   private calculateScroll = () => {
     this.scrollY = window.pageYOffset || document.documentElement.scrollTop;
-    const documentHeight = document.documentElement.scrollHeight - window.innerHeight;
-    this.scrollPercent = documentHeight > 0 ? (this.scrollY / documentHeight) * 100 : 0;
+    const documentHeight =
+      document.documentElement.scrollHeight - window.innerHeight;
+    this.scrollPercent =
+      documentHeight > 0 ? (this.scrollY / documentHeight) * 100 : 0;
   };
 
   private handleScroll = () => {
@@ -20,7 +22,9 @@ class ScrollManager {
 
     this.rafId = requestAnimationFrame(() => {
       this.calculateScroll();
-      this.listeners.forEach(listener => listener(this.scrollY, this.scrollPercent));
+      this.listeners.forEach(listener =>
+        listener(this.scrollY, this.scrollPercent),
+      );
       this.rafId = null;
     });
   };
@@ -29,7 +33,7 @@ class ScrollManager {
     this.listeners.add(listener);
 
     if (!this.isListening) {
-      window.addEventListener('scroll', this.handleScroll, { passive: true });
+      window.addEventListener('scroll', this.handleScroll, {passive: true});
       this.isListening = true;
       this.calculateScroll();
     }
@@ -49,7 +53,7 @@ class ScrollManager {
   }
 
   getScrollData() {
-    return { scrollY: this.scrollY, scrollPercent: this.scrollPercent };
+    return {scrollY: this.scrollY, scrollPercent: this.scrollPercent};
   }
 }
 
