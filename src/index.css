@@ -252,7 +252,7 @@ ul, ol {
     padding: 0.5rem 1rem;
     cursor: pointer;
     position: relative;
-    transition: all 0.2s ease;
+    transition: color 0.2s ease, background-color 0.2s ease;
     outline: none;
 }
 
@@ -282,20 +282,34 @@ ul, ol {
 .nav-dropdown-menu {
     display: none;
     position: absolute;
-    top: 100%;
+    top: calc(100% + 0.5rem);
     right: 0;
     background: var(--white);
     backdrop-filter: blur(16px) saturate(180%);
     -webkit-backdrop-filter: blur(16px) saturate(180%);
     border: 1px solid var(--border-color);
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
-    padding: 0.5rem 0;
-    min-width: 150px;
+    border-radius: 10px;
+    box-shadow: 0 8px 24px -8px rgba(0, 0, 0, 0.18);
+    padding: 0.4rem;
+    min-width: 160px;
+    overflow: hidden;
     transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+@keyframes dropdownIn {
+    from { opacity: 0; transform: translateY(-6px); }
+    to   { opacity: 1; transform: translateY(0); }
 }
 
 .nav-dropdown.open .nav-dropdown-menu {
     display: block;
+    animation: dropdownIn 0.18s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .nav-dropdown.open .nav-dropdown-menu {
+        animation: none;
+    }
 }
 
 [data-theme="dark"] .nav-dropdown-menu {
@@ -306,15 +320,17 @@ ul, ol {
 
 .nav-dropdown-menu .nav-link {
     display: block;
-    padding: 0.5rem 1rem;
+    padding: 0.55rem 0.85rem;
     margin: 0;
+    border-radius: 7px;
     outline: none;
+    transition: color 0.2s ease, background-color 0.2s ease;
 }
 
 .nav-dropdown-menu .nav-link:hover,
 .nav-dropdown-menu .nav-link:focus-visible {
     color: var(--accent-color);
-    font-weight: 700;
+    background-color: rgba(var(--accent-rgb), 0.1);
     outline: none;
     box-shadow: none;
 }
@@ -1547,29 +1563,30 @@ kbd {
 .pub-year-badge {
     display: inline-flex;
     align-items: center;
+    gap: 0.3rem;
     font-size: var(--fs-xs);
     font-weight: 600;
     letter-spacing: 0.04em;
     text-transform: uppercase;
     line-height: 1.3;
+    padding: 0.22rem 0.6rem;
+    border-radius: 999px;
     box-sizing: border-box;
 }
 
-/* status: subtle accent dot + text, no filled box */
+/* status: accent-tinted pill */
 .status-inline {
-    gap: 0.35rem;
     color: var(--accent-color);
-    background: transparent;
-    padding: 0;
+    background: rgba(var(--accent-rgb), 0.1);
 }
 
 
-/* year & citations: plain muted text */
+/* year & citations: neutral pill */
 .citations-badge,
 .pub-year-badge {
     color: var(--text-light);
-    background: transparent;
-    padding: 0;
+    background: var(--gray-light);
+    border: 1px solid var(--border-color);
 }
 
 .detail-actions {
@@ -1780,7 +1797,7 @@ kbd {
     gap: 1.5rem;
     align-items: stretch;
     margin-bottom: 0;
-    padding: 1.25rem 0;
+    padding: 1.25rem 1rem;
     border-bottom: 1px solid var(--border-color);
 }
 
@@ -1950,13 +1967,13 @@ kbd {
     padding: 0;
     background: transparent;
     border: none;
-    transition: all 0.3s ease;
+    transition: transform 0.3s ease;
 }
 
 
 .contact-item .contact-info-icon-shell {
-    width: 40px;
-    height: 40px;
+    width: 44px;
+    height: 44px;
     flex-shrink: 0;
     display: flex;
     align-items: center;
