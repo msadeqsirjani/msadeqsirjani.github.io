@@ -33,7 +33,6 @@ img, picture {
 }
 
 .navbar,
-.theme-toggle,
 .btn {
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
@@ -343,31 +342,6 @@ ul, ol {
     gap: 0.75rem;
 }
 
-.theme-toggle {
-    background: var(--white);
-    border: var(--button-border-width) solid var(--border-color);
-    border-radius: var(--button-border-radius);
-    padding: 0.5rem;
-    cursor: pointer;
-    color: var(--text-color);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
-    font-size: var(--fs-lg);
-}
-
-.theme-toggle svg {
-    width: 1.2rem;
-    height: 1.2rem;
-}
-
-.theme-toggle:hover {
-    color: var(--accent-color);
-    border-color: var(--accent-color);
-}
-
 .nav-toggle {
     background: var(--white);
     border: var(--button-border-width) solid var(--border-color);
@@ -396,7 +370,7 @@ ul, ol {
 
 
 .hero {
-    padding: 4rem 0;
+    padding: 2.5rem 0;
 }
 
 .hero-content {
@@ -561,7 +535,6 @@ ul, ol {
 
 .social-link,
 .btn[data-tooltip],
-.theme-toggle[data-tooltip],
 .footer-social a[data-tooltip],
 .research-logo-link[data-tooltip],
 .education-logo-link[data-tooltip] {
@@ -574,7 +547,6 @@ ul, ol {
 
 .social-link::after,
 .btn[data-tooltip]::after,
-.theme-toggle[data-tooltip]::after,
 .footer-social a[data-tooltip]::after,
 .research-logo-link[data-tooltip]::after,
 .education-logo-link[data-tooltip]::after {
@@ -601,7 +573,6 @@ ul, ol {
 
 .social-link::before,
 .btn[data-tooltip]::before,
-.theme-toggle[data-tooltip]::before,
 .footer-social a[data-tooltip]::before,
 .research-logo-link[data-tooltip]::before,
 .education-logo-link[data-tooltip]::before {
@@ -621,7 +592,6 @@ ul, ol {
 
 .social-link:hover::before,
 .btn[data-tooltip]:hover::before,
-.theme-toggle[data-tooltip]:hover::before,
 .footer-social a[data-tooltip]:hover::before,
 .research-logo-link[data-tooltip]:hover::before,
 .education-logo-link[data-tooltip]:hover::before {
@@ -631,7 +601,6 @@ ul, ol {
 
 .social-link:hover::after,
 .btn[data-tooltip]:hover::after,
-.theme-toggle[data-tooltip]:hover::after,
 .footer-social a[data-tooltip]:hover::after,
 .research-logo-link[data-tooltip]:hover::after,
 .education-logo-link[data-tooltip]:hover::after {
@@ -643,7 +612,6 @@ ul, ol {
 
 .social-link:focus-visible::before,
 .btn[data-tooltip]:focus-visible::before,
-.theme-toggle[data-tooltip]:focus-visible::before,
 .footer-social a[data-tooltip]:focus-visible::before,
 .research-logo-link[data-tooltip]:focus-visible::before,
 .education-logo-link[data-tooltip]:focus-visible::before {
@@ -653,7 +621,6 @@ ul, ol {
 
 .social-link:focus-visible::after,
 .btn[data-tooltip]:focus-visible::after,
-.theme-toggle[data-tooltip]:focus-visible::after,
 .footer-social a[data-tooltip]:focus-visible::after,
 .research-logo-link[data-tooltip]:focus-visible::after,
 .education-logo-link[data-tooltip]:focus-visible::after {
@@ -672,7 +639,7 @@ ul, ol {
 .section-title {
     font-size: var(--fs-lg);
     font-weight: 700;
-    margin-bottom: 3rem;
+    margin-bottom: 1.75rem;
     padding-bottom: 0.75rem;
     color: var(--text-color);
     letter-spacing: 0.06em;
@@ -2314,11 +2281,6 @@ kbd {
         order: 1;
     }
 
-    .theme-toggle {
-        order: 2;
-    }
-
-    
     .nav-link {
         padding: 0.875rem 1rem;
         width: 100%;
@@ -2329,8 +2291,7 @@ kbd {
         align-items: center;
     }
 
-    
-    .theme-toggle,
+
     .nav-toggle {
         min-width: 48px;
         min-height: 48px;
@@ -2405,7 +2366,7 @@ kbd {
 
     .section-title {
         font-size: var(--fs-2xl);
-        margin-bottom: 2rem;
+        margin-bottom: 1.5rem;
         text-align: left;
     }
 
@@ -3446,8 +3407,7 @@ button,
 
 
 .nav-link,
-.social-link,
-.theme-toggle {
+.social-link {
     min-height: 48px;
     min-width: 48px;
     display: inline-flex;
@@ -3749,7 +3709,6 @@ button,
     
     .social-link::after,
     .btn[data-tooltip]::after,
-    .theme-toggle[data-tooltip]::after,
     .footer-social a[data-tooltip]::after,
     .research-logo-link[data-tooltip]::after,
     .scroll-to-top[data-tooltip]::after,
@@ -3759,7 +3718,6 @@ button,
     .education-logo-link[data-tooltip]::before,
     .social-link::before,
     .btn[data-tooltip]::before,
-    .theme-toggle[data-tooltip]::before,
     .footer-social a[data-tooltip]::before,
     .research-logo-link[data-tooltip]::before,
     .scroll-to-top[data-tooltip]::before,
@@ -3922,7 +3880,7 @@ html {
     }
 
     
-    .navbar, .nav-toggle, .theme-toggle, .theme-toggle-btn,
+    .navbar, .nav-toggle, .theme-toggle-btn,
     .reading-progress, .quick-actions,
     .hero-buttons, .hero-left, .social-links, .profile-image,
     .cookie-consent, .offline-indicator,
@@ -4747,7 +4705,6 @@ html {
 }
 
 
-.theme-toggle,
 .search-toggle,
 .nav-toggle {
   min-width: 44px;
