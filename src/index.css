@@ -663,32 +663,6 @@ ul, ol {
 }
 
 
-.section-divider {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.55rem;
-    padding: 0.75rem 0;
-    position: relative;
-}
-
-.section-divider::before,
-.section-divider::after {
-    content: '';
-    width: 4px;
-    height: 4px;
-    border-radius: 50%;
-    background: var(--border-color);
-    flex-shrink: 0;
-}
-
-.section-divider span {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--accent-color);
-    flex-shrink: 0;
-}
 
 
 .section {
@@ -3382,17 +3356,16 @@ kbd {
 
 
 a:focus,
-button:focus,
-input:focus,
-textarea:focus,
-select:focus,
-.nav-link:focus,
-.btn:focus,
-.theme-toggle:focus,
-.social-link:focus {
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+.nav-link:focus-visible,
+.btn:focus-visible,
+.theme-toggle-btn:focus-visible,
+.social-link:focus-visible {
     outline: 3px solid var(--focus-color);
     outline-offset: 2px;
-    border-radius: 5px;
     box-shadow: 0 0 0 1px var(--white), 0 0 0 4px var(--focus-color);
 }
 
@@ -3952,7 +3925,7 @@ html {
     .navbar, .nav-toggle, .theme-toggle, .theme-toggle-btn,
     .reading-progress, .quick-actions,
     .hero-buttons, .hero-left, .social-links, .profile-image,
-    .section-divider, .cookie-consent, .offline-indicator,
+    .cookie-consent, .offline-indicator,
     .global-search, .skip-to-content, .pull-to-refresh, .footer,
     #biography, .fade-in-section:has(#biography),
     #research-interests, .fade-in-section:has(#research-interests),
