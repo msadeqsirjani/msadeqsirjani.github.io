@@ -7,6 +7,102 @@ import path from 'path';
 
 const BUILD_TIMESTAMP = Date.now().toString();
 
+const SITE = 'https://msadeqsirjani.com';
+const PERSON_ID = `${SITE}/#person`;
+
+interface PublicationRecord {
+  title: string;
+  venue?: string;
+  year: string | number;
+  authors: string;
+  link?: string;
+  citations?: number;
+  keywords?: string[];
+}
+
+function buildPublicationsLd(): string {
+  const file = path.join(__dirname, 'src', 'data', 'publications.json');
+  const pubs: PublicationRecord[] = JSON.parse(fs.readFileSync(file, 'utf-8'));
+  const itemListElement = pubs.map((p, i) => {
+    const author = p.authors
+      .split(',')
+      .map(a => a.trim())
+      .filter(Boolean)
+      .map(name => {
+        const person: Record<string, unknown> = {'@type': 'Person', name};
+        if (name.includes('Sirjani')) person['@id'] = PERSON_ID;
+        return person;
+      });
+    const work: Record<string, unknown> = {
+      '@type': 'ScholarlyArticle',
+      name: p.title,
+      author,
+      datePublished: String(p.year),
+      inLanguage: 'en',
+    };
+    if (p.keywords?.length) work.keywords = p.keywords.join(', ');
+    if (p.venue) work.isPartOf = {'@type': 'Periodical', name: p.venue};
+    if (p.link) {
+      work.url = p.link;
+      work.sameAs = p.link;
+    }
+    if (typeof p.citations === 'number') {
+      work.interactionStatistic = {
+        '@type': 'InteractionCounter',
+        interactionType: 'https://schema.org/CiteAction',
+        userInteractionCount: p.citations,
+      };
+    }
+    return {'@type': 'ListItem', position: i + 1, item: work};
+  });
+  return JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: 'Publications — Mohammad Sadegh Sirjani',
+    itemListOrder: 'https://schema.org/ItemListOrderDescending',
+    numberOfItems: pubs.length,
+    itemListElement,
+  });
+}
+
+// Generate publications structured data from data, and preload the primary font.
+function injectSeoAndFonts(): PluginOption {
+  return {
+    name: 'inject-seo-and-fonts',
+    transformIndexHtml: {
+      order: 'post',
+      handler(html, ctx) {
+        const tags: import('vite').HtmlTagDescriptor[] = [];
+        const fontFile =
+          ctx.bundle &&
+          Object.keys(ctx.bundle).find(f =>
+            /roboto-latin-400-normal-[^/]*\.woff2$/.test(f),
+          );
+        if (fontFile) {
+          tags.push({
+            tag: 'link',
+            attrs: {
+              rel: 'preload',
+              as: 'font',
+              type: 'font/woff2',
+              href: `/${fontFile}`,
+              crossorigin: '',
+            },
+            injectTo: 'head-prepend',
+          });
+        }
+        tags.push({
+          tag: 'script',
+          attrs: {type: 'application/ld+json'},
+          children: buildPublicationsLd(),
+          injectTo: 'head',
+        });
+        return {html, tags};
+      },
+    },
+  };
+}
+
 function injectBuildTime(): PluginOption {
   let outDir = path.join(__dirname, 'dist');
   return {
@@ -49,6 +145,7 @@ export default defineConfig({
   },
   plugins: [
     preact(),
+    injectSeoAndFonts(),
     injectBuildTime(),
     visualizer({
       filename: './dist/stats.html',
