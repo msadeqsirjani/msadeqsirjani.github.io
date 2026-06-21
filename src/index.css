@@ -726,7 +726,6 @@ ul, ol {
     text-wrap: pretty;
 
     hyphens: auto;
-    hyphens: auto;
 }
 
 .bio-text p a {
@@ -771,7 +770,7 @@ ul, ol {
 
 .education-dates .duration {
     color: var(--text-light);
-    font-weight: 300;
+    font-weight: 400;
     font-size: var(--fs-sm);
     line-height: 1.4;
 }
@@ -939,7 +938,7 @@ ul, ol {
 
 .research-dates .timeline {
     color: var(--text-light);
-    font-weight: 300;
+    font-weight: 400;
     font-size: var(--fs-sm);
     line-height: 1.4;
 }
@@ -1057,7 +1056,6 @@ ul, ol {
 
     text-wrap: pretty;
 
-    hyphens: auto;
     hyphens: auto;
 }
 
@@ -1802,7 +1800,7 @@ kbd {
 }
 
 .timeline-item.teaching-item:last-child {
-    padding: 1.25rem 0;
+    padding: 1.25rem 1rem;
     margin-bottom: 0;
     border-bottom: 1px solid var(--border-color);
 }
@@ -1823,7 +1821,7 @@ kbd {
 
 .teaching-dates .teaching-date {
     color: var(--text-light);
-    font-weight: 300;
+    font-weight: 400;
     font-size: var(--fs-sm);
     line-height: 1.4;
 }
@@ -1905,7 +1903,7 @@ kbd {
 
 .timeline-date {
     color: var(--text-light);
-    font-weight: 300;
+    font-weight: 400;
     font-size: var(--fs-sm);
     line-height: 1.4;
     display: block;
@@ -1927,7 +1925,6 @@ kbd {
 
     text-wrap: pretty;
 
-    hyphens: auto;
     hyphens: auto;
 }
 
@@ -2561,7 +2558,6 @@ kbd {
         text-wrap: pretty;
 
         hyphens: auto;
-        hyphens: auto;
     }
 
     .publication-info-row {
@@ -2594,16 +2590,16 @@ kbd {
     }
 
     .publication-info {
-        flex-wrap: nowrap;
-        gap: 0.35rem;
+        flex-wrap: wrap;
+        gap: 0.4rem;
         justify-content: flex-start;
     }
 
     .info-chip {
-        flex: 1 1 0;
+        flex: 0 1 auto;
         justify-content: center;
-        gap: 0.25rem;
-        padding: 0.25rem 0.4rem;
+        gap: 0.3rem;
+        padding: 0.25rem 0.55rem;
         min-width: 0;
     }
 
@@ -3043,7 +3039,7 @@ kbd {
     .timeline-item.news-item .timeline-date,
     .timeline-item.awards-item .timeline-date {
         color: var(--text-light);
-        font-weight: 300;
+        font-weight: 400;
         font-size: var(--fs-sm);
         line-height: 1.4;
     }
