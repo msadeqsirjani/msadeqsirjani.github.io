@@ -1864,8 +1864,15 @@ kbd {
     grid-template-columns: minmax(120px, 20%) 1fr;
     gap: 2rem;
     margin-bottom: 2.5rem;
-    padding-bottom: 1.25rem;
+    padding: 1rem 1rem 1.25rem;
+    margin-inline: -1rem;
     border-bottom: 1px solid var(--border-color);
+    border-radius: 8px;
+    transition: background-color 0.25s ease;
+}
+
+.timeline-item:hover {
+    background-color: rgba(var(--accent-rgb), 0.045);
 }
 
 .timeline-item:last-child {
@@ -2111,15 +2118,15 @@ kbd {
 }
 
 .footer-social a {
-    width: 38px;
-    height: 38px;
+    width: 44px;
+    height: 44px;
     border: 1px solid var(--border-color);
     border-radius: var(--button-border-radius);
     display: flex;
     align-items: center;
     justify-content: center;
     color: var(--text-color);
-    transition: all 0.3s ease;
+    transition: color 0.25s ease, background-color 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
     font-size: var(--fs-base);
 }
 
@@ -2493,6 +2500,7 @@ kbd {
         border-bottom: 1px solid var(--border-color);
         border-radius: 0;
         padding: 0.85rem 0;
+        margin-inline: 0;
         margin-bottom: 0;
         box-shadow: none;
     }
@@ -2639,6 +2647,7 @@ kbd {
         border: none;
         border-radius: 0;
         padding: 1.5rem 0;
+        margin-inline: 0;
         box-shadow: none;
     }
 
@@ -2696,6 +2705,7 @@ kbd {
         border-bottom: 1px solid var(--border-color);
         border-radius: 0;
         padding: 1.5rem 0;
+        margin-inline: 0;
         box-shadow: none;
     }
 
@@ -2795,6 +2805,7 @@ kbd {
         border-bottom: 1px solid var(--border-color);
         border-radius: 0;
         padding: 1.5rem 0;
+        margin-inline: 0;
         box-shadow: none;
         align-items: start;
     }
@@ -2858,6 +2869,7 @@ kbd {
         border-bottom: 1px solid var(--border-color);
         border-radius: 0;
         padding: 1.5rem 0;
+        margin-inline: 0;
         box-shadow: none;
     }
 
