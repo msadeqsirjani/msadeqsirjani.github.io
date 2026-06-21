@@ -657,9 +657,22 @@ ul, ol {
     font-size: var(--fs-lg);
     font-weight: 700;
     margin-bottom: 3rem;
+    padding-bottom: 0.75rem;
     color: var(--text-color);
     letter-spacing: 0.06em;
     text-transform: uppercase;
+    position: relative;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 2.25rem;
+    height: 3px;
+    border-radius: 3px;
+    background: var(--accent-color);
 }
 
 .bio-text p {
@@ -3151,6 +3164,11 @@ kbd {
         font-size: var(--fs-lg);
     }
 
+    .section-title::after {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
     
     .social-links {
         justify-content: center;
@@ -3949,6 +3967,10 @@ html {
         page-break-after: avoid;
     }
 
+    .section-title::after {
+        display: none !important;
+    }
+
     
     .timeline-item.education-item {
         display:        flex !important;
@@ -4548,18 +4570,20 @@ html {
 
 .fade-in-section {
   opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  transform: translateY(16px);
+  transition: opacity 0.45s ease-out, transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
 }
 
 .fade-in-section.is-visible {
   opacity: 1;
   transform: translateY(0);
+  will-change: auto;
 }
 
 
 .btn, .social-link, a {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: color 0.25s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.25s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.25s cubic-bezier(0.4, 0, 0.2, 1), transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .btn:hover {
