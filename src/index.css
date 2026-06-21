@@ -448,7 +448,7 @@ ol {
 }
 
 .hero {
-  padding: 2.5rem 0;
+  padding: 3.5rem 0;
 }
 
 .hero-content {
@@ -725,7 +725,7 @@ ol {
 }
 
 .section {
-  padding: 2.5rem 0;
+  padding: 4rem 0;
 }
 
 .section-title {
@@ -2419,7 +2419,7 @@ kbd {
   }
 
   .section {
-    padding: 1.75rem 0;
+    padding: 2.5rem 0;
   }
 
   .section-title {
@@ -2921,10 +2921,12 @@ kbd {
     gap: 0.45rem;
     align-items: start;
     position: static;
-    margin: 0;
-    padding: 0.85rem 0;
-    border-top: 1px solid var(--border-color);
-    border-bottom: none;
+    margin: 0 0 1rem 0;
+    padding: 1.25rem;
+    border: 1px solid transparent;
+    border-radius: var(--shape-card);
+    background: var(--gray-light);
+    box-shadow: var(--elev-1);
   }
 
   .timeline-item.teaching-item + .timeline-item.teaching-item {
@@ -2975,8 +2977,8 @@ kbd {
   .timeline-item.news-item {
     grid-template-columns: 1fr;
     gap: 0.2rem;
-    padding: 0.85rem 0;
-    margin-bottom: 0;
+    padding: 1.25rem;
+    margin-bottom: 1rem;
   }
 
   .timeline-item.news-item .timeline-content {
@@ -3004,8 +3006,8 @@ kbd {
   .timeline-item.awards-item {
     grid-template-columns: 1fr;
     gap: 0.2rem;
-    padding: 0.85rem 0;
-    margin-bottom: 0;
+    padding: 1.25rem;
+    margin-bottom: 1rem;
   }
 
   .timeline-item.awards-item .timeline-content {
