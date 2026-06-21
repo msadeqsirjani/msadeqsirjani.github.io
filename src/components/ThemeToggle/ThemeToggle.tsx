@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import Icon from '../Icon/Icon';
 import { faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
-import { useTheme } from '../../context/ThemeContext';
+import { useTheme } from '../../context/theme-context';
 import './ThemeToggle.css';
 
 const ThemeToggle = () => {

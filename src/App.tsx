@@ -29,7 +29,7 @@ const Contact = lazy(() => import('./components/Contact/Contact'));
 const Footer = lazy(() => import('./components/Footer/Footer'));
 const NotFound = lazy(() => import('./components/NotFound/NotFound'));
 
-type LazyComponent = LazyExoticComponent<ComponentType<any>>;
+type LazyComponent = LazyExoticComponent<ComponentType>;
 
 interface LazySection {
   key: string;

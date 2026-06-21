@@ -82,6 +82,12 @@ export default defineConfig({
   build: {
     target: 'es2020',
     minify: 'terser',
+    terserOptions: {
+      compress: {
+        // Strip noisy logs in production, keep console.error/warn for diagnostics
+        pure_funcs: ['console.log', 'console.info', 'console.debug'],
+      },
+    },
     sourcemap: false,
     rollupOptions: {
       input: {
