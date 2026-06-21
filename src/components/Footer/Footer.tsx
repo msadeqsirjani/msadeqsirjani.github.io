@@ -125,6 +125,7 @@ const Footer = () => {
                     href={link.href}
                     target="_blank"
                     rel="noopener"
+                    aria-label={link.label}
                     data-tooltip={link.label}
                   >
                     <Icon icon={link.icon} />

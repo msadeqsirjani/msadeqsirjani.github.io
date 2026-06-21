@@ -95,6 +95,8 @@ h6 {
   --button-border-width: 2px;
   /* Logos are designed for a light backing; intentionally white in both themes */
   --logo-surface: #ffffff;
+  /* Readable text/icon color on top of --accent-color (per theme) */
+  --on-accent: #ffffff;
 
   /* Type scale — fixed font-size tokens (single source of truth) */
   --fs-xs: 0.75rem; /* 12px — badges, labels, captions */
@@ -121,6 +123,8 @@ h6 {
   --focus-color: #93c5fd;
   --card-bg: #1e293b;
   --hover-bg: #334155;
+  /* Dark accent (#60a5fa) is light — needs dark text on top for contrast */
+  --on-accent: #0f172a;
 }
 
 body {
@@ -529,7 +533,7 @@ ol {
 
 .btn-primary {
   background: var(--accent-color);
-  color: white;
+  color: var(--on-accent);
   border: var(--button-border-width) solid var(--accent-color);
   border-radius: var(--button-border-radius);
   box-shadow: 0 4px 14px -4px rgba(var(--accent-rgb), 0.5);
@@ -550,7 +554,7 @@ ol {
 
 .hero-buttons .btn-secondary:hover {
   background: var(--accent-color);
-  color: white;
+  color: var(--on-accent);
   border: var(--button-border-width) solid var(--accent-color);
 }
 
@@ -581,7 +585,7 @@ ol {
 .social-link:hover {
   background: var(--accent-color);
   border-color: var(--accent-color);
-  color: white;
+  color: var(--on-accent);
   transform: translateY(-2px);
 }
 
@@ -1748,7 +1752,7 @@ kbd {
 
 .citation-option:active {
   background: var(--accent-color);
-  color: white;
+  color: var(--on-accent);
 }
 
 .citation-badge {
@@ -1991,7 +1995,7 @@ kbd {
   align-items: center;
   justify-content: center;
   background: var(--accent-color);
-  color: #fff;
+  color: var(--on-accent);
   border-radius: var(--icon-border-radius);
   transition: transform 0.3s ease;
 }
@@ -2168,7 +2172,7 @@ kbd {
 .footer-social a:hover {
   background: var(--accent-color);
   border-color: var(--accent-color);
-  color: white;
+  color: var(--on-accent);
   transform: translateY(-2px);
 }
 

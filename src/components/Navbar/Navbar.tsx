@@ -122,18 +122,14 @@ const Navbar = ({onSearchClick}: NavbarProps) => {
             href={sectionHref('home')}
             className="logo-text"
             onClick={e => scrollToSection(e, 'home')}
-            aria-label="Mohammad Sadegh Sirjani — Home"
+            aria-label="SS — Mohammad Sadegh Sirjani, Home"
           >
             SS
           </a>
         </div>
-        <ul
-          className={`nav-menu ${isMenuOpen ? 'active' : ''}`}
-          id="nav-menu"
-          role="menubar"
-        >
+        <ul className={`nav-menu ${isMenuOpen ? 'active' : ''}`} id="nav-menu">
           {mainLinks.map(link => (
-            <li key={link.id} role="none">
+            <li key={link.id}>
               <a
                 href={sectionHref(link.id)}
                 className="nav-link"
@@ -145,7 +141,6 @@ const Navbar = ({onSearchClick}: NavbarProps) => {
           ))}
           <li
             className={`nav-dropdown ${isDropdownOpen ? 'open' : ''}`}
-            role="none"
             ref={dropdownRef}
           >
             <button
@@ -168,7 +163,7 @@ const Navbar = ({onSearchClick}: NavbarProps) => {
               ref={dropdownMenuRef}
             >
               {dropdownLinks.map((link, index) => (
-                <li key={link.id} role="none">
+                <li key={link.id}>
                   <a
                     href={sectionHref(link.id)}
                     className="nav-link"
@@ -185,11 +180,7 @@ const Navbar = ({onSearchClick}: NavbarProps) => {
             </ul>
           </li>
           {dropdownLinks.map(link => (
-            <li
-              key={`mobile-${link.id}`}
-              className="nav-mobile-item"
-              role="none"
-            >
+            <li key={`mobile-${link.id}`} className="nav-mobile-item">
               <a
                 href={sectionHref(link.id)}
                 className="nav-link"

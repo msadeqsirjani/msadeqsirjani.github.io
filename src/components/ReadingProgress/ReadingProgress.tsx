@@ -12,7 +12,7 @@ const ReadingProgress = () => {
     <div
       className="reading-progress"
       id="readingProgress"
-      aria-label="Reading progress"
+      aria-hidden="true"
       style={{width: `${progress}%`}}
     />
   );
