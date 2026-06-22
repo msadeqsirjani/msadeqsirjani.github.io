@@ -3,11 +3,9 @@ import {fetchPublications} from '../../data/content';
 import toast from 'react-hot-toast';
 import type {Publication} from '../../types';
 import Icon from '../Icon/Icon';
-import {
-  faChevronDown,
-  faChevronUp,
-  faExternalLinkAlt,
-} from '@fortawesome/free-solid-svg-icons';
+import {faChevronDown, faChevronUp} from '@fortawesome/free-solid-svg-icons';
+import PubToggle from './PubToggle';
+import PubLink from './PubLink';
 import useSettings from '../../hooks/useSettings';
 import bibtexData from '../../data/bibtex.json';
 
@@ -128,81 +126,35 @@ const Publications = () => {
                         )}
                         <p className="publication-venue">{pub.venue}</p>
                         <div className="publication-links">
-                          {pub.link && (
-                            <a
-                              href={pub.link}
-                              className="pub-text-link doi-link"
-                              target="_blank"
-                              rel="noopener"
-                            >
-                              DOI <Icon icon={faExternalLinkAlt} size="xs" />
-                            </a>
-                          )}
+                          {pub.link && <PubLink label="DOI" href={pub.link} />}
                           {pub.pdfLink && (
-                            <a
-                              href={`/${pub.pdfLink}`}
-                              className="pub-text-link doi-link"
-                              target="_blank"
-                              rel="noopener"
-                            >
-                              PDF <Icon icon={faExternalLinkAlt} size="xs" />
-                            </a>
+                            <PubLink label="PDF" href={`/${pub.pdfLink}`} />
                           )}
                           {pub.bibtexId && (
-                            <button
-                              type="button"
-                              className="pub-text-link doi-link"
+                            <PubLink
+                              label="BibTeX"
                               onClick={() => void handleCopyBibtex(pub)}
-                            >
-                              BibTeX <Icon icon={faExternalLinkAlt} size="xs" />
-                            </button>
+                            />
                           )}
                           {pub.abstract && (
-                            <button
-                              type="button"
-                              className="pub-text-link pub-toggle"
-                              onClick={() => toggleSection(key, 'abstract')}
-                              aria-expanded={isExpanded}
-                            >
-                              Abstract{' '}
-                              <Icon
-                                icon={isExpanded ? faChevronUp : faChevronDown}
-                                size="xs"
-                              />
-                            </button>
+                            <PubToggle
+                              label="Abstract"
+                              expanded={isExpanded}
+                              onToggle={() => toggleSection(key, 'abstract')}
+                            />
                           )}
                           {pub.keywords && pub.keywords.length > 0 && (
-                            <button
-                              type="button"
-                              className="pub-text-link pub-toggle"
-                              onClick={() => toggleSection(key, 'keywords')}
-                              aria-expanded={isKeywordsExpanded}
-                            >
-                              Keywords{' '}
-                              <Icon
-                                icon={
-                                  isKeywordsExpanded
-                                    ? faChevronUp
-                                    : faChevronDown
-                                }
-                                size="xs"
-                              />
-                            </button>
-                          )}
-                          <button
-                            type="button"
-                            className="pub-text-link pub-toggle"
-                            onClick={() => toggleSection(key, 'info')}
-                            aria-expanded={isInfoExpanded}
-                          >
-                            Info{' '}
-                            <Icon
-                              icon={
-                                isInfoExpanded ? faChevronUp : faChevronDown
-                              }
-                              size="xs"
+                            <PubToggle
+                              label="Keywords"
+                              expanded={isKeywordsExpanded}
+                              onToggle={() => toggleSection(key, 'keywords')}
                             />
-                          </button>
+                          )}
+                          <PubToggle
+                            label="Info"
+                            expanded={isInfoExpanded}
+                            onToggle={() => toggleSection(key, 'info')}
+                          />
                         </div>
                       </div>
                     </div>

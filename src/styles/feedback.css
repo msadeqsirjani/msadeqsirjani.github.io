@@ -1,0 +1,40 @@
+.error {
+  color: var(--error-color);
+  background-color: #fef2f2;
+  border: 1px solid var(--error-color);
+  padding: 8px;
+  border-radius: 4px;
+  font-weight: 500;
+}
+
+.success {
+  color: var(--success-color);
+  background-color: #ecfdf5;
+  border: 1px solid var(--success-color);
+  padding: 8px;
+  border-radius: 4px;
+  font-weight: 500;
+}
+
+[data-theme='dark'] .error {
+  color: var(--error-color);
+  background-color: #1f1010;
+  border-color: var(--error-color);
+}
+
+[data-theme='dark'] .success {
+  color: var(--success-color);
+  background-color: #0d1f15;
+  border-color: var(--success-color);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+

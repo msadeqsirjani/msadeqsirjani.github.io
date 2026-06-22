@@ -1,0 +1,47 @@
+.section {
+  padding: 4rem 0;
+}
+
+.section-title {
+  font-size: var(--fs-lg);
+  font-weight: 700;
+  margin-bottom: 1.75rem;
+  padding-bottom: 0.75rem;
+  color: var(--text-color);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  position: relative;
+}
+
+.section-title::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 2.25rem;
+  height: 3px;
+  border-radius: 3px;
+  background: var(--accent-color);
+}
+
+.bio-text p {
+  font-size: var(--fs-md);
+  color: var(--text-color);
+  margin-bottom: 1.5rem;
+  text-align: justify;
+
+  text-wrap: pretty;
+
+  hyphens: auto;
+}
+
+.bio-text p a {
+  color: var(--accent-color);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.bio-text p a:hover {
+  text-decoration: underline;
+}
+

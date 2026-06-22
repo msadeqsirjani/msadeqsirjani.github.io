@@ -1,0 +1,163 @@
+.timeline-list.research-timeline,
+.timeline-list.education-timeline {
+  max-width: none;
+  margin: 0;
+}
+
+.timeline-item.education-item {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  gap: 2rem;
+}
+
+.education-item .education-dates {
+  text-align: center;
+  padding-top: 0.2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.education-dates .duration {
+  color: var(--text-light);
+  font-weight: 400;
+  font-size: var(--fs-sm);
+  line-height: 1.4;
+}
+
+[data-theme='dark'] .education-dates .duration {
+  color: var(--text-light);
+}
+
+.education-current-badge,
+.research-current-badge {
+  display: block;
+  background: rgba(var(--accent-rgb, 30, 64, 175), 0.12);
+  color: var(--accent-color);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  padding: 0.15rem 0.6rem;
+  border-radius: 3px;
+  margin-top: 0.4rem;
+  width: fit-content;
+  text-transform: uppercase;
+}
+
+.education-content {
+  flex: 1;
+}
+
+.education-main {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  width: 100%;
+  min-width: 0;
+}
+
+.education-main__logo {
+  flex-shrink: 0;
+  line-height: 0;
+}
+
+.education-main__body {
+  flex: 1;
+  min-width: 0;
+}
+
+.education-date-mobile {
+  display: none;
+}
+
+.education-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.education-logo-link {
+  display: inline-block;
+  text-decoration: none;
+  cursor: pointer;
+  position: relative;
+}
+
+.education-logo {
+  width: 72px;
+  height: 72px;
+  object-fit: contain;
+  object-position: center;
+  flex-shrink: 0;
+  border-radius: 8px;
+  background: var(--logo-surface);
+  padding: 0.6rem;
+  border: 1px solid var(--border-color);
+}
+
+[data-theme='dark'] .education-logo {
+  background: var(--logo-surface);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.education-logo-link--row {
+  flex-shrink: 0;
+  line-height: 0;
+}
+
+.education-logo--circle {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  padding: 0.45rem;
+  object-fit: contain;
+  object-position: center;
+  display: block;
+  box-sizing: border-box;
+}
+
+.education-details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.education-degree {
+  font-size: var(--fs-md);
+  color: var(--text-color);
+  font-weight: 700;
+  margin-bottom: 0.3rem;
+  display: block;
+}
+
+.education-university-row {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.3rem;
+}
+
+.education-university {
+  font-size: var(--fs-base);
+  color: var(--accent-color);
+  font-style: italic;
+  font-weight: normal;
+  margin: 0;
+  display: inline;
+}
+
+.education-gpa {
+  font-size: var(--fs-base);
+  color: var(--text-light);
+  font-weight: normal;
+  margin: 0;
+  display: inline;
+}
+
+.description {
+  color: var(--text-light);
+  line-height: 1.5;
+  font-size: var(--fs-base);
+}
+

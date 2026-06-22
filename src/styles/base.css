@@ -1,0 +1,186 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.theme-transitioning *,
+.theme-transitioning *::before,
+.theme-transitioning *::after {
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease,
+    border-color 0.3s ease !important;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+}
+
+img,
+picture {
+  max-width: 100%;
+  height: auto;
+}
+
+.icon-svg {
+  display: inline-block;
+  vertical-align: -0.125em;
+  overflow: visible;
+  flex-shrink: 0;
+}
+
+.icon-spin {
+  animation: icon-spin 1s linear infinite;
+}
+
+@keyframes icon-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .icon-spin {
+    animation-duration: 1.5s;
+  }
+}
+
+.navbar,
+.btn {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+:root {
+  /* Material 3 — light scheme (blue primary seed) */
+  --text-color: #1b1b1f; /* on-surface */
+  --text-light: #44474e; /* on-surface-variant */
+  --white: #fdfcff; /* surface */
+  --gray-light: #eef0f7; /* surface-variant / container */
+  --border-color: #c4c7cf; /* outline-variant */
+  --accent-color: #1565c0; /* primary */
+  --accent-color-light: #1565c0;
+  --accent-hover: #0d47a1;
+  --accent-rgb: 21, 101, 192;
+  --error-color: #ba1a1a;
+  --success-color: #146c2e;
+  --focus-color: #1565c0;
+
+  /* Material 3 shape scale */
+  --button-border-radius: 20px;
+  --icon-border-radius: 12px;
+  --button-border-width: 1px;
+  --shape-card: 16px;
+  --shape-chip: 8px;
+
+  /* Material 3 elevation (umbra + penumbra) */
+  --elev-1: 0 1px 2px rgba(0, 0, 0, 0.3), 0 1px 3px 1px rgba(0, 0, 0, 0.12);
+  --elev-2: 0 1px 2px rgba(0, 0, 0, 0.3), 0 2px 6px 2px rgba(0, 0, 0, 0.12);
+  --elev-3: 0 1px 3px rgba(0, 0, 0, 0.3), 0 4px 8px 3px rgba(0, 0, 0, 0.12);
+
+  /* State layer opacities (MD3) */
+  --state-hover: 0.08;
+  --state-press: 0.12;
+
+  /* Logos are designed for a light backing; intentionally white in both themes */
+  --logo-surface: #ffffff;
+  /* Readable text/icon color on top of --accent-color (per theme) */
+  --on-accent: #ffffff;
+
+  /* Type scale — fixed font-size tokens (single source of truth) */
+  --fs-xs: 0.75rem; /* 12px — badges, labels, captions */
+  --fs-sm: 0.875rem; /* 14px — meta, authors, links, secondary */
+  --fs-base: 1rem; /* 16px — body */
+  --fs-md: 1.125rem; /* 18px — lead text */
+  --fs-lg: 1.25rem; /* 20px — sub-headings */
+  --fs-xl: 1.5rem; /* 24px — section bits */
+  --fs-2xl: 1.875rem; /* 30px — headings */
+  --fs-3xl: 2.5rem; /* 40px — hero/title */
+}
+
+[data-theme='dark'] {
+  /* Material 3 — dark scheme */
+  --text-color: #e4e2e6; /* on-surface */
+  --text-light: #c4c6cf; /* on-surface-variant */
+  --white: #131316; /* surface */
+  --gray-light: #1e1f24; /* surface-variant / container */
+  --border-color: #43474e; /* outline-variant */
+  --accent-color: #a8c7fa; /* primary (light tone) */
+  --accent-hover: #c8defb;
+  --accent-rgb: 168, 199, 250;
+  --error-color: #ffb4ab;
+  --success-color: #6dd58c;
+  --focus-color: #a8c7fa;
+  --card-bg: #1e1f24;
+  --hover-bg: #2a2b31;
+  /* Dark primary is light — needs dark text on top for contrast */
+  --on-accent: #0a305f;
+  /* Dark elevation uses subtler shadows */
+  --elev-1: 0 1px 3px rgba(0, 0, 0, 0.6);
+  --elev-2: 0 2px 6px rgba(0, 0, 0, 0.6);
+  --elev-3: 0 4px 10px rgba(0, 0, 0, 0.7);
+}
+
+body {
+  font-family:
+    'Roboto',
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    sans-serif;
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--text-color);
+  background-color: var(--white);
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+
+h1,
+h2,
+h3,
+.section-title,
+.hero-title {
+  font-weight: 700;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+ul,
+ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
