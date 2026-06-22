@@ -1218,20 +1218,9 @@ kbd {
 .show-more-container {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 1.25rem;
   margin-top: 2.5rem;
-}
-
-.show-more-container::before,
-.show-more-container::after {
-  content: '';
-  flex: 1;
-  height: 1px;
-  background: linear-gradient(to right, transparent, var(--border-color));
-}
-
-.show-more-container::after {
-  background: linear-gradient(to left, transparent, var(--border-color));
 }
 
 .show-more-btn,
@@ -1488,12 +1477,12 @@ kbd {
 .pub-keyword-tag {
   display: inline-flex;
   align-items: center;
-  background: rgba(var(--accent-rgb), 0.12);
+  background: var(--white);
   color: var(--accent-color);
   font-size: var(--fs-sm);
   font-weight: 600;
   padding: 0.3rem 0.7rem;
-  border: 1px solid transparent;
+  border: 1px solid var(--border-color);
   border-radius: var(--button-border-radius);
 }
 
@@ -4715,6 +4704,7 @@ a {
 }
 
 .btn:hover {
+  text-decoration: none;
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }

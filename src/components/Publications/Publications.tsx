@@ -157,20 +157,6 @@ const Publications = () => {
                               BibTeX <Icon icon={faExternalLinkAlt} size="xs" />
                             </button>
                           )}
-                          <button
-                            type="button"
-                            className="pub-text-link pub-toggle"
-                            onClick={() => toggleSection(key, 'info')}
-                            aria-expanded={isInfoExpanded}
-                          >
-                            Info{' '}
-                            <Icon
-                              icon={
-                                isInfoExpanded ? faChevronUp : faChevronDown
-                              }
-                              size="xs"
-                            />
-                          </button>
                           {pub.abstract && (
                             <button
                               type="button"
@@ -203,10 +189,40 @@ const Publications = () => {
                               />
                             </button>
                           )}
+                          <button
+                            type="button"
+                            className="pub-text-link pub-toggle"
+                            onClick={() => toggleSection(key, 'info')}
+                            aria-expanded={isInfoExpanded}
+                          >
+                            Info{' '}
+                            <Icon
+                              icon={
+                                isInfoExpanded ? faChevronUp : faChevronDown
+                              }
+                              size="xs"
+                            />
+                          </button>
                         </div>
                       </div>
                     </div>
 
+                    {isExpanded && pub.abstract && (
+                      <div className="publication-abstract">
+                        <p>{pub.abstract}</p>
+                      </div>
+                    )}
+                    {isKeywordsExpanded &&
+                      pub.keywords &&
+                      pub.keywords.length > 0 && (
+                        <div className="pub-keywords pub-keywords-expanded">
+                          {pub.keywords.map(kw => (
+                            <span key={kw} className="pub-keyword-tag">
+                              {kw}
+                            </span>
+                          ))}
+                        </div>
+                      )}
                     {isInfoExpanded && (
                       <div className="publication-info">
                         <span className="info-chip">
@@ -227,22 +243,6 @@ const Publications = () => {
                         )}
                       </div>
                     )}
-                    {isExpanded && pub.abstract && (
-                      <div className="publication-abstract">
-                        <p>{pub.abstract}</p>
-                      </div>
-                    )}
-                    {isKeywordsExpanded &&
-                      pub.keywords &&
-                      pub.keywords.length > 0 && (
-                        <div className="pub-keywords pub-keywords-expanded">
-                          {pub.keywords.map(kw => (
-                            <span key={kw} className="pub-keyword-tag">
-                              {kw}
-                            </span>
-                          ))}
-                        </div>
-                      )}
                   </div>
                 );
               })
