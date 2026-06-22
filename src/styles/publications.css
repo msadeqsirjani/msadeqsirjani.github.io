@@ -447,9 +447,9 @@
 
 .pub-year {
   font-size: var(--fs-xs);
-  font-weight: 700;
-  letter-spacing: 0.04em;
+  font-weight: 500;
   color: var(--text-light);
+  opacity: 0.75;
 }
 
 .publication-header {

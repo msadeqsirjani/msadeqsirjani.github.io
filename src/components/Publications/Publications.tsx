@@ -50,25 +50,21 @@ const Publications = () => {
                 className="publication-item"
                 role="listitem"
               >
-                <div className="publication-header">
-                  <div className="publication-header-content">
-                    <h3 className="publication-title">{pub.title}</h3>
-                    {pub.authors && (
-                      <p className="publication-authors">
-                        {renderAuthors(pub.authors)}
-                      </p>
-                    )}
-                    {pub.venue && !/preprint/i.test(pub.venue) && (
-                      <p className="publication-venue">{pub.venue}</p>
-                    )}
-                  </div>
-                  <div className="publication-side">
-                    <span className={`pub-status-badge pub-status-${pub.status}`}>
-                      {getStatusLabel(pub.status)}
-                    </span>
-                    <span className="pub-year">{pub.year}</span>
-                  </div>
+                <div className="pub-card-meta">
+                  <span className={`pub-status-badge pub-status-${pub.status}`}>
+                    {getStatusLabel(pub.status)}
+                  </span>
+                  <span className="pub-card-metaitem">{pub.year}</span>
                 </div>
+                <h3 className="publication-title">{pub.title}</h3>
+                {pub.authors && (
+                  <p className="publication-authors">
+                    {renderAuthors(pub.authors)}
+                  </p>
+                )}
+                {pub.venue && !/preprint/i.test(pub.venue) && (
+                  <p className="publication-venue">{pub.venue}</p>
+                )}
               </div>
             ))}
           </div>

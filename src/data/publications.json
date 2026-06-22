@@ -6,7 +6,12 @@
     "status": "review",
     "authors": "Mohammad Ahmad, Mohammad Sadegh Sirjani, Wei Wei, Mimi Xie",
     "abstract": "The memory wall problem remains a core bottleneck in modern computing, as data movement between processor and memory dominates both energy and latency. In-memory computing (IMC) mitigates this bottleneck by moving computation closer to where data reside, but practical IMC requires memory technologies that are fast, dense, non-volatile, and high-endurance. Domain-wall memory (DWM) is a promising candidate because it meets these requirements. However, prior DWM-based IMC designs rely primarily on single-domain reads or repeated intermediate writes, limiting performance and energy efficiency. This paper presents MOSAIC, a hybrid IMC architecture built on the Multi-Domain Magnetic Tunnel Junction (MDMTJ) to enable multi-bit sensing in DWM. An N-domain MDMTJ window yields N + 1 resistance levels that encode the popcount of the underlying bits. MOSAIC leverages this popcount to support multi-operand bitwise logic directly, while lightweight CMOS arithmetic logic extends it to addition, multiplication, and merged-reduction multiply-accumulate operations. By sharing the reduction logic across operations, MOSAIC provides a broad arithmetic suite with low area overhead. Evaluation results show that MOSAIC is 2.2× faster for addition and 4.9× faster for multiplication compared with the state of the art. These benefits also extend to full-network inference, where MOSAIC delivers substantially higher energy efficiency and throughput.",
-    "keywords": ["In-memory Computing", "Domain Wall Memory", "Emerging Memory Technologies", "Machine Learning"]
+    "keywords": [
+      "In-memory Computing",
+      "Domain Wall Memory",
+      "Emerging Memory Technologies",
+      "Machine Learning"
+    ]
   },
   {
     "title": "SparseBeat: Adaptive Compressed Sensing for Arrhythmia Classification on Energy-Harvesting Wearables",
@@ -15,33 +20,32 @@
     "status": "review",
     "authors": "Mohammad Sadegh Sirjani, Mohammad Ahmad, Wei Wei, Paul Dutton, Dylan Yanez, Chen Pan, Mimi Xie",
     "abstract": "Battery-powered wearable electrocardiogram (ECG) monitors enable arrhythmia detection outside clinical settings, but their reliance on finite battery capacity limits continuous long-term monitoring, as periodic recharging interrupts data acquisition and may cause transient cardiac events to be missed. Energy harvesting removes the battery constraint enabling self-sustaining ECG monitoring, yet the power it delivers is intermittent and fragments ECG acquisition windows, which in turn renders fixed-rate arrhythmia classifiers unreliable. To address this challenge, this work leverages compressed sensing to capture key features from sparse measurements under intermittent power supply. We propose SparseBeat, an adaptive compressed-sensing framework that adjusts its sensing density according to varying energy conditions. A lightweight unified deep neural network model was designed that classifies arrhythmias directly from sparse ECG measurements without reconstructing the signal. We start with a universal measurement matrix and then adapt it into a class-specific matrix based on the gating output, enabling personalized sparse sensing for patient-specific signal features. We evaluated our framework on PTB-XL, a large-scale 12-lead clinical ECG dataset, SparseBeat achieves 94.9%, 94.3%, and 93.2% super-class accuracy under high, medium, and low energy budgets respectively. We also implemented SparseBeat as an end-to-end system on the real hardware MSP430FR5994 microcontroller which achieves fast inference in 493 ms with 1.02 mJ energy consumption per classification. Additionally, the adaptive sparse sampling improves energy efficiency by 7.7–22.6%.",
-    "keywords": ["Compressed Sensing", "ECG Classification", "Energy Harvesting", "Intermittent Computing", "TinyML"]
-  },
-  {
-    "title": "Are LLM Benchmarks Already Contaminated? A Systematic Review of Contamination Detection Methods",
-    "venue": "Preprint",
-    "year": "2026",
-    "status": "accepted",
-    "authors": "Erfan Nourbakhsh, Mohammad Sadegh Sirjani, Amir Mousavi, Khoa Nguyen, John Quarles, Mimi Xie, Rocky Slavin",
-    "link": "https://doi.org/10.13140/RG.2.2.12579.41764",
-    "pdfLink": "assets/docs/publications/RG.2.2.12579.41764.pdf",
-    "bibtexId": "nourbakhsh2026contaminated",
-    "abstract": "Large Language Models (LLMs) are trained on web-scale corpora, increasing the risk that benchmark test data appears in training sets and inflates reported performance. We present a systematic literature review of 55 studies on LLM benchmark contamination through late 2025. Our contributions are: (1) a four-tier contamination taxonomy (Exact, Syntactic, Semantic, Task-Level; T1-T4); (2) a comparative analysis of five detection families (string-matching, likelihood-based, membership inference, LLM-prompted detection, and benchmark auditing), including access assumptions and failure modes; (3) a synthesis of contamination evidence on MMLU, GSM8K, HumanEval, and HellaSwag by measurement construct; (4) a comparative evaluation of mitigation strategies across lifecycle points, access assumptions, and evidence maturity; and (5) a Contamination Transparency Card (CTC) framework for future releases. Across studies, no detection method is consistently reliable across contamination tiers, model-access settings, and training stages. We identify instruction tuning as a persistent blind spot, note that RL/post-training contamination auditing is only beginning to mature, and report inflation estimates spanning roughly 6%-40% under benchmark- and setting-dependent assumptions.",
-    "citations": 0,
-    "keywords": ["Large Language Models", "Benchmark Contamination", "Data Contamination", "Contamination Detection", "Systematic Review"]
+    "keywords": [
+      "Compressed Sensing",
+      "ECG Classification",
+      "Energy Harvesting",
+      "Intermittent Computing",
+      "TinyML"
+    ]
   },
   {
     "title": "CogAdapt: Transferring Clinical ECG Foundation Models to Wearable Cognitive Load Assessment via Lead Adaptation",
     "venue": "arXiv preprint",
     "year": "2026",
     "status": "review",
-    "authors": "Amir Mousavi, Mohammad Sadegh Sirjani, Erfan Nourbakhsh, Mimi Xie, Rocky Slavin, Leslie Neely, John Davis, John Quarles",
+    "authors": "Amir Mousavi, Erfan Nourbakhsh, Mohammad Sadegh Sirjani, Rocky Slavin, Mimi Xie, Leslie Neely, John Davis, John Quarles",
     "link": "https://arxiv.org/abs/2605.22774",
     "pdfLink": "assets/docs/publications/2605.22774v2.pdf",
     "bibtexId": "mousavi2026cogadapt",
     "abstract": "Real-time cognitive load assessment is essential for adaptive human-computer interaction but remains challenging due to limited labeled data and poor cross-subject generalization. Recent ECG foundation models pre-trained on millions of clinical recordings offer rich representations, but cannot be directly applied to wearable devices due to sensor configuration mismatch and task differences. In this paper, we propose CogAdapt, a framework that adapts clinical ECG foundation models to wearable cognitive load assessment. CogAdapt introduces LeadBridge, a learnable adapter that transforms 3-lead wearable signals into anatomically consistent 12-lead representations, and ProFine, a progressive fine-tuning strategy that gradually unfreezes encoder layers while preventing catastrophic forgetting. Evaluations on two public datasets (CLARE and CL-Drive) under leave-one-subject-out cross-validation show that CogAdapt substantially outperforms baselines trained from scratch, achieving macro-F1 scores of 0.626 and 0.768. These results demonstrate the promise of foundation model adaptation for subject-independent cognitive load assessment from wearable sensors.",
     "citations": 0,
-    "keywords": ["Cognitive Load Assessment", "ECG Foundation Models", "Wearable Sensors", "Transfer Learning", "Fine-Tuning"]
+    "keywords": [
+      "Cognitive Load Assessment",
+      "ECG Foundation Models",
+      "Wearable Sensors",
+      "Transfer Learning",
+      "Fine-Tuning"
+    ]
   },
   {
     "title": "MambaGaze: Bidirectional Mamba with Explicit Missing Data Modeling for Cognitive Load Assessment from Eye-Gaze Tracking Data",
@@ -54,7 +58,32 @@
     "bibtexId": "mousavi2026mambagaze",
     "abstract": "Real-time cognitive load assessment from eye-tracking signals could potentially enable adaptive human-centered-AI such as safety-critical applications such as driver vigilance monitoring or automated flight deck assistance, yet two challenges persist: handling frequent data missingness from blinks and tracking failures, and efficiently modeling long-range temporal dependencies. We propose MambaGaze, a framework that addresses these challenges through 1) XMD encoding, which augments raw features with observation masks and time-deltas to explicitly model data uncertainty, and 2) bidirectional Mamba-2, which captures temporal dependencies with linear computational complexity. Experiments on CLARE and CL-Drive datasets under leave-one-subject-out evaluation show that MambaGaze achieves 76.8% and 73.1% accuracy, respectively, outperforming CNN, Transformer, ResNet, and VGG baselines by 4-12 percentage points. Edge deployment benchmarks on NVIDIA Jetson platforms demonstrate real-time inference at 43-68 FPS with power consumption below 7.5W, confirming feasibility for wearable cognitive load monitoring.",
     "citations": 0,
-    "keywords": ["Cognitive Load Assessment", "Eye-Gaze Tracking", "Mamba", "Deep Learning", "Edge Computing"]
+    "keywords": [
+      "Cognitive Load Assessment",
+      "Eye-Gaze Tracking",
+      "Mamba",
+      "Deep Learning",
+      "Edge Computing"
+    ]
+  },
+  {
+    "title": "Are LLM Benchmarks Already Contaminated? A Systematic Review of Contamination Detection Methods",
+    "venue": "Preprint",
+    "year": "2026",
+    "status": "accepted",
+    "authors": "Erfan Nourbakhsh, Mohammad Sadegh Sirjani, Amir Mousavi, Khoa Nguyen, John Quarles, Mimi Xie, Rocky Slavin",
+    "link": "https://doi.org/10.13140/RG.2.2.12579.41764",
+    "pdfLink": "assets/docs/publications/RG.2.2.12579.41764.pdf",
+    "bibtexId": "nourbakhsh2026contaminated",
+    "abstract": "Large Language Models (LLMs) are trained on web-scale corpora, increasing the risk that benchmark test data appears in training sets and inflates reported performance. We present a systematic literature review of 55 studies on LLM benchmark contamination through late 2025. Our contributions are: (1) a four-tier contamination taxonomy (Exact, Syntactic, Semantic, Task-Level; T1-T4); (2) a comparative analysis of five detection families (string-matching, likelihood-based, membership inference, LLM-prompted detection, and benchmark auditing), including access assumptions and failure modes; (3) a synthesis of contamination evidence on MMLU, GSM8K, HumanEval, and HellaSwag by measurement construct; (4) a comparative evaluation of mitigation strategies across lifecycle points, access assumptions, and evidence maturity; and (5) a Contamination Transparency Card (CTC) framework for future releases. Across studies, no detection method is consistently reliable across contamination tiers, model-access settings, and training stages. We identify instruction tuning as a persistent blind spot, note that RL/post-training contamination auditing is only beginning to mature, and report inflation estimates spanning roughly 6%-40% under benchmark- and setting-dependent assumptions.",
+    "citations": 0,
+    "keywords": [
+      "Large Language Models",
+      "Benchmark Contamination",
+      "Data Contamination",
+      "Contamination Detection",
+      "Systematic Review"
+    ]
   },
   {
     "title": "Q-Learning-Based Task Scheduling Scheme to Enhance Energy Consumption and QoS in IoT Environments",
@@ -67,7 +96,12 @@
     "bibtexId": "GHAFFARI2025101247",
     "citations": 3,
     "abstract": "As the proliferation of Internet of Things (IoT) devices continues unabated, the demand for efficient task scheduling mechanisms becomes increasingly critical. Task scheduling in the IoT is pivotal for optimizing resource utilization, minimizing latency, and enhancing the overall system's performance. This research proposes a novel method called QTE-IoT, standing for a Q-learning-based task scheduling scheme to enhance energy consumption and QoS in IoT environments. QTE-IoT commences by categorizing tasks into three classes: time-sensitive tasks, security tasks, and normal tasks. This classification is achieved using a multi-layer perceptron artificial neural network. Subsequently, time-sensitive tasks are offloaded to the fog layer and scheduled using the proposed African Vulture Algorithm combined with Q-learning, which we designate as QAVA. Security tasks are offloaded to the private cloud, while normal tasks are offloaded to the public cloud. For task scheduling in private and public cloud environments, QTE-IoT employs a proposed enhanced version of Artificial Rabbits Optimization integrated with the Q-learning algorithm, known as QARO. Additionally, the QTE-IoT method incorporates a monitoring agent to oversee resource workload, thereby preventing congestion and delays. Simulation results on instances of the HCSP benchmark dataset demonstrate that QTE-IoT outperforms other state-of-the-art methods in various performance metrics. QTE-IoT achieves significant improvements compared to other methods and algorithms, including a 6% to 12% reduction in energy consumption. Furthermore, QTE-IoT exhibits substantial improvements in load imbalance (42% to 79%), response time (25% to 40%), and deadline satisfaction (6% to 39%) compared to existing approaches.",
-    "keywords": ["Internet of Things", "Metaheuristic", "Reinforcement Learning", "Task Scheduling"]
+    "keywords": [
+      "Internet of Things",
+      "Metaheuristic",
+      "Reinforcement Learning",
+      "Task Scheduling"
+    ]
   },
   {
     "title": "Controller placement in software-defined networks using reinforcement learning and metaheuristics",
@@ -80,7 +114,12 @@
     "bibtexId": "Sirjani2025",
     "abstract": "Software-Defined Networking (SDN) separates the control and data layers, offering scalable and flexible network management. A key challenge is the optimal placement of SDN controllers, which has been shown to be an NP-hard problem. Existing methods often struggle to balance multiple performance objectives effectively. This paper presents a novel two-step approach for SDN controller placement. First, Deep Q-Learning (DQL) is employed to find an initial solution by learning from the network environment. Then, the Bedbug-GLA metaheuristic algorithm refines this solution. We evaluate our method using four real-world network topologies and compare it with eight state-of-the-art algorithms. Experimental results demonstrate that our approach achieves an 18% improvement in controller load, a 69% reduction in congested overload, and a 20% decrease in energy consumption.",
     "citations": 8,
-    "keywords": ["Bedbug Metaheuristic Algorithm", "Controller Placement Problem", "Energy Consumption", "Software-Defined Network"]
+    "keywords": [
+      "Bedbug Metaheuristic Algorithm",
+      "Controller Placement Problem",
+      "Energy Consumption",
+      "Software-Defined Network"
+    ]
   },
   {
     "title": "Optimizing Task Scheduling in Fog Computing with Deadline Awareness",
@@ -94,7 +133,13 @@
     "bibtexId": "sirjani2026optimizing",
     "abstract": "The Internet of Things (IoT) has become a fundamental component of modern smart applications, particularly in time-sensitive scenarios such as healthcare monitoring and autonomous systems. Many IoT applications require guaranteed response times to meet stringent deadlines, making efficient task scheduling a critical challenge. Fog computing addresses these needs by positioning computational resources closer to end users. However, existing task scheduling approaches often fail to fully consider deadline awareness, which can lead to performance degradation in time-critical environments. In this paper, we propose a novel Reinforcement Learning-based Improved GEO (RIGEO) algorithm that combines improved Geometric Optimization (IGEO) with Reinforcement Learning (RL) to enhance task scheduling performance in fog computing environments. The key innovation is the integration of deadline awareness into the optimization framework, which significantly reduces task failures in delay-sensitive applications. Through comprehensive simulation experiments using iFogSim, we evaluate RIGEO against several state-of-the-art algorithms, including ACO-IWD, SB-PSO, EEMR, and NSGA-III. Our results demonstrate substantial performance improvements, with RIGEO achieving a 29% reduction in energy consumption, an 86% improvement in average response time, and a 19% reduction in deadline violations.",
     "citations": 4,
-    "keywords": ["Internet of Things", "Fog Computing", "Job Scheduling", "Golden Eagle Optimization Algorithm", "Reinforcement Learning"]
+    "keywords": [
+      "Internet of Things",
+      "Fog Computing",
+      "Job Scheduling",
+      "Golden Eagle Optimization Algorithm",
+      "Reinforcement Learning"
+    ]
   },
   {
     "title": "Data mining and cloud computing for customer pattern analysis",
@@ -107,7 +152,13 @@
     "bibtexId": "10496623",
     "abstract": "In today's competitive business landscape, understanding customer behavior is crucial for organizational success. This paper explores the integration of cloud computing infrastructure, software engineering methodologies, and data mining techniques to analyze customer patterns and optimize the customer lifecycle. We present a comprehensive framework that leverages cloud-based resources to process large-scale customer data efficiently. Our approach combines various data mining algorithms to extract meaningful insights about customer preferences, purchasing patterns, and engagement behaviors. The proposed system demonstrates how organizations can utilize these technologies to enhance customer relationship management, improve service delivery, and make data-driven decisions.",
     "citations": 2,
-    "keywords": ["Data Mining", "Software Engineering", "Customer Pattern Analysis", "Cloud Computing", "Optimization"]
+    "keywords": [
+      "Data Mining",
+      "Software Engineering",
+      "Customer Pattern Analysis",
+      "Cloud Computing",
+      "Optimization"
+    ]
   },
   {
     "title": "SecVanet: provably secure authentication protocol for sending emergency events in VANET",
@@ -120,7 +171,13 @@
     "bibtexId": "10433027",
     "abstract": "Vehicular Ad Hoc Networks (VANETs) play a vital role in intelligent transportation systems by enabling vehicle-to-vehicle and vehicle-to-infrastructure communications. However, the transmission of emergency messages in VANETs faces significant security challenges, including authentication, privacy preservation, and resistance to various attacks. This paper presents SecVanet, a provably secure authentication protocol specifically designed for emergency event communication in VANET environments. Our protocol ensures secure message transmission while maintaining vehicle privacy and preventing unauthorized access. We formally verify the security properties of SecVanet using the Scyther verification tool, demonstrating its resistance to common attacks such as replay attacks, man-in-the-middle attacks, and impersonation attacks. Performance analysis shows that SecVanet achieves lower computational complexity compared to existing protocols while maintaining robust security guarantees.",
     "citations": 10,
-    "keywords": ["Authentication", "Privacy", "Key Agreement", "VANET", "Scyther Tool"]
+    "keywords": [
+      "Authentication",
+      "Privacy",
+      "Key Agreement",
+      "VANET",
+      "Scyther Tool"
+    ]
   },
   {
     "title": "A Comparative Evaluation of Machine Learning Algorithms for IDS in IoT network",
@@ -133,6 +190,12 @@
     "bibtexId": "10433047",
     "abstract": "The rapid proliferation of Internet of Things (IoT) devices has introduced significant security challenges, making Intrusion Detection Systems (IDS) essential for protecting IoT networks from cyber threats. Machine learning algorithms have emerged as promising solutions for developing effective IDS. However, selecting the most appropriate algorithm remains a challenge due to varying performance characteristics across different attack scenarios. This paper presents a comprehensive comparative evaluation of five popular machine learning algorithms: Logistic Regression (LR), Random Forest (RF), K-Nearest Neighbors (KNN), Support Vector Machine (SVM), and XGBoost for IoT intrusion detection. We conduct extensive experiments using the UNSW-NB15 dataset, which contains diverse network attack patterns. Our evaluation considers multiple performance metrics including accuracy, precision, recall, and F1-score. The experimental results demonstrate that XGBoost achieves the highest overall accuracy and recall rates, making it particularly suitable for IoT-based intrusion detection systems.",
     "citations": 3,
-    "keywords": ["Network Security", "Intrusion Detection System", "Artificial Intelligence", "Machine Learning", "Data Mining"]
+    "keywords": [
+      "Network Security",
+      "Intrusion Detection System",
+      "Artificial Intelligence",
+      "Machine Learning",
+      "Data Mining"
+    ]
   }
 ]
