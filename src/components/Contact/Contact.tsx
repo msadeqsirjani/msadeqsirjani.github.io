@@ -8,7 +8,6 @@ import {
   faEnvelope,
   faUniversity,
 } from '@fortawesome/free-solid-svg-icons';
-import {trackContactSubmission} from '../../utils/analytics';
 
 const RATE_LIMIT_MS = 30000;
 const MIN_MESSAGE_LENGTH = 10;
@@ -115,7 +114,6 @@ const Contact = () => {
       });
 
       if (response.ok) {
-        trackContactSubmission();
         setLastSubmitTime(now);
         toast.success('Message sent successfully!');
         setFormData({name: '', email: '', subject: '', message: ''});

@@ -20,9 +20,6 @@ const PullToRefresh = lazy(
 const QuickActions = lazy(
   () => import('./components/QuickActions/QuickActions'),
 );
-const CookieConsent = lazy(
-  () => import('./components/CookieConsent/CookieConsent'),
-);
 const OfflineIndicator = lazy(
   () => import('./components/OfflineIndicator/OfflineIndicator'),
 );
@@ -182,11 +179,6 @@ function App() {
           />
           <DeferredIdle>
             <Suspense fallback={null}>
-              <CookieConsent />
-            </Suspense>
-          </DeferredIdle>
-          <DeferredIdle>
-            <Suspense fallback={null}>
               <OfflineIndicator />
             </Suspense>
           </DeferredIdle>
@@ -259,11 +251,6 @@ function App() {
         <DeferredIdle>
           <Suspense fallback={null}>
             <QuickActions />
-          </Suspense>
-        </DeferredIdle>
-        <DeferredIdle>
-          <Suspense fallback={null}>
-            <CookieConsent />
           </Suspense>
         </DeferredIdle>
         <DeferredIdle>

@@ -10,7 +10,6 @@ import {
   faOrcid,
   faResearchgate,
 } from '@fortawesome/free-brands-svg-icons';
-import {trackCVDownload, trackExternalLink} from '../../utils/analytics';
 import {sectionHref} from '../../constants/siteNav';
 
 const Hero = () => {
@@ -21,7 +20,6 @@ const Hero = () => {
       label: 'Download CV',
       primary: true,
       target: '_blank',
-      onClick: trackCVDownload,
     },
     {
       href: sectionHref('contact'),
@@ -121,7 +119,6 @@ const Hero = () => {
                     target: btn.target,
                     rel: 'noopener noreferrer',
                   })}
-                  {...(btn.onClick && {onClick: () => btn.onClick()})}
                 >
                   <Icon icon={btn.icon} /> {btn.label}
                 </a>
@@ -139,7 +136,6 @@ const Hero = () => {
                   {...(!link.href.startsWith('mailto:') && {
                     target: '_blank',
                     rel: 'noopener',
-                    onClick: () => trackExternalLink(link.label),
                   })}
                 >
                   <Icon icon={link.icon} />
