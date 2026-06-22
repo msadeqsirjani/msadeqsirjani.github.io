@@ -618,7 +618,7 @@ textarea:focus-visible {
 }
 
 .custom-toast.toast-error {
-  background: #ef4444 !important;
-  color: #fff !important;
+  background: var(--toast-error-bg) !important;
+  color: var(--toast-error-text) !important;
   border: none !important;
 }

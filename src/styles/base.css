@@ -91,6 +91,9 @@ h6 {
   --error-color: #ba1a1a;
   --success-color: #146c2e;
   --focus-color: #1565c0;
+  /* Error toast — saturated red works on both themes */
+  --toast-error-bg: #ef4444;
+  --toast-error-text: #ffffff;
 
   /* Material 3 shape scale */
   --button-border-radius: 20px;
