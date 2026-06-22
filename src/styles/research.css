@@ -63,7 +63,7 @@
 
 [data-theme='dark'] .research-lab-logo {
   background: var(--logo-surface);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid var(--logo-border);
 }
 
 .research-lab-logo.research-lab-logo--placeholder {
@@ -83,7 +83,7 @@
 [data-theme='dark'] .research-lab-logo.research-lab-logo--placeholder {
   background: var(--logo-surface);
   color: var(--accent-color-light);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid var(--logo-border);
 }
 
 .research-position {

@@ -119,6 +119,7 @@ h6 {
 
   /* Logos are designed for a light backing; intentionally white in both themes */
   --logo-surface: #ffffff;
+  --logo-border: rgba(255, 255, 255, 0.2);
   /* Readable text/icon color on top of --accent-color (per theme) */
   --on-accent: #ffffff;
 
