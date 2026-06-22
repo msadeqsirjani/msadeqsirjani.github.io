@@ -9,6 +9,13 @@
   scrollbar-color: var(--accent-color) transparent;
 }
 
+/* Dedicated /news page — full list, no inner scroll */
+.news-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
 .news-scroll::-webkit-scrollbar {
   width: 8px;
 }
