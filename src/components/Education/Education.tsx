@@ -1,9 +1,6 @@
 import {education, fetchEducation} from '../../data/content';
 import type {EducationItem} from '../../types';
-import TimelineSection from '../TimelineSection/TimelineSection';
 import useContentData from '../../hooks/useContentData';
-import EducationLogo from './EducationLogo';
-import EducationDetails from './EducationDetails';
 
 const Education = () => {
   const {data: educationItems} = useContentData(fetchEducation, education, {
@@ -11,32 +8,75 @@ const Education = () => {
   });
 
   return (
-    <TimelineSection<EducationItem>
-      id="education"
-      title="Education"
-      items={educationItems}
-      listClassName="education-timeline"
-      itemClassName="education-item"
-      dateWrapperClassName="education-dates"
-      dateClassName="duration"
-      contentWrapperClassName="education-content"
-      getItemKey={(item, index) => `${item.degree}-${item.university}-${index}`}
-      getItemClassName={item => (item.current ? 'current' : undefined)}
-      renderDate={item => (
-        <>
-          <span className="duration">{item.duration}</span>
-          {item.current && (
-            <span className="education-current-badge">Current</span>
-          )}
-        </>
-      )}
-      renderContent={item => (
-        <div className="education-main">
-          <EducationLogo item={item} />
-          <EducationDetails item={item} />
-        </div>
-      )}
-    />
+    <section id="education" className="section">
+      <div className="container">
+        <h2 className="section-title">Education</h2>
+        <ul className="education-list">
+          {educationItems.map((item: EducationItem, index) => {
+            const uniName = item.universityName ?? item.university;
+            return (
+              <li
+                key={`${item.degree}-${item.university}-${index}`}
+                className="education-row"
+              >
+                <div className="education-row-side">
+                  <span className="education-term">{item.duration}</span>
+                  {item.current && (
+                    <span className="education-current">Current</span>
+                  )}
+                </div>
+                <div className="education-row-main">
+                  <span
+                    className={`education-logo ${
+                      item.logo ? 'education-logo--img' : 'education-logo--ph'
+                    }`}
+                  >
+                    {item.logo ? (
+                      <img
+                        src={item.logo}
+                        alt={`${uniName} logo`}
+                        width={44}
+                        height={44}
+                        decoding="async"
+                      />
+                    ) : (
+                      <span className="education-logo--placeholder">
+                        {uniName.charAt(0)}
+                      </span>
+                    )}
+                  </span>
+                  <div className="education-headtext">
+                    <span className="education-degree">{item.degree}</span>
+                    <span className="education-affil">
+                      {item.universityUrl ? (
+                        <a
+                          href={item.universityUrl}
+                          className="education-university"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          {item.university}
+                        </a>
+                      ) : (
+                        <span className="education-university">
+                          {item.university}
+                        </span>
+                      )}
+                      {item.gpa && (
+                        <>
+                          <span className="education-sep"> · </span>
+                          {item.gpa}
+                        </>
+                      )}
+                    </span>
+                  </div>
+                </div>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+    </section>
   );
 };
 
