@@ -62,7 +62,7 @@ const styles = {
   code: {
     display: 'block',
     fontSize: 'var(--fs-sm)',
-    color: '#d32f2f',
+    color: 'var(--error-color)',
     whiteSpace: 'pre-wrap',
     wordBreak: 'break-word',
   } as CSSProperties,
@@ -76,7 +76,7 @@ const styles = {
   primaryButton: {
     padding: '0.75rem 1.5rem',
     backgroundColor: 'var(--accent-color)',
-    color: 'white',
+    color: 'var(--on-accent)',
     border: 'var(--button-border-width, 2px) solid var(--accent-color)',
     borderRadius: 'var(--button-border-radius, 12px)',
     cursor: 'pointer',
