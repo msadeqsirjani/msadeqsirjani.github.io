@@ -312,17 +312,21 @@
   }
 
   .publication-item {
-    background: var(--gray-light);
-    border: 1px solid transparent;
+    background: none;
+    border: none;
     border-radius: var(--shape-card);
-    padding: 1.25rem;
+    padding: 0.75rem;
     margin-inline: 0;
-    margin-bottom: 1rem;
-    box-shadow: var(--elev-1);
+    margin-bottom: 0.35rem;
+    box-shadow: none;
+    transition: background-color 0.2s ease;
+  }
+
+  .publication-item:hover {
+    background: var(--gray-light);
   }
 
   .publication-item:last-child {
-    border-bottom: none;
     margin-bottom: 0;
   }
 
@@ -1067,8 +1071,8 @@
   }
 
   .publication-item {
-    padding: 1.25rem;
-    margin-bottom: 1rem;
+    padding: 0.75rem;
+    margin-bottom: 0.35rem;
   }
 }
 

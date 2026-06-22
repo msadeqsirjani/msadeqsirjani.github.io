@@ -61,3 +61,22 @@
 .news-row-text a {
   color: var(--accent-color);
 }
+
+/* Mobile — date stacks above text so the line isn't cramped */
+@media (max-width: 600px) {
+  .news-row {
+    grid-template-columns: 1fr;
+    gap: 0.25rem;
+    padding: 0.75rem 0.5rem;
+  }
+
+  .news-row-date {
+    padding-top: 0;
+  }
+
+  .news-row-text {
+    text-align: justify;
+    text-wrap: pretty;
+    hyphens: auto;
+  }
+}

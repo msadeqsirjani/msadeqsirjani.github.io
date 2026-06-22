@@ -1,24 +1,7 @@
 .teaching-list {
   list-style: none;
   margin: 0;
-  padding: 0.25rem 1.25rem 0.25rem 0;
-  max-height: 32rem;
-  overflow-y: auto;
-  scrollbar-width: thin;
-  scrollbar-color: var(--accent-color) transparent;
-}
-
-.teaching-list::-webkit-scrollbar {
-  width: 8px;
-}
-
-.teaching-list::-webkit-scrollbar-thumb {
-  background: var(--accent-color);
-  border-radius: 999px;
-}
-
-.teaching-list::-webkit-scrollbar-track {
-  background: transparent;
+  padding: 0;
 }
 
 .teaching-row {
@@ -99,4 +82,31 @@
 .teaching-sep {
   color: var(--text-light);
   opacity: 0.6;
+}
+
+/* Mobile — stack like news: term lead on top, course + meta below */
+@media (max-width: 600px) {
+  .teaching-row {
+    grid-template-columns: 1fr;
+    align-items: stretch;
+    gap: 0.4rem;
+    padding: 0.75rem 0.5rem;
+  }
+
+  .teaching-row-side {
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.5rem;
+    text-align: left;
+    order: -1;
+  }
+
+  .teaching-row-main {
+    gap: 0.25rem;
+  }
+
+  .teaching-meta {
+    text-align: left;
+  }
 }
