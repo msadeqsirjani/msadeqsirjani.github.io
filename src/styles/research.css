@@ -1,155 +1,106 @@
-.timeline-item.research-item {
-  display: grid;
-  grid-template-columns: 180px 1fr;
-  gap: 2rem;
-}
-
-.research-item .research-dates {
-  text-align: center;
-  padding-top: 0.2rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.research-dates .timeline {
-  color: var(--text-light);
-  font-weight: 400;
-  font-size: var(--fs-sm);
-  line-height: 1.4;
-}
-
-[data-theme='dark'] .research-dates .timeline {
-  color: var(--text-light);
-}
-
-.research-content {
-  flex: 1;
-}
-
-.research-main {
-  display: flex;
-  align-items: flex-start;
-  gap: 1rem;
-  width: 100%;
-  min-width: 0;
-}
-
-.research-main__logo {
-  flex-shrink: 0;
-  line-height: 0;
-}
-
-.research-main__body {
-  flex: 1;
-  min-width: 0;
-}
-
-.research-date-mobile {
-  display: none;
-}
-
-.research-lab-logo {
-  width: 64px;
-  height: 64px;
-  object-fit: contain;
-  object-position: center;
-  flex-shrink: 0;
-  border-radius: 50%;
-  background: var(--logo-surface);
-  padding: 0.4rem;
-  border: 1px solid var(--border-color);
-}
-
-[data-theme='dark'] .research-lab-logo {
-  background: var(--logo-surface);
-  border: 1px solid var(--logo-border);
-}
-
-.research-lab-logo.research-lab-logo--placeholder {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--logo-surface);
-  color: var(--accent-color-light);
-  font-family: 'Cinzel', serif;
-  font-size: var(--fs-xl);
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  border: 1px solid var(--border-color);
+.research-list {
+  list-style: none;
+  margin: 0;
   padding: 0;
 }
 
-[data-theme='dark'] .research-lab-logo.research-lab-logo--placeholder {
-  background: var(--logo-surface);
-  color: var(--accent-color-light);
-  border: 1px solid var(--logo-border);
+.research-row {
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  gap: 0.25rem 1.25rem;
+  padding: 0.9rem 0.75rem;
+  border-radius: var(--shape-card);
+  transition: background-color 0.2s ease;
+}
+
+.research-row:hover {
+  background: var(--gray-light);
+}
+
+.research-row-side {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.4rem;
+  padding-top: 0.15rem;
+}
+
+.research-term {
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  line-height: 1.4;
+  color: var(--text-light);
+}
+
+.research-current {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--accent-color);
+  background: rgba(var(--accent-rgb), 0.1);
+  padding: 0.1rem 0.5rem;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.research-row-main {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  min-width: 0;
 }
 
 .research-position {
   font-size: var(--fs-base);
+  font-weight: 700;
+  line-height: 1.4;
   color: var(--text-color);
-  font-weight: 400;
 }
 
-.research-sep {
+.research-affil {
+  font-size: var(--fs-sm);
+  line-height: 1.45;
   color: var(--text-light);
-  font-weight: 400;
-  font-size: var(--fs-base);
-}
-
-.research-university {
-  font-size: var(--fs-base);
-  color: var(--accent-color);
-  font-style: italic;
-  font-weight: normal;
-  margin-bottom: 0;
-  display: inline;
 }
 
 .research-lab {
-  font-size: var(--fs-md);
-  color: var(--text-color);
-  font-style: normal;
-  font-weight: 700;
-  display: inline;
+  color: var(--accent-color);
+  font-weight: 600;
 }
 
-.research-advisor {
-  font-size: var(--fs-base);
+.research-sep {
+  opacity: 0.6;
+}
+
+.research-points {
+  margin: 0.4rem 0 0;
+  padding-left: 1.1rem;
+}
+
+.research-points li {
+  font-size: var(--fs-sm);
+  line-height: 1.6;
   color: var(--text-light);
-  font-weight: normal;
-  margin-bottom: 0.8rem;
-  display: block;
+  margin-bottom: 0.2rem;
 }
 
-.research-description {
-  color: var(--text-light);
-  line-height: 1.5;
-  font-size: var(--fs-base);
-  margin: 0;
-  text-align: left;
-
-  text-wrap: pretty;
-
-  hyphens: auto;
+.research-points li:last-child {
+  margin-bottom: 0;
 }
 
-.research-description ul {
-  list-style: none;
-  padding-left: 0;
-  margin: 0;
-}
+@media (max-width: 600px) {
+  .research-row {
+    grid-template-columns: 1fr;
+    gap: 0.4rem;
+  }
 
-.research-description li {
-  padding-left: 1.4rem;
-  position: relative;
-  margin-bottom: 0.25rem;
-}
-
-.research-description li::before {
-  content: '—';
-  position: absolute;
-  left: 0;
-  color: var(--text-light);
+  .research-row-side {
+    flex-direction: row;
+    align-items: center;
+    gap: 0.6rem;
+    padding-top: 0;
+  }
 }
