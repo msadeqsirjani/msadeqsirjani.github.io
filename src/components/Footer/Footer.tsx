@@ -106,7 +106,9 @@ const Footer = () => {
               <ul>
                 {quickLinks.map(link => (
                   <li key={link.id}>
-                    <a {...navLinkProps(link.path, link.anchor)}>{link.label}</a>
+                    <a {...navLinkProps(link.path, link.anchor)}>
+                      {link.label}
+                    </a>
                   </li>
                 ))}
               </ul>

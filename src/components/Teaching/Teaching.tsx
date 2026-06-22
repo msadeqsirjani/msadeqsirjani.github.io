@@ -46,7 +46,11 @@ const Teaching = () => {
                     )}
                     <span className="teaching-sep"> · </span>
                     {uniUrl ? (
-                      <a href={uniUrl} target="_blank" rel="noopener noreferrer">
+                      <a
+                        href={uniUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
                         {item.university}
                       </a>
                     ) : (

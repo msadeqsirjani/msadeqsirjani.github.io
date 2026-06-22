@@ -29,9 +29,7 @@ const OfflineIndicator = lazy(
 
 const Biography = lazy(() => import('./components/Biography/Biography'));
 const Education = lazy(() => import('./components/Education/Education'));
-const ResearchPage = lazy(
-  () => import('./components/Research/ResearchPage'),
-);
+const ResearchPage = lazy(() => import('./components/Research/ResearchPage'));
 const Publications = lazy(
   () => import('./components/Publications/Publications'),
 );
