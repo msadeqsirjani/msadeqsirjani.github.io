@@ -2,6 +2,14 @@ import {fetchResearchExperience, researchExperience} from '../../data/content';
 import type {ResearchItem} from '../../types';
 import useContentData from '../../hooks/useContentData';
 
+const getLabInitials = (lab: string) =>
+  lab
+    .split(' ')
+    .filter(w => w.length > 2)
+    .slice(0, 2)
+    .map(w => w[0]?.toUpperCase() ?? '')
+    .join('');
+
 const ResearchExperience = () => {
   const {data: researchItems} = useContentData(
     fetchResearchExperience,
@@ -28,27 +36,50 @@ const ResearchExperience = () => {
                 )}
               </div>
               <div className="research-row-main">
-                <span className="research-position">{item.position}</span>
-                <span className="research-affil">
-                  {item.labUrl ? (
-                    <a
-                      href={item.labUrl}
-                      className="research-lab"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      {item.lab}
-                    </a>
-                  ) : (
-                    <span className="research-lab">{item.lab}</span>
-                  )}
-                  {item.university && (
-                    <>
-                      <span className="research-sep"> · </span>
-                      {item.university}
-                    </>
-                  )}
-                </span>
+                <div className="research-head">
+                  <span
+                    className={`research-logo ${
+                      item.logo ? 'research-logo--img' : 'research-logo--ph'
+                    }`}
+                  >
+                    {item.logo ? (
+                      <img
+                        src={item.logo}
+                        alt={`${item.lab} logo`}
+                        width={40}
+                        height={40}
+                        decoding="async"
+                      />
+                    ) : (
+                      <span className="research-logo--placeholder">
+                        {getLabInitials(item.lab)}
+                      </span>
+                    )}
+                  </span>
+                  <div className="research-headtext">
+                    <span className="research-position">{item.position}</span>
+                    <span className="research-affil">
+                      {item.labUrl ? (
+                        <a
+                          href={item.labUrl}
+                          className="research-lab"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          {item.lab}
+                        </a>
+                      ) : (
+                        <span className="research-lab">{item.lab}</span>
+                      )}
+                      {item.university && (
+                        <>
+                          <span className="research-sep"> · </span>
+                          {item.university}
+                        </>
+                      )}
+                    </span>
+                  </div>
+                </div>
                 <ul className="research-points">
                   {item.description.map((desc, i) => (
                     <li key={i}>{desc}</li>
