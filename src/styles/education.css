@@ -8,7 +8,7 @@
   display: grid;
   grid-template-columns: 150px 1fr;
   gap: 0.25rem 1.25rem;
-  padding: 0.9rem 0.75rem;
+  padding: 0.75rem 0.75rem;
   border-radius: var(--shape-card);
   transition: background-color 0.2s ease;
 }
@@ -49,19 +49,19 @@
 .education-row-main {
   display: flex;
   align-items: center;
-  gap: 0.85rem;
+  gap: 0.75rem;
   min-width: 0;
 }
 
 .education-logo {
   flex-shrink: 0;
-  width: 44px;
-  height: 44px;
+  width: 40px;
+  height: 40px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   border: 1px solid var(--border-color);
-  border-radius: 50%;
+  border-radius: var(--icon-border-radius);
   overflow: hidden;
 }
 
@@ -79,11 +79,11 @@
   width: 100%;
   height: 100%;
   object-fit: contain;
-  padding: 5px;
+  padding: 4px;
 }
 
 .education-logo--placeholder {
-  font-size: var(--fs-md);
+  font-size: var(--fs-sm);
   font-weight: 700;
   color: var(--accent-color);
 }
