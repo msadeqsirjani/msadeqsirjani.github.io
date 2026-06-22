@@ -7,8 +7,9 @@ import {
   DROPDOWN_NAV_LINKS,
   MAIN_NAV_LINKS,
   ROUTE_PATHS,
+  normalizePath,
 } from '../../constants/siteNav';
-import {navigate} from '../../utils/router';
+import {navigate, subscribeRoute} from '../../utils/router';
 
 interface NavbarProps {
   onSearchClick?: () => void;
@@ -18,6 +19,17 @@ const Navbar = ({onSearchClick}: NavbarProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [activePath, setActivePath] = useState(() =>
+    normalizePath(window.location.pathname),
+  );
+
+  useEffect(
+    () =>
+      subscribeRoute(() =>
+        setActivePath(normalizePath(window.location.pathname)),
+      ),
+    [],
+  );
 
   useEffect(() => {
     const handleScroll = () => {
@@ -130,7 +142,9 @@ const Navbar = ({onSearchClick}: NavbarProps) => {
             <li key={link.id}>
               <a
                 href={hrefFor(link.path, link.anchor)}
-                className="nav-link"
+                className={`nav-link${
+                  normalizePath(link.path) === activePath ? ' active' : ''
+                }`}
                 onClick={e => handleNav(e, link.path, link.anchor)}
               >
                 {link.label}

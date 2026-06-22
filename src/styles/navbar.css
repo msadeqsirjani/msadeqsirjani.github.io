@@ -84,9 +84,18 @@
 
 .nav-link:hover,
 .nav-link:focus,
-.nav-link:focus-visible {
+.nav-link:focus-visible,
+.nav-link.active {
   color: var(--accent-color);
   text-decoration: none;
+}
+
+/* No focus box on nav links — the underline below is the focus/active
+   indicator (overrides the global a:focus / .nav-link:focus-visible rings). */
+.navbar .nav-link:focus,
+.navbar .nav-link:focus-visible {
+  outline: none;
+  box-shadow: none;
 }
 
 .nav-menu > li > .nav-link::after {
@@ -104,7 +113,8 @@
 }
 
 .nav-menu > li > .nav-link:hover::after,
-.nav-menu > li > .nav-link:focus-visible::after {
+.nav-menu > li > .nav-link:focus-visible::after,
+.nav-menu > li > .nav-link.active::after {
   transform: scaleX(1);
 }
 
