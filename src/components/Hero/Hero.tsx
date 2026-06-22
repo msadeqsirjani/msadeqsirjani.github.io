@@ -10,21 +10,29 @@ import {
   faOrcid,
   faResearchgate,
 } from '@fortawesome/free-brands-svg-icons';
-import {trackCVDownload, trackExternalLink} from '../../utils/analytics';
-import {sectionHref} from '../../constants/siteNav';
+import {ROUTE_PATHS} from '../../constants/siteNav';
+import {navLinkProps} from '../../utils/router';
 
 const Hero = () => {
-  const buttons = [
+  const buttons: {
+    icon: typeof faDownload;
+    label: string;
+    primary: boolean;
+    href?: string;
+    target?: string;
+    route?: string;
+    anchor?: string;
+  }[] = [
     {
       href: '/assets/docs/cv/msadeqsirjani-cv.pdf',
       icon: faDownload,
       label: 'Download CV',
       primary: true,
       target: '_blank',
-      onClick: trackCVDownload,
     },
     {
-      href: sectionHref('contact'),
+      route: ROUTE_PATHS.home,
+      anchor: 'contact',
       icon: faEnvelope,
       label: 'Contact',
       primary: false,
@@ -112,20 +120,26 @@ const Hero = () => {
             <p className="hero-tagline">TinyAI & Embedded Systems Researcher</p>
 
             <div className="hero-buttons">
-              {buttons.map((btn, idx) => (
-                <a
-                  key={idx}
-                  href={btn.href}
-                  className={`btn ${btn.primary ? 'btn-primary' : 'btn-secondary'}`}
-                  {...(btn.target && {
-                    target: btn.target,
-                    rel: 'noopener noreferrer',
-                  })}
-                  {...(btn.onClick && {onClick: () => btn.onClick()})}
-                >
-                  <Icon icon={btn.icon} /> {btn.label}
-                </a>
-              ))}
+              {buttons.map((btn, idx) => {
+                const linkProps = btn.route
+                  ? navLinkProps(btn.route, btn.anchor)
+                  : {
+                      href: btn.href,
+                      ...(btn.target && {
+                        target: btn.target,
+                        rel: 'noopener noreferrer',
+                      }),
+                    };
+                return (
+                  <a
+                    key={idx}
+                    className={`btn ${btn.primary ? 'btn-primary' : 'btn-secondary'}`}
+                    {...linkProps}
+                  >
+                    <Icon icon={btn.icon} /> {btn.label}
+                  </a>
+                );
+              })}
             </div>
 
             <div className="social-links">
@@ -139,7 +153,6 @@ const Hero = () => {
                   {...(!link.href.startsWith('mailto:') && {
                     target: '_blank',
                     rel: 'noopener',
-                    onClick: () => trackExternalLink(link.label),
                   })}
                 >
                   <Icon icon={link.icon} />

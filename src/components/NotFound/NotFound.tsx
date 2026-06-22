@@ -1,12 +1,13 @@
 import {useEffect} from 'react';
 import './NotFound.css';
-import {sectionHref} from '../../constants/siteNav';
+import {ROUTE_PATHS} from '../../constants/siteNav';
+import {navLinkProps} from '../../utils/router';
 
-const quickLinks = [
-  {label: 'Biography', href: sectionHref('biography')},
-  {label: 'Publications', href: sectionHref('publications')},
-  {label: 'Research Experience', href: sectionHref('research')},
-  {label: 'Contact', href: sectionHref('contact')},
+const quickLinks: {label: string; path: string; anchor?: string}[] = [
+  {label: 'About', path: ROUTE_PATHS.home, anchor: 'biography'},
+  {label: 'Publications', path: ROUTE_PATHS.publications},
+  {label: 'Research', path: ROUTE_PATHS.research},
+  {label: 'Contact', path: ROUTE_PATHS.home, anchor: 'contact'},
 ];
 
 const NotFound = () => {
@@ -26,7 +27,10 @@ const NotFound = () => {
         </p>
 
         <div className="nf-actions">
-          <a className="nf-btn nf-btn-primary" href={sectionHref('home')}>
+          <a
+            className="nf-btn nf-btn-primary"
+            {...navLinkProps(ROUTE_PATHS.home)}
+          >
             &#8592; Back to portfolio
           </a>
         </div>
@@ -35,9 +39,9 @@ const NotFound = () => {
 
         <p className="nf-links-label">Quick Links</p>
         <ul className="nf-links-list">
-          {quickLinks.map(({label, href}) => (
-            <li key={href}>
-              <a href={href}>
+          {quickLinks.map(({label, path, anchor}) => (
+            <li key={label}>
+              <a {...navLinkProps(path, anchor)}>
                 {label}
                 <span className="nf-arrow">&#8594;</span>
               </a>

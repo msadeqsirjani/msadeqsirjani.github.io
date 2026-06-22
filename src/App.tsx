@@ -1,4 +1,4 @@
-import {lazy, Suspense, useState, useEffect, useRef} from 'react';
+import {lazy, Suspense, useState, useEffect} from 'react';
 import type {LazyExoticComponent, ComponentType} from 'react';
 import {ThemeProvider} from './context/ThemeContext';
 import Navbar from './components/Navbar/Navbar';
@@ -9,7 +9,10 @@ import SkeletonLoader from './components/SkeletonLoader/SkeletonLoader';
 import DeferredIdle from './components/DeferredIdle/DeferredIdle';
 import DeferredToaster from './components/DeferredToaster/DeferredToaster';
 import LazyGlobalSearch from './components/LazyGlobalSearch/LazyGlobalSearch';
-import {isValidRoute} from './constants/siteNav';
+import PageShell from './components/PageShell/PageShell';
+import type {RouteKey} from './constants/siteNav';
+import {routeKeyForPath} from './constants/siteNav';
+import {subscribeRoute} from './utils/router';
 
 const ReadingProgress = lazy(
   () => import('./components/ReadingProgress/ReadingProgress'),
@@ -20,20 +23,14 @@ const PullToRefresh = lazy(
 const QuickActions = lazy(
   () => import('./components/QuickActions/QuickActions'),
 );
-const CookieConsent = lazy(
-  () => import('./components/CookieConsent/CookieConsent'),
-);
 const OfflineIndicator = lazy(
   () => import('./components/OfflineIndicator/OfflineIndicator'),
 );
 
 const Biography = lazy(() => import('./components/Biography/Biography'));
 const Education = lazy(() => import('./components/Education/Education'));
-const ResearchInterests = lazy(
-  () => import('./components/Research/ResearchInterests'),
-);
-const ResearchExperience = lazy(
-  () => import('./components/Research/ResearchExperience'),
+const ResearchPage = lazy(
+  () => import('./components/Research/ResearchPage'),
 );
 const Publications = lazy(
   () => import('./components/Publications/Publications'),
@@ -50,25 +47,30 @@ const NotFound = lazy(() => import('./components/NotFound/NotFound'));
 
 type LazyComponent = LazyExoticComponent<ComponentType>;
 
-interface LazySection {
-  key: string;
-  Component: LazyComponent;
-  delay?: number;
-}
-
 const DEFAULT_SECTION_DELAY = 100;
 
-const lazySections: LazySection[] = [
-  {key: 'biography', Component: Biography, delay: 0},
-  {key: 'education', Component: Education},
-  {key: 'research-interests', Component: ResearchInterests},
-  {key: 'research-experience', Component: ResearchExperience},
-  {key: 'publications', Component: Publications},
-  {key: 'teaching', Component: Teaching},
-  {key: 'news', Component: News},
-  {key: 'awards', Component: Awards},
-  {key: 'contact', Component: Contact},
-];
+const SITE_TITLE =
+  'Mohammad Sadegh Sirjani - Ph.D. Student in Computer Science | TinyAI & Embedded Systems Researcher';
+
+const PAGE_TITLES: Record<RouteKey, string> = {
+  home: SITE_TITLE,
+  research: 'Research | Mohammad Sadegh Sirjani',
+  education: 'Education | Mohammad Sadegh Sirjani',
+  publications: 'Publications | Mohammad Sadegh Sirjani',
+  teaching: 'Teaching | Mohammad Sadegh Sirjani',
+  news: 'News | Mohammad Sadegh Sirjani',
+  awards: 'Awards | Mohammad Sadegh Sirjani',
+};
+
+/** Page-route key → the component rendered inside the sub-page shell. */
+const PAGE_COMPONENTS: Record<Exclude<RouteKey, 'home'>, LazyComponent> = {
+  research: ResearchPage,
+  education: Education,
+  publications: PublicationsPage,
+  teaching: Teaching,
+  news: News,
+  awards: Awards,
+};
 
 const SectionLoader = () => (
   <div style={{padding: '2rem 0'}}>
@@ -78,54 +80,44 @@ const SectionLoader = () => (
   </div>
 );
 
+const getRouteKey = () => routeKeyForPath(window.location.pathname);
+
 function App() {
-  const [show404, setShow404] = useState(false);
-  const [view, setView] = useState<'home' | 'publications'>('home');
+  const [routeKey, setRouteKey] = useState<RouteKey | null>(getRouteKey);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
-  const prevShow404 = useRef(false);
 
+  useEffect(() => subscribeRoute(() => setRouteKey(getRouteKey())), []);
+
+  // Keep the document title in sync with the active route.
   useEffect(() => {
-    const checkRoute = () => {
-      setShow404(!isValidRoute(window.location.pathname, window.location.hash));
-      const cleanHash = window.location.hash
-        .toLowerCase()
-        .replace(/^#/, '')
-        .split('?')[0];
-      setView(cleanHash === 'publications-all' ? 'publications' : 'home');
-    };
+    document.title = routeKey ? PAGE_TITLES[routeKey] : SITE_TITLE;
+  }, [routeKey]);
 
-    checkRoute();
-    window.addEventListener('hashchange', checkRoute);
-    window.addEventListener('popstate', checkRoute);
-
-    return () => {
-      window.removeEventListener('hashchange', checkRoute);
-      window.removeEventListener('popstate', checkRoute);
-    };
-  }, []);
-
+  // Scroll to the hash target on the home page, or to the top on sub-pages.
+  // Lazy sections may not be mounted yet, so retry until the element appears.
   useEffect(() => {
-    if (prevShow404.current && !show404) {
-      const hash = window.location.hash.replace('#', '');
-      if (hash) {
-        const tryScroll = (attempts = 0) => {
-          const el = document.getElementById(hash);
-          if (el) {
-            const navbar = document.querySelector('.navbar') as HTMLElement;
-            const offset = navbar ? navbar.offsetHeight + 24 : 24;
-            window.scrollTo({
-              top: el.getBoundingClientRect().top + window.scrollY - offset,
-              behavior: 'smooth',
-            });
-          } else if (attempts < 50) {
-            setTimeout(() => tryScroll(attempts + 1), 100);
-          }
-        };
-        tryScroll();
-      }
+    const hash = window.location.hash.replace(/^#/, '');
+    if (routeKey === 'home' && hash) {
+      let attempts = 0;
+      const tryScroll = () => {
+        const el = document.getElementById(hash);
+        if (el) {
+          const navbar = document.querySelector('.navbar') as HTMLElement;
+          const offset = navbar ? navbar.offsetHeight + 24 : 24;
+          window.scrollTo({
+            top: el.getBoundingClientRect().top + window.scrollY - offset,
+            behavior: 'smooth',
+          });
+        } else if (attempts < 50) {
+          attempts += 1;
+          setTimeout(tryScroll, 100);
+        }
+      };
+      tryScroll();
+    } else {
+      window.scrollTo({top: 0, behavior: 'auto'});
     }
-    prevShow404.current = show404;
-  }, [show404]);
+  }, [routeKey]);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -163,46 +155,66 @@ function App() {
     return () => document.removeEventListener('keydown', handleKeyDown);
   }, []);
 
-  useEffect(() => {
-    if (view === 'publications') {
-      window.scrollTo({top: 0, behavior: 'auto'});
+  const renderMain = () => {
+    if (routeKey === null) {
+      return (
+        <Suspense fallback={<div style={{minHeight: '60vh'}} />}>
+          <NotFound />
+        </Suspense>
+      );
     }
-  }, [view]);
 
-  if (show404) {
+    if (routeKey === 'home') {
+      return (
+        <main id="main-content" role="main" aria-label="Main content">
+          <ErrorBoundary>
+            <Hero />
+          </ErrorBoundary>
+          <ErrorBoundary>
+            <AnimatedSection delay={0}>
+              <Suspense fallback={<SectionLoader />}>
+                <Biography />
+              </Suspense>
+            </AnimatedSection>
+          </ErrorBoundary>
+          <ErrorBoundary>
+            <AnimatedSection delay={DEFAULT_SECTION_DELAY}>
+              <Suspense fallback={<SectionLoader />}>
+                <News scrollable />
+              </Suspense>
+            </AnimatedSection>
+          </ErrorBoundary>
+          <ErrorBoundary>
+            <AnimatedSection delay={DEFAULT_SECTION_DELAY}>
+              <Suspense fallback={<SectionLoader />}>
+                <Publications />
+              </Suspense>
+            </AnimatedSection>
+          </ErrorBoundary>
+          <ErrorBoundary>
+            <AnimatedSection delay={DEFAULT_SECTION_DELAY}>
+              <Suspense fallback={<SectionLoader />}>
+                <Contact />
+              </Suspense>
+            </AnimatedSection>
+          </ErrorBoundary>
+        </main>
+      );
+    }
+
+    const PageComponent = PAGE_COMPONENTS[routeKey];
     return (
-      <ThemeProvider>
+      <main id="main-content" role="main" aria-label="Main content">
         <ErrorBoundary>
-          <Suspense fallback={<div style={{minHeight: '60vh'}} />}>
-            <NotFound />
+          <Suspense fallback={<SectionLoader />}>
+            <PageShell>
+              <PageComponent />
+            </PageShell>
           </Suspense>
-          <LazyGlobalSearch
-            isOpen={isSearchOpen}
-            onClose={() => setIsSearchOpen(false)}
-          />
-          <DeferredIdle>
-            <Suspense fallback={null}>
-              <CookieConsent />
-            </Suspense>
-          </DeferredIdle>
-          <DeferredIdle>
-            <Suspense fallback={null}>
-              <OfflineIndicator />
-            </Suspense>
-          </DeferredIdle>
-          <DeferredToaster
-            position="top-center"
-            toastOptions={{
-              className: 'custom-toast',
-              duration: 4000,
-              success: {className: 'custom-toast toast-success'},
-              error: {className: 'custom-toast toast-error'},
-            }}
-          />
         </ErrorBoundary>
-      </ThemeProvider>
+      </main>
     );
-  }
+  };
 
   return (
     <ThemeProvider>
@@ -227,30 +239,7 @@ function App() {
             <ReadingProgress />
           </Suspense>
         </DeferredIdle>
-        <main id="main-content" role="main" aria-label="Main content">
-          {view === 'publications' ? (
-            <ErrorBoundary>
-              <Suspense fallback={<SectionLoader />}>
-                <PublicationsPage />
-              </Suspense>
-            </ErrorBoundary>
-          ) : (
-            <>
-              <ErrorBoundary>
-                <Hero />
-              </ErrorBoundary>
-              {lazySections.map(({key, Component, delay}) => (
-                <ErrorBoundary key={key}>
-                  <AnimatedSection delay={delay ?? DEFAULT_SECTION_DELAY}>
-                    <Suspense fallback={<SectionLoader />}>
-                      <Component />
-                    </Suspense>
-                  </AnimatedSection>
-                </ErrorBoundary>
-              ))}
-            </>
-          )}
-        </main>
+        {renderMain()}
         <ErrorBoundary>
           <Suspense fallback={null}>
             <Footer />
@@ -259,11 +248,6 @@ function App() {
         <DeferredIdle>
           <Suspense fallback={null}>
             <QuickActions />
-          </Suspense>
-        </DeferredIdle>
-        <DeferredIdle>
-          <Suspense fallback={null}>
-            <CookieConsent />
           </Suspense>
         </DeferredIdle>
         <DeferredIdle>

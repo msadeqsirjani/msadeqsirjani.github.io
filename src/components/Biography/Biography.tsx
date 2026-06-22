@@ -6,8 +6,8 @@ const Biography = () => {
         <div className="biography-content">
           <div className="bio-text">
             <p>
-              I am Mohammad Sadegh Sirjani, a Ph.D. student in Computer Science
-              at the{' '}
+              Mohammad Sadegh Sirjani is a Ph.D. student in Computer Science at
+              the{' '}
               <a href="https://utsa.edu" target="_blank" rel="noopener">
                 University of Texas at San Antonio
               </a>
@@ -27,22 +27,22 @@ const Biography = () => {
               >
                 Prof. Mimi Xie
               </a>
-              . My work focuses on TinyML, edge AI, and embedded systems, with
+              . His work focuses on TinyML, edge AI, and embedded systems, with
               an emphasis on efficient on-device intelligence for
               resource-constrained platforms.
             </p>
 
             <p>
-              I earned my B.Sc. in Computer Engineering from{' '}
+              He earned his B.Sc. in Computer Engineering from{' '}
               <a href="https://en.um.ac.ir/" target="_blank" rel="noopener">
                 Ferdowsi University of Mashhad
               </a>
-              . In 2026, I passed my Ph.D. qualifying exam and was invited to
+              . In 2026, he passed his Ph.D. qualifying exam and was invited to
               serve as a reviewer for{' '}
               <a href="https://www.glsvlsi.org/" target="_blank" rel="noopener">
                 GLSVLSI 2026
               </a>
-              . I received the DAC Young Fellowship in both{' '}
+              . He received the DAC Young Fellowship in both{' '}
               <a href="https://dac.com/2026" target="_blank" rel="noopener">
                 DAC 2026
               </a>{' '}
@@ -55,7 +55,7 @@ const Biography = () => {
                 DAC 2025
               </a>
               , attended the 62nd DAC conference, and won the 2-minute video
-              presentation competition. I was also selected for the{' '}
+              presentation competition. He was also selected for the{' '}
               <a href="https://dair-3.org/" target="_blank" rel="noopener">
                 DAiR3 Data Science Summer School
               </a>

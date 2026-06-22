@@ -2,6 +2,8 @@ import {useMemo} from 'react';
 import {fetchPublications, publications as pubData} from '../../data/content';
 import useContentData from '../../hooks/useContentData';
 import type {Publication} from '../../types';
+import {ROUTE_PATHS} from '../../constants/siteNav';
+import {navLinkProps} from '../../utils/router';
 
 const MAX_PREVIEW = 5;
 
@@ -69,7 +71,10 @@ const Publications = () => {
             ))}
           </div>
           <div className="pub-view-more-row">
-            <a className="pub-view-more" href="#publications-all">
+            <a
+              className="pub-view-more"
+              {...navLinkProps(ROUTE_PATHS.publications)}
+            >
               View all publications →
             </a>
           </div>

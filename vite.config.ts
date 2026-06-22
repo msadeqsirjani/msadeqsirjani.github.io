@@ -134,6 +134,29 @@ function injectBuildTime(): PluginOption {
   };
 }
 
+// GitHub Pages serves 404.html for unknown paths. Shipping a copy of the built
+// index.html lets the SPA boot and resolve client-side routes (e.g. /publications)
+// on direct load and hard refresh.
+function emitSpaFallback(): PluginOption {
+  let outDir = path.join(__dirname, 'dist');
+  return {
+    name: 'emit-spa-fallback',
+    configResolved(config) {
+      outDir = path.isAbsolute(config.build.outDir)
+        ? config.build.outDir
+        : path.join(config.root, config.build.outDir);
+    },
+    closeBundle() {
+      const indexPath = path.join(outDir, 'index.html');
+      const notFoundPath = path.join(outDir, '404.html');
+      if (fs.existsSync(indexPath)) {
+        fs.copyFileSync(indexPath, notFoundPath);
+        console.log('SPA fallback written: 404.html');
+      }
+    },
+  };
+}
+
 export default defineConfig({
   resolve: {
     alias: {
@@ -147,6 +170,7 @@ export default defineConfig({
     preact(),
     injectSeoAndFonts(),
     injectBuildTime(),
+    emitSpaFallback(),
     visualizer({
       filename: './dist/stats.html',
       open: false,

@@ -13,7 +13,8 @@ import {
 import type {IconDefinition} from '@fortawesome/fontawesome-svg-core';
 import {useGlobalSearch} from '../../hooks/useGlobalSearch';
 import './GlobalSearch.css';
-import {sectionHref} from '../../constants/siteNav';
+import {SEARCH_CATEGORY_DEST} from '../../constants/siteNav';
+import {navigate} from '../../utils/router';
 import type {
   Publication,
   ResearchItem,
@@ -130,10 +131,10 @@ const GlobalSearch = ({isOpen, onClose}: GlobalSearchProps) => {
   }, [isOpen]);
 
   const handleResultClick = useCallback(
-    (sectionId: string) => {
-      const element = document.getElementById(sectionId);
-      if (element) {
-        element.scrollIntoView({behavior: 'smooth'});
+    (categoryKey: string) => {
+      const dest = SEARCH_CATEGORY_DEST[categoryKey];
+      if (dest) {
+        navigate(dest.path, dest.anchor);
         onClose();
         setSearchQuery('');
       }
@@ -298,7 +299,11 @@ const GlobalSearch = ({isOpen, onClose}: GlobalSearchProps) => {
                         return (
                           <a
                             key={index}
-                            href={sectionHref(category.key)}
+                            href={(() => {
+                              const d = SEARCH_CATEGORY_DEST[category.key];
+                              if (!d) return '/';
+                              return d.path + (d.anchor ? `#${d.anchor}` : '');
+                            })()}
                             ref={el => {
                               resultsRef.current[globalIndex] = el;
                             }}

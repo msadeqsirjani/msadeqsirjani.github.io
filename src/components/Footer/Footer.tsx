@@ -12,7 +12,8 @@ import {
   faResearchgate,
 } from '@fortawesome/free-brands-svg-icons';
 import {useScrollManager} from '../../hooks/useScrollManager';
-import {sectionHref} from '../../constants/siteNav';
+import {ROUTE_PATHS} from '../../constants/siteNav';
+import {navLinkProps} from '../../utils/router';
 
 const BUILD_TIMESTAMP = Number(__BUILD_TIMESTAMP__);
 
@@ -40,22 +41,21 @@ const Footer = () => {
     window.scrollTo({top: 0, behavior: 'smooth'});
   };
 
-  const scrollToSection = (
-    e: React.MouseEvent<HTMLAnchorElement>,
-    id: string,
-  ) => {
-    e.preventDefault();
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({behavior: 'smooth'});
-    }
-  };
-
-  const quickLinks = [
-    {id: 'home', label: 'Home'},
-    {id: 'research', label: 'Research'},
-    {id: 'publications', label: 'Publications'},
-    {id: 'contact', label: 'Contact'},
+  const quickLinks: {
+    id: string;
+    label: string;
+    path: string;
+    anchor?: string;
+  }[] = [
+    {id: 'home', label: 'Home', path: ROUTE_PATHS.home},
+    {id: 'research', label: 'Research', path: ROUTE_PATHS.research},
+    {id: 'publications', label: 'Publications', path: ROUTE_PATHS.publications},
+    {
+      id: 'contact',
+      label: 'Contact',
+      path: ROUTE_PATHS.home,
+      anchor: 'contact',
+    },
   ];
 
   const socialLinks = [
@@ -106,12 +106,7 @@ const Footer = () => {
               <ul>
                 {quickLinks.map(link => (
                   <li key={link.id}>
-                    <a
-                      href={sectionHref(link.id)}
-                      onClick={e => scrollToSection(e, link.id)}
-                    >
-                      {link.label}
-                    </a>
+                    <a {...navLinkProps(link.path, link.anchor)}>{link.label}</a>
                   </li>
                 ))}
               </ul>

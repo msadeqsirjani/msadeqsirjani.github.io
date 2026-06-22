@@ -1,0 +1,18 @@
+.page-shell {
+  padding-top: 2rem;
+}
+
+.page-back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 0.5rem;
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  color: var(--accent-color);
+  text-decoration: none;
+}
+
+.page-back-link:hover {
+  text-decoration: underline;
+}

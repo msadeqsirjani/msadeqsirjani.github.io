@@ -6,8 +6,10 @@ import ThemeToggle from '../ThemeToggle/ThemeToggle';
 import {
   DROPDOWN_NAV_LINKS,
   MAIN_NAV_LINKS,
-  sectionHref,
+  ROUTE_PATHS,
+  normalizePath,
 } from '../../constants/siteNav';
+import {navigate, subscribeRoute} from '../../utils/router';
 
 interface NavbarProps {
   onSearchClick?: () => void;
@@ -17,6 +19,17 @@ const Navbar = ({onSearchClick}: NavbarProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [activePath, setActivePath] = useState(() =>
+    normalizePath(window.location.pathname),
+  );
+
+  useEffect(
+    () =>
+      subscribeRoute(() =>
+        setActivePath(normalizePath(window.location.pathname)),
+      ),
+    [],
+  );
 
   useEffect(() => {
     const handleScroll = () => {
@@ -87,24 +100,21 @@ const Navbar = ({onSearchClick}: NavbarProps) => {
     }
   };
 
-  const scrollToSection = (
+  const hrefFor = (path: string, anchor?: string) =>
+    path + (anchor ? `#${anchor}` : '');
+
+  const handleNav = (
     e: React.MouseEvent<HTMLAnchorElement>,
-    id: string,
+    path: string,
+    anchor?: string,
   ) => {
-    e.preventDefault();
-    const element = document.getElementById(id);
-    if (element) {
-      const navbar = document.querySelector('.navbar') as HTMLElement;
-      const navbarHeight = navbar ? navbar.offsetHeight : 0;
-      const top =
-        element.getBoundingClientRect().top +
-        window.scrollY -
-        navbarHeight -
-        24;
-      window.scrollTo({top, behavior: 'smooth'});
-      setIsMenuOpen(false);
-      setIsDropdownOpen(false);
+    if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button === 1) {
+      return;
     }
+    e.preventDefault();
+    navigate(path, anchor);
+    setIsMenuOpen(false);
+    setIsDropdownOpen(false);
   };
 
   const mainLinks = MAIN_NAV_LINKS;
@@ -119,9 +129,9 @@ const Navbar = ({onSearchClick}: NavbarProps) => {
       <div className="nav-container">
         <div className="nav-logo">
           <a
-            href={sectionHref('home')}
+            href={ROUTE_PATHS.home}
             className="logo-text"
-            onClick={e => scrollToSection(e, 'home')}
+            onClick={e => handleNav(e, ROUTE_PATHS.home)}
             aria-label="SS — Mohammad Sadegh Sirjani, Home"
           >
             SS
@@ -131,9 +141,11 @@ const Navbar = ({onSearchClick}: NavbarProps) => {
           {mainLinks.map(link => (
             <li key={link.id}>
               <a
-                href={sectionHref(link.id)}
-                className="nav-link"
-                onClick={e => scrollToSection(e, link.id)}
+                href={hrefFor(link.path, link.anchor)}
+                className={`nav-link${
+                  normalizePath(link.path) === activePath ? ' active' : ''
+                }`}
+                onClick={e => handleNav(e, link.path, link.anchor)}
               >
                 {link.label}
               </a>
@@ -165,12 +177,12 @@ const Navbar = ({onSearchClick}: NavbarProps) => {
               {dropdownLinks.map((link, index) => (
                 <li key={link.id}>
                   <a
-                    href={sectionHref(link.id)}
+                    href={hrefFor(link.path, link.anchor)}
                     className="nav-link"
                     ref={el => {
                       dropdownItemRefs.current[index] = el;
                     }}
-                    onClick={e => scrollToSection(e, link.id)}
+                    onClick={e => handleNav(e, link.path, link.anchor)}
                     onKeyDown={e => handleItemKeyDown(e, index)}
                   >
                     {link.label}
@@ -182,9 +194,9 @@ const Navbar = ({onSearchClick}: NavbarProps) => {
           {dropdownLinks.map(link => (
             <li key={`mobile-${link.id}`} className="nav-mobile-item">
               <a
-                href={sectionHref(link.id)}
+                href={hrefFor(link.path, link.anchor)}
                 className="nav-link"
-                onClick={e => scrollToSection(e, link.id)}
+                onClick={e => handleNav(e, link.path, link.anchor)}
               >
                 {link.label}
               </a>
