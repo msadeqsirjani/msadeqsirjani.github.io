@@ -1,11 +1,11 @@
 [
   {
     "date": "Jun. 2026",
-    "description": "Paper \"Optimizing Task Scheduling in Fog Computing with Deadline Awareness\" published at the <a href=\"https://www.satcconf.com/\" target=\"_blank\" rel=\"noopener noreferrer\">2nd IEEE SaTC 2026</a>."
+    "description": "Paper \"<a href=\"https://doi.org/10.1109/SATC69565.2026.11542230\" target=\"_blank\" rel=\"noopener noreferrer\">Optimizing Task Scheduling in Fog Computing with Deadline Awareness</a>\" published at the <a href=\"https://www.satcconf.com/\" target=\"_blank\" rel=\"noopener noreferrer\">2nd IEEE SaTC 2026</a>."
   },
   {
     "date": "Apr. 2026",
-    "description": "Paper \"Are LLM Benchmarks Already Contaminated? A Systematic Review of Contamination Detection Methods\" accepted at the <a href=\"https://gem-workshop.com/\" target=\"_blank\" rel=\"noopener noreferrer\">GEM Workshop at ACL 2026</a>."
+    "description": "Paper \"<a href=\"https://doi.org/10.13140/RG.2.2.12579.41764\" target=\"_blank\" rel=\"noopener noreferrer\">Are LLM Benchmarks Already Contaminated? A Systematic Review of Contamination Detection Methods</a>\" accepted at the <a href=\"https://gem-workshop.com/\" target=\"_blank\" rel=\"noopener noreferrer\">GEM Workshop at ACL 2026</a>."
   },
   {
     "date": "Apr. 2026",
@@ -33,11 +33,11 @@
   },
   {
     "date": "Nov. 2025",
-    "description": "Paper \"QTE-IoT: Q-Learning-Based Task Scheduling Scheme to Enhance Energy Consumption and QoS in IoT Environments\" published in <a href=\"https://www.journals.elsevier.com/sustainable-computing-informatics-and-systems\" target=\"_blank\" rel=\"noopener noreferrer\">Sustainable Computing: Informatics and Systems</a>."
+    "description": "Paper \"<a href=\"https://doi.org/10.1016/j.suscom.2025.101247\" target=\"_blank\" rel=\"noopener noreferrer\">QTE-IoT: Q-Learning-Based Task Scheduling Scheme to Enhance Energy Consumption and QoS in IoT Environments</a>\" published in <a href=\"https://www.journals.elsevier.com/sustainable-computing-informatics-and-systems\" target=\"_blank\" rel=\"noopener noreferrer\">Sustainable Computing: Informatics and Systems</a>."
   },
   {
     "date": "Sep. 2025",
-    "description": "Paper \"Controller Placement in Software-Defined Networks Using Reinforcement Learning and Metaheuristics\" published in <a href=\"https://www.springer.com/journal/10586\" target=\"_blank\" rel=\"noopener noreferrer\">Cluster Computing</a>."
+    "description": "Paper \"<a href=\"https://doi.org/10.1007/s10586-025-05331-y\" target=\"_blank\" rel=\"noopener noreferrer\">Controller Placement in Software-Defined Networks Using Reinforcement Learning and Metaheuristics</a>\" published in <a href=\"https://www.springer.com/journal/10586\" target=\"_blank\" rel=\"noopener noreferrer\">Cluster Computing</a>."
   },
   {
     "date": "Jun. 2025",

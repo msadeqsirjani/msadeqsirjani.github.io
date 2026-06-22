@@ -6,6 +6,7 @@ export interface Publication {
   authors?: string;
   link?: string;
   pdfLink?: string;
+  github?: string;
   bibtexId?: string;
   abstract?: string;
   downloads?: number;

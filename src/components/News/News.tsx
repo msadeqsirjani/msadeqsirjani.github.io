@@ -1,25 +1,31 @@
 import {fetchNews, news} from '../../data/content';
-import TimelineSection from '../TimelineSection/TimelineSection';
 import useContentData from '../../hooks/useContentData';
-import useSettings from '../../hooks/useSettings';
+import {sanitizeHtml} from '../../utils/sanitizeHtml';
 
 const News = () => {
   const {data: newsItems} = useContentData(fetchNews, news, {
     logLabel: 'news data',
   });
-  const {settings} = useSettings();
 
   return (
-    <TimelineSection
-      id="news"
-      title="News"
-      items={newsItems}
-      listClassName="news-list"
-      itemClassName="news-item"
-      dateWrapperClassName="news-dates"
-      initialLimit={settings.displayLimits.news.initial}
-      showMoreEnabled={settings.displayLimits.news.showMoreEnabled}
-    />
+    <section id="news" className="section">
+      <div className="container">
+        <h2 className="section-title">News</h2>
+        <ul className="news-scroll">
+          {newsItems.map((item, index) => (
+            <li key={`${item.date}-${index}`} className="news-row">
+              <span className="news-row-date">{item.date}</span>
+              <span
+                className="news-row-text"
+                dangerouslySetInnerHTML={{
+                  __html: sanitizeHtml(item.description),
+                }}
+              />
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
   );
 };
 

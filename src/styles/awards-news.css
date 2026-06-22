@@ -1,22 +1,56 @@
-.timeline-list.awards-list,
-.timeline-list.news-list {
-  max-width: none;
+/* News + Awards — plain scrollable list */
+.news-scroll {
+  list-style: none;
   margin: 0;
+  padding: 0.25rem 1.25rem 0.25rem 0;
+  max-height: 32rem;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--accent-color) transparent;
 }
 
-.timeline-item.awards-item,
-.timeline-item.news-item {
-  grid-template-columns: 140px 1fr;
-  gap: 1rem;
+.news-scroll::-webkit-scrollbar {
+  width: 8px;
 }
 
-.timeline-item.awards-item .timeline-dates.awards-dates,
-.timeline-item.news-item .timeline-dates.news-dates {
-  text-align: left;
-  padding-left: 0;
+.news-scroll::-webkit-scrollbar-thumb {
+  background: var(--accent-color);
+  border-radius: 999px;
 }
 
-.timeline-item.news-item .timeline-description,
-.timeline-item.awards-item .timeline-description {
+.news-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.news-row {
+  display: grid;
+  grid-template-columns: 96px 1fr;
+  gap: 0.5rem 1rem;
+  padding: 0.75rem 0.75rem;
+  border-radius: var(--shape-card);
+  transition: background-color 0.2s ease;
+}
+
+.news-row:hover {
+  background: var(--gray-light);
+}
+
+.news-row-date {
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-light);
+  padding-top: 0.15rem;
+}
+
+.news-row-text {
+  font-size: var(--fs-base);
+  line-height: 1.55;
+  color: var(--text-color);
   text-align: justify;
+}
+
+.news-row-text a {
+  color: var(--accent-color);
 }

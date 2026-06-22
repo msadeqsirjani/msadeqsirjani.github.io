@@ -1,25 +1,31 @@
 import {awards, fetchAwards} from '../../data/content';
-import TimelineSection from '../TimelineSection/TimelineSection';
 import useContentData from '../../hooks/useContentData';
-import useSettings from '../../hooks/useSettings';
+import {sanitizeHtml} from '../../utils/sanitizeHtml';
 
 const Awards = () => {
   const {data: awardItems} = useContentData(fetchAwards, awards, {
     logLabel: 'awards data',
   });
-  const {settings} = useSettings();
 
   return (
-    <TimelineSection
-      id="awards"
-      title="Awards & Honors"
-      items={awardItems}
-      listClassName="awards-list"
-      itemClassName="awards-item"
-      dateWrapperClassName="awards-dates"
-      initialLimit={settings.displayLimits.awards.initial}
-      showMoreEnabled={settings.displayLimits.awards.showMoreEnabled}
-    />
+    <section id="awards" className="section">
+      <div className="container">
+        <h2 className="section-title">Awards & Honors</h2>
+        <ul className="news-scroll">
+          {awardItems.map((item, index) => (
+            <li key={`${item.date}-${index}`} className="news-row">
+              <span className="news-row-date">{item.date}</span>
+              <span
+                className="news-row-text"
+                dangerouslySetInnerHTML={{
+                  __html: sanitizeHtml(item.description),
+                }}
+              />
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
   );
 };
 

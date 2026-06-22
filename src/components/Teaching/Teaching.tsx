@@ -1,82 +1,69 @@
 import {fetchTeaching, teaching} from '../../data/content';
 import type {TeachingItem} from '../../types';
-import TimelineSection from '../TimelineSection/TimelineSection';
 import useContentData from '../../hooks/useContentData';
-import useSettings from '../../hooks/useSettings';
+
+const universityUrl = (university: string) => {
+  if (university === 'University of Texas at San Antonio') {
+    return 'https://www.utsa.edu/';
+  }
+  if (university === 'Ferdowsi University of Mashhad') {
+    return 'https://en.um.ac.ir/';
+  }
+  return undefined;
+};
 
 const Teaching = () => {
   const {data: teachingItems} = useContentData(fetchTeaching, teaching, {
     logLabel: 'teaching data',
   });
-  const {settings} = useSettings();
 
   return (
-    <TimelineSection<TeachingItem>
-      id="teaching"
-      title="Teaching Experience"
-      items={teachingItems}
-      listClassName="teaching-list"
-      itemClassName="teaching-item"
-      dateWrapperClassName="teaching-dates"
-      dateClassName="teaching-date"
-      contentWrapperClassName="teaching-content"
-      getItemKey={(item, index) => `${item.course}-${item.date}-${index}`}
-      renderDate={item => (
-        <div className="teaching-date-col">
-          <span className="teaching-role">{item.role}</span>
-          <span className="teaching-date">{item.date}</span>
-        </div>
-      )}
-      renderContent={item => (
-        <>
-          <span className="teaching-course-row">
-            <span className="teaching-course">{item.course}</span>
-          </span>
-          <span className="teaching-meta">
-            {item.instructorUrl ? (
-              <a
-                href={item.instructorUrl}
-                className="teaching-instructor-name"
-                target="_blank"
-                rel="noopener noreferrer"
+    <section id="teaching" className="section">
+      <div className="container">
+        <h2 className="section-title">Teaching Experience</h2>
+        <ul className="teaching-list">
+          {teachingItems.map((item: TeachingItem, index) => {
+            const instructor = item.instructor.replace(/^Instructor:\s*/, '');
+            const uniUrl = universityUrl(item.university);
+            return (
+              <li
+                key={`${item.course}-${item.date}-${index}`}
+                className="teaching-row"
               >
-                {item.instructor.replace(/^Instructor:\s*/, '')}
-              </a>
-            ) : (
-              <span className="teaching-instructor-name">
-                {item.instructor.replace(/^Instructor:\s*/, '')}
-              </span>
-            )}
-          </span>
-          <span className="teaching-meta teaching-role-mobile">
-            {item.role}
-          </span>
-          <span className="teaching-meta teaching-university-name">
-            {item.university === 'University of Texas at San Antonio' ? (
-              <a
-                href="https://www.utsa.edu/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {item.university}
-              </a>
-            ) : item.university === 'Ferdowsi University of Mashhad' ? (
-              <a
-                href="https://en.um.ac.ir/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {item.university}
-              </a>
-            ) : (
-              item.university
-            )}
-          </span>
-        </>
-      )}
-      initialLimit={settings.displayLimits.teaching.initial}
-      showMoreEnabled={settings.displayLimits.teaching.showMoreEnabled}
-    />
+                <div className="teaching-row-main">
+                  <span className="teaching-course">{item.course}</span>
+                  <span className="teaching-meta">
+                    {item.instructorUrl ? (
+                      <a
+                        href={item.instructorUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {instructor}
+                      </a>
+                    ) : (
+                      instructor
+                    )}
+                    <span className="teaching-sep"> · </span>
+                    {uniUrl ? (
+                      <a href={uniUrl} target="_blank" rel="noopener noreferrer">
+                        {item.university}
+                      </a>
+                    ) : (
+                      item.university
+                    )}
+                  </span>
+                </div>
+                <div className="teaching-row-side">
+                  <span className="teaching-role">{item.role}</span>
+                  <span className="teaching-term">{item.date}</span>
+                </div>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+    </section>
   );
 };
 
