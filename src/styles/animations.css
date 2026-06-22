@@ -613,7 +613,7 @@ textarea:focus-visible {
 
 .custom-toast.toast-success {
   background: var(--accent-color) !important;
-  color: #fff !important;
+  color: var(--on-accent) !important;
   border: none !important;
 }
 
