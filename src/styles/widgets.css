@@ -17,7 +17,7 @@
   height: 52px;
   border-radius: var(--icon-border-radius);
   background: var(--accent-color);
-  color: var(--white);
+  color: var(--on-accent);
   border: var(--button-border-width) solid var(--accent-color);
   cursor: pointer;
   display: flex;
@@ -50,7 +50,7 @@
 
 .scroll-to-top:hover {
   background: var(--accent-hover);
-  color: var(--white);
+  color: var(--on-accent);
   border-color: var(--accent-hover);
   transform: translateY(-3px);
 }
@@ -67,17 +67,6 @@
   width: 1.25rem;
   height: 1.25rem;
   display: block;
-}
-
-[data-theme='dark'] .scroll-to-top {
-  background: var(--accent-color);
-  color: var(--text-color);
-  border-color: var(--accent-color);
-}
-
-[data-theme='dark'] .scroll-to-top:hover {
-  background: var(--accent-hover);
-  border-color: var(--accent-hover);
 }
 
 .quick-actions {
@@ -98,7 +87,7 @@
   height: 52px;
   border-radius: var(--icon-border-radius);
   background: var(--accent-color);
-  color: var(--white);
+  color: var(--on-accent);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -116,14 +105,14 @@
 
 .quick-action-toggle:hover {
   background: var(--accent-hover);
-  color: var(--white);
+  color: var(--on-accent);
   border-color: var(--accent-hover);
   transform: translateY(-2px);
 }
 
 .quick-action-toggle.active {
   background: var(--accent-hover);
-  color: var(--white);
+  color: var(--on-accent);
   border-color: var(--accent-hover);
   transform: rotate(45deg);
 }
@@ -169,7 +158,7 @@
   height: 52px;
   border-radius: var(--icon-border-radius);
   background: var(--accent-color);
-  color: var(--white);
+  color: var(--on-accent);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -204,39 +193,6 @@
 .quick-action-toggle:focus,
 .quick-action-btn:focus {
   border-radius: var(--icon-border-radius);
-}
-
-[data-theme='dark'] .quick-action-btn {
-  background: var(--accent-color);
-  border-color: var(--accent-color);
-  color: var(--text-color);
-}
-
-[data-theme='dark'] .quick-action-btn:hover {
-  background: var(--accent-hover);
-  border-color: var(--accent-hover);
-}
-
-[data-theme='dark'] .quick-action-toggle {
-  background: var(--accent-color);
-  border-color: var(--accent-color);
-  color: var(--text-color);
-}
-
-[data-theme='dark'] .quick-action-toggle:hover,
-[data-theme='dark'] .quick-action-toggle.active {
-  background: var(--accent-hover);
-  border-color: var(--accent-hover);
-  color: var(--text-color);
-}
-
-[data-theme='dark'] .scroll-to-top i,
-[data-theme='dark'] .quick-action-btn i,
-[data-theme='dark'] .quick-action-toggle i,
-[data-theme='dark'] .scroll-to-top svg,
-[data-theme='dark'] .quick-action-btn svg,
-[data-theme='dark'] .quick-action-toggle svg {
-  color: var(--text-color);
 }
 
 .quick-action-toggle[data-tooltip],
