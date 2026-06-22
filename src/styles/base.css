@@ -94,6 +94,12 @@ h6 {
   /* Error toast — saturated red works on both themes */
   --toast-error-bg: #ef4444;
   --toast-error-text: #ffffff;
+  /* Frosted navbar / dropdown glass + logo wordmark gradient */
+  --nav-scrolled-bg: rgba(255, 255, 255, 0.4);
+  --nav-scrolled-border: rgba(209, 213, 219, 0.3);
+  --dropdown-glass-bg: var(--white);
+  --dropdown-glass-border: var(--border-color);
+  --logo-gradient: linear-gradient(135deg, #333333, #1a1a1a);
 
   /* Material 3 shape scale */
   --button-border-radius: 20px;
@@ -148,6 +154,12 @@ h6 {
   --elev-1: 0 1px 3px rgba(0, 0, 0, 0.6);
   --elev-2: 0 2px 6px rgba(0, 0, 0, 0.6);
   --elev-3: 0 4px 10px rgba(0, 0, 0, 0.7);
+  /* Frosted navbar / dropdown glass + logo wordmark gradient (dark) */
+  --nav-scrolled-bg: rgba(15, 23, 42, 0.4);
+  --nav-scrolled-border: rgba(71, 85, 105, 0.25);
+  --dropdown-glass-bg: rgba(15, 23, 42, 0.75);
+  --dropdown-glass-border: rgba(71, 85, 105, 0.25);
+  --logo-gradient: linear-gradient(135deg, #ffffff, #e5e5e5);
 }
 
 body {
