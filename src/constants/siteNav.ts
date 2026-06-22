@@ -28,6 +28,7 @@ export const VALID_HASHES: readonly string[] = [
   'main-content',
   'person',
   'research-interests',
+  'publications-all',
   ...ALL_NAV_LINKS.map(link => link.id),
 ];
 

@@ -1,18 +1,21 @@
+import type {IconDefinition} from '@fortawesome/fontawesome-svg-core';
 import Icon from '../Icon/Icon';
-import {faExternalLinkAlt} from '@fortawesome/free-solid-svg-icons';
+import {faArrowUpRightFromSquare} from '@fortawesome/free-solid-svg-icons';
 
 interface PubLinkProps {
   label: string;
   href?: string;
   onClick?: () => void;
+  icon?: IconDefinition;
 }
 
 // External-style publication link: renders an anchor when href is given,
 // otherwise an action button (e.g. copy BibTeX).
-const PubLink = ({label, href, onClick}: PubLinkProps) => {
+const PubLink = ({label, href, onClick, icon}: PubLinkProps) => {
   const content = (
     <>
-      {label} <Icon icon={faExternalLinkAlt} size="xs" />
+      <Icon icon={icon ?? faArrowUpRightFromSquare} size="xs" />
+      {label}
     </>
   );
 

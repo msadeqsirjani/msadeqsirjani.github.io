@@ -38,6 +38,9 @@ const ResearchExperience = lazy(
 const Publications = lazy(
   () => import('./components/Publications/Publications'),
 );
+const PublicationsPage = lazy(
+  () => import('./components/Publications/PublicationsPage'),
+);
 const Teaching = lazy(() => import('./components/Teaching/Teaching'));
 const News = lazy(() => import('./components/News/News'));
 const Awards = lazy(() => import('./components/Awards/Awards'));
@@ -77,12 +80,18 @@ const SectionLoader = () => (
 
 function App() {
   const [show404, setShow404] = useState(false);
+  const [view, setView] = useState<'home' | 'publications'>('home');
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const prevShow404 = useRef(false);
 
   useEffect(() => {
     const checkRoute = () => {
       setShow404(!isValidRoute(window.location.pathname, window.location.hash));
+      const cleanHash = window.location.hash
+        .toLowerCase()
+        .replace(/^#/, '')
+        .split('?')[0];
+      setView(cleanHash === 'publications-all' ? 'publications' : 'home');
     };
 
     checkRoute();
@@ -154,6 +163,12 @@ function App() {
     return () => document.removeEventListener('keydown', handleKeyDown);
   }, []);
 
+  useEffect(() => {
+    if (view === 'publications') {
+      window.scrollTo({top: 0, behavior: 'auto'});
+    }
+  }, [view]);
+
   if (show404) {
     return (
       <ThemeProvider>
@@ -213,18 +228,28 @@ function App() {
           </Suspense>
         </DeferredIdle>
         <main id="main-content" role="main" aria-label="Main content">
-          <ErrorBoundary>
-            <Hero />
-          </ErrorBoundary>
-          {lazySections.map(({key, Component, delay}) => (
-            <ErrorBoundary key={key}>
-              <AnimatedSection delay={delay ?? DEFAULT_SECTION_DELAY}>
-                <Suspense fallback={<SectionLoader />}>
-                  <Component />
-                </Suspense>
-              </AnimatedSection>
+          {view === 'publications' ? (
+            <ErrorBoundary>
+              <Suspense fallback={<SectionLoader />}>
+                <PublicationsPage />
+              </Suspense>
             </ErrorBoundary>
-          ))}
+          ) : (
+            <>
+              <ErrorBoundary>
+                <Hero />
+              </ErrorBoundary>
+              {lazySections.map(({key, Component, delay}) => (
+                <ErrorBoundary key={key}>
+                  <AnimatedSection delay={delay ?? DEFAULT_SECTION_DELAY}>
+                    <Suspense fallback={<SectionLoader />}>
+                      <Component />
+                    </Suspense>
+                  </AnimatedSection>
+                </ErrorBoundary>
+              ))}
+            </>
+          )}
         </main>
         <ErrorBoundary>
           <Suspense fallback={null}>
