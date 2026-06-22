@@ -363,16 +363,7 @@ a.result-item {
   --modal-text-muted: var(--text-light);
   --modal-border: var(--border-color);
   --modal-card-bg: var(--gray-light);
-  --modal-hover-bg: rgba(15, 23, 42, 0.06);
-}
-
-[data-theme='dark'] .global-search-modal {
-  --modal-bg: #1a202c;
-  --modal-text: #e2e8f0;
-  --modal-text-muted: #a0aec0;
-  --modal-border: #2d3748;
-  --modal-card-bg: #2d3748;
-  --modal-hover-bg: rgba(255, 255, 255, 0.08);
+  --modal-hover-bg: color-mix(in srgb, var(--text-color) 7%, transparent);
 }
 
 .global-search-modal {

@@ -1,0 +1,22 @@
+.timeline-list.awards-list,
+.timeline-list.news-list {
+  max-width: none;
+  margin: 0;
+}
+
+.timeline-item.awards-item,
+.timeline-item.news-item {
+  grid-template-columns: 140px 1fr;
+  gap: 1rem;
+}
+
+.timeline-item.awards-item .timeline-dates.awards-dates,
+.timeline-item.news-item .timeline-dates.news-dates {
+  text-align: left;
+  padding-left: 0;
+}
+
+.timeline-item.news-item .timeline-description,
+.timeline-item.awards-item .timeline-description {
+  text-align: justify;
+}

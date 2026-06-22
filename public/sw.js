@@ -5,9 +5,10 @@ const RUNTIME_CACHE = `runtime-cache-${CACHE_VERSION}`;
 const PRECACHE_ASSETS = [
   '/',
   '/index.html',
+  // LCP profile image — webp variants the browser actually renders
+  // (jpg/og variants are for crawlers, which don't use the service worker)
   '/assets/img/profile-360.webp',
-  '/assets/img/profile.jpg',
-  '/assets/img/profile-og.jpg',
+  '/assets/img/profile-600.webp',
   '/assets/data/bibtex.json',
   '/assets/docs/cv/msadeqsirjani-cv.pdf',
 ];

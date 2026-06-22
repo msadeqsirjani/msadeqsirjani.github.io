@@ -1,0 +1,277 @@
+.hero {
+  padding: 6rem 0 4.5rem;
+}
+
+.hero-content {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 3rem;
+  align-items: center;
+  max-width: 1000px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.profile-image {
+  position: relative;
+  display: inline-block;
+}
+
+.profile-image img {
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid var(--white);
+  box-shadow:
+    0 0 0 1px var(--border-color),
+    0 10px 30px -8px rgba(var(--accent-rgb), 0.35);
+  transition:
+    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.profile-image:hover img {
+  transform: translateY(-4px);
+  box-shadow:
+    0 0 0 1px rgba(var(--accent-rgb), 0.4),
+    0 18px 40px -10px rgba(var(--accent-rgb), 0.45);
+}
+
+.hero-right {
+  text-align: left;
+}
+
+.hero-title {
+  font-size: var(--fs-3xl);
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: var(--text-color);
+}
+
+.hero-subtitle {
+  font-size: var(--fs-lg);
+  color: var(--accent-color);
+  margin-bottom: 0.5rem;
+}
+
+.hero-institution {
+  color: var(--text-light);
+  margin-bottom: 1rem;
+}
+
+.hero-tagline {
+  color: var(--text-light);
+  margin-bottom: 2rem;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.btn {
+  padding: 0.75rem 1.5rem;
+  border: var(--button-border-width) solid var(--accent-color);
+  border-radius: var(--button-border-radius);
+  background: transparent;
+  color: var(--accent-color);
+  text-decoration: none;
+  font-weight: 500;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition:
+    color 0.3s ease,
+    background-color 0.3s ease,
+    border-color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.btn-secondary {
+  background: var(--white);
+  color: var(--accent-color);
+  border: var(--button-border-width) solid var(--accent-color);
+  border-radius: var(--button-border-radius);
+}
+
+.btn-secondary:hover {
+  background: var(--accent-color);
+  color: var(--white);
+  border-color: var(--accent-color);
+}
+
+.btn-primary {
+  background: var(--accent-color);
+  color: var(--on-accent);
+  border: var(--button-border-width) solid var(--accent-color);
+  border-radius: var(--button-border-radius);
+  box-shadow: var(--elev-1);
+}
+
+.btn-primary:hover {
+  background: var(--accent-hover);
+  color: var(--on-accent);
+  border-color: var(--accent-hover);
+  box-shadow: var(--elev-2);
+}
+
+.hero-buttons .btn-secondary {
+  background: transparent;
+  color: var(--accent-color);
+  border: var(--button-border-width) solid var(--accent-color);
+  border-radius: var(--button-border-radius);
+}
+
+.hero-buttons .btn-secondary:hover {
+  background: var(--accent-color);
+  color: var(--on-accent);
+  border: var(--button-border-width) solid var(--accent-color);
+}
+
+.social-links {
+  display: flex;
+  gap: 1rem;
+}
+
+.social-link {
+  width: 44px;
+  height: 44px;
+  border: var(--button-border-width) solid var(--border-color);
+  border-radius: var(--icon-border-radius);
+  background: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-color);
+  text-decoration: none;
+  font-weight: 600;
+  transition:
+    color 0.3s ease,
+    background-color 0.3s ease,
+    border-color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.social-link:hover {
+  background: var(--accent-color);
+  border-color: var(--accent-color);
+  color: var(--on-accent);
+  transform: translateY(-2px);
+}
+
+[data-theme='dark'] .social-link {
+  background: var(--bg-color);
+  border-color: var(--border-color);
+  color: var(--text-color);
+}
+
+[data-theme='dark'] .social-link:hover {
+  background: var(--accent-color);
+  border-color: var(--accent-color);
+  color: var(--white);
+}
+
+.social-link,
+.btn[data-tooltip],
+.footer-social a[data-tooltip],
+.research-logo-link[data-tooltip],
+.education-logo-link[data-tooltip] {
+  position: relative;
+}
+
+.research-logo-link {
+  display: inline-flex;
+}
+
+.social-link::after,
+.btn[data-tooltip]::after,
+.footer-social a[data-tooltip]::after,
+.research-logo-link[data-tooltip]::after,
+.education-logo-link[data-tooltip]::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%) translateY(-4px);
+  background: var(--text-color);
+  color: var(--white);
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+  font-size: var(--fs-xs);
+  font-weight: 500;
+  line-height: 1.2;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 0.3s ease,
+    visibility 0.3s ease,
+    transform 0.3s ease,
+    background-color 0.3s ease;
+  pointer-events: none;
+  z-index: 100;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.social-link::before,
+.btn[data-tooltip]::before,
+.footer-social a[data-tooltip]::before,
+.research-logo-link[data-tooltip]::before,
+.education-logo-link[data-tooltip]::before {
+  content: '';
+  position: absolute;
+  top: calc(100% + 3px);
+  left: 50%;
+  transform: translateX(-50%);
+  border: 5px solid transparent;
+  border-bottom-color: var(--text-color);
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 0.3s ease,
+    visibility 0.3s ease,
+    border-color 0.3s ease;
+  pointer-events: none;
+  z-index: 99;
+}
+
+.social-link:hover::before,
+.btn[data-tooltip]:hover::before,
+.footer-social a[data-tooltip]:hover::before,
+.research-logo-link[data-tooltip]:hover::before,
+.education-logo-link[data-tooltip]:hover::before {
+  opacity: 1;
+  visibility: visible;
+}
+
+.social-link:hover::after,
+.btn[data-tooltip]:hover::after,
+.footer-social a[data-tooltip]:hover::after,
+.research-logo-link[data-tooltip]:hover::after,
+.education-logo-link[data-tooltip]:hover::after {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+
+.social-link:focus-visible::before,
+.btn[data-tooltip]:focus-visible::before,
+.footer-social a[data-tooltip]:focus-visible::before,
+.research-logo-link[data-tooltip]:focus-visible::before,
+.education-logo-link[data-tooltip]:focus-visible::before {
+  opacity: 1;
+  visibility: visible;
+}
+
+.social-link:focus-visible::after,
+.btn[data-tooltip]:focus-visible::after,
+.footer-social a[data-tooltip]:focus-visible::after,
+.research-logo-link[data-tooltip]:focus-visible::after,
+.education-logo-link[data-tooltip]:focus-visible::after {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}

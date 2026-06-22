@@ -6,7 +6,7 @@
   background: linear-gradient(
     90deg,
     var(--gray-light) 0%,
-    #e0e0e0 50%,
+    color-mix(in srgb, var(--text-color) 12%, var(--gray-light)) 50%,
     var(--gray-light) 100%
   );
   background-size: 200% 100%;
@@ -77,29 +77,9 @@
   border-radius: 6px;
 }
 
-body[data-theme='dark'] .skeleton {
-  background: linear-gradient(
-    90deg,
-    rgba(255, 255, 255, 0.05) 0%,
-    rgba(255, 255, 255, 0.1) 50%,
-    rgba(255, 255, 255, 0.05) 100%
-  );
-  background-size: 200% 100%;
-}
-
-body[data-theme='dark'] .skeleton-card,
-body[data-theme='dark'] .skeleton-publication {
-  background: rgba(255, 255, 255, 0.02);
-  border-color: rgba(255, 255, 255, 0.1);
-}
-
 @media (prefers-reduced-motion: reduce) {
   .skeleton {
     animation: none;
     background: var(--gray-light);
-  }
-
-  body[data-theme='dark'] .skeleton {
-    background: rgba(255, 255, 255, 0.05);
   }
 }

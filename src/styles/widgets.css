@@ -1,0 +1,301 @@
+.reading-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent-color), var(--accent-hover));
+  z-index: 9999;
+  transition: width 0.1s ease-out;
+}
+
+.scroll-to-top {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 52px;
+  height: 52px;
+  border-radius: var(--icon-border-radius);
+  background: var(--accent-color);
+  color: var(--on-accent);
+  border: var(--button-border-width) solid var(--accent-color);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+  transition:
+    color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 999;
+}
+
+.scroll-to-top.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.scroll-to-top.hidden {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+}
+
+.scroll-to-top:hover {
+  background: var(--accent-hover);
+  color: var(--on-accent);
+  border-color: var(--accent-hover);
+  transform: translateY(-3px);
+}
+
+.scroll-to-top:active {
+  transform: translateY(-1px);
+}
+
+.scroll-to-top i {
+  font-size: var(--fs-lg);
+}
+
+.scroll-to-top svg {
+  width: 1.25rem;
+  height: 1.25rem;
+  display: block;
+}
+
+.quick-actions {
+  position: fixed;
+  bottom: 7.25rem;
+  right: 2rem;
+  z-index: 1000;
+  transition: bottom 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.scroll-to-top:not(.visible) ~ .quick-actions,
+.scroll-to-top.hidden ~ .quick-actions {
+  bottom: 2rem;
+}
+
+.quick-action-toggle {
+  width: 52px;
+  height: 52px;
+  border-radius: var(--icon-border-radius);
+  background: var(--accent-color);
+  color: var(--on-accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: var(--button-border-width) solid var(--accent-color);
+  transition:
+    color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+}
+
+.quick-action-toggle:hover {
+  background: var(--accent-hover);
+  color: var(--on-accent);
+  border-color: var(--accent-hover);
+  transform: translateY(-2px);
+}
+
+.quick-action-toggle.active {
+  background: var(--accent-hover);
+  color: var(--on-accent);
+  border-color: var(--accent-hover);
+  transform: rotate(45deg);
+}
+
+.quick-action-toggle i {
+  font-size: var(--fs-lg);
+  transition: transform 0.3s ease;
+}
+
+.quick-action-toggle svg {
+  width: 1.25rem;
+  height: 1.25rem;
+  display: block;
+}
+
+.quick-action-menu {
+  position: absolute;
+  bottom: 70px;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+  transition:
+    color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.quick-action-menu.active {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.quick-action-btn {
+  width: 52px;
+  height: 52px;
+  border-radius: var(--icon-border-radius);
+  background: var(--accent-color);
+  color: var(--on-accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  border: var(--button-border-width) solid var(--accent-color);
+  transition:
+    color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+}
+
+.quick-action-btn:hover {
+  transform: translateY(-2px);
+  background: var(--accent-hover);
+  border-color: var(--accent-hover);
+}
+
+.quick-action-btn i {
+  font-size: var(--fs-lg);
+}
+
+.quick-action-btn svg {
+  width: 1.25rem;
+  height: 1.25rem;
+  display: block;
+}
+
+.quick-action-toggle:focus,
+.quick-action-btn:focus {
+  border-radius: var(--icon-border-radius);
+}
+
+.quick-action-toggle[data-tooltip],
+.quick-action-btn[data-tooltip] {
+  position: relative;
+}
+
+.quick-action-toggle[data-tooltip]::after,
+.quick-action-btn[data-tooltip]::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  right: 70px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: var(--text-color);
+  color: var(--white);
+  padding: 6px 8px;
+  border-radius: 4px;
+  font-size: var(--fs-xs);
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 0.3s,
+    visibility 0.3s;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.quick-action-toggle[data-tooltip]:hover::after,
+.quick-action-btn[data-tooltip]:hover::after,
+.quick-action-toggle[data-tooltip]:focus-visible::after,
+.quick-action-btn[data-tooltip]:focus-visible::after {
+  opacity: 1;
+  visibility: visible;
+}
+
+@media (max-width: 768px) {
+  .social-link::after,
+  .btn[data-tooltip]::after,
+  .footer-social a[data-tooltip]::after,
+  .research-logo-link[data-tooltip]::after,
+  .scroll-to-top[data-tooltip]::after,
+  .quick-action-btn[data-tooltip]::after,
+  .quick-action-toggle[data-tooltip]::after,
+  .education-logo-link[data-tooltip]::after,
+  .education-logo-link[data-tooltip]::before,
+  .social-link::before,
+  .btn[data-tooltip]::before,
+  .footer-social a[data-tooltip]::before,
+  .research-logo-link[data-tooltip]::before,
+  .scroll-to-top[data-tooltip]::before,
+  .quick-action-btn[data-tooltip]::before,
+  .quick-action-toggle[data-tooltip]::before,
+  .education-logo-link[data-tooltip]::before {
+    display: none !important;
+  }
+
+  .scroll-to-top {
+    width: 48px;
+    height: 48px;
+    bottom: 1.5rem;
+    right: 1.5rem;
+  }
+
+  .scroll-to-top i {
+    font-size: var(--fs-md);
+  }
+
+  .quick-actions {
+    bottom: 6.5rem;
+    right: 1.5rem;
+  }
+
+  .scroll-to-top:not(.visible) ~ .quick-actions,
+  .scroll-to-top.hidden ~ .quick-actions {
+    bottom: 1.5rem;
+  }
+
+  .quick-action-toggle {
+    width: 46px;
+    height: 46px;
+  }
+
+  .quick-action-btn {
+    width: 38px;
+    height: 38px;
+  }
+
+  .quick-action-btn i,
+  .quick-action-toggle i {
+    font-size: var(--fs-base);
+  }
+
+  .quick-action-toggle[data-tooltip]::after,
+  .quick-action-btn[data-tooltip]::after {
+    right: auto;
+    left: 50%;
+    top: -40px;
+    transform: translateX(-50%);
+  }
+
+  .reading-progress {
+    height: 2px;
+  }
+}

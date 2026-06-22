@@ -1,0 +1,27 @@
+.error {
+  color: var(--error-color);
+  background-color: color-mix(in srgb, var(--error-color) 10%, var(--white));
+  border: 1px solid var(--error-color);
+  padding: 8px;
+  border-radius: 4px;
+  font-weight: 500;
+}
+
+.success {
+  color: var(--success-color);
+  background-color: color-mix(in srgb, var(--success-color) 10%, var(--white));
+  border: 1px solid var(--success-color);
+  padding: 8px;
+  border-radius: 4px;
+  font-weight: 500;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}

@@ -1,0 +1,73 @@
+.timeline-list.teaching-list {
+  max-width: none;
+  margin: 0;
+}
+
+.timeline-item.teaching-item {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 1.5rem;
+  align-items: stretch;
+}
+
+.teaching-item .teaching-dates {
+  position: static;
+  text-align: right;
+  order: 2;
+}
+
+.teaching-date-col {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.teaching-dates .teaching-date {
+  color: var(--text-light);
+  font-weight: 400;
+  font-size: var(--fs-sm);
+  line-height: 1.4;
+}
+
+[data-theme='dark'] .teaching-dates .teaching-date {
+  color: var(--text-light);
+}
+
+.teaching-item .teaching-content {
+  padding-right: 0;
+  order: 1;
+}
+
+.teaching-course {
+  font-size: var(--fs-base);
+  color: var(--text-color);
+  font-weight: 700;
+}
+
+.teaching-role {
+  color: var(--accent-color);
+  font-weight: 600;
+  font-size: var(--fs-sm);
+  line-height: 1.4;
+  white-space: nowrap;
+}
+
+.teaching-meta {
+  font-size: var(--fs-sm);
+  color: var(--text-light);
+  display: block;
+}
+
+.teaching-sep {
+  color: var(--text-light);
+}
+
+.teaching-instructor-name {
+  color: var(--accent-color);
+}
+
+#teaching .show-more-container {
+  margin-top: 2.5rem;
+}

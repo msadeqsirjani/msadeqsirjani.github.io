@@ -1,0 +1,72 @@
+.timeline-list {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.timeline-item {
+  display: grid;
+  grid-template-columns: minmax(120px, 20%) 1fr;
+  gap: 2rem;
+  margin-bottom: 1rem;
+  padding: 1.25rem;
+  margin-inline: 0;
+  background: var(--gray-light);
+  border: 1px solid transparent;
+  border-radius: var(--shape-card);
+  box-shadow: var(--elev-1);
+  transition:
+    box-shadow 0.25s ease,
+    transform 0.25s ease;
+}
+
+.timeline-item:hover {
+  box-shadow: var(--elev-2);
+  transform: translateY(-2px);
+}
+
+.timeline-item:last-child {
+  margin-bottom: 1rem;
+  border-bottom: none;
+}
+
+.timeline-dates {
+  text-align: center;
+  padding-top: 0.2rem;
+}
+
+.timeline-date {
+  color: var(--text-light);
+  font-weight: 400;
+  font-size: var(--fs-sm);
+  line-height: 1.4;
+  display: block;
+  text-align: center;
+}
+
+.timeline-content {
+  flex: 1;
+}
+
+.timeline-description {
+  font-size: var(--fs-base);
+  color: var(--text-color);
+  font-weight: normal;
+  margin: 0;
+  line-height: 1.5;
+  display: block;
+  text-align: left;
+
+  text-wrap: pretty;
+
+  hyphens: auto;
+}
+
+.timeline-description a {
+  color: var(--accent-color);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.timeline-description a:hover {
+  text-decoration: underline;
+}

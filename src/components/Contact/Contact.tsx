@@ -174,6 +174,7 @@ const Contact = () => {
                       id={field.id}
                       name={field.name}
                       placeholder={field.placeholder}
+                      aria-label={field.placeholder}
                       rows={field.rows}
                       value={formData[field.name as keyof typeof formData]}
                       onChange={handleChange}
@@ -185,6 +186,7 @@ const Contact = () => {
                       id={field.id}
                       name={field.name}
                       placeholder={field.placeholder}
+                      aria-label={field.placeholder}
                       value={formData[field.name as keyof typeof formData]}
                       onChange={handleChange}
                       required
