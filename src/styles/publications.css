@@ -205,7 +205,7 @@
   gap: 1rem;
   align-items: start;
   padding: 1.4rem 1.5rem;
-  background: var(--gray-light);
+  background: var(--white);
   border: 1px solid var(--border-color);
   border-left: 3px solid var(--accent-color);
   border-radius: var(--shape-card);
