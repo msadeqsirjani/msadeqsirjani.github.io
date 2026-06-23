@@ -50,8 +50,9 @@ const Footer = () => {
     anchor?: string;
   }[] = [
     {id: 'home', label: 'Home', path: ROUTE_PATHS.home},
-    {id: 'research', label: 'Research', path: ROUTE_PATHS.research},
     {id: 'publications', label: 'Publications', path: ROUTE_PATHS.publications},
+    {id: 'teaching', label: 'Teaching', path: ROUTE_PATHS.teaching},
+    {id: 'awards', label: 'Awards', path: ROUTE_PATHS.awards},
   ];
 
   const contactInfo = [
