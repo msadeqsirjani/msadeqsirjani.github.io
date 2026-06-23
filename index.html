@@ -30,6 +30,7 @@
     <meta name="format-detection" content="telephone=no" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <meta name="theme-color" content="#2c3e50" />
+    <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta
       name="apple-mobile-web-app-status-bar-style"
@@ -89,9 +90,11 @@
     <link rel="dns-prefetch" href="https://formspree.io" />
     <link
       rel="preload"
-      href="/assets/img/profile-360.webp"
       as="image"
+      href="/assets/img/profile-600.webp"
       type="image/webp"
+      imagesrcset="/assets/img/profile-360.webp 360w, /assets/img/profile-480.webp 480w, /assets/img/profile-560.webp 560w, /assets/img/profile-600.webp 600w"
+      imagesizes="(max-width: 480px) 160px, (max-width: 768px) 200px, (max-width: 1024px) 250px, 300px"
     />
     <script type="application/ld+json">
       {
