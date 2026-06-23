@@ -135,6 +135,10 @@ h6 {
   --status-review-bg: rgba(138, 80, 0, 0.14);
   --status-preprint: var(--text-light);
   --status-preprint-bg: rgba(120, 120, 120, 0.16);
+
+  --github-bg: #24292f;
+  --github-bg-hover: #1c2128;
+  --github-fg: #ffffff;
 }
 
 [data-theme='dark'] {
@@ -172,6 +176,10 @@ h6 {
   --status-review-bg: rgba(245, 190, 106, 0.18);
   --status-preprint: var(--text-light);
   --status-preprint-bg: rgba(120, 120, 120, 0.2);
+
+  --github-bg: #30363d;
+  --github-bg-hover: #3c444d;
+  --github-fg: #e6edf3;
 }
 
 body {

@@ -4,13 +4,13 @@ import type {Publication} from '../../types';
 import PubLink from './PubLink';
 import Icon from '../Icon/Icon';
 import {
-  faPlus,
-  faMinus,
+  faChevronDown,
+  faChevronUp,
   faLink,
   faFilePdf,
-  faCode,
   faQuoteRight,
 } from '@fortawesome/free-solid-svg-icons';
+import {faGithub} from '@fortawesome/free-brands-svg-icons';
 import bibtexData from '../../data/bibtex.json';
 
 const getStatusLabel = (status: string) => {
@@ -81,7 +81,12 @@ const PublicationItem = ({pub}: PublicationItemProps) => {
             <PubLink label="PDF" href={`/${pub.pdfLink}`} icon={faFilePdf} />
           )}
           {pub.github && (
-            <PubLink label="Code" href={pub.github} icon={faCode} />
+            <PubLink
+              label="Code"
+              href={pub.github}
+              icon={faGithub}
+              variant="github"
+            />
           )}
           {pub.bibtexId && (
             <PubLink
@@ -101,7 +106,7 @@ const PublicationItem = ({pub}: PublicationItemProps) => {
           aria-expanded={expanded}
           aria-label={expanded ? 'Hide details' : 'Show abstract and keywords'}
         >
-          <Icon icon={expanded ? faMinus : faPlus} size="sm" />
+          <Icon icon={expanded ? faChevronUp : faChevronDown} size="sm" />
         </button>
       )}
 

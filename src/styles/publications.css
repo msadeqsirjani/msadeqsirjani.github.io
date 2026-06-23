@@ -231,33 +231,36 @@
 
 .pub-card-toggle {
   flex-shrink: 0;
-  width: 1.75rem;
-  height: 1.75rem;
-  font-size: 0.7rem;
+  width: 2rem;
+  height: 2rem;
+  font-size: var(--fs-xs);
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid var(--border-color);
+  border: none;
   border-radius: 50%;
-  background: var(--white);
+  background: rgba(var(--accent-rgb), 0.1);
   color: var(--accent-color);
   cursor: pointer;
   transition:
     color 0.2s ease,
-    border-color 0.2s ease,
-    background-color 0.2s ease;
+    background-color 0.2s ease,
+    transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .pub-card-toggle:hover {
-  color: var(--white);
+  color: var(--on-accent);
   background: var(--accent-color);
-  border-color: var(--accent-color);
+  transform: translateY(-1px);
+}
+
+.pub-card-toggle:active {
+  transform: translateY(0);
 }
 
 .pub-card-toggle[aria-expanded='true'] {
-  color: var(--white);
+  color: var(--on-accent);
   background: var(--accent-color);
-  border-color: var(--accent-color);
 }
 
 .pub-card-details {
@@ -308,6 +311,7 @@
   font-size: var(--fs-sm);
   line-height: 1.5;
   color: var(--text-light);
+  text-align: justify;
 }
 
 .pub-card-authors strong {
@@ -349,6 +353,7 @@
 .pub-card-actions .pub-text-link {
   height: 2.1rem;
   min-width: 5.5rem;
+  flex: 0 0 auto;
   justify-content: center;
   line-height: 1;
   padding: 0 1rem;
@@ -377,6 +382,18 @@
   background: var(--accent-color);
 }
 
+.pub-card-actions .pub-text-link.pub-github-link {
+  color: var(--github-fg);
+  background: var(--github-bg);
+  border-color: var(--github-bg);
+}
+
+.pub-card-actions .pub-text-link.pub-github-link:hover {
+  color: var(--github-fg);
+  background: var(--github-bg-hover);
+  border-color: var(--github-bg-hover);
+}
+
 .pub-card-abstract {
   padding: 1rem 1.1rem;
   background: var(--white);
@@ -395,6 +412,24 @@
 @media (max-width: 600px) {
   .pub-card {
     padding: 1.1rem 1.2rem;
+  }
+
+  .pub-card-actions {
+    flex-wrap: nowrap;
+  }
+
+  .pub-card-actions .pub-text-link {
+    min-width: 0;
+    flex: 1 1 0;
+    padding: 0 0.75rem;
+  }
+
+  .pub-card-actions:has(> :nth-child(4)) {
+    flex-wrap: wrap;
+  }
+
+  .pub-card-actions:has(> :nth-child(4)) .pub-text-link {
+    flex-basis: calc(50% - 0.25rem);
   }
 }
 
