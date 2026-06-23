@@ -29,6 +29,12 @@ React + TypeScript + Vite single-page academic portfolio. Custom hash routing
 - Main Publications section shows 5 rows + a "View all" link to the
   `#publications-all` hash route (rendered by `App.tsx` `view` state).
 
+## Code style
+
+- **No comments.** Don't add comments to CSS, TS, or TSX. Code should be
+  self-explanatory through naming. This applies to new code and edits — do not
+  reintroduce explanatory comments, section banners, or JSDoc.
+
 ## Commits
 
 Subject line only — no body, no `Co-Authored-By` trailer.
