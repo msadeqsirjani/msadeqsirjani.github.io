@@ -1,6 +1,6 @@
 import {useState, useEffect, useRef} from 'react';
 import Icon from '../Icon/Icon';
-import {faSearch} from '@fortawesome/free-solid-svg-icons';
+import {faSearch, faXmark} from '@fortawesome/free-solid-svg-icons';
 import {useFocusTrap} from '../../hooks/useFocusTrap';
 import ThemeToggle from '../ThemeToggle/ThemeToggle';
 import {
@@ -38,6 +38,13 @@ const Navbar = ({onSearchClick}: NavbarProps) => {
     window.addEventListener('scroll', handleScroll, {passive: true});
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  useEffect(() => {
+    document.body.style.overflow = isMenuOpen ? 'hidden' : '';
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isMenuOpen]);
 
   const dropdownRef = useRef<HTMLLIElement>(null);
   const dropdownMenuRef = useRef<HTMLUListElement | null>(null);
@@ -138,6 +145,16 @@ const Navbar = ({onSearchClick}: NavbarProps) => {
           </a>
         </div>
         <ul className={`nav-menu ${isMenuOpen ? 'active' : ''}`} id="nav-menu">
+          <li className="nav-menu-close-item">
+            <button
+              type="button"
+              className="nav-menu-close"
+              onClick={() => setIsMenuOpen(false)}
+              aria-label="Close menu"
+            >
+              <Icon icon={faXmark} aria-hidden="true" />
+            </button>
+          </li>
           {mainLinks.map(link => (
             <li key={link.id}>
               <a
