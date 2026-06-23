@@ -1,3 +1,14 @@
+@keyframes navItemIn {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
 @media (max-width: 1024px) and (min-width: 769px) {
   .container {
     padding: 0 2rem;
@@ -124,6 +135,44 @@
     position: absolute;
     top: 1.25rem;
     right: 1.25rem;
+  }
+
+  .nav-menu.active > li:not(.nav-menu-close-item) {
+    animation: navItemIn 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  .nav-menu.active > li:nth-child(2) {
+    animation-delay: 0.05s;
+  }
+  .nav-menu.active > li:nth-child(3) {
+    animation-delay: 0.1s;
+  }
+  .nav-menu.active > li:nth-child(4) {
+    animation-delay: 0.15s;
+  }
+  .nav-menu.active > li:nth-child(5) {
+    animation-delay: 0.2s;
+  }
+  .nav-menu.active > li:nth-child(6) {
+    animation-delay: 0.25s;
+  }
+  .nav-menu.active > li:nth-child(7) {
+    animation-delay: 0.3s;
+  }
+  .nav-menu.active > li:nth-child(8) {
+    animation-delay: 0.35s;
+  }
+  .nav-menu.active > li:nth-child(9) {
+    animation-delay: 0.4s;
+  }
+  .nav-menu.active > li:nth-child(n + 10) {
+    animation-delay: 0.45s;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .nav-menu.active > li:not(.nav-menu-close-item) {
+      animation: none;
+    }
   }
 
   .nav-menu.active {
