@@ -11,7 +11,7 @@ const quickLinks: {label: string; path: string; anchor?: string}[] = [
 
 const NotFound = () => {
   useEffect(() => {
-    document.title = '404 - Page Not Found | Mohammad Sadegh Sirjani';
+    document.title = 'Mohammad Sadegh Sirjani | 404 - Page Not Found';
   }, []);
 
   return (

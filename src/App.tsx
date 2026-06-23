@@ -51,12 +51,12 @@ const SITE_TITLE =
 
 const PAGE_TITLES: Record<RouteKey, string> = {
   home: SITE_TITLE,
-  research: 'Research | Mohammad Sadegh Sirjani',
-  education: 'Education | Mohammad Sadegh Sirjani',
-  publications: 'Publications | Mohammad Sadegh Sirjani',
-  teaching: 'Teaching | Mohammad Sadegh Sirjani',
-  news: 'News | Mohammad Sadegh Sirjani',
-  awards: 'Awards | Mohammad Sadegh Sirjani',
+  research: 'Mohammad Sadegh Sirjani | Research',
+  education: 'Mohammad Sadegh Sirjani | Education',
+  publications: 'Mohammad Sadegh Sirjani | Publications',
+  teaching: 'Mohammad Sadegh Sirjani | Teaching',
+  news: 'Mohammad Sadegh Sirjani | News',
+  awards: 'Mohammad Sadegh Sirjani | Awards',
 };
 
 const PAGE_COMPONENTS: Record<Exclude<RouteKey, 'home'>, LazyComponent> = {
