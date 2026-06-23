@@ -374,6 +374,7 @@
   color: var(--accent-color);
   border-color: var(--accent-color);
   background: rgba(var(--accent-rgb), 0.08);
+  text-decoration: none;
 }
 
 .pub-card-actions .pub-text-link[aria-expanded='true'] {

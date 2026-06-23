@@ -127,12 +127,12 @@ h6 {
   --fs-2xl: 1.875rem;
   --fs-3xl: 2.5rem;
 
-  --status-published: var(--success-color);
-  --status-published-bg: rgba(20, 108, 46, 0.14);
-  --status-accepted: #6750a4;
-  --status-accepted-bg: rgba(103, 80, 164, 0.14);
-  --status-review: #8a5000;
-  --status-review-bg: rgba(138, 80, 0, 0.14);
+  --status-published: #22c55e;
+  --status-published-bg: rgba(34, 197, 94, 0.16);
+  --status-accepted: #f43f5e;
+  --status-accepted-bg: rgba(244, 63, 94, 0.16);
+  --status-review: #f59e0b;
+  --status-review-bg: rgba(245, 158, 11, 0.16);
   --status-preprint: var(--text-light);
   --status-preprint-bg: rgba(120, 120, 120, 0.16);
 
@@ -168,12 +168,12 @@ h6 {
   --dropdown-glass-border: rgba(71, 85, 105, 0.25);
   --logo-gradient: linear-gradient(135deg, #ffffff, #e5e5e5);
 
-  --status-published: var(--success-color);
-  --status-published-bg: rgba(109, 213, 140, 0.16);
-  --status-accepted: #cfbcff;
-  --status-accepted-bg: rgba(207, 188, 255, 0.18);
-  --status-review: #f5be6a;
-  --status-review-bg: rgba(245, 190, 106, 0.18);
+  --status-published: #4ade80;
+  --status-published-bg: rgba(74, 222, 128, 0.16);
+  --status-accepted: #fb7185;
+  --status-accepted-bg: rgba(251, 113, 133, 0.18);
+  --status-review: #f5b556;
+  --status-review-bg: rgba(245, 181, 86, 0.18);
   --status-preprint: var(--text-light);
   --status-preprint-bg: rgba(120, 120, 120, 0.2);
 
