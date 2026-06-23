@@ -191,7 +191,7 @@ export default defineConfig({
           /data-theme/,
         ],
         deep: [/fa-/, /animate-/, /toast/],
-        greedy: [/^publication-/, /^citation-/, /^select-/, /^nav-/],
+        greedy: [/^publication-/, /^pub-/, /^citation-/, /^select-/, /^nav-/],
       },
       defaultExtractor: (content: string) =>
         content.match(/[\w-/:]+(?<!:)/g) || [],
