@@ -78,7 +78,7 @@ const PublicationItem = ({pub}: PublicationItemProps) => {
         <div className="pub-card-actions">
           {pub.link && <PubLink label="DOI" href={pub.link} icon={faLink} />}
           {pub.pdfLink && (
-            <PubLink label="PDF" href={`/${pub.pdfLink}`} icon={faFilePdf} />
+            <PubLink label="Paper" href={`/${pub.pdfLink}`} icon={faFilePdf} />
           )}
           {pub.github && (
             <PubLink

@@ -362,7 +362,6 @@
   font-size: var(--fs-xs);
   font-weight: 600;
   letter-spacing: 0.03em;
-  text-transform: uppercase;
   color: var(--text-color);
   transition:
     color 0.2s ease,
