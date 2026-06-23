@@ -39,7 +39,6 @@ const PublicationsPage = lazy(
 const Teaching = lazy(() => import('./components/Teaching/Teaching'));
 const News = lazy(() => import('./components/News/News'));
 const Awards = lazy(() => import('./components/Awards/Awards'));
-const Contact = lazy(() => import('./components/Contact/Contact'));
 const Footer = lazy(() => import('./components/Footer/Footer'));
 const NotFound = lazy(() => import('./components/NotFound/NotFound'));
 
@@ -182,13 +181,6 @@ function App() {
             <AnimatedSection delay={DEFAULT_SECTION_DELAY}>
               <Suspense fallback={<SectionLoader />}>
                 <Publications />
-              </Suspense>
-            </AnimatedSection>
-          </ErrorBoundary>
-          <ErrorBoundary>
-            <AnimatedSection delay={DEFAULT_SECTION_DELAY}>
-              <Suspense fallback={<SectionLoader />}>
-                <Contact />
               </Suspense>
             </AnimatedSection>
           </ErrorBoundary>

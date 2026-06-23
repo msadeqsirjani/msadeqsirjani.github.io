@@ -30,7 +30,6 @@ export const DROPDOWN_NAV_LINKS: readonly NavLink[] = [
   {id: 'education', label: 'Education', path: ROUTE_PATHS.education},
   {id: 'research', label: 'Research', path: ROUTE_PATHS.research},
   {id: 'news', label: 'News', path: ROUTE_PATHS.news},
-  {id: 'contact', label: 'Contact', path: ROUTE_PATHS.home, anchor: 'contact'},
 ];
 
 export const ALL_NAV_LINKS: readonly NavLink[] = [
