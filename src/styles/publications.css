@@ -115,6 +115,7 @@
   display: flex;
   justify-content: center;
   margin-top: 1.75rem;
+  margin-bottom: 6rem;
 }
 
 .pub-view-more {
