@@ -2,7 +2,11 @@ import {awards, fetchAwards} from '../../data/content';
 import useContentData from '../../hooks/useContentData';
 import {sanitizeHtml} from '../../utils/sanitizeHtml';
 
-const Awards = () => {
+interface AwardsProps {
+  scrollable?: boolean;
+}
+
+const Awards = ({scrollable = false}: AwardsProps) => {
   const {data: awardItems} = useContentData(fetchAwards, awards, {
     logLabel: 'awards data',
   });
@@ -11,7 +15,7 @@ const Awards = () => {
     <section id="awards" className="section">
       <div className="container">
         <h2 className="section-title">Awards & Honors</h2>
-        <ul className="news-scroll">
+        <ul className={scrollable ? 'news-scroll' : 'news-list'}>
           {awardItems.map((item, index) => (
             <li key={`${item.date}-${index}`} className="news-row">
               <span className="news-row-date">{item.date}</span>
