@@ -7,33 +7,31 @@ interface PubLinkProps {
   href?: string;
   onClick?: () => void;
   icon?: IconDefinition;
+  variant?: 'github';
 }
 
-// External-style publication link: renders an anchor when href is given,
-// otherwise an action button (e.g. copy BibTeX).
-const PubLink = ({label, href, onClick, icon}: PubLinkProps) => {
+const PubLink = ({label, href, onClick, icon, variant}: PubLinkProps) => {
+  const className = `pub-text-link doi-link${
+    variant ? ` pub-${variant}-link` : ''
+  }`;
+
   const content = (
     <>
-      <Icon icon={icon ?? faArrowUpRightFromSquare} size="xs" />
+      <Icon icon={icon ?? faArrowUpRightFromSquare} size="lg" />
       {label}
     </>
   );
 
   if (href) {
     return (
-      <a
-        href={href}
-        className="pub-text-link doi-link"
-        target="_blank"
-        rel="noopener"
-      >
+      <a href={href} className={className} target="_blank" rel="noopener">
         {content}
       </a>
     );
   }
 
   return (
-    <button type="button" className="pub-text-link doi-link" onClick={onClick}>
+    <button type="button" className={className} onClick={onClick}>
       {content}
     </button>
   );

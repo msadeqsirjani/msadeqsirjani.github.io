@@ -4,6 +4,8 @@ import {
   faEnvelope,
   faGraduationCap,
   faArrowUp,
+  faMapMarkerAlt,
+  faUniversity,
 } from '@fortawesome/free-solid-svg-icons';
 import {
   faLinkedin,
@@ -50,11 +52,26 @@ const Footer = () => {
     {id: 'home', label: 'Home', path: ROUTE_PATHS.home},
     {id: 'research', label: 'Research', path: ROUTE_PATHS.research},
     {id: 'publications', label: 'Publications', path: ROUTE_PATHS.publications},
+  ];
+
+  const contactInfo = [
     {
-      id: 'contact',
-      label: 'Contact',
-      path: ROUTE_PATHS.home,
-      anchor: 'contact',
+      icon: faMapMarkerAlt,
+      href: 'https://maps.google.com/?q=1+UTSA+Circle,+San+Antonio,+TX+78249',
+      text: '1 UT San Antonio Circle, San Antonio, TX 78249',
+      external: true,
+    },
+    {
+      icon: faEnvelope,
+      href: 'mailto:mohammadsadegh.sirjani@utsa.edu',
+      text: 'mohammadsadegh.sirjani@utsa.edu',
+      external: false,
+    },
+    {
+      icon: faUniversity,
+      href: 'https://utsa.edu',
+      text: 'University of Texas at San Antonio',
+      external: true,
     },
   ];
 
@@ -95,11 +112,26 @@ const Footer = () => {
             <div className="footer-section">
               <h3>Mohammad Sadegh Sirjani</h3>
               <p>Ph.D. Student in Computer Science</p>
-              <p>
-                <a href="https://www.utsa.edu/" target="_blank" rel="noopener">
-                  University of Texas at San Antonio
-                </a>
-              </p>
+              <ul className="footer-contact">
+                {contactInfo.map((item, idx) => (
+                  <li key={idx}>
+                    <Icon
+                      icon={item.icon}
+                      className="footer-contact-icon"
+                      aria-hidden="true"
+                    />
+                    <a
+                      href={item.href}
+                      {...(item.external && {
+                        target: '_blank',
+                        rel: 'noopener',
+                      })}
+                    >
+                      {item.text}
+                    </a>
+                  </li>
+                ))}
+              </ul>
             </div>
             <div className="footer-section">
               <h4>Quick Links</h4>

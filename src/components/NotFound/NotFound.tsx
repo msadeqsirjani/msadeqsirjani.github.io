@@ -7,7 +7,6 @@ const quickLinks: {label: string; path: string; anchor?: string}[] = [
   {label: 'About', path: ROUTE_PATHS.home, anchor: 'biography'},
   {label: 'Publications', path: ROUTE_PATHS.publications},
   {label: 'Research', path: ROUTE_PATHS.research},
-  {label: 'Contact', path: ROUTE_PATHS.home, anchor: 'contact'},
 ];
 
 const NotFound = () => {

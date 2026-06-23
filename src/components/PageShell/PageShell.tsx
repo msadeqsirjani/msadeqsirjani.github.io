@@ -7,7 +7,6 @@ interface PageShellProps {
   children: ReactNode;
 }
 
-/** Wraps a standalone section page with a back-to-home link. */
 const PageShell = ({children}: PageShellProps) => (
   <div className="page-shell">
     <div className="container">

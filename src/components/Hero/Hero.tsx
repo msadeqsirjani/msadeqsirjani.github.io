@@ -10,7 +10,6 @@ import {
   faOrcid,
   faResearchgate,
 } from '@fortawesome/free-brands-svg-icons';
-import {ROUTE_PATHS} from '../../constants/siteNav';
 import {navLinkProps} from '../../utils/router';
 
 const Hero = () => {
@@ -31,8 +30,7 @@ const Hero = () => {
       target: '_blank',
     },
     {
-      route: ROUTE_PATHS.home,
-      anchor: 'contact',
+      href: 'mailto:mohammadsadegh.sirjani@utsa.edu',
       icon: faEnvelope,
       label: 'Contact',
       primary: false,
