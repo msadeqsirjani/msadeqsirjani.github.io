@@ -6,30 +6,45 @@
 
 .footer-content {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
-  gap: 3rem;
+  grid-template-columns: 1.4fr 1fr 1.8fr;
+  gap: 7rem;
   margin-bottom: 2.5rem;
   max-width: 1200px;
   margin-left: auto;
   margin-right: auto;
+  text-align: left;
+}
+
+.footer-section {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .footer-contact {
   list-style: none;
   padding: 0;
-  margin: 0.75rem 0 0;
+  margin: 1.25rem 0 0;
 }
 
 .footer-contact li {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: 0.6rem;
   margin-bottom: 0.75rem;
+  white-space: nowrap;
 }
 
 .footer-contact-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 8px;
+  background: rgba(var(--accent-rgb), 0.12);
   color: var(--accent-color);
-  margin-top: 0.25rem;
+  font-size: var(--fs-sm);
   flex-shrink: 0;
 }
 

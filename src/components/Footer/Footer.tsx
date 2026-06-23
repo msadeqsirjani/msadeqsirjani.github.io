@@ -62,12 +62,6 @@ const Footer = () => {
       external: true,
     },
     {
-      icon: faEnvelope,
-      href: 'mailto:mohammadsadegh.sirjani@utsa.edu',
-      text: 'mohammadsadegh.sirjani@utsa.edu',
-      external: false,
-    },
-    {
       icon: faUniversity,
       href: 'https://utsa.edu',
       text: 'University of Texas at San Antonio',
@@ -112,26 +106,6 @@ const Footer = () => {
             <div className="footer-section">
               <h3>Mohammad Sadegh Sirjani</h3>
               <p>Ph.D. Student in Computer Science</p>
-              <ul className="footer-contact">
-                {contactInfo.map((item, idx) => (
-                  <li key={idx}>
-                    <Icon
-                      icon={item.icon}
-                      className="footer-contact-icon"
-                      aria-hidden="true"
-                    />
-                    <a
-                      href={item.href}
-                      {...(item.external && {
-                        target: '_blank',
-                        rel: 'noopener',
-                      })}
-                    >
-                      {item.text}
-                    </a>
-                  </li>
-                ))}
-              </ul>
             </div>
             <div className="footer-section">
               <h4>Quick Links</h4>
@@ -161,6 +135,24 @@ const Footer = () => {
                   </a>
                 ))}
               </div>
+              <ul className="footer-contact">
+                {contactInfo.map((item, idx) => (
+                  <li key={idx}>
+                    <span className="footer-contact-icon" aria-hidden="true">
+                      <Icon icon={item.icon} />
+                    </span>
+                    <a
+                      href={item.href}
+                      {...(item.external && {
+                        target: '_blank',
+                        rel: 'noopener',
+                      })}
+                    >
+                      {item.text}
+                    </a>
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
           <div className="footer-bottom">
