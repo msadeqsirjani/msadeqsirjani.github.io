@@ -65,7 +65,6 @@
   overflow: hidden;
 }
 
-/* University SVGs are inked for a light backing — keep white in both themes */
 .education-logo--img {
   background: var(--logo-surface);
 }

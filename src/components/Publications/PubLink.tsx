@@ -9,8 +9,6 @@ interface PubLinkProps {
   icon?: IconDefinition;
 }
 
-// External-style publication link: renders an anchor when href is given,
-// otherwise an action button (e.g. copy BibTeX).
 const PubLink = ({label, href, onClick, icon}: PubLinkProps) => {
   const content = (
     <>

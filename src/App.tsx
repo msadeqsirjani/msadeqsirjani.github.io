@@ -60,7 +60,6 @@ const PAGE_TITLES: Record<RouteKey, string> = {
   awards: 'Awards | Mohammad Sadegh Sirjani',
 };
 
-/** Page-route key → the component rendered inside the sub-page shell. */
 const PAGE_COMPONENTS: Record<Exclude<RouteKey, 'home'>, LazyComponent> = {
   research: ResearchPage,
   education: Education,
@@ -86,13 +85,10 @@ function App() {
 
   useEffect(() => subscribeRoute(() => setRouteKey(getRouteKey())), []);
 
-  // Keep the document title in sync with the active route.
   useEffect(() => {
     document.title = routeKey ? PAGE_TITLES[routeKey] : SITE_TITLE;
   }, [routeKey]);
 
-  // Scroll to the hash target on the home page, or to the top on sub-pages.
-  // Lazy sections may not be mounted yet, so retry until the element appears.
   useEffect(() => {
     const hash = window.location.hash.replace(/^#/, '');
     if (routeKey === 'home' && hash) {

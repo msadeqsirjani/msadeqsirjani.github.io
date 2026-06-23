@@ -90,8 +90,6 @@
   text-decoration: none;
 }
 
-/* No focus box on nav links — the underline below is the focus/active
-   indicator (overrides the global a:focus / .nav-link:focus-visible rings). */
 .navbar .nav-link:focus,
 .navbar .nav-link:focus-visible {
   outline: none;

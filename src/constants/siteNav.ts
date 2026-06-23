@@ -1,13 +1,12 @@
 export interface NavLink {
   id: string;
   label: string;
-  /** Page path this link routes to. */
+
   path: string;
-  /** Optional element id to scroll to once the page renders (home sections). */
+
   anchor?: string;
 }
 
-/** Canonical path for every route key. `home` is the landing page. */
 export const ROUTE_PATHS = {
   home: '/',
   research: '/research',
@@ -39,7 +38,6 @@ export const ALL_NAV_LINKS: readonly NavLink[] = [
   ...DROPDOWN_NAV_LINKS,
 ];
 
-/** Maps a GlobalSearch category key to the destination that owns that content. */
 export const SEARCH_CATEGORY_DEST: Record<
   string,
   {path: string; anchor?: string}
@@ -52,7 +50,6 @@ export const SEARCH_CATEGORY_DEST: Record<
   awards: {path: ROUTE_PATHS.awards},
 };
 
-/** Normalize a pathname for comparison: lowercase, drop index.html + trailing slash. */
 export function normalizePath(pathname: string): string {
   let p = (pathname || '/').toLowerCase();
   if (p.endsWith('/index.html')) p = p.slice(0, -'index.html'.length);
@@ -67,7 +64,6 @@ const PATH_TO_KEY = new Map<string, RouteKey>(
   ]),
 );
 
-/** Returns the route key for a pathname, or null if it isn't a known route. */
 export function routeKeyForPath(pathname: string): RouteKey | null {
   return PATH_TO_KEY.get(normalizePath(pathname)) ?? null;
 }

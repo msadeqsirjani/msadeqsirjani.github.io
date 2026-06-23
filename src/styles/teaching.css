@@ -84,7 +84,6 @@
   opacity: 0.6;
 }
 
-/* Mobile — stack like news: term lead on top, course + meta below */
 @media (max-width: 600px) {
   .teaching-row {
     grid-template-columns: 1fr;

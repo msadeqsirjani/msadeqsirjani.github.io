@@ -78,80 +78,72 @@ h6 {
 }
 
 :root {
-  /* Material 3 — light scheme (blue primary seed) */
-  --text-color: #1b1b1f; /* on-surface */
-  --text-light: #44474e; /* on-surface-variant */
-  --white: #fdfcff; /* surface */
-  --gray-light: #eef0f7; /* surface-variant / container */
-  --border-color: #c4c7cf; /* outline-variant */
-  --accent-color: #1565c0; /* primary */
+  --text-color: #1b1b1f;
+  --text-light: #44474e;
+  --white: #fdfcff;
+  --gray-light: #eef0f7;
+  --border-color: #c4c7cf;
+  --accent-color: #1565c0;
   --accent-color-light: #1565c0;
   --accent-hover: #0d47a1;
   --accent-rgb: 21, 101, 192;
   --error-color: #ba1a1a;
   --success-color: #146c2e;
   --focus-color: #1565c0;
-  /* Error toast — saturated red works on both themes */
+
   --toast-error-bg: #ef4444;
   --toast-error-text: #ffffff;
-  /* Frosted navbar / dropdown glass + logo wordmark gradient */
+
   --nav-scrolled-bg: rgba(255, 255, 255, 0.4);
   --nav-scrolled-border: rgba(209, 213, 219, 0.3);
   --dropdown-glass-bg: var(--white);
   --dropdown-glass-border: var(--border-color);
   --logo-gradient: linear-gradient(135deg, #333333, #1a1a1a);
 
-  /* Material 3 shape scale */
   --button-border-radius: 20px;
   --icon-border-radius: 12px;
   --button-border-width: 1px;
   --shape-card: 16px;
   --shape-chip: 8px;
 
-  /* Material 3 elevation (umbra + penumbra) */
   --elev-1: 0 1px 2px rgba(0, 0, 0, 0.3), 0 1px 3px 1px rgba(0, 0, 0, 0.12);
   --elev-2: 0 1px 2px rgba(0, 0, 0, 0.3), 0 2px 6px 2px rgba(0, 0, 0, 0.12);
   --elev-3: 0 1px 3px rgba(0, 0, 0, 0.3), 0 4px 8px 3px rgba(0, 0, 0, 0.12);
 
-  /* State layer opacities (MD3) */
   --state-hover: 0.08;
   --state-press: 0.12;
 
-  /* Logos are designed for a light backing; intentionally white in both themes */
   --logo-surface: #ffffff;
   --logo-border: rgba(255, 255, 255, 0.2);
-  /* Readable text/icon color on top of --accent-color (per theme) */
+
   --on-accent: #ffffff;
 
-  /* Type scale — fixed font-size tokens (single source of truth) */
-  --fs-xs: 0.75rem; /* 12px — badges, labels, captions */
-  --fs-sm: 0.875rem; /* 14px — meta, authors, links, secondary */
-  --fs-base: 1rem; /* 16px — body */
-  --fs-md: 1.125rem; /* 18px — lead text */
-  --fs-lg: 1.25rem; /* 20px — sub-headings */
-  --fs-xl: 1.5rem; /* 24px — section bits */
-  --fs-2xl: 1.875rem; /* 30px — headings */
-  --fs-3xl: 2.5rem; /* 40px — hero/title */
+  --fs-xs: 0.75rem;
+  --fs-sm: 0.875rem;
+  --fs-base: 1rem;
+  --fs-md: 1.125rem;
+  --fs-lg: 1.25rem;
+  --fs-xl: 1.5rem;
+  --fs-2xl: 1.875rem;
+  --fs-3xl: 2.5rem;
 
-  /* Publication status badges (light) */
   --status-published: var(--success-color);
   --status-published-bg: rgba(20, 108, 46, 0.14);
-  --status-accepted: #6750a4; /* tertiary violet */
+  --status-accepted: #6750a4;
   --status-accepted-bg: rgba(103, 80, 164, 0.14);
-  --status-review: #8a5000; /* warning amber */
+  --status-review: #8a5000;
   --status-review-bg: rgba(138, 80, 0, 0.14);
   --status-preprint: var(--text-light);
   --status-preprint-bg: rgba(120, 120, 120, 0.16);
 }
 
 [data-theme='dark'] {
-  /* Material 3 — dark scheme */
-  --text-color: #e4e2e6; /* on-surface */
-  --text-light: #c4c6cf; /* on-surface-variant */
-  --white: #131316; /* surface */
-  --gray-light: #1e1f24; /* surface-variant / container */
-  --border-color: #43474e; /* outline-variant */
-  --accent-color: #a8c7fa; /* primary (light tone) */
+  --text-color: #e4e2e6;
+  --text-light: #c4c6cf;
+  --white: #131316;
+  --gray-light: #1e1f24;
+  --border-color: #43474e;
+  --accent-color: #a8c7fa;
   --accent-hover: #c8defb;
   --accent-rgb: 168, 199, 250;
   --error-color: #ffb4ab;
@@ -159,25 +151,24 @@ h6 {
   --focus-color: #a8c7fa;
   --card-bg: #1e1f24;
   --hover-bg: #2a2b31;
-  /* Dark primary is light — needs dark text on top for contrast */
+
   --on-accent: #0a305f;
-  /* Dark elevation uses subtler shadows */
+
   --elev-1: 0 1px 3px rgba(0, 0, 0, 0.6);
   --elev-2: 0 2px 6px rgba(0, 0, 0, 0.6);
   --elev-3: 0 4px 10px rgba(0, 0, 0, 0.7);
-  /* Frosted navbar / dropdown glass + logo wordmark gradient (dark) */
+
   --nav-scrolled-bg: rgba(15, 23, 42, 0.4);
   --nav-scrolled-border: rgba(71, 85, 105, 0.25);
   --dropdown-glass-bg: rgba(15, 23, 42, 0.75);
   --dropdown-glass-border: rgba(71, 85, 105, 0.25);
   --logo-gradient: linear-gradient(135deg, #ffffff, #e5e5e5);
 
-  /* Publication status badges (dark) */
   --status-published: var(--success-color);
   --status-published-bg: rgba(109, 213, 140, 0.16);
-  --status-accepted: #cfbcff; /* tertiary violet (light tone) */
+  --status-accepted: #cfbcff;
   --status-accepted-bg: rgba(207, 188, 255, 0.18);
-  --status-review: #f5be6a; /* warning amber (light tone) */
+  --status-review: #f5be6a;
   --status-review-bg: rgba(245, 190, 106, 0.18);
   --status-preprint: var(--text-light);
   --status-preprint-bg: rgba(120, 120, 120, 0.2);

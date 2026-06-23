@@ -20,11 +20,6 @@ interface IconProps {
   'aria-hidden'?: boolean | 'true' | 'false';
 }
 
-/**
- * Lightweight renderer for FontAwesome icon data — same icons, no
- * @fortawesome/fontawesome-svg-core or react-fontawesome runtime.
- * An IconDefinition's `icon` field is [width, height, ligs, unicode, path].
- */
 const Icon = ({
   icon,
   className,

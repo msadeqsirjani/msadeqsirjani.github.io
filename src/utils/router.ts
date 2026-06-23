@@ -5,11 +5,6 @@ const ROUTE_EVENT = 'app:route';
 const samePath = (a: string, b: string) =>
   (a.replace(/\/+$/, '') || '/') === (b.replace(/\/+$/, '') || '/');
 
-/**
- * Client-side navigation via the History API. Pushes a new entry (or replaces
- * the current one when navigating within the same path, e.g. anchor-only) and
- * notifies subscribers so the app can re-render the matching route.
- */
 export function navigate(path: string, anchor?: string) {
   const url = path + (anchor ? `#${anchor}` : '');
   if (samePath(window.location.pathname, path)) {

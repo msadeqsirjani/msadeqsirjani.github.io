@@ -71,7 +71,6 @@
   overflow: hidden;
 }
 
-/* Lab SVGs are inked for a light backing — keep a white surface in both themes */
 .research-logo--img {
   background: var(--logo-surface);
 }
