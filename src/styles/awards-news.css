@@ -1,15 +1,16 @@
-/* News + Awards — plain scrollable list */
 .news-scroll {
   list-style: none;
   margin: 0;
-  padding: 0.25rem 1.25rem 0.25rem 0;
+  padding: 0.5rem 1.25rem 0.5rem 0.75rem;
   max-height: 32rem;
   overflow-y: auto;
   scrollbar-width: thin;
   scrollbar-color: var(--accent-color) transparent;
+  background: rgba(var(--accent-rgb), 0.05);
+  border-left: 3px solid var(--accent-color);
+  border-radius: var(--shape-card);
 }
 
-/* Dedicated /news page — full list, no inner scroll */
 .news-list {
   list-style: none;
   margin: 0;
@@ -42,12 +43,19 @@
   background: var(--gray-light);
 }
 
+@media (min-width: 601px) {
+  .news-scroll .news-row {
+    padding-top: 0.3rem;
+    padding-bottom: 0.3rem;
+  }
+}
+
 .news-row-date {
   font-size: var(--fs-xs);
-  font-weight: 700;
+  font-weight: 800;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: var(--text-light);
+  color: var(--accent-color);
   padding-top: 0.15rem;
 }
 
@@ -62,7 +70,6 @@
   color: var(--accent-color);
 }
 
-/* Mobile — date stacks above text so the line isn't cramped */
 @media (max-width: 600px) {
   .news-row {
     grid-template-columns: 1fr;
