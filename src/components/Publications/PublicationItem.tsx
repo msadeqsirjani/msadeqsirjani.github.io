@@ -76,16 +76,15 @@ const PublicationItem = ({pub}: PublicationItemProps) => {
         )}
 
         <div className="pub-card-actions">
-          {pub.link && <PubLink label="DOI" href={pub.link} icon={faLink} />}
-          {pub.pdfLink && (
-            <PubLink label="Paper" href={`/${pub.pdfLink}`} icon={faFilePdf} />
+          {pub.link && (
+            <PubLink label="DOI" href={pub.link} icon={faLink} variant="doi" />
           )}
-          {pub.github && (
+          {pub.pdfLink && (
             <PubLink
-              label="Code"
-              href={pub.github}
-              icon={faGithub}
-              variant="github"
+              label="Paper"
+              href={`/${pub.pdfLink}`}
+              icon={faFilePdf}
+              variant="paper"
             />
           )}
           {pub.bibtexId && (
@@ -93,6 +92,15 @@ const PublicationItem = ({pub}: PublicationItemProps) => {
               label="BibTeX"
               onClick={() => void copyBibtex(pub)}
               icon={faQuoteRight}
+              variant="bibtex"
+            />
+          )}
+          {pub.github && (
+            <PubLink
+              label="Code"
+              href={pub.github}
+              icon={faGithub}
+              variant="github"
             />
           )}
         </div>

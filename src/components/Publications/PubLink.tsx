@@ -7,7 +7,7 @@ interface PubLinkProps {
   href?: string;
   onClick?: () => void;
   icon?: IconDefinition;
-  variant?: 'github';
+  variant?: 'github' | 'doi' | 'paper' | 'bibtex';
 }
 
 const PubLink = ({label, href, onClick, icon, variant}: PubLinkProps) => {

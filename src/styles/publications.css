@@ -395,6 +395,42 @@
   border-color: var(--github-bg-hover);
 }
 
+.pub-card-actions .pub-text-link.pub-doi-link {
+  color: var(--doi-bg);
+  background: color-mix(in srgb, var(--doi-bg) 14%, transparent);
+  border-color: color-mix(in srgb, var(--doi-bg) 30%, transparent);
+}
+
+.pub-card-actions .pub-text-link.pub-doi-link:hover {
+  color: var(--doi-bg);
+  background: color-mix(in srgb, var(--doi-bg) 24%, transparent);
+  border-color: var(--doi-bg);
+}
+
+.pub-card-actions .pub-text-link.pub-paper-link {
+  color: var(--paper-bg);
+  background: color-mix(in srgb, var(--paper-bg) 14%, transparent);
+  border-color: color-mix(in srgb, var(--paper-bg) 30%, transparent);
+}
+
+.pub-card-actions .pub-text-link.pub-paper-link:hover {
+  color: var(--paper-bg);
+  background: color-mix(in srgb, var(--paper-bg) 24%, transparent);
+  border-color: var(--paper-bg);
+}
+
+.pub-card-actions .pub-text-link.pub-bibtex-link {
+  color: var(--bibtex-bg);
+  background: color-mix(in srgb, var(--bibtex-bg) 14%, transparent);
+  border-color: color-mix(in srgb, var(--bibtex-bg) 30%, transparent);
+}
+
+.pub-card-actions .pub-text-link.pub-bibtex-link:hover {
+  color: var(--bibtex-bg);
+  background: color-mix(in srgb, var(--bibtex-bg) 24%, transparent);
+  border-color: var(--bibtex-bg);
+}
+
 .pub-card-abstract {
   padding: 1rem 1.1rem;
   background: var(--white);

@@ -139,6 +139,18 @@ h6 {
   --github-bg: #24292f;
   --github-bg-hover: #1c2128;
   --github-fg: #ffffff;
+
+  --doi-bg: #6366f1;
+  --doi-bg-hover: #4f46e5;
+  --doi-fg: #ffffff;
+
+  --paper-bg: #14b8a6;
+  --paper-bg-hover: #0d9488;
+  --paper-fg: #ffffff;
+
+  --bibtex-bg: #ec4899;
+  --bibtex-bg-hover: #db2777;
+  --bibtex-fg: #ffffff;
 }
 
 [data-theme='dark'] {
@@ -180,6 +192,18 @@ h6 {
   --github-bg: #30363d;
   --github-bg-hover: #3c444d;
   --github-fg: #e6edf3;
+
+  --doi-bg: #6366f1;
+  --doi-bg-hover: #4f46e5;
+  --doi-fg: #ffffff;
+
+  --paper-bg: #14b8a6;
+  --paper-bg-hover: #0d9488;
+  --paper-fg: #ffffff;
+
+  --bibtex-bg: #ec4899;
+  --bibtex-bg-hover: #db2777;
+  --bibtex-fg: #ffffff;
 }
 
 body {
