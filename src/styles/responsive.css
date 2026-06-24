@@ -1029,13 +1029,13 @@
     padding: 0 0.875rem;
   }
 
-  .footer-contact li {
-    align-items: flex-start;
-    white-space: normal;
+  .footer-contact {
+    font-size: var(--fs-xs);
   }
 
-  .footer-contact-icon {
-    margin-top: 0.15rem;
+  .footer-contact li {
+    align-items: center;
+    white-space: nowrap;
   }
 
   .hero-content {
