@@ -53,5 +53,34 @@
     "instructorUrl": "https://ca.linkedin.com/in/behkamal",
     "university": "Ferdowsi University of Mashhad",
     "date": "Fall 2023"
+  },
+  {
+    "role": "Teaching Assistant",
+    "course": "Fundamentals of Cloud Computing",
+    "instructor": "Instructor: Dr. Somayeh Sobati-Moghadam",
+    "university": "Ferdowsi University of Mashhad",
+    "date": "Fall 2023"
+  },
+  {
+    "role": "Teaching Assistant",
+    "course": "Principles of Compiler Design",
+    "instructor": "Instructor: Dr. Haleh Amintoosi",
+    "instructorUrl": "https://scholar.google.com/citations?user=UsoEbboAAAAJ&hl=en",
+    "university": "Ferdowsi University of Mashhad",
+    "date": "Spring 2023"
+  },
+  {
+    "role": "Teaching Assistant",
+    "course": "Principles of Web Development",
+    "instructor": "Instructor: Dr. Somayeh Sobati-Moghadam",
+    "university": "Ferdowsi University of Mashhad",
+    "date": "Spring 2023"
+  },
+  {
+    "role": "Teaching Assistant",
+    "course": "Principles of Web Development",
+    "instructor": "Instructor: Dr. Somayeh Sobati-Moghadam",
+    "university": "Ferdowsi University of Mashhad",
+    "date": "Fall 2022"
   }
 ]
