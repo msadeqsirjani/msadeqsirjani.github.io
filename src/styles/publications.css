@@ -358,18 +358,18 @@
 }
 
 .pub-card-actions .pub-text-link {
-  height: 2.1rem;
-  min-width: 5.5rem;
+  height: 1.7rem;
   flex: 0 0 auto;
   justify-content: center;
+  gap: 0.35rem;
   line-height: 1;
-  padding: 0 1rem;
+  padding: 0 0.7rem;
   border: 1px solid var(--border-color);
   border-radius: 999px;
   font-size: var(--fs-xs);
   font-weight: 600;
   letter-spacing: 0.03em;
-  color: var(--text-color);
+  color: var(--text-light);
   transition:
     color 0.2s ease,
     border-color 0.2s ease,
@@ -404,8 +404,8 @@
 .pub-card-actions .pub-text-link.pub-doi-link,
 .pub-card-actions .pub-text-link.pub-paper-link,
 .pub-card-actions .pub-text-link.pub-bibtex-link {
-  color: var(--text-color);
-  background: var(--gray-light);
+  color: var(--text-light);
+  background: transparent;
   border-color: var(--border-color);
 }
 
@@ -413,7 +413,7 @@
 .pub-card-actions .pub-text-link.pub-paper-link:hover,
 .pub-card-actions .pub-text-link.pub-bibtex-link:hover {
   color: var(--accent-color);
-  background: var(--gray-light);
+  background: rgba(var(--accent-rgb), 0.08);
   border-color: var(--accent-color);
 }
 
