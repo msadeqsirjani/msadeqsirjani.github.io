@@ -4,6 +4,20 @@
   padding: 0;
 }
 
+.teaching-list .teaching-row + .teaching-row {
+  position: relative;
+}
+
+.teaching-list .teaching-row + .teaching-row::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0.75rem;
+  right: 0.75rem;
+  height: 1px;
+  background: var(--border-color);
+}
+
 .teaching-row {
   display: grid;
   grid-template-columns: 1fr auto;

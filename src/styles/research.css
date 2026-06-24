@@ -4,6 +4,20 @@
   padding: 0;
 }
 
+.research-list .research-row + .research-row {
+  position: relative;
+}
+
+.research-list .research-row + .research-row::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0.75rem;
+  right: 0.75rem;
+  height: 1px;
+  background: var(--border-color);
+}
+
 .research-row {
   display: grid;
   grid-template-columns: 150px 1fr;

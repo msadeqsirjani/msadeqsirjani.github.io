@@ -17,6 +17,20 @@
   padding: 0;
 }
 
+.news-list .news-row + .news-row {
+  position: relative;
+}
+
+.news-list .news-row + .news-row::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0.75rem;
+  right: 0.75rem;
+  height: 1px;
+  background: var(--border-color);
+}
+
 .news-scroll::-webkit-scrollbar {
   width: 8px;
 }

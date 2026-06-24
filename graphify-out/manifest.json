@@ -130,8 +130,8 @@
     "semantic_hash": "d12180db3a1fd69e24d24b9a63e65b25"
   },
   "src/components/Publications/PublicationItem.tsx": {
-    "mtime": 1782318258.37394,
-    "ast_hash": "3bce7768136f18039d02aea7f08b342b",
+    "mtime": 1782324136.9305198,
+    "ast_hash": "1d7038243bf5461d7647aa6c399df827",
     "semantic_hash": ""
   },
   "src/components/Publications/Publications.tsx": {

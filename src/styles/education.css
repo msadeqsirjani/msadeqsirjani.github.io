@@ -4,6 +4,20 @@
   padding: 0;
 }
 
+.education-list .education-row + .education-row {
+  position: relative;
+}
+
+.education-list .education-row + .education-row::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0.75rem;
+  right: 0.75rem;
+  height: 1px;
+  background: var(--border-color);
+}
+
 .education-row {
   display: grid;
   grid-template-columns: 150px 1fr;
