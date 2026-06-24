@@ -30,7 +30,7 @@
     "semantic_hash": "141e7f5cc47c5f2c5da8f85974fb2bff"
   },
   "src/App.tsx": {
-    "mtime": 1782241017.8862262,
+    "mtime": 1782191245.0035012,
     "ast_hash": "db458a5ceaa81aec12222902eee0126d",
     "semantic_hash": "db458a5ceaa81aec12222902eee0126d"
   },
@@ -130,14 +130,14 @@
     "semantic_hash": "d12180db3a1fd69e24d24b9a63e65b25"
   },
   "src/components/Publications/PublicationItem.tsx": {
-    "mtime": 1782318258.37394,
-    "ast_hash": "3bce7768136f18039d02aea7f08b342b",
-    "semantic_hash": ""
+    "mtime": 1782191346.184695,
+    "ast_hash": "b4529011691b251e59e66a70ac817bac",
+    "semantic_hash": "b4529011691b251e59e66a70ac817bac"
   },
   "src/components/Publications/Publications.tsx": {
-    "mtime": 1782318260.260338,
-    "ast_hash": "6b3eea27d74d4e89c37796c64e59e97e",
-    "semantic_hash": ""
+    "mtime": 1782153685.4301584,
+    "ast_hash": "5d03f807b4cb83e3bba5632ffb217faa",
+    "semantic_hash": "5d03f807b4cb83e3bba5632ffb217faa"
   },
   "src/components/Publications/PublicationsPage.tsx": {
     "mtime": 1782153685.431338,

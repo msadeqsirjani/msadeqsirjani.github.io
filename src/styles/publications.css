@@ -292,11 +292,17 @@
 }
 
 .pub-card-metaitem {
-  font-size: var(--fs-xs);
-  font-weight: 600;
-  letter-spacing: 0.02em;
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
   text-transform: uppercase;
   color: var(--text-light);
+  background: var(--gray-light);
+  padding: 0.1rem 0.5rem;
+  border-radius: 999px;
+  white-space: nowrap;
 }
 
 .pub-card-title {
@@ -395,40 +401,20 @@
   border-color: var(--github-bg-hover);
 }
 
-.pub-card-actions .pub-text-link.pub-doi-link {
-  color: var(--doi-bg);
-  background: color-mix(in srgb, var(--doi-bg) 14%, transparent);
-  border-color: color-mix(in srgb, var(--doi-bg) 30%, transparent);
-}
-
-.pub-card-actions .pub-text-link.pub-doi-link:hover {
-  color: var(--doi-bg);
-  background: color-mix(in srgb, var(--doi-bg) 24%, transparent);
-  border-color: var(--doi-bg);
-}
-
-.pub-card-actions .pub-text-link.pub-paper-link {
-  color: var(--paper-bg);
-  background: color-mix(in srgb, var(--paper-bg) 14%, transparent);
-  border-color: color-mix(in srgb, var(--paper-bg) 30%, transparent);
-}
-
-.pub-card-actions .pub-text-link.pub-paper-link:hover {
-  color: var(--paper-bg);
-  background: color-mix(in srgb, var(--paper-bg) 24%, transparent);
-  border-color: var(--paper-bg);
-}
-
+.pub-card-actions .pub-text-link.pub-doi-link,
+.pub-card-actions .pub-text-link.pub-paper-link,
 .pub-card-actions .pub-text-link.pub-bibtex-link {
-  color: var(--bibtex-bg);
-  background: color-mix(in srgb, var(--bibtex-bg) 14%, transparent);
-  border-color: color-mix(in srgb, var(--bibtex-bg) 30%, transparent);
+  color: var(--text-color);
+  background: var(--gray-light);
+  border-color: var(--border-color);
 }
 
+.pub-card-actions .pub-text-link.pub-doi-link:hover,
+.pub-card-actions .pub-text-link.pub-paper-link:hover,
 .pub-card-actions .pub-text-link.pub-bibtex-link:hover {
-  color: var(--bibtex-bg);
-  background: color-mix(in srgb, var(--bibtex-bg) 24%, transparent);
-  border-color: var(--bibtex-bg);
+  color: var(--accent-color);
+  background: var(--gray-light);
+  border-color: var(--accent-color);
 }
 
 .pub-card-abstract {

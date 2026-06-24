@@ -57,6 +57,12 @@ const Publications = () => {
                     {getStatusLabel(pub.status)}
                   </span>
                   <span className="pub-card-metaitem">{pub.year}</span>
+                  {!!pub.citations && (
+                    <span className="pub-card-metaitem">
+                      {pub.citations}{' '}
+                      {pub.citations === 1 ? 'citation' : 'citations'}
+                    </span>
+                  )}
                 </div>
                 <h3 className="publication-title">{pub.title}</h3>
                 {pub.authors && (

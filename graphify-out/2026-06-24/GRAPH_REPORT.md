@@ -1,18 +1,13 @@
-# Graph Report - ScholarPortfolio  (2026-06-24)
+# Graph Report - .  (2026-06-23)
 
 ## Corpus Check
-- 88 files · ~105,890 words
+- 122 files · ~105,859 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 643 nodes · 833 edges · 54 communities (35 shown, 19 thin omitted)
-- Extraction: 95% EXTRACTED · 4% INFERRED · 0% AMBIGUOUS · INFERRED: 36 edges (avg confidence: 0.78)
-- Token cost: 0 input · 0 output
-
-## Graph Freshness
-- Built from commit: `171d52ca`
-- Run `git rev-parse HEAD` and compare to check if the graph is stale.
-- Run `graphify update .` after code changes (no API cost).
+- 564 nodes · 762 edges · 40 communities (27 shown, 13 thin omitted)
+- Extraction: 95% EXTRACTED · 5% INFERRED · 0% AMBIGUOUS · INFERRED: 36 edges (avg confidence: 0.78)
+- Token cost: 370,590 input · 0 output
 
 ## Community Hubs (Navigation)
 - [[_COMMUNITY_Content Data & Page Sections|Content Data & Page Sections]]
@@ -51,20 +46,6 @@
 - [[_COMMUNITY_SVG Export Ref|SVG Export Ref]]
 - [[_COMMUNITY_Wiki Export Ref|Wiki Export Ref]]
 - [[_COMMUNITY_CodeQL Workflow|CodeQL Workflow]]
-- [[_COMMUNITY_Community 40|Community 40]]
-- [[_COMMUNITY_Community 41|Community 41]]
-- [[_COMMUNITY_Community 42|Community 42]]
-- [[_COMMUNITY_Community 43|Community 43]]
-- [[_COMMUNITY_Community 44|Community 44]]
-- [[_COMMUNITY_Community 45|Community 45]]
-- [[_COMMUNITY_Community 46|Community 46]]
-- [[_COMMUNITY_Community 47|Community 47]]
-- [[_COMMUNITY_Community 48|Community 48]]
-- [[_COMMUNITY_Community 49|Community 49]]
-- [[_COMMUNITY_Community 50|Community 50]]
-- [[_COMMUNITY_Community 51|Community 51]]
-- [[_COMMUNITY_Community 52|Community 52]]
-- [[_COMMUNITY_Community 53|Community 53]]
 
 ## God Nodes (most connected - your core abstractions)
 1. `compilerOptions` - 25 edges
@@ -73,20 +54,20 @@
 4. `Mohammad Sadegh Sirjani` - 15 edges
 5. `Mohammad Sadegh Sirjani` - 15 edges
 6. `Icon()` - 14 edges
-7. `What You Must Do When Invoked` - 12 edges
-8. `Publication` - 11 edges
-9. `/graphify` - 10 edges
-10. `Extraction Subagent Prompt` - 10 edges
+7. `Publication` - 11 edges
+8. `Extraction Subagent Prompt` - 10 edges
+9. `navLinkProps()` - 9 edges
+10. `graph.json` - 9 edges
 
 ## Surprising Connections (you probably didn't know these)
 - `graphify trigger (.claude/CLAUDE.md)` --conceptually_related_to--> `ScholarPortfolio project conventions (CLAUDE.md)`  [INFERRED]
   .claude/CLAUDE.md → CLAUDE.md
 - `MambaGaze Framework` --semantically_similar_to--> `Focal Loss with Automatic Rebalancing`  [AMBIGUOUS] [semantically similar]
   public/assets/docs/publications/2605.22775v1.pdf → public/assets/docs/publications/2605.22774v2.pdf
-- `Routes` --conceptually_related_to--> `Custom hash routing`  [INFERRED]
-  README.md → CLAUDE.md
 - `Cluster-Only Rerun` --semantically_similar_to--> `Build Cluster Analyze Step`  [INFERRED] [semantically similar]
   .claude/skills/graphify/references/update.md → .claude/skills/graphify/SKILL.md
+- `code-reviewer subagent` --references--> `ScholarPortfolio project conventions (CLAUDE.md)`  [INFERRED]
+  .claude/agents/code-reviewer.md → CLAUDE.md
 - `CI quality job (lint, format, typecheck, build)` --references--> `npm build scripts (dev, build, preview, lint, format)`  [INFERRED]
   .github/workflows/ci.yml → README.md
 
@@ -107,7 +88,7 @@
 - **LLM Benchmark Contamination Detection Review Contributions** — publications_rg_2_2_12579_41764_four_tier_taxonomy, publications_rg_2_2_12579_41764_contamination_transparency_card, publications_rg_2_2_12579_41764_constat, publications_rg_2_2_12579_41764_prisma_review [EXTRACTED 0.75]
 - **Sirjani IoT and Edge AI Research Identity** — cv_msadeqsirjani_cv_person, cv_msadeqsirjani_cv_research_area_edge_ai, cv_msadeqsirjani_cv_research_area_iot, cv_msadeqsirjani_cv_asic_laboratory [INFERRED 0.85]
 
-## Communities (54 total, 19 thin omitted)
+## Communities (40 total, 13 thin omitted)
 
 ### Community 0 - "Content Data & Page Sections"
 Cohesion: 0.06
@@ -118,20 +99,20 @@ Cohesion: 0.05
 Nodes (47): AST Structural Extraction, EXTRACTED INFERRED AMBIGUOUS Audit Trail, Build Cluster Analyze Step, Community Detection, Cumulative Cost Tracker, Deep Mode, Detect Files Step, Directed Graph Mode (+39 more)
 
 ### Community 2 - "Navigation & Routing Shell"
-Cohesion: 0.29
-Nodes (9): DROPDOWN_NAV_LINKS, MAIN_NAV_LINKS, normalizePath(), useFocusTrap(), Navbar(), NavbarProps, navigate(), samePath() (+1 more)
+Cohesion: 0.09
+Nodes (29): ALL_NAV_LINKS, DROPDOWN_NAV_LINKS, isValidPath(), MAIN_NAV_LINKS, NavLink, normalizePath(), PATH_TO_KEY, ROUTE_PATHS (+21 more)
 
 ### Community 3 - "NPM Dependencies & Scripts"
 Cohesion: 0.05
 Nodes (41): dependencies, @fontsource/cinzel, @fontsource/roboto, @fortawesome/fontawesome-svg-core, @fortawesome/free-brands-svg-icons, @fortawesome/free-solid-svg-icons, preact, react (+33 more)
 
 ### Community 4 - "Publication & Layout Components"
-Cohesion: 0.07
+Cohesion: 0.06
 Nodes (22): ErrorBoundary, Props, State, styles, Icon(), IconProps, SIZE_EM, getStatusLabel() (+14 more)
 
 ### Community 5 - "App Shell & Lazy Loading"
-Cohesion: 0.08
-Nodes (21): DeferredIdle(), Props, SkeletonLoader(), SkeletonLoaderProps, Awards, Biography, Education, Footer (+13 more)
+Cohesion: 0.06
+Nodes (29): AnimatedSection(), AnimatedSectionProps, DeferredIdle(), Props, DeferredToaster(), ToasterProps, useScrollAnimation(), LazyGlobalSearch() (+21 more)
 
 ### Community 6 - "Edge-AI & Cognitive-Load Methods"
 Cohesion: 0.07
@@ -142,8 +123,8 @@ Cohesion: 0.07
 Nodes (26): compilerOptions, allowImportingTsExtensions, erasableSyntaxOnly, exactOptionalPropertyTypes, jsx, lib, module, moduleDetection (+18 more)
 
 ### Community 8 - "Project Conventions & CI"
-Cohesion: 0.07
-Nodes (29): graphify trigger (.claude/CLAUDE.md), Also check, No comments rule, No hardcoded colors rule, Output, Project conventions to enforce (hard rules), Scope, Theme parity rule (+21 more)
+Cohesion: 0.11
+Nodes (20): graphify trigger (.claude/CLAUDE.md), code-reviewer subagent, No comments rule, No hardcoded colors rule, Theme parity rule, ScholarPortfolio project conventions (CLAUDE.md), Design tokens (base.css), Custom hash routing (+12 more)
 
 ### Community 9 - "Graphify Query & Export Refs"
 Cohesion: 0.12
@@ -158,20 +139,20 @@ Cohesion: 0.15
 Nodes (18): index.html entry document, JSON-LD structured data (Person, WebSite, ProfilePage), SEO and Open Graph meta tags, llms-full.txt extended profile, llms.txt machine-readable profile, ASIC Lab, University of Texas at San Antonio (UTSA), Prof. Mimi Xie (advisor) (+10 more)
 
 ### Community 12 - "CV / Academic Profile"
-Cohesion: 0.05
-Nodes (42): ASIC Laboratory, B.Sc. Computer Engineering, DAC Young Fellow Award, Ferdowsi University of Mashhad, Mohammad Sadegh Sirjani, Ph.D. Computer Science, Edge AI / Tiny AI Research, Embedded Systems / Energy Harvesting / Intermittent Computing (+34 more)
+Cohesion: 0.14
+Nodes (14): ASIC Laboratory, B.Sc. Computer Engineering, DAC Young Fellow Award, Ferdowsi University of Mashhad, Mohammad Sadegh Sirjani, Ph.D. Computer Science, Edge AI / Tiny AI Research, Embedded Systems / Energy Harvesting / Intermittent Computing (+6 more)
 
 ### Community 13 - "PWA Web Manifest"
 Cohesion: 0.20
 Nodes (9): background_color, categories, description, display, name, orientation, short_name, start_url (+1 more)
 
 ### Community 14 - "Data Mining & CLV Paper"
-Cohesion: 0.08
-Nodes (23): For /graphify add and --watch, For /graphify query, For the commit hook and native CLAUDE.md integration, For --update and --cluster-only, /graphify, Interpreter guard for subcommands, Part A - Structural extraction for code files, Part B - Semantic extraction (parallel subagents) (+15 more)
+Cohesion: 0.20
+Nodes (10): CHAID Decision Tree, Cloud Computing (IaaS/PaaS/SaaS), Customer Churn Prediction, Customer Lifetime Value (CLV), Data Mining, K-Nearest Neighbor (KNN), Lift and Gain Chart, Data Mining and Cloud Computing for Customer Pattern Analysis and Value Maximization (+2 more)
 
 ### Community 15 - "SDN Controller Placement Paper"
-Cohesion: 0.24
-Nodes (7): ROUTE_PATHS, NotFound(), quickLinks, PageShell(), PageShellProps, Publications(), navLinkProps()
+Cohesion: 0.20
+Nodes (10): Bedbug-GLA Method, Bedbug Meta-Heuristic Algorithm (BMHA), Controller Placement Problem (CPP), Developed Bedbug Meta-Heuristic Algorithm (DBMHA), Developed ICLA (DCLA), Genetic Algorithm (GA), Irregular Cellular Learning Automata (ICLA), Controller Placement in Software-Defined Networks Using Reinforcement Learning and Metaheuristics (+2 more)
 
 ### Community 16 - "Theme Context & Toggle"
 Cohesion: 0.33
@@ -186,8 +167,8 @@ Cohesion: 0.25
 Nodes (9): ConStat Performance-Based Contamination Detection, Contamination Transparency Card (CTC), Four-Tier Contamination Taxonomy (T1-T4), GSM8K Benchmark, Instruction Fine-Tuning (IFT) Contamination Blind Spot, Membership Inference Attacks, MMLU Benchmark, Are LLM Benchmarks Already Contaminated? A Systematic Review of Contamination Detection Methods (+1 more)
 
 ### Community 19 - "QTE-IoT Scheduling Paper"
-Cohesion: 0.25
-Nodes (8): ALL_NAV_LINKS, isValidPath(), NavLink, PATH_TO_KEY, RouteKey, routeKeyForPath(), SEARCH_CATEGORY_DEST, getRouteKey()
+Cohesion: 0.29
+Nodes (8): African Vultures Algorithm (AVA), Artificial Rabbits Optimization (ARO), HCSP Benchmark Dataset, Multi-Layer Perceptron ANN Task Classifier, QTE-IoT: Q-Learning-Based Task Scheduling Scheme to Enhance Energy Consumption and QoS in IoT Environments, Q-Learning (Reinforcement Learning), QARO (Q-Learning Based Artificial Rabbits Optimization), QAVA (Q-Learning Based African Vultures Algorithm)
 
 ### Community 21 - "SecVanet VANET Security Paper"
 Cohesion: 0.29
@@ -197,41 +178,9 @@ Nodes (7): Authentication and Key Agreement, Elliptic-Curve Diffie-Hellman (ECDH
 Cohesion: 0.33
 Nodes (6): SQL Research Lab, University of Texas at San Antonio, WTL Research Lab, SQL Lab Logo, UT San Antonio Logo, WTL Lab Logo
 
-### Community 23 - "Scroll Manager Hook"
-Cohesion: 0.22
-Nodes (6): BUILD_TIMESTAMP, Footer(), ScrollListener, ScrollManager, useScrollManager(), ReadingProgress()
-
 ### Community 25 - "Prettier Config"
 Cohesion: 0.50
 Nodes (3): arrowParens, bracketSpacing, singleQuote
-
-### Community 40 - "Community 40"
-Cohesion: 0.22
-Nodes (8): graphify reference: extra exports and benchmark, Step 6b - Wiki (only if --wiki flag), Step 7 - Neo4j export (only if --neo4j or --neo4j-push flag), Step 7a - FalkorDB export (only if --falkordb or --falkordb-push flag), Step 7b - SVG export (only if --svg flag), Step 7c - GraphML export (only if --graphml flag), Step 7d - MCP server (only if --mcp flag), Step 8 - Token reduction benchmark (only if total_words > 5000)
-
-### Community 41 - "Community 41"
-Cohesion: 0.29
-Nodes (6): Code style, Commits, graphify, Layout / data, ScholarPortfolio — project conventions, Styling rules (IMPORTANT)
-
-### Community 42 - "Community 42"
-Cohesion: 0.33
-Nodes (5): For /graphify explain, For /graphify path, graphify reference: query, path, explain, Step 0 — Constrained query expansion (REQUIRED before traversal), Step 1 — Traversal
-
-### Community 43 - "Community 43"
-Cohesion: 0.60
-Nodes (3): AnimatedSection(), AnimatedSectionProps, useScrollAnimation()
-
-### Community 44 - "Community 44"
-Cohesion: 0.50
-Nodes (3): For /graphify add, For --watch, graphify reference: add a URL and watch a folder
-
-### Community 45 - "Community 45"
-Cohesion: 0.50
-Nodes (3): For git commit hook, For native CLAUDE.md integration, graphify reference: commit hook and native CLAUDE.md integration
-
-### Community 46 - "Community 46"
-Cohesion: 0.50
-Nodes (3): For --cluster-only, For --update (incremental re-extraction), graphify reference: incremental update and cluster-only
 
 ## Ambiguous Edges - Review These
 - `Reinforcement Learning for Task Scheduling` → `Bidirectional Mamba-2`  [AMBIGUOUS]
@@ -240,9 +189,9 @@ Nodes (3): For --cluster-only, For --update (incremental re-extraction), graphif
   public/assets/docs/publications/2605.22775v1.pdf · relation: semantically_similar_to
 
 ## Knowledge Gaps
-- **309 isolated node(s):** `bracketSpacing`, `singleQuote`, `arrowParens`, `name`, `private` (+304 more)
+- **254 isolated node(s):** `bracketSpacing`, `singleQuote`, `arrowParens`, `name`, `private` (+249 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **19 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **13 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
@@ -251,13 +200,13 @@ _Questions this graph is uniquely positioned to answer:_
   _Edge tagged AMBIGUOUS (relation: semantically_similar_to) - confidence is low._
 - **What is the exact relationship between `Focal Loss with Automatic Rebalancing` and `MambaGaze Framework`?**
   _Edge tagged AMBIGUOUS (relation: semantically_similar_to) - confidence is low._
-- **Why does `Icon()` connect `Publication & Layout Components` to `Content Data & Page Sections`, `Navigation & Routing Shell`, `SDN Controller Placement Paper`, `Theme Context & Toggle`, `Scroll Manager Hook`?**
-  _High betweenness centrality (0.018) - this node is a cross-community bridge._
-- **Why does `Honesty Rules` connect `Graphify Pipeline Internals` to `Data Mining & CLV Paper`?**
-  _High betweenness centrality (0.012) - this node is a cross-community bridge._
-- **Why does `Build Cluster Analyze Step` connect `Graphify Pipeline Internals` to `Graphify Query & Export Refs`?**
+- **Why does `Icon()` connect `Publication & Layout Components` to `Content Data & Page Sections`, `Theme Context & Toggle`, `Navigation & Routing Shell`?**
+  _High betweenness centrality (0.023) - this node is a cross-community bridge._
+- **Why does `useContentData()` connect `Content Data & Page Sections` to `Navigation & Routing Shell`?**
   _High betweenness centrality (0.010) - this node is a cross-community bridge._
+- **Why does `Build Cluster Analyze Step` connect `Graphify Pipeline Internals` to `Graphify Query & Export Refs`?**
+  _High betweenness centrality (0.008) - this node is a cross-community bridge._
 - **What connects `bracketSpacing`, `singleQuote`, `arrowParens` to the rest of the system?**
-  _327 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _272 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Content Data & Page Sections` be split into smaller, more focused modules?**
-  _Cohesion score 0.05524537173082574 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.05777345017851347 - nodes in this community are weakly interconnected._
