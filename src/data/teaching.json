@@ -1,7 +1,7 @@
 [
   {
     "role": "Teaching Assistant",
-    "course": "Fundamentals of Operating Systems",
+    "course": "Operating System",
     "instructor": "Instructor: Dr. Sam Silvestro",
     "instructorUrl": "https://caicc.utsa.edu/faculty/profiles/silvestro-sam.html",
     "university": "University of Texas at San Antonio",
@@ -25,7 +25,7 @@
   },
   {
     "role": "Teaching Assistant",
-    "course": "Fundamentals of Operating Systems",
+    "course": "Operating System",
     "instructor": "Instructor: Dr. Mimi Xie",
     "instructorUrl": "https://caicc.utsa.edu/faculty/profiles/xie-mimi.html",
     "university": "University of Texas at San Antonio",
