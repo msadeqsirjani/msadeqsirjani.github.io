@@ -6,7 +6,7 @@ type PubLinkVariant = 'github' | 'doi' | 'paper' | 'bibtex';
 
 interface PubLinkProps {
   label: string;
-  href?: string;
+  href?: string | undefined;
   onClick?: () => void;
   icon?: IconDefinition;
   variant?: PubLinkVariant;
