@@ -42,8 +42,9 @@
   width: 1.75rem;
   height: 1.75rem;
   border-radius: 8px;
-  background: rgba(var(--accent-rgb), 0.12);
-  color: var(--accent-color);
+  background: transparent;
+  border: 1px solid var(--border-color);
+  color: var(--text-color);
   font-size: var(--fs-sm);
   flex-shrink: 0;
 }
