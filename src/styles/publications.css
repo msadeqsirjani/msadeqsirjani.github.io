@@ -442,14 +442,11 @@
 }
 
 .pub-card-abstract {
+  margin: 0;
   padding: 1rem 1.1rem;
   background: var(--white);
   border: 1px solid var(--border-color);
   border-radius: var(--button-border-radius);
-}
-
-.pub-card-abstract p {
-  margin: 0;
   font-size: var(--fs-sm);
   line-height: 1.65;
   color: var(--text-light);

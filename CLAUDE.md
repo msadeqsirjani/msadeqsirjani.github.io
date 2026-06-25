@@ -28,6 +28,10 @@ React + TypeScript + Vite single-page academic portfolio. Custom hash routing
   `/preprint/i` is hidden (the badge conveys it).
 - Main Publications section shows 5 rows + a "View all" link to the
   `#publications-all` hash route (rendered by `App.tsx` `view` state).
+- Publication **title, author list, and abstract** are `text-align: justify`
+  in both renderers (main list `.publication-title`/`.publication-authors`,
+  cards `.pub-card-title`/`.pub-card-authors`/`.pub-card-abstract p`). Keep
+  them justified.
 
 ## Code style
 
