@@ -41,7 +41,7 @@
   justify-content: center;
   width: 1.75rem;
   height: 1.75rem;
-  border-radius: 8px;
+  border-radius: var(--icon-border-radius);
   background: transparent;
   border: 1px solid var(--border-color);
   color: var(--text-color);
@@ -94,7 +94,7 @@
   width: 44px;
   height: 44px;
   border: 1px solid var(--border-color);
-  border-radius: var(--button-border-radius);
+  border-radius: var(--icon-border-radius);
   display: flex;
   align-items: center;
   justify-content: center;

@@ -189,7 +189,7 @@ a {
 .search-toggle {
   background: var(--white);
   border: var(--button-border-width) solid var(--border-color);
-  border-radius: var(--button-border-radius);
+  border-radius: var(--icon-border-radius);
   padding: 0.5rem;
   cursor: pointer;
   color: var(--text-color);

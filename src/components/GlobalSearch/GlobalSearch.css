@@ -117,7 +117,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: var(--button-border-radius);
+  border-radius: var(--icon-border-radius);
   transition: all 0.2s ease;
   font-size: var(--fs-base);
   flex-shrink: 0;
