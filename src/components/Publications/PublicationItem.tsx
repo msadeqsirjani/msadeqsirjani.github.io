@@ -81,25 +81,27 @@ const PublicationItem = ({pub}: PublicationItemProps) => {
         )}
 
         <div className="pub-card-actions">
-          {pub.link && (
-            <PubLink label="DOI" href={pub.link} icon={faLink} variant="doi" />
-          )}
-          {pub.pdfLink && (
-            <PubLink
-              label="Paper"
-              href={`/${pub.pdfLink}`}
-              icon={faFilePdf}
-              variant="paper"
-            />
-          )}
-          {pub.bibtexId && (
-            <PubLink
-              label="BibTeX"
-              onClick={() => void copyBibtex(pub)}
-              icon={faQuoteRight}
-              variant="bibtex"
-            />
-          )}
+          <PubLink
+            label="DOI"
+            href={pub.link}
+            icon={faLink}
+            variant="doi"
+            disabled={!pub.link}
+          />
+          <PubLink
+            label="Paper"
+            href={pub.pdfLink ? `/${pub.pdfLink}` : undefined}
+            icon={faFilePdf}
+            variant="paper"
+            disabled={!pub.pdfLink}
+          />
+          <PubLink
+            label="BibTeX"
+            onClick={() => void copyBibtex(pub)}
+            icon={faQuoteRight}
+            variant="bibtex"
+            disabled={!pub.bibtexId}
+          />
           {pub.github && (
             <PubLink
               label="Code"

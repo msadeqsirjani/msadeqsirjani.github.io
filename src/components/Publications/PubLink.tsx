@@ -10,6 +10,7 @@ interface PubLinkProps {
   onClick?: () => void;
   icon?: IconDefinition;
   variant?: PubLinkVariant;
+  disabled?: boolean;
 }
 
 const VARIANT_CLASS: Record<PubLinkVariant, string> = {
@@ -19,10 +20,17 @@ const VARIANT_CLASS: Record<PubLinkVariant, string> = {
   bibtex: 'pub-bibtex-link',
 };
 
-const PubLink = ({label, href, onClick, icon, variant}: PubLinkProps) => {
+const PubLink = ({
+  label,
+  href,
+  onClick,
+  icon,
+  variant,
+  disabled,
+}: PubLinkProps) => {
   const className = `pub-text-link doi-link${
     variant ? ` ${VARIANT_CLASS[variant]}` : ''
-  }`;
+  }${disabled ? ' pub-text-link-disabled' : ''}`;
 
   const content = (
     <>
@@ -30,6 +38,14 @@ const PubLink = ({label, href, onClick, icon, variant}: PubLinkProps) => {
       {label}
     </>
   );
+
+  if (disabled) {
+    return (
+      <button type="button" className={className} disabled aria-disabled="true">
+        {content}
+      </button>
+    );
+  }
 
   if (href) {
     return (

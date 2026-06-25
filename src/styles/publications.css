@@ -431,6 +431,16 @@
   border-color: var(--accent-color);
 }
 
+.pub-card-actions .pub-text-link.pub-text-link-disabled,
+.pub-card-actions .pub-text-link.pub-text-link-disabled:hover {
+  color: var(--text-light);
+  background: transparent;
+  border-color: var(--border-color);
+  opacity: 0.45;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
 .pub-card-abstract {
   padding: 1rem 1.1rem;
   background: var(--white);
