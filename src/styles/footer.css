@@ -1,7 +1,6 @@
 .footer {
-  background: var(--white);
-  padding: 2rem 0 1.25rem;
-  border-top: 1px solid var(--border-color);
+  background: var(--footer-bg);
+  padding: 3rem 0 1.75rem;
 }
 
 .footer-content {
@@ -43,8 +42,8 @@
   height: 1.75rem;
   border-radius: var(--icon-border-radius);
   background: transparent;
-  border: 1px solid var(--border-color);
-  color: var(--text-color);
+  border: 1px solid var(--footer-border);
+  color: var(--footer-text);
   font-size: var(--fs-sm);
   flex-shrink: 0;
 }
@@ -52,19 +51,19 @@
 .footer-section h3 {
   font-size: var(--fs-lg);
   margin-bottom: 0.75rem;
-  color: var(--text-color);
+  color: var(--footer-heading);
   font-weight: 600;
 }
 
 .footer-section h4 {
   font-size: var(--fs-base);
   margin-bottom: 1rem;
-  color: var(--text-color);
+  color: var(--footer-heading);
   font-weight: 600;
 }
 
 .footer-section p {
-  color: var(--text-light);
+  color: var(--footer-text);
   line-height: 1.6;
   margin-bottom: 0.5rem;
   font-size: var(--fs-base);
@@ -75,14 +74,14 @@
 }
 
 .footer-section a {
-  color: var(--text-light);
+  color: var(--footer-text);
   text-decoration: none;
   transition: color 0.3s ease;
   font-size: var(--fs-base);
 }
 
 .footer-section a:hover {
-  color: var(--accent-color);
+  color: var(--footer-heading);
 }
 
 .footer-social {
@@ -93,12 +92,12 @@
 .footer-social a {
   width: 44px;
   height: 44px;
-  border: 1px solid var(--border-color);
+  border: 1px solid var(--footer-border);
   border-radius: var(--icon-border-radius);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--text-color);
+  color: var(--footer-heading);
   transition:
     color 0.25s ease,
     background-color 0.25s ease,
@@ -114,24 +113,24 @@
   transform: translateY(-2px);
 }
 
-[data-theme='dark'] .footer-social a {
-  color: var(--text-color);
-}
-
-[data-theme='dark'] .footer-social a:hover {
-  color: var(--white);
-}
-
 .footer-bottom {
   text-align: center;
   padding-top: 1.25rem;
-  border-top: 1px solid var(--border-color);
-  color: var(--text-light);
+  border-top: 1px solid var(--footer-divider);
+  color: var(--footer-bottom);
   font-size: var(--fs-sm);
 }
 
 .footer-bottom p {
   margin: 0.25rem 0;
+}
+
+.footer-contact a {
+  color: var(--footer-text);
+}
+
+.footer-contact a:hover {
+  color: var(--footer-heading);
 }
 
 .last-updated {

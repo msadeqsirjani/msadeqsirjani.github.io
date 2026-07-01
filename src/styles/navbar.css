@@ -68,6 +68,11 @@
   text-decoration: none;
 }
 
+.navbar .logo-text:focus:not(:focus-visible) {
+  outline: none;
+  box-shadow: none;
+}
+
 .nav-menu {
   display: flex;
   gap: 2rem;
@@ -80,6 +85,24 @@
   font-weight: 500;
   padding: 0.5rem 1rem;
   position: relative;
+  border-radius: 999px;
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.nav-menu > li > .nav-link:hover,
+.nav-menu > li > .nav-link:focus-visible {
+  color: var(--accent-color);
+  background: rgba(var(--accent-rgb), 0.08);
+  text-decoration: none;
+}
+
+.nav-menu > li > .nav-link.active {
+  color: var(--accent-color);
+  background: rgba(var(--accent-rgb), 0.09);
+  font-weight: 600;
+  text-decoration: none;
 }
 
 .nav-link:hover,
@@ -96,26 +119,6 @@
   box-shadow: none;
 }
 
-.nav-menu > li > .nav-link::after {
-  content: '';
-  position: absolute;
-  left: 1rem;
-  right: 1rem;
-  bottom: 0.15rem;
-  height: 2px;
-  border-radius: 2px;
-  background: var(--accent-color);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.nav-menu > li > .nav-link:hover::after,
-.nav-menu > li > .nav-link:focus-visible::after,
-.nav-menu > li > .nav-link.active::after {
-  transform: scaleX(1);
-}
-
 .nav-dropdown {
   position: relative;
 }
@@ -123,7 +126,7 @@
 .nav-dropdown-toggle {
   background: transparent;
   border: none;
-  border-radius: var(--button-border-radius);
+  border-radius: 999px;
   color: var(--text-color);
   font-weight: 500;
   font-size: inherit;
@@ -154,9 +157,10 @@
   border-top: 3px solid currentColor;
 }
 
-.nav-dropdown-toggle:hover {
+.nav-dropdown-toggle:hover,
+.nav-dropdown.open .nav-dropdown-toggle {
   color: var(--accent-color);
-  background: transparent;
+  background: rgba(var(--accent-rgb), 0.08);
 }
 
 .nav-dropdown-menu {
@@ -277,25 +281,27 @@
 }
 
 .nav-menu-close {
-  width: 44px;
-  height: 44px;
+  width: 40px;
+  height: 40px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid var(--border-color);
-  border-radius: 50%;
+  border: var(--button-border-width) solid var(--border-color);
+  border-radius: var(--icon-border-radius);
   background: var(--white);
   color: var(--text-color);
-  font-size: var(--fs-lg);
+  font-size: var(--fs-md);
   cursor: pointer;
   transition:
     color 0.2s ease,
     border-color 0.2s ease,
-    background-color 0.2s ease;
+    background-color 0.2s ease,
+    transform 0.2s ease;
 }
 
 .nav-menu-close:hover {
   color: var(--accent-color);
   border-color: var(--accent-color);
-  background: rgba(var(--accent-rgb), 0.08);
+  background: var(--white);
+  transform: translateY(-2px);
 }

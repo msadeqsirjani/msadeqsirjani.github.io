@@ -53,7 +53,6 @@ interface PublicationItemProps {
 
 const PublicationItem = ({pub}: PublicationItemProps) => {
   const [abstractOpen, setAbstractOpen] = useState(false);
-  const [keywordsOpen, setKeywordsOpen] = useState(false);
   const hasKeywords = !!pub.keywords && pub.keywords.length > 0;
 
   return (
@@ -78,6 +77,16 @@ const PublicationItem = ({pub}: PublicationItemProps) => {
         )}
         {pub.venue && !/preprint/i.test(pub.venue) && (
           <p className="pub-card-venue">{pub.venue}</p>
+        )}
+
+        {hasKeywords && (
+          <div className="pub-card-keywords pub-card-keywords-inline">
+            {pub.keywords!.map(kw => (
+              <span key={kw} className="pub-keyword-tag">
+                {kw}
+              </span>
+            ))}
+          </div>
         )}
 
         <div className="pub-card-actions">
@@ -111,54 +120,26 @@ const PublicationItem = ({pub}: PublicationItemProps) => {
             />
           )}
         </div>
-      </div>
 
-      {(pub.abstract || hasKeywords) && (
-        <div className="pub-card-accordion">
-          {pub.abstract && (
-            <div className="pub-accordion-item">
-              <button
-                type="button"
-                className="pub-accordion-header"
-                onClick={() => setAbstractOpen(v => !v)}
-                aria-expanded={abstractOpen}
-              >
-                <span>Abstract</span>
-                <Icon icon={abstractOpen ? faMinus : faPlus} size="sm" />
-              </button>
-              {abstractOpen && (
-                <div className="pub-accordion-panel">
-                  <p className="pub-card-abstract">{pub.abstract}</p>
-                </div>
-              )}
-            </div>
-          )}
-          {hasKeywords && (
-            <div className="pub-accordion-item">
-              <button
-                type="button"
-                className="pub-accordion-header"
-                onClick={() => setKeywordsOpen(v => !v)}
-                aria-expanded={keywordsOpen}
-              >
-                <span>Keywords</span>
-                <Icon icon={keywordsOpen ? faMinus : faPlus} size="sm" />
-              </button>
-              {keywordsOpen && (
-                <div className="pub-accordion-panel">
-                  <div className="pub-card-keywords">
-                    {pub.keywords!.map(kw => (
-                      <span key={kw} className="pub-keyword-tag">
-                        {kw}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </div>
-          )}
-        </div>
-      )}
+        {pub.abstract && (
+          <div className="pub-abstract">
+            <button
+              type="button"
+              className="pub-abstract-toggle"
+              onClick={() => setAbstractOpen(v => !v)}
+              aria-expanded={abstractOpen}
+            >
+              <span>Abstract</span>
+              <Icon icon={abstractOpen ? faMinus : faPlus} size="sm" />
+            </button>
+            {abstractOpen && (
+              <div className="pub-abstract-panel">
+                <p className="pub-card-abstract">{pub.abstract}</p>
+              </div>
+            )}
+          </div>
+        )}
+      </div>
     </article>
   );
 };

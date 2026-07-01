@@ -29,36 +29,31 @@ const ResearchExperience = () => {
               key={`${item.position}-${item.lab}-${index}`}
               className="research-row"
             >
-              <div className="research-row-side">
-                <span className="research-term">{item.duration}</span>
-                {item.current && (
-                  <span className="research-current">Current</span>
-                )}
-              </div>
-              <div className="research-row-main">
-                <div className="research-head">
-                  <span
-                    className={`research-logo ${
-                      item.logo ? 'research-logo--img' : 'research-logo--ph'
-                    }`}
-                  >
-                    {item.logo ? (
-                      <img
-                        src={item.logo}
-                        alt={`${item.lab} logo`}
-                        width={40}
-                        height={40}
-                        decoding="async"
-                      />
-                    ) : (
-                      <span className="research-logo--placeholder">
-                        {getLabInitials(item.lab)}
-                      </span>
-                    )}
-                  </span>
-                  <div className="research-headtext">
-                    <span className="research-position">{item.position}</span>
-                    <span className="research-affil">
+              <div className="research-head">
+                <span
+                  className={`research-logo ${
+                    item.logo ? 'research-logo--img' : 'research-logo--ph'
+                  }`}
+                >
+                  {item.logo ? (
+                    <img
+                      src={item.logo}
+                      alt={`${item.lab} logo`}
+                      width={40}
+                      height={40}
+                      decoding="async"
+                    />
+                  ) : (
+                    <span className="research-logo--placeholder">
+                      {getLabInitials(item.lab)}
+                    </span>
+                  )}
+                </span>
+                <div className="research-headtext">
+                  <div className="research-title-row">
+                    <h3 className="research-title">
+                      {item.position}
+                      <span className="research-sep"> · </span>
                       {item.labUrl ? (
                         <a
                           href={item.labUrl}
@@ -71,21 +66,25 @@ const ResearchExperience = () => {
                       ) : (
                         <span className="research-lab">{item.lab}</span>
                       )}
-                      {item.university && (
-                        <>
-                          <span className="research-sep"> · </span>
-                          {item.university}
-                        </>
-                      )}
-                    </span>
+                    </h3>
+                    {item.current && (
+                      <span className="research-current">Current</span>
+                    )}
                   </div>
+                  <p className="research-meta">
+                    {item.university}
+                    {item.university && item.duration && (
+                      <span className="research-sep"> · </span>
+                    )}
+                    {item.duration}
+                  </p>
                 </div>
-                <ul className="research-points">
-                  {item.description.map((desc, i) => (
-                    <li key={i}>{desc}</li>
-                  ))}
-                </ul>
               </div>
+              <ul className="research-points">
+                {item.description.map((desc, i) => (
+                  <li key={i}>{desc}</li>
+                ))}
+              </ul>
             </li>
           ))}
         </ul>
