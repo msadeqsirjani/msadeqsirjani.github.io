@@ -58,3 +58,6 @@ bower_components/
 .lock-wscript
 tmp/
 temp/
+
+# graphify
+graphify-out/
