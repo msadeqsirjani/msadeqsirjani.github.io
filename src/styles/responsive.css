@@ -315,6 +315,13 @@
     justify-content: center;
   }
 
+  .hero-blob {
+    width: 260px;
+    height: 260px;
+    top: -80px;
+    right: -80px;
+  }
+
   .section {
     padding: 2.5rem 0;
   }
@@ -351,12 +358,11 @@
   }
 
   .interest-card {
-    background: transparent;
-    border: 1px solid var(--border-color);
-    border-radius: var(--button-border-radius);
-    padding: 1rem;
+    background: var(--gray-light);
+    border: 1px solid transparent;
+    border-radius: var(--shape-card);
+    padding: 1.25rem 1rem;
     height: auto;
-    min-height: 100px;
     box-shadow: none;
     width: 100%;
   }
@@ -373,18 +379,19 @@
   }
 
   .publication-item {
-    background: none;
-    border: none;
+    background: var(--gray-light);
+    border: 1px solid transparent;
     border-radius: var(--shape-card);
-    padding: 0.75rem;
+    padding: 1.1rem 1.2rem;
     margin-inline: 0;
-    margin-bottom: 0.35rem;
+    margin-bottom: 0;
     box-shadow: none;
     transition: background-color 0.2s ease;
   }
 
   .publication-item:hover {
-    background: var(--gray-light);
+    transform: none;
+    box-shadow: none;
   }
 
   .publication-item:last-child {
@@ -559,18 +566,6 @@
 
   .education-content {
     order: 1;
-  }
-
-  .education-logo {
-    width: 70px;
-    height: 70px;
-    padding: 0.5rem;
-  }
-
-  .education-logo.education-logo--circle {
-    width: 64px;
-    height: 64px;
-    padding: 0.45rem;
   }
 
   .education-header {
@@ -1074,7 +1069,7 @@
   }
 
   .profile-image {
-    display: flex;
+    display: inline-flex;
     justify-content: center;
     margin: 0 auto;
   }
@@ -1164,8 +1159,8 @@
   }
 
   .publication-item {
-    padding: 0.75rem;
-    margin-bottom: 0.35rem;
+    padding: 1.1rem 1.2rem;
+    margin-bottom: 0;
   }
 }
 
