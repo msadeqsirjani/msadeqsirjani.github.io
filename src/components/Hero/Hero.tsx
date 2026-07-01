@@ -78,10 +78,12 @@ const Hero = () => {
 
   return (
     <section id="home" className="hero">
+      <div className="hero-blob" aria-hidden="true" />
       <div className="container">
         <div className="hero-content">
           <div className="hero-left">
             <div className="profile-image">
+              <div className="profile-glow" aria-hidden="true" />
               <picture>
                 <source
                   type="image/webp"
@@ -114,8 +116,13 @@ const Hero = () => {
               <a href="https://www.utsa.edu/" target="_blank" rel="noopener">
                 University of Texas at San Antonio
               </a>
+              <span className="hero-sep" aria-hidden="true">
+                ·
+              </span>
+              <span className="hero-tagline">
+                TinyAI & Embedded Systems Researcher
+              </span>
             </p>
-            <p className="hero-tagline">TinyAI & Embedded Systems Researcher</p>
 
             <div className="hero-buttons">
               {buttons.map((btn, idx) => {
