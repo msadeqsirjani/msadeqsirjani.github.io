@@ -120,6 +120,17 @@ const GlobalSearch = ({isOpen, onClose}: GlobalSearchProps) => {
   const [searchQuery, setSearchQuery] = useState('');
   const {results, isSearching} = useGlobalSearch(searchQuery, isOpen);
   const [selectedIndex, setSelectedIndex] = useState(-1);
+  const [prevSelectionKey, setPrevSelectionKey] = useState({
+    searchQuery,
+    results,
+  });
+  if (
+    searchQuery !== prevSelectionKey.searchQuery ||
+    results !== prevSelectionKey.results
+  ) {
+    setPrevSelectionKey({searchQuery, results});
+    setSelectedIndex(-1);
+  }
   const searchInputRef = useRef<HTMLInputElement>(null);
   const modalRef = useRef<HTMLDivElement>(null);
   const resultsRef = useRef<(HTMLAnchorElement | null)[]>([]);
@@ -149,10 +160,6 @@ const GlobalSearch = ({isOpen, onClose}: GlobalSearchProps) => {
       ),
     [results],
   );
-
-  useEffect(() => {
-    setSelectedIndex(-1);
-  }, [searchQuery, results]);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {

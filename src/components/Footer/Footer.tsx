@@ -18,6 +18,7 @@ import {ROUTE_PATHS} from '../../constants/siteNav';
 import {navLinkProps} from '../../utils/router';
 
 const BUILD_TIMESTAMP = Number(__BUILD_TIMESTAMP__);
+const FALLBACK_TIMESTAMP = Date.now();
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -27,7 +28,7 @@ const Footer = () => {
     const ts =
       Number.isFinite(BUILD_TIMESTAMP) && BUILD_TIMESTAMP > 0
         ? BUILD_TIMESTAMP
-        : Date.now();
+        : FALLBACK_TIMESTAMP;
     return new Date(ts).toLocaleDateString('en-US', {
       month: 'long',
       day: 'numeric',

@@ -22,9 +22,13 @@ export function useContentData<T>(
   const [loading, setLoading] = useState(!shouldSkipFetch(initialValue));
   const [error, setError] = useState<string | null>(null);
 
+  const skipFetch = shouldSkipFetch(initialValue);
+  if (skipFetch && loading) {
+    setLoading(false);
+  }
+
   useEffect(() => {
-    if (shouldSkipFetch(initialValue)) {
-      setLoading(false);
+    if (skipFetch) {
       return;
     }
 
@@ -54,7 +58,7 @@ export function useContentData<T>(
     return () => {
       active = false;
     };
-  }, [fetcher, initialValue, options.errorMessage, options.logLabel]);
+  }, [fetcher, initialValue, options.errorMessage, options.logLabel, skipFetch]);
 
   return {data, loading, error};
 }

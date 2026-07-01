@@ -121,12 +121,10 @@ export const useGlobalSearch = (query: string, enabled: boolean) => {
     }
 
     if (!query.trim()) {
-      setResults(emptyResults);
-      setIsSearching(false);
       return;
     }
 
-    setIsSearching(true);
+    const startTimeoutId = setTimeout(() => setIsSearching(true), 0);
 
     const timeoutId = setTimeout(() => {
       const searchTerm = query.toLowerCase().trim();
@@ -187,9 +185,16 @@ export const useGlobalSearch = (query: string, enabled: boolean) => {
       setIsSearching(false);
     }, 300);
 
-    return () => clearTimeout(timeoutId);
+    return () => {
+      clearTimeout(startTimeoutId);
+      clearTimeout(timeoutId);
+    };
   }, [query, allData, isLoading, enabled]);
 
+  const trimmedQuery = query.trim();
   const busy = enabled && isLoading;
-  return {results, isSearching: isSearching || busy};
+  return {
+    results: trimmedQuery ? results : emptyResults,
+    isSearching: (trimmedQuery ? isSearching : false) || busy,
+  };
 };
