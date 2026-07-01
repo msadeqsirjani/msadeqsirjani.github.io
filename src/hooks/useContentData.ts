@@ -58,7 +58,13 @@ export function useContentData<T>(
     return () => {
       active = false;
     };
-  }, [fetcher, initialValue, options.errorMessage, options.logLabel, skipFetch]);
+  }, [
+    fetcher,
+    initialValue,
+    options.errorMessage,
+    options.logLabel,
+    skipFetch,
+  ]);
 
   return {data, loading, error};
 }

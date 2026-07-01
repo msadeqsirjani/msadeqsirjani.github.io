@@ -44,12 +44,7 @@ type SearchableItem =
   | AwardItem;
 
 type CategoryKey =
-  | 'publications'
-  | 'research'
-  | 'teaching'
-  | 'education'
-  | 'news'
-  | 'awards';
+  'publications' | 'research' | 'teaching' | 'education' | 'news' | 'awards';
 
 interface CategoryConfig {
   key: CategoryKey;

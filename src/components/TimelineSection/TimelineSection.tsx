@@ -77,8 +77,7 @@ const TimelineSection = <T,>({
             const candidate = item as Record<string, unknown>;
             const defaultDate = candidate['date'] as ReactNode | undefined;
             const defaultDescription = candidate['description'] as
-              | ReactNode
-              | undefined;
+              ReactNode | undefined;
             const itemKey = getItemKey
               ? getItemKey(item, index)
               : `${String(
