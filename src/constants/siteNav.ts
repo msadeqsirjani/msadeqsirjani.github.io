@@ -23,11 +23,11 @@ export const MAIN_NAV_LINKS: readonly NavLink[] = [
   {id: 'home', label: 'Home', path: ROUTE_PATHS.home},
   {id: 'publications', label: 'Publications', path: ROUTE_PATHS.publications},
   {id: 'teaching', label: 'Teaching', path: ROUTE_PATHS.teaching},
+  {id: 'education', label: 'Education', path: ROUTE_PATHS.education},
   {id: 'awards', label: 'Awards', path: ROUTE_PATHS.awards},
 ];
 
 export const DROPDOWN_NAV_LINKS: readonly NavLink[] = [
-  {id: 'education', label: 'Education', path: ROUTE_PATHS.education},
   {id: 'research', label: 'Research', path: ROUTE_PATHS.research},
   {id: 'news', label: 'News', path: ROUTE_PATHS.news},
 ];
