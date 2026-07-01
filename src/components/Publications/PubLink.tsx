@@ -11,6 +11,7 @@ interface PubLinkProps {
   icon?: IconDefinition;
   variant?: PubLinkVariant;
   disabled?: boolean;
+  ariaExpanded?: boolean;
 }
 
 const VARIANT_CLASS: Record<PubLinkVariant, string> = {
@@ -27,6 +28,7 @@ const PubLink = ({
   icon,
   variant,
   disabled,
+  ariaExpanded,
 }: PubLinkProps) => {
   const className = `pub-text-link doi-link${
     variant ? ` ${VARIANT_CLASS[variant]}` : ''
@@ -56,7 +58,12 @@ const PubLink = ({
   }
 
   return (
-    <button type="button" className={className} onClick={onClick}>
+    <button
+      type="button"
+      className={className}
+      onClick={onClick}
+      {...(ariaExpanded !== undefined && {'aria-expanded': ariaExpanded})}
+    >
       {content}
     </button>
   );
