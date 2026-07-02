@@ -2,5 +2,6 @@ User-agent: *
 Allow: /
 Crawl-delay: 1
 Disallow: /assets/data/
+Disallow: /assets/docs/publications/
 
 Sitemap: https://msadeqsirjani.com/sitemap.xml
