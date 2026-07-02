@@ -4,6 +4,8 @@ export interface ResearchItem {
   university?: string;
   labUrl?: string;
   logo?: string;
+  advisor?: string;
+  advisorUrl?: string;
   duration: string;
   description: string[];
   current?: boolean;

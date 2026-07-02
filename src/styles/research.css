@@ -98,6 +98,23 @@
   margin: 0;
 }
 
+.research-advisor {
+  font-size: var(--fs-sm);
+  line-height: 1.45;
+  color: var(--text-light);
+  margin: 0;
+}
+
+.research-advisor a {
+  color: var(--accent-color);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.research-advisor a:hover {
+  text-decoration: underline;
+}
+
 .research-current {
   font-size: var(--fs-xs);
   font-weight: 700;

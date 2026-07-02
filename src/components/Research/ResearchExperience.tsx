@@ -78,6 +78,22 @@ const ResearchExperience = () => {
                     )}
                     {item.duration}
                   </p>
+                  {item.advisor && (
+                    <p className="research-advisor">
+                      Advisor:{' '}
+                      {item.advisorUrl ? (
+                        <a
+                          href={item.advisorUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          {item.advisor}
+                        </a>
+                      ) : (
+                        item.advisor
+                      )}
+                    </p>
+                  )}
                 </div>
               </div>
               <ul className="research-points">
