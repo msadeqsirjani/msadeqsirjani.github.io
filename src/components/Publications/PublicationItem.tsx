@@ -99,10 +99,10 @@ const PublicationItem = ({pub}: PublicationItemProps) => {
           />
           <PubLink
             label="Paper"
-            href={pub.pdfLink ? `/${pub.pdfLink}` : undefined}
+            href={pub.pdfLink ? `/${pub.pdfLink}` : pub.link}
             icon={faFilePdf}
             variant="paper"
-            disabled={!pub.pdfLink}
+            disabled={!pub.pdfLink && !pub.link}
           />
           <PubLink
             label="BibTeX"

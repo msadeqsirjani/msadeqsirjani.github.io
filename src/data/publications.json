@@ -73,7 +73,7 @@
     "status": "published",
     "authors": "Erfan Nourbakhsh, Mohammad Sadegh Sirjani, Amir Mousavi, Khoa Nguyen, John Quarles, Mimi Xie, Rocky Slavin",
     "link": "https://doi.org/10.18653/v1/2026.gem-main.50",
-    "pdfLink": "assets/docs/publications/RG.2.2.12579.41764.pdf",
+    "pdfLink": "",
     "bibtexId": "nourbakhsh2026contaminated",
     "abstract": "Large Language Models (LLMs) are trained on web-scale corpora, increasing the risk that benchmark test data appears in training sets and inflates reported performance. We present a systematic literature review of 55 studies on LLM benchmark contamination through late 2025. Our contributions are: (1) a four-tier contamination taxonomy (Exact, Syntactic, Semantic, Task-Level; T1-T4); (2) a comparative analysis of five detection families (string-matching, likelihood-based, membership inference, LLM-prompted detection, and benchmark auditing), including access assumptions and failure modes; (3) a synthesis of contamination evidence on MMLU, GSM8K, HumanEval, and HellaSwag by measurement construct; (4) a comparative evaluation of mitigation strategies across lifecycle points, access assumptions, and evidence maturity; and (5) a Contamination Transparency Card (CTC) framework for future releases. Across studies, no detection method is consistently reliable across contamination tiers, model-access settings, and training stages. We identify instruction tuning as a persistent blind spot, note that RL/post-training contamination auditing is only beginning to mature, and report inflation estimates spanning roughly 6%-40% under benchmark- and setting-dependent assumptions.",
     "citations": 0,
