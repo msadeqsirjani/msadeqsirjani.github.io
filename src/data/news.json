@@ -1,15 +1,15 @@
 [
   {
     "date": "Jul. 2026",
-    "description": "Awarded $750 from the Graduate School Academic Travel Fund to attend the <a href=\"https://dac.com/\" target=\"_blank\" rel=\"noopener noreferrer\">Design Automation Conference (DAC)</a>."
+    "description": "Awarded the Graduate School Academic Travel Fund to attend the <a href=\"https://dac.com/\" target=\"_blank\" rel=\"noopener noreferrer\">Design Automation Conference (DAC) 2026</a>."
+  },
+  {
+    "date": "Jul. 2026",
+    "description": "Paper \"<a href=\"https://doi.org/10.18653/v1/2026.gem-main.50\" target=\"_blank\" rel=\"noopener noreferrer\">Are LLM Benchmarks Already Contaminated? A Systematic Review of Contamination Detection Methods</a>\" published at the <a href=\"https://gem-workshop.com/\" target=\"_blank\" rel=\"noopener noreferrer\">GEM Workshop — The 64th Annual Meeting of the Association for Computational Linguistics (ACL 2026)</a>."
   },
   {
     "date": "Jun. 2026",
     "description": "Paper \"<a href=\"https://doi.org/10.1109/SATC69565.2026.11542230\" target=\"_blank\" rel=\"noopener noreferrer\">Optimizing Task Scheduling in Fog Computing with Deadline Awareness</a>\" published at the <a href=\"https://www.satcconf.com/\" target=\"_blank\" rel=\"noopener noreferrer\">IEEE 2nd International Conference on Secure IoT, Assured and Trusted Computing (SATC 2026)</a>."
-  },
-  {
-    "date": "Apr. 2026",
-    "description": "Paper \"<a href=\"https://doi.org/10.18653/v1/2026.gem-main.50\" target=\"_blank\" rel=\"noopener noreferrer\">Are LLM Benchmarks Already Contaminated? A Systematic Review of Contamination Detection Methods</a>\" accepted at the <a href=\"https://gem-workshop.com/\" target=\"_blank\" rel=\"noopener noreferrer\">GEM Workshop — The 64th Annual Meeting of the Association for Computational Linguistics (ACL 2026)</a>."
   },
   {
     "date": "Apr. 2026",
@@ -50,6 +50,10 @@
   {
     "date": "Jun. 2025",
     "description": "Awarded the DAC Young Fellows fellowship and attended <a href=\"https://archive.dac.com/about/conference-archive/62nd-dac-2025.html\" target=\"_blank\" rel=\"noopener noreferrer\">DAC 2025</a> as a Young Fellow."
+  },
+  {
+    "date": "Jun. 2025",
+    "description": "Awarded the Graduate School Academic Travel Fund to attend the <a href=\"https://dac.com/\" target=\"_blank\" rel=\"noopener noreferrer\">Design Automation Conference (DAC) 2025</a>."
   },
   {
     "date": "Jan. 2025",
