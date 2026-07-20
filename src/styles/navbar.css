@@ -169,8 +169,6 @@
   top: calc(100% + 0.5rem);
   right: 0;
   background: var(--white);
-  backdrop-filter: blur(16px) saturate(180%);
-  -webkit-backdrop-filter: blur(16px) saturate(180%);
   border: 1px solid var(--border-color);
   border-radius: 10px;
   box-shadow: 0 8px 24px -8px rgba(0, 0, 0, 0.18);
@@ -205,7 +203,6 @@
 }
 
 [data-theme='dark'] .nav-dropdown-menu {
-  background: var(--dropdown-glass-bg);
   border-color: var(--dropdown-glass-border);
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
 }
