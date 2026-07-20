@@ -263,6 +263,7 @@
 .pub-search {
   flex: 1;
   min-width: 0;
+  box-sizing: border-box;
   height: 44px;
   padding: 0 1rem;
   font-size: var(--fs-sm);
@@ -272,6 +273,8 @@
   border: 1px solid var(--border-color);
   border-radius: 999px;
   outline: none;
+  appearance: none;
+  -webkit-appearance: none;
   transition:
     border-color 0.2s ease,
     box-shadow 0.2s ease;
@@ -289,6 +292,12 @@
 @media (max-width: 600px) {
   .pub-filter-bar {
     flex-direction: column;
+  }
+
+  .pub-search,
+  .pub-select-wrap {
+    flex: 0 0 auto;
+    width: 100%;
   }
 }
 
