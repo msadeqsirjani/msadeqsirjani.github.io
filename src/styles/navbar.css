@@ -26,6 +26,14 @@
   box-shadow: 0 2px 16px rgba(0, 0, 0, 0.2);
 }
 
+@media (prefers-reduced-transparency: reduce) {
+  .navbar--scrolled {
+    background: var(--nav-scrolled-solid);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+}
+
 .nav-container {
   display: flex;
   justify-content: space-between;

@@ -87,8 +87,18 @@ a {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
+.btn:active {
+  transform: scale(0.97);
+  transition-duration: 0.1s;
+}
+
 .social-link:hover {
   transform: translateY(-3px) scale(1.1);
+}
+
+.social-link:active {
+  transform: scale(0.94);
+  transition-duration: 0.1s;
 }
 
 .publication-card {

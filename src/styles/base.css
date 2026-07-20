@@ -94,7 +94,8 @@ h6 {
   --toast-error-bg: #ef4444;
   --toast-error-text: #ffffff;
 
-  --nav-scrolled-bg: rgba(255, 255, 255, 1);
+  --nav-scrolled-bg: rgba(253, 252, 255, 0.72);
+  --nav-scrolled-solid: rgba(253, 252, 255, 1);
   --nav-scrolled-border: rgba(209, 213, 219, 0.3);
   --dropdown-glass-border: var(--border-color);
   --logo-gradient: linear-gradient(135deg, #333333, #1a1a1a);
@@ -191,7 +192,8 @@ h6 {
   --elev-2: 0 2px 6px rgba(0, 0, 0, 0.6);
   --elev-3: 0 4px 10px rgba(0, 0, 0, 0.7);
 
-  --nav-scrolled-bg: rgba(19, 19, 22, 1);
+  --nav-scrolled-bg: rgba(19, 19, 22, 0.68);
+  --nav-scrolled-solid: rgba(19, 19, 22, 1);
   --nav-scrolled-border: rgba(67, 71, 78, 0.35);
   --dropdown-glass-border: rgba(67, 71, 78, 0.35);
   --logo-gradient: linear-gradient(135deg, #ffffff, #e5e5e5);
