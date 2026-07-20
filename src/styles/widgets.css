@@ -110,13 +110,6 @@
   transform: translateY(-2px);
 }
 
-.quick-action-toggle.active {
-  background: var(--accent-hover);
-  color: var(--on-accent);
-  border-color: var(--accent-hover);
-  transform: rotate(45deg);
-}
-
 .quick-action-toggle i {
   font-size: var(--fs-lg);
   transition: transform 0.3s ease;

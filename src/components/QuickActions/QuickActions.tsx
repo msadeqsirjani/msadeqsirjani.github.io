@@ -59,6 +59,7 @@ const QuickActions = () => {
             key={idx}
             href={action.href}
             className="quick-action-btn"
+            aria-label={action.tooltip}
             data-tooltip={action.tooltip}
             {...(action.download && {download: true})}
             {...(action.external && {target: '_blank', rel: 'noopener'})}
