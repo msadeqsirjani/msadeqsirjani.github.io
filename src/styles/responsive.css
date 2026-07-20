@@ -181,7 +181,8 @@
     transform: scale(1);
   }
 
-  body:has(.nav-menu.active) .quick-actions {
+  body:has(.nav-menu.active) .quick-actions,
+  body:has(.nav-menu.active) .scroll-to-top {
     display: none;
   }
 
