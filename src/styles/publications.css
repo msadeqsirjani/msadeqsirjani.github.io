@@ -169,7 +169,8 @@
   font-weight: 700;
   color: var(--text-color);
   margin: 0 0 0.5rem;
-  letter-spacing: -0.01em;
+  line-height: 1.12;
+  letter-spacing: -0.02em;
 }
 
 .pub-page-count {
