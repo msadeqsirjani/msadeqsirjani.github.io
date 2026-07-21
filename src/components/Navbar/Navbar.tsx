@@ -1,7 +1,9 @@
-import {useState, useEffect, useRef} from 'react';
+import {useState, useEffect, useRef, lazy, Suspense} from 'react';
 import Icon from '../Icon/Icon';
-import {faSearch, faXmark} from '@fortawesome/free-solid-svg-icons';
+import {faSearch} from '@fortawesome/free-solid-svg-icons';
 import {useFocusTrap} from '../../hooks/useFocusTrap';
+
+const MobileMenu = lazy(() => import('../MobileMenu/MobileMenu'));
 import ThemeToggle from '../ThemeToggle/ThemeToggle';
 import {
   DROPDOWN_NAV_LINKS,
@@ -17,7 +19,9 @@ interface NavbarProps {
 
 const Navbar = ({onSearchClick}: NavbarProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [menuMounted, setMenuMounted] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const navToggleRef = useRef<HTMLButtonElement>(null);
   const [isScrolled, setIsScrolled] = useState(false);
   const [activePath, setActivePath] = useState(() =>
     normalizePath(window.location.pathname),
@@ -107,6 +111,16 @@ const Navbar = ({onSearchClick}: NavbarProps) => {
     }
   };
 
+  const openMenu = () => {
+    setMenuMounted(true);
+    setIsMenuOpen(true);
+  };
+
+  const closeMenu = () => {
+    setIsMenuOpen(false);
+    navToggleRef.current?.focus();
+  };
+
   const hrefFor = (path: string, anchor?: string) =>
     path + (anchor ? `#${anchor}` : '');
 
@@ -144,17 +158,7 @@ const Navbar = ({onSearchClick}: NavbarProps) => {
             SS
           </a>
         </div>
-        <ul className={`nav-menu ${isMenuOpen ? 'active' : ''}`} id="nav-menu">
-          <li className="nav-menu-close-item">
-            <button
-              type="button"
-              className="nav-menu-close"
-              onClick={() => setIsMenuOpen(false)}
-              aria-label="Close menu"
-            >
-              <Icon icon={faXmark} aria-hidden="true" />
-            </button>
-          </li>
+        <ul className="nav-menu" id="nav-menu">
           {mainLinks.map(link => (
             <li key={link.id}>
               <a
@@ -208,17 +212,6 @@ const Navbar = ({onSearchClick}: NavbarProps) => {
               ))}
             </ul>
           </li>
-          {dropdownLinks.map(link => (
-            <li key={`mobile-${link.id}`} className="nav-mobile-item">
-              <a
-                href={hrefFor(link.path, link.anchor)}
-                className="nav-link"
-                onClick={e => handleNav(e, link.path, link.anchor)}
-              >
-                {link.label}
-              </a>
-            </li>
-          ))}
         </ul>
         <div className="nav-controls">
           <button
@@ -236,9 +229,11 @@ const Navbar = ({onSearchClick}: NavbarProps) => {
           <button
             type="button"
             className="nav-toggle"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            ref={navToggleRef}
+            onClick={() => (isMenuOpen ? closeMenu() : openMenu())}
             aria-label="Toggle navigation menu"
             aria-expanded={isMenuOpen}
+            aria-controls="mobile-menu"
           >
             <span className="bar"></span>
             <span className="bar"></span>
@@ -246,6 +241,16 @@ const Navbar = ({onSearchClick}: NavbarProps) => {
           </button>
         </div>
       </div>
+      {menuMounted && (
+        <Suspense fallback={null}>
+          <MobileMenu
+            isOpen={isMenuOpen}
+            onClose={closeMenu}
+            activePath={activePath}
+            onNav={handleNav}
+          />
+        </Suspense>
+      )}
     </nav>
   );
 };

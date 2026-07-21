@@ -105,84 +105,11 @@
   }
 
   .nav-menu {
-    position: fixed;
-    inset: 0;
-    z-index: 200;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 0.5rem;
-    width: 100vw;
-    height: 100dvh;
-    padding: 6rem 1.5rem 2rem;
-    background: var(--white);
-    overflow-y: auto;
-    opacity: 0;
-    visibility: hidden;
-    transform: scale(1.04);
-    transition:
-      opacity 0.3s ease,
-      transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
-      visibility 0.3s ease;
+    display: none;
   }
 
-  .nav-menu > li {
-    width: auto;
-  }
-
-  .nav-menu-close-item {
-    display: block;
-    position: absolute;
-    top: 1.25rem;
-    right: 1.25rem;
-  }
-
-  .nav-menu.active > li:not(.nav-menu-close-item) {
-    animation: navItemIn 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
-  }
-
-  .nav-menu.active > li:nth-child(2) {
-    animation-delay: 0.05s;
-  }
-  .nav-menu.active > li:nth-child(3) {
-    animation-delay: 0.1s;
-  }
-  .nav-menu.active > li:nth-child(4) {
-    animation-delay: 0.15s;
-  }
-  .nav-menu.active > li:nth-child(5) {
-    animation-delay: 0.2s;
-  }
-  .nav-menu.active > li:nth-child(6) {
-    animation-delay: 0.25s;
-  }
-  .nav-menu.active > li:nth-child(7) {
-    animation-delay: 0.3s;
-  }
-  .nav-menu.active > li:nth-child(8) {
-    animation-delay: 0.35s;
-  }
-  .nav-menu.active > li:nth-child(9) {
-    animation-delay: 0.4s;
-  }
-  .nav-menu.active > li:nth-child(n + 10) {
-    animation-delay: 0.45s;
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .nav-menu.active > li:not(.nav-menu-close-item) {
-      animation: none;
-    }
-  }
-
-  .nav-menu.active {
-    opacity: 1;
-    visibility: visible;
-    transform: scale(1);
-  }
-
-  body:has(.nav-menu.active) .quick-actions,
-  body:has(.nav-menu.active) .scroll-to-top {
+  body:has(.mobile-menu-overlay) .quick-actions,
+  body:has(.mobile-menu-overlay) .scroll-to-top {
     display: none;
   }
 

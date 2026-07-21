@@ -310,3 +310,37 @@
   background: var(--white);
   transform: translateY(-2px);
 }
+
+.mobile-menu-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 6rem 1.5rem 2rem;
+  background: var(--white);
+  overflow-y: auto;
+  transform-origin: top center;
+  will-change: transform, opacity;
+}
+
+.mobile-menu-close {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+}
+
+.mobile-menu-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.mobile-menu-list li {
+  width: auto;
+}
