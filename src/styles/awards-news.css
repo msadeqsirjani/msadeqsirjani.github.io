@@ -66,10 +66,9 @@
 
 @media (max-width: 600px) {
   .news-scroll {
-    padding-right: 0;
-    max-height: none;
-    overflow-y: visible;
-    mask-image: none;
+    max-height: 22rem;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
   }
 
   .news-row {
