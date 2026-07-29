@@ -1363,11 +1363,6 @@
   .pub-filter-bar {
     gap: 0.65rem;
   }
-
-  .pub-filter-select,
-  .pub-search {
-    border-radius: var(--button-border-radius);
-  }
 }
 
 @media (max-width: 480px) {

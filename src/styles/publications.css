@@ -204,7 +204,7 @@
   color: var(--text-color);
   background: var(--gray-light);
   border: 1px solid var(--border-color);
-  border-radius: 999px;
+  border-radius: var(--button-border-radius);
   outline: none;
   cursor: pointer;
   appearance: none;
@@ -234,7 +234,7 @@
   color: var(--text-color);
   background: var(--gray-light);
   border: 1px solid var(--border-color);
-  border-radius: 999px;
+  border-radius: var(--button-border-radius);
   outline: none;
   appearance: none;
   -webkit-appearance: none;
