@@ -1207,13 +1207,17 @@
   }
 
   .footer-contact li {
-    justify-content: center;
-    text-align: center;
+    display: grid;
+    grid-template-columns: 1.75rem minmax(0, 1fr);
+    align-items: center;
+    column-gap: 0.6rem;
+    justify-content: stretch;
+    text-align: left;
     white-space: normal;
   }
 
   .footer-contact a {
-    text-align: center;
+    text-align: left;
     text-wrap: balance;
   }
 }
@@ -1394,11 +1398,9 @@
   }
 
   .footer-contact li {
-    flex-direction: column;
-    gap: 0.45rem;
     align-items: center;
-    justify-content: center;
-    text-align: center;
+    justify-content: stretch;
+    text-align: left;
     white-space: normal;
   }
 
@@ -1589,6 +1591,10 @@
   .footer-section a {
     text-align: center;
     text-justify: auto;
+  }
+
+  .footer-contact a {
+    text-align: left;
   }
 }
 
