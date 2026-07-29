@@ -1389,6 +1389,7 @@
   .footer-social {
     display: grid;
     grid-template-columns: repeat(6, 36px);
+    gap: 0.6rem;
   }
 
   .footer-contact {
