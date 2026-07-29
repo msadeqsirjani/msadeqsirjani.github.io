@@ -188,7 +188,7 @@
 }
 
 [data-theme='dark'] .social-link {
-  background: var(--bg-color);
+  background: var(--white);
   border-color: var(--border-color);
   color: var(--text-color);
 }
@@ -196,7 +196,7 @@
 [data-theme='dark'] .social-link:hover {
   background: var(--accent-color);
   border-color: var(--accent-color);
-  color: var(--white);
+  color: var(--on-accent);
 }
 
 .social-link,

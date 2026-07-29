@@ -84,8 +84,12 @@ h6 {
 
   --text-color: #1b1b1f;
   --text-light: #44474e;
+  --text-muted: var(--text-light);
   --white: #fdfcff;
+  --bg-color: var(--white);
   --gray-light: #eef0f7;
+  --card-bg: var(--gray-light);
+  --hover-bg: #e3e7f0;
   --border-color: #c4c7cf;
   --accent-color: #1565c0;
   --accent-color-light: #1565c0;
@@ -170,42 +174,49 @@ h6 {
 }
 
 [data-theme='dark'] {
-  --text-color: #e4e2e6;
-  --text-light: #c4c6cf;
-  --white: #131316;
-  --gray-light: #1e1f24;
-  --border-color: #43474e;
+  color-scheme: dark;
+  --text-color: #eceef2;
+  --text-light: #b8bec8;
+  --text-muted: var(--text-light);
+  --white: #111216;
+  --bg-color: var(--white);
+  --gray-light: #1b1e24;
+  --border-color: #3d424c;
   --accent-color: #a8c7fa;
+  --accent-color-light: #a8c7fa;
   --accent-hover: #c8defb;
   --accent-rgb: 168, 199, 250;
   --signal-color: var(--accent-color);
   --signal-rgb: var(--accent-rgb);
-  --surface-muted: #191a1f;
+  --surface-muted: #16181d;
   --error-color: #ffb4ab;
   --success-color: #6dd58c;
   --focus-color: #a8c7fa;
-  --card-bg: #1e1f24;
-  --hover-bg: #2a2b31;
+  --card-bg: #1b1e24;
+  --hover-bg: #252930;
 
   --on-accent: #0a305f;
 
-  --footer-bg: #0d0d10;
-  --footer-heading: #ffffff;
-  --footer-text: #a8b0bd;
-  --footer-border: #3a3d45;
-  --footer-divider: #2a2c31;
-  --footer-bottom: #7c8290;
+  --footer-bg: #0c0d10;
+  --footer-heading: #f4f5f7;
+  --footer-text: #b3b9c3;
+  --footer-border: #343944;
+  --footer-divider: #292d35;
+  --footer-bottom: #9097a3;
 
-  --pub-abstract-bg: #2a2b31;
+  --pub-abstract-bg: #22262d;
 
-  --elev-1: 0 1px 3px rgba(0, 0, 0, 0.6);
-  --elev-2: 0 2px 6px rgba(0, 0, 0, 0.6);
-  --elev-3: 0 4px 10px rgba(0, 0, 0, 0.7);
+  --elev-1:
+    0 1px 0 rgba(255, 255, 255, 0.03), 0 8px 20px -16px rgba(0, 0, 0, 0.9);
+  --elev-2:
+    0 1px 0 rgba(255, 255, 255, 0.04), 0 12px 28px -16px rgba(0, 0, 0, 0.92);
+  --elev-3:
+    0 1px 0 rgba(255, 255, 255, 0.05), 0 18px 40px -18px rgba(0, 0, 0, 0.95);
 
-  --nav-scrolled-bg: rgba(19, 19, 22, 0.68);
-  --nav-scrolled-solid: rgba(19, 19, 22, 1);
-  --nav-scrolled-border: rgba(67, 71, 78, 0.35);
-  --dropdown-glass-border: rgba(67, 71, 78, 0.35);
+  --nav-scrolled-bg: rgba(17, 18, 22, 0.86);
+  --nav-scrolled-solid: rgba(17, 18, 22, 1);
+  --nav-scrolled-border: rgba(184, 190, 200, 0.16);
+  --dropdown-glass-border: rgba(184, 190, 200, 0.2);
   --logo-gradient: linear-gradient(135deg, #ffffff, #e5e5e5);
 
   --status-published: #22c55e;
@@ -232,6 +243,36 @@ h6 {
   --bibtex-bg: #ec4899;
   --bibtex-bg-hover: #db2777;
   --bibtex-fg: #ffffff;
+}
+
+html[data-theme='dark']
+  :is(
+    .publication-item,
+    .pub-card,
+    .education-row,
+    .research-row,
+    .teaching-row,
+    .award-row,
+    .news-card,
+    .interest-card,
+    .timeline-item
+  ) {
+  border-color: rgba(236, 238, 242, 0.06);
+}
+
+html[data-theme='dark']
+  :is(
+    .publication-item,
+    .pub-card,
+    .education-row,
+    .research-row,
+    .teaching-row,
+    .award-row,
+    .news-card,
+    .interest-card,
+    .timeline-item
+  ):hover {
+  box-shadow: 0 12px 28px -18px rgba(0, 0, 0, 0.95);
 }
 
 body {

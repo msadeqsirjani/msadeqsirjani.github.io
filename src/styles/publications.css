@@ -516,6 +516,10 @@
   pointer-events: none;
 }
 
+[data-theme='dark'] .pub-card-actions .pub-text-link.pub-text-link-disabled {
+  opacity: 0.6;
+}
+
 .pub-card-abstract {
   margin: 0;
   padding: 0;

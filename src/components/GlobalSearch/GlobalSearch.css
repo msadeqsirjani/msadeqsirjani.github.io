@@ -441,7 +441,7 @@ a.result-item {
 }
 
 [data-theme='dark'] .global-search-modal {
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 24px 64px -20px rgba(0, 0, 0, 0.92);
 }
 
 .global-search-body::-webkit-scrollbar {
