@@ -1527,6 +1527,30 @@
   }
 }
 
+.bio-text p,
+.news-row-text,
+.news-card-text,
+.publications-intro,
+.pub-scholar-note,
+.publication-authors,
+.publication-venue,
+.publication-abstract p,
+.pub-card-authors,
+.pub-card-venue,
+.pub-abstract-panel,
+.timeline-description,
+.research-meta,
+.research-advisor,
+.research-points li,
+.education-gpa,
+.award-text,
+.teaching-meta,
+.interests-crossnav,
+.footer-section p {
+  text-align: justify;
+  text-justify: inter-word;
+}
+
 a:focus,
 button:focus-visible,
 input:focus-visible,

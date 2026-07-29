@@ -9,7 +9,8 @@
   padding-bottom: 0.75rem;
   color: var(--text-color);
   letter-spacing: 0;
-  text-transform: uppercase;
+  text-transform: none;
+  line-height: 1.25;
   position: relative;
 }
 
@@ -22,10 +23,6 @@
   height: 3px;
   border-radius: 3px;
   background: var(--signal-color);
-}
-
-.biography-content {
-  max-width: 52rem;
 }
 
 .bio-text p {
