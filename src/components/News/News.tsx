@@ -1,6 +1,8 @@
 import {fetchNews, news} from '../../data/content';
 import useContentData from '../../hooks/useContentData';
 import {sanitizeHtml} from '../../utils/sanitizeHtml';
+import {ROUTE_PATHS} from '../../constants/siteNav';
+import {navLinkProps} from '../../utils/router';
 
 interface NewsProps {
   scrollable?: boolean;
@@ -15,7 +17,19 @@ const News = ({scrollable = false}: NewsProps) => {
     return (
       <section id="news" className="section">
         <div className="container">
-          <h2 className="section-title">News</h2>
+          <div className="section-heading-row">
+            <h2 className="section-title">News</h2>
+            <a
+              className="section-view-all"
+              aria-label="View all news"
+              {...navLinkProps(ROUTE_PATHS.news)}
+            >
+              View all
+              <span className="section-view-all-arrow" aria-hidden="true">
+                →
+              </span>
+            </a>
+          </div>
           <ul className="news-scroll">
             {newsItems.map((item, index) => (
               <li key={`${item.date}-${index}`} className="news-row">

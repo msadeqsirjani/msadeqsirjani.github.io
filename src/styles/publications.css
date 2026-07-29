@@ -112,37 +112,6 @@
   font-weight: 600;
 }
 
-.pub-view-more-row {
-  display: flex;
-  justify-content: center;
-  margin-top: 1.75rem;
-  margin-bottom: 6rem;
-}
-
-.pub-view-more {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  padding: 0.6rem 1.4rem;
-  font-size: var(--fs-sm);
-  font-weight: 600;
-  letter-spacing: 0.02em;
-  color: var(--white);
-  background: var(--accent-color);
-  border-radius: 999px;
-  text-decoration: none;
-  transition:
-    background-color 0.2s ease,
-    box-shadow 0.2s ease,
-    transform 0.2s ease;
-}
-
-.pub-view-more:hover {
-  box-shadow: 0 4px 14px -4px rgba(var(--accent-rgb), 0.5);
-  transform: translateY(-1px);
-  text-decoration: none;
-}
-
 .pub-back-link {
   display: inline-flex;
   align-items: center;

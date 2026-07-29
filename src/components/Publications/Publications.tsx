@@ -43,7 +43,19 @@ const Publications = () => {
   return (
     <section id="publications" className="section">
       <div className="container">
-        <h2 className="section-title">Publications</h2>
+        <div className="section-heading-row">
+          <h2 className="section-title">Publications</h2>
+          <a
+            className="section-view-all"
+            aria-label="View all publications"
+            {...navLinkProps(ROUTE_PATHS.publications)}
+          >
+            View all
+            <span className="section-view-all-arrow" aria-hidden="true">
+              →
+            </span>
+          </a>
+        </div>
         <div className="publications-container">
           <div className="publication-list" role="list">
             {preview.map(pub => (
@@ -75,14 +87,6 @@ const Publications = () => {
                 </div>
               </div>
             ))}
-          </div>
-          <div className="pub-view-more-row">
-            <a
-              className="pub-view-more"
-              {...navLinkProps(ROUTE_PATHS.publications)}
-            >
-              View all publications →
-            </a>
           </div>
         </div>
       </div>
