@@ -1388,10 +1388,6 @@
     height: 158px;
   }
 
-  .profile-glow {
-    inset: -8px;
-  }
-
   .hero-title {
     max-width: 18ch;
     margin-inline: auto;

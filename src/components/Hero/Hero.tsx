@@ -83,7 +83,6 @@ const Hero = () => {
         <div className="hero-content">
           <div className="hero-left">
             <div className="profile-image">
-              <div className="profile-glow" aria-hidden="true" />
               <picture>
                 <source
                   type="image/webp"
