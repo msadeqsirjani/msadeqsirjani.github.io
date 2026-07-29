@@ -49,16 +49,18 @@ const renderAuthors = (authors: string) =>
 
 interface PublicationItemProps {
   pub: Publication;
+  headingLevel?: 2 | 3;
 }
 
-const PublicationItem = ({pub}: PublicationItemProps) => {
+const PublicationItem = ({pub, headingLevel = 3}: PublicationItemProps) => {
   const [abstractOpen, setAbstractOpen] = useState(false);
   const hasKeywords = !!pub.keywords && pub.keywords.length > 0;
+  const TitleTag = headingLevel === 2 ? 'h2' : 'h3';
 
   return (
     <article className="pub-card" role="listitem">
       <div className="pub-card-body">
-        <h3 className="pub-card-title">{pub.title}</h3>
+        <TitleTag className="pub-card-title">{pub.title}</TitleTag>
 
         {pub.authors && (
           <p className="pub-card-authors">{renderAuthors(pub.authors)}</p>

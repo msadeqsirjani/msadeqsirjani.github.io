@@ -116,7 +116,7 @@ const PublicationsPage = () => {
         {filtered.length > 0 ? (
           <div className="pub-card-list" role="list">
             {filtered.map(pub => (
-              <PublicationItem key={pubKey(pub)} pub={pub} />
+              <PublicationItem key={pubKey(pub)} pub={pub} headingLevel={2} />
             ))}
           </div>
         ) : (
