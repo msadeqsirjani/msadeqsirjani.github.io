@@ -93,17 +93,6 @@
     align-items: center;
   }
 
-  .btn-secondary {
-    padding: 0 0.75rem;
-    font-size: var(--fs-sm);
-    flex-shrink: 0;
-    min-width: auto;
-  }
-
-  .btn-secondary span {
-    display: none;
-  }
-
   .nav-menu {
     display: none;
   }
