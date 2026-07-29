@@ -1,5 +1,5 @@
 .section {
-  padding: 4rem 0;
+  padding: 4.5rem 0;
 }
 
 .section-title {
@@ -8,7 +8,7 @@
   margin-bottom: 1.75rem;
   padding-bottom: 0.75rem;
   color: var(--text-color);
-  letter-spacing: 0.06em;
+  letter-spacing: 0;
   text-transform: uppercase;
   position: relative;
 }
@@ -21,7 +21,11 @@
   width: 2.25rem;
   height: 3px;
   border-radius: 3px;
-  background: var(--accent-color);
+  background: var(--signal-color);
+}
+
+.biography-content {
+  max-width: 52rem;
 }
 
 .bio-text p {
@@ -29,9 +33,8 @@
   color: var(--text-color);
   margin-bottom: 1.5rem;
   text-align: justify;
-
+  text-justify: inter-word;
   text-wrap: pretty;
-
   hyphens: auto;
 }
 

@@ -87,6 +87,9 @@ h6 {
   --accent-color-light: #1565c0;
   --accent-hover: #0d47a1;
   --accent-rgb: 21, 101, 192;
+  --signal-color: var(--accent-color);
+  --signal-rgb: var(--accent-rgb);
+  --surface-muted: #f6f7fb;
   --error-color: #ba1a1a;
   --success-color: #146c2e;
   --focus-color: #1565c0;
@@ -100,11 +103,11 @@ h6 {
   --dropdown-glass-border: var(--border-color);
   --logo-gradient: linear-gradient(135deg, #333333, #1a1a1a);
 
-  --button-border-radius: 20px;
-  --icon-border-radius: 12px;
+  --button-border-radius: 8px;
+  --icon-border-radius: 8px;
   --button-border-width: 1px;
-  --shape-card: 16px;
-  --shape-chip: 8px;
+  --shape-card: 8px;
+  --shape-chip: 6px;
 
   --elev-1: 0 1px 2px rgba(0, 0, 0, 0.3), 0 1px 3px 1px rgba(0, 0, 0, 0.12);
   --elev-2: 0 1px 2px rgba(0, 0, 0, 0.3), 0 2px 6px 2px rgba(0, 0, 0, 0.12);
@@ -171,6 +174,9 @@ h6 {
   --accent-color: #a8c7fa;
   --accent-hover: #c8defb;
   --accent-rgb: 168, 199, 250;
+  --signal-color: var(--accent-color);
+  --signal-rgb: var(--accent-rgb);
+  --surface-muted: #191a1f;
   --error-color: #ffb4ab;
   --success-color: #6dd58c;
   --focus-color: #a8c7fa;
@@ -238,6 +244,7 @@ body {
   transition:
     background-color 0.3s ease,
     color 0.3s ease;
+  overflow-x: clip;
 }
 
 #root {
@@ -245,6 +252,8 @@ body {
   flex-direction: column;
   min-height: 100vh;
   min-height: 100dvh;
+  min-width: 0;
+  overflow-x: clip;
 }
 
 #main-content {
@@ -260,9 +269,10 @@ h3,
 }
 
 .container {
+  width: min(100%, 1200px);
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding-inline: 1.5rem;
 }
 
 ul,
