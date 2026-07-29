@@ -13,6 +13,7 @@ import PageShell from './components/PageShell/PageShell';
 import type {RouteKey} from './constants/siteNav';
 import {routeKeyForPath} from './constants/siteNav';
 import {subscribeRoute} from './utils/router';
+import {getAccessibleScrollBehavior} from './utils/motion';
 
 const ReadingProgress = lazy(
   () => import('./components/ReadingProgress/ReadingProgress'),
@@ -112,7 +113,7 @@ function App() {
           const offset = navbar ? navbar.offsetHeight + 24 : 24;
           window.scrollTo({
             top: el.getBoundingClientRect().top + window.scrollY - offset,
-            behavior: 'smooth',
+            behavior: getAccessibleScrollBehavior(),
           });
         } else if (attempts < 50) {
           attempts += 1;

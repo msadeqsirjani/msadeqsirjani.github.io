@@ -16,6 +16,7 @@ import {
 import {useScrollManager} from '../../hooks/useScrollManager';
 import {ROUTE_PATHS} from '../../constants/siteNav';
 import {navLinkProps} from '../../utils/router';
+import {getAccessibleScrollBehavior} from '../../utils/motion';
 
 const BUILD_TIMESTAMP = Number(__BUILD_TIMESTAMP__);
 const FALLBACK_TIMESTAMP = Date.now();
@@ -41,7 +42,7 @@ const Footer = () => {
   });
 
   const scrollToTop = () => {
-    window.scrollTo({top: 0, behavior: 'smooth'});
+    window.scrollTo({top: 0, behavior: getAccessibleScrollBehavior()});
   };
 
   const quickLinks: {

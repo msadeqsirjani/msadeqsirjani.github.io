@@ -16,6 +16,7 @@ import './GlobalSearch.css';
 import {SEARCH_CATEGORY_DEST} from '../../constants/siteNav';
 import {navigate} from '../../utils/router';
 import {useFocusTrap} from '../../hooks/useFocusTrap';
+import {getAccessibleScrollBehavior} from '../../utils/motion';
 import type {
   Publication,
   ResearchItem,
@@ -198,7 +199,7 @@ const GlobalSearch = ({isOpen, onClose}: GlobalSearchProps) => {
   useEffect(() => {
     if (selectedIndex >= 0 && resultsRef.current[selectedIndex]) {
       resultsRef.current[selectedIndex]?.scrollIntoView({
-        behavior: 'smooth',
+        behavior: getAccessibleScrollBehavior(),
         block: 'nearest',
       });
     }
