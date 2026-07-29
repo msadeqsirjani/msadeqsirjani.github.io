@@ -1,4 +1,5 @@
 import {useEffect, useRef} from 'react';
+import {createPortal} from 'react-dom';
 import {AnimatePresence, motion, useReducedMotion} from 'motion/react';
 import type {Variants} from 'motion/react';
 import Icon from '../Icon/Icon';
@@ -70,7 +71,7 @@ const MobileMenu = ({isOpen, onClose, activePath, onNav}: MobileMenuProps) => {
         exit: {opacity: 0, y: 12, transition: {duration: 0.15}},
       };
 
-  return (
+  return createPortal(
     <AnimatePresence>
       {isOpen && (
         <motion.div
@@ -110,7 +111,8 @@ const MobileMenu = ({isOpen, onClose, activePath, onNav}: MobileMenuProps) => {
           </ul>
         </motion.div>
       )}
-    </AnimatePresence>
+    </AnimatePresence>,
+    document.body,
   );
 };
 

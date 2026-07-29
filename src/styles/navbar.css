@@ -360,19 +360,28 @@
 
 .mobile-menu-overlay {
   position: fixed;
-  inset: 0;
+  inset: 0 auto auto 0;
   z-index: 300;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 0.5rem;
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+  max-height: 100dvh;
   padding: max(5rem, env(safe-area-inset-top)) 1.5rem
     max(2rem, env(safe-area-inset-bottom));
   background: var(--white);
-  overflow-y: auto;
+  overflow: hidden;
   transform-origin: top center;
   will-change: transform, opacity;
+}
+
+body:has(.mobile-menu-overlay)
+  :is(.reading-progress, .quick-actions, .scroll-to-top) {
+  display: none;
 }
 
 .mobile-menu-close {
@@ -385,8 +394,14 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: safe center;
+  flex: 1 1 auto;
   gap: 0.5rem;
   width: 100%;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
 }
 
 .mobile-menu-list .nav-link::after {
@@ -461,7 +476,6 @@
   }
 
   .mobile-menu-overlay {
-    justify-content: flex-start;
     padding-top: 5.5rem;
   }
 
