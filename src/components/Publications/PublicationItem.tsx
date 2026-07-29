@@ -15,12 +15,12 @@ import bibtexData from '../../data/bibtex.json';
 
 const getStatusLabel = (status: string) => {
   const labels: Record<string, string> = {
-    published: 'PUBLISHED',
-    accepted: 'ACCEPTED',
-    review: 'UNDER REVIEW',
-    arxiv: 'PREPRINT',
+    published: 'Published',
+    accepted: 'Accepted',
+    review: 'Under review',
+    arxiv: 'Preprint',
   };
-  return labels[status] || status.toUpperCase();
+  return labels[status] || status;
 };
 
 const copyBibtex = async (pub: Publication) => {
@@ -58,6 +58,15 @@ const PublicationItem = ({pub}: PublicationItemProps) => {
   return (
     <article className="pub-card" role="listitem">
       <div className="pub-card-body">
+        <h3 className="pub-card-title">{pub.title}</h3>
+
+        {pub.authors && (
+          <p className="pub-card-authors">{renderAuthors(pub.authors)}</p>
+        )}
+        {pub.venue && !/preprint/i.test(pub.venue) && (
+          <p className="pub-card-venue">{pub.venue}</p>
+        )}
+
         <div className="pub-card-meta">
           <span className={`pub-status-badge pub-status-${pub.status}`}>
             {getStatusLabel(pub.status)}
@@ -70,17 +79,11 @@ const PublicationItem = ({pub}: PublicationItemProps) => {
           )}
         </div>
 
-        <h3 className="pub-card-title">{pub.title}</h3>
-
-        {pub.authors && (
-          <p className="pub-card-authors">{renderAuthors(pub.authors)}</p>
-        )}
-        {pub.venue && !/preprint/i.test(pub.venue) && (
-          <p className="pub-card-venue">{pub.venue}</p>
-        )}
-
         {hasKeywords && (
-          <div className="pub-card-keywords pub-card-keywords-inline">
+          <div
+            className="pub-card-keywords pub-card-keywords-inline"
+            aria-label="Keywords"
+          >
             {pub.keywords!.map(kw => (
               <span key={kw} className="pub-keyword-tag">
                 {kw}

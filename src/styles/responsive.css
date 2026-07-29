@@ -351,7 +351,7 @@
     font-size: var(--fs-base);
     font-weight: 600;
     line-height: 1.4;
-    margin-top: 1.25rem;
+    margin-top: 0;
     margin-bottom: 0.7rem;
     color: var(--text-color);
     text-align: justify;
@@ -371,7 +371,7 @@
 
   .publication-venue {
     flex: none;
-    margin-bottom: 0.75rem;
+    margin-bottom: 0;
   }
 
   .publication-links {

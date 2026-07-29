@@ -58,7 +58,7 @@ const PublicationsPage = () => {
     <section id="publications" className="section publications-page">
       <div className="container">
         <header className="pub-page-header">
-          <h1 className="pub-page-title">Publications</h1>
+          <h1 className="section-title pub-page-title">Publications</h1>
           <p className="pub-scholar-note">
             For complete and updated citation metrics, please visit my{' '}
             <a

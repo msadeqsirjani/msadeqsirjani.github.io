@@ -9,12 +9,12 @@ const MAX_PREVIEW = 5;
 
 const getStatusLabel = (status: string) => {
   const labels: Record<string, string> = {
-    published: 'PUBLISHED',
-    accepted: 'ACCEPTED',
-    review: 'UNDER REVIEW',
-    arxiv: 'PREPRINT',
+    published: 'Published',
+    accepted: 'Accepted',
+    review: 'Under review',
+    arxiv: 'Preprint',
   };
-  return labels[status] || status.toUpperCase();
+  return labels[status] || status;
 };
 
 const renderAuthors = (authors: string) =>
@@ -52,6 +52,15 @@ const Publications = () => {
                 className="publication-item"
                 role="listitem"
               >
+                <h3 className="publication-title">{pub.title}</h3>
+                {pub.authors && (
+                  <p className="publication-authors">
+                    {renderAuthors(pub.authors)}
+                  </p>
+                )}
+                {pub.venue && !/preprint/i.test(pub.venue) && (
+                  <p className="publication-venue">{pub.venue}</p>
+                )}
                 <div className="pub-card-meta">
                   <span className={`pub-status-badge pub-status-${pub.status}`}>
                     {getStatusLabel(pub.status)}
@@ -64,15 +73,6 @@ const Publications = () => {
                     </span>
                   )}
                 </div>
-                <h3 className="publication-title">{pub.title}</h3>
-                {pub.authors && (
-                  <p className="publication-authors">
-                    {renderAuthors(pub.authors)}
-                  </p>
-                )}
-                {pub.venue && !/preprint/i.test(pub.venue) && (
-                  <p className="publication-venue">{pub.venue}</p>
-                )}
               </div>
             ))}
           </div>
