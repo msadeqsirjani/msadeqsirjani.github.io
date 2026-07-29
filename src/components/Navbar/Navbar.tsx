@@ -1,4 +1,11 @@
-import {useState, useEffect, useRef, lazy, Suspense} from 'react';
+import {
+  useState,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  lazy,
+  Suspense,
+} from 'react';
 import Icon from '../Icon/Icon';
 import {faSearch} from '@fortawesome/free-solid-svg-icons';
 import {useFocusTrap} from '../../hooks/useFocusTrap';
@@ -20,7 +27,11 @@ interface NavbarProps {
 const Navbar = ({onSearchClick}: NavbarProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [menuMounted, setMenuMounted] = useState(false);
+  const [isContentCompact, setIsContentCompact] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const navContainerRef = useRef<HTMLDivElement>(null);
+  const navMenuRef = useRef<HTMLUListElement>(null);
+  const navControlsRef = useRef<HTMLDivElement>(null);
   const navToggleRef = useRef<HTMLButtonElement>(null);
   const [isScrolled, setIsScrolled] = useState(false);
   const [activePath, setActivePath] = useState(() =>
@@ -49,6 +60,41 @@ const Navbar = ({onSearchClick}: NavbarProps) => {
       document.body.style.overflow = '';
     };
   }, [isMenuOpen]);
+
+  useLayoutEffect(() => {
+    if (isContentCompact) return;
+
+    const container = navContainerRef.current;
+    if (!container) return;
+
+    const updateCompactState = () => {
+      setIsContentCompact(container.scrollWidth > container.clientWidth + 1);
+    };
+    const observer = new ResizeObserver(updateCompactState);
+
+    [container, navMenuRef.current, navControlsRef.current].forEach(element => {
+      if (element) observer.observe(element);
+    });
+    updateCompactState();
+
+    return () => observer.disconnect();
+  }, [isContentCompact]);
+
+  useEffect(() => {
+    const resetCompactState = () => setIsContentCompact(false);
+    const rootObserver = new MutationObserver(resetCompactState);
+
+    rootObserver.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['style'],
+    });
+    window.addEventListener('resize', resetCompactState);
+
+    return () => {
+      rootObserver.disconnect();
+      window.removeEventListener('resize', resetCompactState);
+    };
+  }, []);
 
   const dropdownRef = useRef<HTMLLIElement>(null);
   const dropdownMenuRef = useRef<HTMLUListElement | null>(null);
@@ -146,11 +192,13 @@ const Navbar = ({onSearchClick}: NavbarProps) => {
 
   return (
     <nav
-      className={`navbar${isScrolled ? ' navbar--scrolled' : ''}`}
+      className={`navbar${isScrolled ? ' navbar--scrolled' : ''}${
+        isContentCompact ? ' navbar--content-compact' : ''
+      }`}
       role="navigation"
       aria-label="Main navigation"
     >
-      <div className="nav-container">
+      <div className="nav-container" ref={navContainerRef}>
         <div className="nav-logo">
           <a
             href={ROUTE_PATHS.home}
@@ -161,7 +209,7 @@ const Navbar = ({onSearchClick}: NavbarProps) => {
             SS
           </a>
         </div>
-        <ul className="nav-menu" id="nav-menu">
+        <ul className="nav-menu" id="nav-menu" ref={navMenuRef}>
           {mainLinks.map(link => (
             <li key={link.id}>
               <a
@@ -220,7 +268,7 @@ const Navbar = ({onSearchClick}: NavbarProps) => {
             </ul>
           </li>
         </ul>
-        <div className="nav-controls">
+        <div className="nav-controls" ref={navControlsRef}>
           <button
             type="button"
             className="search-toggle desktop-only"

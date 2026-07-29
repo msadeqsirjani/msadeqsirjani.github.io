@@ -314,6 +314,18 @@
   height: 40px;
 }
 
+.navbar--content-compact .nav-menu {
+  display: none;
+}
+
+.navbar--content-compact .nav-toggle {
+  display: flex;
+}
+
+.navbar--content-compact .desktop-only {
+  display: none !important;
+}
+
 .bar {
   width: 22px;
   height: 2px;
