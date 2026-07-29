@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useEffect, useRef, useState} from 'react';
 import Icon from '../Icon/Icon';
 import {
   faPlus,
@@ -10,6 +10,20 @@ import {
 
 const QuickActions = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const toggleRef = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key !== 'Escape') return;
+      setIsOpen(false);
+      toggleRef.current?.focus();
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [isOpen]);
 
   const actions: {
     href: string;
@@ -43,8 +57,10 @@ const QuickActions = () => {
         type="button"
         className="quick-action-toggle"
         id="quickActionToggle"
+        ref={toggleRef}
         onClick={() => setIsOpen(!isOpen)}
         aria-expanded={isOpen}
+        aria-controls="quickActionMenu"
         aria-label={isOpen ? 'Close quick actions' : 'Open quick actions'}
         data-tooltip={!isOpen ? 'Quick Actions' : undefined}
       >
@@ -53,12 +69,14 @@ const QuickActions = () => {
       <div
         className={`quick-action-menu ${isOpen ? 'active' : ''}`}
         id="quickActionMenu"
+        aria-hidden={!isOpen}
       >
         {actions.map((action, idx) => (
           <a
             key={idx}
             href={action.href}
             className="quick-action-btn"
+            tabIndex={isOpen ? 0 : -1}
             aria-label={action.tooltip}
             data-tooltip={action.tooltip}
             {...(action.download && {download: true})}

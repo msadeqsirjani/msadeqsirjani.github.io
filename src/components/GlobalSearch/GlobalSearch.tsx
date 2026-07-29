@@ -15,6 +15,7 @@ import {useGlobalSearch} from '../../hooks/useGlobalSearch';
 import './GlobalSearch.css';
 import {SEARCH_CATEGORY_DEST} from '../../constants/siteNav';
 import {navigate} from '../../utils/router';
+import {useFocusTrap} from '../../hooks/useFocusTrap';
 import type {
   Publication,
   ResearchItem,
@@ -129,12 +130,23 @@ const GlobalSearch = ({isOpen, onClose}: GlobalSearchProps) => {
   const searchInputRef = useRef<HTMLInputElement>(null);
   const modalRef = useRef<HTMLDivElement>(null);
   const resultsRef = useRef<(HTMLAnchorElement | null)[]>([]);
+  const previousFocusRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
-    if (isOpen && searchInputRef.current) {
-      searchInputRef.current.focus();
+    if (isOpen) {
+      previousFocusRef.current = document.activeElement as HTMLElement | null;
+      searchInputRef.current?.focus();
+      return;
     }
+
+    const previousFocus = previousFocusRef.current;
+    if (previousFocus && document.contains(previousFocus)) {
+      previousFocus.focus();
+    }
+    previousFocusRef.current = null;
   }, [isOpen]);
+
+  useFocusTrap(modalRef, isOpen);
 
   const handleResultClick = useCallback(
     (categoryKey: string) => {
@@ -221,7 +233,13 @@ const GlobalSearch = ({isOpen, onClose}: GlobalSearchProps) => {
 
   return (
     <div className="global-search-overlay">
-      <div className="global-search-modal" ref={modalRef}>
+      <div
+        className="global-search-modal"
+        ref={modalRef}
+        role="dialog"
+        aria-modal="true"
+        aria-label="Site search"
+      >
         <div className="global-search-header">
           <div className="search-input-wrapper">
             <Icon icon={faSearch} className="search-icon" />
@@ -276,7 +294,7 @@ const GlobalSearch = ({isOpen, onClose}: GlobalSearchProps) => {
 
           {searchQuery && !isSearching && totalResults > 0 && (
             <div className="search-results">
-              <div className="results-summary">
+              <div className="results-summary" role="status" aria-live="polite">
                 Found {totalResults} result{totalResults !== 1 ? 's' : ''}
               </div>
 

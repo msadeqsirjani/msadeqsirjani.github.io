@@ -575,7 +575,7 @@ a {
 }
 
 .skip-to-content {
-  position: absolute;
+  position: fixed;
   top: -100px;
   left: 0;
   background: var(--accent-color);
@@ -584,10 +584,11 @@ a {
   text-decoration: none;
   font-weight: 600;
   z-index: 9999;
-  transition: top 0.3s ease;
+  transition: none;
 }
 
-.skip-to-content:focus {
+.skip-to-content:focus,
+.skip-to-content:focus-visible {
   top: 0;
   outline: 3px solid var(--white);
   outline-offset: 2px;

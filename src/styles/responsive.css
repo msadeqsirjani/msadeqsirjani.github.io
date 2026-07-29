@@ -1624,7 +1624,7 @@ select:focus-visible,
     0 0 0 4px var(--focus-color);
 }
 
-.nav-dropdown-menu .nav-link:focus {
+.nav-dropdown-menu .nav-link:focus:not(:focus-visible) {
   outline: none;
   box-shadow: none;
 }

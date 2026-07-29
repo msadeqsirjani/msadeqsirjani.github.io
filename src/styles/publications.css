@@ -747,10 +747,15 @@
   color: var(--accent-color);
 }
 
-.pub-text-link:focus,
-.pub-text-link:focus-visible {
+.pub-text-link:focus:not(:focus-visible) {
   outline: none;
   box-shadow: none;
+}
+
+.pub-text-link:focus-visible {
+  border-radius: 2px;
+  outline: 3px solid var(--focus-color);
+  outline-offset: 3px;
 }
 
 .pub-text-link:hover {

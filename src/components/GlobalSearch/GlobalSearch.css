@@ -72,6 +72,7 @@
 
 .search-input-wrapper:focus-within {
   border-color: var(--accent-color);
+  box-shadow: 0 0 0 3px rgba(var(--accent-rgb), 0.18);
 }
 
 .search-input-wrapper .search-icon {
@@ -308,6 +309,11 @@ a.result-item {
   background: var(--hover-bg, rgba(0, 0, 0, 0.05));
   border-color: var(--accent-color);
   outline: none;
+}
+
+.result-item:focus-visible {
+  outline: 3px solid var(--focus-color);
+  outline-offset: 2px;
 }
 
 .result-title {

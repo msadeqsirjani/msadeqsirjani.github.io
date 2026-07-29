@@ -1,4 +1,4 @@
-import {lazy, Suspense, useState, useEffect} from 'react';
+import {lazy, Suspense, useState, useEffect, useRef} from 'react';
 import type {LazyExoticComponent, ComponentType} from 'react';
 import {ThemeProvider} from './context/ThemeContext';
 import Navbar from './components/Navbar/Navbar';
@@ -81,11 +81,24 @@ const getRouteKey = () => routeKeyForPath(window.location.pathname);
 function App() {
   const [routeKey, setRouteKey] = useState<RouteKey | null>(getRouteKey);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const hasRenderedRoute = useRef(false);
 
   useEffect(() => subscribeRoute(() => setRouteKey(getRouteKey())), []);
 
   useEffect(() => {
     document.title = routeKey ? PAGE_TITLES[routeKey] : SITE_TITLE;
+  }, [routeKey]);
+
+  useEffect(() => {
+    if (!hasRenderedRoute.current) {
+      hasRenderedRoute.current = true;
+      return;
+    }
+
+    const frame = window.requestAnimationFrame(() => {
+      document.getElementById('main-content')?.focus({preventScroll: true});
+    });
+    return () => window.cancelAnimationFrame(frame);
   }, [routeKey]);
 
   useEffect(() => {
@@ -159,7 +172,12 @@ function App() {
 
     if (routeKey === 'home') {
       return (
-        <main id="main-content" role="main" aria-label="Main content">
+        <main
+          id="main-content"
+          role="main"
+          aria-label="Main content"
+          tabIndex={-1}
+        >
           <ErrorBoundary>
             <Hero />
           </ErrorBoundary>
@@ -190,7 +208,12 @@ function App() {
 
     const PageComponent = PAGE_COMPONENTS[routeKey];
     return (
-      <main id="main-content" role="main" aria-label="Main content">
+      <main
+        id="main-content"
+        role="main"
+        aria-label="Main content"
+        tabIndex={-1}
+      >
         <ErrorBoundary>
           <Suspense fallback={<SectionLoader />}>
             <PageShell>
