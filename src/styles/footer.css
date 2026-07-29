@@ -6,7 +6,7 @@
 .footer-content {
   display: grid;
   grid-template-columns: 1.4fr 1fr 1.8fr;
-  gap: 7rem;
+  gap: clamp(2.5rem, 6vw, 6rem);
   margin-bottom: 1.5rem;
   max-width: 1200px;
   margin-left: auto;
@@ -31,7 +31,11 @@
   align-items: center;
   gap: 0.6rem;
   margin-bottom: 0.75rem;
-  white-space: nowrap;
+  min-width: 0;
+}
+
+.footer-contact a {
+  overflow-wrap: anywhere;
 }
 
 .footer-contact-icon {
