@@ -1187,9 +1187,16 @@
 
   .footer-social {
     display: grid;
-    grid-template-columns: repeat(3, 44px);
+    grid-template-columns: repeat(6, 36px);
+    gap: 0.35rem;
     justify-content: center;
     margin-inline: auto;
+  }
+
+  .footer-social a {
+    width: 36px;
+    height: 36px;
+    font-size: var(--fs-sm);
   }
 
   .footer-contact {
@@ -1377,7 +1384,7 @@
 
   .footer-social {
     display: grid;
-    grid-template-columns: repeat(3, 44px);
+    grid-template-columns: repeat(6, 36px);
   }
 
   .footer-contact {
