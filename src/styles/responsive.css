@@ -1392,8 +1392,11 @@
   }
 
   .footer-contact {
-    width: 100%;
-    max-width: 34rem;
+    width: min(100%, 16.5rem);
+    font-size: var(--fs-sm);
+  }
+
+  .footer-contact a {
     font-size: var(--fs-sm);
   }
 
