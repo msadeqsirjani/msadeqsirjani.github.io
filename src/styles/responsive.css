@@ -163,7 +163,7 @@
 
   .nav-link.active {
     color: var(--accent-color);
-    background: rgba(var(--accent-rgb), 0.1);
+    background: transparent;
   }
 
   .nav-menu > li > .nav-link::after {

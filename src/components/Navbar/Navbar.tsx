@@ -140,6 +140,9 @@ const Navbar = ({onSearchClick}: NavbarProps) => {
 
   const mainLinks = MAIN_NAV_LINKS;
   const dropdownLinks = DROPDOWN_NAV_LINKS;
+  const isDropdownPathActive = dropdownLinks.some(
+    link => normalizePath(link.path) === activePath,
+  );
 
   return (
     <nav
@@ -178,7 +181,9 @@ const Navbar = ({onSearchClick}: NavbarProps) => {
           >
             <button
               type="button"
-              className="nav-dropdown-toggle"
+              className={`nav-dropdown-toggle${
+                isDropdownPathActive ? ' active' : ''
+              }`}
               ref={dropdownToggleRef}
               onClick={e => {
                 e.stopPropagation();
@@ -199,7 +204,9 @@ const Navbar = ({onSearchClick}: NavbarProps) => {
                 <li key={link.id}>
                   <a
                     href={hrefFor(link.path, link.anchor)}
-                    className="nav-link"
+                    className={`nav-link${
+                      normalizePath(link.path) === activePath ? ' active' : ''
+                    }`}
                     ref={el => {
                       dropdownItemRefs.current[index] = el;
                     }}
