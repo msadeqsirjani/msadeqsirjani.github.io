@@ -33,7 +33,7 @@
   height: 300px;
   border-radius: 50%;
   object-fit: cover;
-  border: 2px solid rgba(var(--signal-rgb), 0.45);
+  border: 2px solid var(--border-color);
   box-shadow: none;
 }
 
