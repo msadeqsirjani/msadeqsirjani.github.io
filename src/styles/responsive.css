@@ -1504,6 +1504,10 @@
     line-height: 1.35;
   }
 
+  .pub-card {
+    padding-block: 0.875rem;
+  }
+
   .footer-content,
   .footer-section {
     text-align: center;
