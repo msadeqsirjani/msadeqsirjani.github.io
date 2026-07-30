@@ -114,6 +114,14 @@
     transform 0.3s ease;
 }
 
+.hero-buttons .btn {
+  min-height: var(--control-height);
+  padding: 0.625rem var(--control-padding-inline);
+  border-radius: var(--button-border-radius);
+  font-size: var(--control-font-size);
+  line-height: 1.2;
+}
+
 .btn-secondary {
   background: var(--white);
   color: var(--accent-color);

@@ -114,6 +114,9 @@ h6 {
   --button-border-radius: 8px;
   --icon-border-radius: 8px;
   --button-border-width: 1px;
+  --control-height: 44px;
+  --control-font-size: var(--fs-sm);
+  --control-padding-inline: 1rem;
   --shape-card: 8px;
   --shape-chip: 6px;
 

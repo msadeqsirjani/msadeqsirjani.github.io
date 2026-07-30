@@ -196,14 +196,14 @@
 
 .pub-filter-select {
   width: 100%;
-  height: 44px;
-  padding: 0 2.4rem 0 1rem;
-  font-size: var(--fs-sm);
+  height: var(--control-height);
+  padding: 0 2.4rem 0 var(--control-padding-inline);
+  font-size: var(--control-font-size);
   font-weight: 500;
   font-family: inherit;
   color: var(--text-color);
   background: var(--gray-light);
-  border: 1px solid var(--border-color);
+  border: var(--button-border-width) solid var(--border-color);
   border-radius: var(--button-border-radius);
   outline: none;
   cursor: pointer;
@@ -227,13 +227,13 @@
   flex: 1;
   min-width: 0;
   box-sizing: border-box;
-  height: 44px;
-  padding: 0 1rem;
-  font-size: var(--fs-sm);
+  height: var(--control-height);
+  padding: 0 var(--control-padding-inline);
+  font-size: var(--control-font-size);
   font-family: inherit;
   color: var(--text-color);
   background: var(--gray-light);
-  border: 1px solid var(--border-color);
+  border: var(--button-border-width) solid var(--border-color);
   border-radius: var(--button-border-radius);
   outline: none;
   appearance: none;
@@ -303,8 +303,8 @@
 
 .pub-abstract {
   margin-top: 1rem;
-  border: 1px solid var(--border-color);
-  border-radius: var(--shape-chip);
+  border: var(--button-border-width) solid var(--border-color);
+  border-radius: var(--button-border-radius);
   overflow: hidden;
   transition: border-color 0.2s ease;
 }
@@ -319,14 +319,16 @@
 
 .pub-abstract-toggle {
   width: 100%;
+  min-height: calc(var(--control-height) - 2px);
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  padding: 0.7rem 1rem;
+  padding: 0 var(--control-padding-inline);
   font-family: inherit;
-  font-size: var(--fs-sm);
+  font-size: var(--control-font-size);
   font-weight: 600;
+  line-height: 1.2;
   color: var(--text-color);
   background: transparent;
   border: none;
