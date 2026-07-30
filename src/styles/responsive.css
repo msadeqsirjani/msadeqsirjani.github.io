@@ -1519,7 +1519,9 @@
   }
 
   .social-links {
-    max-width: 18rem;
+    max-width: 100%;
+    flex-wrap: nowrap;
+    gap: 0.25rem;
   }
 
   .hero-title {
