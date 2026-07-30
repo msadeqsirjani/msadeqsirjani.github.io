@@ -22,12 +22,9 @@ const Service = () => (
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Great Lakes Symposium on VLSI (GLSVLSI)
+                36th Great Lakes Symposium on VLSI (GLSVLSI)
               </a>
-              <span className="service-meta">
-                36th edition <span aria-hidden="true"> · </span> Sponsored by
-                ACM SIGDA
-              </span>
+              <span className="service-meta">Sponsored by ACM SIGDA</span>
             </div>
             <div className="service-row-side">
               <span className="service-role">Reviewer</span>
