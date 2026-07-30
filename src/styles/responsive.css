@@ -1527,34 +1527,9 @@
   }
 
   .pub-card-actions {
-    margin-top: 0.75rem;
-  }
-
-  .pub-card-authors,
-  .pub-card-venue {
-    font-size: 0.8125rem;
-    line-height: 1.55;
-    text-align-last: left;
-  }
-
-  .footer-content,
-  .footer-section {
-    text-align: center;
-  }
-
-  .footer-section {
-    align-items: center;
-  }
-
-  .footer-social {
-    justify-content: center;
-  }
-}
-
-@media (max-width: 360px) {
-  .pub-card-actions {
     flex-wrap: nowrap;
     gap: 0.3rem;
+    margin-top: 0.75rem;
   }
 
   .pub-card-actions .pub-text-link {
@@ -1581,6 +1556,28 @@
     border: 0;
   }
 
+  .pub-card-authors,
+  .pub-card-venue {
+    font-size: 0.8125rem;
+    line-height: 1.55;
+    text-align-last: left;
+  }
+
+  .footer-content,
+  .footer-section {
+    text-align: center;
+  }
+
+  .footer-section {
+    align-items: center;
+  }
+
+  .footer-social {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 360px) {
   .container {
     padding-inline: 0.875rem;
   }

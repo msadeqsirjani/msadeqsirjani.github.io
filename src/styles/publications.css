@@ -254,10 +254,14 @@
 
 @media (max-width: 600px) {
   .pub-filter-bar {
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .pub-search,
+  .pub-search {
+    grid-column: 1 / -1;
+  }
+
   .pub-select-wrap {
     flex: 0 0 auto;
     width: 100%;
