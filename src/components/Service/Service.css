@@ -1,0 +1,76 @@
+.service-section .container,
+.page-shell:has(.service-section) > .container {
+  max-width: 900px;
+}
+
+.service-intro {
+  margin: 0;
+  font-size: var(--fs-base);
+  line-height: 1.7;
+  color: var(--text-light);
+  text-align: justify;
+  text-align-last: left;
+  text-wrap: pretty;
+}
+
+.service-group {
+  margin-top: 2rem;
+}
+
+.service-group-title {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  margin: 0 0 0.75rem;
+  font-family: var(--font-display);
+  font-size: var(--fs-md);
+  font-weight: 700;
+  line-height: 1.35;
+  color: var(--text-color);
+}
+
+.service-group-title::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border-color);
+}
+
+.service-list {
+  margin: 0;
+  padding-left: 1.35rem;
+}
+
+.service-list li {
+  padding: 0.55rem 0;
+  font-size: var(--fs-base);
+  line-height: 1.65;
+  color: var(--text-color);
+  text-align: justify;
+  text-align-last: left;
+}
+
+.service-list li::marker {
+  color: var(--accent-color);
+}
+
+.service-list a {
+  color: var(--accent-color);
+  font-weight: 600;
+}
+
+.service-list a:hover {
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+
+@media (max-width: 480px) {
+  .service-group {
+    margin-top: 1.5rem;
+  }
+
+  .service-group-title {
+    gap: 0.65rem;
+    font-size: var(--fs-base);
+  }
+}

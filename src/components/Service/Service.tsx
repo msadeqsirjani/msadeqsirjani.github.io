@@ -1,0 +1,34 @@
+import './Service.css';
+
+const Service = () => (
+  <section id="service" className="section service-section">
+    <div className="container">
+      <h1 className="section-title">Service</h1>
+      <p className="service-intro">
+        I contribute to the research community through conference peer-review
+        activities.
+      </p>
+
+      <section className="service-group" aria-labelledby="conference-reviewing">
+        <h2 id="conference-reviewing" className="service-group-title">
+          Conference Reviewing
+        </h2>
+        <ul className="service-list">
+          <li>
+            Reviewer,{' '}
+            <a
+              href="https://www.glsvlsi.org/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Great Lakes Symposium on VLSI (GLSVLSI)
+            </a>
+            , <time dateTime="2026">2026</time>.
+          </li>
+        </ul>
+      </section>
+    </div>
+  </section>
+);
+
+export default Service;

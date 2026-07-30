@@ -55,6 +55,7 @@ const Footer = () => {
     {id: 'publications', label: 'Publications', path: ROUTE_PATHS.publications},
     {id: 'teaching', label: 'Teaching', path: ROUTE_PATHS.teaching},
     {id: 'awards', label: 'Awards', path: ROUTE_PATHS.awards},
+    {id: 'service', label: 'Service', path: ROUTE_PATHS.service},
   ];
 
   const contactInfo = [

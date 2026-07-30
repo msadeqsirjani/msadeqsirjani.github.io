@@ -40,6 +40,7 @@ const PublicationsPage = lazy(
 const Teaching = lazy(() => import('./components/Teaching/Teaching'));
 const News = lazy(() => import('./components/News/News'));
 const Awards = lazy(() => import('./components/Awards/Awards'));
+const Service = lazy(() => import('./components/Service/Service'));
 const Footer = lazy(() => import('./components/Footer/Footer'));
 const NotFound = lazy(() => import('./components/NotFound/NotFound'));
 
@@ -58,6 +59,7 @@ const PAGE_TITLES: Record<RouteKey, string> = {
   teaching: 'Mohammad Sadegh Sirjani | Teaching',
   news: 'Mohammad Sadegh Sirjani | News',
   awards: 'Mohammad Sadegh Sirjani | Awards',
+  service: 'Mohammad Sadegh Sirjani | Service',
 };
 
 const PAGE_COMPONENTS: Record<Exclude<RouteKey, 'home'>, LazyComponent> = {
@@ -67,6 +69,7 @@ const PAGE_COMPONENTS: Record<Exclude<RouteKey, 'home'>, LazyComponent> = {
   teaching: Teaching,
   news: News,
   awards: Awards,
+  service: Service,
 };
 
 const SectionLoader = () => (

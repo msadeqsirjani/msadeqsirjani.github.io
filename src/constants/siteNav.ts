@@ -15,6 +15,7 @@ export const ROUTE_PATHS = {
   teaching: '/teaching',
   news: '/news',
   awards: '/awards',
+  service: '/service',
 } as const;
 
 export type RouteKey = keyof typeof ROUTE_PATHS;
@@ -29,6 +30,7 @@ export const MAIN_NAV_LINKS: readonly NavLink[] = [
 
 export const DROPDOWN_NAV_LINKS: readonly NavLink[] = [
   {id: 'research', label: 'Research', path: ROUTE_PATHS.research},
+  {id: 'service', label: 'Service', path: ROUTE_PATHS.service},
   {id: 'news', label: 'News', path: ROUTE_PATHS.news},
 ];
 
