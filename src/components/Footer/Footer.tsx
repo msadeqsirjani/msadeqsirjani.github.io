@@ -113,7 +113,7 @@ const Footer = () => {
             </div>
             <div className="footer-section">
               <h4>Quick Links</h4>
-              <ul>
+              <ul className="footer-quick-links">
                 {quickLinks.map(link => (
                   <li key={link.id}>
                     <a {...navLinkProps(link.path, link.anchor)}>

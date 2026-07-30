@@ -1542,9 +1542,7 @@
     padding-inline: 0;
   }
 
-  .pub-card-actions
-    .pub-text-link:not(.pub-abstract-toggle)
-    .pub-link-label {
+  .pub-card-actions .pub-text-link:not(.pub-abstract-toggle) .pub-link-label {
     position: absolute;
     width: 1px;
     height: 1px;
@@ -1686,6 +1684,51 @@
 
   .pub-card-title {
     font-size: var(--fs-md);
+  }
+}
+
+@media (max-width: 600px) {
+  .footer-quick-links {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.35rem 1.5rem;
+    width: min(100%, 17rem);
+    margin-inline: auto;
+  }
+
+  .footer-quick-links li {
+    margin: 0;
+  }
+
+  .footer-quick-links li:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+  }
+
+  .bio-text p,
+  .news-row-text,
+  .news-card-text,
+  .publications-intro,
+  .pub-scholar-note,
+  .publication-authors,
+  .publication-venue,
+  .publication-abstract,
+  .publication-abstract p,
+  .pub-card-authors,
+  .pub-card-venue,
+  .pub-card-abstract,
+  .pub-abstract-panel,
+  .timeline-description,
+  .research-meta,
+  .research-advisor,
+  .research-points li,
+  .education-gpa,
+  .award-text,
+  .teaching-meta,
+  .interests-crossnav,
+  .service-intro {
+    text-align: left;
+    text-justify: auto;
+    hyphens: none;
   }
 }
 
