@@ -15,8 +15,7 @@ const Service = () => (
         </h2>
         <ul className="service-list">
           <li className="service-row">
-            <div className="service-entry">
-              <span className="service-role">Reviewer</span>
+            <div className="service-row-main">
               <a
                 className="service-venue"
                 href="https://www.glsvlsi.org/"
@@ -25,10 +24,17 @@ const Service = () => (
               >
                 Great Lakes Symposium on VLSI (GLSVLSI)
               </a>
+              <span className="service-meta">
+                36th edition <span aria-hidden="true"> · </span> Sponsored by
+                ACM SIGDA
+              </span>
             </div>
-            <time className="service-year" dateTime="2026">
-              2026
-            </time>
+            <div className="service-row-side">
+              <span className="service-role">Reviewer</span>
+              <time className="service-year" dateTime="2026">
+                2026
+              </time>
+            </div>
           </li>
         </ul>
       </section>
