@@ -1,11 +1,10 @@
-import {useState} from 'react';
+import {useId, useState} from 'react';
 import toast from 'react-hot-toast';
 import type {Publication} from '../../types';
 import PubLink from './PubLink';
 import Icon from '../Icon/Icon';
 import {
-  faPlus,
-  faMinus,
+  faChevronDown,
   faLink,
   faFilePdf,
   faQuoteRight,
@@ -54,6 +53,7 @@ interface PublicationItemProps {
 
 const PublicationItem = ({pub, headingLevel = 3}: PublicationItemProps) => {
   const [abstractOpen, setAbstractOpen] = useState(false);
+  const abstractId = useId();
   const hasKeywords = !!pub.keywords && pub.keywords.length > 0;
   const TitleTag = headingLevel === 2 ? 'h2' : 'h3';
 
@@ -95,6 +95,22 @@ const PublicationItem = ({pub, headingLevel = 3}: PublicationItemProps) => {
         )}
 
         <div className="pub-card-actions">
+          {pub.abstract && (
+            <button
+              type="button"
+              className="pub-text-link pub-abstract-toggle"
+              onClick={() => setAbstractOpen(v => !v)}
+              aria-expanded={abstractOpen}
+              aria-controls={abstractId}
+            >
+              <span>Abstract</span>
+              <Icon
+                icon={faChevronDown}
+                className="pub-abstract-chevron"
+                size="sm"
+              />
+            </button>
+          )}
           <PubLink
             label="DOI"
             href={pub.link}
@@ -126,22 +142,9 @@ const PublicationItem = ({pub, headingLevel = 3}: PublicationItemProps) => {
           )}
         </div>
 
-        {pub.abstract && (
-          <div className="pub-abstract">
-            <button
-              type="button"
-              className="pub-abstract-toggle"
-              onClick={() => setAbstractOpen(v => !v)}
-              aria-expanded={abstractOpen}
-            >
-              <span>Abstract</span>
-              <Icon icon={abstractOpen ? faMinus : faPlus} size="sm" />
-            </button>
-            {abstractOpen && (
-              <div className="pub-abstract-panel">
-                <p className="pub-card-abstract">{pub.abstract}</p>
-              </div>
-            )}
+        {pub.abstract && abstractOpen && (
+          <div className="pub-abstract-panel" id={abstractId}>
+            <p className="pub-card-abstract">{pub.abstract}</p>
           </div>
         )}
       </div>
