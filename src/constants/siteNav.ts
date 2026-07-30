@@ -22,15 +22,15 @@ export type RouteKey = keyof typeof ROUTE_PATHS;
 
 export const MAIN_NAV_LINKS: readonly NavLink[] = [
   {id: 'home', label: 'Home', path: ROUTE_PATHS.home},
+  {id: 'research', label: 'Research', path: ROUTE_PATHS.research},
   {id: 'publications', label: 'Publications', path: ROUTE_PATHS.publications},
   {id: 'teaching', label: 'Teaching', path: ROUTE_PATHS.teaching},
-  {id: 'education', label: 'Education', path: ROUTE_PATHS.education},
-  {id: 'awards', label: 'Awards', path: ROUTE_PATHS.awards},
+  {id: 'service', label: 'Service', path: ROUTE_PATHS.service},
 ];
 
 export const DROPDOWN_NAV_LINKS: readonly NavLink[] = [
-  {id: 'research', label: 'Research', path: ROUTE_PATHS.research},
-  {id: 'service', label: 'Service', path: ROUTE_PATHS.service},
+  {id: 'education', label: 'Education', path: ROUTE_PATHS.education},
+  {id: 'awards', label: 'Awards', path: ROUTE_PATHS.awards},
   {id: 'news', label: 'News', path: ROUTE_PATHS.news},
 ];
 
