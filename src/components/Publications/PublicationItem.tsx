@@ -55,6 +55,9 @@ const PublicationItem = ({pub, headingLevel = 3}: PublicationItemProps) => {
   const [abstractOpen, setAbstractOpen] = useState(false);
   const abstractId = useId();
   const hasKeywords = !!pub.keywords && pub.keywords.length > 0;
+  const hasActions = Boolean(
+    pub.abstract || pub.link || pub.pdfLink || pub.bibtexId || pub.github,
+  );
   const TitleTag = headingLevel === 2 ? 'h2' : 'h3';
 
   return (
@@ -94,51 +97,53 @@ const PublicationItem = ({pub, headingLevel = 3}: PublicationItemProps) => {
           </div>
         )}
 
-        <div className="pub-card-actions">
-          {pub.abstract && (
-            <button
-              type="button"
-              className="pub-text-link pub-abstract-toggle"
-              onClick={() => setAbstractOpen(v => !v)}
-              aria-expanded={abstractOpen}
-              aria-controls={abstractId}
-            >
-              <span>Abstract</span>
-              <Icon
-                icon={faChevronDown}
-                className="pub-abstract-chevron"
-                size="sm"
+        {hasActions && (
+          <div className="pub-card-actions">
+            {pub.abstract && (
+              <button
+                type="button"
+                className="pub-text-link pub-abstract-toggle"
+                onClick={() => setAbstractOpen(v => !v)}
+                aria-expanded={abstractOpen}
+                aria-controls={abstractId}
+              >
+                <span>Abstract</span>
+                <Icon
+                  icon={faChevronDown}
+                  className="pub-abstract-chevron"
+                  size="sm"
+                />
+              </button>
+            )}
+            {pub.link && (
+              <PubLink label="DOI" href={pub.link} icon={faLink} variant="doi" />
+            )}
+            {(pub.pdfLink || pub.link) && (
+              <PubLink
+                label="Paper"
+                href={pub.pdfLink ? `/${pub.pdfLink}` : pub.link}
+                icon={faFilePdf}
+                variant="paper"
               />
-            </button>
-          )}
-          {pub.link && (
-            <PubLink label="DOI" href={pub.link} icon={faLink} variant="doi" />
-          )}
-          {(pub.pdfLink || pub.link) && (
-            <PubLink
-              label="Paper"
-              href={pub.pdfLink ? `/${pub.pdfLink}` : pub.link}
-              icon={faFilePdf}
-              variant="paper"
-            />
-          )}
-          {pub.bibtexId && (
-            <PubLink
-              label="BibTeX"
-              onClick={() => void copyBibtex(pub)}
-              icon={faQuoteRight}
-              variant="bibtex"
-            />
-          )}
-          {pub.github && (
-            <PubLink
-              label="Code"
-              href={pub.github}
-              icon={faGithub}
-              variant="github"
-            />
-          )}
-        </div>
+            )}
+            {pub.bibtexId && (
+              <PubLink
+                label="BibTeX"
+                onClick={() => void copyBibtex(pub)}
+                icon={faQuoteRight}
+                variant="bibtex"
+              />
+            )}
+            {pub.github && (
+              <PubLink
+                label="Code"
+                href={pub.github}
+                icon={faGithub}
+                variant="github"
+              />
+            )}
+          </div>
+        )}
 
         {pub.abstract && abstractOpen && (
           <div className="pub-abstract-panel" id={abstractId}>

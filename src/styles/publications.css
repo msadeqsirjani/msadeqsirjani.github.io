@@ -409,6 +409,7 @@
   flex-wrap: wrap;
   align-items: center;
   gap: 0.5rem;
+  min-height: 1.7rem;
   margin-top: 1rem;
 }
 

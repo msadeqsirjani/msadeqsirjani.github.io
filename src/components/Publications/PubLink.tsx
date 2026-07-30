@@ -35,13 +35,20 @@ const PubLink = ({
   const content = (
     <>
       <Icon icon={icon ?? faArrowUpRightFromSquare} size="lg" />
-      {label}
+      <span className="pub-link-label">{label}</span>
     </>
   );
 
   if (href) {
     return (
-      <a href={href} className={className} target="_blank" rel="noopener">
+      <a
+        href={href}
+        className={className}
+        target="_blank"
+        rel="noopener"
+        aria-label={label}
+        title={label}
+      >
         {content}
       </a>
     );
@@ -52,6 +59,8 @@ const PubLink = ({
       type="button"
       className={className}
       onClick={onClick}
+      aria-label={label}
+      title={label}
       {...(ariaExpanded !== undefined && {'aria-expanded': ariaExpanded})}
     >
       {content}

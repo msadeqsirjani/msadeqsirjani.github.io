@@ -1552,6 +1552,35 @@
 }
 
 @media (max-width: 360px) {
+  .pub-card-actions {
+    flex-wrap: nowrap;
+    gap: 0.3rem;
+  }
+
+  .pub-card-actions .pub-text-link {
+    flex: 0 0 auto;
+    padding-inline: 0.5rem;
+  }
+
+  .pub-card-actions .pub-text-link:not(.pub-abstract-toggle) {
+    width: 1.7rem;
+    padding-inline: 0;
+  }
+
+  .pub-card-actions
+    .pub-text-link:not(.pub-abstract-toggle)
+    .pub-link-label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
   .container {
     padding-inline: 0.875rem;
   }
