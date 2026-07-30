@@ -1608,6 +1608,21 @@
   }
 }
 
+@media (min-width: 769px) and (max-width: 980px) {
+  .hero-title {
+    font-size: var(--fs-2xl);
+  }
+
+  .section-title,
+  .pub-page-title {
+    font-size: var(--fs-lg);
+  }
+
+  .pub-card-title {
+    font-size: var(--fs-md);
+  }
+}
+
 a:focus,
 button:focus-visible,
 input:focus-visible,
