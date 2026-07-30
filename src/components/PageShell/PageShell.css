@@ -16,3 +16,17 @@
 .page-back-link:hover {
   text-decoration: underline;
 }
+
+@media (max-width: 480px) {
+  .page-shell {
+    padding-top: 1.25rem;
+  }
+
+  .page-shell > .section {
+    padding-top: 1rem;
+  }
+
+  .page-back-link {
+    margin-bottom: 0.25rem;
+  }
+}
