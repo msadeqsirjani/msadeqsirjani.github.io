@@ -14,16 +14,21 @@ const Service = () => (
           Conference Reviewing
         </h2>
         <ul className="service-list">
-          <li>
-            Reviewer,{' '}
-            <a
-              href="https://www.glsvlsi.org/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Great Lakes Symposium on VLSI (GLSVLSI)
-            </a>
-            , <time dateTime="2026">2026</time>.
+          <li className="service-row">
+            <div className="service-entry">
+              <span className="service-role">Reviewer</span>
+              <a
+                className="service-venue"
+                href="https://www.glsvlsi.org/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Great Lakes Symposium on VLSI (GLSVLSI)
+              </a>
+            </div>
+            <time className="service-year" dateTime="2026">
+              2026
+            </time>
           </li>
         </ul>
       </section>

@@ -37,31 +37,58 @@
 }
 
 .service-list {
+  list-style: none;
   margin: 0;
-  padding-left: 1.35rem;
+  padding: 0;
 }
 
-.service-list li {
-  padding: 0.55rem 0;
+.service-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 0.15rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.service-entry {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.25rem;
+  min-width: 0;
+}
+
+.service-role {
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  line-height: 1.4;
+  text-transform: uppercase;
+  color: var(--accent-color);
+}
+
+.service-venue {
+  font-family: var(--font-display);
   font-size: var(--fs-base);
-  line-height: 1.65;
-  color: var(--text-color);
-  text-align: justify;
-  text-align-last: left;
-}
-
-.service-list li::marker {
-  color: var(--accent-color);
-}
-
-.service-list a {
-  color: var(--accent-color);
   font-weight: 600;
+  line-height: 1.45;
+  color: var(--text-color);
 }
 
-.service-list a:hover {
+.service-venue:hover {
+  color: var(--accent-color);
   text-decoration: underline;
   text-underline-offset: 0.18em;
+}
+
+.service-year {
+  align-self: center;
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  line-height: 1.4;
+  color: var(--text-light);
+  white-space: nowrap;
 }
 
 @media (max-width: 480px) {
@@ -72,5 +99,15 @@
   .service-group-title {
     gap: 0.65rem;
     font-size: var(--fs-base);
+  }
+
+  .service-row {
+    grid-template-columns: 1fr;
+    gap: 0.4rem;
+    padding-block: 0.9rem;
+  }
+
+  .service-year {
+    justify-self: start;
   }
 }
