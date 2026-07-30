@@ -2,7 +2,9 @@ import {useMemo, useState} from 'react';
 import {fetchPublications, publications as pubData} from '../../data/content';
 import useContentData from '../../hooks/useContentData';
 import type {Publication} from '../../types';
+import Icon from '../Icon/Icon';
 import PublicationItem from './PublicationItem';
+import {faRotateLeft} from '@fortawesome/free-solid-svg-icons';
 
 const pubKey = (pub: Publication) => pub.bibtexId ?? `${pub.year}-${pub.title}`;
 
@@ -53,6 +55,17 @@ const PublicationsPage = () => {
         .includes(q);
     });
   }, [sorted, query, yearFilter, statusFilter]);
+
+  const hasActiveFilters =
+    query.trim() !== '' || yearFilter !== 'all' || statusFilter !== 'all';
+  const resultLabel = `${filtered.length} ${
+    filtered.length === 1 ? 'publication' : 'publications'
+  }`;
+  const resetFilters = () => {
+    setQuery('');
+    setYearFilter('all');
+    setStatusFilter('all');
+  };
 
   return (
     <section id="publications" className="section publications-page">
@@ -113,6 +126,25 @@ const PublicationsPage = () => {
           </span>
         </div>
 
+        <div
+          className="pub-filter-summary"
+          role="status"
+          aria-live="polite"
+          aria-atomic="true"
+        >
+          <span>{resultLabel}</span>
+          {hasActiveFilters && filtered.length > 0 && (
+            <button
+              type="button"
+              className="pub-filter-reset"
+              onClick={resetFilters}
+            >
+              <Icon icon={faRotateLeft} size="sm" />
+              Reset filters
+            </button>
+          )}
+        </div>
+
         {filtered.length > 0 ? (
           <div className="pub-card-list" role="list">
             {filtered.map(pub => (
@@ -120,7 +152,18 @@ const PublicationsPage = () => {
             ))}
           </div>
         ) : (
-          <p className="pub-empty">No publications match your filters.</p>
+          <div className="pub-empty" role="status">
+            <p className="pub-empty-title">No publications found</p>
+            <p>Try a different search term or clear the current filters.</p>
+            <button
+              type="button"
+              className="pub-empty-reset"
+              onClick={resetFilters}
+            >
+              <Icon icon={faRotateLeft} size="sm" />
+              Reset filters
+            </button>
+          </div>
         )}
       </div>
     </section>
