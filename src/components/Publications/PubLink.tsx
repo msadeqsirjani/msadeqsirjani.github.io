@@ -10,7 +10,6 @@ interface PubLinkProps {
   onClick?: () => void;
   icon?: IconDefinition;
   variant?: PubLinkVariant;
-  disabled?: boolean;
   ariaExpanded?: boolean;
 }
 
@@ -27,12 +26,11 @@ const PubLink = ({
   onClick,
   icon,
   variant,
-  disabled,
   ariaExpanded,
 }: PubLinkProps) => {
   const className = `pub-text-link doi-link${
     variant ? ` ${VARIANT_CLASS[variant]}` : ''
-  }${disabled ? ' pub-text-link-disabled' : ''}`;
+  }`;
 
   const content = (
     <>
@@ -40,14 +38,6 @@ const PubLink = ({
       {label}
     </>
   );
-
-  if (disabled) {
-    return (
-      <button type="button" className={className} disabled aria-disabled="true">
-        {content}
-      </button>
-    );
-  }
 
   if (href) {
     return (

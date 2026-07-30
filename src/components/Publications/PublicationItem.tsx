@@ -111,27 +111,25 @@ const PublicationItem = ({pub, headingLevel = 3}: PublicationItemProps) => {
               />
             </button>
           )}
-          <PubLink
-            label="DOI"
-            href={pub.link}
-            icon={faLink}
-            variant="doi"
-            disabled={!pub.link}
-          />
-          <PubLink
-            label="Paper"
-            href={pub.pdfLink ? `/${pub.pdfLink}` : pub.link}
-            icon={faFilePdf}
-            variant="paper"
-            disabled={!pub.pdfLink && !pub.link}
-          />
-          <PubLink
-            label="BibTeX"
-            onClick={() => void copyBibtex(pub)}
-            icon={faQuoteRight}
-            variant="bibtex"
-            disabled={!pub.bibtexId}
-          />
+          {pub.link && (
+            <PubLink label="DOI" href={pub.link} icon={faLink} variant="doi" />
+          )}
+          {(pub.pdfLink || pub.link) && (
+            <PubLink
+              label="Paper"
+              href={pub.pdfLink ? `/${pub.pdfLink}` : pub.link}
+              icon={faFilePdf}
+              variant="paper"
+            />
+          )}
+          {pub.bibtexId && (
+            <PubLink
+              label="BibTeX"
+              onClick={() => void copyBibtex(pub)}
+              icon={faQuoteRight}
+              variant="bibtex"
+            />
+          )}
           {pub.github && (
             <PubLink
               label="Code"
