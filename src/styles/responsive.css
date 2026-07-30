@@ -1508,6 +1508,35 @@
     padding-block: 0.875rem;
   }
 
+  .pub-card-meta {
+    margin-top: 0.65rem;
+    padding-top: 0.6rem;
+  }
+
+  .pub-card-keywords {
+    column-gap: 0.65rem;
+    row-gap: 0.2rem;
+  }
+
+  .pub-card-keywords-inline {
+    margin-top: 0.35rem;
+  }
+
+  .pub-card-keywords .pub-keyword-tag + .pub-keyword-tag::before {
+    content: none;
+  }
+
+  .pub-card-actions {
+    margin-top: 0.75rem;
+  }
+
+  .pub-card-authors,
+  .pub-card-venue {
+    font-size: 0.8125rem;
+    line-height: 1.55;
+    text-align-last: left;
+  }
+
   .footer-content,
   .footer-section {
     text-align: center;
