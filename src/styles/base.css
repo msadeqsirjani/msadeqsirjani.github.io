@@ -248,6 +248,16 @@ h6 {
   --bibtex-fg: #ffffff;
 }
 
+html:not([data-theme='dark'])
+  :is(.teaching-row, .award-row, .research-row, .news-row, .news-card) {
+  border-color: rgba(var(--accent-rgb), 0.12);
+}
+
+html:not([data-theme='dark'])
+  :is(.teaching-row, .award-row, .research-row, .news-row, .news-card):hover {
+  border-color: rgba(var(--accent-rgb), 0.22);
+}
+
 html[data-theme='dark']
   :is(
     .publication-item,
