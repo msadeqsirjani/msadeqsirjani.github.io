@@ -19,7 +19,7 @@
 }
 
 .research-row:hover {
-  transform: translateY(-3px);
+  transform: translateY(-2px);
   box-shadow: 0 14px 28px -14px rgba(var(--accent-rgb), 0.28);
 }
 

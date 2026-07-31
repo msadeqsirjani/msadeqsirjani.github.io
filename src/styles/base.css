@@ -249,12 +249,28 @@ h6 {
 }
 
 html:not([data-theme='dark'])
-  :is(.teaching-row, .award-row, .research-row, .news-row, .news-card) {
+  :is(
+    .education-row,
+    .teaching-row,
+    .award-row,
+    .research-row,
+    .service-row,
+    .news-row,
+    .news-card
+  ) {
   border-color: rgba(var(--accent-rgb), 0.12);
 }
 
 html:not([data-theme='dark'])
-  :is(.teaching-row, .award-row, .research-row, .news-row, .news-card):hover {
+  :is(
+    .education-row,
+    .teaching-row,
+    .award-row,
+    .research-row,
+    .service-row,
+    .news-row,
+    .news-card
+  ):hover {
   border-color: rgba(var(--accent-rgb), 0.22);
 }
 
@@ -266,6 +282,7 @@ html[data-theme='dark']
     .research-row,
     .teaching-row,
     .award-row,
+    .service-row,
     .news-card,
     .interest-card,
     .timeline-item
@@ -281,6 +298,7 @@ html[data-theme='dark']
     .research-row,
     .teaching-row,
     .award-row,
+    .service-row,
     .news-card,
     .interest-card,
     .timeline-item
