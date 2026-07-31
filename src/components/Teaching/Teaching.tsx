@@ -20,7 +20,7 @@ const Teaching = () => {
   return (
     <section id="teaching" className="section">
       <div className="container">
-        <h2 className="section-title">Teaching Experience</h2>
+        <h1 className="section-title page-title">Teaching Experience</h1>
         <ul className="teaching-list">
           {teachingItems.map((item: TeachingItem, index) => {
             const instructor = item.instructor.replace(/^Instructor:\s*/, '');

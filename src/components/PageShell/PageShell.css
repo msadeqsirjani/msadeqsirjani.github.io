@@ -6,6 +6,10 @@
   padding-top: 2rem;
 }
 
+.page-shell .page-title {
+  margin-top: 0;
+}
+
 .page-back-link {
   display: inline-flex;
   align-items: center;

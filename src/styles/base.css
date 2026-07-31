@@ -255,7 +255,6 @@ html:not([data-theme='dark'])
     .award-row,
     .research-row,
     .service-row,
-    .news-row,
     .news-card
   ) {
   border-color: rgba(var(--accent-rgb), 0.12);
@@ -268,7 +267,6 @@ html:not([data-theme='dark'])
     .award-row,
     .research-row,
     .service-row,
-    .news-row,
     .news-card
   ):hover {
   border-color: rgba(var(--accent-rgb), 0.22);

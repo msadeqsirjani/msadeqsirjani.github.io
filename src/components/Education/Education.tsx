@@ -10,7 +10,7 @@ const Education = () => {
   return (
     <section id="education" className="section">
       <div className="container">
-        <h2 className="section-title">Education</h2>
+        <h1 className="section-title page-title">Education</h1>
         <ul className="education-list">
           {educationItems.map((item: EducationItem, index) => {
             const uniName = item.universityName ?? item.university;

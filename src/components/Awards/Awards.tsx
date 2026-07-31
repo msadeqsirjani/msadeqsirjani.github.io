@@ -12,7 +12,7 @@ const Awards = () => {
   return (
     <section id="awards" className="section awards-section">
       <div className="container">
-        <h2 className="section-title">Awards &amp; Honors</h2>
+        <h1 className="section-title page-title">Awards &amp; Honors</h1>
         <ul className="awards-list">
           {awardItems.map((item, index) => (
             <li key={`${item.date}-${index}`} className="award-row">

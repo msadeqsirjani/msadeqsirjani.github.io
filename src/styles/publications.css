@@ -441,7 +441,7 @@ html:not([data-theme='dark']) .pub-card:hover {
 .pub-card-title {
   margin: 0 0 0.35rem;
   font-size: var(--fs-lg);
-  font-weight: 700;
+  font-weight: 600;
   line-height: 1.4;
   color: var(--text-color);
   text-align: justify;
@@ -667,7 +667,7 @@ html:not([data-theme='dark']) .pub-card:hover {
 
 .publication-title {
   font-size: var(--fs-base);
-  font-weight: 700;
+  font-weight: 600;
   color: var(--text-color);
   margin: 0 0 0.25rem;
   line-height: 1.45;

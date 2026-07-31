@@ -51,7 +51,7 @@ const News = ({scrollable = false}: NewsProps) => {
   return (
     <section id="news" className="section news-section">
       <div className="container">
-        <h2 className="section-title">News</h2>
+        <h1 className="section-title page-title">News</h1>
         <ul className="news-card-list">
           {newsItems.map((item, index) => (
             <li key={`${item.date}-${index}`} className="news-card">

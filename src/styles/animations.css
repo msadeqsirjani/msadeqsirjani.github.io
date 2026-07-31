@@ -31,6 +31,21 @@ html {
   }
 }
 
+@keyframes routeEnter {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.route-enter {
+  animation: routeEnter 180ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
 .animate-fade-in-up {
   animation: fadeInUp 0.6s ease-out forwards;
 }
@@ -147,6 +162,10 @@ a {
   .fade-in-section {
     opacity: 1;
     transform: none;
+  }
+
+  .route-enter {
+    animation: none;
   }
 }
 

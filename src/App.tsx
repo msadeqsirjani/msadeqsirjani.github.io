@@ -177,7 +177,9 @@ function App() {
     if (routeKey === 'home') {
       return (
         <main
+          key={routeKey}
           id="main-content"
+          className="route-enter"
           role="main"
           aria-label="Main content"
           tabIndex={-1}
@@ -213,7 +215,9 @@ function App() {
     const PageComponent = PAGE_COMPONENTS[routeKey];
     return (
       <main
+        key={routeKey}
         id="main-content"
+        className="route-enter"
         role="main"
         aria-label="Main content"
         tabIndex={-1}
