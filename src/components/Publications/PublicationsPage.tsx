@@ -4,7 +4,11 @@ import useContentData from '../../hooks/useContentData';
 import type {Publication} from '../../types';
 import Icon from '../Icon/Icon';
 import PublicationItem from './PublicationItem';
-import {faRotateLeft} from '@fortawesome/free-solid-svg-icons';
+import {
+  faFileCircleExclamation,
+  faMagnifyingGlass,
+  faRotateLeft,
+} from '@fortawesome/free-solid-svg-icons';
 
 const pubKey = (pub: Publication) => pub.bibtexId ?? `${pub.year}-${pub.title}`;
 
@@ -154,17 +158,34 @@ const PublicationsPage = () => {
             ))}
           </div>
         ) : (
-          <div className="pub-empty" role="status">
-            <p className="pub-empty-title">No publications found</p>
-            <p>Try a different search term or clear the current filters.</p>
-            <button
-              type="button"
-              className="pub-empty-reset"
-              onClick={resetFilters}
-            >
-              <Icon icon={faRotateLeft} size="sm" />
-              Reset filters
-            </button>
+          <div className="pub-empty" role="status" aria-live="polite">
+            <span className="pub-empty-icon" aria-hidden="true">
+              <Icon
+                icon={
+                  hasActiveFilters ? faMagnifyingGlass : faFileCircleExclamation
+                }
+              />
+            </span>
+            <p className="pub-empty-title">
+              {hasActiveFilters
+                ? 'No matching publications'
+                : 'No publications available'}
+            </p>
+            <p>
+              {hasActiveFilters
+                ? 'Try another search term or reset the current filters.'
+                : 'Publication records are not available right now.'}
+            </p>
+            {hasActiveFilters && (
+              <button
+                type="button"
+                className="pub-empty-reset"
+                onClick={resetFilters}
+              >
+                <Icon icon={faRotateLeft} size="sm" />
+                Reset filters
+              </button>
+            )}
           </div>
         )}
       </div>

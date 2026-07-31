@@ -20,7 +20,7 @@ const Awards = () => {
                 <Icon icon={faAward} />
               </span>
               <div className="award-body">
-                <span className="award-date">{item.date}</span>
+                <time className="item-date award-date">{item.date}</time>
                 <span
                   className="award-text"
                   dangerouslySetInnerHTML={{

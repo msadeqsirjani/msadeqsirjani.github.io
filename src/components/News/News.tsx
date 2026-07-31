@@ -33,7 +33,7 @@ const News = ({scrollable = false}: NewsProps) => {
           <ul className="news-scroll">
             {newsItems.map((item, index) => (
               <li key={`${item.date}-${index}`} className="news-row">
-                <span className="news-row-date">{item.date}</span>
+                <time className="item-date news-row-date">{item.date}</time>
                 <span
                   className="news-row-text"
                   dangerouslySetInnerHTML={{
@@ -55,7 +55,7 @@ const News = ({scrollable = false}: NewsProps) => {
         <ul className="news-card-list">
           {newsItems.map((item, index) => (
             <li key={`${item.date}-${index}`} className="news-card">
-              <span className="news-card-date">{item.date}</span>
+              <time className="item-date news-card-date">{item.date}</time>
               <span
                 className="news-card-text"
                 dangerouslySetInnerHTML={{

@@ -33,7 +33,7 @@
 
 .news-row {
   display: grid;
-  grid-template-columns: 96px 1fr;
+  grid-template-columns: 112px 1fr;
   gap: 0.5rem 1rem;
   padding: 0.75rem 0.75rem;
   border-radius: var(--shape-card);
@@ -44,12 +44,17 @@
   background: var(--gray-light);
 }
 
-.news-row-date {
-  font-size: var(--fs-xs);
-  font-weight: 800;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
+.item-date {
+  display: block;
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  letter-spacing: 0;
+  line-height: 1.4;
+  text-transform: none;
   color: var(--accent-color);
+}
+
+.news-row-date {
   padding-top: 0.15rem;
 }
 
@@ -124,15 +129,15 @@
 
 .award-icon {
   flex-shrink: 0;
-  width: 44px;
-  height: 44px;
+  width: 48px;
+  height: 48px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   border-radius: var(--icon-border-radius);
   background: rgba(var(--accent-rgb), 0.09);
   color: var(--accent-color);
-  font-size: var(--fs-md);
+  font-size: var(--fs-base);
 }
 
 .award-body {
@@ -140,10 +145,6 @@
 }
 
 .award-date {
-  display: block;
-  font-size: var(--fs-sm);
-  font-weight: 700;
-  color: var(--accent-color);
   margin-bottom: 0.25rem;
 }
 
@@ -184,10 +185,6 @@
 }
 
 .news-card-date {
-  display: block;
-  font-size: var(--fs-sm);
-  font-weight: 700;
-  color: var(--accent-color);
   margin-bottom: 0.3rem;
 }
 
@@ -209,13 +206,9 @@
   }
 
   .award-icon {
-    width: 36px;
-    height: 36px;
+    width: 40px;
+    height: 40px;
     font-size: var(--fs-sm);
-  }
-
-  .award-date {
-    font-size: var(--fs-xs);
   }
 
   .award-text {

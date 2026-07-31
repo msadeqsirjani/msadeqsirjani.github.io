@@ -50,6 +50,7 @@ const DEFAULT_SECTION_DELAY = 100;
 
 const SITE_TITLE =
   'Mohammad Sadegh Sirjani - Ph.D. Student in Computer Science | TinyAI & Embedded Systems Researcher';
+const NOT_FOUND_TITLE = 'Mohammad Sadegh Sirjani | Page Not Found';
 
 const PAGE_TITLES: Record<RouteKey, string> = {
   home: SITE_TITLE,
@@ -90,7 +91,7 @@ function App() {
   useEffect(() => subscribeRoute(() => setRouteKey(getRouteKey())), []);
 
   useEffect(() => {
-    document.title = routeKey ? PAGE_TITLES[routeKey] : SITE_TITLE;
+    document.title = routeKey ? PAGE_TITLES[routeKey] : NOT_FOUND_TITLE;
   }, [routeKey]);
 
   useEffect(() => {
