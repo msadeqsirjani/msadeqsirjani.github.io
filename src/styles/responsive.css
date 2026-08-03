@@ -1704,7 +1704,6 @@
     grid-column: 1 / -1;
   }
 
-  .bio-text p,
   .news-row-text,
   .news-card-text,
   .publications-intro,
@@ -1729,6 +1728,12 @@
     text-align: left;
     text-justify: auto;
     hyphens: none;
+  }
+
+  .bio-text p {
+    text-align: justify;
+    text-justify: inter-word;
+    hyphens: auto;
   }
 }
 
