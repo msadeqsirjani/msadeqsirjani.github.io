@@ -54,8 +54,20 @@ const Biography = () => {
               >
                 DAC 2025
               </a>
-              , attended the 62nd DAC conference, and won the 2-minute video
-              presentation competition. He was also selected for the{' '}
+              , attended the{' '}
+              <a
+                href="https://archive.dac.com/about/conference-archive/62nd-dac-2025.html"
+                target="_blank"
+                rel="noopener"
+              >
+                62nd
+              </a>{' '}
+              and{' '}
+              <a href="https://dac.com/2026" target="_blank" rel="noopener">
+                63rd
+              </a>{' '}
+              DAC conferences, winning the 2-minute video presentation
+              competition both years. He was also selected for the{' '}
               <a href="https://dair-3.org/" target="_blank" rel="noopener">
                 DAiR3 Data Science Summer School
               </a>
