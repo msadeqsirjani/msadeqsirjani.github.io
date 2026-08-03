@@ -325,7 +325,11 @@
     justify-content: center;
   }
 
-  .publication-authors,
+  .publication-authors {
+    text-align: justify;
+    text-justify: inter-word;
+  }
+
   .publication-venue,
   .pub-keywords {
     text-align: left;
@@ -1296,16 +1300,12 @@
     transform: none;
   }
 
-  .publication-title,
-  .pub-card-title {
-    text-align: left;
-    hyphens: none;
-  }
-
   .bio-text p,
   .news-row-text,
+  .publication-title,
   .publication-abstract,
   .publication-abstract p,
+  .pub-card-title,
   .pub-card-authors,
   .timeline-description,
   .research-points li,
@@ -1708,13 +1708,6 @@
   .news-card-text,
   .publications-intro,
   .pub-scholar-note,
-  .publication-authors,
-  .publication-venue,
-  .publication-abstract,
-  .publication-abstract p,
-  .pub-card-authors,
-  .pub-card-venue,
-  .pub-card-abstract,
   .pub-abstract-panel,
   .timeline-description,
   .research-meta,
@@ -1730,7 +1723,16 @@
     hyphens: none;
   }
 
-  .bio-text p {
+  .bio-text p,
+  .publication-title,
+  .publication-authors,
+  .publication-venue,
+  .publication-abstract,
+  .publication-abstract p,
+  .pub-card-title,
+  .pub-card-authors,
+  .pub-card-venue,
+  .pub-card-abstract {
     text-align: justify;
     text-justify: inter-word;
     hyphens: auto;
