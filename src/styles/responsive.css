@@ -920,6 +920,68 @@ body:has(.mobile-menu-overlay) .scroll-to-top,
   }
 }
 
+@media (min-width: 601px) and (max-width: 900px) {
+  :root {
+    --card-padding: 1.15rem 1.25rem;
+    --content-stack-gap: 0.8rem;
+  }
+
+  .education-row {
+    grid-template-columns: 48px minmax(0, 1fr);
+    align-items: start;
+    gap: 0 1rem;
+  }
+
+  .education-logo {
+    grid-row: 1 / span 2;
+  }
+
+  .education-row-side {
+    grid-column: 2;
+  }
+
+  .teaching-row,
+  .service-row {
+    grid-template-columns: minmax(0, 1fr);
+    align-items: stretch;
+    gap: 0.65rem;
+  }
+
+  .service-row {
+    padding: var(--card-padding);
+  }
+
+  :is(.education-row-side, .teaching-row-side, .service-row-side) {
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: space-between;
+    min-width: 0;
+    gap: 0.5rem 0.85rem;
+    padding-top: 0.65rem;
+    border-top: 1px solid var(--border-color);
+    text-align: left;
+  }
+
+  :is(.education-term, .teaching-term, .service-year) {
+    white-space: normal;
+  }
+
+  .award-row {
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .news-row {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.3rem;
+    padding: 0.8rem;
+  }
+
+  .news-row-date {
+    padding-top: 0;
+  }
+}
+
 @media (min-width: 981px) {
   .container {
     padding-inline: clamp(1.5rem, 2.25vw, 2rem);
