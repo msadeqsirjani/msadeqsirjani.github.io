@@ -87,12 +87,12 @@ const Hero = () => {
                 <source
                   type="image/webp"
                   srcSet="/assets/img/profile-360.webp 360w, /assets/img/profile-480.webp 480w, /assets/img/profile-560.webp 560w, /assets/img/profile-600.webp 600w"
-                  sizes="(max-width: 480px) 160px, (max-width: 768px) 200px, (max-width: 1024px) 250px, 300px"
+                  sizes="(max-width: 480px) 148px, (max-width: 600px) 184px, (max-width: 768px) 200px, (max-width: 1024px) 250px, 300px"
                 />
                 <source
                   type="image/jpeg"
                   srcSet="/assets/img/profile-360.jpg 360w, /assets/img/profile-480.jpg 480w, /assets/img/profile-560.jpg 560w, /assets/img/profile-600.jpg 600w"
-                  sizes="(max-width: 480px) 160px, (max-width: 768px) 200px, (max-width: 1024px) 250px, 300px"
+                  sizes="(max-width: 480px) 148px, (max-width: 600px) 184px, (max-width: 768px) 200px, (max-width: 1024px) 250px, 300px"
                 />
                 <img
                   src="/assets/img/profile-600.jpg"
