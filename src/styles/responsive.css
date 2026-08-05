@@ -252,7 +252,6 @@ body:has(.mobile-menu-overlay) .scroll-to-top,
   color: var(--text-color);
   text-align: justify;
   text-justify: inter-word;
-  text-wrap: pretty;
   hyphens: auto;
 }
 
@@ -268,6 +267,21 @@ body:has(.mobile-menu-overlay) .scroll-to-top,
   text-align: justify;
   text-justify: inter-word;
   hyphens: auto;
+}
+
+.publication-title,
+.publication-authors,
+.publication-venue,
+.publication-abstract,
+.publication-abstract p,
+.pub-card-title,
+.pub-card-authors,
+.pub-card-venue,
+.pub-card-abstract {
+  text-align-last: left;
+  overflow-wrap: break-word;
+  word-break: normal;
+  hyphenate-limit-chars: 6 3 3;
 }
 
 .publication-meta-row {
@@ -290,8 +304,8 @@ body:has(.mobile-menu-overlay) .scroll-to-top,
 }
 
 .pub-card-title {
-  font-size: var(--fs-md);
-  line-height: 1.35;
+  font-size: var(--fs-base);
+  line-height: 1.4;
 }
 
 .pub-card-meta {
@@ -585,11 +599,6 @@ body:has(.mobile-menu-overlay) .scroll-to-top,
     padding: 1.25rem;
   }
 
-  .pub-card-title {
-    font-size: var(--fs-lg);
-    line-height: 1.4;
-  }
-
   .pub-card-meta {
     margin-top: 0.8rem;
     padding-top: 0.7rem;
@@ -639,6 +648,10 @@ body:has(.mobile-menu-overlay) .scroll-to-top,
 }
 
 @media (min-width: 601px) {
+  .pub-card-title {
+    font-size: var(--fs-md);
+  }
+
   .news-row-text,
   .news-card-text,
   .publications-intro,
