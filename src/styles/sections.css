@@ -4,7 +4,7 @@
 
 .section-heading-row {
   display: flex;
-  align-items: center;
+  align-items: baseline;
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 0.5rem 1.5rem;
@@ -25,6 +25,7 @@
   color: var(--accent-color);
   font-size: var(--fs-sm);
   font-weight: 600;
+  line-height: 1.25;
   white-space: nowrap;
 }
 
@@ -63,15 +64,23 @@
 }
 
 .section-title {
-  font-size: var(--fs-lg);
+  font-size: var(--section-title-size);
   font-weight: 700;
   margin-bottom: var(--section-title-gap);
-  padding-bottom: 0.75rem;
+  padding-bottom: var(--title-rule-offset);
   color: var(--text-color);
   letter-spacing: 0;
   text-transform: none;
   line-height: 1.25;
   position: relative;
+}
+
+.section-title.page-title {
+  font-size: var(--page-title-size);
+}
+
+.section-title.page-title:has(+ p) {
+  margin-bottom: var(--title-description-gap);
 }
 
 #main-content > .fade-in-section + .fade-in-section > .section {
@@ -83,10 +92,14 @@
   position: absolute;
   left: 0;
   bottom: 0;
-  width: 2.25rem;
-  height: 3px;
+  width: var(--section-title-rule-width);
+  height: var(--title-rule-thickness);
   border-radius: 3px;
   background: var(--signal-color);
+}
+
+.section-title.page-title::after {
+  width: var(--page-title-rule-width);
 }
 
 .bio-text p {

@@ -183,7 +183,7 @@ body:has(.mobile-menu-overlay) .scroll-to-top,
 
 .section-title {
   margin: 0 0 var(--section-title-gap);
-  font-size: var(--fs-lg);
+  font-size: var(--section-title-size);
   text-align: left;
 }
 
@@ -492,6 +492,10 @@ body:has(.mobile-menu-overlay) .scroll-to-top,
   :root {
     --card-padding: 1.25rem;
     --section-space: 3.5rem;
+    --section-title-size: var(--fs-xl);
+    --page-title-size: var(--fs-2xl);
+    --section-title-rule-width: 2.5rem;
+    --page-title-rule-width: 3.5rem;
     --content-stack-gap: 0.875rem;
     --page-shell-padding-top: 1.5rem;
     --page-section-padding-top: 1.25rem;

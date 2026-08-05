@@ -131,15 +131,6 @@
   margin-bottom: var(--section-title-gap);
 }
 
-.pub-page-title {
-  font-size: var(--fs-lg);
-  font-weight: 700;
-  color: var(--text-color);
-  margin: 0 0 1rem;
-  line-height: 1.25;
-  letter-spacing: 0;
-}
-
 .pub-page-count {
   margin: 0;
   font-size: var(--fs-base);

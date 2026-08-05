@@ -127,6 +127,13 @@ h6 {
   --card-padding: 1rem;
   --section-space: 3rem;
   --section-title-gap: 1.5rem;
+  --section-title-size: var(--fs-lg);
+  --page-title-size: var(--fs-xl);
+  --section-title-rule-width: 2.25rem;
+  --page-title-rule-width: 3rem;
+  --title-rule-thickness: 3px;
+  --title-rule-offset: 0.75rem;
+  --title-description-gap: 1rem;
   --content-stack-gap: 0.75rem;
   --page-shell-padding-top: 1.25rem;
   --page-section-padding-top: 1rem;
