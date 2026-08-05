@@ -116,7 +116,12 @@ const PublicationItem = ({pub, headingLevel = 3}: PublicationItemProps) => {
               </button>
             )}
             {pub.link && (
-              <PubLink label="DOI" href={pub.link} icon={faLink} variant="doi" />
+              <PubLink
+                label="DOI"
+                href={pub.link}
+                icon={faLink}
+                variant="doi"
+              />
             )}
             {(pub.pdfLink || pub.link) && (
               <PubLink
