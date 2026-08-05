@@ -98,6 +98,7 @@ h6 {
   --accent-color-light: #1565c0;
   --accent-hover: #0d47a1;
   --accent-rgb: 21, 101, 192;
+  --accent-secondary: #0f766e;
   --signal-color: var(--accent-color);
   --signal-rgb: var(--accent-rgb);
   --surface-muted: #f6f7fb;
@@ -141,6 +142,7 @@ h6 {
   --footer-border: #3a3d45;
   --footer-divider: #33363d;
   --footer-bottom: #838997;
+  --footer-accent: #5ec8bc;
 
   --pub-abstract-bg: #ffffff;
 
@@ -192,6 +194,7 @@ h6 {
   --accent-color-light: #a8c7fa;
   --accent-hover: #c8defb;
   --accent-rgb: 168, 199, 250;
+  --accent-secondary: #66d1c3;
   --signal-color: var(--accent-color);
   --signal-rgb: var(--accent-rgb);
   --surface-muted: #16181d;
@@ -209,6 +212,7 @@ h6 {
   --footer-border: #343944;
   --footer-divider: #292d35;
   --footer-bottom: #9097a3;
+  --footer-accent: var(--accent-secondary);
 
   --pub-abstract-bg: #22262d;
 

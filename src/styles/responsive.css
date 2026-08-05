@@ -389,13 +389,13 @@ body:has(.mobile-menu-overlay) .scroll-to-top,
 }
 
 .footer {
-  padding: 3rem 0 6rem;
+  padding: 2.5rem 0 2rem;
 }
 
 .footer-content {
   grid-template-columns: 1fr;
-  gap: 2rem;
-  margin-bottom: 2.5rem;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
   text-align: center;
 }
 
@@ -407,12 +407,16 @@ body:has(.mobile-menu-overlay) .scroll-to-top,
   text-align: center;
 }
 
-.footer-section:nth-child(2) {
-  display: flex;
+.footer-navigation {
+  display: none;
 }
 
 .footer-section h3 {
   font-size: var(--fs-md);
+}
+
+.footer-section h3::after {
+  margin-inline: auto;
 }
 
 .footer-section h4 {
@@ -428,12 +432,16 @@ body:has(.mobile-menu-overlay) .scroll-to-top,
 
 .footer-social {
   display: grid;
-  grid-template-columns: repeat(6, 36px);
+  grid-template-columns: repeat(4, 36px);
   justify-content: center;
   width: 100%;
   max-width: 100%;
   gap: 0.6rem;
   margin-inline: auto;
+}
+
+.footer-social a:not(.footer-social-primary) {
+  display: none;
 }
 
 .footer-social a {
@@ -447,7 +455,7 @@ body:has(.mobile-menu-overlay) .scroll-to-top,
   align-self: center;
   width: min(100%, 16.5rem);
   max-width: 100%;
-  margin: 1.25rem auto 0;
+  margin: 1rem auto 0;
   font-size: var(--fs-sm);
 }
 
@@ -484,8 +492,12 @@ body:has(.mobile-menu-overlay) .scroll-to-top,
 }
 
 .footer-bottom {
-  padding-top: 1.5rem;
+  padding-top: 1.25rem;
   font-size: var(--fs-sm);
+}
+
+.last-updated {
+  display: none;
 }
 
 @media (hover: none) {
@@ -679,6 +691,22 @@ body:has(.mobile-menu-overlay) .scroll-to-top,
       minmax(0, 1.35fr) minmax(0, 0.55fr)
       minmax(0, 1.6fr);
     gap: clamp(1rem, 2vw, 1.75rem);
+  }
+
+  .footer-navigation {
+    display: flex;
+  }
+
+  .footer-social {
+    grid-template-columns: repeat(6, 36px);
+  }
+
+  .footer-social a:not(.footer-social-primary) {
+    display: flex;
+  }
+
+  .last-updated {
+    display: block;
   }
 
   .footer-section h3,
@@ -990,6 +1018,10 @@ body:has(.mobile-menu-overlay) .scroll-to-top,
 
   .footer-section h3 {
     font-size: var(--fs-lg);
+  }
+
+  .footer-section h3::after {
+    margin-inline: 0;
   }
 
   .footer-section h4,

@@ -78,18 +78,26 @@ const Footer = () => {
       href: 'mailto:mohammadsadegh.sirjani@utsa.edu',
       icon: faEnvelope,
       label: 'Email',
+      mobilePrimary: true,
     },
     {
       href: 'https://scholar.google.com/citations?user=EI5DizMAAAAJ&hl=en',
       icon: faGraduationCap,
       label: 'Google Scholar',
+      mobilePrimary: true,
     },
     {
       href: 'https://www.linkedin.com/in/msadeqsirjani',
       icon: faLinkedin,
       label: 'LinkedIn',
+      mobilePrimary: true,
     },
-    {href: 'https://github.com/msadeqsirjani', icon: faGithub, label: 'GitHub'},
+    {
+      href: 'https://github.com/msadeqsirjani',
+      icon: faGithub,
+      label: 'GitHub',
+      mobilePrimary: true,
+    },
     {
       href: 'https://orcid.org/0009-0000-5146-0216',
       icon: faOrcid,
@@ -107,11 +115,11 @@ const Footer = () => {
       <footer className="footer">
         <div className="container">
           <div className="footer-content">
-            <div className="footer-section">
+            <div className="footer-section footer-identity">
               <h3>Mohammad Sadegh Sirjani</h3>
               <p>Ph.D. Student in Computer Science</p>
             </div>
-            <div className="footer-section">
+            <div className="footer-section footer-navigation">
               <h4>Quick Links</h4>
               <ul className="footer-quick-links">
                 {quickLinks.map(link => (
@@ -123,12 +131,15 @@ const Footer = () => {
                 ))}
               </ul>
             </div>
-            <div className="footer-section">
-              <h4>Connect & Follow</h4>
+            <div className="footer-section footer-connect">
+              <h4>Connect</h4>
               <div className="footer-social">
                 {socialLinks.map((link, idx) => (
                   <a
                     key={idx}
+                    className={
+                      link.mobilePrimary ? 'footer-social-primary' : undefined
+                    }
                     href={link.href}
                     target="_blank"
                     rel="noopener"
