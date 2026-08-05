@@ -12,19 +12,6 @@
   grid-template-columns: 1fr auto;
   align-items: center;
   gap: 0.25rem 1.5rem;
-  padding: 1.25rem 1.4rem;
-  border-radius: var(--shape-card);
-  background: var(--gray-light);
-  border: 1px solid transparent;
-  transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease,
-    border-color 0.2s ease;
-}
-
-.teaching-row:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 22px -14px rgba(var(--accent-rgb), 0.28);
 }
 
 .teaching-row-main {
@@ -85,7 +72,6 @@
     grid-template-columns: 1fr;
     align-items: stretch;
     gap: 0.5rem;
-    padding: 0.95rem 1.1rem;
   }
 
   .teaching-row-side {

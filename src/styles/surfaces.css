@@ -1,0 +1,54 @@
+:is(
+  .interest-card,
+  .publication-item,
+  .pub-card,
+  .education-row,
+  .research-row,
+  .teaching-row,
+  .award-row,
+  .news-card,
+  .timeline-item
+) {
+  padding: var(--card-padding);
+  border: 1px solid var(--card-border-color);
+  border-radius: var(--shape-card);
+  background: var(--card-bg);
+  box-shadow: none;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease,
+    background-color 0.2s ease;
+}
+
+:is(
+  .interest-card,
+  .publication-item,
+  .pub-card,
+  .education-row,
+  .research-row,
+  .teaching-row,
+  .award-row,
+  .news-card,
+  .timeline-item
+):focus-within {
+  border-color: var(--card-border-hover);
+}
+
+@media (hover: hover) {
+  :is(
+    .interest-card,
+    .publication-item,
+    .pub-card,
+    .education-row,
+    .research-row,
+    .teaching-row,
+    .award-row,
+    .news-card,
+    .timeline-item
+  ):hover {
+    transform: translateY(-2px);
+    border-color: var(--card-border-hover);
+    box-shadow: var(--card-hover-shadow);
+  }
+}

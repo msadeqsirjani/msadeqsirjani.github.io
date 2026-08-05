@@ -213,11 +213,6 @@ body:has(.mobile-menu-overlay) .scroll-to-top,
   width: 100%;
   min-height: 90px;
   margin-inline: auto;
-  padding: 0.875rem;
-  border: 1px solid transparent;
-  border-radius: var(--shape-card);
-  background: var(--gray-light);
-  box-shadow: none;
 }
 
 .interest-card i {
@@ -234,12 +229,6 @@ body:has(.mobile-menu-overlay) .scroll-to-top,
 .publication-item {
   margin-inline: 0;
   margin-bottom: 0;
-  padding: 1rem;
-  border: 1px solid transparent;
-  border-radius: var(--shape-card);
-  background: var(--gray-light);
-  box-shadow: none;
-  transition: background-color 0.2s ease;
 }
 
 .publication-item:last-child {
@@ -291,19 +280,6 @@ body:has(.mobile-menu-overlay) .scroll-to-top,
   flex-direction: column;
   align-items: flex-start;
   gap: 0.5rem;
-}
-
-.pub-card,
-.education-row,
-.research-row,
-.teaching-row,
-.award-row,
-.news-card {
-  padding: 1rem;
-}
-
-.pub-card {
-  padding-block: 0.875rem;
 }
 
 .pub-card-title {
@@ -518,6 +494,10 @@ body:has(.mobile-menu-overlay) .scroll-to-top,
 }
 
 @media (min-width: 481px) {
+  :root {
+    --card-padding: 1.25rem;
+  }
+
   .container {
     padding-inline: 1.25rem;
   }
@@ -597,24 +577,10 @@ body:has(.mobile-menu-overlay) .scroll-to-top,
 
   .interest-card {
     min-height: 0;
-    padding: 1.25rem 1rem;
   }
 
   .interest-card i {
     font-size: var(--fs-xl);
-  }
-
-  .publication-item {
-    padding: 1.1rem 1.2rem;
-  }
-
-  .pub-card,
-  .education-row,
-  .research-row,
-  .teaching-row,
-  .award-row,
-  .news-card {
-    padding: 1.25rem;
   }
 
   .pub-card-meta {
@@ -766,6 +732,10 @@ body:has(.mobile-menu-overlay) .scroll-to-top,
 }
 
 @media (min-width: 769px) {
+  :root {
+    --card-padding: 1.25rem 1.4rem;
+  }
+
   .container {
     padding-inline: 2rem;
   }
@@ -856,32 +826,6 @@ body:has(.mobile-menu-overlay) .scroll-to-top,
   .interests-container {
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 1rem;
-  }
-
-  .interest-card {
-    padding: 1.5rem 1rem;
-  }
-
-  .publication-item {
-    padding: 1.25rem 1.4rem;
-    transition:
-      transform 0.2s ease,
-      box-shadow 0.2s ease;
-  }
-
-  .pub-card {
-    padding: 1.25rem 1.4rem;
-  }
-
-  .education-row,
-  .research-row,
-  .award-row,
-  .news-card {
-    padding: 1.5rem;
-  }
-
-  .teaching-row {
-    padding: 1.25rem 1.4rem;
   }
 
   .pub-card-title {

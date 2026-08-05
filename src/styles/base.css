@@ -124,6 +124,10 @@ h6 {
   --control-padding-inline: 1rem;
   --shape-card: 8px;
   --shape-chip: 6px;
+  --card-padding: 1rem;
+  --card-border-color: rgba(var(--accent-rgb), 0.12);
+  --card-border-hover: rgba(var(--accent-rgb), 0.28);
+  --card-hover-shadow: 0 12px 24px -16px rgba(var(--accent-rgb), 0.36);
 
   --elev-1: 0 1px 2px rgba(0, 0, 0, 0.3), 0 1px 3px 1px rgba(0, 0, 0, 0.12);
   --elev-2: 0 1px 2px rgba(0, 0, 0, 0.3), 0 2px 6px 2px rgba(0, 0, 0, 0.12);
@@ -204,6 +208,9 @@ h6 {
   --success-color: #6dd58c;
   --focus-color: #a8c7fa;
   --card-bg: #1b1e24;
+  --card-border-color: rgba(var(--accent-rgb), 0.16);
+  --card-border-hover: rgba(var(--accent-rgb), 0.34);
+  --card-hover-shadow: 0 12px 24px -16px rgba(0, 0, 0, 0.72);
   --hover-bg: #252930;
 
   --on-accent: #0a305f;

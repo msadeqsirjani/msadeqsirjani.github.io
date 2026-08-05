@@ -8,20 +8,7 @@
   grid-template-columns: minmax(120px, 20%) 1fr;
   gap: 2rem;
   margin-bottom: 1rem;
-  padding: 1.25rem;
   margin-inline: 0;
-  background: var(--gray-light);
-  border: 1px solid transparent;
-  border-radius: var(--shape-card);
-  box-shadow: var(--elev-1);
-  transition:
-    box-shadow 0.25s ease,
-    transform 0.25s ease;
-}
-
-.timeline-item:hover {
-  box-shadow: var(--elev-2);
-  transform: translateY(-2px);
 }
 
 .timeline-item:last-child {
