@@ -19,7 +19,8 @@
   justify-content: center;
   transition:
     transform 0.25s cubic-bezier(0.22, 1, 0.36, 1),
-    box-shadow 0.25s ease;
+    box-shadow 0.25s ease,
+    border-color 0.25s ease;
 }
 
 .interest-card:hover {
@@ -27,9 +28,10 @@
   box-shadow: 0 14px 28px -14px rgba(var(--accent-rgb), 0.3);
 }
 
-.interest-card i {
+.interest-card i,
+.interest-card .interest-icon {
   font-size: var(--fs-xl);
-  color: var(--accent-color);
+  color: var(--accent-secondary);
   margin-bottom: 0.75rem;
   display: block;
 }

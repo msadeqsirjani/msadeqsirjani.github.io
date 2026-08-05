@@ -98,9 +98,10 @@ h6 {
   --accent-color-light: #1565c0;
   --accent-hover: #0d47a1;
   --accent-rgb: 21, 101, 192;
-  --accent-secondary: #0f766e;
-  --signal-color: var(--accent-color);
-  --signal-rgb: var(--accent-rgb);
+  --accent-secondary: #4c76a8;
+  --accent-secondary-rgb: 76, 118, 168;
+  --signal-color: var(--accent-secondary);
+  --signal-rgb: var(--accent-secondary-rgb);
   --surface-muted: #f6f7fb;
   --error-color: #ba1a1a;
   --success-color: #146c2e;
@@ -142,7 +143,7 @@ h6 {
   --footer-border: #3a3d45;
   --footer-divider: #33363d;
   --footer-bottom: #838997;
-  --footer-accent: #5ec8bc;
+  --footer-accent: #8db7e3;
 
   --pub-abstract-bg: #ffffff;
 
@@ -194,9 +195,10 @@ h6 {
   --accent-color-light: #a8c7fa;
   --accent-hover: #c8defb;
   --accent-rgb: 168, 199, 250;
-  --accent-secondary: #66d1c3;
-  --signal-color: var(--accent-color);
-  --signal-rgb: var(--accent-rgb);
+  --accent-secondary: #8db7e3;
+  --accent-secondary-rgb: 141, 183, 227;
+  --signal-color: var(--accent-secondary);
+  --signal-rgb: var(--accent-secondary-rgb);
   --surface-muted: #16181d;
   --error-color: #ffb4ab;
   --success-color: #6dd58c;
@@ -309,6 +311,12 @@ html[data-theme='dark']
     .timeline-item
   ):hover {
   box-shadow: 0 12px 28px -18px rgba(0, 0, 0, 0.95);
+}
+
+html:not([data-theme='dark']) :is(.research-row, .interest-card):hover,
+html[data-theme='dark'] :is(.research-row, .interest-card):hover {
+  border-color: rgba(var(--accent-secondary-rgb), 0.38);
+  box-shadow: 0 14px 28px -14px rgba(var(--accent-secondary-rgb), 0.24);
 }
 
 body {

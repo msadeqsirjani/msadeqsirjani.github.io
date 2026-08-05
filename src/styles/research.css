@@ -43,7 +43,7 @@
 }
 
 .research-logo--ph {
-  background: rgba(var(--accent-rgb), 0.12);
+  background: rgba(var(--accent-secondary-rgb), 0.12);
   border-color: transparent;
 }
 
@@ -57,7 +57,7 @@
 .research-logo--placeholder {
   font-size: var(--fs-sm);
   font-weight: 700;
-  color: var(--accent-color);
+  color: var(--accent-secondary);
 }
 
 .research-headtext {
@@ -140,6 +140,10 @@
   font-size: var(--fs-sm);
   line-height: 1.6;
   color: var(--text-color);
+}
+
+.research-points li::marker {
+  color: var(--accent-secondary);
 }
 
 @media (max-width: 600px) {

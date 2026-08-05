@@ -486,7 +486,7 @@ a {
 .interest-card svg,
 .interest-card .interest-icon {
   font-size: var(--fs-2xl) !important;
-  color: var(--accent-color);
+  color: var(--accent-secondary);
   margin-bottom: 0.75rem;
   display: block;
 }
