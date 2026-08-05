@@ -99,19 +99,21 @@ const MobileMenu = ({isOpen, onClose, activePath, onNav}: MobileMenuProps) => {
             <Icon icon={faXmark} aria-hidden="true" />
           </button>
           <ul className="mobile-menu-list">
-            {ALL_NAV_LINKS.map(link => (
-              <motion.li key={link.id} variants={item}>
-                <a
-                  href={link.path + (link.anchor ? `#${link.anchor}` : '')}
-                  className={`nav-link${
-                    normalizePath(link.path) === activePath ? ' active' : ''
-                  }`}
-                  onClick={e => onNav(e, link.path, link.anchor)}
-                >
-                  {link.label}
-                </a>
-              </motion.li>
-            ))}
+            {ALL_NAV_LINKS.map(link => {
+              const isActive = normalizePath(link.path) === activePath;
+              return (
+                <motion.li key={link.id} variants={item}>
+                  <a
+                    href={link.path + (link.anchor ? `#${link.anchor}` : '')}
+                    className={`nav-link${isActive ? ' active' : ''}`}
+                    onClick={e => onNav(e, link.path, link.anchor)}
+                    aria-current={isActive ? 'page' : undefined}
+                  >
+                    {link.label}
+                  </a>
+                </motion.li>
+              );
+            })}
           </ul>
         </motion.div>
       )}

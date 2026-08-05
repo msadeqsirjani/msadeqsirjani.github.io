@@ -186,8 +186,9 @@ const Navbar = ({onSearchClick}: NavbarProps) => {
 
   const mainLinks = MAIN_NAV_LINKS;
   const dropdownLinks = DROPDOWN_NAV_LINKS;
-  const isDropdownPathActive = dropdownLinks.some(
-    link => normalizePath(link.path) === activePath,
+  const isPathActive = (path: string) => normalizePath(path) === activePath;
+  const isDropdownPathActive = dropdownLinks.some(link =>
+    isPathActive(link.path),
   );
 
   return (
@@ -210,19 +211,21 @@ const Navbar = ({onSearchClick}: NavbarProps) => {
           </a>
         </div>
         <ul className="nav-menu" id="nav-menu" ref={navMenuRef}>
-          {mainLinks.map(link => (
-            <li key={link.id}>
-              <a
-                href={hrefFor(link.path, link.anchor)}
-                className={`nav-link${
-                  normalizePath(link.path) === activePath ? ' active' : ''
-                }`}
-                onClick={e => handleNav(e, link.path, link.anchor)}
-              >
-                {link.label}
-              </a>
-            </li>
-          ))}
+          {mainLinks.map(link => {
+            const isActive = isPathActive(link.path);
+            return (
+              <li key={link.id}>
+                <a
+                  href={hrefFor(link.path, link.anchor)}
+                  className={`nav-link${isActive ? ' active' : ''}`}
+                  onClick={e => handleNav(e, link.path, link.anchor)}
+                  aria-current={isActive ? 'page' : undefined}
+                >
+                  {link.label}
+                </a>
+              </li>
+            );
+          })}
           <li
             className={`nav-dropdown ${isDropdownOpen ? 'open' : ''}`}
             ref={dropdownRef}
@@ -248,23 +251,25 @@ const Navbar = ({onSearchClick}: NavbarProps) => {
               className={`nav-dropdown-menu ${isDropdownOpen ? 'active' : ''}`}
               ref={dropdownMenuRef}
             >
-              {dropdownLinks.map((link, index) => (
-                <li key={link.id}>
-                  <a
-                    href={hrefFor(link.path, link.anchor)}
-                    className={`nav-link${
-                      normalizePath(link.path) === activePath ? ' active' : ''
-                    }`}
-                    ref={el => {
-                      dropdownItemRefs.current[index] = el;
-                    }}
-                    onClick={e => handleNav(e, link.path, link.anchor)}
-                    onKeyDown={e => handleItemKeyDown(e, index)}
-                  >
-                    {link.label}
-                  </a>
-                </li>
-              ))}
+              {dropdownLinks.map((link, index) => {
+                const isActive = isPathActive(link.path);
+                return (
+                  <li key={link.id}>
+                    <a
+                      href={hrefFor(link.path, link.anchor)}
+                      className={`nav-link${isActive ? ' active' : ''}`}
+                      ref={el => {
+                        dropdownItemRefs.current[index] = el;
+                      }}
+                      onClick={e => handleNav(e, link.path, link.anchor)}
+                      onKeyDown={e => handleItemKeyDown(e, index)}
+                      aria-current={isActive ? 'page' : undefined}
+                    >
+                      {link.label}
+                    </a>
+                  </li>
+                );
+              })}
             </ul>
           </li>
         </ul>

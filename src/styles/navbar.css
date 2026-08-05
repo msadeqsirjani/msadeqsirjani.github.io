@@ -155,6 +155,11 @@
 }
 
 .nav-dropdown-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 48px;
+  min-height: 48px;
   background: transparent;
   border: none;
   border-radius: 999px;
@@ -289,8 +294,8 @@
 
 .nav-dropdown-menu .nav-link.active {
   color: var(--accent-color);
-  background: transparent;
-  box-shadow: inset 2px 0 var(--accent-color);
+  background: rgba(var(--accent-rgb), 0.08);
+  box-shadow: inset 3px 0 var(--accent-color);
   font-weight: 600;
 }
 
@@ -432,19 +437,20 @@ body:has(.mobile-menu-overlay)
 .mobile-menu-list .nav-link::after {
   content: '';
   position: absolute;
-  right: 22%;
+  right: auto;
   bottom: 0.25rem;
-  left: 22%;
+  left: 50%;
+  width: 2.5rem;
   height: 2px;
   border-radius: 2px;
   background: var(--accent-color);
-  transform: scaleX(0);
+  transform: translateX(-50%) scaleX(0);
   transform-origin: center;
   transition: transform 0.2s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .mobile-menu-list .nav-link.active::after {
-  transform: scaleX(1);
+  transform: translateX(-50%) scaleX(1);
 }
 
 @media (max-width: 980px) {
@@ -457,13 +463,25 @@ body:has(.mobile-menu-overlay)
   }
 
   .mobile-menu-list .nav-link {
+    display: flex;
+    align-items: center;
     min-height: 48px;
+    width: 100%;
     padding: 0.6rem 1.75rem;
     justify-content: center;
-    border-radius: 999px;
+    border-radius: var(--shape-card);
     font-size: var(--fs-xl);
     font-weight: 600;
     text-align: center;
+  }
+
+  .mobile-menu-list .nav-link:focus-visible {
+    background: rgba(var(--accent-rgb), 0.08);
+  }
+
+  .mobile-menu-list .nav-link.active {
+    background: rgba(var(--accent-rgb), 0.08);
+    font-weight: 700;
   }
 
   .nav-toggle {
@@ -476,6 +494,12 @@ body:has(.mobile-menu-overlay)
 
   .nav-container {
     padding-inline: 1.25rem;
+  }
+}
+
+@media (max-width: 980px) and (hover: hover) {
+  .mobile-menu-list .nav-link:hover {
+    background: rgba(var(--accent-rgb), 0.08);
   }
 }
 
@@ -510,5 +534,5 @@ body:has(.mobile-menu-overlay)
 }
 
 .mobile-menu-list li {
-  width: auto;
+  width: min(100%, 24rem);
 }
