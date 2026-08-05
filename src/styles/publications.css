@@ -91,7 +91,7 @@
 .publication-list {
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: var(--content-stack-gap);
   padding: 0;
 }
 
@@ -128,7 +128,7 @@
 }
 
 .pub-page-header {
-  margin-bottom: 2rem;
+  margin-bottom: var(--section-title-gap);
 }
 
 .pub-page-title {
@@ -376,7 +376,7 @@
 .pub-card-list {
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: var(--content-stack-gap);
 }
 
 .pub-card {

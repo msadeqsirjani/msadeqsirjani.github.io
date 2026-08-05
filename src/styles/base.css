@@ -125,6 +125,12 @@ h6 {
   --shape-card: 8px;
   --shape-chip: 6px;
   --card-padding: 1rem;
+  --section-space: 3rem;
+  --section-title-gap: 1.5rem;
+  --content-stack-gap: 0.75rem;
+  --page-shell-padding-top: 1.25rem;
+  --page-section-padding-top: 1rem;
+  --page-back-gap: 0.25rem;
   --card-border-color: rgba(var(--accent-rgb), 0.12);
   --card-border-hover: rgba(var(--accent-rgb), 0.28);
   --card-hover-shadow: 0 12px 24px -16px rgba(var(--accent-rgb), 0.36);

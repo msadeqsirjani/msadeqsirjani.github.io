@@ -1,9 +1,13 @@
 .page-shell {
-  padding-top: 2rem;
+  padding-top: var(--page-shell-padding-top);
 }
 
 .page-shell > .section {
-  padding-top: 2rem;
+  padding-top: var(--page-section-padding-top);
+}
+
+.page-shell > .section + .section {
+  padding-top: 0;
 }
 
 .page-shell .page-title {
@@ -14,7 +18,7 @@
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
-  margin-bottom: 0.5rem;
+  margin-bottom: var(--page-back-gap);
   font-size: var(--fs-sm);
   font-weight: 600;
   color: var(--accent-color);
@@ -23,18 +27,4 @@
 
 .page-back-link:hover {
   text-decoration: underline;
-}
-
-@media (max-width: 480px) {
-  .page-shell {
-    padding-top: 1.25rem;
-  }
-
-  .page-shell > .section {
-    padding-top: 1rem;
-  }
-
-  .page-back-link {
-    margin-bottom: 0.25rem;
-  }
 }

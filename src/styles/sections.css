@@ -1,5 +1,5 @@
 .section {
-  padding: 4.5rem 0;
+  padding: var(--section-space) 0;
 }
 
 .section-heading-row {
@@ -8,7 +8,7 @@
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 0.5rem 1.5rem;
-  margin-bottom: 1.75rem;
+  margin-bottom: var(--section-title-gap);
 }
 
 .section-heading-row .section-title {
@@ -65,13 +65,17 @@
 .section-title {
   font-size: var(--fs-lg);
   font-weight: 700;
-  margin-bottom: 1.75rem;
+  margin-bottom: var(--section-title-gap);
   padding-bottom: 0.75rem;
   color: var(--text-color);
   letter-spacing: 0;
   text-transform: none;
   line-height: 1.25;
   position: relative;
+}
+
+#main-content > .fade-in-section + .fade-in-section > .section {
+  padding-top: 0;
 }
 
 .section-title::after {

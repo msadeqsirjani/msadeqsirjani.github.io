@@ -1,4 +1,7 @@
 .timeline-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--content-stack-gap);
   max-width: 800px;
   margin: 0 auto;
 }
@@ -7,12 +10,12 @@
   display: grid;
   grid-template-columns: minmax(120px, 20%) 1fr;
   gap: 2rem;
-  margin-bottom: 1rem;
+  margin-bottom: 0;
   margin-inline: 0;
 }
 
 .timeline-item:last-child {
-  margin-bottom: 1rem;
+  margin-bottom: 0;
   border-bottom: none;
 }
 

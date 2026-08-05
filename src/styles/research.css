@@ -4,7 +4,7 @@
   padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: var(--content-stack-gap);
 }
 
 .research-row {
