@@ -4,6 +4,8 @@ import useContentData from '../../hooks/useContentData';
 import type {Publication} from '../../types';
 import {ROUTE_PATHS} from '../../constants/siteNav';
 import {navLinkProps} from '../../utils/router';
+import ContentState from '../ContentState/ContentState';
+import SkeletonLoader from '../SkeletonLoader/SkeletonLoader';
 
 const MAX_PREVIEW = 5;
 
@@ -28,7 +30,12 @@ const renderAuthors = (authors: string) =>
 const pubKey = (pub: Publication) => pub.bibtexId ?? `${pub.year}-${pub.title}`;
 
 const Publications = () => {
-  const {data: publications} = useContentData(fetchPublications, pubData, {
+  const {
+    data: publications,
+    loading,
+    error,
+    retry,
+  } = useContentData(fetchPublications, pubData, {
     logLabel: 'publications data',
   });
 
@@ -56,39 +63,67 @@ const Publications = () => {
             </span>
           </a>
         </div>
-        <div className="publications-container">
-          <div className="publication-list" role="list">
-            {preview.map(pub => (
-              <div
-                key={pubKey(pub)}
-                className="publication-item"
-                role="listitem"
-              >
-                <h3 className="publication-title">{pub.title}</h3>
-                {pub.authors && (
-                  <p className="publication-authors">
-                    {renderAuthors(pub.authors)}
-                  </p>
-                )}
-                {pub.venue && !/preprint/i.test(pub.venue) && (
-                  <p className="publication-venue">{pub.venue}</p>
-                )}
-                <div className="pub-card-meta">
-                  <span className={`pub-status-badge pub-status-${pub.status}`}>
-                    {getStatusLabel(pub.status)}
-                  </span>
-                  <span className="pub-card-metaitem">{pub.year}</span>
-                  {!!pub.citations && (
-                    <span className="pub-card-metaitem">
-                      {pub.citations}{' '}
-                      {pub.citations === 1 ? 'citation' : 'citations'}
-                    </span>
+        {loading ? (
+          <SkeletonLoader
+            type="publication"
+            count={3}
+            label="Loading publications"
+          />
+        ) : error ? (
+          <ContentState
+            variant="error"
+            title="Publications unavailable"
+            message={error}
+            actionLabel="Try again"
+            onAction={retry}
+            headingLevel={3}
+            compact
+          />
+        ) : preview.length === 0 ? (
+          <ContentState
+            variant="empty"
+            title="No publications yet"
+            message="Publication records will appear here when they are available."
+            headingLevel={3}
+            compact
+          />
+        ) : (
+          <div className="publications-container">
+            <div className="publication-list" role="list">
+              {preview.map(pub => (
+                <div
+                  key={pubKey(pub)}
+                  className="publication-item"
+                  role="listitem"
+                >
+                  <h3 className="publication-title">{pub.title}</h3>
+                  {pub.authors && (
+                    <p className="publication-authors">
+                      {renderAuthors(pub.authors)}
+                    </p>
                   )}
+                  {pub.venue && !/preprint/i.test(pub.venue) && (
+                    <p className="publication-venue">{pub.venue}</p>
+                  )}
+                  <div className="pub-card-meta">
+                    <span
+                      className={`pub-status-badge pub-status-${pub.status}`}
+                    >
+                      {getStatusLabel(pub.status)}
+                    </span>
+                    <span className="pub-card-metaitem">{pub.year}</span>
+                    {!!pub.citations && (
+                      <span className="pub-card-metaitem">
+                        {pub.citations}{' '}
+                        {pub.citations === 1 ? 'citation' : 'citations'}
+                      </span>
+                    )}
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </section>
   );

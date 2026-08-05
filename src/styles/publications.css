@@ -271,8 +271,7 @@
   color: var(--text-light);
 }
 
-.pub-filter-reset,
-.pub-empty-reset {
+.pub-filter-reset {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -292,76 +291,15 @@
     text-decoration-color 0.2s ease;
 }
 
-.pub-filter-reset:hover,
-.pub-empty-reset:hover {
+.pub-filter-reset:hover {
   color: var(--accent-color);
   text-decoration: underline;
   text-underline-offset: 0.18em;
 }
 
-.pub-filter-reset:focus-visible,
-.pub-empty-reset:focus-visible {
+.pub-filter-reset:focus-visible {
   outline: 3px solid rgba(var(--accent-rgb), 0.35);
   outline-offset: 3px;
-}
-
-.pub-empty {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  max-width: 40rem;
-  margin: 0 auto;
-  padding: 2.5rem 1.5rem;
-  border: 1px dashed rgba(var(--accent-rgb), 0.28);
-  border-radius: var(--shape-card);
-  background: var(--surface-muted);
-  text-align: center;
-  color: var(--text-light);
-}
-
-.pub-empty-icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 44px;
-  height: 44px;
-  margin-bottom: 1rem;
-  border-radius: var(--icon-border-radius);
-  background: rgba(var(--accent-rgb), 0.1);
-  color: var(--accent-color);
-  font-size: var(--fs-lg);
-}
-
-.pub-empty p {
-  max-width: 34rem;
-  margin: 0 auto;
-  text-align: center;
-}
-
-.pub-empty .pub-empty-title {
-  margin-bottom: 0.35rem;
-  font-family: var(--font-display);
-  font-size: var(--fs-md);
-  font-weight: 700;
-  line-height: 1.35;
-  color: var(--text-color);
-}
-
-.pub-empty-reset {
-  min-height: var(--control-height);
-  margin-top: 1.25rem;
-  padding-inline: 1rem;
-  border: var(--button-border-width) solid var(--border-color);
-  border-radius: var(--button-border-radius);
-}
-
-.pub-empty-reset:hover {
-  border-color: var(--accent-color);
-  background: rgba(var(--accent-rgb), 0.08);
-}
-
-.publications-page:has(.pub-empty) {
-  padding-bottom: 3rem;
 }
 
 .pub-card-list {
@@ -563,20 +501,6 @@
 }
 
 @media (max-width: 600px) {
-  .publications-page:has(.pub-empty) {
-    padding-bottom: 2rem;
-  }
-
-  .pub-empty {
-    padding: 1.75rem 1rem;
-  }
-
-  .pub-empty-icon {
-    width: 40px;
-    height: 40px;
-    font-size: var(--fs-base);
-  }
-
   .pub-card {
     padding: 1.1rem 1.2rem;
   }

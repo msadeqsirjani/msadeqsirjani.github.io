@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react';
+import {useCallback, useEffect, useState} from 'react';
 
 interface UseContentOptions {
   logLabel?: string;
@@ -21,11 +21,15 @@ export function useContentData<T>(
   const [data, setData] = useState<T>(initialValue);
   const [loading, setLoading] = useState(!shouldSkipFetch(initialValue));
   const [error, setError] = useState<string | null>(null);
+  const [attempt, setAttempt] = useState(0);
 
   const skipFetch = shouldSkipFetch(initialValue);
-  if (skipFetch && loading) {
-    setLoading(false);
-  }
+
+  const retry = useCallback(() => {
+    setError(null);
+    setLoading(true);
+    setAttempt(current => current + 1);
+  }, []);
 
   useEffect(() => {
     if (skipFetch) {
@@ -35,6 +39,7 @@ export function useContentData<T>(
     let active = true;
 
     const load = async () => {
+      setLoading(true);
       try {
         const result = await fetcher();
         if (!active) return;
@@ -64,9 +69,10 @@ export function useContentData<T>(
     options.errorMessage,
     options.logLabel,
     skipFetch,
+    attempt,
   ]);
 
-  return {data, loading, error};
+  return {data, loading, error, retry};
 }
 
 export default useContentData;

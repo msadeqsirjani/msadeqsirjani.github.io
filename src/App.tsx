@@ -5,7 +5,9 @@ import Navbar from './components/Navbar/Navbar';
 import Hero from './components/Hero/Hero';
 import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary';
 import AnimatedSection from './components/AnimatedSection/AnimatedSection';
-import SkeletonLoader from './components/SkeletonLoader/SkeletonLoader';
+import SkeletonLoader, {
+  type SkeletonType,
+} from './components/SkeletonLoader/SkeletonLoader';
 import DeferredIdle from './components/DeferredIdle/DeferredIdle';
 import DeferredToaster from './components/DeferredToaster/DeferredToaster';
 import LazyGlobalSearch from './components/LazyGlobalSearch/LazyGlobalSearch';
@@ -73,10 +75,30 @@ const PAGE_COMPONENTS: Record<Exclude<RouteKey, 'home'>, LazyComponent> = {
   service: Service,
 };
 
-const SectionLoader = () => (
-  <div style={{padding: '2rem 0'}}>
+const PAGE_LOADER_TYPES: Record<Exclude<RouteKey, 'home'>, SkeletonType> = {
+  research: 'tile',
+  education: 'record',
+  publications: 'publication',
+  teaching: 'card',
+  news: 'card',
+  awards: 'record',
+  service: 'card',
+};
+
+interface SectionLoaderProps {
+  type?: SkeletonType;
+  count?: number;
+  label?: string;
+}
+
+const SectionLoader = ({
+  type = 'card',
+  count = 3,
+  label = 'Loading section',
+}: SectionLoaderProps) => (
+  <div className="section-loader">
     <div className="container">
-      <SkeletonLoader type="publication" count={3} />
+      <SkeletonLoader type={type} count={count} label={label} />
     </div>
   </div>
 );
@@ -190,21 +212,38 @@ function App() {
           </ErrorBoundary>
           <ErrorBoundary>
             <AnimatedSection delay={0}>
-              <Suspense fallback={<SectionLoader />}>
+              <Suspense
+                fallback={
+                  <SectionLoader
+                    type="card"
+                    count={2}
+                    label="Loading biography"
+                  />
+                }
+              >
                 <Biography />
               </Suspense>
             </AnimatedSection>
           </ErrorBoundary>
           <ErrorBoundary>
             <AnimatedSection delay={DEFAULT_SECTION_DELAY}>
-              <Suspense fallback={<SectionLoader />}>
+              <Suspense
+                fallback={<SectionLoader label="Loading recent news" />}
+              >
                 <News scrollable />
               </Suspense>
             </AnimatedSection>
           </ErrorBoundary>
           <ErrorBoundary>
             <AnimatedSection delay={DEFAULT_SECTION_DELAY}>
-              <Suspense fallback={<SectionLoader />}>
+              <Suspense
+                fallback={
+                  <SectionLoader
+                    type="publication"
+                    label="Loading recent publications"
+                  />
+                }
+              >
                 <Publications />
               </Suspense>
             </AnimatedSection>
@@ -224,7 +263,14 @@ function App() {
         tabIndex={-1}
       >
         <ErrorBoundary>
-          <Suspense fallback={<SectionLoader />}>
+          <Suspense
+            fallback={
+              <SectionLoader
+                type={PAGE_LOADER_TYPES[routeKey]}
+                label={`Loading ${routeKey} content`}
+              />
+            }
+          >
             <PageShell>
               <PageComponent />
             </PageShell>
