@@ -207,24 +207,26 @@ function App() {
           aria-label="Main content"
           tabIndex={-1}
         >
-          <ErrorBoundary>
-            <Hero />
-          </ErrorBoundary>
-          <ErrorBoundary>
-            <AnimatedSection delay={0}>
-              <Suspense
-                fallback={
-                  <SectionLoader
-                    type="card"
-                    count={2}
-                    label="Loading biography"
-                  />
-                }
-              >
-                <Biography />
-              </Suspense>
-            </AnimatedSection>
-          </ErrorBoundary>
+          <div className="home-intro">
+            <ErrorBoundary>
+              <Hero />
+            </ErrorBoundary>
+            <ErrorBoundary>
+              <AnimatedSection delay={0}>
+                <Suspense
+                  fallback={
+                    <SectionLoader
+                      type="card"
+                      count={2}
+                      label="Loading biography"
+                    />
+                  }
+                >
+                  <Biography />
+                </Suspense>
+              </AnimatedSection>
+            </ErrorBoundary>
+          </div>
           <ErrorBoundary>
             <AnimatedSection delay={DEFAULT_SECTION_DELAY}>
               <Suspense
