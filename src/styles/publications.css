@@ -367,33 +367,61 @@
 }
 
 .pub-card-title {
-  margin: 0 0 0.35rem;
+  margin: 0;
   font-size: var(--fs-lg);
-  font-weight: 600;
-  line-height: 1.4;
+  font-weight: 700;
+  line-height: 1.32;
   color: var(--text-color);
-  text-align: justify;
+  text-align: left;
+  text-wrap: pretty;
+}
+
+.pub-card-citation,
+.publication-citation {
+  margin-top: 0.65rem;
+  padding-inline-start: 0.8rem;
+  border-inline-start: 2px solid rgba(var(--accent-rgb), 0.42);
 }
 
 .pub-card-authors {
-  margin: 0 0 0.2rem;
+  margin: 0;
   font-size: var(--fs-sm);
-  line-height: 1.5;
+  line-height: 1.55;
   color: var(--text-light);
-  text-align: justify;
-  text-justify: inter-word;
+  text-align: left;
 }
 
 .pub-card-authors strong {
-  color: var(--text-color);
+  color: var(--accent-color);
   font-weight: 700;
 }
 
 .pub-card-venue {
-  margin: 0;
-  font-size: var(--fs-sm);
-  font-style: italic;
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  margin: 0.25rem 0 0;
+  font-size: var(--fs-xs);
+  line-height: 1.5;
+  color: var(--accent-secondary);
+  text-align: left;
+}
+
+.pub-card-venue cite,
+.publication-venue cite {
+  font-style: normal;
+  font-weight: 600;
+}
+
+.pub-venue-label {
+  flex: 0 0 auto;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  line-height: 1.5;
+  text-transform: uppercase;
   color: var(--text-light);
+  opacity: 0.78;
 }
 
 .pub-card-keywords {
@@ -574,33 +602,38 @@
 }
 
 .publication-title {
-  font-size: var(--fs-base);
-  font-weight: 600;
+  font-size: var(--fs-md);
+  font-weight: 700;
   color: var(--text-color);
-  margin: 0 0 0.25rem;
-  line-height: 1.45;
-  text-align: justify;
+  margin: 0;
+  line-height: 1.35;
+  text-align: left;
+  text-wrap: pretty;
 }
 
 .publication-authors {
   font-size: var(--fs-sm);
   color: var(--text-light);
-  margin: 0.1rem 0;
+  margin: 0;
   font-weight: 400;
-  line-height: 1.5;
-  text-align: justify;
+  line-height: 1.55;
+  text-align: left;
 }
 
 .publication-authors strong {
   font-weight: 700;
-  color: var(--text-color);
+  color: var(--accent-color);
 }
 
 .publication-venue {
-  font-size: var(--fs-sm);
-  color: var(--text-light);
-  font-style: italic;
-  margin: 0.1rem 0 0;
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  margin: 0.25rem 0 0;
+  font-size: var(--fs-xs);
+  line-height: 1.5;
+  color: var(--accent-secondary);
+  text-align: left;
 }
 
 .publication-info {

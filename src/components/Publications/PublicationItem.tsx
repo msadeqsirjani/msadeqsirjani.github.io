@@ -55,6 +55,7 @@ const PublicationItem = ({pub, headingLevel = 3}: PublicationItemProps) => {
   const [abstractOpen, setAbstractOpen] = useState(false);
   const abstractId = useId();
   const hasKeywords = !!pub.keywords && pub.keywords.length > 0;
+  const hasVenue = !!pub.venue && !/preprint/i.test(pub.venue);
   const hasActions = Boolean(
     pub.abstract || pub.link || pub.pdfLink || pub.bibtexId || pub.github,
   );
@@ -65,11 +66,18 @@ const PublicationItem = ({pub, headingLevel = 3}: PublicationItemProps) => {
       <div className="pub-card-body">
         <TitleTag className="pub-card-title">{pub.title}</TitleTag>
 
-        {pub.authors && (
-          <p className="pub-card-authors">{renderAuthors(pub.authors)}</p>
-        )}
-        {pub.venue && !/preprint/i.test(pub.venue) && (
-          <p className="pub-card-venue">{pub.venue}</p>
+        {(pub.authors || hasVenue) && (
+          <div className="pub-card-citation">
+            {pub.authors && (
+              <p className="pub-card-authors">{renderAuthors(pub.authors)}</p>
+            )}
+            {hasVenue && (
+              <p className="pub-card-venue">
+                <span className="pub-venue-label">Venue</span>
+                <cite>{pub.venue}</cite>
+              </p>
+            )}
+          </div>
         )}
 
         <div className="pub-card-meta">

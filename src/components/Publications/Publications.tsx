@@ -97,13 +97,21 @@ const Publications = () => {
                   role="listitem"
                 >
                   <h3 className="publication-title">{pub.title}</h3>
-                  {pub.authors && (
-                    <p className="publication-authors">
-                      {renderAuthors(pub.authors)}
-                    </p>
-                  )}
-                  {pub.venue && !/preprint/i.test(pub.venue) && (
-                    <p className="publication-venue">{pub.venue}</p>
+                  {(pub.authors ||
+                    (pub.venue && !/preprint/i.test(pub.venue))) && (
+                    <div className="publication-citation">
+                      {pub.authors && (
+                        <p className="publication-authors">
+                          {renderAuthors(pub.authors)}
+                        </p>
+                      )}
+                      {pub.venue && !/preprint/i.test(pub.venue) && (
+                        <p className="publication-venue">
+                          <span className="pub-venue-label">Venue</span>
+                          <cite>{pub.venue}</cite>
+                        </p>
+                      )}
+                    </div>
                   )}
                   <div className="pub-card-meta">
                     <span

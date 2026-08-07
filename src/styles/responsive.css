@@ -3,11 +3,7 @@
 .news-card-text,
 .publications-intro,
 .pub-scholar-note,
-.publication-authors,
-.publication-venue,
 .publication-abstract p,
-.pub-card-authors,
-.pub-card-venue,
 .pub-abstract-panel,
 .timeline-description,
 .research-meta,
@@ -231,24 +227,18 @@ body:has(.mobile-menu-overlay) .scroll-to-top,
 }
 
 .publication-title {
-  margin-top: 0;
-  margin-bottom: 0.7rem;
-  font-size: var(--fs-base);
-  font-weight: 600;
-  line-height: 1.4;
+  margin: 0;
+  font-size: var(--fs-md);
+  font-weight: 700;
+  line-height: 1.35;
   color: var(--text-color);
-  text-align: justify;
-  text-justify: inter-word;
-  hyphens: auto;
+  text-align: left;
+  text-justify: auto;
+  hyphens: none;
 }
 
-.publication-authors,
-.publication-venue,
 .publication-abstract,
 .publication-abstract p,
-.pub-card-title,
-.pub-card-authors,
-.pub-card-venue,
 .pub-card-abstract,
 .bio-text p {
   text-align: justify;
@@ -256,14 +246,8 @@ body:has(.mobile-menu-overlay) .scroll-to-top,
   hyphens: auto;
 }
 
-.publication-title,
-.publication-authors,
-.publication-venue,
 .publication-abstract,
 .publication-abstract p,
-.pub-card-title,
-.pub-card-authors,
-.pub-card-venue,
 .pub-card-abstract {
   text-align-last: left;
   overflow-wrap: break-word;
@@ -278,8 +262,8 @@ body:has(.mobile-menu-overlay) .scroll-to-top,
 }
 
 .pub-card-title {
-  font-size: var(--fs-base);
-  line-height: 1.4;
+  font-size: var(--fs-md);
+  line-height: 1.35;
 }
 
 .pub-card-meta {
@@ -330,9 +314,7 @@ body:has(.mobile-menu-overlay) .scroll-to-top,
 
 .pub-card-authors,
 .pub-card-venue {
-  font-size: var(--fs-sm);
   line-height: 1.55;
-  text-align-last: left;
 }
 
 .pub-filter-bar {
@@ -642,7 +624,7 @@ body:has(.mobile-menu-overlay) .scroll-to-top,
   }
 
   .pub-card-title {
-    font-size: var(--fs-md);
+    font-size: var(--fs-lg);
   }
 
   .news-row-text,
@@ -826,7 +808,7 @@ body:has(.mobile-menu-overlay) .scroll-to-top,
   }
 
   .pub-card-title {
-    font-size: var(--fs-md);
+    font-size: var(--fs-lg);
   }
 }
 
@@ -1024,7 +1006,7 @@ body:has(.mobile-menu-overlay) .scroll-to-top,
   }
 
   .pub-card-title {
-    font-size: var(--fs-lg);
+    font-size: clamp(var(--fs-lg), 1.7vw, var(--fs-xl));
   }
 
   .footer-content {
