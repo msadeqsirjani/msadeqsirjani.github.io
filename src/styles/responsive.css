@@ -232,9 +232,10 @@ body:has(.mobile-menu-overlay) .scroll-to-top,
   font-weight: 700;
   line-height: 1.35;
   color: var(--text-color);
-  text-align: left;
-  text-justify: auto;
-  hyphens: none;
+  text-align: justify;
+  text-align-last: left;
+  text-justify: inter-word;
+  hyphens: auto;
 }
 
 .publication-abstract,
@@ -315,6 +316,27 @@ body:has(.mobile-menu-overlay) .scroll-to-top,
 .pub-card-authors,
 .pub-card-venue {
   line-height: 1.55;
+}
+
+.pub-card-title,
+.publication-title,
+.pub-card-authors,
+.publication-authors,
+.pub-card-venue cite,
+.publication-venue cite {
+  text-align: justify;
+  text-align-last: left;
+  text-justify: inter-word;
+  overflow-wrap: break-word;
+  word-break: normal;
+  hyphens: auto;
+  hyphenate-limit-chars: 6 3 3;
+}
+
+.pub-card-venue cite,
+.publication-venue cite {
+  flex: 1 1 auto;
+  min-width: 0;
 }
 
 .pub-filter-bar {
@@ -454,6 +476,58 @@ body:has(.mobile-menu-overlay) .scroll-to-top,
 
 .last-updated {
   display: none;
+}
+
+@media (max-width: 480px) {
+  .pub-card-title,
+  .publication-title {
+    font-size: var(--fs-base);
+    font-weight: 600;
+    line-height: 1.4;
+  }
+
+  .pub-card-citation,
+  .publication-citation {
+    margin-top: 0.55rem;
+    padding-inline-start: 0;
+    border-inline-start: 0;
+  }
+
+  .pub-card-authors,
+  .publication-authors {
+    font-size: 0.8125rem;
+    line-height: 1.5;
+  }
+
+  .pub-card-authors strong,
+  .publication-authors strong {
+    font-weight: 600;
+  }
+
+  .pub-card-venue,
+  .publication-venue {
+    display: block;
+    margin-top: 0.45rem;
+    font-size: var(--fs-xs);
+    line-height: 1.45;
+  }
+
+  .pub-card-venue .pub-venue-label,
+  .publication-venue .pub-venue-label {
+    display: block;
+    margin-bottom: 0.1rem;
+    font-size: 0.625rem;
+  }
+
+  .pub-card-venue cite,
+  .publication-venue cite {
+    display: block;
+    font-weight: 500;
+  }
+
+  .pub-card-keywords-inline {
+    display: none;
+  }
 }
 
 @media (hover: none) {
