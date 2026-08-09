@@ -1162,6 +1162,19 @@ body:has(.mobile-menu-overlay) .scroll-to-top,
   }
 }
 
+@media (min-width: 601px) and (max-width: 900px) and (orientation: portrait) {
+  .home-intro {
+    justify-content: flex-start;
+  }
+
+  .home-intro > .hero {
+    display: flex;
+    align-items: center;
+    min-height: calc(100vh - 4.5rem);
+    min-height: calc(100svh - 4.5rem);
+  }
+}
+
 @media (max-height: 520px) and (orientation: landscape) {
   .hero {
     padding: 2rem 0 2.5rem;
