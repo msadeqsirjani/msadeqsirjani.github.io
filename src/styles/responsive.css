@@ -118,8 +118,8 @@ body:has(.mobile-menu-overlay) .scroll-to-top,
 }
 
 .profile-image img {
-  width: 148px;
-  height: 148px;
+  width: 168px;
+  height: 168px;
 }
 
 .hero-title {
@@ -587,8 +587,8 @@ body:has(.mobile-menu-overlay) .scroll-to-top,
   }
 
   .profile-image img {
-    width: 184px;
-    height: 184px;
+    width: 200px;
+    height: 200px;
   }
 
   .hero-title {
@@ -709,8 +709,8 @@ body:has(.mobile-menu-overlay) .scroll-to-top,
   }
 
   .profile-image img {
-    width: 200px;
-    height: 200px;
+    width: 224px;
+    height: 224px;
   }
 
   .pub-card-title {
@@ -846,7 +846,7 @@ body:has(.mobile-menu-overlay) .scroll-to-top,
   }
 
   .hero-content {
-    grid-template-columns: minmax(220px, 250px) minmax(0, 1fr);
+    grid-template-columns: minmax(250px, 280px) minmax(0, 1fr);
     gap: 2rem;
     text-align: left;
   }
@@ -862,8 +862,8 @@ body:has(.mobile-menu-overlay) .scroll-to-top,
   }
 
   .profile-image img {
-    width: 250px;
-    height: 250px;
+    width: 280px;
+    height: 280px;
   }
 
   .hero-title {
@@ -933,8 +933,8 @@ body:has(.mobile-menu-overlay) .scroll-to-top,
   }
 
   .profile-image img {
-    width: 210px;
-    height: 210px;
+    width: 240px;
+    height: 240px;
   }
 
   .hero-title,
@@ -959,7 +959,7 @@ body:has(.mobile-menu-overlay) .scroll-to-top,
   }
 
   .hero-content {
-    grid-template-columns: 200px minmax(0, 1fr);
+    grid-template-columns: 180px minmax(0, 1fr);
     gap: 2rem;
     text-align: left;
   }
@@ -978,8 +978,8 @@ body:has(.mobile-menu-overlay) .scroll-to-top,
   }
 
   .profile-image img {
-    width: 150px;
-    height: 150px;
+    width: 180px;
+    height: 180px;
   }
 
   .hero-title,
@@ -1077,16 +1077,17 @@ body:has(.mobile-menu-overlay) .scroll-to-top,
   }
 
   .hero-content {
+    width: fit-content;
     max-width: 1120px;
     grid-template-columns:
-      minmax(250px, clamp(250px, 20.833vw, 300px))
-      minmax(0, 1fr);
+      minmax(280px, clamp(280px, 23vw, 340px))
+      minmax(0, max-content);
     gap: clamp(2rem, 3.2vw, 3.5rem);
   }
 
   .profile-image img {
-    width: clamp(250px, 20.833vw, 300px);
-    height: clamp(250px, 20.833vw, 300px);
+    width: clamp(280px, 23vw, 340px);
+    height: clamp(280px, 23vw, 340px);
   }
 
   .hero-title {
@@ -1194,8 +1195,8 @@ body:has(.mobile-menu-overlay) .scroll-to-top,
   }
 
   .profile-image img {
-    width: 145px;
-    height: 145px;
+    width: 164px;
+    height: 164px;
   }
 }
 
@@ -1217,6 +1218,7 @@ body:has(.mobile-menu-overlay) .scroll-to-top,
   }
 
   .home-intro .hero-content {
+    width: 100%;
     max-width: 720px;
     grid-template-columns: 1fr;
     gap: 1.5rem;
@@ -1224,8 +1226,8 @@ body:has(.mobile-menu-overlay) .scroll-to-top,
   }
 
   .home-intro .profile-image img {
-    width: 220px;
-    height: 220px;
+    width: 250px;
+    height: 250px;
   }
 
   .home-intro .hero-left,
@@ -1266,7 +1268,7 @@ body:has(.mobile-menu-overlay) .scroll-to-top,
 @media (min-width: 901px) and (max-width: 1366px) and (max-height: 800px) {
   .home-intro {
     display: grid;
-    grid-template-columns: minmax(0, 48%) minmax(0, 52%);
+    grid-template-columns: minmax(0, 52%) minmax(0, 48%);
     flex-direction: initial;
     justify-content: stretch;
     align-items: stretch;
@@ -1288,14 +1290,15 @@ body:has(.mobile-menu-overlay) .scroll-to-top,
   }
 
   .home-intro .hero-content {
+    width: 100%;
     max-width: none;
-    grid-template-columns: clamp(132px, 13vw, 166px) minmax(0, 1fr);
+    grid-template-columns: clamp(176px, 15vw, 204px) minmax(0, 1fr);
     gap: clamp(1rem, 2vw, 1.5rem);
   }
 
   .home-intro .profile-image img {
-    width: clamp(132px, 13vw, 166px);
-    height: clamp(132px, 13vw, 166px);
+    width: clamp(176px, 15vw, 204px);
+    height: clamp(176px, 15vw, 204px);
   }
 
   .home-intro .hero-title {

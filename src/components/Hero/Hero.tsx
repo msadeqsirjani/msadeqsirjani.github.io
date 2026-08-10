@@ -87,12 +87,12 @@ const Hero = () => {
                 <source
                   type="image/webp"
                   srcSet="/assets/img/profile-360.webp 360w, /assets/img/profile-480.webp 480w, /assets/img/profile-560.webp 560w, /assets/img/profile-600.webp 600w"
-                  sizes="(max-width: 480px) 148px, (max-width: 600px) 184px, (max-width: 768px) 200px, (max-width: 1024px) 250px, 300px"
+                  sizes="(max-height: 520px) and (orientation: landscape) 164px, (min-width: 901px) and (max-width: 1366px) and (max-height: 800px) 204px, (min-width: 901px) and (max-width: 1180px) and (min-height: 1000px) 250px, (min-width: 601px) and (max-width: 900px) and (orientation: landscape) 180px, (max-width: 480px) 168px, (max-width: 600px) 200px, (max-width: 768px) 224px, (max-width: 900px) 240px, (max-width: 980px) 280px, 340px"
                 />
                 <source
                   type="image/jpeg"
                   srcSet="/assets/img/profile-360.jpg 360w, /assets/img/profile-480.jpg 480w, /assets/img/profile-560.jpg 560w, /assets/img/profile-600.jpg 600w"
-                  sizes="(max-width: 480px) 148px, (max-width: 600px) 184px, (max-width: 768px) 200px, (max-width: 1024px) 250px, 300px"
+                  sizes="(max-height: 520px) and (orientation: landscape) 164px, (min-width: 901px) and (max-width: 1366px) and (max-height: 800px) 204px, (min-width: 901px) and (max-width: 1180px) and (min-height: 1000px) 250px, (min-width: 601px) and (max-width: 900px) and (orientation: landscape) 180px, (max-width: 480px) 168px, (max-width: 600px) 200px, (max-width: 768px) 224px, (max-width: 900px) 240px, (max-width: 980px) 280px, 340px"
                 />
                 <img
                   src="/assets/img/profile-600.jpg"
