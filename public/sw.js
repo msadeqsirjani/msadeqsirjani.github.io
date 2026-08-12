@@ -9,6 +9,11 @@ const PRECACHE_ASSETS = [
   // (jpg/og variants are for crawlers, which don't use the service worker)
   '/assets/img/profile-360.webp',
   '/assets/img/profile-600.webp',
+  '/manifest.json',
+  '/assets/icons/icon-192.png',
+  '/assets/icons/icon-512.png',
+  '/assets/icons/icon-maskable-512.png',
+  '/assets/icons/apple-touch-icon.png',
   '/assets/data/bibtex.json',
   '/assets/docs/cv/msadeqsirjani-cv.pdf',
 ];

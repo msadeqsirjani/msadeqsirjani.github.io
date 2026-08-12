@@ -1,11 +1,54 @@
 {
+  "id": "/",
   "name": "Mohammad Sadegh Sirjani - Academic Portfolio",
   "short_name": "MS Sirjani",
   "description": "Ph.D. Student in Computer Science at UT San Antonio researching IoT, Tiny AI, Edge AI, and Embedded Systems",
   "start_url": "/",
+  "scope": "/",
   "display": "standalone",
+  "display_override": ["standalone", "minimal-ui"],
   "background_color": "#ffffff",
   "theme_color": "#2c3e50",
   "orientation": "portrait-primary",
-  "categories": ["education", "academic", "portfolio"]
+  "lang": "en",
+  "dir": "ltr",
+  "categories": ["education", "academic", "portfolio"],
+  "icons": [
+    {
+      "src": "/assets/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/icons/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Publications",
+      "short_name": "Papers",
+      "url": "/#publications-all"
+    },
+    {
+      "name": "Curriculum Vitae",
+      "short_name": "CV",
+      "url": "/assets/docs/cv/msadeqsirjani-cv.pdf"
+    }
+  ]
 }
