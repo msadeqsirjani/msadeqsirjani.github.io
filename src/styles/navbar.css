@@ -5,7 +5,7 @@
   border-bottom: none;
   box-shadow: var(--elev-1);
   z-index: 100;
-  padding: 0.75rem 0;
+  padding: calc(0.75rem + env(safe-area-inset-top)) 0 0.75rem;
   width: 100%;
   transition:
     background-color 0.3s ease,
@@ -40,7 +40,8 @@
   align-items: center;
   max-width: 1200px;
   margin: 0 auto;
-  padding-inline: 1.5rem;
+  padding-inline: max(1.5rem, env(safe-area-inset-left))
+    max(1.5rem, env(safe-area-inset-right));
   gap: 1rem;
   width: 100%;
 }
