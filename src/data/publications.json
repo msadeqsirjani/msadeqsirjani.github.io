@@ -1,7 +1,7 @@
 [
   {
     "title": "MOSAIC: Multi-Domain Sensing Architecture for Efficient Computing in Domain Wall Memory",
-    "venue": "The 44th IEEE International Conference on Computer Design (ICCD 2026)",
+    "venue": "Design, Automation and Test in Europe Conference (DATE 2027)",
     "year": "2026",
     "status": "review",
     "authors": "Mohammad Ahmad, Mohammad Sadegh Sirjani, Wei Wei, Mimi Xie",
@@ -113,7 +113,7 @@
     "pdfLink": "assets/docs/publications/s10586-025-05331-y.pdf",
     "bibtexId": "Sirjani2025",
     "abstract": "Software-Defined Networking (SDN) separates the control and data layers, offering scalable and flexible network management. A key challenge is the optimal placement of SDN controllers, which has been shown to be an NP-hard problem. Existing methods often struggle to balance multiple performance objectives effectively. This paper presents a novel two-step approach for SDN controller placement. First, Deep Q-Learning (DQL) is employed to find an initial solution by learning from the network environment. Then, the Bedbug-GLA metaheuristic algorithm refines this solution. We evaluate our method using four real-world network topologies and compare it with eight state-of-the-art algorithms. Experimental results demonstrate that our approach achieves an 18% improvement in controller load, a 69% reduction in congested overload, and a 20% decrease in energy consumption.",
-    "citations": 10,
+    "citations": 11,
     "keywords": [
       "Bedbug Metaheuristic Algorithm",
       "Controller Placement Problem",
