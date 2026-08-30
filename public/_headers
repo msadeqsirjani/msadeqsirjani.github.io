@@ -26,3 +26,6 @@
 
 /assets/img/*
   Cache-Control: public, max-age=31536000, immutable
+
+/assets/docs/cv/*
+  X-Robots-Tag: noindex, nofollow, noarchive

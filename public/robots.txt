@@ -3,5 +3,6 @@ Allow: /
 Crawl-delay: 1
 Disallow: /assets/data/
 Disallow: /assets/docs/publications/
+Disallow: /assets/docs/cv/
 
 Sitemap: https://msadeqsirjani.com/sitemap.xml
