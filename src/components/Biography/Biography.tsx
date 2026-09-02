@@ -81,6 +81,34 @@ const Biography = () => {
               </a>
               .
             </p>
+
+            <p>
+              His recent papers have been accepted at the{' '}
+              <a
+                href="https://www.satcconf.com/"
+                target="_blank"
+                rel="noopener"
+              >
+                SATC
+              </a>
+              , the{' '}
+              <a
+                href="https://gem-workshop.com/"
+                target="_blank"
+                rel="noopener"
+              >
+                GEM Workshop
+              </a>{' '}
+              at ACL, and the{' '}
+              <a
+                href="https://bhi.embs.org/2026/"
+                target="_blank"
+                rel="noopener"
+              >
+                BHI
+              </a>
+              .
+            </p>
           </div>
         </div>
       </div>
