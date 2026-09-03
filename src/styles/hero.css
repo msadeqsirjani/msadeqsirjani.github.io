@@ -156,13 +156,14 @@
 }
 
 .hero-title {
-  font-size: var(--fs-3xl);
+  font-size: clamp(var(--fs-lg), 5.5vw, var(--fs-xl));
   font-weight: 700;
   margin-bottom: 0.5rem;
   color: var(--text-color);
   line-height: 1.08;
   letter-spacing: -0.028em;
   white-space: nowrap;
+  text-wrap: nowrap;
 }
 
 .hero-subtitle {
@@ -276,7 +277,7 @@
 .social-links {
   display: flex;
   gap: 0.65rem;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
 }
 
 .social-link {

@@ -113,7 +113,7 @@ const Hero = () => {
               Open to internships
             </p>
             <h1 className="hero-title" id="person">
-              Mohammad Sadegh Sirjani
+              Mohammad&nbsp;Sadegh&nbsp;Sirjani
             </h1>
             <h2 className="hero-subtitle">Ph.D. Student in Computer Science</h2>
             <p className="hero-institution">
