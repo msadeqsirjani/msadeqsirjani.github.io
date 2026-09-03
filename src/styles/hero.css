@@ -19,24 +19,34 @@
 
 .profile-image {
   position: relative;
-  display: inline-block;
+  display: block;
+  width: fit-content;
+  line-height: 0;
   isolation: isolate;
+}
+
+.profile-image picture {
+  display: contents;
 }
 
 .profile-image::before,
 .profile-image::after {
   content: '';
   position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  aspect-ratio: 1;
   border-radius: 50%;
   pointer-events: none;
 }
 
 .profile-image::before {
-  inset: -8px;
+  width: calc(100% + 16px);
   z-index: 0;
   border: 1px solid var(--portrait-ring);
   background: radial-gradient(
-    circle at 50% 46%,
+    circle at 50% 50%,
     var(--hero-atmosphere-core),
     transparent 72%
   );
@@ -44,19 +54,22 @@
 }
 
 .profile-image::after {
-  inset: 14px -10px -10px 14px;
+  width: calc(100% + 36px);
   z-index: 0;
   border: 1px solid var(--portrait-ring-offset);
-  box-shadow: 6px 8px 16px -12px var(--portrait-shade);
+  box-shadow: 0 0 16px var(--portrait-shade);
 }
 
 .profile-image img {
   position: relative;
   z-index: 1;
+  display: block;
   width: 300px;
   height: 300px;
+  aspect-ratio: 1;
   border-radius: 50%;
   object-fit: cover;
+  object-position: center;
   border: 2px solid var(--portrait-edge);
   box-shadow:
     0 6px 14px -10px var(--portrait-shade),

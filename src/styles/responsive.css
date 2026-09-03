@@ -130,8 +130,6 @@ body:has(.mobile-menu-overlay) .scroll-to-top,
 }
 
 .profile-image {
-  display: inline-flex;
-  justify-content: center;
   margin-inline: auto;
 }
 
@@ -865,7 +863,6 @@ body:has(.mobile-menu-overlay) .scroll-to-top,
   }
 
   .profile-image {
-    display: inline-block;
     margin-inline: 0;
   }
 
