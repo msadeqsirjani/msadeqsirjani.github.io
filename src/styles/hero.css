@@ -162,7 +162,7 @@
   color: var(--text-color);
   line-height: 1.08;
   letter-spacing: -0.028em;
-  text-wrap: balance;
+  white-space: nowrap;
 }
 
 .hero-subtitle {

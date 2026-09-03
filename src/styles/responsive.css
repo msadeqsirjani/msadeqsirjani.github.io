@@ -137,15 +137,12 @@ body:has(.mobile-menu-overlay) .scroll-to-top,
 }
 
 .hero-title {
-  max-width: min(18ch, 100%);
+  max-width: 100%;
   margin: 0 auto 0.5rem;
   font-size: clamp(var(--fs-lg), 6vw, var(--fs-xl));
   line-height: 1.25;
   text-align: center;
-  overflow-wrap: anywhere;
-  white-space: normal;
   letter-spacing: -0.02em;
-  text-wrap: pretty;
 }
 
 .hero-subtitle {
@@ -594,10 +591,9 @@ body:has(.mobile-menu-overlay) .scroll-to-top,
   }
 
   .hero-title {
-    max-width: min(22ch, 100%);
+    max-width: 100%;
     font-size: var(--fs-2xl);
     line-height: 1.2;
-    white-space: normal;
   }
 
   .hero-subtitle {
@@ -1332,7 +1328,6 @@ body:has(.mobile-menu-overlay) .scroll-to-top,
     margin-inline: 0;
     font-size: clamp(var(--fs-xl), 2.1vw, var(--fs-2xl));
     line-height: 1.15;
-    white-space: normal;
   }
 
   .home-intro .hero-subtitle {
