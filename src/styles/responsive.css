@@ -87,6 +87,20 @@ body:has(.mobile-menu-overlay) .scroll-to-top,
   min-height: calc(100svh - 4rem);
 }
 
+#root:has(.home-intro)::before {
+  background:
+    radial-gradient(
+      ellipse 56% 40% at 50% 10%,
+      var(--hero-atmosphere-core),
+      transparent 72%
+    ),
+    radial-gradient(
+      ellipse 80% 48% at 50% 0%,
+      var(--hero-atmosphere),
+      transparent 78%
+    );
+}
+
 @media (max-width: 600px) and (orientation: portrait) {
   .hero {
     min-height: calc(100vh - 4rem);
@@ -101,7 +115,7 @@ body:has(.mobile-menu-overlay) .scroll-to-top,
 
 .hero-content {
   grid-template-columns: 1fr;
-  gap: 1.5rem;
+  gap: 2rem;
   padding: 0;
   text-align: center;
 }
@@ -123,12 +137,15 @@ body:has(.mobile-menu-overlay) .scroll-to-top,
 }
 
 .hero-title {
-  max-width: 18ch;
+  max-width: min(18ch, 100%);
   margin: 0 auto 0.5rem;
   font-size: clamp(var(--fs-lg), 6vw, var(--fs-xl));
   line-height: 1.25;
   text-align: center;
   overflow-wrap: anywhere;
+  white-space: normal;
+  letter-spacing: -0.02em;
+  text-wrap: pretty;
 }
 
 .hero-subtitle {
@@ -137,26 +154,11 @@ body:has(.mobile-menu-overlay) .scroll-to-top,
   text-align: center;
 }
 
-.hero-institution,
-.hero-tagline {
-  font-size: var(--fs-sm);
-  line-height: 1.55;
-  text-align: center;
-}
-
 .hero-institution {
+  text-align: center;
   max-width: 34rem;
   margin-bottom: 1rem;
   margin-inline: auto;
-}
-
-.hero-sep {
-  display: none;
-}
-
-.hero-tagline {
-  display: block;
-  margin-top: 0.25rem;
 }
 
 .hero-buttons {
@@ -583,7 +585,7 @@ body:has(.mobile-menu-overlay) .scroll-to-top,
   }
 
   .hero-content {
-    gap: 1.75rem;
+    gap: 2.25rem;
   }
 
   .profile-image img {
@@ -592,28 +594,18 @@ body:has(.mobile-menu-overlay) .scroll-to-top,
   }
 
   .hero-title {
-    max-width: none;
+    max-width: min(22ch, 100%);
     font-size: var(--fs-2xl);
     line-height: 1.2;
+    white-space: normal;
   }
 
   .hero-subtitle {
     font-size: var(--fs-md);
   }
 
-  .hero-institution,
-  .hero-tagline {
-    font-size: var(--fs-base);
+  .hero-institution {
     line-height: 1.5;
-  }
-
-  .hero-sep {
-    display: inline;
-  }
-
-  .hero-tagline {
-    display: inline;
-    margin-top: 0;
   }
 
   .hero-buttons {
@@ -705,7 +697,7 @@ body:has(.mobile-menu-overlay) .scroll-to-top,
   }
 
   .hero-content {
-    gap: 2rem;
+    gap: 2.5rem;
   }
 
   .profile-image img {
@@ -845,9 +837,23 @@ body:has(.mobile-menu-overlay) .scroll-to-top,
     padding: 5.5rem 0 5rem;
   }
 
+  #root:has(.home-intro)::before {
+    background:
+      radial-gradient(
+        ellipse 36% 48% at 16% 22%,
+        var(--hero-atmosphere-core),
+        transparent 70%
+      ),
+      radial-gradient(
+        ellipse 70% 58% at 8% 0%,
+        var(--hero-atmosphere),
+        transparent 76%
+      );
+  }
+
   .hero-content {
     grid-template-columns: minmax(250px, 280px) minmax(0, 1fr);
-    gap: 2rem;
+    gap: 5.5rem;
     text-align: left;
   }
 
@@ -877,12 +883,8 @@ body:has(.mobile-menu-overlay) .scroll-to-top,
     text-align: left;
   }
 
-  .hero-institution,
-  .hero-tagline {
-    text-align: left;
-  }
-
   .hero-institution {
+    text-align: left;
     margin-bottom: 1.25rem;
     margin-inline: 0;
   }
@@ -908,6 +910,20 @@ body:has(.mobile-menu-overlay) .scroll-to-top,
 }
 
 @media (min-width: 769px) and (max-width: 900px) and (orientation: portrait) {
+  #root:has(.home-intro)::before {
+    background:
+      radial-gradient(
+        ellipse 52% 40% at 50% 10%,
+        var(--hero-atmosphere-core),
+        transparent 72%
+      ),
+      radial-gradient(
+        ellipse 78% 48% at 50% 0%,
+        var(--hero-atmosphere),
+        transparent 78%
+      );
+  }
+
   .hero {
     display: flex;
     padding: 4rem 0;
@@ -923,8 +939,7 @@ body:has(.mobile-menu-overlay) .scroll-to-top,
   .hero-right,
   .hero-title,
   .hero-subtitle,
-  .hero-institution,
-  .hero-tagline {
+  .hero-institution {
     text-align: center;
   }
 
@@ -960,7 +975,7 @@ body:has(.mobile-menu-overlay) .scroll-to-top,
 
   .hero-content {
     grid-template-columns: 180px minmax(0, 1fr);
-    gap: 2rem;
+    gap: 2.5rem;
     text-align: left;
   }
 
@@ -968,8 +983,7 @@ body:has(.mobile-menu-overlay) .scroll-to-top,
   .hero-right,
   .hero-title,
   .hero-subtitle,
-  .hero-institution,
-  .hero-tagline {
+  .hero-institution {
     text-align: left;
   }
 
@@ -1082,7 +1096,7 @@ body:has(.mobile-menu-overlay) .scroll-to-top,
     grid-template-columns:
       minmax(280px, clamp(280px, 23vw, 340px))
       minmax(0, max-content);
-    gap: clamp(2rem, 3.2vw, 3.5rem);
+    gap: clamp(6.5rem, 8vw, 8rem);
   }
 
   .profile-image img {
@@ -1097,8 +1111,7 @@ body:has(.mobile-menu-overlay) .scroll-to-top,
 
   .hero-institution {
     max-width: none;
-    font-size: clamp(var(--fs-sm), 1.45vw, var(--fs-base));
-    white-space: nowrap;
+    white-space: normal;
   }
 
   .pub-card-title {
@@ -1210,6 +1223,20 @@ body:has(.mobile-menu-overlay) .scroll-to-top,
     min-height: calc(100svh - 4.5rem);
   }
 
+  #root:has(.home-intro)::before {
+    background:
+      radial-gradient(
+        ellipse 52% 40% at 50% 10%,
+        var(--hero-atmosphere-core),
+        transparent 72%
+      ),
+      radial-gradient(
+        ellipse 78% 48% at 50% 0%,
+        var(--hero-atmosphere),
+        transparent 78%
+      );
+  }
+
   .home-intro > .hero {
     display: flex;
     align-items: center;
@@ -1234,8 +1261,7 @@ body:has(.mobile-menu-overlay) .scroll-to-top,
   .home-intro .hero-right,
   .home-intro .hero-title,
   .home-intro .hero-subtitle,
-  .home-intro .hero-institution,
-  .home-intro .hero-tagline {
+  .home-intro .hero-institution {
     text-align: center;
   }
 
@@ -1293,7 +1319,7 @@ body:has(.mobile-menu-overlay) .scroll-to-top,
     width: 100%;
     max-width: none;
     grid-template-columns: clamp(176px, 15vw, 204px) minmax(0, 1fr);
-    gap: clamp(1rem, 2vw, 1.5rem);
+    gap: clamp(1.75rem, 2.8vw, 2.5rem);
   }
 
   .home-intro .profile-image img {
@@ -1313,24 +1339,14 @@ body:has(.mobile-menu-overlay) .scroll-to-top,
     font-size: var(--fs-base);
   }
 
-  .home-intro .hero-institution,
-  .home-intro .hero-tagline {
-    font-size: var(--fs-sm);
-    line-height: 1.45;
-    white-space: normal;
+  .home-intro .hero-availability {
+    margin-bottom: 0.45rem;
   }
 
   .home-intro .hero-institution {
     margin-bottom: 0.75rem;
-  }
-
-  .home-intro .hero-sep {
-    display: none;
-  }
-
-  .home-intro .hero-tagline {
-    display: block;
-    margin-top: 0.125rem;
+    line-height: 1.45;
+    white-space: normal;
   }
 
   .home-intro .hero-buttons {
