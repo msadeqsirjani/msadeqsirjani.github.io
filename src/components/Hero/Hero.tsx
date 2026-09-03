@@ -107,8 +107,10 @@ const Hero = () => {
           </div>
           <div className="hero-right">
             <p className="hero-availability">
-              <span className="hero-availability-dot" aria-hidden="true" />
-              Open to industry internships
+              <span className="hero-availability-dot" aria-hidden="true">
+                <span className="hero-availability-orbit" />
+              </span>
+              Open to internships
             </p>
             <h1 className="hero-title" id="person">
               Mohammad Sadegh Sirjani
