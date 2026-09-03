@@ -375,15 +375,30 @@ body {
   overflow-x: clip;
 }
 
-#root:has(.home-intro)::before {
+#root::before {
   content: '';
   position: absolute;
   top: 0;
   right: 0;
   left: 0;
-  height: min(46rem, 100vh);
+  height: 8rem;
   z-index: 0;
   pointer-events: none;
+  background:
+    radial-gradient(
+      ellipse 58% 160% at 8% 0%,
+      var(--hero-atmosphere),
+      transparent 72%
+    ),
+    radial-gradient(
+      ellipse 40% 120% at 12% 0%,
+      var(--hero-atmosphere-core),
+      transparent 70%
+    );
+}
+
+#root:has(.home-intro)::before {
+  height: min(46rem, 100vh);
   background:
     radial-gradient(
       ellipse 36% 48% at 16% 22%,
@@ -412,7 +427,7 @@ body {
 }
 
 @media (prefers-reduced-transparency: reduce) {
-  #root:has(.home-intro)::before {
+  #root::before {
     display: none;
   }
 
