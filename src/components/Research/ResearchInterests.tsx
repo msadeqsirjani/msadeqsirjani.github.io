@@ -20,8 +20,8 @@ const ResearchInterests = () => {
         <h1 className="section-title page-title">Research Interests</h1>
         {loading ? (
           <SkeletonLoader
-            type="tile"
-            count={3}
+            type="record"
+            count={6}
             label="Loading research interests"
           />
         ) : error ? (
@@ -39,14 +39,18 @@ const ResearchInterests = () => {
             message="Research areas will appear here when they are available."
           />
         ) : (
-          <div className="interests-container">
-            {interests.map((interest, index) => (
-              <div key={index} className="interest-card">
-                <Icon icon={interest.icon} className="interest-icon" />
-                <span dangerouslySetInnerHTML={{__html: interest.name}}></span>
-              </div>
+          <ul className="interests-list">
+            {interests.map(interest => (
+              <li key={interest.name} className="interest-row">
+                <span className="interest-mark" aria-hidden="true">
+                  <Icon icon={interest.icon} className="interest-icon" />
+                </span>
+                <span className="interest-name">
+                  {interest.name.replace(/<br\s*\/?>/gi, ' ')}
+                </span>
+              </li>
             ))}
-          </div>
+          </ul>
         )}
       </div>
     </section>

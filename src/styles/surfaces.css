@@ -1,4 +1,3 @@
-.interest-card,
 .publication-item,
 .pub-card,
 .education-row,
@@ -19,7 +18,6 @@
     background-color 0.2s ease;
 }
 
-.interest-card:focus-within,
 .publication-item:focus-within,
 .pub-card:focus-within,
 .education-row:focus-within,
@@ -32,7 +30,6 @@
 }
 
 @media (hover: hover) {
-  .interest-card:hover,
   .publication-item:hover,
   .pub-card:hover,
   .education-row:hover,

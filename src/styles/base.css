@@ -325,7 +325,6 @@ html[data-theme='dark']
     .award-row,
     .service-row,
     .news-card,
-    .interest-card,
     .timeline-item
   ) {
   border-color: rgba(236, 238, 242, 0.06);
@@ -341,14 +340,13 @@ html[data-theme='dark']
     .award-row,
     .service-row,
     .news-card,
-    .interest-card,
     .timeline-item
   ):hover {
   box-shadow: 0 12px 28px -18px rgba(0, 0, 0, 0.95);
 }
 
-html:not([data-theme='dark']) :is(.research-row, .interest-card):hover,
-html[data-theme='dark'] :is(.research-row, .interest-card):hover {
+html:not([data-theme='dark']) .research-row:hover,
+html[data-theme='dark'] .research-row:hover {
   border-color: rgba(var(--accent-secondary-rgb), 0.38);
   box-shadow: 0 14px 28px -14px rgba(var(--accent-secondary-rgb), 0.24);
 }

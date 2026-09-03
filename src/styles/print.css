@@ -252,7 +252,7 @@
     background: none !important;
   }
 
-  .interests-container {
+  .interests-list {
     display: flex !important;
     flex-wrap: wrap !important;
     padding: 0 !important;
@@ -260,7 +260,7 @@
     gap: 0.04cm 0 !important;
   }
 
-  .interest-card {
+  .interest-row {
     display: block !important;
     width: 33% !important;
     height: auto !important;
@@ -269,26 +269,14 @@
     border: none !important;
     text-align: left !important;
     flex-shrink: 0 !important;
-    flex-direction: unset !important;
-    align-items: unset !important;
-    justify-content: unset !important;
-    box-sizing: border-box !important;
+    background: none !important;
   }
 
-  .interest-card::before,
-  .interest-card::after {
+  .interest-mark {
     display: none !important;
-    content: none !important;
   }
 
-  .interest-card svg,
-  .interest-card .interest-icon {
-    display: none !important;
-    width: 0 !important;
-    height: 0 !important;
-  }
-
-  .interest-card span {
+  .interest-name {
     font-size: 10.5pt !important;
     text-align: left !important;
     display: block !important;
