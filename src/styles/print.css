@@ -160,11 +160,8 @@
     text-decoration: none !important;
   }
 
-  .hero-tagline {
-    font-size: 10pt !important;
-    font-style: italic;
-    display: block !important;
-    margin: 0;
+  .hero-availability {
+    display: none !important;
   }
 
   .hero-institution::after {
@@ -268,7 +265,6 @@
     width: 33% !important;
     height: auto !important;
     min-height: 0 !important;
-
     padding: 0 0 0.07cm 0 !important;
     border: none !important;
     text-align: left !important;
