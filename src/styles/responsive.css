@@ -853,7 +853,7 @@ body:has(.mobile-menu-overlay) .scroll-to-top,
 
   .hero-content {
     grid-template-columns: minmax(250px, 280px) minmax(0, 1fr);
-    gap: 5.5rem;
+    gap: 4.5rem;
     text-align: left;
   }
 
@@ -1096,7 +1096,7 @@ body:has(.mobile-menu-overlay) .scroll-to-top,
     grid-template-columns:
       minmax(280px, clamp(280px, 23vw, 340px))
       minmax(0, max-content);
-    gap: clamp(6.5rem, 8vw, 8rem);
+    gap: clamp(4.5rem, 5.5vw, 5.5rem);
   }
 
   .profile-image img {

@@ -10,7 +10,7 @@
   z-index: 1;
   display: grid;
   grid-template-columns: minmax(240px, 300px) minmax(0, 1fr);
-  gap: 5.5rem;
+  gap: 4.5rem;
   align-items: center;
   max-width: 1000px;
   margin: 0 auto;
