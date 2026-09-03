@@ -78,7 +78,6 @@ const Hero = () => {
 
   return (
     <section id="home" className="hero">
-      <div className="hero-blob" aria-hidden="true" />
       <div className="container">
         <div className="hero-content">
           <div className="hero-left">
@@ -107,6 +106,10 @@ const Hero = () => {
             </div>
           </div>
           <div className="hero-right">
+            <p className="hero-availability">
+              <span className="hero-availability-dot" aria-hidden="true" />
+              Open to industry internships
+            </p>
             <h1 className="hero-title" id="person">
               Mohammad Sadegh Sirjani
             </h1>
@@ -115,12 +118,6 @@ const Hero = () => {
               <a href="https://www.utsa.edu/" target="_blank" rel="noopener">
                 University of Texas at San Antonio
               </a>
-              <span className="hero-sep" aria-hidden="true">
-                ·
-              </span>
-              <span className="hero-tagline">
-                TinyAI & Embedded Systems Researcher
-              </span>
             </p>
 
             <div className="hero-buttons">
