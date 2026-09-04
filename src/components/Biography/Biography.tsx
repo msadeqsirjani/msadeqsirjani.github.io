@@ -8,18 +8,18 @@ const Biography = () => {
             <p>
               Mohammad Sadegh Sirjani is a Ph.D. student in Computer Science at
               the{' '}
-              <a href="https://utsa.edu" target="_blank" rel="noopener">
+              <a href="https://www.utsa.edu/" target="_blank" rel="noopener">
                 University of Texas at San Antonio
               </a>
-              , working in the{' '}
+              . He is a research assistant in the{' '}
               <a
                 href="https://caicc.utsa.edu/computer-science/research/facilities.html"
                 target="_blank"
                 rel="noopener"
               >
                 ASIC Lab
-              </a>{' '}
-              under{' '}
+              </a>
+              , advised by{' '}
               <a
                 href="https://caicc.utsa.edu/faculty/profiles/xie-mimi.html"
                 target="_blank"
@@ -27,63 +27,53 @@ const Biography = () => {
               >
                 Prof. Mimi Xie
               </a>
-              . His work focuses on TinyML, edge AI, and embedded systems, with
-              an emphasis on efficient on-device intelligence for
-              resource-constrained platforms.
+              . His research asks how machine learning can run on tiny embedded
+              devices that have little energy, little memory, and sometimes no
+              battery at all, including nodes that harvest energy from the
+              environment.
             </p>
 
             <p>
-              He earned his B.Sc. in Computer Engineering from{' '}
+              He works on TinyML, edge AI, and intermittent computing: inference
+              that must stay correct when power arrives in bursts rather than
+              from a stable supply. Current projects include adaptive compressed
+              sensing for wearable electrocardiogram monitoring under energy
+              harvesting, and in-memory computing on domain-wall memory so that
+              arithmetic happens where data already reside. Across these
+              projects he aims for on-device intelligence that does not depend
+              on the cloud or on a full battery.
+            </p>
+
+            <p>
+              He received his B.Sc. in Computer Engineering from{' '}
               <a href="https://en.um.ac.ir/" target="_blank" rel="noopener">
                 Ferdowsi University of Mashhad
               </a>
-              . In 2026, he passed his Ph.D. qualifying exam and was invited to
-              serve as a reviewer for{' '}
-              <a href="https://www.glsvlsi.org/" target="_blank" rel="noopener">
-                GLSVLSI 2026
-              </a>
-              . He received the DAC Young Fellowship in both{' '}
-              <a href="https://dac.com/2026" target="_blank" rel="noopener">
-                DAC 2026
-              </a>{' '}
-              and{' '}
-              <a
-                href="https://archive.dac.com/about/conference-archive/62nd-dac-2025.html"
-                target="_blank"
-                rel="noopener"
-              >
-                DAC 2025
-              </a>
-              , attended the{' '}
-              <a
-                href="https://archive.dac.com/about/conference-archive/62nd-dac-2025.html"
-                target="_blank"
-                rel="noopener"
-              >
-                62nd
-              </a>{' '}
-              and{' '}
-              <a href="https://dac.com/2026" target="_blank" rel="noopener">
-                63rd
-              </a>{' '}
-              DAC conferences, winning the 2-minute video presentation
-              competition both years. He was also selected for the{' '}
-              <a href="https://dair-3.org/" target="_blank" rel="noopener">
-                DAiR3 Data Science Summer School
-              </a>
-              , and won the Fan Favorite Award at the{' '}
-              <a
-                href="https://caicc.utsa.edu/draper/"
-                target="_blank"
-                rel="noopener"
-              >
-                Draper Data Science Business Plan Competition
-              </a>
-              .
+              . There he worked on software quality and web systems, then on
+              energy-aware scheduling and controller placement in IoT and
+              software-defined networks. That line of work drew him toward the
+              hardware and systems questions that now shape his Ph.D. He passed
+              his qualifying examination in 2026.
             </p>
 
             <p>
-              His recent papers have been accepted at the{' '}
+              His papers appear in{' '}
+              <a
+                href="https://www.springer.com/journal/10586"
+                target="_blank"
+                rel="noopener"
+              >
+                Cluster Computing
+              </a>
+              ,{' '}
+              <a
+                href="https://www.journals.elsevier.com/sustainable-computing-informatics-and-systems"
+                target="_blank"
+                rel="noopener"
+              >
+                Sustainable Computing
+              </a>
+              ,{' '}
               <a
                 href="https://www.satcconf.com/"
                 target="_blank"
@@ -91,7 +81,7 @@ const Biography = () => {
               >
                 SATC
               </a>
-              , the{' '}
+              , and the{' '}
               <a
                 href="https://gem-workshop.com/"
                 target="_blank"
@@ -99,15 +89,17 @@ const Biography = () => {
               >
                 GEM Workshop
               </a>{' '}
-              at ACL, and the{' '}
-              <a
-                href="https://bhi.embs.org/2026/"
-                target="_blank"
-                rel="noopener"
-              >
-                BHI
-              </a>
-              .
+              at ACL. He is a two-time{' '}
+              <a href="https://dac.com/2026" target="_blank" rel="noopener">
+                DAC
+              </a>{' '}
+              Young Fellow and won the conference's two-minute presentation
+              competition in 2025 and 2026. He has served as a reviewer for{' '}
+              <a href="https://www.glsvlsi.org/" target="_blank" rel="noopener">
+                GLSVLSI 2026
+              </a>{' '}
+              and as a teaching assistant at UTSA for operating systems,
+              computer organization, and data science.
             </p>
           </div>
         </div>
