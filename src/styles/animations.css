@@ -109,6 +109,7 @@ a {
 
 .social-link:hover {
   transform: translateY(-3px) scale(1.1);
+  text-decoration: none;
 }
 
 .social-link:active {
@@ -209,8 +210,7 @@ a {
 
   .select-selected:hover,
   .social-link:hover {
-    background-color: var(--accent-color) !important;
-    color: var(--bg-color) !important;
+    text-decoration: none;
   }
 
   a,
@@ -260,8 +260,7 @@ a {
 }
 
 .search-toggle:hover {
-  color: var(--accent-color);
-  border-color: var(--accent-color);
+  text-decoration: none;
 }
 
 .search-toggle[data-tooltip] {
@@ -418,7 +417,6 @@ a {
 }
 
 .select-selected:hover {
-  border-color: var(--accent-color);
   background-color: var(--gray-light);
 }
 
@@ -456,7 +454,6 @@ a {
 
 .select-items div:hover {
   background-color: var(--gray-light);
-  color: var(--accent-color);
 }
 
 .select-items div:last-child {

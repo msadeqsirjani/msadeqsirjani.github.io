@@ -80,8 +80,6 @@
 
 @media (hover: hover) {
   .content-state-action:hover {
-    border-color: var(--accent-hover);
-    background: var(--accent-hover);
     transform: translateY(-1px);
   }
 }

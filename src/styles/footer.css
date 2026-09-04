@@ -89,12 +89,11 @@
 .footer-section a {
   color: var(--footer-text);
   text-decoration: none;
-  transition: color 0.3s ease;
   font-size: var(--fs-base);
 }
 
 .footer-section a:hover {
-  color: var(--footer-accent);
+  text-decoration: underline;
 }
 
 .footer-social {
@@ -111,19 +110,13 @@
   align-items: center;
   justify-content: center;
   color: var(--footer-heading);
-  transition:
-    color 0.25s ease,
-    background-color 0.25s ease,
-    border-color 0.25s ease,
-    transform 0.25s ease;
+  transition: transform 0.25s ease;
   font-size: var(--fs-base);
 }
 
 .footer-social a:hover {
-  background: var(--footer-accent);
-  border-color: var(--footer-accent);
-  color: var(--footer-bg);
   transform: translateY(-2px);
+  text-decoration: none;
 }
 
 .footer-bottom {
@@ -140,10 +133,6 @@
 
 .footer-contact a {
   color: var(--footer-text);
-}
-
-.footer-contact a:hover {
-  color: var(--footer-accent);
 }
 
 .last-updated {

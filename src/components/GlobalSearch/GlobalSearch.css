@@ -126,8 +126,6 @@
 
 .clear-search-btn:hover,
 .close-search-btn:hover {
-  color: var(--accent-color);
-  border-color: var(--accent-color);
   background: var(--gray-light);
 }
 
@@ -307,7 +305,6 @@ a.result-item {
 .result-item:hover,
 .result-item:focus {
   background: var(--hover-bg, rgba(0, 0, 0, 0.05));
-  border-color: var(--accent-color);
   outline: none;
 }
 
@@ -387,8 +384,6 @@ a.result-item {
 
 .clear-search-btn:hover,
 .close-search-btn:hover {
-  color: var(--modal-text);
-  border-color: var(--accent-color);
   background: var(--modal-hover-bg);
 }
 
@@ -411,7 +406,6 @@ a.result-item {
 .result-item:focus,
 .result-item.selected {
   background: var(--modal-hover-bg);
-  border-color: var(--accent-color);
 }
 
 .result-title {

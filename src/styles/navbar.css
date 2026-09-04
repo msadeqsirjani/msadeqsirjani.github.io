@@ -52,7 +52,6 @@
 .navbar--scrolled .theme-toggle-btn:hover,
 .navbar--scrolled .nav-toggle:hover {
   background: rgba(var(--accent-rgb), 0.08);
-  border-color: var(--accent-color);
 }
 
 @media (prefers-reduced-transparency: reduce) {
@@ -128,14 +127,11 @@
   padding: 0.55rem 0.85rem;
   position: relative;
   border-radius: 999px;
-  transition:
-    color 0.2s ease,
-    background-color 0.2s ease;
+  transition: background-color 0.2s ease;
 }
 
 .nav-menu > li > .nav-link:hover,
 .nav-menu > li > .nav-link:focus-visible {
-  color: var(--accent-color);
   background: rgba(var(--accent-rgb), 0.08);
   text-decoration: none;
 }
@@ -169,8 +165,11 @@
 .nav-link:focus,
 .nav-link:focus-visible,
 .nav-link.active {
-  color: var(--accent-color);
   text-decoration: none;
+}
+
+.nav-link.active {
+  color: var(--accent-color);
 }
 
 .navbar .nav-link:focus:not(:focus-visible) {
@@ -206,9 +205,7 @@
   padding: 0.55rem 0.85rem;
   cursor: pointer;
   position: relative;
-  transition:
-    color 0.2s ease,
-    background-color 0.2s ease;
+  transition: background-color 0.2s ease;
   outline: none;
 }
 
@@ -255,7 +252,6 @@
 
 .nav-dropdown-toggle:hover,
 .nav-dropdown.open .nav-dropdown-toggle {
-  color: var(--accent-color);
   background: rgba(var(--accent-rgb), 0.08);
 }
 
@@ -310,14 +306,11 @@
   border-radius: 7px;
   outline: none;
   text-align: center;
-  transition:
-    color 0.2s ease,
-    background-color 0.2s ease;
+  transition: background-color 0.2s ease;
 }
 
 .nav-dropdown-menu .nav-link:hover,
 .nav-dropdown-menu .nav-link:focus-visible {
-  color: var(--accent-color);
   background-color: rgba(var(--accent-rgb), 0.1);
 }
 
@@ -429,17 +422,10 @@
   color: var(--text-color);
   font-size: var(--fs-md);
   cursor: pointer;
-  transition:
-    color 0.2s ease,
-    border-color 0.2s ease,
-    background-color 0.2s ease,
-    transform 0.2s ease;
+  transition: transform 0.2s ease;
 }
 
 .nav-menu-close:hover {
-  color: var(--accent-color);
-  border-color: var(--accent-color);
-  background: var(--white);
   transform: translateY(-2px);
 }
 

@@ -206,8 +206,7 @@
 
 .hero-institution a:hover,
 .hero-institution a:focus-visible {
-  color: var(--accent-color);
-  text-decoration: none;
+  text-decoration: underline;
 }
 
 .hero-buttons {
@@ -231,11 +230,7 @@
   gap: 0.5rem;
   justify-content: center;
   white-space: nowrap;
-  transition:
-    color 0.3s ease,
-    background-color 0.3s ease,
-    border-color 0.3s ease,
-    transform 0.3s ease;
+  transition: transform 0.3s ease;
 }
 
 .hero-buttons .btn {
@@ -253,12 +248,6 @@
   border-radius: var(--button-border-radius);
 }
 
-.btn-secondary:hover {
-  background: var(--accent-color);
-  color: var(--white);
-  border-color: var(--accent-color);
-}
-
 .btn-primary {
   background: var(--accent-color);
   color: var(--on-accent);
@@ -267,24 +256,11 @@
   box-shadow: var(--elev-1);
 }
 
-.btn-primary:hover {
-  background: var(--accent-hover);
-  color: var(--on-accent);
-  border-color: var(--accent-hover);
-  box-shadow: var(--elev-2);
-}
-
 .hero-buttons .btn-secondary {
   background: transparent;
   color: var(--accent-color);
   border: var(--button-border-width) solid var(--accent-color);
   border-radius: var(--button-border-radius);
-}
-
-.hero-buttons .btn-secondary:hover {
-  background: var(--accent-color);
-  color: var(--on-accent);
-  border: var(--button-border-width) solid var(--accent-color);
 }
 
 .social-links {
@@ -305,30 +281,17 @@
   color: var(--text-color);
   text-decoration: none;
   font-weight: 600;
-  transition:
-    color 0.3s ease,
-    background-color 0.3s ease,
-    border-color 0.3s ease,
-    transform 0.3s ease;
+  transition: transform 0.3s ease;
 }
 
 .social-link:hover {
-  background: var(--accent-color);
-  border-color: var(--accent-color);
-  color: var(--on-accent);
-  transform: translateY(-2px);
+  text-decoration: none;
 }
 
 [data-theme='dark'] .social-link {
   background: var(--white);
   border-color: var(--border-color);
   color: var(--text-color);
-}
-
-[data-theme='dark'] .social-link:hover {
-  background: var(--accent-color);
-  border-color: var(--accent-color);
-  color: var(--on-accent);
 }
 
 .social-link,

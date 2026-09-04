@@ -44,7 +44,6 @@
 
 .section-view-all:hover,
 .section-view-all:focus-visible {
-  color: var(--accent-hover);
   text-decoration: none;
 }
 

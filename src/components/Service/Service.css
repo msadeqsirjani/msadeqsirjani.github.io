@@ -83,7 +83,6 @@
 }
 
 .service-venue:hover {
-  color: var(--accent-color);
   text-decoration: underline;
   text-underline-offset: 0.18em;
 }

@@ -28,9 +28,7 @@
 }
 
 .theme-toggle-btn:hover {
-  color: var(--accent-color);
-  border-color: var(--accent-color);
-  background: rgba(var(--accent-rgb), 0.08);
+  text-decoration: none;
 }
 
 .theme-toggle-btn:hover .theme-toggle-icon {

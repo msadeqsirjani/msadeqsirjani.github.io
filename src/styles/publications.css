@@ -69,10 +69,7 @@
 
 .show-more-btn:hover,
 #showMoreBtn:hover {
-  background: var(--accent-color);
-  color: var(--white);
-  box-shadow: 0 4px 14px -4px rgba(var(--accent-rgb), 0.5);
-  border-color: var(--accent-color);
+  text-decoration: none;
 }
 
 .show-more-btn i,
@@ -205,10 +202,6 @@
     box-shadow 0.2s ease;
 }
 
-.pub-filter-select:hover {
-  border-color: var(--accent-color);
-}
-
 .pub-filter-select:focus {
   border-color: var(--accent-color);
   box-shadow: 0 0 0 3px rgba(var(--accent-rgb), 0.15);
@@ -292,7 +285,6 @@
 }
 
 .pub-filter-reset:hover {
-  color: var(--accent-color);
   text-decoration: underline;
   text-underline-offset: 0.18em;
 }
@@ -479,9 +471,6 @@
 }
 
 .pub-card-actions .pub-text-link:hover {
-  color: var(--accent-color);
-  border-color: var(--accent-color);
-  background: rgba(var(--accent-rgb), 0.08);
   text-decoration: none;
 }
 
@@ -497,26 +486,12 @@
   border-color: var(--github-bg);
 }
 
-.pub-card-actions .pub-text-link.pub-github-link:hover {
-  color: var(--github-fg);
-  background: var(--github-bg-hover);
-  border-color: var(--github-bg-hover);
-}
-
 .pub-card-actions .pub-text-link.pub-doi-link,
 .pub-card-actions .pub-text-link.pub-paper-link,
 .pub-card-actions .pub-text-link.pub-bibtex-link {
   color: var(--text-light);
   background: transparent;
   border-color: var(--border-color);
-}
-
-.pub-card-actions .pub-text-link.pub-doi-link:hover,
-.pub-card-actions .pub-text-link.pub-paper-link:hover,
-.pub-card-actions .pub-text-link.pub-bibtex-link:hover {
-  color: var(--accent-color);
-  background: rgba(var(--accent-rgb), 0.08);
-  border-color: var(--accent-color);
 }
 
 .pub-card-abstract {
@@ -679,7 +654,7 @@
 }
 
 .publication-item h4 a:hover {
-  color: var(--accent-color);
+  text-decoration: underline;
 }
 
 .journal,
@@ -751,7 +726,6 @@
 }
 
 .pub-text-link:hover {
-  color: var(--accent-color);
   text-decoration: underline;
   text-underline-offset: 0.18em;
   text-decoration-thickness: 0.08em;
@@ -1039,15 +1013,9 @@
   border-bottom: none;
 }
 
-.citation-option:hover {
-  background: var(--gray-light);
-  color: var(--accent-color);
-  padding-left: 1.25rem;
-}
-
+.citation-option:hover,
 .citation-option:active {
-  background: var(--accent-color);
-  color: var(--on-accent);
+  background: var(--gray-light);
 }
 
 .citation-badge {

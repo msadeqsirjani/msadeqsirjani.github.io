@@ -80,8 +80,7 @@
 }
 
 .nf-btn-primary:hover {
-  border-color: var(--accent-hover);
-  background: var(--accent-hover);
+  text-decoration: none;
 }
 
 .nf-suggestions {
@@ -128,16 +127,11 @@ html:not([data-theme='dark']) .nf-links-list a {
   border-color: rgba(var(--accent-rgb), 0.12);
 }
 
-html:not([data-theme='dark']) .nf-links-list a:hover {
-  border-color: rgba(var(--accent-rgb), 0.22);
-}
-
 html[data-theme='dark'] .nf-links-list a {
   border-color: rgba(236, 238, 242, 0.06);
 }
 
 .nf-links-list a:hover {
-  color: var(--accent-color);
   text-decoration: none;
   transform: translateY(-2px);
 }
@@ -152,7 +146,6 @@ html[data-theme='dark'] .nf-links-list a {
 }
 
 .nf-links-list a:hover .nf-arrow {
-  color: var(--accent-color);
   transform: translateX(3px);
 }
 
