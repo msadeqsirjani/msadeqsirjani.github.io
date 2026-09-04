@@ -96,7 +96,7 @@ const Biography = () => {
               Young Fellow and won the conference's two-minute presentation
               competition in 2025 and 2026. He has served as a reviewer for{' '}
               <a href="https://www.glsvlsi.org/" target="_blank" rel="noopener">
-                GLSVLSI 2026
+                GLSVLSI
               </a>{' '}
               and as a teaching assistant at UTSA for operating systems,
               computer organization, and data science.
