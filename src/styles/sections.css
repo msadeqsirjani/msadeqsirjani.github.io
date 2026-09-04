@@ -111,6 +111,10 @@
   hyphens: auto;
 }
 
+.bio-text p:last-child {
+  margin-bottom: 0;
+}
+
 .bio-text p a {
   color: var(--accent-color);
   text-decoration: none;

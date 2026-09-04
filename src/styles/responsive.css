@@ -1385,4 +1385,8 @@ body:has(.mobile-menu-overlay) .scroll-to-top,
     font-size: var(--fs-sm);
     line-height: 1.5;
   }
+
+  .home-intro #biography .bio-text p:last-child {
+    margin-bottom: 0;
+  }
 }

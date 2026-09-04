@@ -27,37 +27,17 @@ const Biography = () => {
               >
                 Prof. Mimi Xie
               </a>
-              . His research asks how machine learning can run on tiny embedded
-              devices that have little energy, little memory, and sometimes no
-              battery at all, including nodes that harvest energy from the
-              environment.
-            </p>
-
-            <p>
-              He works on TinyML, edge AI, and intermittent computing: inference
-              that must stay correct when power arrives in bursts rather than
-              from a stable supply. Current projects include adaptive compressed
-              sensing for wearable electrocardiogram monitoring under energy
-              harvesting, and in-memory computing on domain-wall memory so that
-              arithmetic happens where data already reside. Across these
-              projects he aims for on-device intelligence that does not depend
-              on the cloud or on a full battery.
+              . His research focuses on TinyML, edge AI, and intermittent
+              computing for energy-harvesting and resource-constrained devices.
             </p>
 
             <p>
               He received his B.Sc. in Computer Engineering from{' '}
               <a href="https://en.um.ac.ir/" target="_blank" rel="noopener">
                 Ferdowsi University of Mashhad
-              </a>
-              . There he worked on software quality and web systems, then on
-              energy-aware scheduling and controller placement in IoT and
-              software-defined networks. That line of work drew him toward the
-              hardware and systems questions that now shape his Ph.D. He passed
-              his qualifying examination in 2026.
-            </p>
-
-            <p>
-              His papers appear in{' '}
+              </a>{' '}
+              and passed his qualifying examination in 2026. His papers appear
+              in{' '}
               <a
                 href="https://www.springer.com/journal/10586"
                 target="_blank"
@@ -93,13 +73,11 @@ const Biography = () => {
               <a href="https://dac.com/2026" target="_blank" rel="noopener">
                 DAC
               </a>{' '}
-              Young Fellow and won the conference's two-minute presentation
-              competition in 2025 and 2026. He has served as a reviewer for{' '}
+              Young Fellow, a reviewer for{' '}
               <a href="https://www.glsvlsi.org/" target="_blank" rel="noopener">
                 GLSVLSI
-              </a>{' '}
-              and as a teaching assistant at UTSA for operating systems,
-              computer organization, and data science.
+              </a>
+              , and a teaching assistant at UTSA.
             </p>
           </div>
         </div>
