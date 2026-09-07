@@ -103,8 +103,8 @@ h6 {
   --signal-color: var(--accent-secondary);
   --signal-rgb: var(--accent-secondary-rgb);
   --surface-muted: #f6f7fb;
-  --hero-atmosphere: rgba(var(--accent-rgb), 0.05);
-  --hero-atmosphere-core: rgba(var(--accent-rgb), 0.08);
+  --hero-atmosphere: rgba(var(--accent-rgb), 0.12);
+  --hero-atmosphere-core: rgba(var(--accent-rgb), 0.18);
   --portrait-ring: rgba(var(--accent-rgb), 0.2);
   --portrait-ring-offset: rgba(var(--accent-rgb), 0.12);
   --portrait-edge: rgba(var(--accent-rgb), 0.16);
