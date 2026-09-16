@@ -1,24 +1,5 @@
 [
   {
-    "title": "“Should I Trust My AI Friend?”: How Single- and Multi-Agent AI Disagreement Shapes Children's Epistemic Trust and Reasoning Revision",
-    "venue": "ACM CHI Conference on Human Factors in Computing Systems (CHI 2026)",
-    "year": "2026",
-    "status": "review",
-    "authors": "Erfan Nourbakhsh, Adeleh Mazaherian, Mahshid Karimi, Amir Mousavi, Mohammad Sadegh Sirjani, Zubair Ahmed",
-    "link": "https://chi2026.acm.org/",
-    "abstract": "Children increasingly interact with AI companions that may agree or disagree with their reasoning, yet little is known about whether children rely on these companions because they are right or merely confident. We present SecondGuess, a controlled platform in which Persian-speaking children aged 9–11 (N=30) solve reasoning cases with one AI companion, Dana, and later a second, Pouya, across seven disagreement conditions. Logging 208 rounds, we find a dose-response relationship between AI pushback and answer revision, and a larger effect when two agents converge than when they disagree with each other. Children are simultaneously too skeptical of correct AI advice and too credulous of confident, incorrect insistence: reliance on the AI is nearly identical whether right or wrong. Trust correlates only moderately with behavior, children trust whichever companion they meet first, and they take far longer to decide when revising an answer than when defending it.",
-    "keywords": [
-      "AI & Machine Learning - AI Agents",
-      "AI & Machine Learning - Conversational Interfaces",
-      "AI & Machine Learning - Large Language Models",
-      "Privacy, Security & Trust - Trust",
-      "Children / Parents",
-      "Empirical study that tells us about people",
-      "Lab Study",
-      "Quantitative Methods"
-    ]
-  },
-  {
     "title": "MOSAIC: Multi-Domain Sensing Architecture for Efficient Computing in Domain Wall Memory",
     "venue": "Design, Automation and Test in Europe Conference (DATE 2027)",
     "year": "2026",
