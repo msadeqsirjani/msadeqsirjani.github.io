@@ -5,6 +5,7 @@ import PubLink from './PubLink';
 import Icon from '../Icon/Icon';
 import {
   faChevronDown,
+  faGlobe,
   faLink,
   faFilePdf,
   faQuoteRight,
@@ -139,7 +140,7 @@ const PublicationItem = ({pub, headingLevel = 3}: PublicationItemProps) => {
               <PubLink
                 label="Project"
                 href={pub.projectPage}
-                icon={faLink}
+                icon={faGlobe}
                 variant="doi"
                 internal
               />

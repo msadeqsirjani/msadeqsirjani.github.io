@@ -21,6 +21,7 @@ export interface ProjectMeta {
   pdf: string;
   link: {label: string; href: string};
   code?: string;
+  codeSoon?: boolean;
   bibtex: string;
 }
 
@@ -32,6 +33,7 @@ const ProjectHero = ({
   pdf,
   link,
   code,
+  codeSoon,
   bibtex,
 }: ProjectMeta) => (
   <header className="project-hero" id="top">
@@ -78,14 +80,16 @@ const ProjectHero = ({
         {code ? (
           <PubLink label="Code" href={code} icon={faGithub} variant="github" />
         ) : (
-          <span
-            className="pub-text-link pub-github-link is-disabled"
-            aria-disabled="true"
-            title="Code coming soon"
-          >
-            <Icon icon={faGithub} size="lg" />
-            <span className="pub-link-label">Code (Soon)</span>
-          </span>
+          codeSoon && (
+            <span
+              className="pub-text-link pub-github-link is-disabled"
+              aria-disabled="true"
+              title="Code coming soon"
+            >
+              <Icon icon={faGithub} size="lg" />
+              <span className="pub-link-label">Code (Soon)</span>
+            </span>
+          )
         )}
       </div>
     </div>

@@ -18,6 +18,7 @@ export const ROUTE_PATHS = {
   service: '/service',
   cogadapt: '/publications/cogadapt',
   rigeo: '/publications/rigeo',
+  contamination: '/publications/contamination-review',
 } as const;
 
 export type RouteKey = keyof typeof ROUTE_PATHS;

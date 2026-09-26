@@ -45,6 +45,9 @@ const Awards = lazy(() => import('./components/Awards/Awards'));
 const Service = lazy(() => import('./components/Service/Service'));
 const CogAdapt = lazy(() => import('./components/CogAdapt/CogAdapt'));
 const Rigeo = lazy(() => import('./components/Rigeo/Rigeo'));
+const Contamination = lazy(
+  () => import('./components/Contamination/Contamination'),
+);
 const Footer = lazy(() => import('./components/Footer/Footer'));
 const NotFound = lazy(() => import('./components/NotFound/NotFound'));
 
@@ -67,9 +70,10 @@ const PAGE_TITLES: Record<RouteKey, string> = {
   service: 'Mohammad Sadegh Sirjani | Service',
   cogadapt: 'CogAdapt | Mohammad Sadegh Sirjani',
   rigeo: 'RIGEO | Mohammad Sadegh Sirjani',
+  contamination: 'LLM Benchmark Contamination | Mohammad Sadegh Sirjani',
 };
 
-type ProjectRouteKey = 'cogadapt' | 'rigeo';
+type ProjectRouteKey = 'cogadapt' | 'rigeo' | 'contamination';
 
 const PROJECT_PAGES: Record<
   ProjectRouteKey,
@@ -77,6 +81,10 @@ const PROJECT_PAGES: Record<
 > = {
   cogadapt: {component: CogAdapt, label: 'CogAdapt paper'},
   rigeo: {component: Rigeo, label: 'RIGEO paper'},
+  contamination: {
+    component: Contamination,
+    label: 'LLM benchmark contamination review',
+  },
 };
 
 const isProjectRoute = (key: RouteKey): key is ProjectRouteKey =>

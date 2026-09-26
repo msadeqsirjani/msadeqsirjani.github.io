@@ -17,7 +17,7 @@
   },
   {
     "date": "Jul 2026",
-    "description": "Paper \"<a href=\"https://doi.org/10.18653/v1/2026.gem-main.50\" target=\"_blank\" rel=\"noopener noreferrer\">Are LLM Benchmarks Already Contaminated? A Systematic Review of Contamination Detection Methods</a>\" published at the <a href=\"https://gem-workshop.com/\" target=\"_blank\" rel=\"noopener noreferrer\">GEM Workshop — The 64th Annual Meeting of the Association for Computational Linguistics (ACL 2026)</a>."
+    "description": "Paper \"<a href=\"/publications/contamination-review\">Are LLM Benchmarks Already Contaminated? A Systematic Review of Contamination Detection Methods</a>\" published at the <a href=\"https://gem-workshop.com/\" target=\"_blank\" rel=\"noopener noreferrer\">GEM Workshop — The 64th Annual Meeting of the Association for Computational Linguistics (ACL 2026)</a>."
   },
   {
     "date": "Jun 2026",

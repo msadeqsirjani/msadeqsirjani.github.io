@@ -70,6 +70,7 @@ const CogAdapt = () => (
     venue="IEEE-EMBS International Conference on Biomedical and Health Informatics (BHI 2026)"
     pdf={PDF}
     link={{label: 'arXiv', href: ARXIV}}
+    codeSoon
     bibtex={bibtex}
     sections={SECTIONS}
   >

@@ -191,6 +191,21 @@
   padding: 0.5rem 0.9rem;
 }
 
+.is-text .project-table {
+  width: 100%;
+  min-width: 40rem;
+  font-size: var(--fs-sm);
+  line-height: 1.5;
+}
+
+.is-text .project-table th,
+.is-text .project-table td {
+  padding: 0.6rem 0.75rem;
+  text-align: left;
+  vertical-align: top;
+  white-space: normal;
+}
+
 .project-table thead th {
   color: var(--text-color);
   background: var(--hero-atmosphere);
