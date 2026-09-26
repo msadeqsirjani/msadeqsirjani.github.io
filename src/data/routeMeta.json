@@ -1,74 +1,112 @@
 {
   "home": {
     "title": "Mohammad Sadegh Sirjani - Ph.D. Student in Computer Science | TinyAI & Embedded Systems Researcher",
-    "description": "Ph.D. Student at UT San Antonio researching IoT, Tiny AI, Edge AI, and Embedded Systems. Published researcher in machine learning optimization and distributed systems."
+    "description": "Ph.D. Student at UT San Antonio researching IoT, Tiny AI, Edge AI, and Embedded Systems. Published researcher in machine learning optimization and distributed systems.",
+    "sources": [
+      "src/components/Hero",
+      "src/components/Biography",
+      "src/data/news.json",
+      "src/data/publications.json"
+    ]
   },
   "research": {
     "title": "Mohammad Sadegh Sirjani | Research",
-    "description": "Research interests and lab experience of Mohammad Sadegh Sirjani: IoT, Tiny AI, Edge AI, embedded systems, energy harvesting, and intermittent computing."
+    "description": "Research interests and lab experience of Mohammad Sadegh Sirjani: IoT, Tiny AI, Edge AI, embedded systems, energy harvesting, and intermittent computing.",
+    "sources": [
+      "src/components/Research",
+      "src/data/research.json",
+      "src/data/research-interests.json"
+    ]
   },
   "education": {
     "title": "Mohammad Sadegh Sirjani | Education",
-    "description": "Education of Mohammad Sadegh Sirjani, Ph.D. student in Computer Science at the University of Texas at San Antonio."
+    "description": "Education of Mohammad Sadegh Sirjani, Ph.D. student in Computer Science at the University of Texas at San Antonio.",
+    "sources": ["src/components/Education", "src/data/education.json"]
   },
   "publications": {
     "title": "Mohammad Sadegh Sirjani | Publications",
-    "description": "Publications by Mohammad Sadegh Sirjani on IoT task scheduling, SDN controller placement, wearable health AI, LLM evaluation, and network security."
+    "description": "Publications by Mohammad Sadegh Sirjani on IoT task scheduling, SDN controller placement, wearable health AI, LLM evaluation, and network security.",
+    "sources": ["src/components/Publications", "src/data/publications.json"]
   },
   "teaching": {
     "title": "Mohammad Sadegh Sirjani | Teaching",
-    "description": "Teaching experience of Mohammad Sadegh Sirjani, including operating systems, data science, cloud computing, and compiler design courses."
+    "description": "Teaching experience of Mohammad Sadegh Sirjani, including operating systems, data science, cloud computing, and compiler design courses.",
+    "sources": ["src/components/Teaching", "src/data/teaching.json"]
   },
   "news": {
     "title": "Mohammad Sadegh Sirjani | News",
-    "description": "News and updates from Mohammad Sadegh Sirjani: papers, awards, fellowships, and certificates."
+    "description": "News and updates from Mohammad Sadegh Sirjani: papers, awards, fellowships, and certificates.",
+    "sources": ["src/components/News", "src/data/news.json"]
   },
   "awards": {
     "title": "Mohammad Sadegh Sirjani | Awards",
-    "description": "Awards, fellowships, and honors received by Mohammad Sadegh Sirjani."
+    "description": "Awards, fellowships, and honors received by Mohammad Sadegh Sirjani.",
+    "sources": ["src/components/Awards", "src/data/awards.json"]
   },
   "service": {
     "title": "Mohammad Sadegh Sirjani | Service",
-    "description": "Academic service of Mohammad Sadegh Sirjani, including peer reviewing for conferences and journals."
+    "description": "Academic service of Mohammad Sadegh Sirjani, including peer reviewing for conferences and journals.",
+    "sources": ["src/components/Service"]
   },
   "cogadapt": {
     "title": "CogAdapt: Adapting Clinical ECG Foundation Models for Wearable Cognitive Load Assessment | Mohammad Sadegh Sirjani",
     "description": "CogAdapt adapts clinical ECG foundation models to 3-lead wearable cognitive load assessment with LeadBridge and ProFine. IEEE EMBS BHI 2026.",
-    "image": "/assets/images/cogadapt/architecture.png"
+    "image": "/assets/images/cogadapt/architecture.png",
+    "sources": [
+      "src/components/CogAdapt",
+      "src/data/cogadapt.json",
+      "public/assets/images/cogadapt"
+    ]
   },
   "rigeo": {
     "title": "Optimizing Task Scheduling in Fog Computing with Deadline Awareness | Mohammad Sadegh Sirjani",
     "description": "RIGEO combines Improved Golden Eagle Optimization with reinforcement learning for deadline-aware task scheduling in fog computing. IEEE SATC 2026.",
-    "image": "/assets/images/rigeo/results.png"
+    "image": "/assets/images/rigeo/results.png",
+    "sources": ["src/components/Rigeo", "public/assets/images/rigeo"]
   },
   "contamination": {
     "title": "Are LLM Benchmarks Already Contaminated? A Systematic Review of Contamination Detection Methods | Mohammad Sadegh Sirjani",
     "description": "A systematic review of 55 studies on LLM benchmark contamination: a four-tier taxonomy, five detection families, and a transparency card. GEM 2026 Outstanding Paper.",
-    "image": "/assets/images/contamination/taxonomy.jpg"
+    "image": "/assets/images/contamination/taxonomy.jpg",
+    "sources": [
+      "src/components/Contamination",
+      "public/assets/images/contamination"
+    ]
   },
   "qteiot": {
     "title": "QTE-IoT: Q-Learning-Based Task Scheduling Scheme to Enhance Energy Consumption and QoS in IoT Environments | Mohammad Sadegh Sirjani",
     "description": "QTE-IoT classifies IoT tasks with an MLP and schedules them across fog and cloud with Q-learning hybrids QAVA and QARO. Sustainable Computing, 2025.",
-    "image": "/assets/images/qte-iot/flowchart.jpg"
+    "image": "/assets/images/qte-iot/flowchart.jpg",
+    "sources": ["src/components/QteIot", "public/assets/images/qte-iot"]
   },
   "controllerPlacement": {
     "title": "Controller Placement in Software-Defined Networks Using Reinforcement Learning and Metaheuristics | Mohammad Sadegh Sirjani",
     "description": "Bedbug-GLA places SDN controllers with cellular learning automata and an improved Bedbug metaheuristic, cutting energy and controller load. Cluster Computing, 2025.",
-    "image": "/assets/images/controller-placement/topologies.jpg"
+    "image": "/assets/images/controller-placement/topologies.jpg",
+    "sources": [
+      "src/components/ControllerPlacement",
+      "public/assets/images/controller-placement"
+    ]
   },
   "clv": {
     "title": "Data Mining and Cloud Computing for Customer Pattern Analysis and Value Maximization | Mohammad Sadegh Sirjani",
     "description": "Data mining and cloud computing for customer churn prediction and lifetime value maximization. IEEE QICAR 2024.",
-    "image": "/assets/images/customer-clv/mining-stream.jpg"
+    "image": "/assets/images/customer-clv/mining-stream.jpg",
+    "sources": [
+      "src/components/CustomerClv",
+      "public/assets/images/customer-clv"
+    ]
   },
   "secvanet": {
     "title": "SecVanet: Provably Secure Authentication Protocol for Sending Emergency Events in VANET | Mohammad Sadegh Sirjani",
     "description": "SecVanet is a provably secure authentication protocol for sending emergency events in VANETs, verified with Scyther. IEEE IKT 2023.",
-    "image": "/assets/images/secvanet/architecture.jpg"
+    "image": "/assets/images/secvanet/architecture.jpg",
+    "sources": ["src/components/SecVanet", "public/assets/images/secvanet"]
   },
   "iotids": {
     "title": "A Comparative Evaluation of Machine Learning Algorithms for IDS in IoT Network | Mohammad Sadegh Sirjani",
     "description": "A comparative evaluation of five machine learning classifiers for intrusion detection in IoT networks on UNSW-NB15. IEEE IKT 2023.",
-    "image": "/assets/images/iot-ids/comparison.jpg"
+    "image": "/assets/images/iot-ids/comparison.jpg",
+    "sources": ["src/components/IotIds", "public/assets/images/iot-ids"]
   }
 }

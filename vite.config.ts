@@ -6,6 +6,7 @@ import fs from 'fs';
 import path from 'path';
 import {emitRoutePages} from './plugins/routePages';
 import {emitRobots} from './plugins/robots';
+import {emitSitemap} from './plugins/sitemap';
 
 const BUILD_TIMESTAMP = Date.now().toString();
 
@@ -151,6 +152,7 @@ export default defineConfig({
     injectBuildTime(),
     emitRoutePages(),
     emitRobots(),
+    emitSitemap(),
     visualizer({
       filename: './dist/stats.html',
       open: false,
