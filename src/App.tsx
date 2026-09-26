@@ -141,6 +141,7 @@ function App() {
   const [routeKey, setRouteKey] = useState<RouteKey | null>(getRouteKey);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const hasRenderedRoute = useRef(false);
+  const isProjectPage = routeKey !== null && isProjectRoute(routeKey);
 
   useEffect(() => subscribeRoute(() => setRouteKey(getRouteKey())), []);
 
@@ -349,9 +350,11 @@ function App() {
             <PullToRefresh />
           </Suspense>
         </DeferredIdle>
-        <ErrorBoundary>
-          <Navbar onSearchClick={() => setIsSearchOpen(true)} />
-        </ErrorBoundary>
+        {!isProjectPage && (
+          <ErrorBoundary>
+            <Navbar onSearchClick={() => setIsSearchOpen(true)} />
+          </ErrorBoundary>
+        )}
         <LazyGlobalSearch
           isOpen={isSearchOpen}
           onClose={() => setIsSearchOpen(false)}
@@ -367,11 +370,13 @@ function App() {
             <Footer />
           </Suspense>
         </ErrorBoundary>
-        <DeferredIdle>
-          <Suspense fallback={null}>
-            <QuickActions />
-          </Suspense>
-        </DeferredIdle>
+        {!isProjectPage && (
+          <DeferredIdle>
+            <Suspense fallback={null}>
+              <QuickActions />
+            </Suspense>
+          </DeferredIdle>
+        )}
         <DeferredIdle>
           <Suspense fallback={null}>
             <OfflineIndicator />
