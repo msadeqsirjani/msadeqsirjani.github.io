@@ -7,8 +7,6 @@ import {navLinkProps} from '../../utils/router';
 import ContentState from '../ContentState/ContentState';
 import SkeletonLoader from '../SkeletonLoader/SkeletonLoader';
 
-const MAX_PREVIEW = 5;
-
 const getStatusLabel = (status: string) => {
   const labels: Record<string, string> = {
     published: 'Published',
@@ -40,10 +38,7 @@ const Publications = () => {
   });
 
   const preview = useMemo(
-    () =>
-      [...publications]
-        .sort((a, b) => Number(b.year) - Number(a.year))
-        .slice(0, MAX_PREVIEW),
+    () => [...publications].sort((a, b) => Number(b.year) - Number(a.year)),
     [publications],
   );
 
