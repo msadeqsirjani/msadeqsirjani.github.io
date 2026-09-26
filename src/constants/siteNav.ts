@@ -20,6 +20,7 @@ export const ROUTE_PATHS = {
   rigeo: '/publications/rigeo',
   contamination: '/publications/contamination-review',
   qteiot: '/publications/qte-iot',
+  bedbug: '/publications/bedbug-gla',
 } as const;
 
 export type RouteKey = keyof typeof ROUTE_PATHS;

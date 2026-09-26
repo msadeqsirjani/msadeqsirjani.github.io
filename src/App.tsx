@@ -49,6 +49,7 @@ const Contamination = lazy(
   () => import('./components/Contamination/Contamination'),
 );
 const QteIot = lazy(() => import('./components/QteIot/QteIot'));
+const BedbugGla = lazy(() => import('./components/BedbugGla/BedbugGla'));
 const Footer = lazy(() => import('./components/Footer/Footer'));
 const NotFound = lazy(() => import('./components/NotFound/NotFound'));
 
@@ -73,9 +74,11 @@ const PAGE_TITLES: Record<RouteKey, string> = {
   rigeo: 'RIGEO | Mohammad Sadegh Sirjani',
   contamination: 'LLM Benchmark Contamination | Mohammad Sadegh Sirjani',
   qteiot: 'QTE-IoT | Mohammad Sadegh Sirjani',
+  bedbug: 'Bedbug-GLA | Mohammad Sadegh Sirjani',
 };
 
-type ProjectRouteKey = 'cogadapt' | 'rigeo' | 'contamination' | 'qteiot';
+type ProjectRouteKey =
+  'cogadapt' | 'rigeo' | 'contamination' | 'qteiot' | 'bedbug';
 
 const PROJECT_PAGES: Record<
   ProjectRouteKey,
@@ -88,6 +91,7 @@ const PROJECT_PAGES: Record<
     label: 'LLM benchmark contamination review',
   },
   qteiot: {component: QteIot, label: 'QTE-IoT paper'},
+  bedbug: {component: BedbugGla, label: 'Bedbug-GLA paper'},
 };
 
 const isProjectRoute = (key: RouteKey): key is ProjectRouteKey =>

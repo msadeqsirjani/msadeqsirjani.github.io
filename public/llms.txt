@@ -33,7 +33,7 @@ Internet of Things (IoT); Tiny AI / TinyML; edge AI and on-device inference; emb
 2. Mousavi et al., “CogAdapt: Adapting Clinical ECG Foundation Models for Wearable Cognitive Load Assessment,” accepted at IEEE EMBS BHI 2026. https://msadeqsirjani.com/publications/cogadapt
 3. Sirjani et al., “Optimizing Task Scheduling in Fog Computing with Deadline Awareness,” 2026 IEEE 2nd Int. Conf. on Secure IoT, Assured and Trusted Computing (SATC), 2026. https://msadeqsirjani.com/publications/rigeo
 4. Ghaffari et al., “Q-Learning-Based Task Scheduling Scheme to Enhance Energy Consumption and QoS in IoT Environments,” Sustainable Computing: Informatics and Systems, 2025. https://msadeqsirjani.com/publications/qte-iot
-5. Sirjani et al., “Controller placement in software-defined networks using reinforcement learning and metaheuristics,” Cluster Computing, 2025. https://doi.org/10.1007/s10586-025-05331-y
+5. Sirjani et al., “Controller placement in software-defined networks using reinforcement learning and metaheuristics,” Cluster Computing, 2025. https://msadeqsirjani.com/publications/bedbug-gla
 6. Sirjani et al., “Data mining and cloud computing for customer pattern analysis,” IEEE QICAR, 2024. https://doi.org/10.1109/QICAR61538.2024.10496623
 7. Mousavi et al., “SecVanet: provably secure authentication protocol for sending emergency events in VANET,” IEEE IKT, 2023. https://doi.org/10.1109/IKT62039.2023.10433027
 8. Mousavi et al., “A Comparative Evaluation of Machine Learning Algorithms for IDS in IoT network,” IEEE IKT, 2023. https://doi.org/10.1109/IKT62039.2023.10433047
