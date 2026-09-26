@@ -137,6 +137,7 @@
     "visible": true,
     "authors": "Mohammad Sadegh Sirjani, Mohammad Ahmad, Amir Mousavi, Erfan Nourbakhsh, Khoa Nguyen",
     "link": "https://doi.org/10.1109/SATC69565.2026.11542230",
+    "projectPage": "/publications/rigeo",
     "pdfLink": "assets/docs/publications/2509.07378v5.pdf",
     "github": "https://github.com/msadeqsirjani/RIGEO",
     "bibtexId": "sirjani2026optimizing",

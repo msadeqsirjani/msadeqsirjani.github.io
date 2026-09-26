@@ -44,6 +44,7 @@ const News = lazy(() => import('./components/News/News'));
 const Awards = lazy(() => import('./components/Awards/Awards'));
 const Service = lazy(() => import('./components/Service/Service'));
 const CogAdapt = lazy(() => import('./components/CogAdapt/CogAdapt'));
+const Rigeo = lazy(() => import('./components/Rigeo/Rigeo'));
 const Footer = lazy(() => import('./components/Footer/Footer'));
 const NotFound = lazy(() => import('./components/NotFound/NotFound'));
 
@@ -65,10 +66,24 @@ const PAGE_TITLES: Record<RouteKey, string> = {
   awards: 'Mohammad Sadegh Sirjani | Awards',
   service: 'Mohammad Sadegh Sirjani | Service',
   cogadapt: 'CogAdapt | Mohammad Sadegh Sirjani',
+  rigeo: 'RIGEO | Mohammad Sadegh Sirjani',
 };
 
+type ProjectRouteKey = 'cogadapt' | 'rigeo';
+
+const PROJECT_PAGES: Record<
+  ProjectRouteKey,
+  {component: LazyComponent; label: string}
+> = {
+  cogadapt: {component: CogAdapt, label: 'CogAdapt paper'},
+  rigeo: {component: Rigeo, label: 'RIGEO paper'},
+};
+
+const isProjectRoute = (key: RouteKey): key is ProjectRouteKey =>
+  key in PROJECT_PAGES;
+
 const PAGE_COMPONENTS: Record<
-  Exclude<RouteKey, 'home' | 'cogadapt'>,
+  Exclude<RouteKey, 'home' | ProjectRouteKey>,
   LazyComponent
 > = {
   research: ResearchPage,
@@ -81,7 +96,7 @@ const PAGE_COMPONENTS: Record<
 };
 
 const PAGE_LOADER_TYPES: Record<
-  Exclude<RouteKey, 'home' | 'cogadapt'>,
+  Exclude<RouteKey, 'home' | ProjectRouteKey>,
   SkeletonType
 > = {
   research: 'tile',
@@ -262,26 +277,24 @@ function App() {
       );
     }
 
-    if (routeKey === 'cogadapt') {
+    if (isProjectRoute(routeKey)) {
+      const {component: ProjectComponent, label} = PROJECT_PAGES[routeKey];
       return (
         <main
           key={routeKey}
           id="main-content"
           className="route-enter"
           role="main"
-          aria-label="CogAdapt paper"
+          aria-label={label}
           tabIndex={-1}
         >
           <ErrorBoundary>
             <Suspense
               fallback={
-                <SectionLoader
-                  type="publication"
-                  label="Loading CogAdapt paper"
-                />
+                <SectionLoader type="publication" label={`Loading ${label}`} />
               }
             >
-              <CogAdapt />
+              <ProjectComponent />
             </Suspense>
           </ErrorBoundary>
         </main>

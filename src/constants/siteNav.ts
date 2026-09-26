@@ -17,6 +17,7 @@ export const ROUTE_PATHS = {
   awards: '/awards',
   service: '/service',
   cogadapt: '/publications/cogadapt',
+  rigeo: '/publications/rigeo',
 } as const;
 
 export type RouteKey = keyof typeof ROUTE_PATHS;
