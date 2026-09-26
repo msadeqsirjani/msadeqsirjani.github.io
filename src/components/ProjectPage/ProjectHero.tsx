@@ -13,10 +13,12 @@ import {copyBibtex} from './copyBibtex';
 
 const SELF = 'Mohammad Sadegh Sirjani';
 
+type Author = string | {name: string; marks: string};
+
 export interface ProjectMeta {
   title: string;
-  authors: string[];
-  affiliation: string;
+  authors: Author[];
+  affiliation: string | string[];
   venue: string;
   award?: string;
   pdf: string;
@@ -51,18 +53,24 @@ const ProjectHero = ({
       <h1 className="project-title">{title}</h1>
 
       <p className="project-authors">
-        {authors.map((author, index) => (
-          <span key={author}>
-            {author === SELF ? <strong>{author}</strong> : author}
-            <sup>1</sup>
-            {index < authors.length - 1 && ', '}
-          </span>
-        ))}
+        {authors.map((author, index) => {
+          const {name, marks} =
+            typeof author === 'string' ? {name: author, marks: '1'} : author;
+          return (
+            <span key={name}>
+              {name === SELF ? <strong>{name}</strong> : name}
+              <sup>{marks}</sup>
+              {index < authors.length - 1 && ', '}
+            </span>
+          );
+        })}
       </p>
-      <p className="project-meta">
-        <sup>1</sup>
-        {affiliation}
-      </p>
+      {[affiliation].flat().map((line, index) => (
+        <p className="project-meta" key={line}>
+          <sup>{index + 1}</sup>
+          {line}
+        </p>
+      ))}
       <p className="project-meta is-venue">
         {venue}
         {award && <strong className="project-award">{award}</strong>}

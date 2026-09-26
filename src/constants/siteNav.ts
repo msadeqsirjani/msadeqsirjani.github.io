@@ -19,6 +19,7 @@ export const ROUTE_PATHS = {
   cogadapt: '/publications/cogadapt',
   rigeo: '/publications/rigeo',
   contamination: '/publications/contamination-review',
+  qteiot: '/publications/qte-iot',
 } as const;
 
 export type RouteKey = keyof typeof ROUTE_PATHS;
