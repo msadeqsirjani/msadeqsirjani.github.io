@@ -3,22 +3,25 @@ import path from 'path';
 import type {PluginOption} from 'vite';
 
 const PUBLIC_STATUSES = new Set(['published', 'accepted']);
-const PDF_DIR = '/assets/docs/publications/';
+const ANCHOR = 'Allow: /';
 
 interface Publication {
   status: string;
-  pdfLink?: string;
+  projectPage?: string;
 }
 
-const allowedPdfs = () => {
+const projectRules = () => {
   const file = path.join(__dirname, '..', 'src', 'data', 'publications.json');
   const publications = JSON.parse(
     fs.readFileSync(file, 'utf-8'),
   ) as Publication[];
   return publications
-    .filter(p => PUBLIC_STATUSES.has(p.status) && p.pdfLink)
-    .map(p => `/${p.pdfLink!.replace(/^\//, '')}`)
-    .filter(link => link.startsWith(PDF_DIR));
+    .filter(p => p.projectPage)
+    .map(p =>
+      PUBLIC_STATUSES.has(p.status)
+        ? `Allow: ${p.projectPage}`
+        : `Disallow: ${p.projectPage}`,
+    );
 };
 
 export function emitRobots(): PluginOption {
@@ -35,17 +38,16 @@ export function emitRobots(): PluginOption {
         path.join(__dirname, '..', 'public', 'robots.txt'),
         'utf-8',
       );
-      const disallow = `Disallow: ${PDF_DIR}`;
-      if (!template.includes(disallow)) {
-        throw new Error(`emit-robots: "${disallow}" not found in robots.txt`);
+      if (!template.includes(`${ANCHOR}\n`)) {
+        throw new Error(`emit-robots: "${ANCHOR}" not found in robots.txt`);
       }
-      const allows = allowedPdfs().map(link => `Allow: ${link}`);
+      const rules = projectRules();
       fs.writeFileSync(
         path.join(outDir, 'robots.txt'),
-        template.replace(disallow, [disallow, ...allows].join('\n')),
+        template.replace(`${ANCHOR}\n`, [ANCHOR, ...rules, ''].join('\n')),
         'utf-8',
       );
-      console.log(`robots.txt: ${allows.length} paper PDFs allowed`);
+      console.log(`robots.txt: ${rules.length} project page rules`);
     },
   };
 }
