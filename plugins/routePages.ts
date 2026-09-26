@@ -43,15 +43,16 @@ const absolute = (url: string) =>
 
 const setMeta = (html: string, attr: string, key: string, value: string) =>
   html.replace(
-    new RegExp(
-      `(<meta\\s+${attr}="${escapeRegex(key)}"\\s+content=")[^"]*(")`,
-    ),
+    new RegExp(`(<meta\\s+${attr}="${escapeRegex(key)}"\\s+content=")[^"]*(")`),
     `$1${escapeHtml(value)}$2`,
   );
 
 const removeMeta = (html: string, attr: string, key: RegExp) =>
   html.replace(
-    new RegExp(`\\s*<meta\\s+${attr}="${key.source}"\\s+content="[^"]*"\\s*/>`, 'g'),
+    new RegExp(
+      `\\s*<meta\\s+${attr}="${key.source}"\\s+content="[^"]*"\\s*/>`,
+      'g',
+    ),
     '',
   );
 
@@ -86,13 +87,18 @@ const bibtexField = (bibtex: string, name: string) => {
     .trim();
 };
 
-const citationTags = (pub: Publication, bibtex: string | undefined, url: string) => {
+const citationTags = (
+  pub: Publication,
+  bibtex: string | undefined,
+  url: string,
+) => {
   const tags: [string, string][] = [];
   const add = (name: string, value?: string) => {
     if (value) tags.push([name, value]);
   };
   const entryType = bibtex ? /@(\w+)/.exec(bibtex)?.[1]?.toLowerCase() : '';
-  const field = (name: string) => (bibtex ? bibtexField(bibtex, name) : undefined);
+  const field = (name: string) =>
+    bibtex ? bibtexField(bibtex, name) : undefined;
 
   add('citation_title', field('title') ?? pub.title);
   pub.authors
@@ -138,7 +144,9 @@ const articleLd = (pub: Publication, meta: RouteMeta, url: string) =>
           : {'@type': 'Person', name},
       ),
     datePublished: pub.year,
-    isPartOf: pub.venue ? {'@type': 'PublicationVolume', name: pub.venue} : undefined,
+    isPartOf: pub.venue
+      ? {'@type': 'PublicationVolume', name: pub.venue}
+      : undefined,
     keywords: pub.keywords?.join(', '),
     url,
     sameAs: pub.link,
