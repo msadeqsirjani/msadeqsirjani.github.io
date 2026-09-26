@@ -30,11 +30,11 @@ const ProjectPage = ({sections, children, ...meta}: ProjectPageProps) => {
           <a
             key={id}
             href={`#${id}`}
-            title={label}
-            aria-label={label}
             aria-current={active === id ? 'location' : undefined}
             className={active === id ? 'is-active' : undefined}
-          />
+          >
+            <span className="project-dot-label">{label}</span>
+          </a>
         ))}
       </nav>
       <ProjectHero {...meta} />
