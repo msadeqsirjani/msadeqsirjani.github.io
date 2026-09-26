@@ -80,13 +80,13 @@ Listed newest-first by year as on the portfolio. Status reflects the site datase
 
 **Authors:** Erfan Nourbakhsh, Mohammad Sadegh Sirjani, Amir Mousavi, Khoa Nguyen, John Quarles, Mimi Xie, Rocky Slavin
 
-**Venue:** Preprint (accepted, GEM Workshop @ ACL 2026)
+**Venue:** Fifth Workshop on Generation, Evaluation and Metrics (GEM 2026), colocated with ACL 2026 — Outstanding Paper
 
 **Year:** 2026
 
-**Status:** Accepted
+**Status:** Published
 
-**DOI / link:** https://doi.org/10.13140/RG.2.2.12579.41764
+**DOI / link:** https://doi.org/10.18653/v1/2026.gem-main.50
 
 **Project page:** https://msadeqsirjani.com/publications/contamination-review
 

@@ -64,6 +64,18 @@
   font-weight: 600;
 }
 
+.project-award {
+  color: var(--accent-color);
+  font-weight: 700;
+}
+
+.project-award::before {
+  content: '|';
+  margin: 0 0.5rem;
+  color: var(--border-color);
+  font-weight: 400;
+}
+
 .project-links {
   justify-content: center;
   margin-top: 0;

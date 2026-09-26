@@ -18,6 +18,7 @@ export interface ProjectMeta {
   authors: string[];
   affiliation: string;
   venue: string;
+  award?: string;
   pdf: string;
   link: {label: string; href: string};
   code?: string;
@@ -30,6 +31,7 @@ const ProjectHero = ({
   authors,
   affiliation,
   venue,
+  award,
   pdf,
   link,
   code,
@@ -61,7 +63,10 @@ const ProjectHero = ({
         <sup>1</sup>
         {affiliation}
       </p>
-      <p className="project-meta is-venue">{venue}</p>
+      <p className="project-meta is-venue">
+        {venue}
+        {award && <strong className="project-award">{award}</strong>}
+      </p>
 
       <div className="pub-card-actions project-links">
         <PubLink label="Paper" href={pdf} icon={faFilePdf} variant="paper" />

@@ -73,7 +73,8 @@
   },
   {
     "title": "Are LLM Benchmarks Already Contaminated? A Systematic Review of Contamination Detection Methods",
-    "venue": "GEM Workshop — The 64th Annual Meeting of the Association for Computational Linguistics (ACL 2026)",
+    "venue": "Fifth Workshop on Generation, Evaluation and Metrics (GEM 2026), colocated with ACL 2026",
+    "award": "Outstanding Paper",
     "year": "2026",
     "status": "published",
     "visible": true,

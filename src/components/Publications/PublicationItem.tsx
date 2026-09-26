@@ -88,6 +88,9 @@ const PublicationItem = ({pub, headingLevel = 3}: PublicationItemProps) => {
               <p className="pub-card-venue">
                 <span className="pub-venue-label">Venue</span>
                 <cite>{pub.venue}</cite>
+                {pub.award && (
+                  <strong className="pub-award">{pub.award}</strong>
+                )}
               </p>
             )}
           </div>

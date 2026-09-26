@@ -405,6 +405,19 @@
   font-weight: 600;
 }
 
+.pub-award {
+  flex: 0 0 auto;
+  color: var(--accent-color);
+  font-weight: 700;
+}
+
+.pub-award::before {
+  content: '|';
+  margin-right: 0.5rem;
+  color: var(--border-color);
+  font-weight: 400;
+}
+
 .pub-venue-label {
   flex: 0 0 auto;
   font-size: 0.6875rem;

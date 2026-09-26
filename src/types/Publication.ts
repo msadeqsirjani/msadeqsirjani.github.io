@@ -1,6 +1,7 @@
 export interface Publication {
   title: string;
   venue: string;
+  award?: string;
   year: string;
   status: 'published' | 'accepted' | 'review' | 'arxiv';
   visible: boolean;
