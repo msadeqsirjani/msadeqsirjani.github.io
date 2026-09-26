@@ -62,6 +62,7 @@ export const SEARCH_CATEGORY_DEST: Record<
 export function normalizePath(pathname: string): string {
   let p = (pathname || '/').toLowerCase();
   if (p.endsWith('/index.html')) p = p.slice(0, -'index.html'.length);
+  else if (p.endsWith('.html')) p = p.slice(0, -'.html'.length);
   if (p.length > 1 && p.endsWith('/')) p = p.replace(/\/+$/, '');
   return p || '/';
 }

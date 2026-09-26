@@ -15,6 +15,7 @@ import PageShell from './components/PageShell/PageShell';
 import type {RouteKey} from './constants/siteNav';
 import {routeKeyForPath} from './constants/siteNav';
 import {subscribeRoute} from './utils/router';
+import routeMeta from './data/routeMeta.json';
 import {getAccessibleScrollBehavior} from './utils/motion';
 
 const ReadingProgress = lazy(
@@ -60,28 +61,9 @@ type LazyComponent = LazyExoticComponent<ComponentType>;
 
 const DEFAULT_SECTION_DELAY = 100;
 
-const SITE_TITLE =
-  'Mohammad Sadegh Sirjani - Ph.D. Student in Computer Science | TinyAI & Embedded Systems Researcher';
 const NOT_FOUND_TITLE = 'Mohammad Sadegh Sirjani | Page Not Found';
 
-const PAGE_TITLES: Record<RouteKey, string> = {
-  home: SITE_TITLE,
-  research: 'Mohammad Sadegh Sirjani | Research',
-  education: 'Mohammad Sadegh Sirjani | Education',
-  publications: 'Mohammad Sadegh Sirjani | Publications',
-  teaching: 'Mohammad Sadegh Sirjani | Teaching',
-  news: 'Mohammad Sadegh Sirjani | News',
-  awards: 'Mohammad Sadegh Sirjani | Awards',
-  service: 'Mohammad Sadegh Sirjani | Service',
-  cogadapt: 'CogAdapt | Mohammad Sadegh Sirjani',
-  rigeo: 'RIGEO | Mohammad Sadegh Sirjani',
-  contamination: 'LLM Benchmark Contamination | Mohammad Sadegh Sirjani',
-  qteiot: 'QTE-IoT | Mohammad Sadegh Sirjani',
-  bedbug: 'Bedbug-GLA | Mohammad Sadegh Sirjani',
-  clv: 'Customer Pattern Analysis | Mohammad Sadegh Sirjani',
-  secvanet: 'SecVanet | Mohammad Sadegh Sirjani',
-  iotids: 'IoT Intrusion Detection | Mohammad Sadegh Sirjani',
-};
+const PAGE_META: Record<RouteKey, {title: string}> = routeMeta;
 
 const PROJECT_PAGES = {
   cogadapt: {component: CogAdapt, label: 'CogAdapt paper'},
@@ -158,7 +140,7 @@ function App() {
   useEffect(() => subscribeRoute(() => setRouteKey(getRouteKey())), []);
 
   useEffect(() => {
-    document.title = routeKey ? PAGE_TITLES[routeKey] : NOT_FOUND_TITLE;
+    document.title = routeKey ? PAGE_META[routeKey].title : NOT_FOUND_TITLE;
   }, [routeKey]);
 
   useEffect(() => {
