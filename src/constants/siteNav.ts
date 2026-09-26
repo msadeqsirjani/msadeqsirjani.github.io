@@ -21,6 +21,9 @@ export const ROUTE_PATHS = {
   contamination: '/publications/contamination-review',
   qteiot: '/publications/qte-iot',
   bedbug: '/publications/bedbug-gla',
+  clv: '/publications/customer-clv',
+  secvanet: '/publications/secvanet',
+  iotids: '/publications/iot-ids',
 } as const;
 
 export type RouteKey = keyof typeof ROUTE_PATHS;

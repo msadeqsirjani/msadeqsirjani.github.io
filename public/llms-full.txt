@@ -186,6 +186,8 @@ Listed newest-first by year as on the portfolio. Status reflects the site datase
 
 **DOI / link:** https://doi.org/10.1109/QICAR61538.2024.10496623  
 
+**Project page:** https://msadeqsirjani.com/publications/customer-clv
+
 **Keywords:** Data Mining; Software Engineering; Customer Pattern Analysis; Cloud Computing; Optimization  
 
 **Abstract:** In today's competitive business landscape, understanding customer behavior is crucial for organizational success. This paper explores the integration of cloud computing infrastructure, software engineering methodologies, and data mining techniques to analyze customer patterns and optimize the customer lifecycle. We present a comprehensive framework that leverages cloud-based resources to process large-scale customer data efficiently. Our approach combines various data mining algorithms to extract meaningful insights about customer preferences, purchasing patterns, and engagement behaviors. The proposed system demonstrates how organizations can utilize these technologies to enhance customer relationship management, improve service delivery, and make data-driven decisions.
@@ -196,13 +198,15 @@ Listed newest-first by year as on the portfolio. Status reflects the site datase
 
 **Authors:** Seyed Amir Mousavi, Mohammad Sadegh Sirjani, Seyyed Javad Bozorg Zadeh Razavi, Morteza Nikooghadam  
 
-**Venue:** 10th International Conference on Information and Knowledge Technology (IEEE IKT)  
+**Venue:** 14th International Conference on Information and Knowledge Technology (IEEE IKT)  
 
 **Year:** 2023  
 
 **Status:** Published  
 
 **DOI / link:** https://doi.org/10.1109/IKT62039.2023.10433027  
+
+**Project page:** https://msadeqsirjani.com/publications/secvanet
 
 **Keywords:** Authentication; Privacy; Key Agreement; VANET; Scyther Tool  
 
@@ -221,6 +225,8 @@ Listed newest-first by year as on the portfolio. Status reflects the site datase
 **Status:** Published  
 
 **DOI / link:** https://doi.org/10.1109/IKT62039.2023.10433047  
+
+**Project page:** https://msadeqsirjani.com/publications/iot-ids
 
 **Keywords:** Network Security; Intrusion Detection System; Artificial Intelligence; Machine Learning; Data Mining  
 

@@ -50,6 +50,9 @@ const Contamination = lazy(
 );
 const QteIot = lazy(() => import('./components/QteIot/QteIot'));
 const BedbugGla = lazy(() => import('./components/BedbugGla/BedbugGla'));
+const CustomerClv = lazy(() => import('./components/CustomerClv/CustomerClv'));
+const SecVanet = lazy(() => import('./components/SecVanet/SecVanet'));
+const IotIds = lazy(() => import('./components/IotIds/IotIds'));
 const Footer = lazy(() => import('./components/Footer/Footer'));
 const NotFound = lazy(() => import('./components/NotFound/NotFound'));
 
@@ -75,15 +78,12 @@ const PAGE_TITLES: Record<RouteKey, string> = {
   contamination: 'LLM Benchmark Contamination | Mohammad Sadegh Sirjani',
   qteiot: 'QTE-IoT | Mohammad Sadegh Sirjani',
   bedbug: 'Bedbug-GLA | Mohammad Sadegh Sirjani',
+  clv: 'Customer Pattern Analysis | Mohammad Sadegh Sirjani',
+  secvanet: 'SecVanet | Mohammad Sadegh Sirjani',
+  iotids: 'IoT Intrusion Detection | Mohammad Sadegh Sirjani',
 };
 
-type ProjectRouteKey =
-  'cogadapt' | 'rigeo' | 'contamination' | 'qteiot' | 'bedbug';
-
-const PROJECT_PAGES: Record<
-  ProjectRouteKey,
-  {component: LazyComponent; label: string}
-> = {
+const PROJECT_PAGES = {
   cogadapt: {component: CogAdapt, label: 'CogAdapt paper'},
   rigeo: {component: Rigeo, label: 'RIGEO paper'},
   contamination: {
@@ -92,7 +92,14 @@ const PROJECT_PAGES: Record<
   },
   qteiot: {component: QteIot, label: 'QTE-IoT paper'},
   bedbug: {component: BedbugGla, label: 'Bedbug-GLA paper'},
-};
+  clv: {component: CustomerClv, label: 'Customer pattern analysis paper'},
+  secvanet: {component: SecVanet, label: 'SecVanet paper'},
+  iotids: {component: IotIds, label: 'IoT intrusion detection paper'},
+} satisfies Partial<
+  Record<RouteKey, {component: LazyComponent; label: string}>
+>;
+
+type ProjectRouteKey = keyof typeof PROJECT_PAGES;
 
 const isProjectRoute = (key: RouteKey): key is ProjectRouteKey =>
   key in PROJECT_PAGES;
