@@ -25,6 +25,10 @@ import newsData from './news.json';
 import awardsData from './awards.json';
 import researchInterestsData from './research-interests.json';
 
+const visiblePublications = (publicationsData as Publication[]).filter(
+  publication => publication.visible,
+);
+
 const iconMap: Record<string, IconDefinition> = {
   faNetworkWired,
   faMicrochip,
@@ -58,7 +62,7 @@ const buildResearchInterests = (
     .filter((item): item is ResearchInterest => item !== null);
 
 export const fetchPublications = (): Promise<Publication[]> =>
-  Promise.resolve(publicationsData as Publication[]);
+  Promise.resolve(visiblePublications);
 
 export const fetchEducation = (): Promise<EducationItem[]> =>
   Promise.resolve(educationData as EducationItem[]);
@@ -80,7 +84,7 @@ export const fetchResearchInterests = (): Promise<ResearchInterest[]> =>
     buildResearchInterests(researchInterestsData as RawResearchInterest[]),
   );
 
-export const publications = publicationsData as Publication[];
+export const publications = visiblePublications;
 export const education = educationData as EducationItem[];
 export const researchExperience = researchData as ResearchItem[];
 export const teaching = teachingData as TeachingItem[];

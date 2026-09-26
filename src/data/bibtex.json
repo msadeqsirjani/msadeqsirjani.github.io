@@ -5,9 +5,6 @@
   "mousavi2026cogadapt": {
     "bibtex": "@misc{mousavi2026cogadapt,\n  author={Mousavi, Amir and Nourbakhsh, Erfan and Sirjani, Mohammad Sadegh and Xie, Mimi and Slavin, Rocky and Neely, Leslie and Davis, John and Quarles, John},\n  title={CogAdapt: Adapting Clinical ECG Foundation Models for Wearable Cognitive Load Assessment},\n  year={2026},\n  eprint={2605.22774},\n  archivePrefix={arXiv},\n  primaryClass={cs.LG},\n  url={https://arxiv.org/abs/2605.22774},\n  note={Accepted at IEEE EMBS BHI 2026}\n}"
   },
-  "mousavi2026mambagaze": {
-    "bibtex": "@misc{mousavi2026mambagaze,\n  author={Mousavi, Amir and Sirjani, Mohammad Sadegh and Nourbakhsh, Erfan and Xie, Mimi and Slavin, Rocky and Neely, Leslie and Davis, John and Quarles, John},\n  title={MambaGaze: Bidirectional Mamba with Explicit Missing Data Modeling for Cognitive Load Assessment from Eye-Gaze Tracking Data},\n  year={2026},\n  eprint={2605.22775},\n  archivePrefix={arXiv},\n  url={https://arxiv.org/abs/2605.22775}\n}"
-  },
   "10433047": {
     "bibtex": "@INPROCEEDINGS{10433047,\n  author={Mousavi, Seyed Amir and Sadeghi, Mostafa and Sirjani, Mohammad Sadegh},\n  booktitle={2023 14th International Conference on Information and Knowledge Technology (IKT)},\n  title={A Comparative Evaluation of Machine Learning Algorithms for IDS in IoT network},\n  year={2023},\n  volume={},\n  number={},\n  pages={168-174},\n  keywords={Measurement;Support vector machines;Logistic regression;Machine learning algorithms;Classification algorithms;Internet of Things;Ensemble learning;Network Security;Intrusion Detection System;Artificial Intelligence;Machine Learning},\n  doi={10.1109/IKT62039.2023.10433047}\n}"
   },

@@ -62,7 +62,7 @@ Comparative study of ML classifiers for IoT intrusion detection; separate protoc
 
 ### Cognitive load & wearable sensing
 
-Recent work adapts clinical ECG foundation models to 3-lead wearable signals (CogAdapt) and models eye-gaze with bidirectional Mamba under explicit missing-data handling (MambaGaze), targeting subject-independent, real-time cognitive load assessment with edge deployment on NVIDIA Jetson.
+Recent work adapts clinical ECG foundation models to 3-lead wearable signals with CogAdapt, targeting subject-independent, real-time cognitive load assessment.
 
 ### Trustworthy LLM evaluation
 
@@ -94,17 +94,17 @@ Listed newest-first by year as on the portfolio. Status reflects the site datase
 
 ---
 
-### 2. CogAdapt: Transferring Clinical ECG Foundation Models to Wearable Cognitive Load Assessment via Lead Adaptation
+### 2. CogAdapt: Adapting Clinical ECG Foundation Models for Wearable Cognitive Load Assessment
 
-**Authors:** Amir Mousavi, Mohammad Sadegh Sirjani, Erfan Nourbakhsh, Mimi Xie, Rocky Slavin, Leslie Neely, John Davis, John Quarles
+**Authors:** Amir Mousavi, Erfan Nourbakhsh, Mohammad Sadegh Sirjani, Mimi Xie, Rocky Slavin, Leslie Neely, John Davis, John Quarles
 
-**Venue:** arXiv preprint
+**Venue:** IEEE-EMBS International Conference on Biomedical and Health Informatics (BHI 2026)
 
 **Year:** 2026
 
-**Status:** Preprint
+**Status:** Accepted
 
-**DOI / link:** https://arxiv.org/abs/2605.22774
+**Project page:** https://msadeqsirjani.com/publications/cogadapt
 
 **Keywords:** Cognitive Load Assessment; ECG Foundation Models; Wearable Sensors; Transfer Learning; Fine-Tuning
 
@@ -112,25 +112,7 @@ Listed newest-first by year as on the portfolio. Status reflects the site datase
 
 ---
 
-### 3. MambaGaze: Bidirectional Mamba with Explicit Missing Data Modeling for Cognitive Load Assessment from Eye-Gaze Tracking Data
-
-**Authors:** Amir Mousavi, Mohammad Sadegh Sirjani, Erfan Nourbakhsh, Mimi Xie, Rocky Slavin, Leslie Neely, John Davis, John Quarles
-
-**Venue:** arXiv preprint
-
-**Year:** 2026
-
-**Status:** Preprint
-
-**DOI / link:** https://arxiv.org/abs/2605.22775
-
-**Keywords:** Cognitive Load Assessment; Eye-Gaze Tracking; Mamba; Deep Learning; Edge Computing
-
-**Abstract:** Real-time cognitive load assessment from eye-tracking signals could potentially enable adaptive human-centered-AI such as safety-critical applications such as driver vigilance monitoring or automated flight deck assistance, yet two challenges persist: handling frequent data missingness from blinks and tracking failures, and efficiently modeling long-range temporal dependencies. We propose MambaGaze, a framework that addresses these challenges through 1) XMD encoding, which augments raw features with observation masks and time-deltas to explicitly model data uncertainty, and 2) bidirectional Mamba-2, which captures temporal dependencies with linear computational complexity. Experiments on CLARE and CL-Drive datasets under leave-one-subject-out evaluation show that MambaGaze achieves 76.8% and 73.1% accuracy, respectively, outperforming CNN, Transformer, ResNet, and VGG baselines by 4-12 percentage points. Edge deployment benchmarks on NVIDIA Jetson platforms demonstrate real-time inference at 43-68 FPS with power consumption below 7.5W, confirming feasibility for wearable cognitive load monitoring.
-
----
-
-### 4. Optimizing Task Scheduling in Fog Computing with Deadline Awareness
+### 3. Optimizing Task Scheduling in Fog Computing with Deadline Awareness
 
 **Authors:** Mohammad Sadegh Sirjani, Mohammad Ahmad, Amir Mousavi, Erfan Nourbakhsh, Khoa Nguyen
 
@@ -148,7 +130,7 @@ Listed newest-first by year as on the portfolio. Status reflects the site datase
 
 ---
 
-### 5. Q-Learning-Based Task Scheduling Scheme to Enhance Energy Consumption and QoS in IoT Environments
+### 4. Q-Learning-Based Task Scheduling Scheme to Enhance Energy Consumption and QoS in IoT Environments
 
 **Authors:** Ali Ghaffari, Vesal Firoozi, Ali Maleki, Mohammad Sadegh Sirjani, Maedeh Abedini Bagha  
 
@@ -166,7 +148,7 @@ Listed newest-first by year as on the portfolio. Status reflects the site datase
 
 ---
 
-### 6. Controller placement in software-defined networks using reinforcement learning and metaheuristics
+### 5. Controller placement in software-defined networks using reinforcement learning and metaheuristics
 
 **Authors:** Mohammad Sadegh Sirjani, Ali Maleki, Amir Pakmehr, Maedeh Abedini Bagha, Ali Ghaffari, Ali Asghar Pour Haji Kazem  
 
@@ -184,7 +166,7 @@ Listed newest-first by year as on the portfolio. Status reflects the site datase
 
 ---
 
-### 7. Data mining and cloud computing for customer pattern analysis
+### 6. Data mining and cloud computing for customer pattern analysis
 
 **Authors:** Mohammad Sadegh Sirjani, Seyed Amir Mousavi, Mostafa Sadeghi  
 
@@ -202,7 +184,7 @@ Listed newest-first by year as on the portfolio. Status reflects the site datase
 
 ---
 
-### 8. SecVanet: provably secure authentication protocol for sending emergency events in VANET
+### 7. SecVanet: provably secure authentication protocol for sending emergency events in VANET
 
 **Authors:** Seyed Amir Mousavi, Mohammad Sadegh Sirjani, Seyyed Javad Bozorg Zadeh Razavi, Morteza Nikooghadam  
 
@@ -220,7 +202,7 @@ Listed newest-first by year as on the portfolio. Status reflects the site datase
 
 ---
 
-### 9. A Comparative Evaluation of Machine Learning Algorithms for IDS in IoT network
+### 8. A Comparative Evaluation of Machine Learning Algorithms for IDS in IoT network
 
 **Authors:** Seyed Amir Mousavi, Mostafa Sadeghi, Mohammad Sadegh Sirjani  
 

@@ -3,9 +3,11 @@ export interface Publication {
   venue: string;
   year: string;
   status: 'published' | 'accepted' | 'review' | 'arxiv';
+  visible: boolean;
   authors?: string;
   link?: string;
   pdfLink?: string;
+  projectPage?: string;
   github?: string;
   bibtexId?: string;
   abstract?: string;
