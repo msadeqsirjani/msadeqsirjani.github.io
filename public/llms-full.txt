@@ -166,7 +166,7 @@ Listed newest-first by year as on the portfolio. Status reflects the site datase
 
 **DOI / link:** https://doi.org/10.1007/s10586-025-05331-y  
 
-**Project page:** https://msadeqsirjani.com/publications/bedbug-gla
+**Project page:** https://msadeqsirjani.com/publications/controller-placement
 
 **Keywords:** Bedbug Metaheuristic Algorithm; Controller Placement Problem; Energy Consumption; Software-Defined Network  
 

@@ -24,7 +24,7 @@ const AFFILIATIONS = [
   'Department of Computer Science, Khazar University, Baku, Azerbaijan',
 ];
 
-const IMAGES = '/assets/images/bedbug-gla';
+const IMAGES = '/assets/images/controller-placement';
 
 const SECTIONS = [
   {id: 'motivation', label: 'Motivation'},
@@ -129,7 +129,7 @@ const Header = ({labels}: {labels: string[]}) => (
   </thead>
 );
 
-const BedbugGla = () => (
+const ControllerPlacement = () => (
   <ProjectPage
     title="Controller Placement in Software-Defined Networks Using Reinforcement Learning and Metaheuristics"
     authors={AUTHORS}
@@ -343,4 +343,4 @@ const BedbugGla = () => (
   </ProjectPage>
 );
 
-export default BedbugGla;
+export default ControllerPlacement;

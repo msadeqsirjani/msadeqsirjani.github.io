@@ -20,7 +20,7 @@ export const ROUTE_PATHS = {
   rigeo: '/publications/rigeo',
   contamination: '/publications/contamination-review',
   qteiot: '/publications/qte-iot',
-  bedbug: '/publications/bedbug-gla',
+  controllerPlacement: '/publications/controller-placement',
   clv: '/publications/customer-clv',
   secvanet: '/publications/secvanet',
   iotids: '/publications/iot-ids',

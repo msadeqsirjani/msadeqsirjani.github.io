@@ -51,10 +51,10 @@
     "description": "QTE-IoT classifies IoT tasks with an MLP and schedules them across fog and cloud with Q-learning hybrids QAVA and QARO. Sustainable Computing, 2025.",
     "image": "/assets/images/qte-iot/flowchart.jpg"
   },
-  "bedbug": {
+  "controllerPlacement": {
     "title": "Controller Placement in Software-Defined Networks Using Reinforcement Learning and Metaheuristics | Mohammad Sadegh Sirjani",
     "description": "Bedbug-GLA places SDN controllers with cellular learning automata and an improved Bedbug metaheuristic, cutting energy and controller load. Cluster Computing, 2025.",
-    "image": "/assets/images/bedbug-gla/topologies.jpg"
+    "image": "/assets/images/controller-placement/topologies.jpg"
   },
   "clv": {
     "title": "Data Mining and Cloud Computing for Customer Pattern Analysis and Value Maximization | Mohammad Sadegh Sirjani",

@@ -50,7 +50,9 @@ const Contamination = lazy(
   () => import('./components/Contamination/Contamination'),
 );
 const QteIot = lazy(() => import('./components/QteIot/QteIot'));
-const BedbugGla = lazy(() => import('./components/BedbugGla/BedbugGla'));
+const ControllerPlacement = lazy(
+  () => import('./components/ControllerPlacement/ControllerPlacement'),
+);
 const CustomerClv = lazy(() => import('./components/CustomerClv/CustomerClv'));
 const SecVanet = lazy(() => import('./components/SecVanet/SecVanet'));
 const IotIds = lazy(() => import('./components/IotIds/IotIds'));
@@ -73,7 +75,10 @@ const PROJECT_PAGES = {
     label: 'LLM benchmark contamination review',
   },
   qteiot: {component: QteIot, label: 'QTE-IoT paper'},
-  bedbug: {component: BedbugGla, label: 'Bedbug-GLA paper'},
+  controllerPlacement: {
+    component: ControllerPlacement,
+    label: 'SDN controller placement paper',
+  },
   clv: {component: CustomerClv, label: 'Customer pattern analysis paper'},
   secvanet: {component: SecVanet, label: 'SecVanet paper'},
   iotids: {component: IotIds, label: 'IoT intrusion detection paper'},
