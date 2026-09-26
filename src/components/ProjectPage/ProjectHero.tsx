@@ -100,7 +100,7 @@ const ProjectHero = ({
               title="Code coming soon"
             >
               <Icon icon={faGithub} size="lg" />
-              <span className="pub-link-label">Code (Soon)</span>
+              <span className="pub-link-label">Code</span>
             </span>
           )
         )}
