@@ -2,11 +2,13 @@ import {useEffect, useState} from 'react';
 import type {ReactNode} from 'react';
 import toast from 'react-hot-toast';
 import Icon from '../Icon/Icon';
+import PubLink from '../Publications/PubLink';
 import {
   faArrowLeft,
   faCheck,
   faCopy,
   faFilePdf,
+  faLink,
   faQuoteRight,
 } from '@fortawesome/free-solid-svg-icons';
 import {faGithub} from '@fortawesome/free-brands-svg-icons';
@@ -98,29 +100,15 @@ const useActiveSection = () => {
 
 interface PaperSectionProps {
   id: string;
-  kicker: string;
   title: string;
   lede?: string;
-  alt?: boolean;
   children: ReactNode;
 }
 
-const PaperSection = ({
-  id,
-  kicker,
-  title,
-  lede,
-  alt,
-  children,
-}: PaperSectionProps) => (
-  <section
-    id={id}
-    className={`cogadapt-band${alt ? ' is-alt' : ''}`}
-    aria-labelledby={`${id}-title`}
-  >
+const PaperSection = ({id, title, lede, children}: PaperSectionProps) => (
+  <section id={id} className="cogadapt-band" aria-labelledby={`${id}-title`}>
     <div className="cogadapt-inner">
-      <p className="cogadapt-kicker">{kicker}</p>
-      <h2 className="cogadapt-heading" id={`${id}-title`}>
+      <h2 className="section-title" id={`${id}-title`}>
         {title}
       </h2>
       {lede && <p className="cogadapt-lede">{lede}</p>}
@@ -139,6 +127,11 @@ interface FigureProps {
   children: ReactNode;
 }
 
+const FIGURE_CLASS = {
+  medium: 'cogadapt-figure is-medium',
+  wide: 'cogadapt-figure is-wide',
+};
+
 const Figure = ({
   src,
   width,
@@ -148,7 +141,7 @@ const Figure = ({
   size,
   children,
 }: FigureProps) => (
-  <figure className={`cogadapt-figure is-${size}`}>
+  <figure className={FIGURE_CLASS[size]}>
     <img src={src} width={width} height={height} loading="lazy" alt={alt} />
     <figcaption className="cogadapt-caption">
       <span>{label}</span> {children}
@@ -214,14 +207,9 @@ const CogAdapt = () => {
             All publications
           </a>
 
-          <p className="cogadapt-badge">
-            <span aria-hidden="true" />
-            IEEE EMBS BHI 2026
-          </p>
-
           <h1 className="cogadapt-title">
-            <em>CogAdapt</em>: Adapting Clinical ECG Foundation Models for
-            Wearable Cognitive Load Assessment
+            CogAdapt: Adapting Clinical ECG Foundation Models for Wearable
+            Cognitive Load Assessment
           </h1>
 
           <p className="cogadapt-authors">
@@ -241,46 +229,36 @@ const CogAdapt = () => {
             Informatics (BHI 2026)
           </p>
 
-          <div className="cogadapt-links">
-            <a
-              className="btn btn-primary"
+          <div className="pub-card-actions cogadapt-links">
+            <PubLink
+              label="Paper"
               href={PDF}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Icon icon={faFilePdf} />
-              Paper
-            </a>
-            <a
-              className="btn btn-secondary"
-              href={ARXIV}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              arXiv
-            </a>
+              icon={faFilePdf}
+              variant="paper"
+            />
+            <PubLink label="arXiv" href={ARXIV} icon={faLink} variant="doi" />
+            <PubLink
+              label="BibTeX"
+              onClick={() => void copyBibtex()}
+              icon={faQuoteRight}
+              variant="bibtex"
+            />
             <span
-              className="btn btn-secondary is-disabled"
+              className="pub-text-link pub-github-link is-disabled"
               aria-disabled="true"
               title="Code coming soon"
             >
-              <Icon icon={faGithub} />
-              Code (Soon)
+              <Icon icon={faGithub} size="lg" />
+              <span className="pub-link-label">Code (Soon)</span>
             </span>
-            <a className="btn btn-secondary" href="#bibtex">
-              <Icon icon={faQuoteRight} />
-              BibTeX
-            </a>
           </div>
         </div>
       </header>
 
       <PaperSection
         id="motivation"
-        kicker="Introduction"
         title="The Sensor Gap"
         lede="Clinical ECG foundation models expect 12-lead hospital recordings. Wearable cognitive load datasets provide noisy 3-lead signals and a different task."
-        alt
       >
         <Figure
           src={`${IMAGES}/motivation.png`}
@@ -296,7 +274,7 @@ const CogAdapt = () => {
         </Figure>
       </PaperSection>
 
-      <PaperSection id="abstract" kicker="Paper" title="Abstract">
+      <PaperSection id="abstract" title="Abstract">
         <p className="cogadapt-abstract">
           Assessing cognitive load continuously and at low latency would help
           adaptive human-computer interaction, but it remains hard because
@@ -319,10 +297,8 @@ const CogAdapt = () => {
 
       <PaperSection
         id="pipeline"
-        kicker="Method"
         title="CogAdapt Pipeline"
         lede="Wearable preprocessing, LeadBridge 3→12 mapping, pretrained ECG-FM, and a binary load head."
-        alt
       >
         <Figure
           src={`${IMAGES}/architecture.png`}
@@ -339,7 +315,6 @@ const CogAdapt = () => {
 
       <PaperSection
         id="profine"
-        kicker="Adaptation"
         title="ProFine Progressive Fine-Tuning"
         lede="Three scenarios control how much of ECG-FM is updated: frozen, top layers, or full encoder with bucketed learning rates."
       >
@@ -358,10 +333,8 @@ const CogAdapt = () => {
 
       <PaperSection
         id="results"
-        kicker="Results"
         title="Main Results"
         lede="Performance on CLARE and CL-Drive under K-fold and LOSO. Cells are mean ± std over folds. Best per column in bold."
-        alt
       >
         <PaperTable
           label="Table I."
@@ -421,7 +394,6 @@ const CogAdapt = () => {
 
       <PaperSection
         id="ablation"
-        kicker="Ablation"
         title="LeadBridge Ablation"
         lede="Frozen encoder (Scenario A). Only the 3→12 mapping and head are trained. LeadBridge wins on macro-F1 for both datasets."
       >
@@ -473,10 +445,8 @@ const CogAdapt = () => {
 
       <PaperSection
         id="reconstruction"
-        kicker="Pretraining"
         title="PTB-XL Reconstruction"
         lede="Held-out PTB-XL reconstruction for precordial leads V2–V6. LeadBridge leads on RMSE for V2–V5 and on correlation for most leads."
-        alt
       >
         <PaperTable
           compact
@@ -531,7 +501,7 @@ const CogAdapt = () => {
         </PaperTable>
       </PaperSection>
 
-      <PaperSection id="takeaways" kicker="Summary" title="Takeaways">
+      <PaperSection id="takeaways" title="Takeaways">
         <ul className="cogadapt-takeaways">
           {TAKEAWAYS.map(item => (
             <li key={item}>{item}</li>
@@ -539,7 +509,7 @@ const CogAdapt = () => {
         </ul>
       </PaperSection>
 
-      <PaperSection id="bibtex" kicker="Cite" title="BibTeX" alt>
+      <PaperSection id="bibtex" title="BibTeX">
         <div className="cogadapt-bibtex">
           <button
             type="button"

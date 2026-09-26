@@ -1,15 +1,15 @@
 .cogadapt-page {
+  padding: 0 1.25rem 3rem;
   color: var(--text-color);
 }
 
 .cogadapt-inner {
   max-width: 960px;
   margin: 0 auto;
-  padding-inline: 1.25rem;
 }
 
 .cogadapt-hero {
-  padding: 1.5rem 0 3.5rem;
+  padding: 1.5rem 0 0.5rem;
   text-align: center;
 }
 
@@ -19,60 +19,19 @@
   margin-bottom: 2.5rem;
 }
 
-.cogadapt-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  margin: 0 0 1.25rem;
-  padding: 0.4rem 0.95rem;
-  border: 1px solid color-mix(in srgb, var(--status-accepted) 35%, transparent);
-  border-radius: 999px;
-  color: var(--status-accepted);
-  background: var(--status-accepted-bg);
-  font-size: var(--fs-xs);
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-}
-
-.cogadapt-badge span {
-  width: 0.45rem;
-  height: 0.45rem;
-  border-radius: 50%;
-  background: var(--status-accepted);
-  animation: cogadapt-pulse 1.8s ease-out infinite;
-}
-
-@keyframes cogadapt-pulse {
-  0% {
-    box-shadow: 0 0 0 0
-      color-mix(in srgb, var(--status-accepted) 55%, transparent);
-  }
-
-  70%,
-  100% {
-    box-shadow: 0 0 0 0.5rem transparent;
-  }
-}
-
 .cogadapt-title {
-  max-width: 52rem;
   margin: 0 auto 1.5rem;
-  color: var(--text-color);
+  color: var(--accent-color);
   font-family: var(--font-display);
   font-size: clamp(var(--fs-xl), 4.2vw, var(--fs-3xl));
+  font-style: italic;
   font-weight: 500;
   line-height: 1.22;
   letter-spacing: -0.015em;
   text-wrap: balance;
 }
 
-.cogadapt-title em {
-  color: var(--accent-color);
-}
-
 .cogadapt-authors {
-  max-width: 46rem;
   margin: 0 auto 0.5rem;
   color: var(--text-color);
   font-size: var(--fs-base);
@@ -106,74 +65,34 @@
 }
 
 .cogadapt-links {
-  display: flex;
-  flex-wrap: wrap;
   justify-content: center;
-  gap: 0.6rem;
+  margin-top: 0;
 }
 
-.cogadapt-links .btn {
-  min-height: var(--control-height);
-  padding: 0.6rem 1.15rem;
-  border-radius: 999px;
-  font-size: var(--control-font-size);
-  text-decoration: none;
-}
-
-.cogadapt-links .btn:hover {
-  text-decoration: none;
+.cogadapt-links .pub-text-link {
+  height: 2.25rem;
+  padding: 0 1rem;
+  font-size: var(--fs-sm);
 }
 
 .cogadapt-links .is-disabled {
   opacity: 0.5;
   cursor: not-allowed;
-  pointer-events: none;
 }
 
 .cogadapt-band {
-  position: relative;
-  padding: 3.5rem 0;
-  scroll-margin-top: 4rem;
-  border-top: 1px solid var(--card-border-color);
-  text-align: center;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: var(--section-space) 0 0;
+  scroll-margin-top: 5rem;
 }
 
-.cogadapt-band.is-alt {
-  background: var(--surface-muted);
-}
-
-.cogadapt-kicker {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.55rem;
-  margin: 0 0 0.5rem;
-  color: var(--signal-color);
-  font-size: var(--fs-xs);
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
-
-.cogadapt-kicker::before {
-  content: '';
-  width: 1.5rem;
-  height: 2px;
-  border-radius: 2px;
-  background: var(--accent-color);
-}
-
-.cogadapt-heading {
-  margin: 0 0 1rem;
-  color: var(--text-color);
-  font-family: var(--font-display);
-  font-size: clamp(var(--fs-xl), 2.8vw, var(--fs-2xl));
-  font-weight: 500;
-  line-height: 1.25;
+.cogadapt-band .section-title {
+  margin-bottom: 1rem;
 }
 
 .cogadapt-lede {
-  max-width: 46rem;
-  margin: 0 auto;
+  margin: 0;
   color: var(--text-light);
   font-size: var(--fs-base);
   line-height: 1.65;
@@ -181,8 +100,7 @@
 }
 
 .cogadapt-abstract {
-  max-width: 52rem;
-  margin: 0 auto;
+  margin: 0;
   color: var(--text-color);
   font-size: var(--fs-base);
   line-height: 1.75;
@@ -195,7 +113,6 @@
 .cogadapt-table-figure {
   width: 100%;
   margin: 1.75rem auto 0;
-  text-align: left;
 }
 
 .cogadapt-figure.is-medium {
@@ -294,11 +211,9 @@
 }
 
 .cogadapt-takeaways {
-  max-width: 46rem;
-  margin: 1rem auto 0;
+  margin: 0;
   padding: 0;
   list-style: none;
-  text-align: left;
 }
 
 .cogadapt-takeaways li {
@@ -326,9 +241,6 @@
 
 .cogadapt-bibtex {
   position: relative;
-  max-width: 52rem;
-  margin: 0.5rem auto 0;
-  text-align: left;
 }
 
 .cogadapt-bibtex pre {
@@ -407,22 +319,12 @@
 }
 
 @media (max-width: 700px) {
-  .cogadapt-hero {
-    padding-bottom: 2.5rem;
-  }
-
   .cogadapt-back {
     margin-bottom: 1.75rem;
   }
 
-  .cogadapt-band {
-    padding: 2.5rem 0;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .cogadapt-badge span {
-    animation: none;
+  .cogadapt-page {
+    padding-inline: 1rem;
   }
 }
 
