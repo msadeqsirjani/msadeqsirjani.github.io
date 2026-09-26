@@ -5,6 +5,7 @@ import PurgeCSS from 'vite-plugin-purgecss';
 import fs from 'fs';
 import path from 'path';
 import {emitRoutePages} from './plugins/routePages';
+import {emitRobots} from './plugins/robots';
 
 const BUILD_TIMESTAMP = Date.now().toString();
 
@@ -149,6 +150,7 @@ export default defineConfig({
     injectSeoAndFonts(),
     injectBuildTime(),
     emitRoutePages(),
+    emitRobots(),
     visualizer({
       filename: './dist/stats.html',
       open: false,
