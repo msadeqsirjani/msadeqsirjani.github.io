@@ -1,14 +1,11 @@
 import Icon from '../Icon/Icon';
 import PubLink from '../Publications/PubLink';
 import {
-  faArrowLeft,
   faFilePdf,
   faLink,
   faQuoteRight,
 } from '@fortawesome/free-solid-svg-icons';
 import {faGithub} from '@fortawesome/free-brands-svg-icons';
-import {ROUTE_PATHS} from '../../constants/siteNav';
-import {navLinkProps} from '../../utils/router';
 import {copyBibtex} from './copyBibtex';
 
 const SELF = 'Mohammad Sadegh Sirjani';
@@ -42,14 +39,6 @@ const ProjectHero = ({
 }: ProjectMeta) => (
   <header className="project-hero" id="top">
     <div className="project-inner">
-      <a
-        className="page-back-link project-back"
-        {...navLinkProps(ROUTE_PATHS.publications)}
-      >
-        <Icon icon={faArrowLeft} size="sm" />
-        All publications
-      </a>
-
       <h1 className="project-title">{title}</h1>
 
       <p className="project-authors">

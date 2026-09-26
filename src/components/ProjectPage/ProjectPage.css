@@ -9,14 +9,8 @@
 }
 
 .project-hero {
-  padding: 2.5rem 0 0.5rem;
+  padding: 5rem 0 0.5rem;
   text-align: center;
-}
-
-.project-back {
-  display: flex;
-  width: fit-content;
-  margin-bottom: 2.5rem;
 }
 
 .project-title {
@@ -321,8 +315,8 @@
 }
 
 @media (max-width: 700px) {
-  .project-back {
-    margin-bottom: 1.75rem;
+  .project-hero {
+    padding-top: 3rem;
   }
 
   .project-page {
