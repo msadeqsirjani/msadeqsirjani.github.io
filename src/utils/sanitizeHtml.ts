@@ -1,4 +1,4 @@
-const ALLOWED_TAGS = new Set(['a']);
+const ALLOWED_TAGS = new Set(['a', 'strong']);
 const ALLOWED_ATTRS = new Set(['href', 'target', 'rel']);
 const SAFE_PROTOCOLS = ['http:', 'https:', 'mailto:'];
 
