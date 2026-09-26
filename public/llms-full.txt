@@ -19,7 +19,7 @@ Short index file: https://msadeqsirjani.com/llms.txt
 
 **Prior degree:** B.Sc. in Computer Engineering, Ferdowsi University of Mashhad  
 
-**Notable recognition (from public biography):** DAC Young Fellow; first place, DAC 2025 Video Presentation Contest  
+**Notable recognition (from public biography):** two-time DAC Young Fellow; NVIDIA certificate in building agentic AI applications; papers in GEM, IEEE EMBS BHI, Sustainable Computing, Cluster Computing, and IEEE SaTC  
 
 ---
 

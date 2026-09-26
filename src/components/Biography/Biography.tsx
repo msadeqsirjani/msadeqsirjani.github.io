@@ -39,11 +39,19 @@ const Biography = () => {
               and passed his qualifying examination in 2026. His papers appear
               in{' '}
               <a
-                href="https://www.springer.com/journal/10586"
+                href="https://gem-workshop.com/"
                 target="_blank"
                 rel="noopener"
               >
-                Cluster Computing
+                GEM
+              </a>
+              ,{' '}
+              <a
+                href="https://bhi.embs.org/2026/"
+                target="_blank"
+                rel="noopener"
+              >
+                IEEE EMBS BHI
               </a>
               ,{' '}
               <a
@@ -55,21 +63,29 @@ const Biography = () => {
               </a>
               ,{' '}
               <a
+                href="https://www.springer.com/journal/10586"
+                target="_blank"
+                rel="noopener"
+              >
+                Cluster Computing
+              </a>
+              , and{' '}
+              <a
                 href="https://www.satcconf.com/"
                 target="_blank"
                 rel="noopener"
               >
-                SATC
+                IEEE SaTC
               </a>
-              , and the{' '}
+              . He earned an{' '}
               <a
-                href="https://gem-workshop.com/"
+                href="https://learn.nvidia.com/certificates?id=n-giMj1ST7SpcoFfdlr8mQ"
                 target="_blank"
                 rel="noopener"
               >
-                GEM Workshop
+                NVIDIA
               </a>{' '}
-              at ACL. He is a two-time{' '}
+              certificate in building agentic AI applications. He is a two-time{' '}
               <a href="https://dac.com/2026" target="_blank" rel="noopener">
                 DAC
               </a>{' '}
