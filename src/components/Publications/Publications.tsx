@@ -96,7 +96,13 @@ const Publications = () => {
                   className="publication-item"
                   role="listitem"
                 >
-                  <h3 className="publication-title">{pub.title}</h3>
+                  <h3 className="publication-title">
+                    {pub.projectPage ? (
+                      <a {...navLinkProps(pub.projectPage)}>{pub.title}</a>
+                    ) : (
+                      pub.title
+                    )}
+                  </h3>
                   {(pub.authors ||
                     (pub.venue && !/preprint/i.test(pub.venue))) && (
                     <div className="publication-citation">

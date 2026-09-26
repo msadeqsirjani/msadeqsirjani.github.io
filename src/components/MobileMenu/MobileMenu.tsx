@@ -100,7 +100,10 @@ const MobileMenu = ({isOpen, onClose, activePath, onNav}: MobileMenuProps) => {
           </button>
           <ul className="mobile-menu-list">
             {ALL_NAV_LINKS.map(link => {
-              const isActive = normalizePath(link.path) === activePath;
+              const normalized = normalizePath(link.path);
+              const isActive =
+                activePath === normalized ||
+                activePath.startsWith(`${normalized}/`);
               return (
                 <motion.li key={link.id} variants={item}>
                   <a

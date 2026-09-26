@@ -1,6 +1,7 @@
 import type {IconDefinition} from '@fortawesome/fontawesome-svg-core';
 import Icon from '../Icon/Icon';
 import {faArrowUpRightFromSquare} from '@fortawesome/free-solid-svg-icons';
+import {navLinkProps} from '../../utils/router';
 
 type PubLinkVariant = 'github' | 'doi' | 'paper' | 'bibtex';
 
@@ -11,6 +12,7 @@ interface PubLinkProps {
   icon?: IconDefinition;
   variant?: PubLinkVariant;
   ariaExpanded?: boolean;
+  internal?: boolean;
 }
 
 const VARIANT_CLASS: Record<PubLinkVariant, string> = {
@@ -27,6 +29,7 @@ const PubLink = ({
   icon,
   variant,
   ariaExpanded,
+  internal = false,
 }: PubLinkProps) => {
   const className = `pub-text-link doi-link${
     variant ? ` ${VARIANT_CLASS[variant]}` : ''
@@ -40,6 +43,19 @@ const PubLink = ({
   );
 
   if (href) {
+    if (internal) {
+      return (
+        <a
+          className={className}
+          aria-label={label}
+          title={label}
+          {...navLinkProps(href)}
+        >
+          {content}
+        </a>
+      );
+    }
+
     return (
       <a
         href={href}

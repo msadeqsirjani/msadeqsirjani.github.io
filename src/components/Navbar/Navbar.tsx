@@ -186,7 +186,10 @@ const Navbar = ({onSearchClick}: NavbarProps) => {
 
   const mainLinks = MAIN_NAV_LINKS;
   const dropdownLinks = DROPDOWN_NAV_LINKS;
-  const isPathActive = (path: string) => normalizePath(path) === activePath;
+  const isPathActive = (path: string) => {
+    const normalized = normalizePath(path);
+    return activePath === normalized || activePath.startsWith(`${normalized}/`);
+  };
   const isDropdownPathActive = dropdownLinks.some(link =>
     isPathActive(link.path),
   );

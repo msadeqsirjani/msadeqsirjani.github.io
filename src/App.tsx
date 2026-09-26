@@ -43,6 +43,7 @@ const Teaching = lazy(() => import('./components/Teaching/Teaching'));
 const News = lazy(() => import('./components/News/News'));
 const Awards = lazy(() => import('./components/Awards/Awards'));
 const Service = lazy(() => import('./components/Service/Service'));
+const CogAdapt = lazy(() => import('./components/CogAdapt/CogAdapt'));
 const Footer = lazy(() => import('./components/Footer/Footer'));
 const NotFound = lazy(() => import('./components/NotFound/NotFound'));
 
@@ -63,9 +64,13 @@ const PAGE_TITLES: Record<RouteKey, string> = {
   news: 'Mohammad Sadegh Sirjani | News',
   awards: 'Mohammad Sadegh Sirjani | Awards',
   service: 'Mohammad Sadegh Sirjani | Service',
+  cogadapt: 'CogAdapt | Mohammad Sadegh Sirjani',
 };
 
-const PAGE_COMPONENTS: Record<Exclude<RouteKey, 'home'>, LazyComponent> = {
+const PAGE_COMPONENTS: Record<
+  Exclude<RouteKey, 'home' | 'cogadapt'>,
+  LazyComponent
+> = {
   research: ResearchPage,
   education: Education,
   publications: PublicationsPage,
@@ -75,7 +80,10 @@ const PAGE_COMPONENTS: Record<Exclude<RouteKey, 'home'>, LazyComponent> = {
   service: Service,
 };
 
-const PAGE_LOADER_TYPES: Record<Exclude<RouteKey, 'home'>, SkeletonType> = {
+const PAGE_LOADER_TYPES: Record<
+  Exclude<RouteKey, 'home' | 'cogadapt'>,
+  SkeletonType
+> = {
   research: 'tile',
   education: 'record',
   publications: 'publication',
@@ -249,6 +257,32 @@ function App() {
                 <Publications />
               </Suspense>
             </AnimatedSection>
+          </ErrorBoundary>
+        </main>
+      );
+    }
+
+    if (routeKey === 'cogadapt') {
+      return (
+        <main
+          key={routeKey}
+          id="main-content"
+          className="route-enter"
+          role="main"
+          aria-label="CogAdapt paper"
+          tabIndex={-1}
+        >
+          <ErrorBoundary>
+            <Suspense
+              fallback={
+                <SectionLoader
+                  type="publication"
+                  label="Loading CogAdapt paper"
+                />
+              }
+            >
+              <CogAdapt />
+            </Suspense>
           </ErrorBoundary>
         </main>
       );

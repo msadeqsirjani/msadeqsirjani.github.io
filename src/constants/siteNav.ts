@@ -16,6 +16,7 @@ export const ROUTE_PATHS = {
   news: '/news',
   awards: '/awards',
   service: '/service',
+  cogadapt: '/publications/cogadapt',
 } as const;
 
 export type RouteKey = keyof typeof ROUTE_PATHS;

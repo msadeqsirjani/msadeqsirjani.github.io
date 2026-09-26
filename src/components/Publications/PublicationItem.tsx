@@ -11,6 +11,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import {faGithub} from '@fortawesome/free-brands-svg-icons';
 import bibtexData from '../../data/bibtex.json';
+import {navLinkProps} from '../../utils/router';
 
 const getStatusLabel = (status: string) => {
   const labels: Record<string, string> = {
@@ -57,14 +58,25 @@ const PublicationItem = ({pub, headingLevel = 3}: PublicationItemProps) => {
   const hasKeywords = !!pub.keywords && pub.keywords.length > 0;
   const hasVenue = !!pub.venue && !/preprint/i.test(pub.venue);
   const hasActions = Boolean(
-    pub.abstract || pub.link || pub.pdfLink || pub.bibtexId || pub.github,
+    pub.abstract ||
+    pub.projectPage ||
+    pub.link ||
+    pub.pdfLink ||
+    pub.bibtexId ||
+    pub.github,
   );
   const TitleTag = headingLevel === 2 ? 'h2' : 'h3';
 
   return (
     <article className="pub-card" role="listitem">
       <div className="pub-card-body">
-        <TitleTag className="pub-card-title">{pub.title}</TitleTag>
+        <TitleTag className="pub-card-title">
+          {pub.projectPage ? (
+            <a {...navLinkProps(pub.projectPage)}>{pub.title}</a>
+          ) : (
+            pub.title
+          )}
+        </TitleTag>
 
         {(pub.authors || hasVenue) && (
           <div className="pub-card-citation">
@@ -123,9 +135,18 @@ const PublicationItem = ({pub, headingLevel = 3}: PublicationItemProps) => {
                 />
               </button>
             )}
+            {pub.projectPage && (
+              <PubLink
+                label="Project"
+                href={pub.projectPage}
+                icon={faLink}
+                variant="doi"
+                internal
+              />
+            )}
             {pub.link && (
               <PubLink
-                label="DOI"
+                label={pub.link.includes('arxiv.org') ? 'arXiv' : 'DOI'}
                 href={pub.link}
                 icon={faLink}
                 variant="doi"
