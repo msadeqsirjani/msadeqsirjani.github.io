@@ -7,18 +7,24 @@ import bibtexData from '../../data/bibtex.json';
 import cogadaptData from '../../data/cogadapt.json';
 
 const AUTHORS = [
-  'Amir Mousavi',
-  'Erfan Nourbakhsh',
-  'Mohammad Sadegh Sirjani',
-  'Mimi Xie',
-  'Rocky Slavin',
-  'Leslie Neely',
-  'John Davis',
-  'John Quarles',
+  {name: 'Amir Mousavi', marks: '1'},
+  {name: 'Erfan Nourbakhsh', marks: '1'},
+  {name: 'Mohammad Sadegh Sirjani', marks: '1'},
+  {name: 'Rocky Slavin', marks: '1'},
+  {name: 'Mimi Xie', marks: '1'},
+  {name: 'Leslie Neely', marks: '3'},
+  {name: 'John Davis', marks: '2'},
+  {name: 'John Quarles', marks: '1'},
+];
+
+const AFFILIATIONS = [
+  'Department of Computer Science, College of AI, Cyber and Computing, The University of Texas at San Antonio',
+  'Department of Educational Psychology, College of Education and Human Development, The University of Texas at San Antonio',
+  'Department of Neuroscience, Developmental and Regenerative Biology, College of Sciences, The University of Texas at San Antonio',
 ];
 
 const ARXIV = 'https://arxiv.org/abs/2605.22774';
-const PDF = '/assets/docs/publications/2605.22774v2.pdf';
+const PDF = '/assets/docs/publications/2605.22774v5.pdf';
 const IMAGES = '/assets/images/cogadapt';
 
 const SECTIONS = [
@@ -66,7 +72,7 @@ const CogAdapt = () => (
   <ProjectPage
     title="CogAdapt: Adapting Clinical ECG Foundation Models for Wearable Cognitive Load Assessment"
     authors={AUTHORS}
-    affiliation="University of Texas at San Antonio (UTSA)"
+    affiliation={AFFILIATIONS}
     venue="IEEE-EMBS International Conference on Biomedical and Health Informatics (BHI 2026)"
     pdf={PDF}
     link={{label: 'arXiv', href: ARXIV}}
@@ -97,19 +103,21 @@ const CogAdapt = () => (
         Assessing cognitive load continuously and at low latency would help
         adaptive human-computer interaction, but it remains hard because labeled
         data are scarce and models generalize poorly across subjects. Recent ECG
-        foundation models are pretrained on millions of clinical diagnostic ECG
+        foundation models, pre-trained on millions of clinical diagnostic ECG
         recordings, yet they do not apply directly to wearable devices when the
         sensor configuration and the task both differ. We present{' '}
         <strong>CogAdapt</strong>, a framework that adapts a clinical ECG
-        foundation model to wearable cognitive load assessment.{' '}
-        <strong>LeadBridge</strong> is a learnable adapter that maps 3-lead
-        wearable signals to a 12-lead-compatible representation.{' '}
+        foundation model to wearable cognitive load assessment. CogAdapt has two
+        parts. <strong>LeadBridge</strong> is a learnable adapter that maps
+        3-lead wearable signals to a 12-lead-compatible representation.{' '}
         <strong>ProFine</strong> is a progressive fine-tuning strategy that
-        unfreezes encoder layers in stages while limiting representational
-        drift. On CLARE and CL-Drive under leave-one-subject-out
-        cross-validation, CogAdapt reaches macro-F1 of 0.626 and 0.768,
-        improving over from-scratch baselines by 11.2 and 16.1 percentage
-        points.
+        unfreezes encoder layers in stages while limiting representational drift
+        in the pre-trained model. On two public datasets (CLARE and CL-Drive)
+        under leave-one-subject-out cross-validation, CogAdapt reaches macro-F1
+        of 0.626 and 0.768, improving over from-scratch baselines by 11.2 and
+        16.1 percentage points. The results show that a clinical ECG pretraining
+        can support subject-independent cognitive load assessment from wearable
+        sensors.
       </p>
     </ProjectSection>
 
