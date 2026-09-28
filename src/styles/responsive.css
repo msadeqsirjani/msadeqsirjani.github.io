@@ -1028,7 +1028,7 @@ body:has(.mobile-menu-overlay) .scroll-to-top,
   }
 
   .service-row {
-    padding: var(--card-padding);
+    padding: 1.25rem 0 1.35rem;
   }
 
   :is(.education-row-side, .teaching-row-side, .service-row-side) {
