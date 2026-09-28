@@ -132,18 +132,8 @@ a {
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
 }
 
-.publication-card:active,
-.news-card:active {
+.publication-card:active {
   transform: scale(0.98);
-  transition-duration: 0.1s;
-}
-
-.research-row:active,
-.teaching-row:active,
-.education-row:active,
-.award-row:active,
-.timeline-item:active {
-  transform: scale(0.99);
   transition-duration: 0.1s;
 }
 

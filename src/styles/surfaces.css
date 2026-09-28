@@ -3,45 +3,10 @@
 .teaching-row,
 .award-row,
 .news-card,
-.timeline-item {
-  padding: var(--card-padding);
-  border: 1px solid var(--card-border-color);
-  border-radius: var(--shape-card);
-  background: var(--card-bg);
-  box-shadow: none;
-  transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease,
-    border-color 0.2s ease,
-    background-color 0.2s ease;
-}
-
-.education-row:focus-within,
-.research-row:focus-within,
-.teaching-row:focus-within,
-.award-row:focus-within,
-.news-card:focus-within,
-.timeline-item:focus-within {
-  border-color: var(--card-border-hover);
-}
-
-@media (hover: hover) {
-  .education-row:hover,
-  .research-row:hover,
-  .teaching-row:hover,
-  .award-row:hover,
-  .news-card:hover,
-  .timeline-item:hover {
-    transform: translateY(-2px);
-    border-color: var(--card-border-hover);
-    box-shadow: var(--card-hover-shadow);
-  }
-}
-
-/* Publications read as editorial records rather than dashboard cards. */
+.timeline-item,
 .publication-item,
 .pub-card {
-  padding: 1.4rem 0 1.5rem;
+  padding: 1.25rem 0 1.35rem;
   border: 0;
   border-bottom: 1px solid var(--border-color);
   border-radius: 0;
@@ -50,26 +15,59 @@
   transition: border-color 0.2s ease;
 }
 
-.publication-item:first-child,
-.pub-card:first-child {
-  padding-top: 0.25rem;
-}
-
-.publication-item:last-child,
-.pub-card:last-child {
-  border-bottom: 0;
-}
-
+.education-row:focus-within,
+.research-row:focus-within,
+.teaching-row:focus-within,
+.award-row:focus-within,
+.news-card:focus-within,
+.timeline-item:focus-within,
 .publication-item:focus-within,
 .pub-card:focus-within {
   border-bottom-color: var(--accent-color);
 }
 
 @media (hover: hover) {
+  .education-row:hover,
+  .research-row:hover,
+  .teaching-row:hover,
+  .award-row:hover,
+  .news-card:hover,
+  .timeline-item:hover,
   .publication-item:hover,
   .pub-card:hover {
     transform: none;
     border-bottom-color: rgba(var(--accent-rgb), 0.45);
     box-shadow: none;
   }
+}
+
+.education-row:first-child,
+.research-row:first-child,
+.teaching-row:first-child,
+.award-row:first-child,
+.news-card:first-child,
+.timeline-item:first-child,
+.publication-item:first-child,
+.pub-card:first-child {
+  padding-top: 0.25rem;
+}
+
+.education-row:last-child,
+.research-row:last-child,
+.teaching-row:last-child,
+.award-row:last-child,
+.news-card:last-child,
+.timeline-item:last-child,
+.publication-item:last-child,
+.pub-card:last-child {
+  border-bottom: 0;
+}
+
+.education-list,
+.research-list,
+.teaching-list,
+.awards-list,
+.news-card-list,
+.timeline-list {
+  gap: 0;
 }
