@@ -6,13 +6,15 @@
 .timeline-item,
 .publication-item,
 .pub-card {
-  padding: 1.25rem 0 1.35rem;
+  padding: 1rem 0;
   border: 0;
   border-bottom: 1px solid var(--border-color);
   border-radius: 0;
   background: transparent;
   box-shadow: none;
-  transition: border-color 0.2s ease;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease;
 }
 
 .education-row:focus-within,
@@ -23,6 +25,7 @@
 .timeline-item:focus-within,
 .publication-item:focus-within,
 .pub-card:focus-within {
+  background-color: rgba(var(--accent-rgb), 0.035);
   border-bottom-color: var(--accent-color);
 }
 
@@ -36,6 +39,7 @@
   .publication-item:hover,
   .pub-card:hover {
     transform: none;
+    background-color: rgba(var(--accent-rgb), 0.035);
     border-bottom-color: rgba(var(--accent-rgb), 0.45);
     box-shadow: none;
   }
@@ -49,7 +53,7 @@
 .timeline-item:first-child,
 .publication-item:first-child,
 .pub-card:first-child {
-  padding-top: 0.25rem;
+  padding-top: 0.15rem;
 }
 
 .education-row:last-child,
