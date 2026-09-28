@@ -12,6 +12,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import {faGithub} from '@fortawesome/free-brands-svg-icons';
 import bibtexData from '../../data/bibtex.json';
+import faArxiv from '../../icons/arxiv';
 import {navLinkProps} from '../../utils/router';
 
 const getStatusLabel = (status: string) => {
@@ -152,7 +153,7 @@ const PublicationItem = ({pub, headingLevel = 3}: PublicationItemProps) => {
               <PubLink
                 label={pub.link.includes('arxiv.org') ? 'arXiv' : 'DOI'}
                 href={pub.link}
-                icon={faLink}
+                icon={pub.link.includes('arxiv.org') ? faArxiv : faLink}
                 variant="doi"
               />
             )}

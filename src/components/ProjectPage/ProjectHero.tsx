@@ -6,6 +6,7 @@ import {
   faQuoteRight,
 } from '@fortawesome/free-solid-svg-icons';
 import {faGithub} from '@fortawesome/free-brands-svg-icons';
+import faArxiv from '../../icons/arxiv';
 import {copyBibtex} from './copyBibtex';
 
 const SELF = 'Mohammad Sadegh Sirjani';
@@ -70,7 +71,7 @@ const ProjectHero = ({
         <PubLink
           label={link.label}
           href={link.href}
-          icon={faLink}
+          icon={link.href.includes('arxiv.org') ? faArxiv : faLink}
           variant="doi"
         />
         <PubLink
