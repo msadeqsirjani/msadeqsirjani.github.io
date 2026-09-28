@@ -124,3 +124,8 @@
 .bio-text p a:hover {
   text-decoration: underline;
 }
+
+.bio-text p strong {
+  font-weight: 500;
+  color: var(--text-color);
+}
