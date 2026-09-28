@@ -50,25 +50,34 @@
   grid-template-columns: minmax(0, 1fr) auto;
   align-items: center;
   gap: 0.25rem 1.5rem;
-  padding: 1.25rem 0 1.35rem;
+  padding: 1rem 0;
   border: 0;
   border-bottom: 1px solid var(--border-color);
   border-radius: 0;
   background: transparent;
-  transition: border-color 0.2s ease;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease;
 }
 
 .service-row:first-child {
-  padding-top: 0.25rem;
+  padding-top: 0.15rem;
 }
 
 .service-row:last-child {
   border-bottom: 0;
 }
 
-.service-row:hover,
 .service-row:focus-within {
+  background-color: rgba(var(--accent-rgb), 0.035);
   border-bottom-color: rgba(var(--accent-rgb), 0.45);
+}
+
+@media (hover: hover) {
+  .service-row:hover {
+    background-color: rgba(var(--accent-rgb), 0.035);
+    border-bottom-color: rgba(var(--accent-rgb), 0.45);
+  }
 }
 
 .service-row-main {
@@ -145,7 +154,7 @@
     grid-template-columns: 1fr;
     align-items: stretch;
     gap: 0.5rem;
-    padding: 0.95rem 0 1.05rem;
+    padding: 0.85rem 0;
   }
 
   .service-row-side {
