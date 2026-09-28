@@ -317,8 +317,6 @@ html:not([data-theme='dark'])
 
 html[data-theme='dark']
   :is(
-    .publication-item,
-    .pub-card,
     .education-row,
     .research-row,
     .teaching-row,
@@ -332,8 +330,6 @@ html[data-theme='dark']
 
 html[data-theme='dark']
   :is(
-    .publication-item,
-    .pub-card,
     .education-row,
     .research-row,
     .teaching-row,
