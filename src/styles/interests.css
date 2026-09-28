@@ -4,7 +4,7 @@
   padding: 0;
   display: grid;
   grid-template-columns: 1fr;
-  gap: 0.15rem;
+  gap: 0 1.5rem;
 }
 
 .interest-row {
@@ -12,14 +12,24 @@
   align-items: center;
   gap: 0.9rem;
   min-width: 0;
-  padding: 0.8rem 0.75rem;
-  border-radius: var(--shape-card);
-  transition: background-color 0.2s ease;
+  padding: 0.9rem 0;
+  border-bottom: 1px solid var(--border-color);
+  transition: border-color 0.2s ease;
 }
 
 .interest-row:hover,
 .interest-row:focus-within {
-  background: var(--gray-light);
+  border-bottom-color: rgba(var(--accent-rgb), 0.45);
+}
+
+.interest-row:last-child {
+  border-bottom: 0;
+}
+
+@media (min-width: 601px) {
+  .interest-row:nth-last-child(-n + 2) {
+    border-bottom: 0;
+  }
 }
 
 .interest-mark {
