@@ -698,7 +698,6 @@ body:has(.mobile-menu-overlay) .scroll-to-top,
     font-size: var(--fs-lg);
   }
 
-  .news-row-text,
   .news-card-text,
   .publications-intro,
   .pub-scholar-note,
@@ -1053,13 +1052,13 @@ body:has(.mobile-menu-overlay) .scroll-to-top,
   }
 
   .news-row {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 0.3rem;
-    padding: 0.8rem;
+    grid-template-columns: 6rem minmax(0, 1fr);
+    gap: 0.35rem 1rem;
+    padding: 0.65rem 0.25rem;
   }
 
   .news-row-date {
-    padding-top: 0;
+    padding: 0.25rem 0.45rem;
   }
 }
 
