@@ -378,7 +378,6 @@
 
 .pub-card-title a:hover {
   color: var(--accent-color);
-  text-decoration: underline;
 }
 
 .pub-card-citation,
@@ -632,7 +631,6 @@
 
 .publication-title a:hover {
   color: var(--accent-color);
-  text-decoration: underline;
 }
 
 .publication-authors {
@@ -700,10 +698,6 @@
   text-decoration: none;
   font-weight: 600;
   font-size: var(--fs-base);
-}
-
-.publication-item h4 a:hover {
-  text-decoration: underline;
 }
 
 .journal,
