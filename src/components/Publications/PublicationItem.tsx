@@ -65,6 +65,7 @@ const PublicationItem = ({pub, headingLevel = 3}: PublicationItemProps) => {
     pub.bibtexId ||
     pub.github,
   );
+  const isArxiv = !!pub.link?.includes('arxiv.org');
   const TitleTag = headingLevel === 2 ? 'h2' : 'h3';
 
   return (
@@ -149,9 +150,9 @@ const PublicationItem = ({pub, headingLevel = 3}: PublicationItemProps) => {
             )}
             {pub.link && (
               <PubLink
-                label="Paper"
+                label={isArxiv ? 'arXiv' : 'Paper'}
                 href={pub.link}
-                icon={pub.link.includes('arxiv.org') ? faArxiv : faFileLines}
+                icon={isArxiv ? faArxiv : faFileLines}
                 variant="paper"
               />
             )}
