@@ -203,11 +203,7 @@ const Contamination = () => (
     affiliation="University of Texas at San Antonio (UTSA)"
     venue="Fifth Workshop on Generation, Evaluation and Metrics (GEM 2026), colocated with ACL 2026 · San Diego, California, USA"
     award="Outstanding Paper"
-    pdf="/assets/docs/publications/2026.gem-main.50.pdf"
-    link={{
-      label: 'ACL Anthology',
-      href: 'https://aclanthology.org/2026.gem-main.50/',
-    }}
+    paper="https://aclanthology.org/2026.gem-main.50/"
     bibtex={bibtex}
     sections={SECTIONS}
   >

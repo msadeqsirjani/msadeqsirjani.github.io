@@ -137,11 +137,7 @@ const QteIot = () => (
     authors={AUTHORS}
     affiliation={AFFILIATIONS}
     venue="Sustainable Computing: Informatics and Systems (2025)"
-    pdf="/assets/docs/publications/S2210-5379(25)00168-4.pdf"
-    link={{
-      label: 'DOI',
-      href: 'https://doi.org/10.1016/j.suscom.2025.101247',
-    }}
+    paper="https://doi.org/10.1016/j.suscom.2025.101247"
     bibtex={bibtex}
     sections={SECTIONS}
   >

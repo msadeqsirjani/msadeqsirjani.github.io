@@ -1,8 +1,7 @@
 import Icon from '../Icon/Icon';
 import PubLink from '../Publications/PubLink';
 import {
-  faFilePdf,
-  faLink,
+  faFileLines,
   faQuoteRight,
 } from '@fortawesome/free-solid-svg-icons';
 import {faGithub} from '@fortawesome/free-brands-svg-icons';
@@ -19,8 +18,7 @@ export interface ProjectMeta {
   affiliation: string | string[];
   venue: string;
   award?: string;
-  pdf: string;
-  link: {label: string; href: string};
+  paper: string;
   code?: string;
   codeSoon?: boolean;
   bibtex: string;
@@ -32,8 +30,7 @@ const ProjectHero = ({
   affiliation,
   venue,
   award,
-  pdf,
-  link,
+  paper,
   code,
   codeSoon,
   bibtex,
@@ -67,12 +64,11 @@ const ProjectHero = ({
       </p>
 
       <div className="pub-card-actions project-links">
-        <PubLink label="Paper" href={pdf} icon={faFilePdf} variant="paper" />
         <PubLink
-          label={link.label}
-          href={link.href}
-          icon={link.href.includes('arxiv.org') ? faArxiv : faLink}
-          variant="doi"
+          label={paper.includes('arxiv.org') ? 'arXiv' : 'Paper'}
+          href={paper}
+          icon={paper.includes('arxiv.org') ? faArxiv : faFileLines}
+          variant="paper"
         />
         <PubLink
           label="BibTeX"

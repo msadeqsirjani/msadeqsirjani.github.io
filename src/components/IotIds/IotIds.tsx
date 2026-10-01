@@ -72,11 +72,7 @@ const IotIds = () => (
     authors={AUTHORS}
     affiliation={AFFILIATIONS}
     venue="2023 14th International Conference on Information and Knowledge Technology (IKT), pp. 168–174"
-    pdf="/assets/docs/publications/IKT62039.2023.10433047.pdf"
-    link={{
-      label: 'DOI',
-      href: 'https://doi.org/10.1109/IKT62039.2023.10433047',
-    }}
+    paper="https://doi.org/10.1109/IKT62039.2023.10433047"
     bibtex={bibtex}
     sections={SECTIONS}
   >

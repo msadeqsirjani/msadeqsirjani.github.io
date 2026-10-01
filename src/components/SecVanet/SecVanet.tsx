@@ -80,11 +80,7 @@ const SecVanet = () => (
     authors={AUTHORS}
     affiliation={AFFILIATIONS}
     venue="2023 14th International Conference on Information and Knowledge Technology (IKT), pp. 86–91"
-    pdf="/assets/docs/publications/IKT62039.2023.10433027.pdf"
-    link={{
-      label: 'DOI',
-      href: 'https://doi.org/10.1109/IKT62039.2023.10433027',
-    }}
+    paper="https://doi.org/10.1109/IKT62039.2023.10433027"
     bibtex={bibtex}
     sections={SECTIONS}
   >

@@ -73,11 +73,7 @@ const CustomerClv = () => (
     authors={AUTHORS}
     affiliation={AFFILIATIONS}
     venue="2024 10th International Conference on Artificial Intelligence and Robotics (QICAR), pp. 339–344"
-    pdf="/assets/docs/publications/QICAR61538.2024.10496623.pdf"
-    link={{
-      label: 'DOI',
-      href: 'https://doi.org/10.1109/QICAR61538.2024.10496623',
-    }}
+    paper="https://doi.org/10.1109/QICAR61538.2024.10496623"
     bibtex={bibtex}
     sections={SECTIONS}
   >

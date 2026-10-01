@@ -135,8 +135,7 @@ const ControllerPlacement = () => (
     authors={AUTHORS}
     affiliation={AFFILIATIONS}
     venue="Cluster Computing, vol. 28, no. 10, art. 660 (2025)"
-    pdf="/assets/docs/publications/s10586-025-05331-y.pdf"
-    link={{label: 'DOI', href: 'https://doi.org/10.1007/s10586-025-05331-y'}}
+    paper="https://doi.org/10.1007/s10586-025-05331-y"
     bibtex={bibtex}
     sections={SECTIONS}
   >

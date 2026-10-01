@@ -24,7 +24,6 @@ const AFFILIATIONS = [
 ];
 
 const ARXIV = 'https://arxiv.org/abs/2605.22774';
-const PDF = '/assets/docs/publications/2605.22774v5.pdf';
 const IMAGES = '/assets/images/cogadapt';
 
 const SECTIONS = [
@@ -74,8 +73,7 @@ const CogAdapt = () => (
     authors={AUTHORS}
     affiliation={AFFILIATIONS}
     venue="IEEE-EMBS International Conference on Biomedical and Health Informatics (BHI 2026)"
-    pdf={PDF}
-    link={{label: 'arXiv', href: ARXIV}}
+    paper={ARXIV}
     codeSoon
     bibtex={bibtex}
     sections={SECTIONS}

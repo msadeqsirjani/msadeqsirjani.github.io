@@ -149,11 +149,7 @@ const Rigeo = () => (
     authors={AUTHORS}
     affiliation="Department of Computer Science, University of Texas at San Antonio (UTSA)"
     venue="IEEE 2nd International Conference on Secure IoT, Assured and Trusted Computing (SATC 2026)"
-    pdf="/assets/docs/publications/2509.07378v5.pdf"
-    link={{
-      label: 'DOI',
-      href: 'https://doi.org/10.1109/SATC69565.2026.11542230',
-    }}
+    paper="https://doi.org/10.1109/SATC69565.2026.11542230"
     code="https://github.com/msadeqsirjani/RIGEO"
     bibtex={bibtex}
     sections={SECTIONS}
