@@ -161,14 +161,6 @@ h6 {
 
   --on-accent: #ffffff;
 
-  --footer-bg: #1b1b1f;
-  --footer-heading: #ffffff;
-  --footer-text: #a8b0bd;
-  --footer-border: #3a3d45;
-  --footer-divider: #33363d;
-  --footer-bottom: #838997;
-  --footer-accent: #8db7e3;
-
   --pub-abstract-bg: #ffffff;
 
   --fs-xs: 0.75rem;
@@ -241,14 +233,6 @@ h6 {
   --hover-bg: #252930;
 
   --on-accent: #0a305f;
-
-  --footer-bg: #0c0d10;
-  --footer-heading: #f4f5f7;
-  --footer-text: #b3b9c3;
-  --footer-border: #343944;
-  --footer-divider: #292d35;
-  --footer-bottom: #9097a3;
-  --footer-accent: var(--accent-secondary);
 
   --pub-abstract-bg: #22262d;
 
@@ -399,9 +383,7 @@ h3,
 .research-title,
 .education-degree,
 .teaching-course,
-.nf-title,
-.footer-section h3,
-.footer-section h4 {
+.nf-title {
   font-family: var(--font-display);
   font-optical-sizing: auto;
 }
@@ -410,9 +392,7 @@ h3,
 .pub-card-title,
 .research-title,
 .education-degree,
-.teaching-course,
-.footer-section h3,
-.footer-section h4 {
+.teaching-course {
   font-weight: 600;
 }
 

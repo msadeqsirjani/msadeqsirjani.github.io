@@ -460,9 +460,7 @@ a {
 }
 
 .social-link i,
-.footer-social a i,
-.social-link svg,
-.footer-social a svg {
+.social-link svg {
   font-size: var(--fs-xl) !important;
   font-weight: 900 !important;
 }
@@ -524,9 +522,7 @@ a {
   }
 
   .social-link i,
-  .footer-social a i,
-  .social-link svg,
-  .footer-social a svg {
+  .social-link svg {
     font-size: var(--fs-xl) !important;
   }
 }

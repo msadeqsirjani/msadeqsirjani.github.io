@@ -208,7 +208,6 @@
 
 .social-link,
 .btn[data-tooltip],
-.footer-social a[data-tooltip],
 .research-logo-link[data-tooltip],
 .education-logo-link[data-tooltip] {
   position: relative;
@@ -220,7 +219,6 @@
 
 .social-link::after,
 .btn[data-tooltip]::after,
-.footer-social a[data-tooltip]::after,
 .research-logo-link[data-tooltip]::after,
 .education-logo-link[data-tooltip]::after {
   content: attr(data-tooltip);
@@ -250,7 +248,6 @@
 
 .social-link::before,
 .btn[data-tooltip]::before,
-.footer-social a[data-tooltip]::before,
 .research-logo-link[data-tooltip]::before,
 .education-logo-link[data-tooltip]::before {
   content: '';
@@ -272,7 +269,6 @@
 
 .social-link:hover::before,
 .btn[data-tooltip]:hover::before,
-.footer-social a[data-tooltip]:hover::before,
 .research-logo-link[data-tooltip]:hover::before,
 .education-logo-link[data-tooltip]:hover::before {
   opacity: 1;
@@ -281,7 +277,6 @@
 
 .social-link:hover::after,
 .btn[data-tooltip]:hover::after,
-.footer-social a[data-tooltip]:hover::after,
 .research-logo-link[data-tooltip]:hover::after,
 .education-logo-link[data-tooltip]:hover::after {
   opacity: 1;
@@ -291,7 +286,6 @@
 
 .social-link:focus-visible::before,
 .btn[data-tooltip]:focus-visible::before,
-.footer-social a[data-tooltip]:focus-visible::before,
 .research-logo-link[data-tooltip]:focus-visible::before,
 .education-logo-link[data-tooltip]:focus-visible::before {
   opacity: 1;
@@ -300,7 +294,6 @@
 
 .social-link:focus-visible::after,
 .btn[data-tooltip]:focus-visible::after,
-.footer-social a[data-tooltip]:focus-visible::after,
 .research-logo-link[data-tooltip]:focus-visible::after,
 .education-logo-link[data-tooltip]:focus-visible::after {
   opacity: 1;
