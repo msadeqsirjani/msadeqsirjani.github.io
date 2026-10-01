@@ -207,20 +207,12 @@
 }
 
 .social-link,
-.btn[data-tooltip],
-.research-logo-link[data-tooltip],
-.education-logo-link[data-tooltip] {
+.btn[data-tooltip] {
   position: relative;
 }
 
-.research-logo-link {
-  display: inline-flex;
-}
-
 .social-link::after,
-.btn[data-tooltip]::after,
-.research-logo-link[data-tooltip]::after,
-.education-logo-link[data-tooltip]::after {
+.btn[data-tooltip]::after {
   content: attr(data-tooltip);
   position: absolute;
   top: calc(100% + 8px);
@@ -247,9 +239,7 @@
 }
 
 .social-link::before,
-.btn[data-tooltip]::before,
-.research-logo-link[data-tooltip]::before,
-.education-logo-link[data-tooltip]::before {
+.btn[data-tooltip]::before {
   content: '';
   position: absolute;
   top: calc(100% + 3px);
@@ -268,34 +258,26 @@
 }
 
 .social-link:hover::before,
-.btn[data-tooltip]:hover::before,
-.research-logo-link[data-tooltip]:hover::before,
-.education-logo-link[data-tooltip]:hover::before {
+.btn[data-tooltip]:hover::before {
   opacity: 1;
   visibility: visible;
 }
 
 .social-link:hover::after,
-.btn[data-tooltip]:hover::after,
-.research-logo-link[data-tooltip]:hover::after,
-.education-logo-link[data-tooltip]:hover::after {
+.btn[data-tooltip]:hover::after {
   opacity: 1;
   visibility: visible;
   transform: translateX(-50%) translateY(0);
 }
 
 .social-link:focus-visible::before,
-.btn[data-tooltip]:focus-visible::before,
-.research-logo-link[data-tooltip]:focus-visible::before,
-.education-logo-link[data-tooltip]:focus-visible::before {
+.btn[data-tooltip]:focus-visible::before {
   opacity: 1;
   visibility: visible;
 }
 
 .social-link:focus-visible::after,
-.btn[data-tooltip]:focus-visible::after,
-.research-logo-link[data-tooltip]:focus-visible::after,
-.education-logo-link[data-tooltip]:focus-visible::after {
+.btn[data-tooltip]:focus-visible::after {
   opacity: 1;
   visibility: visible;
   transform: translateX(-50%) translateY(0);

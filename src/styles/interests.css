@@ -68,24 +68,6 @@
   min-width: 0;
 }
 
-.interests-crossnav {
-  margin-top: 1.5rem;
-  text-align: center;
-  font-size: var(--fs-base);
-  color: var(--text-light);
-  line-height: 1.6;
-}
-
-.interests-crossnav a {
-  color: var(--accent-color);
-  font-weight: 500;
-  text-decoration: none;
-}
-
-.interests-crossnav a:hover {
-  text-decoration: underline;
-}
-
 kbd {
   display: inline-block;
   padding: 0.25rem 0.5rem;

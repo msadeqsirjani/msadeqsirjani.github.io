@@ -102,12 +102,6 @@
   text-underline-offset: 0.18em;
 }
 
-.service-meta {
-  font-size: var(--fs-sm);
-  line-height: 1.45;
-  color: var(--text-light);
-}
-
 .service-row-side {
   display: flex;
   flex-direction: column;

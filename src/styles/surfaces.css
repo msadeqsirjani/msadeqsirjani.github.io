@@ -3,7 +3,6 @@
 .teaching-row,
 .award-row,
 .news-card,
-.timeline-item,
 .publication-item,
 .pub-card {
   padding: 1rem 0;
@@ -22,7 +21,6 @@
 .teaching-row:focus-within,
 .award-row:focus-within,
 .news-card:focus-within,
-.timeline-item:focus-within,
 .publication-item:focus-within,
 .pub-card:focus-within {
   background-color: rgba(var(--accent-rgb), 0.035);
@@ -34,8 +32,7 @@
   .research-row:hover,
   .teaching-row:hover,
   .award-row:hover,
-  .news-card:hover,
-  .timeline-item:hover {
+  .news-card:hover {
     transform: none;
     background-color: rgba(var(--accent-rgb), 0.035);
     border-bottom-color: rgba(var(--accent-rgb), 0.45);
@@ -48,7 +45,6 @@
 .teaching-row:first-child,
 .award-row:first-child,
 .news-card:first-child,
-.timeline-item:first-child,
 .publication-item:first-child,
 .pub-card:first-child {
   padding-top: 0.15rem;
@@ -59,7 +55,6 @@
 .teaching-row:last-child,
 .award-row:last-child,
 .news-card:last-child,
-.timeline-item:last-child,
 .publication-item:last-child,
 .pub-card:last-child {
   border-bottom: 0;
@@ -69,7 +64,6 @@
 .research-list,
 .teaching-list,
 .awards-list,
-.news-card-list,
-.timeline-list {
+.news-card-list {
   gap: 0;
 }

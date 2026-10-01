@@ -1,18 +1,14 @@
 .bio-text p,
 .news-row-text,
 .news-card-text,
-.publications-intro,
 .pub-scholar-note,
-.publication-abstract p,
 .pub-abstract-panel,
-.timeline-description,
 .research-meta,
 .research-advisor,
 .research-points li,
 .education-gpa,
 .award-text,
-.teaching-meta,
-.interests-crossnav {
+.teaching-meta {
   text-align: justify;
   text-justify: inter-word;
 }
@@ -236,8 +232,6 @@ body:has(.mobile-menu-overlay) .scroll-to-top,
   hyphens: auto;
 }
 
-.publication-abstract,
-.publication-abstract p,
 .pub-card-abstract,
 .bio-text p {
   text-align: justify;
@@ -245,19 +239,11 @@ body:has(.mobile-menu-overlay) .scroll-to-top,
   hyphens: auto;
 }
 
-.publication-abstract,
-.publication-abstract p,
 .pub-card-abstract {
   text-align-last: left;
   overflow-wrap: break-word;
   word-break: normal;
   hyphenate-limit-chars: 6 3 3;
-}
-
-.publication-meta-row {
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 0.5rem;
 }
 
 .pub-card-title {
@@ -343,17 +329,14 @@ body:has(.mobile-menu-overlay) .scroll-to-top,
 
 .news-row-text,
 .news-card-text,
-.publications-intro,
 .pub-scholar-note,
 .pub-abstract-panel,
-.timeline-description,
 .research-meta,
 .research-advisor,
 .research-points li,
 .education-gpa,
 .award-text,
 .teaching-meta,
-.interests-crossnav,
 .service-intro {
   text-align: left;
   text-justify: auto;
@@ -582,17 +565,14 @@ body:has(.mobile-menu-overlay) .scroll-to-top,
   }
 
   .news-card-text,
-  .publications-intro,
   .pub-scholar-note,
   .pub-abstract-panel,
-  .timeline-description,
   .research-meta,
   .research-advisor,
   .research-points li,
   .education-gpa,
   .award-text,
   .teaching-meta,
-  .interests-crossnav,
   .service-intro {
     text-align: justify;
     text-justify: inter-word;

@@ -41,10 +41,7 @@
   .fa::before,
   .fas::before,
   .far::before,
-  .fab::before,
-  .fa-solid::before,
-  .fa-regular::before,
-  .fa-brands::before {
+  .fab::before {
     content: none !important;
     display: none !important;
   }
@@ -74,21 +71,7 @@
   #research-interests,
   .fade-in-section:has(#research-interests),
   #news,
-  button,
-  .show-more-container,
-  .publication-controls,
-  .pub-keywords,
-  .publication-links,
-  .publication-abstract,
-  .publication-badges,
-  .status-inline,
-  .pub-year-badge,
-  .citations-badge,
-  .timeline-dot,
-  .timeline-connector,
-  .timeline-line,
-  .education-current-badge,
-  .research-current-badge {
+  button {
     display: none !important;
   }
 
@@ -102,11 +85,6 @@
     padding: 0 !important;
     margin: 0 !important;
     width: 100% !important;
-  }
-
-  .timeline-list {
-    max-width: 100% !important;
-    margin: 0 !important;
   }
 
   .section {
@@ -160,10 +138,6 @@
     text-decoration: none !important;
   }
 
-  .hero-availability {
-    display: none !important;
-  }
-
   .hero-institution::after {
     content: 'mohammadsadegh.sirjani@utsa.edu  \B7  msadeqsirjani.com';
     display: block;
@@ -186,32 +160,6 @@
     display: none !important;
   }
 
-  .timeline-item.education-item {
-    display: flex !important;
-    flex-direction: row !important;
-    align-items: flex-start !important;
-    flex-wrap: nowrap !important;
-    gap: 0.3cm !important;
-    margin: 0 0 0.15cm 0 !important;
-    padding: 0 !important;
-    border-bottom: none !important;
-  }
-
-  .timeline-item.education-item .timeline-content.education-content {
-    order: 1 !important;
-    flex: 1 1 auto !important;
-    min-width: 0 !important;
-  }
-
-  .timeline-item.education-item .timeline-dates.education-dates {
-    order: 2 !important;
-    flex: 0 0 auto !important;
-    text-align: right !important;
-    white-space: nowrap !important;
-    padding: 0 !important;
-    border: none !important;
-  }
-
   .education-logo {
     display: none !important;
   }
@@ -221,14 +169,6 @@
     font-weight: bold !important;
     display: block !important;
     margin: 0 !important;
-  }
-
-  .education-university-row {
-    display: flex !important;
-    align-items: baseline !important;
-    flex-wrap: wrap;
-    gap: 0.15cm;
-    margin: 0.02cm 0 0 0 !important;
   }
 
   .education-university,
@@ -242,14 +182,6 @@
   .education-gpa {
     font-size: 10.5pt !important;
     margin: 0 !important;
-  }
-
-  .education-dates .duration,
-  .education-dates * {
-    font-size: 11pt !important;
-    padding: 0 !important;
-    border: none !important;
-    background: none !important;
   }
 
   .interests-list {
@@ -284,33 +216,6 @@
     word-break: break-word !important;
   }
 
-  .timeline-item.research-item {
-    display: flex !important;
-    flex-direction: row !important;
-    align-items: flex-start !important;
-    flex-wrap: nowrap !important;
-    gap: 0.3cm !important;
-    margin: 0 0 0.15cm 0 !important;
-    padding: 0 !important;
-    border-bottom: none !important;
-  }
-
-  .timeline-item.research-item .timeline-content.research-content {
-    order: 1 !important;
-    flex: 1 1 auto !important;
-    min-width: 0 !important;
-  }
-
-  .timeline-item.research-item .timeline-dates.research-dates {
-    order: 2 !important;
-    flex: 0 0 auto !important;
-    text-align: right !important;
-    white-space: nowrap !important;
-    padding: 0 !important;
-    border: none !important;
-    padding-top: 0 !important;
-  }
-
   .research-title-row {
     display: flex !important;
     flex-wrap: nowrap !important;
@@ -332,48 +237,6 @@
   .research-sep {
     display: inline !important;
     white-space: nowrap !important;
-  }
-
-  .research-position {
-    font-size: 11pt !important;
-    display: inline !important;
-    margin: 0 !important;
-    white-space: nowrap !important;
-  }
-
-  .research-description {
-    font-size: 10.5pt !important;
-    margin-top: 0.03cm !important;
-    line-height: 1.35;
-    hyphens: auto;
-  }
-
-  .research-description ul {
-    list-style: none !important;
-    padding: 0 !important;
-    margin: 0 !important;
-    padding-left: 0.5cm !important;
-  }
-
-  .research-description li {
-    position: relative !important;
-    padding-left: 0.4cm !important;
-    margin-bottom: 0.02cm !important;
-  }
-
-  .research-description li::before {
-    content: '4';
-    position: absolute !important;
-    left: 0 !important;
-  }
-
-  .research-dates .timeline,
-  .research-dates span,
-  .research-dates * {
-    font-size: 11pt !important;
-    padding: 0 !important;
-    margin: 0 !important;
-    border: none !important;
   }
 
   .publications-container {
@@ -406,14 +269,6 @@
     font-weight: normal;
   }
 
-  .publication-header,
-  .publication-header-content {
-    display: block !important;
-    border: none !important;
-    padding: 0 !important;
-    margin: 0 !important;
-  }
-
   .publication-title {
     font-size: 10.5pt !important;
     font-weight: normal !important;
@@ -441,46 +296,6 @@
     margin: 0 !important;
   }
 
-  .timeline-list.teaching-list {
-    border-top: none !important;
-  }
-
-  .timeline-item.teaching-item {
-    display: flex !important;
-    flex-direction: row !important;
-    align-items: center !important;
-    justify-content: space-between !important;
-    padding: 0 !important;
-    margin: 0 0 0.08cm 0 !important;
-    border-bottom: none !important;
-    position: static !important;
-    page-break-inside: avoid;
-  }
-
-  .teaching-item .teaching-content {
-    flex: 1 1 auto !important;
-    padding: 0 !important;
-    min-width: 0 !important;
-  }
-
-  .teaching-item .teaching-dates {
-    flex: 0 0 auto !important;
-    position: static !important;
-    transform: none !important;
-    text-align: right !important;
-    white-space: nowrap !important;
-    margin-left: 0.35cm !important;
-    padding: 0 !important;
-    border: none !important;
-  }
-
-  .teaching-dates span,
-  .teaching-dates * {
-    font-size: 11pt !important;
-    padding: 0 !important;
-    border: none !important;
-  }
-
   .teaching-course {
     font-size: 11pt !important;
     font-weight: bold !important;
@@ -494,44 +309,10 @@
     margin: 0 !important;
   }
 
-  .teaching-instructor-name,
   .teaching-meta a,
   .teaching-sep {
     font-size: 10.5pt !important;
     text-decoration: none !important;
-  }
-
-  .timeline-item.awards-item {
-    display: flex !important;
-    flex-direction: row !important;
-    align-items: flex-start !important;
-    flex-wrap: nowrap !important;
-    gap: 0.3cm !important;
-    margin: 0 0 0.1cm 0 !important;
-    padding: 0 !important;
-    border-bottom: none !important;
-    page-break-inside: avoid;
-  }
-
-  .timeline-item.awards-item .timeline-dates.awards-dates {
-    flex: 0 0 2cm !important;
-    text-align: right !important;
-    white-space: nowrap !important;
-    padding: 0 !important;
-    border: none !important;
-    font-size: 10.5pt !important;
-  }
-
-  .timeline-item.awards-item .timeline-content {
-    flex: 1 1 auto !important;
-    min-width: 0 !important;
-  }
-
-  .timeline-description {
-    font-size: 10.5pt !important;
-    margin: 0 !important;
-    text-align: left !important;
-    display: block !important;
   }
 
   a,
@@ -550,9 +331,6 @@
     page-break-inside: avoid;
   }
 
-  .timeline-item.education-item,
-  .timeline-item.teaching-item,
-  .timeline-item.awards-item,
   .publication-item {
     page-break-inside: avoid;
   }

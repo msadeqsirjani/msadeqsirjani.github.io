@@ -402,14 +402,6 @@
   transform: translateY(-7px) rotate(-45deg);
 }
 
-.nav-mobile-item {
-  display: none;
-}
-
-.nav-menu-close-item {
-  display: none;
-}
-
 .nav-menu-close {
   width: 40px;
   height: 40px;

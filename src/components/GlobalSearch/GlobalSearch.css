@@ -108,7 +108,6 @@
   color: var(--text-light);
 }
 
-.clear-search-btn,
 .close-search-btn {
   background: var(--bg-color, var(--white));
   border: var(--button-border-width) solid var(--border-color);
@@ -124,7 +123,6 @@
   flex-shrink: 0;
 }
 
-.clear-search-btn:hover,
 .close-search-btn:hover {
   background: var(--gray-light);
 }
@@ -375,14 +373,12 @@ a.result-item {
   color: var(--modal-text);
 }
 
-.clear-search-btn,
 .close-search-btn {
   color: var(--modal-text-muted);
   background: var(--modal-bg);
   border-color: var(--modal-border);
 }
 
-.clear-search-btn:hover,
 .close-search-btn:hover {
   background: var(--modal-hover-bg);
 }
