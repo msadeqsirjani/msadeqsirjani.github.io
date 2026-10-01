@@ -35,9 +35,7 @@
   .teaching-row:hover,
   .award-row:hover,
   .news-card:hover,
-  .timeline-item:hover,
-  .publication-item:hover,
-  .pub-card:hover {
+  .timeline-item:hover {
     transform: none;
     background-color: rgba(var(--accent-rgb), 0.035);
     border-bottom-color: rgba(var(--accent-rgb), 0.45);
