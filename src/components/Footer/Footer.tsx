@@ -1,28 +1,13 @@
 import {useMemo, useState} from 'react';
 import Icon from '../Icon/Icon';
-import {
-  faEnvelope,
-  faGraduationCap,
-  faArrowUp,
-  faMapMarkerAlt,
-  faUniversity,
-} from '@fortawesome/free-solid-svg-icons';
-import {
-  faLinkedin,
-  faGithub,
-  faOrcid,
-  faResearchgate,
-} from '@fortawesome/free-brands-svg-icons';
+import {faArrowUp} from '@fortawesome/free-solid-svg-icons';
 import {useScrollManager} from '../../hooks/useScrollManager';
-import {ROUTE_PATHS} from '../../constants/siteNav';
-import {navLinkProps} from '../../utils/router';
 import {getAccessibleScrollBehavior} from '../../utils/motion';
 
 const BUILD_TIMESTAMP = Number(__BUILD_TIMESTAMP__);
 const FALLBACK_TIMESTAMP = Date.now();
 
 const Footer = () => {
-  const currentYear = new Date().getFullYear();
   const [scrollVisible, setScrollVisible] = useState(false);
 
   const lastUpdated = useMemo(() => {
@@ -31,7 +16,7 @@ const Footer = () => {
         ? BUILD_TIMESTAMP
         : FALLBACK_TIMESTAMP;
     return new Date(ts).toLocaleDateString('en-US', {
-      month: 'long',
+      month: 'short',
       day: 'numeric',
       year: 'numeric',
     });
@@ -45,138 +30,12 @@ const Footer = () => {
     window.scrollTo({top: 0, behavior: getAccessibleScrollBehavior()});
   };
 
-  const quickLinks: {
-    id: string;
-    label: string;
-    path: string;
-    anchor?: string;
-  }[] = [
-    {id: 'home', label: 'Home', path: ROUTE_PATHS.home},
-    {id: 'research', label: 'Research', path: ROUTE_PATHS.research},
-    {id: 'publications', label: 'Publications', path: ROUTE_PATHS.publications},
-    {id: 'teaching', label: 'Teaching', path: ROUTE_PATHS.teaching},
-    {id: 'service', label: 'Service', path: ROUTE_PATHS.service},
-  ];
-
-  const contactInfo = [
-    {
-      icon: faMapMarkerAlt,
-      href: 'https://maps.google.com/?q=1+UTSA+Circle,+San+Antonio,+TX+78249',
-      text: '1 UT San Antonio Circle, San Antonio, TX 78249',
-      external: true,
-    },
-    {
-      icon: faUniversity,
-      href: 'https://utsa.edu',
-      text: 'University of Texas at San Antonio',
-      external: true,
-    },
-  ];
-
-  const socialLinks = [
-    {
-      href: 'mailto:mohammadsadegh.sirjani@utsa.edu',
-      icon: faEnvelope,
-      label: 'Email',
-      mobilePrimary: true,
-    },
-    {
-      href: 'https://scholar.google.com/citations?user=EI5DizMAAAAJ&hl=en',
-      icon: faGraduationCap,
-      label: 'Google Scholar',
-      mobilePrimary: true,
-    },
-    {
-      href: 'https://www.linkedin.com/in/msadeqsirjani',
-      icon: faLinkedin,
-      label: 'LinkedIn',
-      mobilePrimary: true,
-    },
-    {
-      href: 'https://github.com/msadeqsirjani',
-      icon: faGithub,
-      label: 'GitHub',
-      mobilePrimary: true,
-    },
-    {
-      href: 'https://orcid.org/0009-0000-5146-0216',
-      icon: faOrcid,
-      label: 'ORCID',
-    },
-    {
-      href: 'https://www.researchgate.net/profile/Mohammad-Sadegh-Sirjani',
-      icon: faResearchgate,
-      label: 'ResearchGate',
-    },
-  ];
-
   return (
     <>
       <footer className="footer">
-        <div className="container">
-          <div className="footer-content">
-            <div className="footer-section footer-identity">
-              <h3>Mohammad Sadegh Sirjani</h3>
-              <p>Ph.D. Student in Computer Science</p>
-            </div>
-            <div className="footer-section footer-navigation">
-              <h4>Quick Links</h4>
-              <ul className="footer-quick-links">
-                {quickLinks.map(link => (
-                  <li key={link.id}>
-                    <a {...navLinkProps(link.path, link.anchor)}>
-                      {link.label}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div className="footer-section footer-connect">
-              <h4>Connect</h4>
-              <div className="footer-social">
-                {socialLinks.map((link, idx) => (
-                  <a
-                    key={idx}
-                    className={
-                      link.mobilePrimary ? 'footer-social-primary' : undefined
-                    }
-                    href={link.href}
-                    target="_blank"
-                    rel="noopener"
-                    aria-label={link.label}
-                    data-tooltip={link.label}
-                  >
-                    <Icon icon={link.icon} />
-                  </a>
-                ))}
-              </div>
-              <ul className="footer-contact">
-                {contactInfo.map((item, idx) => (
-                  <li key={idx}>
-                    <span className="footer-contact-icon" aria-hidden="true">
-                      <Icon icon={item.icon} />
-                    </span>
-                    <a
-                      href={item.href}
-                      {...(item.external && {
-                        target: '_blank',
-                        rel: 'noopener',
-                      })}
-                    >
-                      {item.text}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-          <div className="footer-bottom">
-            <p>
-              &copy; {currentYear} Mohammad Sadegh Sirjani. All rights reserved.
-            </p>
-            <p className="last-updated">Last updated: {lastUpdated}</p>
-          </div>
-        </div>
+        <p className="footer-meta">
+          Last updated: <time>{lastUpdated}</time>
+        </p>
       </footer>
 
       <button
