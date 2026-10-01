@@ -399,20 +399,6 @@ body:has(.mobile-menu-overlay) .scroll-to-top,
   }
 }
 
-@media (hover: none) {
-  .publication-item:hover,
-  .pub-card:hover,
-  .education-row:hover,
-  .research-row:hover,
-  .teaching-row:hover,
-  .award-row:hover,
-  .news-card:hover,
-  .interest-row:hover {
-    transform: none;
-    box-shadow: none;
-  }
-}
-
 @media (min-width: 481px) {
   :root {
     --card-padding: 1.25rem;

@@ -24,13 +24,6 @@
   border-bottom-color: rgba(var(--accent-rgb), 0.45);
 }
 
-@media (hover: hover) {
-  .interest-row:hover {
-    background-color: rgba(var(--accent-rgb), 0.035);
-    border-bottom-color: rgba(var(--accent-rgb), 0.45);
-  }
-}
-
 .interest-row:last-child {
   border-bottom: 0;
 }
