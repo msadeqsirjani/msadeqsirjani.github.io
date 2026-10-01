@@ -12,6 +12,10 @@
     "description": "Awarded the <a href=\"https://dac.com/2026\" target=\"_blank\" rel=\"noopener noreferrer\">63rd DAC Young Fellows</a> fellowship for contributions to design automation."
   },
   {
+    "date": "July 2026",
+    "description": "Awarded the Graduate School Academic Travel Fund to attend the <a href=\"https://dac.com/\" target=\"_blank\" rel=\"noopener noreferrer\">Design Automation Conference (DAC) 2026</a>."
+  },
+  {
     "date": "April 2026",
     "description": "Received the <strong>Outstanding Paper</strong> award at <a href=\"https://gem-workshop.com/\" target=\"_blank\" rel=\"noopener noreferrer\">GEM 2026</a>, colocated with ACL 2026, for \"<a href=\"/publications/contamination-review\">Are LLM Benchmarks Already Contaminated? A Systematic Review of Contamination Detection Methods</a>\"."
   },
@@ -20,11 +24,19 @@
     "description": "Won the Fan Favorite Award at the <a href=\"https://caicc.utsa.edu/draper/\" target=\"_blank\" rel=\"noopener noreferrer\">Draper Data Science Business Plan Competition 2026</a>."
   },
   {
+    "date": "April 2026",
+    "description": "Selected as a scholarship recipient for the <a href=\"https://dair-3.org/\" target=\"_blank\" rel=\"noopener noreferrer\">DAiR3 Data Science Summer School</a>."
+  },
+  {
     "date": "June 2025",
     "description": "Won the 2-minute presentation award competition at the <a href=\"https://archive.dac.com/about/conference-archive/62nd-dac-2025.html\" target=\"_blank\" rel=\"noopener noreferrer\">62nd DAC</a>."
   },
   {
     "date": "June 2025",
     "description": "Awarded the <a href=\"https://archive.dac.com/about/conference-archive/62nd-dac-2025.html\" target=\"_blank\" rel=\"noopener noreferrer\">62nd DAC Young Fellows</a> fellowship for contributions to design automation."
+  },
+  {
+    "date": "June 2025",
+    "description": "Awarded the Graduate School Academic Travel Fund to attend the <a href=\"https://dac.com/\" target=\"_blank\" rel=\"noopener noreferrer\">Design Automation Conference (DAC) 2025</a>."
   }
 ]
