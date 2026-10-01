@@ -1,9 +1,6 @@
 import Icon from '../Icon/Icon';
 import PubLink from '../Publications/PubLink';
-import {
-  faFileLines,
-  faQuoteRight,
-} from '@fortawesome/free-solid-svg-icons';
+import {faFileLines, faQuoteRight} from '@fortawesome/free-solid-svg-icons';
 import {faGithub} from '@fortawesome/free-brands-svg-icons';
 import faArxiv from '../../icons/arxiv';
 import {copyBibtex} from './copyBibtex';

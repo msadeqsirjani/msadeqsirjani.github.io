@@ -59,11 +59,7 @@ const PublicationItem = ({pub, headingLevel = 3}: PublicationItemProps) => {
   const hasKeywords = !!pub.keywords && pub.keywords.length > 0;
   const hasVenue = !!pub.venue && !/preprint/i.test(pub.venue);
   const hasActions = Boolean(
-    pub.abstract ||
-    pub.projectPage ||
-    pub.link ||
-    pub.bibtexId ||
-    pub.github,
+    pub.abstract || pub.projectPage || pub.link || pub.bibtexId || pub.github,
   );
   const isArxiv = !!pub.link?.includes('arxiv.org');
   const TitleTag = headingLevel === 2 ? 'h2' : 'h3';
