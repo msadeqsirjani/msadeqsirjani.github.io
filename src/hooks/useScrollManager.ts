@@ -73,5 +73,3 @@ export const useScrollManager = (callback: ScrollListener) => {
     return scrollManager.subscribe(stableListener);
   }, []);
 };
-
-export default scrollManager;

@@ -13,7 +13,7 @@ const shouldSkipFetch = <T>(initialValue: T) => {
   return initialValue !== null && initialValue !== undefined;
 };
 
-export function useContentData<T>(
+function useContentData<T>(
   fetcher: () => Promise<T>,
   initialValue: T,
   options: UseContentOptions = {},

@@ -1,6 +1,6 @@
 import {useEffect, useState, type ComponentType} from 'react';
 
-export interface LazyGlobalSearchProps {
+interface LazyGlobalSearchProps {
   isOpen: boolean;
   onClose: () => void;
 }

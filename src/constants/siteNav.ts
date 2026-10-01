@@ -1,4 +1,4 @@
-export interface NavLink {
+interface NavLink {
   id: string;
   label: string;
 
@@ -76,8 +76,4 @@ const PATH_TO_KEY = new Map<string, RouteKey>(
 
 export function routeKeyForPath(pathname: string): RouteKey | null {
   return PATH_TO_KEY.get(normalizePath(pathname)) ?? null;
-}
-
-export function isValidPath(pathname: string): boolean {
-  return routeKeyForPath(pathname) !== null;
 }
