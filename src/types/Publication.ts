@@ -7,7 +7,6 @@ export interface Publication {
   visible: boolean;
   authors?: string;
   link?: string;
-  pdfLink?: string;
   projectPage?: string;
   github?: string;
   bibtexId?: string;
