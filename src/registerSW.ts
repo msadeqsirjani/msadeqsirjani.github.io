@@ -1,28 +1,11 @@
 export function registerServiceWorker() {
   if ('serviceWorker' in navigator && import.meta.env.PROD) {
     window.addEventListener('load', () => {
-      caches.keys().then(cacheNames => {
-        cacheNames.forEach(cacheName => {
-          if (
-            cacheName.startsWith('msadeqsirjani-') ||
-            cacheName.startsWith('runtime-cache-')
-          ) {
-            caches.delete(cacheName).then(() => {
-              if (import.meta.env.DEV) {
-                console.log('Cleared old cache:', cacheName);
-              }
-            });
-          }
-        });
-      });
+      const hadController = Boolean(navigator.serviceWorker.controller);
 
       navigator.serviceWorker
         .register('/sw.js')
         .then(registration => {
-          if (import.meta.env.DEV) {
-            console.log('SW registered:', registration);
-          }
-
           registration.update();
 
           setInterval(
@@ -40,9 +23,6 @@ export function registerServiceWorker() {
                   newWorker.state === 'installed' &&
                   navigator.serviceWorker.controller
                 ) {
-                  if (import.meta.env.DEV) {
-                    console.log('New version available! Updating...');
-                  }
                   newWorker.postMessage({type: 'SKIP_WAITING'});
                 }
               });
@@ -55,11 +35,8 @@ export function registerServiceWorker() {
 
       let refreshing = false;
       navigator.serviceWorker.addEventListener('controllerchange', () => {
-        if (!refreshing) {
+        if (hadController && !refreshing) {
           refreshing = true;
-          if (import.meta.env.DEV) {
-            console.log('New service worker activated, reloading...');
-          }
           window.location.reload();
         }
       });
