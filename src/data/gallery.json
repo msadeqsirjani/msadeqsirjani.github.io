@@ -48,6 +48,22 @@
     ]
   },
   {
+    "id": "draper26",
+    "title": "Draper Data Science Business Plan Competition 2026",
+    "location": "San Antonio, TX, USA",
+    "date": "April 10, 2026",
+    "photos": [
+      {
+        "src": "/assets/gallery/draper26/welcome-display.jpg",
+        "alt": "At the Draper Data Science Business Plan Competition welcome display"
+      },
+      {
+        "src": "/assets/gallery/draper26/fan-favorite-award.jpg",
+        "alt": "Receiving the Fan Favorite Award with the team"
+      }
+    ]
+  },
+  {
     "id": "dac25",
     "title": "62nd Design Automation Conference (DAC 2025)",
     "location": "San Francisco, CA, USA",
