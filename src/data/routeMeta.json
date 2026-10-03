@@ -48,6 +48,15 @@
     "description": "Academic service of Mohammad Sadegh Sirjani, including peer reviewing for conferences and journals.",
     "sources": ["src/components/Service"]
   },
+  "gallery": {
+    "title": "Mohammad Sadegh Sirjani | Gallery",
+    "description": "Photos of Mohammad Sadegh Sirjani at conferences, including DAC 2025 in San Francisco and DAC 2026 in Long Beach.",
+    "sources": [
+      "src/components/Gallery",
+      "src/data/gallery.json",
+      "public/assets/gallery"
+    ]
+  },
   "cogadapt": {
     "title": "CogAdapt: Adapting Clinical ECG Foundation Models for Wearable Cognitive Load Assessment | Mohammad Sadegh Sirjani",
     "description": "CogAdapt adapts clinical ECG foundation models to 3-lead wearable cognitive load assessment with LeadBridge and ProFine. IEEE EMBS BHI 2026.",

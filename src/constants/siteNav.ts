@@ -16,6 +16,7 @@ export const ROUTE_PATHS = {
   news: '/news',
   awards: '/awards',
   service: '/service',
+  gallery: '/gallery',
   cogadapt: '/publications/cogadapt',
   rigeo: '/publications/rigeo',
   contamination: '/publications/contamination-review',
@@ -40,6 +41,7 @@ export const DROPDOWN_NAV_LINKS: readonly NavLink[] = [
   {id: 'education', label: 'Education', path: ROUTE_PATHS.education},
   {id: 'awards', label: 'Awards', path: ROUTE_PATHS.awards},
   {id: 'news', label: 'News', path: ROUTE_PATHS.news},
+  {id: 'gallery', label: 'Gallery', path: ROUTE_PATHS.gallery},
 ];
 
 export const ALL_NAV_LINKS: readonly NavLink[] = [

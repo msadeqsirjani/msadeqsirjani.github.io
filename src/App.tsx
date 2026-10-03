@@ -44,6 +44,7 @@ const Teaching = lazy(() => import('./components/Teaching/Teaching'));
 const News = lazy(() => import('./components/News/News'));
 const Awards = lazy(() => import('./components/Awards/Awards'));
 const Service = lazy(() => import('./components/Service/Service'));
+const Gallery = lazy(() => import('./components/Gallery/Gallery'));
 const CogAdapt = lazy(() => import('./components/CogAdapt/CogAdapt'));
 const Rigeo = lazy(() => import('./components/Rigeo/Rigeo'));
 const Contamination = lazy(
@@ -102,6 +103,7 @@ const PAGE_COMPONENTS: Record<
   news: News,
   awards: Awards,
   service: Service,
+  gallery: Gallery,
 };
 
 const PAGE_LOADER_TYPES: Record<
@@ -115,6 +117,7 @@ const PAGE_LOADER_TYPES: Record<
   news: 'card',
   awards: 'record',
   service: 'card',
+  gallery: 'tile',
 };
 
 interface SectionLoaderProps {

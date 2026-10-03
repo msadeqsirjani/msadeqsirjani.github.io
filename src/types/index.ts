@@ -4,4 +4,5 @@ export type {ResearchItem} from './ResearchItem';
 export type {TeachingItem} from './TeachingItem';
 export type {NewsItem} from './NewsItem';
 export type {AwardItem} from './AwardItem';
+export type {GalleryEvent, GalleryPhoto} from './GalleryEvent';
 export type {ResearchInterest} from './ResearchInterest';

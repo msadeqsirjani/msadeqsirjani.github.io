@@ -1,0 +1,78 @@
+[
+  {
+    "id": "dac26",
+    "title": "63rd Design Automation Conference (DAC 2026)",
+    "location": "Long Beach, CA, USA",
+    "date": "July 26–29, 2026",
+    "photos": [
+      {
+        "src": "/assets/gallery/dac26/convention-center-entrance.jpg",
+        "alt": "At the Long Beach Convention Center entrance"
+      },
+      {
+        "src": "/assets/gallery/dac26/welcome-banner.jpg",
+        "alt": "In front of the DAC welcome banner"
+      },
+      {
+        "src": "/assets/gallery/dac26/poster-session.jpg",
+        "alt": "Presenting the DAC Young Fellows poster on adaptive compressed sensing for arrhythmia classification"
+      },
+      {
+        "src": "/assets/gallery/dac26/poster-discussion.jpg",
+        "alt": "Discussing the poster with a visitor"
+      },
+      {
+        "src": "/assets/gallery/dac26/john-martinis.jpg",
+        "alt": "With Prof. John M. Martinis, 2025 Nobel Laureate in Physics"
+      },
+      {
+        "src": "/assets/gallery/dac26/young-fellows-cohort.jpg",
+        "alt": "DAC Young Fellows 2026 recipients with their certificates"
+      },
+      {
+        "src": "/assets/gallery/dac26/young-fellow-certificate.jpg",
+        "alt": "DAC Young Fellow 2026 certificate"
+      },
+      {
+        "src": "/assets/gallery/dac26/video-contest-winners.jpg",
+        "alt": "Video contest winners on stage"
+      },
+      {
+        "src": "/assets/gallery/dac26/video-contest-award.jpg",
+        "alt": "Receiving the video contest award"
+      },
+      {
+        "src": "/assets/gallery/dac26/young-fellows-group.jpg",
+        "alt": "DAC Young Fellows group photo"
+      }
+    ]
+  },
+  {
+    "id": "dac25",
+    "title": "62nd Design Automation Conference (DAC 2025)",
+    "location": "San Francisco, CA, USA",
+    "date": "June 22–25, 2025",
+    "photos": [
+      {
+        "src": "/assets/gallery/dac25/welcome-banner.jpg",
+        "alt": "In front of the DAC 2025 conference banner"
+      },
+      {
+        "src": "/assets/gallery/dac25/poster-session.jpg",
+        "alt": "Presenting the DAC Young Fellows poster on ECG classification for intermittent IoT"
+      },
+      {
+        "src": "/assets/gallery/dac25/award-ceremony.jpg",
+        "alt": "Receiving the DAC Young Fellow certificate on stage"
+      },
+      {
+        "src": "/assets/gallery/dac25/certificate-portrait.jpg",
+        "alt": "Holding the DAC Young Fellow 2025 certificate"
+      },
+      {
+        "src": "/assets/gallery/dac25/young-fellow-certificate.jpg",
+        "alt": "DAC Young Fellow 2025 certificate"
+      }
+    ]
+  }
+]

@@ -117,6 +117,9 @@ h6 {
   --toast-error-bg: #ef4444;
   --toast-error-text: #ffffff;
 
+  --lightbox-backdrop: rgba(10, 14, 22, 0.92);
+  --lightbox-fg: #ffffff;
+
   --nav-scrolled-bg: rgba(253, 252, 255, 0.56);
   --nav-scrolled-solid: rgba(253, 252, 255, 1);
   --nav-scrolled-border: rgba(var(--accent-rgb), 0.12);
@@ -199,6 +202,9 @@ h6 {
 }
 
 [data-theme='dark'] {
+  --lightbox-backdrop: rgba(0, 0, 0, 0.94);
+  --lightbox-fg: #f5f7fa;
+
   color-scheme: dark;
   --text-color: #eceef2;
   --text-light: #b8bec8;
