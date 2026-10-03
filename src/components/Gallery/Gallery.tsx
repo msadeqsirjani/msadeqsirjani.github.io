@@ -61,7 +61,7 @@ const Gallery = () => {
                     type="button"
                     className="gallery-thumb"
                     onClick={() => setOpen({photos: event.photos, index})}
-                    aria-label={`Open photo: ${item.alt}`}
+                    aria-label={`${item.youtube ? 'Play video' : 'Open photo'}: ${item.alt}`}
                   >
                     <img
                       src={item.src}
@@ -69,6 +69,9 @@ const Gallery = () => {
                       loading="lazy"
                       decoding="async"
                     />
+                    {item.youtube && (
+                      <span className="gallery-play" aria-hidden="true" />
+                    )}
                   </button>
                 </li>
               ))}
@@ -89,7 +92,17 @@ const Gallery = () => {
       >
         {open && photo && (
           <figure className="gallery-lightbox-figure">
-            <img src={photo.src} alt={photo.alt} />
+            {photo.youtube ? (
+              <iframe
+                className="gallery-lightbox-video"
+                src={`https://www.youtube-nocookie.com/embed/${photo.youtube}?autoplay=1&rel=0`}
+                title={photo.alt}
+                allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
+                allowFullScreen
+              />
+            ) : (
+              <img src={photo.src} alt={photo.alt} />
+            )}
             <figcaption>
               {photo.alt}
               <span className="gallery-lightbox-count">

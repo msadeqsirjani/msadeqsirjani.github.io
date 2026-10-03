@@ -1,6 +1,7 @@
 export interface GalleryPhoto {
   src: string;
   alt: string;
+  youtube?: string;
 }
 
 export interface GalleryEvent {
